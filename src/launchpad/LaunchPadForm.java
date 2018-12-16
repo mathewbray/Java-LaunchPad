@@ -6,6 +6,7 @@
 package launchpad;
 
 import java.awt.Component;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -144,12 +145,16 @@ public class LaunchPadForm extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jListSessions.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListSessionsValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jListSessions);
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(0, 20, 190, 440);
 
-        jTextFieldConnectHostname.setText("255.255.255.255");
         jTextFieldConnectHostname.setToolTipText("IP or DNS Hostname");
         jTextFieldConnectHostname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,7 +162,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextFieldConnectHostname);
-        jTextFieldConnectHostname.setBounds(200, 20, 120, 20);
+        jTextFieldConnectHostname.setBounds(200, 10, 120, 20);
 
         jTextFieldConnectUsername.setToolTipText("Username");
         jPanel1.add(jTextFieldConnectUsername);
@@ -176,7 +181,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonHTTPS);
-        jButtonHTTPS.setBounds(330, 20, 60, 30);
+        jButtonHTTPS.setBounds(330, 10, 60, 30);
 
         jButtonSSH.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jButtonSSH.setText("SSH");
@@ -190,7 +195,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButtonSSH.setBounds(330, 50, 60, 40);
 
         jTextFieldPingHostname.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextFieldPingHostname.setText("jTextField4");
         jTextFieldPingHostname.setToolTipText("IP or DNS Hostname");
         jPanel1.add(jTextFieldPingHostname);
         jTextFieldPingHostname.setBounds(200, 110, 120, 21);
@@ -495,7 +499,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
         hostsPSubnet.setEditable(false);
         jPanel3.add(hostsPSubnet);
-        hostsPSubnet.setBounds(310, 170, 30, 20);
+        hostsPSubnet.setBounds(120, 180, 120, 20);
 
         jLabel4.setText("Network Address");
         jPanel3.add(jLabel4);
@@ -536,19 +540,25 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jLabel7.setText("Hosts Per Subnet");
         jPanel3.add(jLabel7);
         jLabel7.setBounds(10, 180, 110, 20);
+
+        oct1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                oct1KeyTyped(evt);
+            }
+        });
         jPanel3.add(oct1);
         oct1.setBounds(100, 20, 30, 20);
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Network Class");
         jPanel3.add(jLabel8);
-        jLabel8.setBounds(280, 150, 90, 20);
+        jLabel8.setBounds(270, 150, 100, 20);
         jPanel3.add(oct2);
         oct2.setBounds(140, 20, 30, 20);
 
         networkClass.setEditable(false);
         jPanel3.add(networkClass);
-        networkClass.setBounds(120, 180, 120, 20);
+        networkClass.setBounds(310, 170, 20, 20);
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("/");
@@ -859,6 +869,24 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jListSessionsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListSessionsValueChanged
+        // TODO add your handling code here:
+        String strSelectedValue = jListSessions.getSelectedValue();
+        if(strSelectedValue.contains(",")) {
+            String[] arrSelectedValue = strSelectedValue.split(",");
+            jTextFieldConnectHostname.setText(arrSelectedValue[1]);
+            jTextFieldPingHostname.setText(arrSelectedValue[1]);
+        }
+    }//GEN-LAST:event_jListSessionsValueChanged
+
+    private void oct1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oct1KeyTyped
+        // TODO add your handling code here:
+        System.out.println("Key pressed code=" + evt.getKeyCode() + ", char=" + evt.getKeyChar());
+        if (evt.getKeyChar() == KeyEvent.VK_TAB) {
+
+        }
+    }//GEN-LAST:event_oct1KeyTyped
 
     /**
      * @param args the command line arguments
