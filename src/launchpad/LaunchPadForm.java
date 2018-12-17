@@ -5,7 +5,9 @@
  */
 package launchpad;
 
+import java.awt.AWTException;
 import java.awt.Component;
+import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.File;
@@ -35,7 +37,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     DefaultListModel defaultListModel=new DefaultListModel();
     File pathWorkingDirectory = new File(System.getProperty("user.dir"));
     File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
-    
+
     /**
      * Creates new form LaunchPadForm
      * @throws java.io.IOException
@@ -45,6 +47,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         //importSessionList();
         getSessionList();
         //updateSessionList();
+        this.getRootPane().setDefaultButton(calBtn);
 
     }
 
@@ -464,12 +467,24 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jTabbedPane1.addTab("Main", jPanel1);
 
         jPanel3.setLayout(null);
+
+        oct3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                oct3KeyTyped(evt);
+            }
+        });
         jPanel3.add(oct3);
         oct3.setBounds(180, 20, 30, 20);
 
         subnetMask.setEditable(false);
         jPanel3.add(subnetMask);
         subnetMask.setBounds(120, 60, 120, 20);
+
+        oct4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                oct4KeyTyped(evt);
+            }
+        });
         jPanel3.add(oct4);
         oct4.setBounds(220, 20, 30, 20);
 
@@ -541,6 +556,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel3.add(jLabel7);
         jLabel7.setBounds(10, 180, 110, 20);
 
+        oct1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oct1ActionPerformed(evt);
+            }
+        });
         oct1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 oct1KeyTyped(evt);
@@ -553,6 +573,12 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jLabel8.setText("Network Class");
         jPanel3.add(jLabel8);
         jLabel8.setBounds(270, 150, 100, 20);
+
+        oct2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                oct2KeyTyped(evt);
+            }
+        });
         jPanel3.add(oct2);
         oct2.setBounds(140, 20, 30, 20);
 
@@ -589,146 +615,34 @@ public class LaunchPadForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonSSHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSSHActionPerformed
+    private void oct1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oct1KeyTyped
         // TODO add your handling code here:
-        System.out.println("Pressed"); 
-        String strEXEC = "" + pathDesktop + "/authexe/putty.exe -ssh " + jTextFieldConnectHostname.getText() + " " + jTextFieldConnectUsername + "@" + jPasswordFieldConnectPassword + "  ";
-        try {  
-            // We are running "dir" and "ping" command on cmd 
-            Runtime.getRuntime().exec(strEXEC); 
-        } 
-        catch (IOException e) { 
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }     
-    }//GEN-LAST:event_jButtonSSHActionPerformed
-
-    private void jButtonPingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPingActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Pressed"); 
-        try {  
-            // We are running "dir" and "ping" command on cmd 
-            Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"ping -t " + jTextFieldPingHostname.getText() + "\""); 
-        } 
-        catch (IOException e) { 
-            System.out.println("HEY Buddy ! U r Doing Something Wrong "); 
-            JOptionPane.showMessageDialog(null, "Something is wrong!");            
-        } 
-    }//GEN-LAST:event_jButtonPingActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Pressed"); 
-        try {  
-            // We are running "dir" and "ping" command on cmd 
-            Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"dir && ping localhost\""); 
-        } 
-        catch (IOException e) { 
-            System.out.println("HEY Buddy ! U r Doing Something Wrong "); 
-            JOptionPane.showMessageDialog(null, "Something is wrong!");            
-        } 
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButtonHTTPSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHTTPSActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Pressed"); 
-        Icon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
-        Icon iconFireFox = new ImageIcon(getClass().getResource("/launchpad/images/buttons/firefox.png"));
-    Object[] iconArray = {iconExplorer,
-                        iconFireFox};
-    int result = JOptionPane.showOptionDialog(null,
-        "IE or FireFox?",
-        "Browser Chooser",
-        JOptionPane.YES_NO_CANCEL_OPTION,
-        JOptionPane.QUESTION_MESSAGE, 
-        null,
-        iconArray, 
-        iconArray[1]);   
-        System.out.println("Option selected: " + result); 
-        
-  
-   
-        if(result == 0) {
-            System.out.println("IE engaged."); 
-            String strEXEC = "cmd /c start iexplore.exe " + jTextFieldConnectHostname.getText();
-            try {  
-                // We are running "dir" and "ping" command on cmd 
-                Runtime.getRuntime().exec(strEXEC); 
-            } 
-            catch (IOException e) { 
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            } 
+        System.out.println("Key pressed code=" + evt.getKeyCode() + ", char=" + evt.getKeyChar());
+        if (evt.getKeyChar() == KeyEvent.VK_PERIOD) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            r.keyPress(KeyEvent.VK_TAB);
+            r.keyRelease(KeyEvent.VK_TAB);
         }
-        if(result == 1) {
-            System.out.println("FireKitsune engaged.");
-            String strEXEC = "cmd /c start firefox.exe " + jTextFieldConnectHostname.getText();
-            try {  
-                // We are running "dir" and "ping" command on cmd 
-                Runtime.getRuntime().exec(strEXEC); 
-            } 
-            catch (IOException e) { 
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            } 
-        }
-        
-    }//GEN-LAST:event_jButtonHTTPSActionPerformed
+    }//GEN-LAST:event_oct1KeyTyped
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jTextFieldConnectHostnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldConnectHostnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldConnectHostnameActionPerformed
-
-    private void jTextFieldFilterKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldFilterKeyReleased
-        // TODO add your handling code here:
-        try {
-            searchFilter(jTextFieldFilter.getText());
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jTextFieldFilterKeyReleased
-
-    private void jButtonTracertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTracertActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Pressed"); 
-        try {  
-            // We are running "dir" and "ping" command on cmd 
-            Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"tracert " + jTextFieldPingHostname.getText() + "\""); 
-        } 
-        catch (IOException e) { 
-            System.out.println("HEY Buddy ! U r Doing Something Wrong "); 
-        } 
-    }//GEN-LAST:event_jButtonTracertActionPerformed
+    private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
+        oct1.setText("");
+        oct2.setText("");
+        oct3.setText("");
+        oct4.setText("");
+        cidrValue.setText("");
+        subnetMask.setText("");
+        networkAddress.setText("");
+        broadcastAddress.setText("");
+        noSubnets.setText("");
+        hostsPSubnet.setText("");
+        networkClass.setText("");
+    }//GEN-LAST:event_resetBtnActionPerformed
 
     private void calBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calBtnActionPerformed
         if(!oct1.getText().equals("")&&!oct2.getText().equals("")&&!oct3.getText().equals("")&&!oct4.getText().equals("")&&!cidrValue.getText().equals("")){
@@ -803,72 +717,182 @@ public class LaunchPadForm extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "please enter the missing value!!");
         }
-
     }//GEN-LAST:event_calBtnActionPerformed
 
-    private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
-        oct1.setText("");
-        oct2.setText("");
-        oct3.setText("");
-        oct4.setText("");
-        cidrValue.setText("");
-        subnetMask.setText("");
-        networkAddress.setText("");
-        broadcastAddress.setText("");
-        noSubnets.setText("");
-        hostsPSubnet.setText("");
-        networkClass.setText("");
-
-    }//GEN-LAST:event_resetBtnActionPerformed
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
-
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButton11ActionPerformed
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
-
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
-
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton14ActionPerformed
-
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15ActionPerformed
-
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton16ActionPerformed
-
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton17ActionPerformed
-
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton18ActionPerformed
+    }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton19ActionPerformed
 
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton20ActionPerformed
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Pressed");
+        try {
+            // We are running "dir" and "ping" command on cmd
+            Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"dir && ping localhost\"");
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonTracertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTracertActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Pressed");
+        try {
+            // We are running "dir" and "ping" command on cmd
+            Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"tracert " + jTextFieldPingHostname.getText() + "\"");
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+        }
+    }//GEN-LAST:event_jButtonTracertActionPerformed
+
+    private void jButtonPingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPingActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Pressed");
+        try {
+            // We are running "dir" and "ping" command on cmd
+            Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"ping -t " + jTextFieldPingHostname.getText() + "\"");
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonPingActionPerformed
+
+    private void jButtonSSHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSSHActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Pressed");
+        String strEXEC = "" + pathDesktop + "/authexe/putty.exe -ssh " + jTextFieldConnectHostname.getText() + " " + jTextFieldConnectUsername + "@" + jPasswordFieldConnectPassword + "  ";
+        try {
+            // We are running "dir" and "ping" command on cmd
+            Runtime.getRuntime().exec(strEXEC);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonSSHActionPerformed
+
+    private void jButtonHTTPSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHTTPSActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Pressed");
+        Icon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
+        Icon iconFireFox = new ImageIcon(getClass().getResource("/launchpad/images/buttons/firefox.png"));
+        Object[] iconArray = {iconExplorer,
+            iconFireFox};
+        int result = JOptionPane.showOptionDialog(null,
+            "IE or FireFox?",
+            "Browser Chooser",
+            JOptionPane.YES_NO_CANCEL_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            iconArray,
+            iconArray[1]);
+        System.out.println("Option selected: " + result);
+
+        if(result == 0) {
+            System.out.println("IE engaged.");
+            String strEXEC = "cmd /c start iexplore.exe " + jTextFieldConnectHostname.getText();
+            try {
+                // We are running "dir" and "ping" command on cmd
+                Runtime.getRuntime().exec(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+        if(result == 1) {
+            System.out.println("FireKitsune engaged.");
+            String strEXEC = "cmd /c start firefox.exe " + jTextFieldConnectHostname.getText();
+            try {
+                // We are running "dir" and "ping" command on cmd
+                Runtime.getRuntime().exec(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+    }//GEN-LAST:event_jButtonHTTPSActionPerformed
+
+    private void jTextFieldConnectHostnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldConnectHostnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldConnectHostnameActionPerformed
 
     private void jListSessionsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListSessionsValueChanged
         // TODO add your handling code here:
@@ -880,13 +904,65 @@ public class LaunchPadForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jListSessionsValueChanged
 
-    private void oct1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oct1KeyTyped
+    private void jTextFieldFilterKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldFilterKeyReleased
+        // TODO add your handling code here:
+        try {
+            searchFilter(jTextFieldFilter.getText());
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextFieldFilterKeyReleased
+
+    private void oct1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oct1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_oct1ActionPerformed
+
+    private void oct2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oct2KeyTyped
         // TODO add your handling code here:
         System.out.println("Key pressed code=" + evt.getKeyCode() + ", char=" + evt.getKeyChar());
-        if (evt.getKeyChar() == KeyEvent.VK_TAB) {
-
+        if (evt.getKeyChar() == KeyEvent.VK_PERIOD) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            r.keyPress(KeyEvent.VK_TAB);
+            r.keyRelease(KeyEvent.VK_TAB);
         }
-    }//GEN-LAST:event_oct1KeyTyped
+    }//GEN-LAST:event_oct2KeyTyped
+
+    private void oct3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oct3KeyTyped
+        // TODO add your handling code here:
+        System.out.println("Key pressed code=" + evt.getKeyCode() + ", char=" + evt.getKeyChar());
+        if (evt.getKeyChar() == KeyEvent.VK_PERIOD) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            r.keyPress(KeyEvent.VK_TAB);
+            r.keyRelease(KeyEvent.VK_TAB);
+        }
+    }//GEN-LAST:event_oct3KeyTyped
+
+    private void oct4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oct4KeyTyped
+        // TODO add your handling code here:
+        System.out.println("Key pressed code=" + evt.getKeyCode() + ", char=" + evt.getKeyChar());
+        if (evt.getKeyChar() == KeyEvent.VK_SLASH) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            r.keyPress(KeyEvent.VK_TAB);
+            r.keyRelease(KeyEvent.VK_TAB);
+        }
+    }//GEN-LAST:event_oct4KeyTyped
 
     /**
      * @param args the command line arguments
