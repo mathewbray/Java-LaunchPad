@@ -47,7 +47,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         //importSessionList();
         getSessionList();
         //updateSessionList();
-        this.getRootPane().setDefaultButton(calBtn);
 
     }
 
@@ -164,14 +163,29 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jTextFieldConnectHostnameActionPerformed(evt);
             }
         });
+        jTextFieldConnectHostname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldConnectHostnameKeyTyped(evt);
+            }
+        });
         jPanel1.add(jTextFieldConnectHostname);
         jTextFieldConnectHostname.setBounds(200, 10, 120, 20);
 
         jTextFieldConnectUsername.setToolTipText("Username");
+        jTextFieldConnectUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldConnectUsernameKeyTyped(evt);
+            }
+        });
         jPanel1.add(jTextFieldConnectUsername);
         jTextFieldConnectUsername.setBounds(200, 50, 120, 20);
 
         jPasswordFieldConnectPassword.setToolTipText("Password");
+        jPasswordFieldConnectPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPasswordFieldConnectPasswordKeyTyped(evt);
+            }
+        });
         jPanel1.add(jPasswordFieldConnectPassword);
         jPasswordFieldConnectPassword.setBounds(200, 70, 120, 20);
 
@@ -501,6 +515,12 @@ public class LaunchPadForm extends javax.swing.JFrame {
         broadcastAddress.setEditable(false);
         jPanel3.add(broadcastAddress);
         broadcastAddress.setBounds(120, 120, 120, 20);
+
+        cidrValue.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cidrValueKeyTyped(evt);
+            }
+        });
         jPanel3.add(cidrValue);
         cidrValue.setBounds(280, 20, 30, 20);
 
@@ -612,6 +632,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
         getContentPane().add(jPanel2);
         jPanel2.setBounds(50, 320, 190, 90);
 
+        getAccessibleContext().setAccessibleName("NSB LaunchPad Pre-Alpha");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -625,8 +647,19 @@ public class LaunchPadForm extends javax.swing.JFrame {
             } catch (AWTException ex) {
                 Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
+            r.keyPress(KeyEvent.VK_BACK_SPACE);
+            r.keyRelease(KeyEvent.VK_BACK_SPACE);
             r.keyPress(KeyEvent.VK_TAB);
             r.keyRelease(KeyEvent.VK_TAB);
+        }
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            calBtn.doClick();
         }
     }//GEN-LAST:event_oct1KeyTyped
 
@@ -929,8 +962,19 @@ public class LaunchPadForm extends javax.swing.JFrame {
             } catch (AWTException ex) {
                 Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
+            r.keyPress(KeyEvent.VK_BACK_SPACE);
+            r.keyRelease(KeyEvent.VK_BACK_SPACE);
             r.keyPress(KeyEvent.VK_TAB);
             r.keyRelease(KeyEvent.VK_TAB);
+        }
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            calBtn.doClick();
         }
     }//GEN-LAST:event_oct2KeyTyped
 
@@ -944,9 +988,20 @@ public class LaunchPadForm extends javax.swing.JFrame {
             } catch (AWTException ex) {
                 Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
+            r.keyPress(KeyEvent.VK_BACK_SPACE);
+            r.keyRelease(KeyEvent.VK_BACK_SPACE);
             r.keyPress(KeyEvent.VK_TAB);
             r.keyRelease(KeyEvent.VK_TAB);
         }
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            calBtn.doClick();
+        }        
     }//GEN-LAST:event_oct3KeyTyped
 
     private void oct4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oct4KeyTyped
@@ -959,10 +1014,73 @@ public class LaunchPadForm extends javax.swing.JFrame {
             } catch (AWTException ex) {
                 Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
+            r.keyPress(KeyEvent.VK_BACK_SPACE);
+            r.keyRelease(KeyEvent.VK_BACK_SPACE);
             r.keyPress(KeyEvent.VK_TAB);
             r.keyRelease(KeyEvent.VK_TAB);
         }
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            calBtn.doClick();
+        }        
     }//GEN-LAST:event_oct4KeyTyped
+
+    private void jTextFieldConnectUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldConnectUsernameKeyTyped
+        // TODO add your handling code here:
+            if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jButtonSSH.doClick();
+        }
+    }//GEN-LAST:event_jTextFieldConnectUsernameKeyTyped
+
+    private void jPasswordFieldConnectPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldConnectPasswordKeyTyped
+        // TODO add your handling code here:
+            if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jButtonSSH.doClick();
+        }
+    }//GEN-LAST:event_jPasswordFieldConnectPasswordKeyTyped
+
+    private void jTextFieldConnectHostnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldConnectHostnameKeyTyped
+        // TODO add your handling code here:
+            if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jButtonSSH.doClick();
+        }
+    }//GEN-LAST:event_jTextFieldConnectHostnameKeyTyped
+
+    private void cidrValueKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cidrValueKeyTyped
+        // TODO add your handling code here:
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            calBtn.doClick();
+        }        
+    }//GEN-LAST:event_cidrValueKeyTyped
 
     /**
      * @param args the command line arguments
