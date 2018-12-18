@@ -1356,16 +1356,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    new LaunchPadForm().setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (URISyntaxException ex) {
-                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
+                new LaunchPadForm().setVisible(true);
+            } catch (IOException | URISyntaxException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }
@@ -1380,7 +1375,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
         System.out.println("SessionList.csv directory: " + pathDesktop);
         File archivo = new File(pathDesktop + "/SessionList.csv");
         try (FileReader fr = new FileReader(archivo)) {
-            BufferedReader buffIn = new BufferedReader(fr);
+            BufferedReader buffIn;
+            buffIn = new BufferedReader(fr);
                
             String line;
             while ((line = buffIn.readLine()) != null) {

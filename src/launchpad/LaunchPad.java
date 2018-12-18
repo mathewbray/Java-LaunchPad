@@ -5,13 +5,9 @@
  */
 package launchpad;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import javax.swing.DefaultListModel;
 
 /**
  *
@@ -22,6 +18,7 @@ public class LaunchPad {
     /**
      * @param args the command line arguments
      * @throws java.io.FileNotFoundException
+     * @throws java.net.URISyntaxException
      */
     public static void main(String[] args) throws IOException, FileNotFoundException, URISyntaxException {
         // TODO code application logic here
