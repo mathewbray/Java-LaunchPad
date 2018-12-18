@@ -6,7 +6,6 @@
 package launchpad;
 
 import java.awt.AWTException;
-import java.awt.Component;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
@@ -15,17 +14,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLDecoder;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,12 +35,38 @@ public class LaunchPadForm extends javax.swing.JFrame {
     /**
      * Creates new form LaunchPadForm
      * @throws java.io.IOException
+     * @throws java.io.FileNotFoundException
+     * @throws java.net.URISyntaxException
      */
     public LaunchPadForm() throws IOException, FileNotFoundException, URISyntaxException {
         initComponents();
         //importSessionList();
         getSessionList();
         //updateSessionList();
+        //--- Apply button icons
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button1icon") + ".png")));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button2icon") + ".png")));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button3icon") + ".png")));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button4icon") + ".png")));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button5icon") + ".png")));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button6icon") + ".png")));
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button7icon") + ".png")));
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button8icon") + ".png")));
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button9icon") + ".png")));
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button10icon") + ".png")));
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button11icon") + ".png")));
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button12icon") + ".png")));
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button13icon") + ".png")));
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button14icon") + ".png")));
+        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button15icon") + ".png")));
+        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button16icon") + ".png")));
+        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button17icon") + ".png")));
+        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button18icon") + ".png")));
+        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button19icon") + ".png")));
+        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button20icon") + ".png")));
+        //--- Load preloaded IPs
+        jTextFieldConnectHostname.setText(PropertyHandler.getInstance().getValue("PreloadSSH"));
+        jTextFieldPingHostname.setText(PropertyHandler.getInstance().getValue("PreloadPing"));
 
     }
 
@@ -241,7 +261,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel1.add(jButtonTracert);
         jButtonTracert.setBounds(290, 140, 100, 25);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/onenote.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
         jButton1.setFocusPainted(false);
         jButton1.setFocusable(false);
@@ -253,7 +272,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel1.add(jButton1);
         jButton1.setBounds(200, 190, 40, 40);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/dailyreport.png"))); // NOI18N
         jButton2.setContentAreaFilled(false);
         jButton2.setFocusPainted(false);
         jButton2.setFocusable(false);
@@ -265,7 +283,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel1.add(jButton2);
         jButton2.setBounds(250, 190, 40, 40);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/apps.png"))); // NOI18N
         jButton3.setContentAreaFilled(false);
         jButton3.setFocusPainted(false);
         jButton3.setFocusable(false);
@@ -277,7 +294,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel1.add(jButton3);
         jButton3.setBounds(300, 190, 40, 40);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/alert.png"))); // NOI18N
         jButton4.setContentAreaFilled(false);
         jButton4.setFocusPainted(false);
         jButton4.setFocusable(false);
@@ -290,7 +306,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel1.add(jButton4);
         jButton4.setBounds(350, 190, 40, 40);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/documents.png"))); // NOI18N
         jButton6.setContentAreaFilled(false);
         jButton6.setFocusPainted(false);
         jButton6.setFocusable(false);
@@ -302,7 +317,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel1.add(jButton6);
         jButton6.setBounds(250, 240, 40, 40);
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/ipconfig.png"))); // NOI18N
         jButton7.setContentAreaFilled(false);
         jButton7.setFocusPainted(false);
         jButton7.setFocusable(false);
@@ -314,7 +328,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel1.add(jButton7);
         jButton7.setBounds(300, 240, 40, 40);
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/disastig.png"))); // NOI18N
         jButton8.setContentAreaFilled(false);
         jButton8.setFocusPainted(false);
         jButton8.setFocusable(false);
@@ -330,7 +343,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel1.add(jSeparator4);
         jSeparator4.setBounds(200, 180, 190, 10);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/folder.png"))); // NOI18N
         jButton5.setContentAreaFilled(false);
         jButton5.setFocusPainted(false);
         jButton5.setFocusable(false);
@@ -342,7 +354,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel1.add(jButton5);
         jButton5.setBounds(200, 240, 40, 40);
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/topology.png"))); // NOI18N
         jButton9.setContentAreaFilled(false);
         jButton9.setFocusPainted(false);
         jButton9.setFocusable(false);
@@ -354,7 +365,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel1.add(jButton9);
         jButton9.setBounds(200, 290, 40, 40);
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/putty.png"))); // NOI18N
         jButton10.setContentAreaFilled(false);
         jButton10.setFocusPainted(false);
         jButton10.setFocusable(false);
@@ -366,7 +376,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel1.add(jButton10);
         jButton10.setBounds(250, 290, 40, 40);
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/infoblox.png"))); // NOI18N
         jButton11.setContentAreaFilled(false);
         jButton11.setFocusPainted(false);
         jButton11.setFocusable(false);
@@ -378,7 +387,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel1.add(jButton11);
         jButton11.setBounds(300, 290, 40, 40);
 
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/ciscodarkblue.png"))); // NOI18N
         jButton12.setContentAreaFilled(false);
         jButton12.setFocusPainted(false);
         jButton12.setFocusable(false);
@@ -826,14 +834,23 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        String myValue = PropertyHandler.getInstance().getValue("Button2exe");
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        System.out.println("Pressed");
+        String myValue = PropertyHandler.getInstance().getValue("Button1exe");
+        System.out.println(myValue);
         try {
-            // We are running "dir" and "ping" command on cmd
-            Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"dir && ping localhost\"");
+            Runtime.getRuntime().exec(myValue);
         }
         catch (IOException e) {
             System.out.println("HEY Buddy ! U r Doing Something Wrong ");
@@ -845,7 +862,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.out.println("Pressed");
         try {
-            // We are running "dir" and "ping" command on cmd
             Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"tracert " + jTextFieldPingHostname.getText() + "\"");
         }
         catch (IOException e) {
@@ -857,7 +873,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.out.println("Pressed");
         try {
-            // We are running "dir" and "ping" command on cmd
             Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"ping -t " + jTextFieldPingHostname.getText() + "\"");
         }
         catch (IOException e) {
@@ -871,7 +886,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         System.out.println("Pressed");
         String strEXEC = "" + pathDesktop + "/authexe/putty.exe -ssh " + jTextFieldConnectHostname.getText() + " " + jTextFieldConnectUsername + "@" + jPasswordFieldConnectPassword + "  ";
         try {
-            // We are running "dir" and "ping" command on cmd
             Runtime.getRuntime().exec(strEXEC);
         }
         catch (IOException e) {
@@ -901,7 +915,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
             System.out.println("IE engaged.");
             String strEXEC = "cmd /c start iexplore.exe " + jTextFieldConnectHostname.getText();
             try {
-                // We are running "dir" and "ping" command on cmd
                 Runtime.getRuntime().exec(strEXEC);
             }
             catch (IOException e) {
@@ -913,7 +926,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
             System.out.println("FireKitsune engaged.");
             String strEXEC = "cmd /c start firefox.exe " + jTextFieldConnectHostname.getText();
             try {
-                // We are running "dir" and "ping" command on cmd
                 Runtime.getRuntime().exec(strEXEC);
             }
             catch (IOException e) {
@@ -1178,7 +1190,9 @@ public class LaunchPadForm extends javax.swing.JFrame {
 //            }
 //            jListSessions.setModel(listModel);
 //            }
- 
+   
+
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField broadcastAddress;
