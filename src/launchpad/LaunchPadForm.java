@@ -116,6 +116,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButton18 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
+        jSeparator5 = new javax.swing.JSeparator();
+        jComboBoxConsoleCOM = new javax.swing.JComboBox<>();
+        jComboBoxConsoleBaud = new javax.swing.JComboBox<>();
+        jButtonShowCOMList = new javax.swing.JButton();
+        jButtonConsole = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         oct3 = new javax.swing.JTextField();
         subnetMask = new javax.swing.JTextField();
@@ -146,9 +151,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("NSB LaunchPad ");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(410, 500));
-        setResizable(false);
-        setSize(new java.awt.Dimension(410, 500));
+        setPreferredSize(new java.awt.Dimension(415, 528));
+        setSize(new java.awt.Dimension(410, 600));
         getContentPane().setLayout(null);
 
         jPanel1.setLayout(null);
@@ -189,7 +193,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextFieldConnectHostname);
-        jTextFieldConnectHostname.setBounds(200, 10, 120, 20);
+        jTextFieldConnectHostname.setBounds(200, 0, 120, 20);
 
         jTextFieldConnectUsername.setToolTipText("Username");
         jTextFieldConnectUsername.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -198,7 +202,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextFieldConnectUsername);
-        jTextFieldConnectUsername.setBounds(200, 50, 120, 20);
+        jTextFieldConnectUsername.setBounds(200, 30, 120, 20);
 
         jPasswordFieldConnectPassword.setToolTipText("Password");
         jPasswordFieldConnectPassword.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -207,7 +211,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jPasswordFieldConnectPassword);
-        jPasswordFieldConnectPassword.setBounds(200, 70, 120, 20);
+        jPasswordFieldConnectPassword.setBounds(200, 50, 120, 20);
 
         jButtonHTTPS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonHTTPS.setText("HTTPS");
@@ -218,7 +222,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonHTTPS);
-        jButtonHTTPS.setBounds(330, 10, 60, 30);
+        jButtonHTTPS.setBounds(330, 0, 60, 30);
 
         jButtonSSH.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jButtonSSH.setText("SSH");
@@ -229,17 +233,17 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonSSH);
-        jButtonSSH.setBounds(330, 50, 60, 40);
+        jButtonSSH.setBounds(330, 30, 60, 40);
 
         jTextFieldPingHostname.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTextFieldPingHostname.setToolTipText("IP or DNS Hostname");
         jPanel1.add(jTextFieldPingHostname);
-        jTextFieldPingHostname.setBounds(200, 110, 120, 21);
+        jTextFieldPingHostname.setBounds(200, 90, 120, 20);
 
         jCheckBoxDNS.setSelected(true);
         jCheckBoxDNS.setText("DNS");
         jPanel1.add(jCheckBoxDNS);
-        jCheckBoxDNS.setBounds(330, 110, 50, 20);
+        jCheckBoxDNS.setBounds(330, 90, 50, 20);
 
         jButtonPing.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonPing.setText("PING");
@@ -249,7 +253,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonPing);
-        jButtonPing.setBounds(200, 140, 80, 25);
+        jButtonPing.setBounds(200, 110, 80, 20);
 
         jButtonTracert.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonTracert.setText("TRACERT");
@@ -259,7 +263,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonTracert);
-        jButtonTracert.setBounds(290, 140, 100, 25);
+        jButtonTracert.setBounds(290, 110, 100, 20);
 
         jButton1.setContentAreaFilled(false);
         jButton1.setFocusPainted(false);
@@ -270,7 +274,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(200, 190, 40, 40);
+        jButton1.setBounds(200, 220, 40, 40);
 
         jButton2.setContentAreaFilled(false);
         jButton2.setFocusPainted(false);
@@ -281,7 +285,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(250, 190, 40, 40);
+        jButton2.setBounds(250, 220, 40, 40);
 
         jButton3.setContentAreaFilled(false);
         jButton3.setFocusPainted(false);
@@ -292,7 +296,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(300, 190, 40, 40);
+        jButton3.setBounds(300, 220, 40, 40);
 
         jButton4.setContentAreaFilled(false);
         jButton4.setFocusPainted(false);
@@ -304,7 +308,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(350, 190, 40, 40);
+        jButton4.setBounds(350, 220, 40, 40);
 
         jButton6.setContentAreaFilled(false);
         jButton6.setFocusPainted(false);
@@ -315,7 +319,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton6);
-        jButton6.setBounds(250, 240, 40, 40);
+        jButton6.setBounds(250, 270, 40, 40);
 
         jButton7.setContentAreaFilled(false);
         jButton7.setFocusPainted(false);
@@ -326,7 +330,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton7);
-        jButton7.setBounds(300, 240, 40, 40);
+        jButton7.setBounds(300, 270, 40, 40);
 
         jButton8.setContentAreaFilled(false);
         jButton8.setFocusPainted(false);
@@ -337,11 +341,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton8);
-        jButton8.setBounds(350, 240, 40, 40);
+        jButton8.setBounds(350, 270, 40, 40);
         jPanel1.add(jSeparator3);
-        jSeparator3.setBounds(200, 100, 190, 10);
+        jSeparator3.setBounds(200, 80, 190, 10);
         jPanel1.add(jSeparator4);
-        jSeparator4.setBounds(200, 180, 190, 10);
+        jSeparator4.setBounds(200, 210, 190, 10);
 
         jButton5.setContentAreaFilled(false);
         jButton5.setFocusPainted(false);
@@ -352,7 +356,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton5);
-        jButton5.setBounds(200, 240, 40, 40);
+        jButton5.setBounds(200, 270, 40, 40);
 
         jButton9.setContentAreaFilled(false);
         jButton9.setFocusPainted(false);
@@ -363,7 +367,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton9);
-        jButton9.setBounds(200, 290, 40, 40);
+        jButton9.setBounds(200, 320, 40, 40);
 
         jButton10.setContentAreaFilled(false);
         jButton10.setFocusPainted(false);
@@ -374,7 +378,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton10);
-        jButton10.setBounds(250, 290, 40, 40);
+        jButton10.setBounds(250, 320, 40, 40);
 
         jButton11.setContentAreaFilled(false);
         jButton11.setFocusPainted(false);
@@ -385,7 +389,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton11);
-        jButton11.setBounds(300, 290, 40, 40);
+        jButton11.setBounds(300, 320, 40, 40);
 
         jButton12.setContentAreaFilled(false);
         jButton12.setFocusPainted(false);
@@ -396,7 +400,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton12);
-        jButton12.setBounds(350, 290, 40, 40);
+        jButton12.setBounds(350, 320, 40, 40);
 
         jButton13.setContentAreaFilled(false);
         jButton13.setFocusPainted(false);
@@ -407,7 +411,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton13);
-        jButton13.setBounds(200, 340, 40, 40);
+        jButton13.setBounds(200, 370, 40, 40);
 
         jButton14.setContentAreaFilled(false);
         jButton14.setFocusPainted(false);
@@ -418,7 +422,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton14);
-        jButton14.setBounds(250, 340, 40, 40);
+        jButton14.setBounds(250, 370, 40, 40);
 
         jButton15.setContentAreaFilled(false);
         jButton15.setFocusPainted(false);
@@ -429,7 +433,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton15);
-        jButton15.setBounds(300, 340, 40, 40);
+        jButton15.setBounds(300, 370, 40, 40);
 
         jButton16.setContentAreaFilled(false);
         jButton16.setFocusPainted(false);
@@ -440,7 +444,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton16);
-        jButton16.setBounds(350, 340, 40, 40);
+        jButton16.setBounds(350, 370, 40, 40);
 
         jButton17.setContentAreaFilled(false);
         jButton17.setFocusPainted(false);
@@ -451,7 +455,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton17);
-        jButton17.setBounds(200, 390, 40, 40);
+        jButton17.setBounds(200, 420, 40, 40);
 
         jButton18.setContentAreaFilled(false);
         jButton18.setFocusPainted(false);
@@ -462,7 +466,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton18);
-        jButton18.setBounds(250, 390, 40, 40);
+        jButton18.setBounds(250, 420, 40, 40);
 
         jButton19.setContentAreaFilled(false);
         jButton19.setFocusPainted(false);
@@ -473,7 +477,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton19);
-        jButton19.setBounds(300, 390, 40, 40);
+        jButton19.setBounds(300, 420, 40, 40);
 
         jButton20.setContentAreaFilled(false);
         jButton20.setFocusPainted(false);
@@ -484,7 +488,43 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton20);
-        jButton20.setBounds(350, 390, 40, 40);
+        jButton20.setBounds(350, 420, 40, 40);
+        jPanel1.add(jSeparator5);
+        jSeparator5.setBounds(200, 140, 190, 10);
+
+        jComboBoxConsoleCOM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9", "COM10", "COM11", "COM12", "COM13", "COM14", "COM15", "COM16", "COM17", "COM18", "COM19", "COM20" }));
+        jComboBoxConsoleCOM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxConsoleCOMActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jComboBoxConsoleCOM);
+        jComboBoxConsoleCOM.setBounds(200, 150, 70, 20);
+
+        jComboBoxConsoleBaud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BAUD", "9600", "115200" }));
+        jPanel1.add(jComboBoxConsoleBaud);
+        jComboBoxConsoleBaud.setBounds(320, 150, 70, 20);
+
+        jButtonShowCOMList.setText("?");
+        jButtonShowCOMList.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonShowCOMList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonShowCOMListActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonShowCOMList);
+        jButtonShowCOMList.setBounds(280, 150, 30, 20);
+
+        jButtonConsole.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonConsole.setText("CONSOLE");
+        jButtonConsole.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonConsole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsoleActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonConsole);
+        jButtonConsole.setBounds(250, 170, 90, 30);
 
         jTabbedPane1.addTab("Main", jPanel1);
 
@@ -1259,6 +1299,34 @@ public class LaunchPadForm extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_cidrValueKeyTyped
 
+    private void jButtonShowCOMListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowCOMListActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Pressed");
+        try {
+            Runtime.getRuntime().exec("cmd /c start cmd.exe /c \"change port /query & pause");
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+        }        
+    }//GEN-LAST:event_jButtonShowCOMListActionPerformed
+
+    private void jButtonConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsoleActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Pressed");
+        String strEXEC = "" + pathDesktop + "/authexe/putty.exe -serial " + jComboBoxConsoleCOM.getSelectedItem() + " -sercfg " + jComboBoxConsoleBaud.getSelectedItem() + " ,8,n,1,N ";
+        try {
+            Runtime.getRuntime().exec(strEXEC);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonConsoleActionPerformed
+
+    private void jComboBoxConsoleCOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxConsoleCOMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxConsoleCOMActionPerformed
+
     /**
      * @param args the command line arguments
      * @throws java.io.FileNotFoundException
@@ -1384,11 +1452,15 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButtonConsole;
     private javax.swing.JButton jButtonHTTPS;
     private javax.swing.JButton jButtonPing;
     private javax.swing.JButton jButtonSSH;
+    private javax.swing.JButton jButtonShowCOMList;
     private javax.swing.JButton jButtonTracert;
     private javax.swing.JCheckBox jCheckBoxDNS;
+    private javax.swing.JComboBox<String> jComboBoxConsoleBaud;
+    private javax.swing.JComboBox<String> jComboBoxConsoleCOM;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1409,6 +1481,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextFieldConnectHostname;
     private javax.swing.JTextField jTextFieldConnectUsername;
