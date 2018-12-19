@@ -26,7 +26,7 @@ public class PropertyHandler{
          // Here you could read the file into props object
 try {
                 File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
-		input = new FileInputStream(pathDesktop + "\\launchpad.properties");
+		input = new FileInputStream(pathDesktop + "\\LaunchPad\\launchpad.properties");
 System.out.println(input);
 		// load a properties file
 		prop.load(input);

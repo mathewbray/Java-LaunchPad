@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,6 +69,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldConnectHostname.setText(PropertyHandler.getInstance().getValue("PreloadSSH"));
         jTextFieldPingHostname.setText(PropertyHandler.getInstance().getValue("PreloadPing"));
 
+        
+
     }
 
     /**
@@ -80,8 +83,9 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jSeparator1 = new javax.swing.JSeparator();
+        buttonGroupSSHClient = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        jPanelMain = new javax.swing.JPanel();
         jTextFieldFilter = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListSessions = new javax.swing.JList<>();
@@ -146,6 +150,13 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jRadioButtonSSHClientSecureCRT = new javax.swing.JRadioButton();
+        jRadioButtonSSHClientPuTTY = new javax.swing.JRadioButton();
+        jLabel13 = new javax.swing.JLabel();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -155,14 +166,14 @@ public class LaunchPadForm extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(410, 600));
         getContentPane().setLayout(null);
 
-        jPanel1.setLayout(null);
+        jPanelMain.setLayout(null);
 
         jTextFieldFilter.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextFieldFilterKeyReleased(evt);
             }
         });
-        jPanel1.add(jTextFieldFilter);
+        jPanelMain.add(jTextFieldFilter);
         jTextFieldFilter.setBounds(0, 0, 190, 20);
 
         jListSessions.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
@@ -178,10 +189,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jListSessions);
 
-        jPanel1.add(jScrollPane1);
+        jPanelMain.add(jScrollPane1);
         jScrollPane1.setBounds(0, 20, 190, 440);
 
         jTextFieldConnectHostname.setToolTipText("IP or DNS Hostname");
+        jTextFieldConnectHostname.setNextFocusableComponent(jTextFieldConnectHostname);
         jTextFieldConnectHostname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldConnectHostnameActionPerformed(evt);
@@ -192,25 +204,27 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jTextFieldConnectHostnameKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextFieldConnectHostname);
+        jPanelMain.add(jTextFieldConnectHostname);
         jTextFieldConnectHostname.setBounds(200, 0, 120, 20);
 
         jTextFieldConnectUsername.setToolTipText("Username");
+        jTextFieldConnectUsername.setNextFocusableComponent(jPasswordFieldConnectPassword);
         jTextFieldConnectUsername.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldConnectUsernameKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextFieldConnectUsername);
+        jPanelMain.add(jTextFieldConnectUsername);
         jTextFieldConnectUsername.setBounds(200, 30, 120, 20);
 
         jPasswordFieldConnectPassword.setToolTipText("Password");
+        jPasswordFieldConnectPassword.setNextFocusableComponent(jButtonSSH);
         jPasswordFieldConnectPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jPasswordFieldConnectPasswordKeyTyped(evt);
             }
         });
-        jPanel1.add(jPasswordFieldConnectPassword);
+        jPanelMain.add(jPasswordFieldConnectPassword);
         jPasswordFieldConnectPassword.setBounds(200, 50, 120, 20);
 
         jButtonHTTPS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -221,7 +235,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonHTTPSActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonHTTPS);
+        jPanelMain.add(jButtonHTTPS);
         jButtonHTTPS.setBounds(330, 0, 60, 30);
 
         jButtonSSH.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -232,17 +246,27 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonSSHActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonSSH);
+        jPanelMain.add(jButtonSSH);
         jButtonSSH.setBounds(330, 30, 60, 40);
 
         jTextFieldPingHostname.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTextFieldPingHostname.setToolTipText("IP or DNS Hostname");
-        jPanel1.add(jTextFieldPingHostname);
+        jTextFieldPingHostname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPingHostnameActionPerformed(evt);
+            }
+        });
+        jTextFieldPingHostname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldPingHostnameKeyTyped(evt);
+            }
+        });
+        jPanelMain.add(jTextFieldPingHostname);
         jTextFieldPingHostname.setBounds(200, 90, 120, 20);
 
         jCheckBoxDNS.setSelected(true);
         jCheckBoxDNS.setText("DNS");
-        jPanel1.add(jCheckBoxDNS);
+        jPanelMain.add(jCheckBoxDNS);
         jCheckBoxDNS.setBounds(330, 90, 50, 20);
 
         jButtonPing.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -252,7 +276,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonPingActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonPing);
+        jPanelMain.add(jButtonPing);
         jButtonPing.setBounds(200, 110, 80, 20);
 
         jButtonTracert.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -262,7 +286,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonTracertActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonTracert);
+        jPanelMain.add(jButtonTracert);
         jButtonTracert.setBounds(290, 110, 100, 20);
 
         jButton1.setContentAreaFilled(false);
@@ -273,7 +297,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
+        jPanelMain.add(jButton1);
         jButton1.setBounds(200, 220, 40, 40);
 
         jButton2.setContentAreaFilled(false);
@@ -284,7 +308,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2);
+        jPanelMain.add(jButton2);
         jButton2.setBounds(250, 220, 40, 40);
 
         jButton3.setContentAreaFilled(false);
@@ -295,7 +319,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3);
+        jPanelMain.add(jButton3);
         jButton3.setBounds(300, 220, 40, 40);
 
         jButton4.setContentAreaFilled(false);
@@ -307,7 +331,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4);
+        jPanelMain.add(jButton4);
         jButton4.setBounds(350, 220, 40, 40);
 
         jButton6.setContentAreaFilled(false);
@@ -318,7 +342,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6);
+        jPanelMain.add(jButton6);
         jButton6.setBounds(250, 270, 40, 40);
 
         jButton7.setContentAreaFilled(false);
@@ -329,7 +353,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7);
+        jPanelMain.add(jButton7);
         jButton7.setBounds(300, 270, 40, 40);
 
         jButton8.setContentAreaFilled(false);
@@ -340,11 +364,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton8);
+        jPanelMain.add(jButton8);
         jButton8.setBounds(350, 270, 40, 40);
-        jPanel1.add(jSeparator3);
+        jPanelMain.add(jSeparator3);
         jSeparator3.setBounds(200, 80, 190, 10);
-        jPanel1.add(jSeparator4);
+        jPanelMain.add(jSeparator4);
         jSeparator4.setBounds(200, 210, 190, 10);
 
         jButton5.setContentAreaFilled(false);
@@ -355,7 +379,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5);
+        jPanelMain.add(jButton5);
         jButton5.setBounds(200, 270, 40, 40);
 
         jButton9.setContentAreaFilled(false);
@@ -366,7 +390,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton9ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton9);
+        jPanelMain.add(jButton9);
         jButton9.setBounds(200, 320, 40, 40);
 
         jButton10.setContentAreaFilled(false);
@@ -377,7 +401,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton10ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton10);
+        jPanelMain.add(jButton10);
         jButton10.setBounds(250, 320, 40, 40);
 
         jButton11.setContentAreaFilled(false);
@@ -388,7 +412,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton11ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton11);
+        jPanelMain.add(jButton11);
         jButton11.setBounds(300, 320, 40, 40);
 
         jButton12.setContentAreaFilled(false);
@@ -399,7 +423,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton12ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton12);
+        jPanelMain.add(jButton12);
         jButton12.setBounds(350, 320, 40, 40);
 
         jButton13.setContentAreaFilled(false);
@@ -410,7 +434,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton13ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton13);
+        jPanelMain.add(jButton13);
         jButton13.setBounds(200, 370, 40, 40);
 
         jButton14.setContentAreaFilled(false);
@@ -421,7 +445,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton14ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton14);
+        jPanelMain.add(jButton14);
         jButton14.setBounds(250, 370, 40, 40);
 
         jButton15.setContentAreaFilled(false);
@@ -432,7 +456,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton15ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton15);
+        jPanelMain.add(jButton15);
         jButton15.setBounds(300, 370, 40, 40);
 
         jButton16.setContentAreaFilled(false);
@@ -443,7 +467,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton16ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton16);
+        jPanelMain.add(jButton16);
         jButton16.setBounds(350, 370, 40, 40);
 
         jButton17.setContentAreaFilled(false);
@@ -454,7 +478,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton17ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton17);
+        jPanelMain.add(jButton17);
         jButton17.setBounds(200, 420, 40, 40);
 
         jButton18.setContentAreaFilled(false);
@@ -465,7 +489,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton18ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton18);
+        jPanelMain.add(jButton18);
         jButton18.setBounds(250, 420, 40, 40);
 
         jButton19.setContentAreaFilled(false);
@@ -476,7 +500,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton19ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton19);
+        jPanelMain.add(jButton19);
         jButton19.setBounds(300, 420, 40, 40);
 
         jButton20.setContentAreaFilled(false);
@@ -487,22 +511,24 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton20ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton20);
+        jPanelMain.add(jButton20);
         jButton20.setBounds(350, 420, 40, 40);
-        jPanel1.add(jSeparator5);
+        jPanelMain.add(jSeparator5);
         jSeparator5.setBounds(200, 140, 190, 10);
 
         jComboBoxConsoleCOM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9", "COM10", "COM11", "COM12", "COM13", "COM14", "COM15", "COM16", "COM17", "COM18", "COM19", "COM20" }));
+        jComboBoxConsoleCOM.setEnabled(false);
         jComboBoxConsoleCOM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxConsoleCOMActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBoxConsoleCOM);
+        jPanelMain.add(jComboBoxConsoleCOM);
         jComboBoxConsoleCOM.setBounds(200, 150, 70, 20);
 
         jComboBoxConsoleBaud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BAUD", "9600", "115200" }));
-        jPanel1.add(jComboBoxConsoleBaud);
+        jComboBoxConsoleBaud.setEnabled(false);
+        jPanelMain.add(jComboBoxConsoleBaud);
         jComboBoxConsoleBaud.setBounds(320, 150, 70, 20);
 
         jButtonShowCOMList.setText("?");
@@ -512,21 +538,22 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonShowCOMListActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonShowCOMList);
+        jPanelMain.add(jButtonShowCOMList);
         jButtonShowCOMList.setBounds(280, 150, 30, 20);
 
         jButtonConsole.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonConsole.setText("CONSOLE");
+        jButtonConsole.setEnabled(false);
         jButtonConsole.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonConsole.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonConsoleActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonConsole);
+        jPanelMain.add(jButtonConsole);
         jButtonConsole.setBounds(250, 170, 90, 30);
 
-        jTabbedPane1.addTab("Main", jPanel1);
+        jTabbedPane1.addTab("Main", jPanelMain);
 
         jPanel3.setLayout(null);
 
@@ -673,6 +700,48 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("SubnetCalc", jPanel3);
 
+        jPanel4.setLayout(null);
+
+        jLabel12.setText("SSH Client:");
+        jPanel4.add(jLabel12);
+        jLabel12.setBounds(10, 10, 90, 30);
+
+        buttonGroupSSHClient.add(jRadioButtonSSHClientSecureCRT);
+        jRadioButtonSSHClientSecureCRT.setText("SecureCRT");
+        jPanel4.add(jRadioButtonSSHClientSecureCRT);
+        jRadioButtonSSHClientSecureCRT.setBounds(170, 10, 93, 30);
+
+        buttonGroupSSHClient.add(jRadioButtonSSHClientPuTTY);
+        jRadioButtonSSHClientPuTTY.setSelected(true);
+        jRadioButtonSSHClientPuTTY.setText("PuTTY");
+        jRadioButtonSSHClientPuTTY.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonSSHClientPuTTYActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButtonSSHClientPuTTY);
+        jRadioButtonSSHClientPuTTY.setBounds(100, 10, 70, 30);
+
+        jLabel13.setText("Console Client:");
+        jPanel4.add(jLabel13);
+        jLabel13.setBounds(10, 40, 90, 30);
+
+        jRadioButton3.setSelected(true);
+        jRadioButton3.setText("PuTTY");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButton3);
+        jRadioButton3.setBounds(100, 40, 70, 30);
+
+        jRadioButton4.setText("SecureCRT");
+        jPanel4.add(jRadioButton4);
+        jRadioButton4.setBounds(170, 40, 93, 30);
+
+        jTabbedPane1.addTab("Settings", jPanel4);
+
         getContentPane().add(jTabbedPane1);
         jTabbedPane1.setBounds(0, 0, 400, 490);
         jTabbedPane1.getAccessibleContext().setAccessibleName("");
@@ -684,6 +753,32 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void oct2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oct2KeyTyped
+        // TODO add your handling code here:
+        System.out.println("Key pressed code=" + evt.getKeyCode() + ", char=" + evt.getKeyChar());
+        if (evt.getKeyChar() == KeyEvent.VK_PERIOD) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            r.keyPress(KeyEvent.VK_BACK_SPACE);
+            r.keyRelease(KeyEvent.VK_BACK_SPACE);
+            r.keyPress(KeyEvent.VK_TAB);
+            r.keyRelease(KeyEvent.VK_TAB);
+        }
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            calBtn.doClick();
+        }
+    }//GEN-LAST:event_oct2KeyTyped
 
     private void oct1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oct1KeyTyped
         // TODO add your handling code here:
@@ -710,6 +805,10 @@ public class LaunchPadForm extends javax.swing.JFrame {
             calBtn.doClick();
         }
     }//GEN-LAST:event_oct1KeyTyped
+
+    private void oct1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oct1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_oct1ActionPerformed
 
     private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
         oct1.setText("");
@@ -800,6 +899,99 @@ public class LaunchPadForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_calBtnActionPerformed
 
+    private void cidrValueKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cidrValueKeyTyped
+        // TODO add your handling code here:
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            calBtn.doClick();
+        }
+    }//GEN-LAST:event_cidrValueKeyTyped
+
+    private void oct4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oct4KeyTyped
+        // TODO add your handling code here:
+        System.out.println("Key pressed code=" + evt.getKeyCode() + ", char=" + evt.getKeyChar());
+        if (evt.getKeyChar() == KeyEvent.VK_SLASH) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            r.keyPress(KeyEvent.VK_BACK_SPACE);
+            r.keyRelease(KeyEvent.VK_BACK_SPACE);
+            r.keyPress(KeyEvent.VK_TAB);
+            r.keyRelease(KeyEvent.VK_TAB);
+        }
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            calBtn.doClick();
+        }
+    }//GEN-LAST:event_oct4KeyTyped
+
+    private void oct3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oct3KeyTyped
+        // TODO add your handling code here:
+        System.out.println("Key pressed code=" + evt.getKeyCode() + ", char=" + evt.getKeyChar());
+        if (evt.getKeyChar() == KeyEvent.VK_PERIOD) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            r.keyPress(KeyEvent.VK_BACK_SPACE);
+            r.keyRelease(KeyEvent.VK_BACK_SPACE);
+            r.keyPress(KeyEvent.VK_TAB);
+            r.keyRelease(KeyEvent.VK_TAB);
+        }
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            calBtn.doClick();
+        }
+    }//GEN-LAST:event_oct3KeyTyped
+
+    private void jButtonConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsoleActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Pressed");
+        String strEXEC = "" + pathDesktop + "/authexe/putty.exe -serial " + jComboBoxConsoleCOM.getSelectedItem() + " -sercfg " + jComboBoxConsoleBaud.getSelectedItem() + " ,8,n,1,N ";
+        try {
+            Runtime.getRuntime().exec(strEXEC);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonConsoleActionPerformed
+
+    private void jButtonShowCOMListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowCOMListActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Pressed");
+        try {
+            Runtime.getRuntime().exec("cmd /c start cmd.exe /c \"change port /query & pause");
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+        }
+    }//GEN-LAST:event_jButtonShowCOMListActionPerformed
+
+    private void jComboBoxConsoleCOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxConsoleCOMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxConsoleCOMActionPerformed
+
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         // TODO add your handling code here:
         String myValue = PropertyHandler.getInstance().getValue("Button20exe");
@@ -836,7 +1028,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         catch (IOException e) {
             System.out.println("HEY Buddy ! U r Doing Something Wrong ");
             JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }        
+        }
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
@@ -1074,9 +1266,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private void jButtonPingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPingActionPerformed
         // TODO add your handling code here:
         System.out.println("Pressed");
-        
-        
-        
+
         try {
             Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"ping -t " + jTextFieldPingHostname.getText() + "\"");
         }
@@ -1086,34 +1276,91 @@ public class LaunchPadForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonPingActionPerformed
 
+    private void jTextFieldPingHostnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPingHostnameKeyTyped
+        // TODO add your handling code here:
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jButtonPing.doClick();
+        }
+    }//GEN-LAST:event_jTextFieldPingHostnameKeyTyped
+
+    private void jTextFieldPingHostnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPingHostnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPingHostnameActionPerformed
+
     private void jButtonSSHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSSHActionPerformed
         // TODO add your handling code here:
-        System.out.println("Pressed");
-        String strEXEC = "" + pathDesktop + "/authexe/putty.exe -ssh " + jTextFieldConnectHostname.getText() + " " + jTextFieldConnectUsername + "@" + jPasswordFieldConnectPassword + "  ";
-        try {
-            Runtime.getRuntime().exec(strEXEC);
+        SimpleDateFormat dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        String fileLog = pathDesktop + "\\Logging-Output\\SSH-" + jTextFieldConnectHostname.getText() + " " + dateTime + ".txt";
+        System.out.println("Log file: " + fileLog);
+
+
+        if (jRadioButtonSSHClientPuTTY.isSelected() == true) {
+            String passText = new String(jPasswordFieldConnectPassword.getPassword());
+            String strEXEC = "" + pathDesktop + "/authexe/putty.exe -ssh " + jTextFieldConnectHostname.getText() + " -l " + jTextFieldConnectUsername.getText() + " -pw \"" + passText + "\"  ";
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
         }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
+        if (jRadioButtonSSHClientSecureCRT.isSelected() == true) {
+            
+            if (jTextFieldConnectUsername.getText().equals("")){
+                if (jTextFieldConnectUsername.getText().equals("")){
+                    String strEXEC = "" + pathDesktop + "/authexe/SecureCRT/securecrt.exe /LOG " + fileLog + " /T /SSH2 /ACCEPTHOSTKEYS " + jTextFieldConnectHostname.getText();
+                    try {
+                        Runtime.getRuntime().exec(strEXEC);
+                    }
+                    catch (IOException e) {
+                        System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                        JOptionPane.showMessageDialog(null, "Something is wrong!");
+                    }
+                }
+                else {
+                    String passText = new String(jPasswordFieldConnectPassword.getPassword());
+                    String strEXEC = "" + pathDesktop + "/authexe/SecureCRT/securecrt.exe /LOG " + fileLog + " /T /SSH2 /ACCEPTHOSTKEYS " + jTextFieldConnectHostname.getText() + " /L " + jTextFieldConnectUsername.getText() + " /PASSWORD \"" + passText + "\"  ";
+                    try {
+                        Runtime.getRuntime().exec(strEXEC);
+                    }
+                    catch (IOException e) {
+                        System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                        JOptionPane.showMessageDialog(null, "Something is wrong!");
+                    }
+                }
+            }
+        }        
+        
+                    
+
     }//GEN-LAST:event_jButtonSSHActionPerformed
 
     private void jButtonHTTPSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHTTPSActionPerformed
         // TODO add your handling code here:
         System.out.println("Pressed");
         Icon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
+        Icon iconEdge = new ImageIcon(getClass().getResource("/launchpad/images/buttons/edge.png"));
         Icon iconFireFox = new ImageIcon(getClass().getResource("/launchpad/images/buttons/firefox.png"));
+        Icon iconChrome = new ImageIcon(getClass().getResource("/launchpad/images/buttons/chrome.png"));
         Object[] iconArray = {iconExplorer,
-            iconFireFox};
+            iconEdge,
+            iconFireFox,
+            iconChrome};
         int result = JOptionPane.showOptionDialog(null,
-            "IE or FireFox?",
+            "IE, Edge, FireFox, Chrome?",
             "Browser Chooser",
             JOptionPane.YES_NO_CANCEL_OPTION,
             JOptionPane.QUESTION_MESSAGE,
             null,
             iconArray,
-            iconArray[1]);
+            iconArray[3]);
         System.out.println("Option selected: " + result);
 
         if(result == 0) {
@@ -1127,7 +1374,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Something is wrong!");
             }
         }
-        if(result == 1) {
+        if(result == 2) {
             System.out.println("FireKitsune engaged.");
             String strEXEC = "cmd /c start firefox.exe " + jTextFieldConnectHostname.getText();
             try {
@@ -1138,7 +1385,68 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Something is wrong!");
             }
         }
+        if(result == 1) {
+            System.out.println("Edge engaged.");
+            String strEXEC = "cmd /c start microsoft-edge:" + jTextFieldConnectHostname.getText();
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+        if(result == 3) {
+            System.out.println("Chrome engaged.");
+            String strEXEC = "cmd /c start chrome.exe " + jTextFieldConnectHostname.getText();
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
     }//GEN-LAST:event_jButtonHTTPSActionPerformed
+
+    private void jPasswordFieldConnectPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldConnectPasswordKeyTyped
+        // TODO add your handling code here:
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jButtonSSH.doClick();
+        }
+    }//GEN-LAST:event_jPasswordFieldConnectPasswordKeyTyped
+
+    private void jTextFieldConnectUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldConnectUsernameKeyTyped
+        // TODO add your handling code here:
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jButtonSSH.doClick();
+        }
+    }//GEN-LAST:event_jTextFieldConnectUsernameKeyTyped
+
+    private void jTextFieldConnectHostnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldConnectHostnameKeyTyped
+        // TODO add your handling code here:
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            Robot r = null;
+            try {
+                r = new Robot();
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jButtonSSH.doClick();
+        }
+    }//GEN-LAST:event_jTextFieldConnectHostnameKeyTyped
 
     private void jTextFieldConnectHostnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldConnectHostnameActionPerformed
         // TODO add your handling code here:
@@ -1165,167 +1473,13 @@ public class LaunchPadForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextFieldFilterKeyReleased
 
-    private void oct1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oct1ActionPerformed
+    private void jRadioButtonSSHClientPuTTYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonSSHClientPuTTYActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_oct1ActionPerformed
+    }//GEN-LAST:event_jRadioButtonSSHClientPuTTYActionPerformed
 
-    private void oct2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oct2KeyTyped
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
         // TODO add your handling code here:
-        System.out.println("Key pressed code=" + evt.getKeyCode() + ", char=" + evt.getKeyChar());
-        if (evt.getKeyChar() == KeyEvent.VK_PERIOD) {
-            Robot r = null;
-            try {
-                r = new Robot();
-            } catch (AWTException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            r.keyPress(KeyEvent.VK_BACK_SPACE);
-            r.keyRelease(KeyEvent.VK_BACK_SPACE);
-            r.keyPress(KeyEvent.VK_TAB);
-            r.keyRelease(KeyEvent.VK_TAB);
-        }
-        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-            Robot r = null;
-            try {
-                r = new Robot();
-            } catch (AWTException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            calBtn.doClick();
-        }
-    }//GEN-LAST:event_oct2KeyTyped
-
-    private void oct3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oct3KeyTyped
-        // TODO add your handling code here:
-        System.out.println("Key pressed code=" + evt.getKeyCode() + ", char=" + evt.getKeyChar());
-        if (evt.getKeyChar() == KeyEvent.VK_PERIOD) {
-            Robot r = null;
-            try {
-                r = new Robot();
-            } catch (AWTException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            r.keyPress(KeyEvent.VK_BACK_SPACE);
-            r.keyRelease(KeyEvent.VK_BACK_SPACE);
-            r.keyPress(KeyEvent.VK_TAB);
-            r.keyRelease(KeyEvent.VK_TAB);
-        }
-        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-            Robot r = null;
-            try {
-                r = new Robot();
-            } catch (AWTException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            calBtn.doClick();
-        }        
-    }//GEN-LAST:event_oct3KeyTyped
-
-    private void oct4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_oct4KeyTyped
-        // TODO add your handling code here:
-        System.out.println("Key pressed code=" + evt.getKeyCode() + ", char=" + evt.getKeyChar());
-        if (evt.getKeyChar() == KeyEvent.VK_SLASH) {
-            Robot r = null;
-            try {
-                r = new Robot();
-            } catch (AWTException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            r.keyPress(KeyEvent.VK_BACK_SPACE);
-            r.keyRelease(KeyEvent.VK_BACK_SPACE);
-            r.keyPress(KeyEvent.VK_TAB);
-            r.keyRelease(KeyEvent.VK_TAB);
-        }
-        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-            Robot r = null;
-            try {
-                r = new Robot();
-            } catch (AWTException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            calBtn.doClick();
-        }        
-    }//GEN-LAST:event_oct4KeyTyped
-
-    private void jTextFieldConnectUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldConnectUsernameKeyTyped
-        // TODO add your handling code here:
-            if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-            Robot r = null;
-            try {
-                r = new Robot();
-            } catch (AWTException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            jButtonSSH.doClick();
-        }
-    }//GEN-LAST:event_jTextFieldConnectUsernameKeyTyped
-
-    private void jPasswordFieldConnectPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldConnectPasswordKeyTyped
-        // TODO add your handling code here:
-            if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-            Robot r = null;
-            try {
-                r = new Robot();
-            } catch (AWTException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            jButtonSSH.doClick();
-        }
-    }//GEN-LAST:event_jPasswordFieldConnectPasswordKeyTyped
-
-    private void jTextFieldConnectHostnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldConnectHostnameKeyTyped
-        // TODO add your handling code here:
-            if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-            Robot r = null;
-            try {
-                r = new Robot();
-            } catch (AWTException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            jButtonSSH.doClick();
-        }
-    }//GEN-LAST:event_jTextFieldConnectHostnameKeyTyped
-
-    private void cidrValueKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cidrValueKeyTyped
-        // TODO add your handling code here:
-        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-            Robot r = null;
-            try {
-                r = new Robot();
-            } catch (AWTException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            calBtn.doClick();
-        }        
-    }//GEN-LAST:event_cidrValueKeyTyped
-
-    private void jButtonShowCOMListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowCOMListActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Pressed");
-        try {
-            Runtime.getRuntime().exec("cmd /c start cmd.exe /c \"change port /query & pause");
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-        }        
-    }//GEN-LAST:event_jButtonShowCOMListActionPerformed
-
-    private void jButtonConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsoleActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Pressed");
-        String strEXEC = "" + pathDesktop + "/authexe/putty.exe -serial " + jComboBoxConsoleCOM.getSelectedItem() + " -sercfg " + jComboBoxConsoleBaud.getSelectedItem() + " ,8,n,1,N ";
-        try {
-            Runtime.getRuntime().exec(strEXEC);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-    }//GEN-LAST:event_jButtonConsoleActionPerformed
-
-    private void jComboBoxConsoleCOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxConsoleCOMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxConsoleCOMActionPerformed
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1373,7 +1527,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
         //File pathWorkingDirectory = new File(System.getProperty("user.dir"));
         System.out.println("SessionList.csv directory: " + pathDesktop);
-        File archivo = new File(pathDesktop + "/SessionList.csv");
+        File archivo = new File(pathDesktop + "\\LaunchPad\\SessionList.csv");
         try (FileReader fr = new FileReader(archivo)) {
             BufferedReader buffIn;
             buffIn = new BufferedReader(fr);
@@ -1425,6 +1579,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField broadcastAddress;
+    private javax.swing.ButtonGroup buttonGroupSSHClient;
     private javax.swing.JButton calBtn;
     private javax.swing.JTextField cidrValue;
     private javax.swing.JTextField hostsPSubnet;
@@ -1460,6 +1615,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1469,10 +1626,15 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jListSessions;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanelMain;
     private javax.swing.JPasswordField jPasswordFieldConnectPassword;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButtonSSHClientPuTTY;
+    private javax.swing.JRadioButton jRadioButtonSSHClientSecureCRT;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
