@@ -32,7 +32,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
     DefaultListModel defaultListModel=new DefaultListModel();
     File pathWorkingDirectory = new File(System.getProperty("user.dir"));
     File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
-
+    File pathLogging = new File(pathDesktop + "\\Logging-Output");
+    
     /**
      * Creates new form LaunchPadForm
      * @throws java.io.IOException
@@ -69,8 +70,41 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldConnectHostname.setText(PropertyHandler.getInstance().getValue("PreloadSSH"));
         jTextFieldPingHostname.setText(PropertyHandler.getInstance().getValue("PreloadPing"));
 
+        //--- Load tooltips
+        jButton1.setToolTipText(PropertyHandler.getInstance().getValue("Button1ToolTip"));
+        jButton2.setToolTipText(PropertyHandler.getInstance().getValue("Button2ToolTip"));
+        jButton3.setToolTipText(PropertyHandler.getInstance().getValue("Button3ToolTip"));
+        jButton4.setToolTipText(PropertyHandler.getInstance().getValue("Button4ToolTip"));
+        jButton5.setToolTipText(PropertyHandler.getInstance().getValue("Button5ToolTip"));
+        jButton6.setToolTipText(PropertyHandler.getInstance().getValue("Button6ToolTip"));
+        jButton7.setToolTipText(PropertyHandler.getInstance().getValue("Button7ToolTip"));
+        jButton8.setToolTipText(PropertyHandler.getInstance().getValue("Button8ToolTip"));
+        jButton9.setToolTipText(PropertyHandler.getInstance().getValue("Button9ToolTip"));
+        jButton10.setToolTipText(PropertyHandler.getInstance().getValue("Button10ToolTip"));
+        jButton11.setToolTipText(PropertyHandler.getInstance().getValue("Button11ToolTip"));
+        jButton12.setToolTipText(PropertyHandler.getInstance().getValue("Button12ToolTip"));
+        jButton13.setToolTipText(PropertyHandler.getInstance().getValue("Button13ToolTip"));
+        jButton14.setToolTipText(PropertyHandler.getInstance().getValue("Button14ToolTip"));
+        jButton15.setToolTipText(PropertyHandler.getInstance().getValue("Button15ToolTip"));
+        jButton16.setToolTipText(PropertyHandler.getInstance().getValue("Button16ToolTip"));
+        jButton17.setToolTipText(PropertyHandler.getInstance().getValue("Button17ToolTip"));
+        jButton18.setToolTipText(PropertyHandler.getInstance().getValue("Button18ToolTip"));
+        jButton19.setToolTipText(PropertyHandler.getInstance().getValue("Button19ToolTip"));
+        jButton20.setToolTipText(PropertyHandler.getInstance().getValue("Button20ToolTip"));
         
-
+        //--- Run update script if it is available
+        String myValue = PropertyHandler.getInstance().getValue("UpdateScript");
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+            System.out.println("Updating!");
+        }
+        catch (IOException | NullPointerException e) {
+            System.out.println("No update script available.");
+        }
+        
+        //--- Create directories if not exist
+        //new File(pathLogging.toString()).mkdirs();
     }
 
     /**
@@ -84,6 +118,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
         jSeparator1 = new javax.swing.JSeparator();
         buttonGroupSSHClient = new javax.swing.ButtonGroup();
+        buttonGroupConsoleClient = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanelMain = new javax.swing.JPanel();
         jTextFieldFilter = new javax.swing.JTextField();
@@ -151,19 +186,23 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
+        jLabelSSHClient = new javax.swing.JLabel();
         jRadioButtonSSHClientSecureCRT = new javax.swing.JRadioButton();
         jRadioButtonSSHClientPuTTY = new javax.swing.JRadioButton();
-        jLabel13 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        jLabelListTextSizePreview = new javax.swing.JLabel();
+        jRadioButtonConsolePutty = new javax.swing.JRadioButton();
+        jRadioButtonConsoleSecureCRT = new javax.swing.JRadioButton();
+        jSliderListTextSize = new javax.swing.JSlider();
+        jLabelConsoleClient = new javax.swing.JLabel();
+        jLabelListTextSize1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("NSB LaunchPad ");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(415, 528));
-        setSize(new java.awt.Dimension(410, 600));
+        setPreferredSize(new java.awt.Dimension(455, 518));
+        setResizable(false);
+        setSize(new java.awt.Dimension(550, 600));
         getContentPane().setLayout(null);
 
         jPanelMain.setLayout(null);
@@ -174,9 +213,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jTextFieldFilter);
-        jTextFieldFilter.setBounds(0, 0, 190, 20);
+        jTextFieldFilter.setBounds(0, 0, 240, 20);
 
-        jListSessions.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jListSessions.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -190,10 +228,10 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jListSessions);
 
         jPanelMain.add(jScrollPane1);
-        jScrollPane1.setBounds(0, 20, 190, 440);
+        jScrollPane1.setBounds(0, 20, 240, 440);
 
         jTextFieldConnectHostname.setToolTipText("IP or DNS Hostname");
-        jTextFieldConnectHostname.setNextFocusableComponent(jTextFieldConnectHostname);
+        jTextFieldConnectHostname.setNextFocusableComponent(jTextFieldConnectUsername);
         jTextFieldConnectHostname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldConnectHostnameActionPerformed(evt);
@@ -205,7 +243,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jTextFieldConnectHostname);
-        jTextFieldConnectHostname.setBounds(200, 0, 120, 20);
+        jTextFieldConnectHostname.setBounds(250, 0, 120, 20);
 
         jTextFieldConnectUsername.setToolTipText("Username");
         jTextFieldConnectUsername.setNextFocusableComponent(jPasswordFieldConnectPassword);
@@ -215,7 +253,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jTextFieldConnectUsername);
-        jTextFieldConnectUsername.setBounds(200, 30, 120, 20);
+        jTextFieldConnectUsername.setBounds(250, 30, 120, 20);
 
         jPasswordFieldConnectPassword.setToolTipText("Password");
         jPasswordFieldConnectPassword.setNextFocusableComponent(jButtonSSH);
@@ -225,7 +263,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jPasswordFieldConnectPassword);
-        jPasswordFieldConnectPassword.setBounds(200, 50, 120, 20);
+        jPasswordFieldConnectPassword.setBounds(250, 50, 120, 20);
 
         jButtonHTTPS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonHTTPS.setText("HTTPS");
@@ -236,7 +274,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButtonHTTPS);
-        jButtonHTTPS.setBounds(330, 0, 60, 30);
+        jButtonHTTPS.setBounds(380, 0, 60, 30);
 
         jButtonSSH.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jButtonSSH.setText("SSH");
@@ -247,7 +285,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButtonSSH);
-        jButtonSSH.setBounds(330, 30, 60, 40);
+        jButtonSSH.setBounds(380, 30, 60, 40);
 
         jTextFieldPingHostname.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTextFieldPingHostname.setToolTipText("IP or DNS Hostname");
@@ -262,12 +300,12 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jTextFieldPingHostname);
-        jTextFieldPingHostname.setBounds(200, 90, 120, 20);
+        jTextFieldPingHostname.setBounds(250, 90, 120, 20);
 
         jCheckBoxDNS.setSelected(true);
         jCheckBoxDNS.setText("DNS");
         jPanelMain.add(jCheckBoxDNS);
-        jCheckBoxDNS.setBounds(330, 90, 50, 20);
+        jCheckBoxDNS.setBounds(380, 90, 50, 20);
 
         jButtonPing.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonPing.setText("PING");
@@ -277,7 +315,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButtonPing);
-        jButtonPing.setBounds(200, 110, 80, 20);
+        jButtonPing.setBounds(250, 110, 80, 20);
 
         jButtonTracert.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonTracert.setText("TRACERT");
@@ -287,7 +325,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButtonTracert);
-        jButtonTracert.setBounds(290, 110, 100, 20);
+        jButtonTracert.setBounds(340, 110, 100, 20);
 
         jButton1.setContentAreaFilled(false);
         jButton1.setFocusPainted(false);
@@ -298,7 +336,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton1);
-        jButton1.setBounds(200, 220, 40, 40);
+        jButton1.setBounds(250, 220, 40, 40);
 
         jButton2.setContentAreaFilled(false);
         jButton2.setFocusPainted(false);
@@ -309,7 +347,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton2);
-        jButton2.setBounds(250, 220, 40, 40);
+        jButton2.setBounds(300, 220, 40, 40);
 
         jButton3.setContentAreaFilled(false);
         jButton3.setFocusPainted(false);
@@ -320,7 +358,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton3);
-        jButton3.setBounds(300, 220, 40, 40);
+        jButton3.setBounds(350, 220, 40, 40);
 
         jButton4.setContentAreaFilled(false);
         jButton4.setFocusPainted(false);
@@ -332,7 +370,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton4);
-        jButton4.setBounds(350, 220, 40, 40);
+        jButton4.setBounds(400, 220, 40, 40);
 
         jButton6.setContentAreaFilled(false);
         jButton6.setFocusPainted(false);
@@ -343,7 +381,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton6);
-        jButton6.setBounds(250, 270, 40, 40);
+        jButton6.setBounds(300, 270, 40, 40);
 
         jButton7.setContentAreaFilled(false);
         jButton7.setFocusPainted(false);
@@ -354,7 +392,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton7);
-        jButton7.setBounds(300, 270, 40, 40);
+        jButton7.setBounds(350, 270, 40, 40);
 
         jButton8.setContentAreaFilled(false);
         jButton8.setFocusPainted(false);
@@ -365,11 +403,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton8);
-        jButton8.setBounds(350, 270, 40, 40);
+        jButton8.setBounds(400, 270, 40, 40);
         jPanelMain.add(jSeparator3);
-        jSeparator3.setBounds(200, 80, 190, 10);
+        jSeparator3.setBounds(250, 80, 190, 10);
         jPanelMain.add(jSeparator4);
-        jSeparator4.setBounds(200, 210, 190, 10);
+        jSeparator4.setBounds(250, 210, 190, 10);
 
         jButton5.setContentAreaFilled(false);
         jButton5.setFocusPainted(false);
@@ -380,7 +418,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton5);
-        jButton5.setBounds(200, 270, 40, 40);
+        jButton5.setBounds(250, 270, 40, 40);
 
         jButton9.setContentAreaFilled(false);
         jButton9.setFocusPainted(false);
@@ -391,7 +429,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton9);
-        jButton9.setBounds(200, 320, 40, 40);
+        jButton9.setBounds(250, 320, 40, 40);
 
         jButton10.setContentAreaFilled(false);
         jButton10.setFocusPainted(false);
@@ -402,7 +440,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton10);
-        jButton10.setBounds(250, 320, 40, 40);
+        jButton10.setBounds(300, 320, 40, 40);
 
         jButton11.setContentAreaFilled(false);
         jButton11.setFocusPainted(false);
@@ -413,7 +451,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton11);
-        jButton11.setBounds(300, 320, 40, 40);
+        jButton11.setBounds(350, 320, 40, 40);
 
         jButton12.setContentAreaFilled(false);
         jButton12.setFocusPainted(false);
@@ -424,7 +462,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton12);
-        jButton12.setBounds(350, 320, 40, 40);
+        jButton12.setBounds(400, 320, 40, 40);
 
         jButton13.setContentAreaFilled(false);
         jButton13.setFocusPainted(false);
@@ -435,7 +473,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton13);
-        jButton13.setBounds(200, 370, 40, 40);
+        jButton13.setBounds(250, 370, 40, 40);
 
         jButton14.setContentAreaFilled(false);
         jButton14.setFocusPainted(false);
@@ -446,7 +484,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton14);
-        jButton14.setBounds(250, 370, 40, 40);
+        jButton14.setBounds(300, 370, 40, 40);
 
         jButton15.setContentAreaFilled(false);
         jButton15.setFocusPainted(false);
@@ -457,7 +495,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton15);
-        jButton15.setBounds(300, 370, 40, 40);
+        jButton15.setBounds(350, 370, 40, 40);
 
         jButton16.setContentAreaFilled(false);
         jButton16.setFocusPainted(false);
@@ -468,7 +506,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton16);
-        jButton16.setBounds(350, 370, 40, 40);
+        jButton16.setBounds(400, 370, 40, 40);
 
         jButton17.setContentAreaFilled(false);
         jButton17.setFocusPainted(false);
@@ -479,7 +517,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton17);
-        jButton17.setBounds(200, 420, 40, 40);
+        jButton17.setBounds(250, 420, 40, 40);
 
         jButton18.setContentAreaFilled(false);
         jButton18.setFocusPainted(false);
@@ -490,7 +528,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton18);
-        jButton18.setBounds(250, 420, 40, 40);
+        jButton18.setBounds(300, 420, 40, 40);
 
         jButton19.setContentAreaFilled(false);
         jButton19.setFocusPainted(false);
@@ -501,7 +539,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton19);
-        jButton19.setBounds(300, 420, 40, 40);
+        jButton19.setBounds(350, 420, 40, 40);
 
         jButton20.setContentAreaFilled(false);
         jButton20.setFocusPainted(false);
@@ -512,24 +550,22 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButton20);
-        jButton20.setBounds(350, 420, 40, 40);
+        jButton20.setBounds(400, 420, 40, 40);
         jPanelMain.add(jSeparator5);
-        jSeparator5.setBounds(200, 140, 190, 10);
+        jSeparator5.setBounds(250, 140, 190, 10);
 
         jComboBoxConsoleCOM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9", "COM10", "COM11", "COM12", "COM13", "COM14", "COM15", "COM16", "COM17", "COM18", "COM19", "COM20" }));
-        jComboBoxConsoleCOM.setEnabled(false);
         jComboBoxConsoleCOM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxConsoleCOMActionPerformed(evt);
             }
         });
         jPanelMain.add(jComboBoxConsoleCOM);
-        jComboBoxConsoleCOM.setBounds(200, 150, 70, 20);
+        jComboBoxConsoleCOM.setBounds(250, 150, 70, 20);
 
         jComboBoxConsoleBaud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BAUD", "9600", "115200" }));
-        jComboBoxConsoleBaud.setEnabled(false);
         jPanelMain.add(jComboBoxConsoleBaud);
-        jComboBoxConsoleBaud.setBounds(320, 150, 70, 20);
+        jComboBoxConsoleBaud.setBounds(370, 150, 70, 20);
 
         jButtonShowCOMList.setText("?");
         jButtonShowCOMList.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -539,11 +575,10 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButtonShowCOMList);
-        jButtonShowCOMList.setBounds(280, 150, 30, 20);
+        jButtonShowCOMList.setBounds(330, 150, 30, 20);
 
         jButtonConsole.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonConsole.setText("CONSOLE");
-        jButtonConsole.setEnabled(false);
         jButtonConsole.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonConsole.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -551,7 +586,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMain.add(jButtonConsole);
-        jButtonConsole.setBounds(250, 170, 90, 30);
+        jButtonConsole.setBounds(300, 170, 90, 30);
 
         jTabbedPane1.addTab("Main", jPanelMain);
 
@@ -702,17 +737,17 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
         jPanel4.setLayout(null);
 
-        jLabel12.setText("SSH Client:");
-        jPanel4.add(jLabel12);
-        jLabel12.setBounds(10, 10, 90, 30);
+        jLabelSSHClient.setText("SSH Client:");
+        jPanel4.add(jLabelSSHClient);
+        jLabelSSHClient.setBounds(10, 10, 90, 30);
 
         buttonGroupSSHClient.add(jRadioButtonSSHClientSecureCRT);
+        jRadioButtonSSHClientSecureCRT.setSelected(true);
         jRadioButtonSSHClientSecureCRT.setText("SecureCRT");
         jPanel4.add(jRadioButtonSSHClientSecureCRT);
         jRadioButtonSSHClientSecureCRT.setBounds(170, 10, 93, 30);
 
         buttonGroupSSHClient.add(jRadioButtonSSHClientPuTTY);
-        jRadioButtonSSHClientPuTTY.setSelected(true);
         jRadioButtonSSHClientPuTTY.setText("PuTTY");
         jRadioButtonSSHClientPuTTY.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -722,28 +757,56 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel4.add(jRadioButtonSSHClientPuTTY);
         jRadioButtonSSHClientPuTTY.setBounds(100, 10, 70, 30);
 
-        jLabel13.setText("Console Client:");
-        jPanel4.add(jLabel13);
-        jLabel13.setBounds(10, 40, 90, 30);
+        jLabelListTextSizePreview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelListTextSizePreview.setText("c3850-a01-zamjp-101");
+        jPanel4.add(jLabelListTextSizePreview);
+        jLabelListTextSizePreview.setBounds(240, 70, 200, 30);
 
-        jRadioButton3.setSelected(true);
-        jRadioButton3.setText("PuTTY");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+        buttonGroupConsoleClient.add(jRadioButtonConsolePutty);
+        jRadioButtonConsolePutty.setText("PuTTY");
+        jRadioButtonConsolePutty.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButtonConsolePuttyMouseClicked(evt);
             }
         });
-        jPanel4.add(jRadioButton3);
-        jRadioButton3.setBounds(100, 40, 70, 30);
+        jRadioButtonConsolePutty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonConsolePuttyActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButtonConsolePutty);
+        jRadioButtonConsolePutty.setBounds(100, 40, 70, 30);
 
-        jRadioButton4.setText("SecureCRT");
-        jPanel4.add(jRadioButton4);
-        jRadioButton4.setBounds(170, 40, 93, 30);
+        buttonGroupConsoleClient.add(jRadioButtonConsoleSecureCRT);
+        jRadioButtonConsoleSecureCRT.setSelected(true);
+        jRadioButtonConsoleSecureCRT.setText("SecureCRT");
+        jPanel4.add(jRadioButtonConsoleSecureCRT);
+        jRadioButtonConsoleSecureCRT.setBounds(170, 40, 100, 30);
+
+        jSliderListTextSize.setMaximum(6);
+        jSliderListTextSize.setPaintLabels(true);
+        jSliderListTextSize.setSnapToTicks(true);
+        jSliderListTextSize.setValue(1);
+        jSliderListTextSize.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSliderListTextSizeStateChanged(evt);
+            }
+        });
+        jPanel4.add(jSliderListTextSize);
+        jSliderListTextSize.setBounds(100, 70, 140, 30);
+
+        jLabelConsoleClient.setText("Console Client:");
+        jPanel4.add(jLabelConsoleClient);
+        jLabelConsoleClient.setBounds(10, 40, 90, 30);
+
+        jLabelListTextSize1.setText("List Text Size:");
+        jPanel4.add(jLabelListTextSize1);
+        jLabelListTextSize1.setBounds(10, 70, 90, 30);
 
         jTabbedPane1.addTab("Settings", jPanel4);
 
         getContentPane().add(jTabbedPane1);
-        jTabbedPane1.setBounds(0, 0, 400, 490);
+        jTabbedPane1.setBounds(0, 0, 450, 490);
         jTabbedPane1.getAccessibleContext().setAccessibleName("");
 
         getContentPane().add(jPanel2);
@@ -966,15 +1029,35 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsoleActionPerformed
         // TODO add your handling code here:
-        System.out.println("Pressed");
-        String strEXEC = "" + pathDesktop + "/authexe/putty.exe -serial " + jComboBoxConsoleCOM.getSelectedItem() + " -sercfg " + jComboBoxConsoleBaud.getSelectedItem() + " ,8,n,1,N ";
-        try {
-            Runtime.getRuntime().exec(strEXEC);
+        SimpleDateFormat dateTime = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss-SSS");
+        String fileLog = pathLogging + "\\Serial-" + dateTime + ".txt";
+        System.out.println("Log file: " + fileLog);
+
+
+        if (jRadioButtonConsolePutty.isSelected() == true) {
+            String strEXEC = "" + pathDesktop + "/authexe/putty.exe -serial " + jComboBoxConsoleCOM.getSelectedItem() + " -sercfg " + jComboBoxConsoleBaud.getSelectedItem() + " ,8,n,1,N  ";
+            System.out.println(strEXEC);
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
         }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
+        if (jRadioButtonConsoleSecureCRT.isSelected() == true) {
+            String strEXEC = "" + pathDesktop + "/authexe/SecureCRT/securecrt.exe /LOG \"" + fileLog + "\" /T /SERIAL " + jComboBoxConsoleCOM.getSelectedItem() + " /BAUD " + jComboBoxConsoleBaud.getSelectedItem();
+            System.out.println(strEXEC);
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }        
+        
+            
     }//GEN-LAST:event_jButtonConsoleActionPerformed
 
     private void jButtonShowCOMListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowCOMListActionPerformed
@@ -1295,7 +1378,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonSSHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSSHActionPerformed
         // TODO add your handling code here:
-        SimpleDateFormat dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        SimpleDateFormat dateTime = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss-SSS");
         String fileLog = pathDesktop + "\\Logging-Output\\SSH-" + jTextFieldConnectHostname.getText() + " " + dateTime + ".txt";
         System.out.println("Log file: " + fileLog);
 
@@ -1314,19 +1397,9 @@ public class LaunchPadForm extends javax.swing.JFrame {
         if (jRadioButtonSSHClientSecureCRT.isSelected() == true) {
             
             if (jTextFieldConnectUsername.getText().equals("")){
-                if (jTextFieldConnectUsername.getText().equals("")){
-                    String strEXEC = "" + pathDesktop + "/authexe/SecureCRT/securecrt.exe /LOG " + fileLog + " /T /SSH2 /ACCEPTHOSTKEYS " + jTextFieldConnectHostname.getText();
-                    try {
-                        Runtime.getRuntime().exec(strEXEC);
-                    }
-                    catch (IOException e) {
-                        System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                        JOptionPane.showMessageDialog(null, "Something is wrong!");
-                    }
-                }
-                else {
-                    String passText = new String(jPasswordFieldConnectPassword.getPassword());
-                    String strEXEC = "" + pathDesktop + "/authexe/SecureCRT/securecrt.exe /LOG " + fileLog + " /T /SSH2 /ACCEPTHOSTKEYS " + jTextFieldConnectHostname.getText() + " /L " + jTextFieldConnectUsername.getText() + " /PASSWORD \"" + passText + "\"  ";
+                if (jPasswordFieldConnectPassword.getPassword().length == 0){
+                    String strEXEC = "" + pathDesktop + "/authexe/SecureCRT/securecrt.exe /LOG \"" + fileLog + "\" /T /SSH2 /ACCEPTHOSTKEYS " + jTextFieldConnectHostname.getText();
+                    System.out.println(strEXEC);
                     try {
                         Runtime.getRuntime().exec(strEXEC);
                     }
@@ -1336,10 +1409,18 @@ public class LaunchPadForm extends javax.swing.JFrame {
                     }
                 }
             }
-        }        
-        
-                    
-
+            else {
+                String passText = new String(jPasswordFieldConnectPassword.getPassword());
+                String strEXEC = "" + pathDesktop + "/authexe/SecureCRT/securecrt.exe /LOG \"" + fileLog + "\" /T /SSH2 /ACCEPTHOSTKEYS " + jTextFieldConnectHostname.getText() + " /L " + jTextFieldConnectUsername.getText() + " /PASSWORD \"" + passText + "\"  ";
+                try {
+                    Runtime.getRuntime().exec(strEXEC);
+                }
+                catch (IOException e) {
+                    System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                    JOptionPane.showMessageDialog(null, "Something is wrong!");
+                }
+            }
+        }                                  
     }//GEN-LAST:event_jButtonSSHActionPerformed
 
     private void jButtonHTTPSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHTTPSActionPerformed
@@ -1477,9 +1558,49 @@ public class LaunchPadForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonSSHClientPuTTYActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void jRadioButtonConsolePuttyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonConsolePuttyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_jRadioButtonConsolePuttyActionPerformed
+
+    private void jSliderListTextSizeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderListTextSizeStateChanged
+        // TODO add your handling code here:
+                String strSliderValue = String.valueOf(jSliderListTextSize.getValue());
+        System.out.println(strSliderValue);
+
+            if (strSliderValue.equals("0")){
+                jListSessions.setFont(jListSessions.getFont().deriveFont(10.0f));
+                jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(10.0f));
+            }
+            if (strSliderValue.equals("1")){
+                jListSessions.setFont(jListSessions.getFont().deriveFont(11.0f));
+                jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(11.0f));
+            }
+            if (strSliderValue.equals("2")){
+                jListSessions.setFont(jListSessions.getFont().deriveFont(12.0f));
+                jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(12.0f));
+            }
+            if (strSliderValue.equals("3")){
+                jListSessions.setFont(jListSessions.getFont().deriveFont(13.0f));
+                jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(13.0f));
+            }
+            if (strSliderValue.equals("4")){
+                jListSessions.setFont(jListSessions.getFont().deriveFont(14.0f));
+                jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(14.0f));
+            }   
+            if (strSliderValue.equals("5")){
+                jListSessions.setFont(jListSessions.getFont().deriveFont(15.0f));
+                jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(15.0f));
+            }    
+            if (strSliderValue.equals("6")){
+                jListSessions.setFont(jListSessions.getFont().deriveFont(16.0f));
+                jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(16.0f));
+            }               
+    }//GEN-LAST:event_jSliderListTextSizeStateChanged
+
+    private void jRadioButtonConsolePuttyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButtonConsolePuttyMouseClicked
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Console with not work with old garbage versions of PuTTY from 2007(.60)!"); 
+    }//GEN-LAST:event_jRadioButtonConsolePuttyMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1579,6 +1700,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField broadcastAddress;
+    private javax.swing.ButtonGroup buttonGroupConsoleClient;
     private javax.swing.ButtonGroup buttonGroupSSHClient;
     private javax.swing.JButton calBtn;
     private javax.swing.JTextField cidrValue;
@@ -1615,8 +1737,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1625,14 +1745,18 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelConsoleClient;
+    private javax.swing.JLabel jLabelListTextSize1;
+    private javax.swing.JLabel jLabelListTextSizePreview;
+    private javax.swing.JLabel jLabelSSHClient;
     private javax.swing.JList<String> jListSessions;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanelMain;
     private javax.swing.JPasswordField jPasswordFieldConnectPassword;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButtonConsolePutty;
+    private javax.swing.JRadioButton jRadioButtonConsoleSecureCRT;
     private javax.swing.JRadioButton jRadioButtonSSHClientPuTTY;
     private javax.swing.JRadioButton jRadioButtonSSHClientSecureCRT;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1640,6 +1764,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSlider jSliderListTextSize;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextFieldConnectHostname;
     private javax.swing.JTextField jTextFieldConnectUsername;
