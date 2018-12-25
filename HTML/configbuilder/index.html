@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<head>
+		<title>NSB Config Builder</title>
+    	<!-- LOAD JQUERY -->
+        <script type="text/javascript" src="jquery-1.12.4.min.js"></script>
+
+        <!-- LOAD MAIN JAVASCRIPT -->
+        <script type="text/javascript" src="ConfigBuilder.js"></script>
+
+        <!-- LOAD MAIN CSS -->
+        <link type="text/css" rel="stylesheet" href="ConfigBuilder.css" />
+    
+    </head>
+<body>
+<div id="wrapper">
+
+    <!-- LEFT SIDE -->
+    <div id="container-left" class="split">
+
+            <input style="color: #7FB347;" type="file" id="file" name="file" enctype="multipart/form-data" />
+        
+            <input type="button" onclick="saveTextAsFile();" value="Save" />
+
+            <input type="button" onclick="copyToClipboard()" value="Copy" />
+
+            <br>
+            <br>
+
+            <input type="button" onclick="loadAlternateConfig(strPreloadedConfig1);" value="Config 1" />
+
+            <input type="button" onclick="loadAlternateConfig(strPreloadedConfig2);" value="Config 2" />
+
+        <br>
+        <br>
+        <span style="color: #7FB347;">Sections</span>
+        <div id="sectionSectionToggle"></div>
+		<br>
+		<span style="color: #7FB347;">Variables</span>
+        <div id="sectionVariableChange"></div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div id="container-right" class="split" >
+
+        <pre id="pre-output-box">
+            <code id="output-box">
+
+            </code>
+        </pre>
+
+        <!-- <div id="output-box"></div> -->
+        <!--<textarea id="output-box" onfocus="this.select()" readonly="readonly" wrap='off'></textarea>-->
+
+    </div>
+</div>
+
+
+
+
+</body>
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'p3plcpnl0218'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script></html>
