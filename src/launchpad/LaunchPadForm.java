@@ -6,7 +6,6 @@
 package launchpad;
 
 import java.awt.AWTException;
-import java.awt.Desktop;
 import java.awt.Image;
 import java.awt.Robot;
 import java.awt.Toolkit;
@@ -19,7 +18,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,9 +26,14 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import launchpad.Type7Reverse.CiscoVigenere;
+import net.lingala.zip4j.core.ZipFile;
+import net.lingala.zip4j.exception.ZipException;
+import net.lingala.zip4j.model.ZipParameters;
+import net.lingala.zip4j.progress.ProgressMonitor;
+import net.lingala.zip4j.util.Zip4jConstants;
 
 /**
  *
@@ -42,6 +45,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
     File pathWorkingDirectory = new File(System.getProperty("user.dir"));
     File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
     File pathLogging = new File(pathDesktop + "\\Logging-Output");
+    
+    //--- Get Date and time for things
+    SimpleDateFormat simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
+    String dateTime = simpleDateFormat.format(new Date());
+        
     
     /**
      * Creates new form LaunchPadForm
@@ -182,6 +190,12 @@ public class LaunchPadForm extends javax.swing.JFrame {
         
         //--- Create directories if not exist
         //new File(pathLogging.toString()).mkdirs();
+        
+        //--- Set Zip Text
+        String strPathDesktop = pathDesktop.toString();
+        jTextFieldZipFilename.setText(strPathDesktop + "\\Backup_" + dateTime + ".zip");
+ 
+        
     }
 
     /**
@@ -278,17 +292,17 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jButtonConfigBuilder = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jButton24 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jLabelFolderToZip = new javax.swing.JLabel();
+        jButtonFolderToZip = new javax.swing.JButton();
+        jTextFieldZipSourceFolder = new javax.swing.JTextField();
+        jTextFieldZipFilename = new javax.swing.JTextField();
         jButton25 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton26 = new javax.swing.JButton();
+        jPasswordFieldZip = new javax.swing.JPasswordField();
         jLabel18 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
+        jProgressBarZip = new javax.swing.JProgressBar();
         jPanelSettings = new javax.swing.JPanel();
         jLabelSSHClient = new javax.swing.JLabel();
         jRadioButtonSSHClientSecureCRT = new javax.swing.JRadioButton();
@@ -942,21 +956,32 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
         jPanel3.setLayout(null);
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Zip to Desktop");
-        jPanel3.add(jLabel15);
-        jLabel15.setBounds(100, 10, 350, 20);
+        jLabelFolderToZip.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelFolderToZip.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelFolderToZip.setText("Folder to Zip");
+        jPanel3.add(jLabelFolderToZip);
+        jLabelFolderToZip.setBounds(100, 10, 350, 20);
 
-        jButton24.setText("Zip to Desktop!");
-        jPanel3.add(jButton24);
-        jButton24.setBounds(280, 100, 170, 20);
-        jPanel3.add(jTextField1);
-        jTextField1.setBounds(100, 40, 350, 20);
-        jPanel3.add(jTextField2);
-        jTextField2.setBounds(100, 70, 350, 20);
+        jButtonFolderToZip.setText("Folder to Zip!");
+        jButtonFolderToZip.setToolTipText("");
+        jButtonFolderToZip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFolderToZipActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonFolderToZip);
+        jButtonFolderToZip.setBounds(280, 100, 170, 20);
+        jPanel3.add(jTextFieldZipSourceFolder);
+        jTextFieldZipSourceFolder.setBounds(100, 40, 350, 20);
+        jPanel3.add(jTextFieldZipFilename);
+        jTextFieldZipFilename.setBounds(100, 70, 350, 20);
 
         jButton25.setText("Browse");
+        jButton25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton25ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton25);
         jButton25.setBounds(460, 40, 90, 20);
 
@@ -968,24 +993,22 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel3.add(jLabel17);
         jLabel17.setBounds(10, 40, 90, 20);
 
-        jPasswordField1.setText("jPasswordField1");
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        jPasswordFieldZip.setToolTipText("");
+        jPasswordFieldZip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                jPasswordFieldZipActionPerformed(evt);
             }
         });
-        jPanel3.add(jPasswordField1);
-        jPasswordField1.setBounds(100, 100, 160, 20);
-
-        jButton26.setText("Browse");
-        jPanel3.add(jButton26);
-        jButton26.setBounds(460, 70, 90, 20);
+        jPanel3.add(jPasswordFieldZip);
+        jPasswordFieldZip.setBounds(100, 100, 160, 20);
 
         jLabel18.setText("Filename:");
         jPanel3.add(jLabel18);
         jLabel18.setBounds(10, 70, 90, 20);
         jPanel3.add(jSeparator7);
-        jSeparator7.setBounds(10, 130, 550, 10);
+        jSeparator7.setBounds(10, 160, 550, 10);
+        jPanel3.add(jProgressBarZip);
+        jProgressBarZip.setBounds(20, 130, 530, 20);
 
         jTabbedTools2.addTab("Tools-2", jPanel3);
 
@@ -1629,7 +1652,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         }
         if (jRadioButtonConsoleSecureCRT.isSelected() == true) {
-            String strEXEC = "" + pathDesktop + "/authexe/SecureCRT/securecrt.exe /LOG \"" + fileLog + "\" /T /SERIAL " + jComboBoxConsoleCOM.getSelectedItem() + " /BAUD " + jComboBoxConsoleBaud.getSelectedItem();
+            String strEXEC = "C:\\Program Files\\SecureCRT x64\\SecureCRT\\SecureCRT.exe /LOG \"" + fileLog + "\" /T /SERIAL " + jComboBoxConsoleCOM.getSelectedItem() + " /BAUD " + jComboBoxConsoleBaud.getSelectedItem();
             System.out.println(strEXEC);
             try {
                 Runtime.getRuntime().exec(strEXEC);
@@ -1745,7 +1768,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
             if (jTextFieldConnectUsername.getText().equals("")){
                 if (jPasswordFieldConnectPassword.getPassword().length == 0){
-                    String strEXEC = "" + pathDesktop + "/authexe/SecureCRT/securecrt.exe /LOG \"" + fileLog + "\" /T /SSH2 /ACCEPTHOSTKEYS " + jTextFieldConnectHostname.getText();
+                    String strEXEC = "C:\\Program Files\\SecureCRT x64\\SecureCRT\\SecureCRT.exe /LOG \"" + fileLog + "\" /T /SSH2 /ACCEPTHOSTKEYS " + jTextFieldConnectHostname.getText();
                     System.out.println(strEXEC);
                     try {
                         Runtime.getRuntime().exec(strEXEC);
@@ -1758,7 +1781,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
             else {
                 String passText = new String(jPasswordFieldConnectPassword.getPassword());
-                String strEXEC = "" + pathDesktop + "/authexe/SecureCRT/securecrt.exe /LOG \"" + fileLog + "\" /T /SSH2 /ACCEPTHOSTKEYS " + jTextFieldConnectHostname.getText() + " /L " + jTextFieldConnectUsername.getText() + " /PASSWORD \"" + passText + "\"  ";
+                String strEXEC = "C:\\Program Files\\SecureCRT x64\\SecureCRT\\SecureCRT.exe /LOG \"" + fileLog + "\" /T /SSH2 /ACCEPTHOSTKEYS " + jTextFieldConnectHostname.getText() + " /L " + jTextFieldConnectUsername.getText() + " /PASSWORD \"" + passText + "\"  ";
                 try {
                     Runtime.getRuntime().exec(strEXEC);
                 }
@@ -2022,9 +2045,155 @@ public class LaunchPadForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonConfigBuilderActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void jPasswordFieldZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldZipActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_jPasswordFieldZipActionPerformed
+
+    private void jButtonFolderToZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFolderToZipActionPerformed
+        // TODO add your handling code here:
+        new Thread(() -> {
+    //Do whatever
+
+        		try {
+			// Initiate ZipFile object with the path/name of the zip file.
+			ZipFile zipFile = new ZipFile(jTextFieldZipFilename.getText());
+                        
+                        // Set runInThread variable of ZipFile to true.
+			// When this variable is set, Zip4j will run any task in a new thread
+			// If this variable is not set, Zip4j will run all tasks in the current
+			// thread. 
+			zipFile.setRunInThread(true);
+			
+			// Folder to add
+			String folderToAdd = jTextFieldZipSourceFolder.getText();
+			
+			// Initiate Zip Parameters which define various properties such
+			// as compression method, etc.
+			ZipParameters parameters = new ZipParameters();
+			
+			// set compression method to store compression
+			parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);
+			
+			// Set the compression level
+			parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);
+                        
+                        // Set the encryption flag to true
+			// If this is set to false, then the rest of encryption properties are ignored
+			parameters.setEncryptFiles(true);
+			
+			// Set the encryption method to Standard Zip Encryption
+			parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_STANDARD);
+			
+			// Set password
+                        String passText = new String(jPasswordFieldZip.getPassword());
+			parameters.setPassword(passText);
+			
+			// Add folder to the zip file
+			zipFile.addFolder(folderToAdd, parameters);
+			
+			// Get progress monitor from ZipFile
+			ProgressMonitor progressMonitor = zipFile.getProgressMonitor();
+                        jProgressBarZip.setStringPainted(true);
+			// PLEASE NOTE: Below code does a lot of Sysout's.
+			
+			// ProgressMonitor has two states, READY and BUSY. READY indicates that
+			// Zip4j can now accept any new tasks. BUSY indicates that Zip4j is
+			// currently performing some task and cannot accept any new task at the moment
+			// Any attempt to perform any other task will throw an Exception
+			while (progressMonitor.getState() == ProgressMonitor.STATE_BUSY) {
+				// ProgressMonitor has a lot of useful information like, the current
+				// operation being performed by Zip4j, current file being processed,
+				// percentage done, etc. Once an operation is completed, ProgressMonitor
+				// also contains the result of the operation. If any exception is thrown
+				// during an operation, this is also stored in this object and can be retrieved
+				// as shown below
+				
+				// To get the percentage done
+				System.out.println("Percent Done: " + progressMonitor.getPercentDone());
+                                jProgressBarZip.setValue(progressMonitor.getPercentDone());
+
+				// To get the current file being processed
+				System.out.println("File: " + progressMonitor.getFileName());
+				
+				// To get current operation
+				// Possible values are:
+				// ProgressMonitor.OPERATION_NONE - no operation being performed
+				// ProgressMonitor.OPERATION_ADD - files are being added to the zip file
+				// ProgressMonitor.OPERATION_EXTRACT - files are being extracted from the zip file
+				// ProgressMonitor.OPERATION_REMOVE - files are being removed from zip file
+				// ProgressMonitor.OPERATION_CALC_CRC - CRC of the file is being calculated
+				// ProgressMonitor.OPERATION_MERGE - Split zip files are being merged
+				switch (progressMonitor.getCurrentOperation()) {
+				case ProgressMonitor.OPERATION_NONE:
+					System.out.println("no operation being performed");
+                                        jProgressBarZip.setString("No operation being performed");
+					break;
+				case ProgressMonitor.OPERATION_ADD:
+					System.out.println("Add operation");
+                                        jProgressBarZip.setString("Add operation");
+					break;
+				case ProgressMonitor.OPERATION_EXTRACT:
+					System.out.println("Extract operation");
+                                        jProgressBarZip.setString("Extract operation");
+					break;
+				case ProgressMonitor.OPERATION_REMOVE:
+					System.out.println("Remove operation");
+                                        jProgressBarZip.setString("Remove operation");
+					break;
+				case ProgressMonitor.OPERATION_CALC_CRC:
+					System.out.println("Calcualting CRC");
+                                        jProgressBarZip.setString("Calcualting CRC");
+					break;
+				case ProgressMonitor.OPERATION_MERGE:
+					System.out.println("Merge operation");
+                                        jProgressBarZip.setString("Merge operation");
+					break;
+				default:
+					System.out.println("invalid operation");
+                                        jProgressBarZip.setString("invalid operation");
+					break;
+				}
+			}
+			
+			// Once Zip4j is done with its task, it changes the ProgressMonitor
+			// state from BUSY to READY, so the above loop breaks.
+			// To get the result of the operation:
+			// Possible values:
+			// ProgressMonitor.RESULT_SUCCESS - Operation was successful
+			// ProgressMonitor.RESULT_WORKING - Zip4j is still working and is not 
+			//									yet done with the current operation
+			// ProgressMonitor.RESULT_ERROR - An error occurred during processing
+			System.out.println("Result: " + progressMonitor.getResult());
+			
+			if (progressMonitor.getResult() == ProgressMonitor.RESULT_ERROR) {
+				// Any exception can be retrieved as below:
+				if (progressMonitor.getException() != null) {
+				} else {
+					System.err.println("An error occurred without any exception");
+				}
+			}
+			
+		} catch (ZipException e) {
+		}
+        }).start();
+    }//GEN-LAST:event_jButtonFolderToZipActionPerformed
+
+    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new java.io.File("."));
+        chooser.setDialogTitle("Choose Folder...");
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.setAcceptAllFileFilterUsed(false);
+
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+          jTextFieldZipSourceFolder.setText(chooser.getSelectedFile().getAbsolutePath());
+          System.out.println("getCurrentDirectory(): " + chooser.getCurrentDirectory());
+          System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
+        } else {
+          System.out.println("No Selection ");
+        }
+    }//GEN-LAST:event_jButton25ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2145,9 +2314,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
-    private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -2158,6 +2325,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JButton jButtonConfigBuilder;
     private javax.swing.JButton jButtonConsole;
+    private javax.swing.JButton jButtonFolderToZip;
     private javax.swing.JButton jButtonHTTPS;
     private javax.swing.JButton jButtonJSDiff;
     private javax.swing.JButton jButtonPing;
@@ -2173,7 +2341,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -2186,6 +2353,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelConsoleClient;
+    private javax.swing.JLabel jLabelFolderToZip;
     private javax.swing.JLabel jLabelListTextSize1;
     private javax.swing.JLabel jLabelListTextSizePreview;
     private javax.swing.JLabel jLabelSSHClient;
@@ -2197,8 +2365,9 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelMain;
     private javax.swing.JPanel jPanelSettings;
     private javax.swing.JPanel jPanelTools1;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordFieldConnectPassword;
+    private javax.swing.JPasswordField jPasswordFieldZip;
+    private javax.swing.JProgressBar jProgressBarZip;
     private javax.swing.JRadioButton jRadioButtonConsolePutty;
     private javax.swing.JRadioButton jRadioButtonConsoleSecureCRT;
     private javax.swing.JRadioButton jRadioButtonSSHClientPuTTY;
@@ -2213,14 +2382,14 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSlider jSliderListTextSize;
     private javax.swing.JTabbedPane jTabbedTools2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldConnectHostname;
     private javax.swing.JTextField jTextFieldConnectUsername;
     private javax.swing.JTextField jTextFieldFilter;
     private javax.swing.JTextField jTextFieldPingHostname;
     private javax.swing.JTextField jTextFieldType7Input;
     private javax.swing.JTextField jTextFieldType7Output;
+    private javax.swing.JTextField jTextFieldZipFilename;
+    private javax.swing.JTextField jTextFieldZipSourceFolder;
     private javax.swing.JTextField networkAddress;
     private javax.swing.JTextField networkClass;
     private javax.swing.JTextField noSubnets;
