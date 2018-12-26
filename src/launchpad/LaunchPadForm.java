@@ -179,12 +179,17 @@ public class LaunchPadForm extends javax.swing.JFrame {
         
         //--- Run update script if it is available
         String myValue = PropertyHandler.getInstance().getValue("UpdateScript");
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-            System.out.println("Updating!");
-        }
-        catch (IOException | NullPointerException e) {
+        File myValueFile = new File(PropertyHandler.getInstance().getValue("UpdateScript"));
+        if (myValueFile.exists()) {
+            System.out.println(myValue);
+            try {
+                Runtime.getRuntime().exec("cmd /c start cmd.exe /c " + myValue);
+                System.out.println("Updating!");
+            }
+            catch (IOException | NullPointerException e) {
+                System.out.println("No update script available.");
+            }
+        }else{
             System.out.println("No update script available.");
         }
         
@@ -291,6 +296,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         jLabel14 = new javax.swing.JLabel();
         jButtonConfigBuilder = new javax.swing.JButton();
+        jButton24 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabelFolderToZip = new javax.swing.JLabel();
         jButtonFolderToZip = new javax.swing.JButton();
@@ -951,6 +957,16 @@ public class LaunchPadForm extends javax.swing.JFrame {
         });
         jPanelTools1.add(jButtonConfigBuilder);
         jButtonConfigBuilder.setBounds(140, 440, 120, 23);
+
+        jButton24.setText("Reference");
+        jButton24.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
+        jPanelTools1.add(jButton24);
+        jButton24.setBounds(480, 30, 80, 40);
 
         jTabbedTools2.addTab("Tools-1", jPanelTools1);
 
@@ -2195,6 +2211,19 @@ public class LaunchPadForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton25ActionPerformed
 
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        // TODO add your handling code here:
+        String myValue = "cmd.exe /c start explorer.exe \"" + pathDesktop + "\\LaunchPad\\Documents\\IP Addressing Breakdown.pdf\"";
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButton24ActionPerformed
+
     /**
      * @param args the command line arguments
      * @throws java.io.FileNotFoundException
@@ -2314,6 +2343,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
+    private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton3;
