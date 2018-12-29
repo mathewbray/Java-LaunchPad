@@ -5,10 +5,19 @@
  */
 package launchpad;
 
+import com.mnnit.server.model.SingletonUIResource;
+import com.mnnit.server.ui.MainFrame;
+import static com.mnnit.server.ui.MainFrame.getLookAndFeel;
+import com.mnnit.server.ui.PopUpMenu;
 import java.awt.AWTException;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.Robot;
+import java.awt.SystemTray;
 import java.awt.Toolkit;
+import java.awt.TrayIcon;
+import java.awt.TrayIcon.MessageType;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
@@ -21,13 +30,19 @@ import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import launchpad.Type7Reverse.CiscoVigenere;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
@@ -77,8 +92,10 @@ public class LaunchPadForm extends javax.swing.JFrame {
      * @throws java.io.IOException
      * @throws java.io.FileNotFoundException
      * @throws java.net.URISyntaxException
+     * @throws java.awt.AWTException
+     * @throws java.lang.InterruptedException
      */
-    public LaunchPadForm() throws IOException, FileNotFoundException, URISyntaxException {
+    public LaunchPadForm() throws IOException, FileNotFoundException, URISyntaxException, AWTException, InterruptedException {
         initComponents();
         //importSessionList();
         getSessionList();
@@ -206,9 +223,71 @@ public class LaunchPadForm extends javax.swing.JFrame {
         String strPathDesktop = pathDesktop.toString();
         jTextFieldZipFilename.setText(strPathDesktop + "\\Backup_" + dateTime + ".zip");
  
+        
+        
+        
+        try {
+            UIManager.LookAndFeelInfo lookAndFeel = getLookAndFeel( "Windows" );
+
+            if ( lookAndFeel != null )
+                UIManager.setLookAndFeel( lookAndFeel.getClassName() );
+            
+            Runtime.getRuntime().addShutdownHook( new Thread( "ControllerShutdownHook" )
+                    {
+                            @Override
+                            public void run()
+                            {
+                                    logOff(  );
+                                                            }
+                    } );
+            resource = new SingletonUIResource(mainChatArea, jTextField1, userList);
+            
+            resource.getNetworkController().logOn();
+                   ListSelectionListener listSelectionListener = new ListSelectionListener() {
+
+                    @Override
+                    public void valueChanged(ListSelectionEvent e) {
+                        /** Get the particular element selected and act on it accordingly 
+                         *  This method is still under Beta Phase and does not have any
+                         *  reliability associated with it .This is sparta !!
+                         */
+                        boolean adjust = e.getValueIsAdjusting();
+                        if(!adjust)
+                        {
+                            JList list = (JList) e.getSource() ;
+                            int selections[] = list.getSelectedIndices() ;
+                            Object selectionvalues[] = list.getSelectedValues() ;
+                            for(int i = 0 ; i< selections.length ; i++)
+                            {
+                                userSelected = selectionvalues[i].toString();
+                                System.out.println(userSelected);
+                            }
+                        }
+                    }
+                };
+                userList.addListSelectionListener(listSelectionListener);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
  
+
+        
     }
     
+        public void populateUserList(DefaultListModel listModel)
+    {
+        if(listModel==null)
+               throw new NullPointerException("the jlist is null");
+        else 
+            userList.setModel(listModel);
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -327,6 +406,13 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldSNMPIPAddress = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        userList = new javax.swing.JList();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        mainChatArea = new javax.swing.JTextArea();
+        jTextField1 = new javax.swing.JTextField();
         jPanelSettings = new javax.swing.JPanel();
         jLabelSSHClient = new javax.swing.JLabel();
         jRadioButtonSSHClientSecureCRT = new javax.swing.JRadioButton();
@@ -1120,6 +1206,45 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jLabel20.setBounds(30, 400, 80, 20);
 
         jTabbedTools2.addTab("Tools-2", jPanel3);
+
+        jPanel4.setLayout(null);
+
+        jPanel6.setLayout(null);
+
+        userList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                userListMouseReleased(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                userListMousePressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(userList);
+
+        jPanel6.add(jScrollPane2);
+        jScrollPane2.setBounds(400, 10, 140, 400);
+
+        mainChatArea.setEditable(false);
+        mainChatArea.setColumns(20);
+        mainChatArea.setRows(5);
+        jScrollPane3.setViewportView(mainChatArea);
+
+        jPanel6.add(jScrollPane3);
+        jScrollPane3.setBounds(10, 10, 380, 400);
+
+        jTextField1.setMaximumSize(new java.awt.Dimension(6, 2147483647));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jTextField1);
+        jTextField1.setBounds(10, 420, 530, 30);
+
+        jPanel4.add(jPanel6);
+        jPanel6.setBounds(10, 10, 550, 460);
+
+        jTabbedTools2.addTab("Chat", jPanel4);
 
         jPanelSettings.setLayout(null);
 
@@ -2435,6 +2560,40 @@ public class LaunchPadForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jListSessionsValueChanged
 
+    private void userListMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userListMouseReleased
+        if(evt.isPopupTrigger()&&!userList.isSelectionEmpty())
+        {      PopUpMenu popUpMenu =  new PopUpMenu();
+            popUpMenu.showUser(evt.getComponent(), evt.getX(), evt.getY() , userSelected);}
+    }//GEN-LAST:event_userListMouseReleased
+
+    private void userListMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userListMousePressed
+        Point p = evt.getPoint();
+        int index = userList.locationToIndex( p );
+
+        if ( index != -1 )
+        {
+            Rectangle r = userList.getCellBounds( index, index );
+
+            if ( r.x <= p.x && p.x <= r.x + r.width && r.y <= p.y && p.y <= r.y + r.height )
+            {
+                userList.setSelectedIndex( index );
+            }
+
+            else
+            {
+                userList.clearSelection();
+            }
+        }
+        if(evt.isPopupTrigger()&&!userList.isSelectionEmpty())
+        {      PopUpMenu popUpMenu =  new PopUpMenu();
+            popUpMenu.showUser(evt.getComponent(), evt.getX(), evt.getY() , userSelected);}
+    }//GEN-LAST:event_userListMousePressed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+
+        resource.getChatTextFieldController().parseAndActOnMessage();
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -2466,9 +2625,16 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 new LaunchPadForm().setVisible(true);
             } catch (IOException | URISyntaxException ex) {
                 Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (AWTException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+        
     }
+    
+
 
    
      private ArrayList getSessionList() throws FileNotFoundException, IOException, URISyntaxException
@@ -2514,6 +2680,10 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
     }
     
+    private void logOff()
+    {
+        resource.getNetworkController().sendLogoffMessage();       
+    }
         //--- Filter the ListBox
 //        try (FileReader fr = new FileReader(arrSessionList)) {
 //            BufferedReader buffIn = new BufferedReader(fr);
@@ -2525,7 +2695,9 @@ public class LaunchPadForm extends javax.swing.JFrame {
 //            jListSessions.setModel(listModel);
 //            }
    
-
+    private String userSelected = null ;
+    private SingletonUIResource resource;
+    private boolean away = false;
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2608,7 +2780,9 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanelMain;
     private javax.swing.JPanel jPanelSettings;
     private javax.swing.JPanel jPanelTools1;
@@ -2620,6 +2794,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButtonSSHClientPuTTY;
     private javax.swing.JRadioButton jRadioButtonSSHClientSecureCRT;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -2629,6 +2805,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSlider jSliderListTextSize;
     private javax.swing.JTabbedPane jTabbedTools2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldConnectHostname;
     private javax.swing.JTextField jTextFieldConnectUsername;
     private javax.swing.JTextField jTextFieldFilter;
@@ -2639,6 +2816,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldType7Output;
     private javax.swing.JTextField jTextFieldZipFilename;
     private javax.swing.JTextField jTextFieldZipSourceFolder;
+    private javax.swing.JTextArea mainChatArea;
     private javax.swing.JTextField networkAddress;
     private javax.swing.JTextField networkClass;
     private javax.swing.JTextField noSubnets;
@@ -2648,6 +2826,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JTextField oct4;
     private javax.swing.JButton resetBtn;
     private javax.swing.JTextField subnetMask;
+    private javax.swing.JList userList;
     // End of variables declaration//GEN-END:variables
 
 
