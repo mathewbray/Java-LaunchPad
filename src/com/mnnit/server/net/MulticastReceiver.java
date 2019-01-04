@@ -114,7 +114,7 @@ public class MulticastReceiver implements Runnable {
                                                     SystemTray tray = SystemTray.getSystemTray();
 
                                     String search = "chat";
-                                    if ( message.toLowerCase().indexOf(search.toLowerCase()) != -1 ) {
+                                    if ( message.toLowerCase().contains(search.toLowerCase()) ) {
                                         //- If the icon is a file
                                         Image image = Toolkit.getDefaultToolkit().createImage("icon.png");
                                         //- Alternative (if the icon is on the classpath):

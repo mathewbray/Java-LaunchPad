@@ -384,28 +384,17 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButtonConfigBuilder = new javax.swing.JButton();
         jButton24 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jLabelFolderToZip = new javax.swing.JLabel();
         jButtonFolderToZip = new javax.swing.JButton();
         jTextFieldZipSourceFolder = new javax.swing.JTextField();
         jTextFieldZipFilename = new javax.swing.JTextField();
         jButton25 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         jPasswordFieldZip = new javax.swing.JPasswordField();
         jLabel18 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
         jProgressBarZip = new javax.swing.JProgressBar();
-        jButtonMTUSweep = new javax.swing.JButton();
-        jLabelFolderToZip1 = new javax.swing.JLabel();
-        jButtonPingSweep = new javax.swing.JButton();
-        jButtonGetMD5 = new javax.swing.JButton();
-        jButtonGetNTPTime = new javax.swing.JButton();
-        jButton26 = new javax.swing.JButton();
         jLabelFolderToZip2 = new javax.swing.JLabel();
-        jTextFieldSNMPOID = new javax.swing.JTextField();
-        jTextFieldSNMPIPAddress = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -413,6 +402,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         mainChatArea = new javax.swing.JTextArea();
         jTextField1 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
         jPanelSettings = new javax.swing.JPanel();
         jLabelSSHClient = new javax.swing.JLabel();
         jRadioButtonSSHClientSecureCRT = new javax.swing.JRadioButton();
@@ -1076,12 +1066,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
         jPanel3.setLayout(null);
 
-        jLabelFolderToZip.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabelFolderToZip.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelFolderToZip.setText("Scripts");
-        jPanel3.add(jLabelFolderToZip);
-        jLabelFolderToZip.setBounds(100, 170, 350, 20);
-
         jButtonFolderToZip.setText("Folder to Zip!");
         jButtonFolderToZip.setToolTipText("");
         jButtonFolderToZip.addActionListener(new java.awt.event.ActionListener() {
@@ -1109,10 +1093,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel3.add(jLabel16);
         jLabel16.setBounds(10, 100, 90, 20);
 
-        jLabel17.setText("OID:");
-        jPanel3.add(jLabel17);
-        jLabel17.setBounds(300, 400, 60, 20);
-
         jPasswordFieldZip.setToolTipText("");
         jPasswordFieldZip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1130,80 +1110,15 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel3.add(jProgressBarZip);
         jProgressBarZip.setBounds(20, 130, 530, 20);
 
-        jButtonMTUSweep.setText("MTU Sweep");
-        jButtonMTUSweep.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMTUSweepActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonMTUSweep);
-        jButtonMTUSweep.setBounds(420, 200, 110, 30);
-
-        jLabelFolderToZip1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabelFolderToZip1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelFolderToZip1.setText("SNMP Get (testing)");
-        jPanel3.add(jLabelFolderToZip1);
-        jLabelFolderToZip1.setBounds(90, 370, 350, 20);
-
-        jButtonPingSweep.setText("Ping Sweep");
-        jButtonPingSweep.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPingSweepActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonPingSweep);
-        jButtonPingSweep.setBounds(30, 200, 110, 30);
-
-        jButtonGetMD5.setText("Get MD5");
-        jButtonGetMD5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGetMD5ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonGetMD5);
-        jButtonGetMD5.setBounds(160, 200, 110, 30);
-
-        jButtonGetNTPTime.setText("Get NTP Time");
-        jButtonGetNTPTime.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGetNTPTimeActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonGetNTPTime);
-        jButtonGetNTPTime.setBounds(290, 200, 110, 30);
-
-        jButton26.setText("SNMP Get!");
-        jButton26.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton26ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton26);
-        jButton26.setBounds(210, 430, 110, 30);
-
         jLabelFolderToZip2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelFolderToZip2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFolderToZip2.setText("Folder to Encrypted Zip");
         jPanel3.add(jLabelFolderToZip2);
         jLabelFolderToZip2.setBounds(100, 10, 350, 20);
-        jPanel3.add(jTextFieldSNMPOID);
-        jTextFieldSNMPOID.setBounds(330, 400, 200, 20);
-
-        jTextFieldSNMPIPAddress.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldSNMPIPAddressActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jTextFieldSNMPIPAddress);
-        jTextFieldSNMPIPAddress.setBounds(100, 400, 150, 20);
 
         jLabel19.setText("Source Folder:");
         jPanel3.add(jLabel19);
         jLabel19.setBounds(10, 40, 90, 20);
-
-        jLabel20.setText("IP Address:");
-        jPanel3.add(jLabel20);
-        jLabel20.setBounds(30, 400, 80, 20);
 
         jTabbedTools2.addTab("Tools-2", jPanel3);
 
@@ -1222,7 +1137,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jScrollPane2.setViewportView(userList);
 
         jPanel6.add(jScrollPane2);
-        jScrollPane2.setBounds(400, 10, 140, 400);
+        jScrollPane2.setBounds(400, 30, 140, 380);
 
         mainChatArea.setEditable(false);
         mainChatArea.setColumns(20);
@@ -1230,7 +1145,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jScrollPane3.setViewportView(mainChatArea);
 
         jPanel6.add(jScrollPane3);
-        jScrollPane3.setBounds(10, 10, 380, 400);
+        jScrollPane3.setBounds(10, 30, 380, 380);
 
         jTextField1.setMaximumSize(new java.awt.Dimension(6, 2147483647));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -1240,6 +1155,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
         });
         jPanel6.add(jTextField1);
         jTextField1.setBounds(10, 420, 530, 30);
+
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Chat doesn't really work yet.");
+        jPanel6.add(jLabel15);
+        jLabel15.setBounds(10, 4, 530, 20);
 
         jPanel4.add(jPanel6);
         jPanel6.setBounds(10, 10, 550, 460);
@@ -1394,115 +1314,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private void jRadioButtonSSHClientPuTTYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonSSHClientPuTTYActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonSSHClientPuTTYActionPerformed
-
-    private void jTextFieldSNMPIPAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSNMPIPAddressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldSNMPIPAddressActionPerformed
-
-    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
-        // TODO add your handling code here:
-        Address targetAddress = GenericAddress.parse("udp:" + jTextFieldSNMPIPAddress.getText() + "/161");
-        TransportMapping transport = null;
-        try {
-            transport = new DefaultUdpTransportMapping();
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Snmp snmp = new Snmp(transport);
-        USM usm = new USM(SecurityProtocols.getInstance(),
-            new OctetString(MPv3.createLocalEngineID()), 0);
-        SecurityModels.getInstance().addSecurityModel(usm);
-        try {
-            transport.listen();
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        // add user to the USM
-        snmp.getUSM().addUser(new OctetString("MD5DES"),
-            new UsmUser(new OctetString("MD5DES"),
-                AuthMD5.ID,
-                new OctetString("MD5DESUserAuthPassword"),
-                PrivDES.ID,
-                new OctetString("MD5DESUserPrivPassword")));
-        // create the target
-        UserTarget target = new UserTarget();
-        target.setAddress(targetAddress);
-        target.setRetries(1);
-        target.setTimeout(5000);
-        target.setVersion(SnmpConstants.version3);
-        target.setSecurityLevel(SecurityLevel.AUTH_PRIV);
-        target.setSecurityName(new OctetString("MD5DES"));
-
-        // create the PDU
-        PDU pdu = new ScopedPDU();
-        pdu.add(new VariableBinding(new OID(jTextFieldSNMPOID.getText())));
-        pdu.setType(PDU.GETNEXT);
-
-        // send the PDU
-        ResponseEvent response = null;
-        try {
-            response = snmp.send(pdu, target);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        // extract the response PDU (could be null if timed out)
-        PDU responsePDU = response.getResponse();
-        // extract the address used by the agent to send the response:
-        Address peerAddress = response.getPeerAddress();
-    }//GEN-LAST:event_jButton26ActionPerformed
-
-    private void jButtonGetNTPTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetNTPTimeActionPerformed
-        // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /k powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + pathDesktop + "\\LaunchPad\\Scripts\\Powershell - Get NTP Time\\Get-NtpTime.ps1\"";
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-    }//GEN-LAST:event_jButtonGetNTPTimeActionPerformed
-
-    private void jButtonGetMD5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetMD5ActionPerformed
-        // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /k powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + pathDesktop + "\\LaunchPad\\Scripts\\Powershell - Get MD5 Hash\\Get-MD5-Hash.ps1\"";
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-    }//GEN-LAST:event_jButtonGetMD5ActionPerformed
-
-    private void jButtonPingSweepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPingSweepActionPerformed
-        // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /k powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + pathDesktop + "\\LaunchPad\\Scripts\\Powershell - Ping IP Range Async\\Start-Ping-IPrange-Script.ps1\"";
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-    }//GEN-LAST:event_jButtonPingSweepActionPerformed
-
-    private void jButtonMTUSweepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMTUSweepActionPerformed
-        // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /k powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + pathDesktop + "\\LaunchPad\\Scripts\\Powershell-Batch - MTU Sweep\\MTU_Sweep.ps1\"";
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-    }//GEN-LAST:event_jButtonMTUSweepActionPerformed
 
     private void jPasswordFieldZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldZipActionPerformed
         // TODO add your handling code here:
@@ -2725,7 +2536,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
-    private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -2736,13 +2546,9 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonConfigBuilder;
     private javax.swing.JButton jButtonConsole;
     private javax.swing.JButton jButtonFolderToZip;
-    private javax.swing.JButton jButtonGetMD5;
-    private javax.swing.JButton jButtonGetNTPTime;
     private javax.swing.JButton jButtonHTTPS;
     private javax.swing.JButton jButtonJSDiff;
-    private javax.swing.JButton jButtonMTUSweep;
     private javax.swing.JButton jButtonPing;
-    private javax.swing.JButton jButtonPingSweep;
     private javax.swing.JButton jButtonSSH;
     private javax.swing.JButton jButtonShowCOMList;
     private javax.swing.JButton jButtonTracert;
@@ -2756,12 +2562,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2770,8 +2575,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelConsoleClient;
-    private javax.swing.JLabel jLabelFolderToZip;
-    private javax.swing.JLabel jLabelFolderToZip1;
     private javax.swing.JLabel jLabelFolderToZip2;
     private javax.swing.JLabel jLabelListTextSize1;
     private javax.swing.JLabel jLabelListTextSizePreview;
@@ -2810,8 +2613,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldConnectUsername;
     private javax.swing.JTextField jTextFieldFilter;
     private javax.swing.JTextField jTextFieldPingHostname;
-    private javax.swing.JTextField jTextFieldSNMPIPAddress;
-    private javax.swing.JTextField jTextFieldSNMPOID;
     private javax.swing.JTextField jTextFieldType7Input;
     private javax.swing.JTextField jTextFieldType7Output;
     private javax.swing.JTextField jTextFieldZipFilename;
