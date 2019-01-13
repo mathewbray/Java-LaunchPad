@@ -14,10 +14,7 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Robot;
-import java.awt.SystemTray;
 import java.awt.Toolkit;
-import java.awt.TrayIcon;
-import java.awt.TrayIcon.MessageType;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
@@ -30,7 +27,6 @@ import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -49,27 +45,6 @@ import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.progress.ProgressMonitor;
 import net.lingala.zip4j.util.Zip4jConstants;
-import org.snmp4j.PDU;
-import org.snmp4j.ScopedPDU;
-import org.snmp4j.Snmp;
-import org.snmp4j.TransportMapping;
-import org.snmp4j.UserTarget;
-import org.snmp4j.event.ResponseEvent;
-import org.snmp4j.mp.MPv3;
-import org.snmp4j.mp.SnmpConstants;
-import org.snmp4j.security.AuthMD5;
-import org.snmp4j.security.PrivDES;
-import org.snmp4j.security.SecurityLevel;
-import org.snmp4j.security.SecurityModels;
-import org.snmp4j.security.SecurityProtocols;
-import org.snmp4j.security.USM;
-import org.snmp4j.security.UsmUser;
-import org.snmp4j.smi.Address;
-import org.snmp4j.smi.GenericAddress;
-import org.snmp4j.smi.OID;
-import org.snmp4j.smi.OctetString;
-import org.snmp4j.smi.VariableBinding;
-import org.snmp4j.transport.DefaultUdpTransportMapping;
 
 /**
  *
@@ -302,7 +277,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         buttonGroupSSHClient = new javax.swing.ButtonGroup();
         buttonGroupConsoleClient = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
-        jTabbedTools2 = new javax.swing.JTabbedPane();
+        jTabbedMain = new javax.swing.JTabbedPane();
         jPanelMain = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -383,7 +358,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jButtonConfigBuilder = new javax.swing.JButton();
         jButton24 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        jPanelTools2 = new javax.swing.JPanel();
         jButtonFolderToZip = new javax.swing.JButton();
         jTextFieldZipSourceFolder = new javax.swing.JTextField();
         jTextFieldZipFilename = new javax.swing.JTextField();
@@ -391,10 +366,14 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jPasswordFieldZip = new javax.swing.JPasswordField();
         jLabel18 = new javax.swing.JLabel();
-        jSeparator7 = new javax.swing.JSeparator();
         jProgressBarZip = new javax.swing.JProgressBar();
-        jLabelFolderToZip2 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        jLabelFolderToZip3 = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
+        jPanelScripts = new javax.swing.JPanel();
+        jButtonScriptSyncStandalones = new javax.swing.JButton();
+        jButtonScriptBackupShares = new javax.swing.JButton();
+        jButtonScriptUpdateLaunchPad = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -413,7 +392,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jSliderListTextSize = new javax.swing.JSlider();
         jLabelConsoleClient = new javax.swing.JLabel();
         jLabelListTextSize1 = new javax.swing.JLabel();
-        jButtonUpdateLaunchPad = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("NSB LaunchPad - Pre-Alpha");
@@ -832,7 +810,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        jTabbedTools2.addTab("Main", jPanelMain);
+        jTabbedMain.addTab("Main", jPanelMain);
 
         jPanelTools1.setLayout(null);
 
@@ -981,7 +959,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Other");
         jPanelTools1.add(jLabel12);
-        jLabel12.setBounds(100, 400, 350, 20);
+        jLabel12.setBounds(110, 400, 350, 20);
         jPanelTools1.add(jSeparator2);
         jSeparator2.setBounds(10, 390, 550, 10);
 
@@ -989,11 +967,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Subnet Calculator");
         jPanelTools1.add(jLabel13);
-        jLabel13.setBounds(100, 10, 350, 20);
+        jLabel13.setBounds(110, 10, 350, 20);
 
         jTextFieldType7Input.setText("05240E0715444F1D0A321F131F211D1A2A373B243A3017301710");
         jPanelTools1.add(jTextFieldType7Input);
-        jTextFieldType7Input.setBounds(100, 260, 350, 20);
+        jTextFieldType7Input.setBounds(100, 260, 370, 20);
 
         jButton21.setText("Decrypt");
         jButton21.addActionListener(new java.awt.event.ActionListener() {
@@ -1011,11 +989,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelTools1.add(jButton22);
-        jButton22.setBounds(290, 290, 80, 30);
+        jButton22.setBounds(310, 290, 80, 30);
 
         jTextFieldType7Output.setEditable(false);
         jPanelTools1.add(jTextFieldType7Output);
-        jTextFieldType7Output.setBounds(100, 330, 350, 20);
+        jTextFieldType7Output.setBounds(100, 330, 370, 20);
 
         jButton23.setText("Copy to Clipboard");
         jButton23.addActionListener(new java.awt.event.ActionListener() {
@@ -1024,7 +1002,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelTools1.add(jButton23);
-        jButton23.setBounds(190, 360, 170, 23);
+        jButton23.setBounds(200, 360, 170, 23);
 
         jButtonJSDiff.setText("jsDiff");
         jButtonJSDiff.addActionListener(new java.awt.event.ActionListener() {
@@ -1033,7 +1011,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelTools1.add(jButtonJSDiff);
-        jButtonJSDiff.setBounds(310, 440, 90, 23);
+        jButtonJSDiff.setBounds(310, 440, 110, 23);
         jPanelTools1.add(jSeparator6);
         jSeparator6.setBounds(20, 220, 550, 10);
 
@@ -1041,7 +1019,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Type 7 Decrypt/Encrypt");
         jPanelTools1.add(jLabel14);
-        jLabel14.setBounds(100, 230, 350, 20);
+        jLabel14.setBounds(110, 230, 350, 20);
 
         jButtonConfigBuilder.setText("Config Builder");
         jButtonConfigBuilder.addActionListener(new java.awt.event.ActionListener() {
@@ -1062,9 +1040,9 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanelTools1.add(jButton24);
         jButton24.setBounds(480, 30, 80, 40);
 
-        jTabbedTools2.addTab("Tools-1", jPanelTools1);
+        jTabbedMain.addTab("Tools-1", jPanelTools1);
 
-        jPanel3.setLayout(null);
+        jPanelTools2.setLayout(null);
 
         jButtonFolderToZip.setText("Folder to Zip!");
         jButtonFolderToZip.setToolTipText("");
@@ -1073,11 +1051,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonFolderToZipActionPerformed(evt);
             }
         });
-        jPanel3.add(jButtonFolderToZip);
+        jPanelTools2.add(jButtonFolderToZip);
         jButtonFolderToZip.setBounds(280, 100, 170, 20);
-        jPanel3.add(jTextFieldZipSourceFolder);
+        jPanelTools2.add(jTextFieldZipSourceFolder);
         jTextFieldZipSourceFolder.setBounds(100, 40, 350, 20);
-        jPanel3.add(jTextFieldZipFilename);
+        jPanelTools2.add(jTextFieldZipFilename);
         jTextFieldZipFilename.setBounds(100, 70, 350, 20);
 
         jButton25.setText("Browse");
@@ -1086,11 +1064,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton25ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton25);
+        jPanelTools2.add(jButton25);
         jButton25.setBounds(460, 40, 90, 20);
 
         jLabel16.setText("Password:");
-        jPanel3.add(jLabel16);
+        jPanelTools2.add(jLabel16);
         jLabel16.setBounds(10, 100, 90, 20);
 
         jPasswordFieldZip.setToolTipText("");
@@ -1099,33 +1077,65 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jPasswordFieldZipActionPerformed(evt);
             }
         });
-        jPanel3.add(jPasswordFieldZip);
+        jPanelTools2.add(jPasswordFieldZip);
         jPasswordFieldZip.setBounds(100, 100, 160, 20);
 
         jLabel18.setText("Filename:");
-        jPanel3.add(jLabel18);
+        jPanelTools2.add(jLabel18);
         jLabel18.setBounds(10, 70, 90, 20);
-        jPanel3.add(jSeparator7);
-        jSeparator7.setBounds(10, 160, 550, 10);
-        jPanel3.add(jProgressBarZip);
+        jPanelTools2.add(jProgressBarZip);
         jProgressBarZip.setBounds(20, 130, 530, 20);
 
-        jLabelFolderToZip2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabelFolderToZip2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelFolderToZip2.setText("Folder to Encrypted Zip");
-        jPanel3.add(jLabelFolderToZip2);
-        jLabelFolderToZip2.setBounds(100, 10, 350, 20);
-
         jLabel19.setText("Source Folder:");
-        jPanel3.add(jLabel19);
+        jPanelTools2.add(jLabel19);
         jLabel19.setBounds(10, 40, 90, 20);
 
-        jTabbedTools2.addTab("Tools-2", jPanel3);
+        jLabelFolderToZip3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelFolderToZip3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelFolderToZip3.setText("Folder to Encrypted Zip (AES-256)");
+        jPanelTools2.add(jLabelFolderToZip3);
+        jLabelFolderToZip3.setBounds(110, 10, 350, 20);
+        jPanelTools2.add(jSeparator8);
+        jSeparator8.setBounds(10, 160, 550, 10);
+
+        jTabbedMain.addTab("Tools-2", jPanelTools2);
+
+        jPanelScripts.setLayout(null);
+
+        jButtonScriptSyncStandalones.setText("Sync Standalones");
+        jButtonScriptSyncStandalones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptSyncStandalonesActionPerformed(evt);
+            }
+        });
+        jPanelScripts.add(jButtonScriptSyncStandalones);
+        jButtonScriptSyncStandalones.setBounds(30, 20, 160, 30);
+
+        jButtonScriptBackupShares.setText("Backup Shares");
+        jButtonScriptBackupShares.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptBackupSharesActionPerformed(evt);
+            }
+        });
+        jPanelScripts.add(jButtonScriptBackupShares);
+        jButtonScriptBackupShares.setBounds(210, 20, 160, 30);
+
+        jButtonScriptUpdateLaunchPad.setText("Update LaunchPad");
+        jButtonScriptUpdateLaunchPad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptUpdateLaunchPadActionPerformed(evt);
+            }
+        });
+        jPanelScripts.add(jButtonScriptUpdateLaunchPad);
+        jButtonScriptUpdateLaunchPad.setBounds(390, 20, 160, 30);
+
+        jTabbedMain.addTab("Scripts", jPanelScripts);
 
         jPanel4.setLayout(null);
 
         jPanel6.setLayout(null);
 
+        userList.setEnabled(false);
         userList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 userListMouseReleased(evt);
@@ -1142,11 +1152,13 @@ public class LaunchPadForm extends javax.swing.JFrame {
         mainChatArea.setEditable(false);
         mainChatArea.setColumns(20);
         mainChatArea.setRows(5);
+        mainChatArea.setEnabled(false);
         jScrollPane3.setViewportView(mainChatArea);
 
         jPanel6.add(jScrollPane3);
         jScrollPane3.setBounds(10, 30, 380, 380);
 
+        jTextField1.setEnabled(false);
         jTextField1.setMaximumSize(new java.awt.Dimension(6, 2147483647));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1164,7 +1176,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel4.add(jPanel6);
         jPanel6.setBounds(10, 10, 550, 460);
 
-        jTabbedTools2.addTab("Chat", jPanel4);
+        jTabbedMain.addTab("Chat", jPanel4);
 
         jPanelSettings.setLayout(null);
 
@@ -1234,38 +1246,25 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanelSettings.add(jLabelListTextSize1);
         jLabelListTextSize1.setBounds(10, 70, 90, 30);
 
-        jButtonUpdateLaunchPad.setText("Update LaunchPad");
-        jButtonUpdateLaunchPad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUpdateLaunchPadActionPerformed(evt);
-            }
-        });
-        jPanelSettings.add(jButtonUpdateLaunchPad);
-        jButtonUpdateLaunchPad.setBounds(399, 450, 160, 23);
-
-        jTabbedTools2.addTab("Settings", jPanelSettings);
+        jTabbedMain.addTab("Settings", jPanelSettings);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedTools2, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
+            .addComponent(jTabbedMain, javax.swing.GroupLayout.DEFAULT_SIZE, 577, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedTools2, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+            .addComponent(jTabbedMain, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
         );
 
-        jTabbedTools2.getAccessibleContext().setAccessibleName("");
+        jTabbedMain.getAccessibleContext().setAccessibleName("");
 
         getAccessibleContext().setAccessibleName("NSB LaunchPad Pre-Alpha");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonUpdateLaunchPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateLaunchPadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonUpdateLaunchPadActionPerformed
 
     private void jSliderListTextSizeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderListTextSizeStateChanged
         // TODO add your handling code here:
@@ -1369,7 +1368,9 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 parameters.setEncryptFiles(true);
 
                 // Set the encryption method to Standard Zip Encryption
-                parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_STANDARD);
+                //parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_STANDARD);
+                parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_AES);
+                parameters.setAesKeyStrength(Zip4jConstants.AES_STRENGTH_256);                
 
                 // Set password
                 String passText = new String(jPasswordFieldZip.getPassword());
@@ -2405,6 +2406,45 @@ public class LaunchPadForm extends javax.swing.JFrame {
         resource.getChatTextFieldController().parseAndActOnMessage();
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jButtonScriptUpdateLaunchPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptUpdateLaunchPadActionPerformed
+        // TODO add your handling code here:
+        String myValue = "cmd.exe /c start cmd.exe /k powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + PropertyHandler.getInstance().getValue("FileUpdateScript") + "\"";
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }  
+    }//GEN-LAST:event_jButtonScriptUpdateLaunchPadActionPerformed
+
+    private void jButtonScriptSyncStandalonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptSyncStandalonesActionPerformed
+        // TODO add your handling code here:
+        String myValue = "cmd.exe /c start cmd.exe /k powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + PropertyHandler.getInstance().getValue("ScriptStandaloneSync") + "\"";
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }          
+    }//GEN-LAST:event_jButtonScriptSyncStandalonesActionPerformed
+
+    private void jButtonScriptBackupSharesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptBackupSharesActionPerformed
+        // TODO add your handling code here:
+        String myValue = "cmd.exe /c start cmd.exe /k powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + PropertyHandler.getInstance().getValue("ScriptBackupShare") + "\"";
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }          
+    }//GEN-LAST:event_jButtonScriptBackupSharesActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -2550,9 +2590,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonJSDiff;
     private javax.swing.JButton jButtonPing;
     private javax.swing.JButton jButtonSSH;
+    private javax.swing.JButton jButtonScriptBackupShares;
+    private javax.swing.JButton jButtonScriptSyncStandalones;
+    private javax.swing.JButton jButtonScriptUpdateLaunchPad;
     private javax.swing.JButton jButtonShowCOMList;
     private javax.swing.JButton jButtonTracert;
-    private javax.swing.JButton jButtonUpdateLaunchPad;
     private javax.swing.JCheckBox jCheckBoxDNS;
     private javax.swing.JComboBox<String> jComboBoxConsoleBaud;
     private javax.swing.JComboBox<String> jComboBoxConsoleCOM;
@@ -2575,20 +2617,21 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelConsoleClient;
-    private javax.swing.JLabel jLabelFolderToZip2;
+    private javax.swing.JLabel jLabelFolderToZip3;
     private javax.swing.JLabel jLabelListTextSize1;
     private javax.swing.JLabel jLabelListTextSizePreview;
     private javax.swing.JLabel jLabelSSHClient;
     private javax.swing.JList<String> jListSessions;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanelMain;
+    private javax.swing.JPanel jPanelScripts;
     private javax.swing.JPanel jPanelSettings;
     private javax.swing.JPanel jPanelTools1;
+    private javax.swing.JPanel jPanelTools2;
     private javax.swing.JPasswordField jPasswordFieldConnectPassword;
     private javax.swing.JPasswordField jPasswordFieldZip;
     private javax.swing.JProgressBar jProgressBarZip;
@@ -2605,9 +2648,9 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSlider jSliderListTextSize;
-    private javax.swing.JTabbedPane jTabbedTools2;
+    private javax.swing.JTabbedPane jTabbedMain;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldConnectHostname;
     private javax.swing.JTextField jTextFieldConnectUsername;
@@ -2629,6 +2672,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JTextField subnetMask;
     private javax.swing.JList userList;
     // End of variables declaration//GEN-END:variables
+
+
 
 
 }
