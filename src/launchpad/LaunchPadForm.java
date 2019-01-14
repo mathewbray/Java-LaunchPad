@@ -2656,8 +2656,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         String SERVER_NAME = jTextFieldNtpServer.getText();
         //String SERVER_NAME = "pool.ntp.org";
-
-
         NTPUDPClient timeClient = new NTPUDPClient();
         // We want to timeout if a response takes longer than 10 seconds
         timeClient.setDefaultTimeout(10000);
@@ -2668,7 +2666,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         } catch (UnknownHostException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Failed - Couldn't find server.");
-            jTextFieldNtpSystemTime.setText("Failed - Couldn't find server.");
+            jTextFieldNtpSystemTime.setText("Failed - Couldn't find server: " + SERVER_NAME);
             jTextFieldNtpAtomicTime.setText("");
         }
         TimeInfo timeInfo = null;
@@ -2677,7 +2675,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Failed - Found server, but no time received. ");
-           jTextFieldNtpSystemTime.setText("Failed - Found server, but no time received. ");
+           jTextFieldNtpSystemTime.setText("Failed - Found server: " + SERVER_NAME + ", but no time received. ");
            jTextFieldNtpAtomicTime.setText("");
            
         }
