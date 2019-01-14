@@ -20,10 +20,15 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.InetAddress;
 import java.net.URISyntaxException;
+import java.net.UnknownHostException;
+import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,12 +44,17 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.xml.bind.DatatypeConverter;
+import static launchpad.LaunchPadForm.HashGenerate.toHex;
 import launchpad.Type7Reverse.CiscoVigenere;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.progress.ProgressMonitor;
 import net.lingala.zip4j.util.Zip4jConstants;
+import org.apache.commons.net.ntp.NTPUDPClient;
+import org.apache.commons.net.ntp.TimeInfo;
+import org.apache.commons.net.ntp.TimeStamp;
 
 /**
  *
@@ -262,6 +272,43 @@ public class LaunchPadForm extends javax.swing.JFrame {
         else 
             userList.setModel(listModel);
     }
+        
+        
+        
+    public enum HashGenerate {
+    MD5("MD5"),
+    SHA1("SHA1"),
+    SHA256("SHA-256"),
+    SHA512("SHA-512");
+    private String name;
+    HashGenerate(String name) {
+        this.name = name;
+    }
+    public String getName() {
+        return name;
+    }
+    public byte[] checksum(File input) {
+        try (InputStream in = new FileInputStream(input)) {
+            MessageDigest digest = MessageDigest.getInstance(getName());
+            byte[] block = new byte[4096];
+            int length;
+            while ((length = in.read(block)) > 0) {
+                digest.update(block, 0, length);
+            }
+            return digest.digest();
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+    public static String toHex(byte[] bytes) {
+        return DatatypeConverter.printHexBinary(bytes);
+    }      
+    
+    
+    
+    
+}
 
 
     /**
@@ -370,6 +417,28 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabelFolderToZip3 = new javax.swing.JLabel();
         jSeparator8 = new javax.swing.JSeparator();
+        jButtonGenerateHash = new javax.swing.JButton();
+        jTextFieldFileHashGenerate = new javax.swing.JTextField();
+        jLabelFolderToZip4 = new javax.swing.JLabel();
+        jButton27 = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        jTextFieldHashSHA512 = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jTextFieldHashMD5 = new javax.swing.JTextField();
+        jTextFieldHashSHA1 = new javax.swing.JTextField();
+        jTextFieldHashSHA256 = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jButton26 = new javax.swing.JButton();
+        jTextFieldNtpServer = new javax.swing.JTextField();
+        jSeparator9 = new javax.swing.JSeparator();
+        jLabelFolderToZip5 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jTextFieldNtpAtomicTime = new javax.swing.JTextField();
+        jTextFieldNtpSystemTime = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
         jPanelScripts = new javax.swing.JPanel();
         jButtonScriptSyncStandalones = new javax.swing.JButton();
         jButtonScriptBackupShares = new javax.swing.JButton();
@@ -1086,17 +1155,120 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanelTools2.add(jProgressBarZip);
         jProgressBarZip.setBounds(20, 130, 530, 20);
 
-        jLabel19.setText("Source Folder:");
+        jLabel19.setText("SHA512:");
         jPanelTools2.add(jLabel19);
-        jLabel19.setBounds(10, 40, 90, 20);
+        jLabel19.setBounds(10, 320, 90, 20);
 
         jLabelFolderToZip3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelFolderToZip3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelFolderToZip3.setText("Folder to Encrypted Zip (AES-256)");
+        jLabelFolderToZip3.setText("Get NTP Time");
         jPanelTools2.add(jLabelFolderToZip3);
-        jLabelFolderToZip3.setBounds(110, 10, 350, 20);
+        jLabelFolderToZip3.setBounds(110, 360, 350, 20);
         jPanelTools2.add(jSeparator8);
-        jSeparator8.setBounds(10, 160, 550, 10);
+        jSeparator8.setBounds(10, 350, 550, 10);
+
+        jButtonGenerateHash.setText("Generate!");
+        jButtonGenerateHash.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGenerateHashActionPerformed(evt);
+            }
+        });
+        jPanelTools2.add(jButtonGenerateHash);
+        jButtonGenerateHash.setBounds(240, 230, 90, 23);
+        jPanelTools2.add(jTextFieldFileHashGenerate);
+        jTextFieldFileHashGenerate.setBounds(50, 200, 400, 20);
+
+        jLabelFolderToZip4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelFolderToZip4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelFolderToZip4.setText("Folder to Encrypted Zip (AES-256)");
+        jPanelTools2.add(jLabelFolderToZip4);
+        jLabelFolderToZip4.setBounds(110, 10, 350, 20);
+
+        jButton27.setText("Browse");
+        jButton27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton27ActionPerformed(evt);
+            }
+        });
+        jPanelTools2.add(jButton27);
+        jButton27.setBounds(460, 200, 90, 20);
+
+        jLabel20.setText("Source Folder:");
+        jPanelTools2.add(jLabel20);
+        jLabel20.setBounds(10, 40, 90, 20);
+
+        jTextFieldHashSHA512.setEditable(false);
+        jPanelTools2.add(jTextFieldHashSHA512);
+        jTextFieldHashSHA512.setBounds(70, 320, 480, 20);
+
+        jLabel21.setText("Atomic Time:");
+        jPanelTools2.add(jLabel21);
+        jLabel21.setBounds(10, 440, 90, 20);
+
+        jTextFieldHashMD5.setEditable(false);
+        jPanelTools2.add(jTextFieldHashMD5);
+        jTextFieldHashMD5.setBounds(70, 260, 480, 20);
+
+        jTextFieldHashSHA1.setEditable(false);
+        jPanelTools2.add(jTextFieldHashSHA1);
+        jTextFieldHashSHA1.setBounds(70, 280, 480, 20);
+
+        jTextFieldHashSHA256.setEditable(false);
+        jPanelTools2.add(jTextFieldHashSHA256);
+        jTextFieldHashSHA256.setBounds(70, 300, 480, 20);
+
+        jLabel22.setText("MD5:");
+        jPanelTools2.add(jLabel22);
+        jLabel22.setBounds(10, 260, 90, 20);
+
+        jLabel23.setText("SHA1:");
+        jPanelTools2.add(jLabel23);
+        jLabel23.setBounds(10, 280, 90, 20);
+
+        jLabel24.setText("SHA256:");
+        jPanelTools2.add(jLabel24);
+        jLabel24.setBounds(10, 300, 90, 20);
+
+        jButton26.setText("Get Time!");
+        jButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton26ActionPerformed(evt);
+            }
+        });
+        jPanelTools2.add(jButton26);
+        jButton26.setBounds(450, 390, 79, 23);
+
+        jTextFieldNtpServer.setText("pool.ntp.org");
+        jPanelTools2.add(jTextFieldNtpServer);
+        jTextFieldNtpServer.setBounds(130, 390, 300, 20);
+        jPanelTools2.add(jSeparator9);
+        jSeparator9.setBounds(10, 160, 550, 10);
+
+        jLabelFolderToZip5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelFolderToZip5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelFolderToZip5.setText("Hash Generator");
+        jPanelTools2.add(jLabelFolderToZip5);
+        jLabelFolderToZip5.setBounds(110, 170, 350, 20);
+
+        jLabel25.setText("File:");
+        jPanelTools2.add(jLabel25);
+        jLabel25.setBounds(10, 200, 90, 20);
+
+        jTextFieldNtpAtomicTime.setEditable(false);
+        jPanelTools2.add(jTextFieldNtpAtomicTime);
+        jTextFieldNtpAtomicTime.setBounds(99, 440, 430, 20);
+
+        jTextFieldNtpSystemTime.setEditable(false);
+        jPanelTools2.add(jTextFieldNtpSystemTime);
+        jTextFieldNtpSystemTime.setBounds(99, 420, 430, 20);
+
+        jLabel26.setText("Server:");
+        jPanelTools2.add(jLabel26);
+        jLabel26.setBounds(70, 390, 90, 20);
+
+        jLabel27.setText("System Time:");
+        jPanelTools2.add(jLabel27);
+        jLabel27.setBounds(10, 420, 90, 20);
 
         jTabbedMain.addTab("Tools-2", jPanelTools2);
 
@@ -2408,7 +2580,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonScriptUpdateLaunchPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptUpdateLaunchPadActionPerformed
         // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /k powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + PropertyHandler.getInstance().getValue("FileUpdateScript") + "\"";
+        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + PropertyHandler.getInstance().getValue("FileUpdateScript") + "\"";
         System.out.println(myValue);
         try {
             Runtime.getRuntime().exec(myValue);
@@ -2421,7 +2593,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonScriptSyncStandalonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptSyncStandalonesActionPerformed
         // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /k powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + PropertyHandler.getInstance().getValue("ScriptStandaloneSync") + "\"";
+        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + PropertyHandler.getInstance().getValue("ScriptStandaloneSync") + "\"";
         System.out.println(myValue);
         try {
             Runtime.getRuntime().exec(myValue);
@@ -2434,7 +2606,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonScriptBackupSharesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptBackupSharesActionPerformed
         // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /k powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + PropertyHandler.getInstance().getValue("ScriptBackupShare") + "\"";
+        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + PropertyHandler.getInstance().getValue("ScriptBackupShare") + "\"";
         System.out.println(myValue);
         try {
             Runtime.getRuntime().exec(myValue);
@@ -2444,6 +2616,81 @@ public class LaunchPadForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Something is wrong!");
         }          
     }//GEN-LAST:event_jButtonScriptBackupSharesActionPerformed
+
+    private void jButtonGenerateHashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerateHashActionPerformed
+        // TODO add your handling code here:
+        
+                File file = new File(jTextFieldFileHashGenerate.getText());
+                
+                //System.out.println("MD5    : " + toHex(HashGenerate.MD5.checksum(file)));
+                jTextFieldHashMD5.setText(toHex(HashGenerate.MD5.checksum(file)));
+                //System.out.println("SHA1   : " + toHex(HashGenerate.SHA1.checksum(file)));
+                jTextFieldHashSHA1.setText(toHex(HashGenerate.SHA1.checksum(file)));
+                //System.out.println("SHA256 : " + toHex(HashGenerate.SHA256.checksum(file)));
+                jTextFieldHashSHA256.setText(toHex(HashGenerate.SHA256.checksum(file)));
+                //System.out.println("SHA512 : " + toHex(HashGenerate.SHA512.checksum(file)));
+                jTextFieldHashSHA512.setText(toHex(HashGenerate.SHA512.checksum(file)));
+                
+
+
+    }//GEN-LAST:event_jButtonGenerateHashActionPerformed
+
+    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new java.io.File("."));
+        chooser.setDialogTitle("Choose Folder...");
+        //chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.setAcceptAllFileFilterUsed(false);
+
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            jTextFieldFileHashGenerate.setText(chooser.getSelectedFile().getAbsolutePath());
+            System.out.println("getCurrentDirectory(): " + chooser.getCurrentDirectory());
+            System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
+        } else {
+            System.out.println("No Selection ");
+        }        
+    }//GEN-LAST:event_jButton27ActionPerformed
+
+    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        // TODO add your handling code here:
+        String SERVER_NAME = jTextFieldNtpServer.getText();
+        //String SERVER_NAME = "pool.ntp.org";
+
+
+        NTPUDPClient timeClient = new NTPUDPClient();
+        // We want to timeout if a response takes longer than 10 seconds
+        timeClient.setDefaultTimeout(10000);
+
+        InetAddress inetAddress = null;
+        try {
+            inetAddress = InetAddress.getByName(SERVER_NAME);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Failed - Couldn't find server.");
+            jTextFieldNtpSystemTime.setText("Failed - Couldn't find server.");
+            jTextFieldNtpAtomicTime.setText("");
+        }
+        TimeInfo timeInfo = null;
+        try {
+            timeInfo = timeClient.getTime(inetAddress);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Failed - Found server, but no time received. ");
+           jTextFieldNtpSystemTime.setText("Failed - Found server, but no time received. ");
+           jTextFieldNtpAtomicTime.setText("");
+           
+        }
+        long returnTime = timeInfo.getReturnTime();
+        TimeStamp destNtpTime = TimeStamp.getNtpTime(returnTime);
+        System.out.println("System time:\t" + destNtpTime + "  " + destNtpTime.toDateString());
+        jTextFieldNtpSystemTime.setText("" + destNtpTime + "  " + destNtpTime.toDateString());
+
+        TimeStamp currentNtpTime = TimeStamp.getCurrentTime();
+        System.out.println("Atomic time:\t" + currentNtpTime + "  " + currentNtpTime.toDateString());
+        jTextFieldNtpAtomicTime.setText("" + currentNtpTime + "  " + currentNtpTime.toDateString());
+        
+    }//GEN-LAST:event_jButton26ActionPerformed
 
     
     /**
@@ -2576,6 +2823,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
+    private javax.swing.JButton jButton26;
+    private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -2586,6 +2835,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonConfigBuilder;
     private javax.swing.JButton jButtonConsole;
     private javax.swing.JButton jButtonFolderToZip;
+    private javax.swing.JButton jButtonGenerateHash;
     private javax.swing.JButton jButtonHTTPS;
     private javax.swing.JButton jButtonJSDiff;
     private javax.swing.JButton jButtonPing;
@@ -2609,6 +2859,14 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2618,6 +2876,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelConsoleClient;
     private javax.swing.JLabel jLabelFolderToZip3;
+    private javax.swing.JLabel jLabelFolderToZip4;
+    private javax.swing.JLabel jLabelFolderToZip5;
     private javax.swing.JLabel jLabelListTextSize1;
     private javax.swing.JLabel jLabelListTextSizePreview;
     private javax.swing.JLabel jLabelSSHClient;
@@ -2649,12 +2909,21 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JSlider jSliderListTextSize;
     private javax.swing.JTabbedPane jTabbedMain;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldConnectHostname;
     private javax.swing.JTextField jTextFieldConnectUsername;
+    private javax.swing.JTextField jTextFieldFileHashGenerate;
     private javax.swing.JTextField jTextFieldFilter;
+    private javax.swing.JTextField jTextFieldHashMD5;
+    private javax.swing.JTextField jTextFieldHashSHA1;
+    private javax.swing.JTextField jTextFieldHashSHA256;
+    private javax.swing.JTextField jTextFieldHashSHA512;
+    private javax.swing.JTextField jTextFieldNtpAtomicTime;
+    private javax.swing.JTextField jTextFieldNtpServer;
+    private javax.swing.JTextField jTextFieldNtpSystemTime;
     private javax.swing.JTextField jTextFieldPingHostname;
     private javax.swing.JTextField jTextFieldType7Input;
     private javax.swing.JTextField jTextFieldType7Output;

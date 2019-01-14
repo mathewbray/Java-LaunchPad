@@ -7,10 +7,8 @@ package launchpad;
 
 import java.awt.AWTException;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.invoke.MethodHandles;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -51,7 +49,7 @@ public class LaunchPad {
         
         //--- Update or Launch
         //- Items to use
-        Path PathFileLaunchPadLocal = Paths.get(PropertyHandler.getInstance().getValue("FileLaunchPadLocal"));
+        Path PathFileLaunchPadLocal = Paths.get(pathDesktop + "\\LaunchPad\\LaunchPad.jar");
         Path PathFileLaunchPadRemote = Paths.get(PropertyHandler.getInstance().getValue("FileLaunchPadRemote"));
         String StrFileLaunchPadLocal = PropertyHandler.getInstance().getValue("FileLaunchPadLocal");
         String StrFileLaunchPadRemote = PropertyHandler.getInstance().getValue("FileLaunchPadRemote");
@@ -76,7 +74,7 @@ public class LaunchPad {
         if (i > 0) {
             System.out.println("Run Update");
             JOptionPane.showMessageDialog(null, "Found a newer version...  Click OK to continue.", "Update Found!", JOptionPane.INFORMATION_MESSAGE);
-            String myValue = "cmd.exe /c start cmd.exe /k powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + PropertyHandler.getInstance().getValue("FileUpdateScript") + "\"" ;
+            String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + PropertyHandler.getInstance().getValue("FileUpdateScript") + "\"" ;
             System.out.println(myValue);
             try {
                 Runtime.getRuntime().exec(myValue);
