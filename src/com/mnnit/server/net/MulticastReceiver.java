@@ -3,27 +3,19 @@ package com.mnnit.server.net;
 
 import com.mnnit.server.event.ReceiverListener;
 import com.mnnit.server.Defaults;
-import static com.sun.glass.ui.Cursor.setVisible;
 import java.awt.AWTException;
-import java.awt.Component;
 import java.awt.Image;
 import java.awt.SystemTray;
 import java.awt.Toolkit;
 import java.awt.TrayIcon;
-import java.awt.Window;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
-import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-import launchpad.LaunchPadForm;
 
 /**
  *
@@ -97,6 +89,7 @@ public class MulticastReceiver implements Runnable {
         return connected;
     }
 
+    @Override
     public void run() {
         while ( connected )
 		{
@@ -107,12 +100,16 @@ public class MulticastReceiver implements Runnable {
 
 				if ( connected )
 				{
-                                    mcSocket.receive( packet );
-                                    String ip = packet.getAddress().getHostAddress();
-                                    String message = new String( packet.getData() ).trim();
-                                    System.out.println( "Message arrived from " + ip + ": " + message );
-                                                    SystemTray tray = SystemTray.getSystemTray();
-
+					mcSocket.receive( packet );
+					String ip = packet.getAddress().getHostAddress();
+					String message = new String( packet.getData() ).trim();
+					System.out.println( "Message arrived from " + ip + ": " + message );
+                                        if(listener!=null)
+                                        listener.messageReceived(message, ip);
+                                        
+                                        
+                                        
+                                    SystemTray tray = SystemTray.getSystemTray();
                                     String search = "chat";
                                     if ( message.toLowerCase().contains(search.toLowerCase()) ) {
                                         //- If the icon is a file
@@ -124,27 +121,41 @@ public class MulticastReceiver implements Runnable {
                                         //- Let the system resize the image if needed
                                         //trayIcon.setImageAutoSize(true);
                                         //- Set tooltip text for the tray icon
-                                        trayIcon.setToolTip("System tray icon demo");
+                                        //trayIcon.setToolTip("System tray icon demo");
                                         tray.add(trayIcon);
 
                                         //TimeUnit.SECONDS.sleep(5);
                                         trayIcon.displayMessage(ip, message, TrayIcon.MessageType.INFO);
-    //                                        if (!isFocused()) {
-    //                                            setVisible(false);
-    //                                            setVisible(true);
-    //                                        }
-                                        if(listener!=null)
-                                        listener.messageReceived(message, ip);                                        } else {
-                                            System.out.println("not found");
+                                        TimeUnit.SECONDS.sleep(3);
+                                        
+                                        tray.remove(trayIcon); 
+                                        
+//                                            if (!form.isFocused()) {
+//                                                form.setVisible(false);
+//                                                form.setVisible(true);
+//                                            }
                                     }
+    
+    
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
 				}
 			}
 
 			// Happens when socket is closed, or network is down
 			catch ( final IOException e )
 			{
-				e.printStackTrace();
 			} catch (AWTException ex) {
+                Logger.getLogger(MulticastReceiver.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
                 Logger.getLogger(MulticastReceiver.class.getName()).log(Level.SEVERE, null, ex);
             }
 		}
@@ -159,5 +170,4 @@ public class MulticastReceiver implements Runnable {
     {
         this.listener=listener;
     }
-    
 }

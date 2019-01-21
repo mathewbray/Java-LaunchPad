@@ -1,8 +1,5 @@
 package com.mnnit.server.net;
 
-import com.mnnit.server.controller.MainChatController;
-import com.mnnit.server.controller.NetworkController;
-import com.mnnit.server.controller.UserListController;
 import com.mnnit.server.model.Settings;
 import com.mnnit.server.model.SingletonUIResource;
 import com.mnnit.server.model.User;

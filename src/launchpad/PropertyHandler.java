@@ -44,8 +44,9 @@ System.out.println(input);
    }
 
    public static synchronized PropertyHandler getInstance(){
-       if (instance == null)
+       if (instance == null) {
            instance = new PropertyHandler();
+       }
        return instance;
    }
 

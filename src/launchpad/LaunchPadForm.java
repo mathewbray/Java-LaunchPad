@@ -61,8 +61,9 @@ import org.apache.commons.net.ntp.TimeStamp;
  * @author Mathew
  */
 public class LaunchPadForm extends javax.swing.JFrame {
-
-    DefaultListModel defaultListModel=new DefaultListModel();
+    
+    //Shared and public items
+    DefaultListModel defaultListModelFilteredItems = new DefaultListModel();
     File pathWorkingDirectory = new File(System.getProperty("user.dir"));
     File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
     File pathLogging = new File(pathDesktop + "\\Logging-Output");
@@ -208,9 +209,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
         String strPathDesktop = pathDesktop.toString();
         jTextFieldZipFilename.setText(strPathDesktop + "\\Backup_" + dateTime + ".zip");
  
-        
-        
-        
+       
+        //--- Chat stuff
         try {
             UIManager.LookAndFeelInfo lookAndFeel = getLookAndFeel( "Windows" );
 
@@ -260,11 +260,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
- 
-
-        
     }
-    
         public void populateUserList(DefaultListModel listModel)
     {
         if(listModel==null)
@@ -274,7 +270,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     }
         
         
-        
+    //--- Hash generating stuff
     public enum HashGenerate {
     MD5("MD5"),
     SHA1("SHA1"),
@@ -300,7 +296,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         }
         return null;
     }
-    
     public static String toHex(byte[] bytes) {
         return DatatypeConverter.printHexBinary(bytes);
     }      
@@ -1161,7 +1156,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
         jLabelFolderToZip3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelFolderToZip3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelFolderToZip3.setText("Get NTP Time");
+        jLabelFolderToZip3.setText("Get NTP Time (not working yet)");
         jPanelTools2.add(jLabelFolderToZip3);
         jLabelFolderToZip3.setBounds(110, 360, 350, 20);
         jPanelTools2.add(jSeparator8);
@@ -1230,6 +1225,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jLabel24.setBounds(10, 300, 90, 20);
 
         jButton26.setText("Get Time!");
+        jButton26.setEnabled(false);
         jButton26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton26ActionPerformed(evt);
@@ -1239,6 +1235,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButton26.setBounds(450, 390, 79, 23);
 
         jTextFieldNtpServer.setText("pool.ntp.org");
+        jTextFieldNtpServer.setEnabled(false);
         jPanelTools2.add(jTextFieldNtpServer);
         jTextFieldNtpServer.setBounds(130, 390, 300, 20);
         jPanelTools2.add(jSeparator9);
@@ -1307,7 +1304,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
         jPanel6.setLayout(null);
 
-        userList.setEnabled(false);
         userList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 userListMouseReleased(evt);
@@ -1324,13 +1320,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
         mainChatArea.setEditable(false);
         mainChatArea.setColumns(20);
         mainChatArea.setRows(5);
-        mainChatArea.setEnabled(false);
         jScrollPane3.setViewportView(mainChatArea);
 
         jPanel6.add(jScrollPane3);
         jScrollPane3.setBounds(10, 30, 380, 380);
 
-        jTextField1.setEnabled(false);
         jTextField1.setMaximumSize(new java.awt.Dimension(6, 2147483647));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2749,7 +2743,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             while ((line = buffIn.readLine()) != null) {
                 arrSessionList.add(line);
                 listModel.addElement(line);
-                System.out.println(line);
+                //System.out.println(line);
             }
         jListSessions.setModel(listModel);
         }
@@ -2771,8 +2765,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 filteredItems.addElement(star);
             }
         });
-        defaultListModel=filteredItems;
-        jListSessions.setModel(defaultListModel);
+        defaultListModelFilteredItems=filteredItems;
+        jListSessions.setModel(defaultListModelFilteredItems);
 
     }
     

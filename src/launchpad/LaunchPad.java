@@ -51,7 +51,7 @@ public class LaunchPad {
         //- Items to use
         Path PathFileLaunchPadLocal = Paths.get(pathDesktop + "\\LaunchPad\\LaunchPad.jar");
         Path PathFileLaunchPadRemote = Paths.get(PropertyHandler.getInstance().getValue("FileLaunchPadRemote"));
-        String StrFileLaunchPadLocal = PropertyHandler.getInstance().getValue("FileLaunchPadLocal");
+        String StrFileLaunchPadLocal = pathDesktop + "\\LaunchPad\\LaunchPad.jar";
         String StrFileLaunchPadRemote = PropertyHandler.getInstance().getValue("FileLaunchPadRemote");
         
         //- Set i to -1 to run app if files don't exist
@@ -72,7 +72,7 @@ public class LaunchPad {
         }
         //- If newer then run update, if older just open App
         if (i > 0) {
-            System.out.println("Run Update");
+            System.out.println("Update status: Update found. Running update stuff.");
             JOptionPane.showMessageDialog(null, "Found a newer version...  Click OK to continue.", "Update Found!", JOptionPane.INFORMATION_MESSAGE);
             String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + PropertyHandler.getInstance().getValue("FileUpdateScript") + "\"" ;
             System.out.println(myValue);
@@ -85,11 +85,12 @@ public class LaunchPad {
             }     
         }
         else {
-            System.out.println("Don't run Update");
+            System.out.println("Update status: No update found.");
             //--- Launch the form
-            LaunchPadForm form = new LaunchPadForm();
+             LaunchPadForm form = new LaunchPadForm();
             form.setVisible(true);
         }
-
     }
+      
+    
 }
