@@ -3,6 +3,8 @@ package com.mnnit.server.net;
 
 import com.mnnit.server.event.ReceiverListener;
 import com.mnnit.server.Defaults;
+import com.mnnit.server.model.Settings;
+import com.mnnit.server.model.User;
 import java.awt.AWTException;
 import java.awt.Image;
 import java.awt.SystemTray;
@@ -111,29 +113,33 @@ public class MulticastReceiver implements Runnable {
                                         
                                     SystemTray tray = SystemTray.getSystemTray();
                                     String search = "chat";
+                                    User myNick = Settings.getSettings().getMe();
+                                    String strMyNick = myNick.toString();
                                     if ( message.toLowerCase().contains(search.toLowerCase()) ) {
-                                        //- If the icon is a file
-                                        Image image = Toolkit.getDefaultToolkit().createImage("icon.png");
-                                        //- Alternative (if the icon is on the classpath):
-                                        //Image image = Toolkit.getDefaultToolkit().createImage(getClass().getResource("icon.png"));
+                                        if (!message.toLowerCase().contains((strMyNick).toLowerCase())) {
+                                            //- If the icon is a file
+                                            Image image = Toolkit.getDefaultToolkit().createImage("icon.png");
+                                            //- Alternative (if the icon is on the classpath):
+                                            //Image image = Toolkit.getDefaultToolkit().createImage(getClass().getResource("icon.png"));
 
-                                        TrayIcon trayIcon = new TrayIcon(image, "Tray Demo");
-                                        //- Let the system resize the image if needed
-                                        //trayIcon.setImageAutoSize(true);
-                                        //- Set tooltip text for the tray icon
-                                        //trayIcon.setToolTip("System tray icon demo");
-                                        tray.add(trayIcon);
+                                            TrayIcon trayIcon = new TrayIcon(image, "Tray Demo");
+                                            //- Let the system resize the image if needed
+                                            //trayIcon.setImageAutoSize(true);
+                                            //- Set tooltip text for the tray icon
+                                            //trayIcon.setToolTip("System tray icon demo");
+                                            tray.add(trayIcon);
 
-                                        //TimeUnit.SECONDS.sleep(5);
-                                        trayIcon.displayMessage(ip, message, TrayIcon.MessageType.INFO);
-                                        TimeUnit.SECONDS.sleep(3);
-                                        
-                                        tray.remove(trayIcon); 
-                                        
-//                                            if (!form.isFocused()) {
-//                                                form.setVisible(false);
-//                                                form.setVisible(true);
-//                                            }
+                                            //TimeUnit.SECONDS.sleep(5);
+                                            trayIcon.displayMessage(ip, message, TrayIcon.MessageType.INFO);
+                                            TimeUnit.SECONDS.sleep(3);
+
+                                            tray.remove(trayIcon); 
+
+    //                                            if (!form.isFocused()) {
+    //                                                form.setVisible(false);
+    //                                                form.setVisible(true);
+    //                                            }
+                                        }
                                     }
     
     

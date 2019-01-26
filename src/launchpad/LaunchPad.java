@@ -10,10 +10,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.FileTime;
+import java.util.Arrays;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,33 +36,88 @@ public class LaunchPad {
         // TODO code application logic here
         //--- Shared Items
         File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
-        
+        String pathUserProfile = System.getenv("USERPROFILE");
         //--- Check for properties file
-        String StrPropertiesFile = pathDesktop + "\\LaunchPad\\launchpad.properties";
-        try {
-        if(!new File(StrPropertiesFile).isFile()) { 
-            System.out.println("Properties file not found."); 
-            JOptionPane.showMessageDialog(null, "Properties file not found.", "RIP!", JOptionPane.INFORMATION_MESSAGE);
-            System.exit( 0 );
+        File filePropertiesFile = new File(pathDesktop + "\\LaunchPad\\launchpad.properties");
+        if (!filePropertiesFile.exists()) {
+            System.out.println("Properties file not found.");
+            //JOptionPane.showMessageDialog(null, "Properties file not found.", "RIP!", JOptionPane.INFORMATION_MESSAGE);
+            //System.exit( 0 );
+            filePropertiesFile.createNewFile();
+                        List<String> lines = Arrays.asList(
+"WindowTitle=LaunchPad Pre-Alpha",                                
+"PreloadSSH=10.0.",
+"PreloadPing=10.0.",
+"Button01icon=onenote",
+"Button01exe=cmd /c start onenote.exe",
+"Button01ToolTip=Notebook",
+"Button02icon=dailyreport",
+"Button02exe=cmd /c start explorer.exe \"%USERPROFILE%\\\\Desktop\\\\\"",
+"Button02ToolTip=Daily Report",
+"Button03icon=kanban",
+"Button03exe=cmd /c start chrome.exe https://trello.com",
+"Button03ToolTip=KanBan",
+"Button04icon=alert",
+"Button04exe=cmd /c start explorer.exe \"%USERPROFILE%\\\\Desktop\\\\\"",
+"Button04ToolTip=Master Station Log",
+"Button05icon=user-yellow-home-icon",
+"Button05exe=cmd /c start explorer.exe ",
+"Button06icon=folder-yellow-visiting-icon",
+"Button06exe=cmd /c start explorer.exe ",
+"Button07icon=folder-yellow-development-icon",
+"Button07exe=cmd /c start explorer.exe \"%USERPROFILE%\\\\Desktop\\\\\"",
+"Button08icon=folder-yellow-git-icon",
+"Button08exe=cmd /c start explorer.exe \"%USERPROFILE%\\\\Desktop\\\\\"",
+"Button09icon=infoblox",
+"Button09exe=cmd /c start chrome.exe https://infoblox.com/",
+"Button10icon=ciscodarkblue",
+"Button10exe=cmd /c start chrome.exe https://cisco.com/",
+"Button11icon=windowsblue",
+"Button11exe=cmd /c start mstsc /v:SERVERNAME",
+"Button12icon=brocade",
+"Button12exe=cmd /c start \"\"",
+"Button13icon=mab",
+"Button13exe=cmd /c start chrome.exe https://www.wireshark.org/tools/oui-lookup.html",
+"Button14icon=remedy",
+"Button14exe=cmd /c start chrome.exe http://www.bmc.com/it-solutions/remedy-itsm.html",
+"Button15icon=disastig",
+"Button15exe=",
+"Button16icon=phoneblue",
+"Button16exe=cmd /c start explorer.exe \"%USERPROFILE%\\\\Desktop\\\\\"",
+"Button17icon=backup",
+"Button17exe=",
+"Button18icon=ipconfig",
+"Button18exe-CMD-OPTION=cmd /c start cmd.exe /K \"ipconfig & pause\"",
+"Button18exe=cmd /c start cmd.exe /k powershell.exe -ExecutionPolicy Bypass -noexit -Command \"& {$RunIPconfig = {Clear-Host; ipconfig /all; Write-Host ''; Write-Host 'Press Enter to REFRESH...' -NoNewLine  -ForegroundColor Green; Read-Host -Prompt ' '; .$RunIPconfig}; &$RunIPconfig}\"",
+"Button19icon=securecrt",
+"Button19exe=\"C:\\\\Program Files\\\\SecureCRT x64\\\\SecureCRT\\\\SecureCRT.exe\"",
+"Button20icon=putty",
+"Button20exe=\"%USERPROFILE%\\\\Desktop\\\\putty.exe\"",
+"FileLaunchPadRemote=%USERPROFILE%\\\\Desktop\\\\new.txt",
+"FileUpdateScript=%USERPROFILE%\\\\Desktop\\\\hello world.ps1",
+"ScriptBackupShare=%USERPROFILE%\\\\Desktop\\\\hello world.ps1",
+"ScriptStandaloneSync=%USERPROFILE%\\\\Desktop\\\\hello world.ps1",
+"ChatIPAddress=239.255.100.100",
+"ChatPort=50000");
+            Path file = Paths.get(filePropertiesFile.getPath());
+            Files.write(file, lines, Charset.forName("UTF-8"));
+            
         } 
-        } 
-        catch(Exception e) {
-            System.out.println("Error: Properties file not found."); 
-        }
-        
+
         //--- Update or Launch
         //- Items to use
-        Path PathFileLaunchPadLocal = Paths.get(pathDesktop + "\\LaunchPad\\LaunchPad.jar");
-        Path PathFileLaunchPadRemote = Paths.get(PropertyHandler.getInstance().getValue("FileLaunchPadRemote"));
         String StrFileLaunchPadLocal = pathDesktop + "\\LaunchPad\\LaunchPad.jar";
         String StrFileLaunchPadRemote = PropertyHandler.getInstance().getValue("FileLaunchPadRemote");
-        
+
+
         //- Set i to -1 to run app if files don't exist
         int i = -1;
         
         //- Check if files exist
         if(new File(StrFileLaunchPadLocal).isFile()) { 
             if(new File(StrFileLaunchPadRemote).isFile()) { 
+                Path PathFileLaunchPadLocal = Paths.get(StrFileLaunchPadLocal);
+                Path PathFileLaunchPadRemote = Paths.get(StrFileLaunchPadRemote);
                 //- Get times on local and remote files
                 FileTime FileTimeFileLaunchPadLocal = Files.getLastModifiedTime(PathFileLaunchPadLocal);
                 System.out.println("Local Modified: " + FileTimeFileLaunchPadLocal);
@@ -92,5 +150,8 @@ public class LaunchPad {
         }
     }
       
-    
+        //                                            if (!form.isFocused()) {
+    //                                                form.setVisible(false);
+    //                                                form.setVisible(true);
+    //                                            }
 }

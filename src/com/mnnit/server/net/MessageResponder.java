@@ -42,7 +42,7 @@ public class MessageResponder {
             newUser.setNick(""+newUser.getCode());
         }
         resource.getUserListController().add(newUser);
-        resource.getMainChatController().writeToMainChat(newUser.getNick() + " loggon on from " + newUser.getIpAddress());
+        resource.getMainChatController().writeToMainChat(newUser.getNick() + " logon on from " + newUser.getIpAddress());
     }
 
     public void nickCrash() {
