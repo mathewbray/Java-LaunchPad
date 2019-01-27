@@ -10,7 +10,9 @@ import com.mnnit.server.ui.MainFrame;
 import static com.mnnit.server.ui.MainFrame.getLookAndFeel;
 import com.mnnit.server.ui.PopUpMenu;
 import java.awt.AWTException;
+import java.awt.Component;
 import java.awt.Desktop;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -46,8 +48,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -55,12 +60,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ListSelectionEvent;
@@ -112,7 +122,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         //importSessionList();
         getSessionList();
         //updateSessionList();       
-            
         //--- Apply button icons and set size
         Integer buttonHeightWidth = 40;
         ImageIcon icon;
@@ -301,7 +310,143 @@ public class LaunchPadForm extends javax.swing.JFrame {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        //--- Populate Button Listing
+        //Get image list
+//        String[] arrButtonList = null;
+//        try {
+//            arrButtonList = this.getResourceListing(launchpad.LaunchPad.class , "launchpad/images/buttons/");
+//        } catch (URISyntaxException | IOException ex) {
+//            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        System.out.println(Arrays.toString(arrButtonList));
+        
+        //Add to list
+//        DefaultListModel listModel = new DefaultListModel();
+//        Map<String, ImageIcon> imageMap;
+//        //imageMap = createimagemap(arrButtonList);                        
+//        for (String strButton : arrButtonList) {
+//            System.out.println(strButton);
+//            listModel.addElement(strButton);
+//        }
+//        jListButtonListing.setModel(listModel);
+
+        
+        
+        
+      
+                
+                
+                
+        
     }
+    
+    private final class ButtonList {
+        
+        private Map<String, ImageIcon> imageMap;
+
+        public ButtonList() {
+            String[] arrButtonList = null;
+            try {
+                arrButtonList = this.getResourceListing(launchpad.LaunchPad.class , "launchpad/images/buttons/");
+            } catch (URISyntaxException | IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println("Button List: " + Arrays.toString(arrButtonList));
+            imageMap = createImageMap(arrButtonList);
+            JList list = new JList(arrButtonList);
+            list.setCellRenderer(new ButtonListRenderer());
+            
+       
+            JScrollPane scroll = new JScrollPane(list);
+
+            scroll.setPreferredSize(new Dimension(250, 500));
+
+            JFrame frame = new JFrame();
+            frame.add(scroll);
+            frame.setTitle("Button Listing");
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        }
+
+        public class ButtonListRenderer extends DefaultListCellRenderer {
+
+
+            @Override
+            public Component getListCellRendererComponent(
+                    JList list, Object value, int index,
+                    boolean isSelected, boolean cellHasFocus) {
+
+                JLabel label = (JLabel) super.getListCellRendererComponent(
+                        list, value, index, isSelected, cellHasFocus);
+                label.setIcon(imageMap.get((String) value));
+                label.setHorizontalTextPosition(JLabel.RIGHT);
+                //label.setFont(font);
+                (imageMap.get((String) value)).setImageObserver(label);
+
+                return label;
+            }
+        }
+
+        private Map<String, ImageIcon> createImageMap(String[] list) {
+            Map<String, ImageIcon> map = new HashMap<>();
+            for (String s : list) {
+                ImageIcon imageIconPreResize = new ImageIcon( getClass().getResource("/launchpad/images/buttons/" + s));
+                Image image = imageIconPreResize.getImage(); // transform it 
+                Image newimg = image.getScaledInstance(40, 40,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+                ImageIcon imageIconPostResize= new ImageIcon(newimg);                
+                
+                
+                map.put(s, imageIconPostResize );
+            }
+            return map;
+        }
+
+        
+      String[] getResourceListing(Class clazz, String path) throws URISyntaxException, IOException {
+      URL dirURL = clazz.getClassLoader().getResource(path);
+      if (dirURL != null && dirURL.getProtocol().equals("file")) {
+        /* A file path: easy enough */
+        return new File(dirURL.toURI()).list();
+      } 
+
+      if (dirURL == null) {
+        /* 
+         * In case of a jar file, we can't actually find a directory.
+         * Have to assume the same jar as clazz.
+         */
+        String me = clazz.getName().replace(".", "/")+".class";
+        dirURL = clazz.getClassLoader().getResource(me);
+      }
+      
+      if (dirURL.getProtocol().equals("jar")) {
+        /* A JAR path */
+        String jarPath = dirURL.getPath().substring(5, dirURL.getPath().indexOf("!")); //strip out only the JAR file
+        JarFile jar = new JarFile(URLDecoder.decode(jarPath, "UTF-8"));
+        Enumeration<JarEntry> entries = jar.entries(); //gives ALL entries in jar
+        Set<String> result = new HashSet<>(); //avoid duplicates in case it is a subdirectory
+        while(entries.hasMoreElements()) {
+          String name = entries.nextElement().getName();
+          if (name.startsWith(path)) { //filter according to the path
+            String entry = name.substring(path.length());
+            int checkSubdir = entry.indexOf("/");
+            if (checkSubdir >= 0) {
+              // if it is a subdirectory, we just return the directory name
+              entry = entry.substring(0, checkSubdir);
+            }
+            result.add(entry);
+          }
+        }
+        return result.toArray(new String[result.size()]);
+      } 
+        
+      throw new UnsupportedOperationException("Cannot list files for URL "+dirURL);
+  }
+    }
+    
+    
         public void populateUserList(DefaultListModel listModel)
     {
         if(listModel==null)
@@ -309,8 +454,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         else 
             userList.setModel(listModel);
     }
-        
-        
+      
     //--- Hash generating stuff
     public enum HashGenerate {
         MD5("MD5"),
@@ -448,7 +592,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButtonConfigBuilder = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
-        jButton24 = new javax.swing.JButton();
         jButton30 = new javax.swing.JButton();
         jSeparator10 = new javax.swing.JSeparator();
         jPanel4 = new javax.swing.JPanel();
@@ -472,6 +615,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButton31 = new javax.swing.JButton();
         jButton32 = new javax.swing.JButton();
         jButton33 = new javax.swing.JButton();
+        jButton34 = new javax.swing.JButton();
+        jTextField2 = new javax.swing.JTextField();
         jPanelExperimental = new javax.swing.JPanel();
         jLabelFolderToZip3 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -1142,7 +1287,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton28);
-        jButton28.setBounds(20, 40, 170, 30);
+        jButton28.setBounds(100, 40, 170, 30);
 
         jButtonJSDiff.setText("jsDiff");
         jButtonJSDiff.addActionListener(new java.awt.event.ActionListener() {
@@ -1160,28 +1305,19 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButtonConfigBuilder);
-        jButtonConfigBuilder.setBounds(130, 120, 120, 30);
+        jButtonConfigBuilder.setBounds(140, 120, 120, 30);
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel28.setText("Web Apps");
+        jLabel28.setText("Embedded Web Apps");
         jPanel3.add(jLabel28);
         jLabel28.setBounds(110, 90, 350, 20);
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel29.setText("Embedded Apps");
+        jLabel29.setText("Embedded Java Apps");
         jPanel3.add(jLabel29);
-        jLabel29.setBounds(100, 10, 350, 20);
-
-        jButton24.setText("jDiskReport");
-        jButton24.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton24ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton24);
-        jButton24.setBounds(380, 40, 170, 30);
+        jLabel29.setBounds(110, 10, 350, 20);
 
         jButton30.setText("IPv6 Subnet Calculator");
         jButton30.addActionListener(new java.awt.event.ActionListener() {
@@ -1190,7 +1326,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton30);
-        jButton30.setBounds(200, 40, 170, 30);
+        jButton30.setBounds(300, 40, 170, 30);
         jPanel3.add(jSeparator10);
         jSeparator10.setBounds(10, 80, 550, 10);
 
@@ -1231,7 +1367,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jTextField1.setBounds(10, 420, 530, 30);
 
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Chat doesn't really work yet.");
+        jLabel15.setText("Chat doesn't really work yet.  Sorry.");
         jPanel6.add(jLabel15);
         jLabel15.setBounds(10, 4, 530, 20);
 
@@ -1326,14 +1462,38 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanelSettings.add(jButton32);
         jButton32.setBounds(10, 140, 190, 20);
 
-        jButton33.setText("jButton33");
+        jButton33.setText("Show Button List");
         jButton33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton33ActionPerformed(evt);
             }
         });
         jPanelSettings.add(jButton33);
-        jButton33.setBounds(220, 220, 79, 23);
+        jButton33.setBounds(10, 170, 190, 20);
+
+        jButton34.setText("View Settings File");
+        jButton34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton34ActionPerformed(evt);
+            }
+        });
+        jPanelSettings.add(jButton34);
+        jButton34.setBounds(10, 200, 190, 20);
+
+        jTextField2.setBackground(new java.awt.Color(51, 51, 51));
+        jTextField2.setForeground(new java.awt.Color(255, 204, 153));
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
+        jPanelSettings.add(jTextField2);
+        jTextField2.setBounds(370, 450, 190, 20);
 
         jTabbedMain.addTab("Settings", jPanelSettings);
 
@@ -1647,11 +1807,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
         File tempFile = new File (tempOutput.toFile().getPath());
         if (tempFile.exists())
         {
-            try {
-                Desktop.getDesktop().open(tempFile);
-            } catch (IOException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            //Desktop.getDesktop().open(tempFile);
+
         }
         String strWebpage = tempOutput.toFile().getPath();
         Icon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
@@ -1721,7 +1878,30 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private void jButtonJSDiffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJSDiffActionPerformed
         // TODO add your handling code here:
         System.out.println("Pressed");
-        String strWebpage = new String(pathDesktop + "\\LaunchPad\\HTML\\jsdiff\\index.html");
+        String inputFile = "html/jsdiff/jsDiff.html";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputFile);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".html");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File tempFile = new File (tempOutput.toFile().getPath());
+        if (tempFile.exists())
+        {
+            //Desktop.getDesktop().open(tempFile);
+
+        }
+        String strWebpage = tempOutput.toFile().getPath();
         Icon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
         Icon iconEdge = new ImageIcon(getClass().getResource("/launchpad/images/buttons/edge.png"));
         Icon iconFireFox = new ImageIcon(getClass().getResource("/launchpad/images/buttons/firefox.png"));
@@ -2504,7 +2684,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
             File userManual = new File (tempOutput.toFile().getPath());
             if (userManual.exists())
         {
-            //Desktop.getDesktop().open(userManual);
+            try {
+                Desktop.getDesktop().open(userManual);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         }
         
@@ -2583,36 +2767,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_jButton30ActionPerformed
 
-    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        // TODO add your handling code here:
-        String inputPdf = "apps/jdiskreport-1.4.1.jar";
-        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-        Path tempOutput = null;
-        try {
-            tempOutput = Files.createTempFile("TempFile", ".jar");
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tempOutput.toFile().deleteOnExit();
-
-        try {
-            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        File userManual = new File (tempOutput.toFile().getPath());
-        if (userManual.exists())
-        {
-            try {
-                Desktop.getDesktop().open(userManual);
-            } catch (IOException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jButton24ActionPerformed
-
     private void jTextFieldFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFilterActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldFilterActionPerformed
@@ -2623,15 +2777,21 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
         // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -noexit -Command \"Remove-Item $env:USERPROFILE\\AppData\\Roaming\\VanDyke\\Config\\ -Force -Recurse; write-host 'SecureCRT Reset!' -foregroundcolor green; pause; exit\"";
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure you want to reset your SecureCRT settings?","Warning", dialogButton);
+        if(dialogResult == JOptionPane.YES_OPTION){
+            String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -noexit -Command \"Remove-Item $env:USERPROFILE\\AppData\\Roaming\\VanDyke\\Config\\ -Force -Recurse; write-host 'SecureCRT Reset!' -foregroundcolor green; pause; exit\"";
+            System.out.println(myValue);
+            try {
+                Runtime.getRuntime().exec(myValue);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }  
         }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }  
+
+
     }//GEN-LAST:event_jButton31ActionPerformed
 
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
@@ -2699,15 +2859,13 @@ public class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
-        try {
-            // TODO add your handling code here:
-            String[] asdf = this.getResourceListing(LaunchPad.class, "/images/buttons/");
-            System.out.println(asdf);
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // TODO add your handling code here:
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    new ButtonList();
+                }
+            });
         
     }//GEN-LAST:event_jButton33ActionPerformed
 
@@ -2719,6 +2877,253 @@ public class LaunchPadForm extends javax.swing.JFrame {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jCheckBox1ItemStateChanged
+
+    private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
+        // TODO add your handling code here:
+        String strPathPropertiesFile = pathDesktop + "\\LaunchPad\\launchpad.properties";
+        DefaultListModel listModel = new DefaultListModel();
+        ArrayList arrSessionList = new ArrayList();
+
+        File archivo = new File(strPathPropertiesFile);
+
+        try (FileReader fr = new FileReader(archivo)) {
+            BufferedReader buffIn;
+            buffIn = new BufferedReader(fr);
+               
+            String line;
+            while ((line = buffIn.readLine()) != null) {
+                arrSessionList.add(line);
+                listModel.addElement(line);
+                //System.out.println(line);
+            }
+            JList list = new JList(listModel);
+            
+            JScrollPane scroll = new JScrollPane(list);
+
+            scroll.setPreferredSize(new Dimension(800, 500));
+
+            JFrame frame = new JFrame();
+            frame.add(scroll);
+            frame.setTitle("Settings File");
+            //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        }
+        catch (IOException e) {
+            System.out.println("SessionList.csv no good"); 
+            JOptionPane.showMessageDialog(null, "SessionList.csv Error!"); 
+        }
+               
+
+            
+            
+    }//GEN-LAST:event_jButton34ActionPerformed
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        // TODO add your handling code here:
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            if ("ipranger32".equals(jTextField2.getText()) ||
+                "ipranger".equals(jTextField2.getText())) {
+                String inputPdf = "apps/ipranger32.jar";
+                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+                Path tempOutput = null;
+                try {
+                    tempOutput = Files.createTempFile("TempFile", ".jar");
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                tempOutput.toFile().deleteOnExit();
+
+                try {
+                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                File userManual = new File (tempOutput.toFile().getPath());
+                if (userManual.exists())
+                {
+                    try {
+                        Desktop.getDesktop().open(userManual);
+                    } catch (IOException ex) {
+                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            jTextField2.setText("");
+            }
+            if ("ipranger64".equals(jTextField2.getText())) {
+                String inputPdf = "apps/ipranger64.jar";
+                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+                Path tempOutput = null;
+                try {
+                    tempOutput = Files.createTempFile("TempFile", ".jar");
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                tempOutput.toFile().deleteOnExit();
+
+                try {
+                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                File userManual = new File (tempOutput.toFile().getPath());
+                if (userManual.exists())
+                {
+                    try {
+                        Desktop.getDesktop().open(userManual);
+                    } catch (IOException ex) {
+                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                jTextField2.setText("");
+            }
+            
+            if ("jdiskreport".equals(jTextField2.getText()) ||
+                "diskreport".equals(jTextField2.getText()) ||
+                "foldersize".equals(jTextField2.getText())) {
+            
+                String inputPdf = "apps/jdiskreport-1.4.1.jar";
+                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+                Path tempOutput = null;
+                try {
+                    tempOutput = Files.createTempFile("TempFile", ".jar");
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                tempOutput.toFile().deleteOnExit();
+
+                try {
+                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                File userManual = new File (tempOutput.toFile().getPath());
+                if (userManual.exists())
+                {
+                    try {
+                        Desktop.getDesktop().open(userManual);
+                    } catch (IOException ex) {
+                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            jTextField2.setText("");
+            }       
+            
+            if ("pixelitor".equals(jTextField2.getText()) || 
+                "paint".equals(jTextField2.getText())) {
+            
+                String inputPdf = "apps/pixelitor_4.2.0.jar";
+                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+                Path tempOutput = null;
+                try {
+                    tempOutput = Files.createTempFile("TempFile", ".jar");
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                tempOutput.toFile().deleteOnExit();
+
+                try {
+                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                File userManual = new File (tempOutput.toFile().getPath());
+                if (userManual.exists())
+                {
+                    try {
+                        Desktop.getDesktop().open(userManual);
+                    } catch (IOException ex) {
+                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            jTextField2.setText("");
+            }                
+ 
+            if ("tftp".equals(jTextField2.getText())) {
+            
+                String inputPdf = "apps/tftp.jar";
+                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+                Path tempOutput = null;
+                try {
+                    tempOutput = Files.createTempFile("TempFile", ".jar");
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                tempOutput.toFile().deleteOnExit();
+
+                try {
+                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                File userManual = new File (tempOutput.toFile().getPath());
+                if (userManual.exists())
+                {
+                    try {
+                        Desktop.getDesktop().open(userManual);
+                    } catch (IOException ex) {
+                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            jTextField2.setText("");
+            }  
+            
+            
+            
+            if ("ftp".equals(jTextField2.getText())) {
+            
+                String inputPdf = "apps/ftp.jar";
+                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+                Path tempOutput = null;
+                try {
+                    tempOutput = Files.createTempFile("TempFile", ".jar");
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                tempOutput.toFile().deleteOnExit();
+
+                try {
+                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                File userManual = new File (tempOutput.toFile().getPath());
+                if (userManual.exists())
+                {
+                    try {
+                        Desktop.getDesktop().open(userManual);
+                    } catch (IOException ex) {
+                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            jTextField2.setText("");
+            }  
+                        
+            if ("settingsfile".equals(jTextField2.getText())) {
+            
+                
+            jTextField2.setText("");
+            }                          
+                        
+        }
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     
     /**
@@ -2790,7 +3195,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
 "C4500-a01-asdf-0020-2FL-Rm200_C4500,10.0.0.9",
 "",
 " ~~~~~~ ACCESS NODES ~~~~~~ ",
-"C9200-a01-asdf-0001-1FL-Rm100,10.0.0.5",
+"C9300-a01-asdf-0001-1FL-Rm100,10.0.0.5",
 "C3850-a01-asdf-0001-2FL-Rm200,10.0.0.6",
 "C3750-a01-asdf-0051-BSMT-Rm2,10.0.0.7",
 "",
@@ -2928,7 +3333,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton27;
@@ -2939,6 +3343,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton31;
     private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton33;
+    private javax.swing.JButton jButton34;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -3020,6 +3425,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedMain;
     private javax.swing.JTextArea jTextAreaNTPMessage;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldConnectHostname;
     private javax.swing.JTextField jTextFieldConnectUsername;
     private javax.swing.JTextField jTextFieldFileHashGenerate;

@@ -1,0 +1,568 @@
+
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>Diff</title>
+
+<!-- <script type="text/javascript" src="diff.js"> </script> -->
+<script type="text/javascript">
+var tableBody;
+
+function maakRij(x, y, type, rij){
+	var tr = document.createElement('tr');
+	if(type==='+'){
+		tr.className='add';
+	} else if(type==='-'){
+		tr.className='del';
+	}
+
+	var td1 = document.createElement('td');
+	var td2 = document.createElement('td');
+	var td3 = document.createElement('td');
+	
+	td1.className = 'codekolom';
+	td2.className = 'codekolom';
+	td3.className = 'bredecode';
+	
+	var txt1 = document.createTextNode(y);
+	var txt2 = document.createTextNode(x);
+	var txt3 = document.createTextNode(type + ' ' + rij);
+	
+	td1.appendChild(txt1);
+	td2.appendChild(txt2);
+	td3.appendChild(txt3);
+	
+	tr.appendChild(td1);
+	tr.appendChild(td2);
+	tr.appendChild(td3);
+	
+	tableBody.appendChild(tr);
+}
+
+function getDiff(matrix, a1, a2, x, y){
+	if(x>0 && y>0 && a1[y-1]===a2[x-1]){
+		getDiff(matrix, a1, a2, x-1, y-1);
+		maakRij(x, y, ' ', a1[y-1]);
+	} else {
+		if(x>0 && (y===0 || matrix[y][x-1] >= matrix[y-1][x])){
+			getDiff(matrix, a1, a2, x-1, y);
+			maakRij(x, '', '+', a2[x-1]);
+		} else if(y>0 && (x===0 || matrix[y][x-1] < matrix[y-1][x])){
+			getDiff(matrix, a1, a2, x, y-1);
+			maakRij('', y, '-', a1[y-1], '');
+		} else {
+			return;
+		}
+	}
+	
+}
+
+function diff(a1, a2){
+	var matrix = new Array(a1.length+1);
+	
+	for(var y=0; y<matrix.length; y++){
+		matrix[y] = new Array(a2.length+1);
+		
+		for(var x=0; x<matrix[y].length; x++){
+			matrix[y][x] = 0;
+		}
+	}
+	
+	for(var y=1; y<matrix.length; y++){
+		for(var x=1; x<matrix[y].length; x++){
+			if(a1[y-1]===a2[x-1]){
+				matrix[y][x] = 1 + matrix[y-1][x-1];
+			} else {
+				matrix[y][x] = Math.max(matrix[y-1][x], matrix[y][x-1]);
+			}
+		}
+	}
+	
+	try {
+		getDiff(matrix, a1, a2, x-1, y-1);
+	} catch(e){
+		alert(e);
+	}
+}
+
+function clearTableBody(){
+	while(tableBody.hasChildNodes()){
+		tableBody.removeChild(tableBody.lastChild);
+	}
+}
+
+window.onload = function(){
+	var een = document.getElementById('een');
+	var twee = document.getElementById('twee');
+	tableBody = document.getElementById('res');
+	
+	document.getElementById('diffForm').onsubmit = function(){
+		clearTableBody();
+		diff(een.value.split('\n'), twee.value.split('\n'));
+		return false;
+	};
+};
+</script>
+
+<!-- <link rel="stylesheet" type="text/css" href="styles.css"/> -->
+<style>
+@charset "utf-8";
+/* CSS Document */
+
+
+body{
+		font-family:Arial;
+	font-size:1em;
+}
+*{
+	font-family:Arial;
+	font-size:1em;
+	
+}
+h1{
+	background-color:silver;
+	text-align:center;	
+}
+h2{
+	
+}
+td{
+	
+	font-family:Courier;
+	font-size:12px;
+}
+td.firstrow{
+	
+}
+tr.changed{
+	
+}
+tr{
+	
+}
+p,label,dt,dd,.instruction,.output
+{
+	font-size:90%;
+}
+legend{
+	font-size:70%;
+}
+dt { 
+  width:200px;
+  font-style: italic; 
+}
+dt { float:left;
+}
+.options,.method{
+  margin-bottom:10px;
+  padding:5px;
+  border:1px dotted grey;
+  background-color:#dddddd;
+}
+
+#out{
+  margin-bottom:20px;
+}
+
+form {
+  border:1px dotted grey;
+  padding:10px;
+   background-color:#eeeeee;
+}
+input.button{
+  background-color:#ffffff;
+  border:1px solid black;
+  font-style: italic; 
+  font-size:90%;
+}
+
+.to_submit{
+  margin-top:5px;
+  text-align:right;
+}
+textarea{
+font-family:Courier;
+width:500px;
+height:270px;
+
+font-size:88%;
+}
+
+ins{
+	
+}
+del{
+	background-color:#00FF00;
+}
+
+.output{
+font-family:Courier;
+}
+
+.hide{
+	display:none;
+
+}
+
+.show{
+	display:block;
+
+}
+
+</style>
+
+
+
+<script>
+
+function hideshow() {
+
+	if (document.getElementById('how_to_use').className=='hide')
+
+		document.getElementById('how_to_use').className='show'
+
+	else
+
+		document.getElementById('how_to_use').className='hide';
+
+
+
+}
+
+
+
+function init() {
+
+	document.getElementById('how_to_use').className='hide';
+
+}
+
+</script>
+<style type="text/css">
+
+	* {
+
+	
+
+
+
+	}
+
+	
+
+	html, body {
+
+
+	}
+
+	
+
+	body {
+
+	
+
+		color: #3E3E3C;
+
+		font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Helvetica, Arial, sans-serif;
+
+
+
+
+	}
+
+	
+
+	#wrapper {
+
+
+
+		min-width: 700px;
+
+
+
+		margin: 0 auto;
+
+
+
+	}
+
+	
+
+	h1 {
+
+
+	}
+
+	
+
+	form p.links {
+
+		width: 50%;
+
+		float: left;
+
+	}
+
+	
+
+	form p.rechts {
+
+		width: 49%;
+
+		float: right;
+
+	}
+
+	
+
+	label {
+
+		display: block;
+
+		cursor: pointer;
+
+	}
+
+	
+
+	textarea {
+
+		width: 92%;
+
+		padding: 1em;
+
+	}
+	
+	p.button {
+		margin: 5px 0;
+	}
+
+	
+
+	/* new clearfix */
+
+	.clearfix:after {
+
+		visibility: hidden;
+
+		display: block;
+
+		font-size: 0;
+
+		content: " ";
+
+		clear: both;
+
+		height: 0;
+
+		}
+
+	* html .clearfix             { zoom: 1; } /* IE6 */
+
+	*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
+	
+
+	.awesome{
+
+		display: inline-block;
+
+		outline: none;
+
+		cursor: pointer;
+
+		text-align: center;
+
+		text-decoration: none;
+
+		line-height: 1;
+
+		padding: .5em 2em .55em;
+
+		text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+
+		-webkit-border-radius: .5em;
+
+		-moz-border-radius: .5em;
+
+		border-radius: .5em;
+
+		-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+
+		-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+
+		box-shadow: 0 1px 2px rgba(0,0,0,.2);
+
+	}
+
+	
+
+	.awesome:hover {
+
+		text-decoration: none;
+
+	}
+
+	.awesome:active {
+
+		position: relative;
+
+		top: 1px;
+
+	}
+
+	
+
+	/* white */
+
+	.white {
+
+		border: solid 1px #b7b7b7;
+
+		background: #fff;
+
+		background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
+
+		background: -moz-linear-gradient(top,  #fff,  #ededed);
+
+		filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed');
+
+	}
+
+	.white:hover {
+
+		background: #ededed;
+
+		background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc));
+
+		background: -moz-linear-gradient(top,  #fff,  #dcdcdc);
+
+		filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dcdcdc');
+
+	}
+
+	.white:active {
+
+		color: #999;
+
+		background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#fff));
+
+		background: -moz-linear-gradient(top,  #ededed,  #fff);
+
+		filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#ffffff');
+
+	}
+	
+	table {
+		border-collapse: collapse;
+		margin-top: 10px;
+		width:100%;
+		font-family: 'Bitstream Vera Sans Mono', Courier, monospace;
+		border: 1px solid #CCC;
+	}
+	
+	thead tr {
+		font-weight: normal;
+		text-aling: left;
+		height: 2em;
+		border-bottom: 1px solid #DDD;
+		background-color: #ECECEC;
+		background: -webkit-gradient(linear, left top, left bottom, from(#FAFAFA), to(#ECECEC));
+		background: -moz-linear-gradient(top,  #FAFAFA,  #ECECEC);
+		filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA', endColorstr='#ECECEC');
+	}
+	
+	td {
+		padding: 1px 2px;
+		white-space: pre;
+	}
+	
+	td.bredecode {
+		width: 100%;
+		padding-left: 4px;
+	}
+	
+	td.codekolom {
+		text-align: right;
+		min-width: 3em;
+		background-color: #ECECEC;
+		border-right: 1px solid #DDD;
+		color: #AAA;
+	}
+	
+	tr.add {
+		background: #DFD;
+	}
+	
+	tr.del {
+		background: #FDD;
+	}
+
+	</style>
+
+
+		
+</head>
+
+<body>
+
+
+    
+<div style="width: 500px; float: left;">
+
+    
+
+
+    
+<div id="how_to_use" class="hide">
+
+
+
+    
+
+</div>
+</div>
+
+
+<div style="clear:both;" id="wrapper">
+		
+
+		<form action="#" id="diffForm">
+			<div class="clearfix">
+
+				<p class="links">
+
+					<label for="een"></label>
+
+					<textarea name="een" id="een" cols="30" rows="10"></textarea>
+
+				</p>
+				<p class="rechts">
+
+					<label for="twee"></label>
+
+					<textarea name="twee" id="twee" cols="30" rows="10"></textarea>
+
+				</p>
+			</div>
+
+			<center><p class="button"><input type="submit" class="awesome white" value="Compare" /></p></center>
+
+		</form>
+		<table>
+			<thead>
+				<tr>
+					<th colspan="3">Output</th>
+				</tr>
+			</thead>
+			<tbody id="res"></tbody>
+		</table>
+
+	</div>
+
+<br>
+<br>
+
+</body>
+</html>

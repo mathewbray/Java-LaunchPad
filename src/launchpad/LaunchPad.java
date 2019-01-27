@@ -17,6 +17,7 @@ import java.nio.file.Paths;
 import java.nio.file.attribute.FileTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 /**
@@ -35,8 +36,28 @@ public class LaunchPad {
     public static void main(String[] args) throws IOException, FileNotFoundException, URISyntaxException, AWTException, InterruptedException {
         // TODO code application logic here
         //--- Shared Items
-        File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
         String pathUserProfile = System.getenv("USERPROFILE");
+        File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
+        String pathLaunchPadFolder = pathDesktop + "\\LaunchPad\\";
+        
+     System.out.println("creating directory: " + pathLaunchPadFolder);
+
+        //--- Check for LaunchPad Folder
+        new File(pathLaunchPadFolder).mkdirs();
+//        File directory = new File(pathLaunchPadFolder);
+//        if (!directory.exists()){
+//            System.out.println("creating directory: " + directory.getName());
+//            try {
+//                directory.mkdir();       
+//            }
+//            catch(SecurityException se) {
+//                
+//            }
+//
+//            // If you require it to make the entire directory path including parents,
+//            // use directory.mkdirs(); here instead.
+//        }
+
         //--- Check for properties file
         File filePropertiesFile = new File(pathDesktop + "\\LaunchPad\\launchpad.properties");
         if (!filePropertiesFile.exists()) {
@@ -93,10 +114,11 @@ public class LaunchPad {
 "Button19exe=\"C:\\\\Program Files\\\\SecureCRT x64\\\\SecureCRT\\\\SecureCRT.exe\"",
 "Button20icon=putty",
 "Button20exe=\"%USERPROFILE%\\\\Desktop\\\\putty.exe\"",
+"FileLaunchPadLocal=%USERPROFILE%\\\\Desktop\\\\LaunchPad\\\\LaunchPad.jar",
 "FileLaunchPadRemote=%USERPROFILE%\\\\Desktop\\\\new.txt",
-"FileUpdateScript=%USERPROFILE%\\\\Desktop\\\\hello world.ps1",
-"ScriptBackupShare=%USERPROFILE%\\\\Desktop\\\\hello world.ps1",
-"ScriptStandaloneSync=%USERPROFILE%\\\\Desktop\\\\hello world.ps1",
+"FileUpdateScript=%USERPROFILE%\\\\Desktop\\\\HelloWorld.ps1",
+"ScriptBackupShare=%USERPROFILE%\\\\Desktop\\\\HelloWorld.ps1",
+"ScriptStandaloneSync=%USERPROFILE%\\\\Desktop\\\\HelloWorld.ps1",
 "ChatIPAddress=239.255.100.100",
 "ChatPort=50000");
             Path file = Paths.get(filePropertiesFile.getPath());
@@ -106,8 +128,12 @@ public class LaunchPad {
 
         //--- Update or Launch
         //- Items to use
-        String StrFileLaunchPadLocal = pathDesktop + "\\LaunchPad\\LaunchPad.jar";
+        String StrFileLaunchPadLocal = PropertyHandler.getInstance().getValue("FileLaunchPadLocal");
+        StrFileLaunchPadLocal = StrFileLaunchPadLocal.replace("%USERPROFILE%", pathUserProfile);
+        System.out.println("Property FileLaunchPadLocal: " + StrFileLaunchPadLocal);
         String StrFileLaunchPadRemote = PropertyHandler.getInstance().getValue("FileLaunchPadRemote");
+        StrFileLaunchPadRemote = StrFileLaunchPadRemote.replace("%USERPROFILE%", pathUserProfile);
+        System.out.println("Property FileLaunchPadRemote: " + StrFileLaunchPadRemote);
 
 
         //- Set i to -1 to run app if files don't exist
@@ -115,6 +141,7 @@ public class LaunchPad {
         
         //- Check if files exist
         if(new File(StrFileLaunchPadLocal).isFile()) { 
+            
             if(new File(StrFileLaunchPadRemote).isFile()) { 
                 Path PathFileLaunchPadLocal = Paths.get(StrFileLaunchPadLocal);
                 Path PathFileLaunchPadRemote = Paths.get(StrFileLaunchPadRemote);
@@ -127,6 +154,12 @@ public class LaunchPad {
                 i = FileTimeFileLaunchPadRemote.compareTo(FileTimeFileLaunchPadLocal);
                     System.out.println(i);
             }
+            else {
+                System.out.println("Property:FileLaunchPadRemote not found");
+            }
+        }
+        else {
+            System.out.println("Property:FileLaunchPadLocal not found");
         }
         //- If newer then run update, if older just open App
         if (i > 0) {

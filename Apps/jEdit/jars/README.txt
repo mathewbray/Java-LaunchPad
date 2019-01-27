@@ -1,1 +1,0 @@
-copy .jars to %APPDATA%\jEdit\jars\
