@@ -1167,7 +1167,7 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="jButton28">
               <Properties>
-                <Property name="text" type="java.lang.String" value="IPv4 Subnet Calculator"/>
+                <Property name="text" type="java.lang.String" value="IPv4 Subnet Generator"/>
                 <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
                   <Insets value="[0, 0, 0, 0]"/>
                 </Property>
@@ -1177,7 +1177,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="100" y="40" width="170" height="30"/>
+                  <AbsoluteConstraints x="100" y="120" width="170" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1190,7 +1190,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="310" y="120" width="110" height="30"/>
+                  <AbsoluteConstraints x="390" y="40" width="140" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1203,7 +1203,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="140" y="120" width="120" height="30"/>
+                  <AbsoluteConstraints x="210" y="40" width="150" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1217,7 +1217,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="110" y="90" width="350" height="20"/>
+                  <AbsoluteConstraints x="110" y="10" width="350" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1231,20 +1231,20 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="110" y="10" width="350" height="20"/>
+                  <AbsoluteConstraints x="110" y="90" width="350" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Component class="javax.swing.JButton" name="jButton30">
               <Properties>
-                <Property name="text" type="java.lang.String" value="IPv6 Subnet Calculator"/>
+                <Property name="text" type="java.lang.String" value="IPv6 Subnet Generator"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton30ActionPerformed"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="300" y="40" width="170" height="30"/>
+                  <AbsoluteConstraints x="300" y="120" width="170" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1252,6 +1252,19 @@
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="10" y="80" width="550" height="10"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButtonJSDiff1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Subnet Calculator"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonJSDiff1ActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="40" y="40" width="140" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>

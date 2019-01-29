@@ -594,6 +594,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jLabel29 = new javax.swing.JLabel();
         jButton30 = new javax.swing.JButton();
         jSeparator10 = new javax.swing.JSeparator();
+        jButtonJSDiff1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -1279,7 +1280,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
         jPanel3.setLayout(null);
 
-        jButton28.setText("IPv4 Subnet Calculator");
+        jButton28.setText("IPv4 Subnet Generator");
         jButton28.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1287,7 +1288,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton28);
-        jButton28.setBounds(100, 40, 170, 30);
+        jButton28.setBounds(100, 120, 170, 30);
 
         jButtonJSDiff.setText("jsDiff");
         jButtonJSDiff.addActionListener(new java.awt.event.ActionListener() {
@@ -1296,7 +1297,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButtonJSDiff);
-        jButtonJSDiff.setBounds(310, 120, 110, 30);
+        jButtonJSDiff.setBounds(390, 40, 140, 30);
 
         jButtonConfigBuilder.setText("Config Builder");
         jButtonConfigBuilder.addActionListener(new java.awt.event.ActionListener() {
@@ -1305,30 +1306,39 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButtonConfigBuilder);
-        jButtonConfigBuilder.setBounds(140, 120, 120, 30);
+        jButtonConfigBuilder.setBounds(210, 40, 150, 30);
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel28.setText("Embedded Web Apps");
         jPanel3.add(jLabel28);
-        jLabel28.setBounds(110, 90, 350, 20);
+        jLabel28.setBounds(110, 10, 350, 20);
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel29.setText("Embedded Java Apps");
         jPanel3.add(jLabel29);
-        jLabel29.setBounds(110, 10, 350, 20);
+        jLabel29.setBounds(110, 90, 350, 20);
 
-        jButton30.setText("IPv6 Subnet Calculator");
+        jButton30.setText("IPv6 Subnet Generator");
         jButton30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton30ActionPerformed(evt);
             }
         });
         jPanel3.add(jButton30);
-        jButton30.setBounds(300, 40, 170, 30);
+        jButton30.setBounds(300, 120, 170, 30);
         jPanel3.add(jSeparator10);
         jSeparator10.setBounds(10, 80, 550, 10);
+
+        jButtonJSDiff1.setText("Subnet Calculator");
+        jButtonJSDiff1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonJSDiff1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonJSDiff1);
+        jButtonJSDiff1.setBounds(40, 40, 140, 30);
 
         jTabbedMain.addTab("Apps", jPanel3);
 
@@ -3125,6 +3135,97 @@ public class LaunchPadForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
+    private void jButtonJSDiff1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJSDiff1ActionPerformed
+        // TODO add your handling code here:
+       System.out.println("Pressed");
+        String inputFile = "html/subnetcalculator/SubnetCalculator.html";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputFile);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".html");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File tempFile = new File (tempOutput.toFile().getPath());
+        if (tempFile.exists())
+        {
+            //Desktop.getDesktop().open(tempFile);
+
+        }
+        String strWebpage = tempOutput.toFile().getPath();
+        Icon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
+        Icon iconEdge = new ImageIcon(getClass().getResource("/launchpad/images/buttons/edge.png"));
+        Icon iconFireFox = new ImageIcon(getClass().getResource("/launchpad/images/buttons/firefox.png"));
+        Icon iconChrome = new ImageIcon(getClass().getResource("/launchpad/images/buttons/chrome.png"));
+        Object[] iconArray = {iconExplorer,
+            iconEdge,
+            iconFireFox,
+            iconChrome};
+        int result = JOptionPane.showOptionDialog(null,
+            "IE, Edge, FireFox, Chrome?",
+            "Browser Chooser",
+            JOptionPane.YES_NO_CANCEL_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            iconArray,
+            iconArray[3]);
+        System.out.println("Option selected: " + result);
+
+        if(result == 0) {
+            String strEXEC = "cmd /c start iexplore.exe " + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+        if(result == 2) {
+            String strEXEC = "cmd /c start firefox.exe " + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+        if(result == 1) {
+            String strEXEC = "cmd /c start microsoft-edge:" + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+        if(result == 3) {
+            String strEXEC = "cmd /c start chrome.exe " + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }        
+    }//GEN-LAST:event_jButtonJSDiff1ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -3356,6 +3457,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonGenerateHash;
     private javax.swing.JButton jButtonHTTPS;
     private javax.swing.JButton jButtonJSDiff;
+    private javax.swing.JButton jButtonJSDiff1;
     private javax.swing.JButton jButtonPing;
     private javax.swing.JButton jButtonSSH;
     private javax.swing.JButton jButtonScriptBackupShares;
