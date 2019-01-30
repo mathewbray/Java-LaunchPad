@@ -97,7 +97,7 @@ public class LaunchPad {
 "Button11exe=cmd /c start mstsc /v:SERVERNAME",
 "Button12icon=brocade",
 "Button12exe=cmd /c start \"\"",
-"Button13icon=mab",
+"Button13icon=circuitboard",
 "Button13exe=cmd /c start chrome.exe https://www.wireshark.org/tools/oui-lookup.html",
 "Button14icon=remedy",
 "Button14exe=cmd /c start chrome.exe http://www.bmc.com/it-solutions/remedy-itsm.html",
@@ -111,19 +111,22 @@ public class LaunchPad {
 "Button18exe-CMD-OPTION=cmd /c start cmd.exe /K \"ipconfig & pause\"",
 "Button18exe=cmd /c start cmd.exe /k powershell.exe -ExecutionPolicy Bypass -noexit -Command \"& {$RunIPconfig = {Clear-Host; ipconfig /all; Write-Host ''; Write-Host 'Press Enter to REFRESH...' -NoNewLine  -ForegroundColor Green; Read-Host -Prompt ' '; .$RunIPconfig}; &$RunIPconfig}\"",
 "Button19icon=securecrt",
-"Button19exe=\"C:\\\\Program Files\\\\SecureCRT x64\\\\SecureCRT\\\\SecureCRT.exe\"",
+"Button19exe=C:\\\\Program Files\\\\SecureCRT x64\\\\SecureCRT\\\\SecureCRT.exe",
 "Button20icon=putty",
-"Button20exe=\"%USERPROFILE%\\\\Desktop\\\\putty.exe\"",
+"Button20exe=\"%USERPROFILE%\\\\Desktop\\\\kitty.exe\"",
 "FileLaunchPadLocal=%USERPROFILE%\\\\Desktop\\\\LaunchPad\\\\LaunchPad.jar",
 "FileLaunchPadRemote=%USERPROFILE%\\\\Desktop\\\\new.txt",
 "FileUpdateScript=%USERPROFILE%\\\\Desktop\\\\HelloWorld.ps1",
 "ScriptBackupShare=%USERPROFILE%\\\\Desktop\\\\HelloWorld.ps1",
 "ScriptStandaloneSync=%USERPROFILE%\\\\Desktop\\\\HelloWorld.ps1",
 "ChatIPAddress=239.255.100.100",
-"ChatPort=50000");
+"ChatPort=50000",
+"SecureCRTexe=C:\\\\Program Files\\\\SecureCRT x64\\\\SecureCRT\\\\SecureCRT.exe",
+"PuTTYexe=%USERPROFILE%\\\\Desktop\\\\kitty.exe",
+"ZipDefaultSourceFolder=%USERPROFILE%\\\\Desktop");
             Path file = Paths.get(filePropertiesFile.getPath());
             Files.write(file, lines, Charset.forName("UTF-8"));
-            
+
         } 
 
         //--- Update or Launch

@@ -32,12 +32,11 @@ public class PropertyHandler{
    private PropertyHandler() {
        try {
            // Here you could read the file into props object
-
            input = new FileInputStream(pathDesktop + "\\LaunchPad\\launchpad.properties");
        } catch (FileNotFoundException ex) {
            Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
        }
-System.out.println(input);
+
        try {
            // load a properties file
            prop.load(input);
@@ -51,15 +50,15 @@ System.out.println(input);
        }
 
 
-		if (input != null) {
+        if (input != null) {
 
-           try {
-               input.close();
-           } catch (IOException ex) {
-               Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
-           }
+            try {
+                input.close();
+            } catch (IOException ex) {
+                Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-		}
+        }
 	
    }
 
@@ -80,31 +79,63 @@ System.out.println(input);
    }
 
   
-    public String setValue(String propKey, String propValue){
-       this.prop.setProperty(propKey, propValue);
-       try {
-           input = new FileInputStream(pathDesktop + "\\LaunchPad\\launchpad.properties");
-       } catch (FileNotFoundException ex) {
-           Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
-       }
+    public String setValue(String propKey, String propValue) {
+        // Get the current properties
+        try {
+            input = new FileInputStream(pathDesktop + "\\LaunchPad\\launchpad.properties");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // Load properties
+        try {
+            this.prop.load(input);
+        } catch (IOException ex) {
+            Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // Set property
+        this.prop.setProperty(propKey, propValue);
+        // Set Output file
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(pathDesktop + "\\LaunchPad\\launchpad.properties");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+        // Store property
+        try {
+            this.prop.store(out, null);
+        } catch (IOException ex) {
+            Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // Get the current properties
+        try {
+            input = new FileInputStream(pathDesktop + "\\LaunchPad\\launchpad.properties");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // Load the properties to sort
         SortedProperties sp = new SortedProperties();
-       try {
-           sp.load(input);
-       } catch (IOException ex) {
-           Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
-       }
-       FileOutputStream out = null;
-       try {
-           out = new FileOutputStream(pathDesktop + "\\LaunchPad\\launchpad.properties");
-       } catch (FileNotFoundException ex) {
-           Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
-       }
-       try {
-           sp.store(out, null);
-       } catch (IOException ex) {
-           Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
-       }
-       return null;
+        try {
+            sp.load(input);
+        } catch (IOException ex) {
+            Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // Set Output file
+        out = null;
+        try {
+            out = new FileOutputStream(pathDesktop + "\\LaunchPad\\launchpad.properties");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        // Store the sorted properties
+        try {
+            sp.store(out, null);
+        } catch (IOException ex) {
+            Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
    }
     
     class SortedProperties extends Properties {
