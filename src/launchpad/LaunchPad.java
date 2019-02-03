@@ -17,7 +17,6 @@ import java.nio.file.Paths;
 import java.nio.file.attribute.FileTime;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 /**
@@ -121,6 +120,8 @@ public class LaunchPad {
 "ScriptStandaloneSync=%USERPROFILE%\\\\Desktop\\\\HelloWorld.ps1",
 "ChatIPAddress=239.255.100.100",
 "ChatPort=50000",
+"ScriptCustom01=cmd /c start cmd.exe /k powershell.exe -ExecutionPolicy Bypass -noexit -Command \"$FirstThreeOctets = Read-Host -Prompt 'First Three Octets (192.168.0)'; $FirstIP = Read-Host -Prompt 'Start IP (1)'; $LastIP = Read-Host -Prompt 'End IP (254)'; $FirstIP..$LastIP | foreach-object { (new-object System.Net.Networkinformation.Ping).Send($FirstThreeOctets + '.' + $_,150) } | where-object {$_.Status -eq 'success'} | select Address; Write-Host 'Done!'\"",
+"ScriptCustom01Text=Powershell Ping Sweep",
 "SecureCRTexe=C:\\\\Program Files\\\\SecureCRT x64\\\\SecureCRT\\\\SecureCRT.exe",
 "PuTTYexe=%USERPROFILE%\\\\Desktop\\\\kitty.exe",
 "ZipDefaultSourceFolder=%USERPROFILE%\\\\Desktop");

@@ -8156,31 +8156,31 @@ font-size:80%;
 content:'re-init ';
 }
 :lang(en) label[id|=iplabel]:before{
-content: 'IP';
+content: 'IP Address';
 }
 :lang(en) label[id|=netmasklabel]:before{
-content: 'netmask';
+content: 'Subnet Mask';
 }
 :lang(en) label[id|=subnetlabel]:before{
-content: 'subnet';
+content: 'Subnet ID';
 }
 :lang(en) label[id|=bitslabel]:before{
-content: 'bits';
+content: 'Mask Bits';
 }
 :lang(en) label[id|=hostnbrlabel]:before{
-content: 'hosts #';
+content: 'Number of Hosts';
 }
 :lang(en) label[id|=ipnbrlabel]:before{
-content: 'IP #';
+content: 'Number of IPs';
 }
 :lang(en) label[id|=broadcastlabel]:before{
-content: 'broadcast';
+content: 'Broadcast IP';
 }
 :lang(en) label[id|=hostfromlabel]:before{
-content: 'Host from';
+content: 'Usable Hosts from';
 }
 :lang(en) label[id|=hosttolabel]:before{
-content: 'Host to';
+content: 'Usable Hosts to';
 }
 :lang(en) label[id|=historylabel]:before{
 content: 'history';
@@ -8197,7 +8197,7 @@ content: 'Information';
 content: 'Example';
 }
 :lang(en) label[id|=reversenetmasklabel]:before{
-content: 'inversed';
+content: 'Inversed Mask';
 }
 :lang(en) #textipbtn:after {
 content:'import text';
@@ -11644,6 +11644,12 @@ function selectTheme(theme) {
       <a ><i onclick="calculIpMinMax('min');" class="fa fa-fast-backward fa-xvariable" aria-hidden="true"></i> </a>
       <a ><i onclick="calculIpMinMax('max');" class="fa fa-fast-forward fa-xvariable" aria-hidden="true"></i> </a>
       </div>
+	  	</div>
+   </div>
+   <!-- end   row -->
+   <!-- begin row -->
+   <div class="row">
+     <div class="form-group">
       <label id="bitslabel" class="control-label col-sm-1 col-lg-1 labelling WORLD" for="bits"></label>
       <div class="col-sm-1 bits">
       <input class="form-control" id="bits" placeholder="Enter bits" onchange="calculeBits();">
@@ -11669,6 +11675,12 @@ function selectTheme(theme) {
      </div>
 	 <div class="col-sm-1" id="tempcol" >
      </div>
+	 	</div>
+   </div>
+   <!-- end   row -->
+   <!-- begin row -->
+   <div class="row">
+     <div class="form-group">
      <label id="reversenetmasklabel" class="control-label col-sm-1 labelling WORLD" for="reversenetmask"></label>
      <div class="col-sm-2 reversenetmask">
       <input class="form-control" id="reversenetmask" placeholder="Enter reversenetmask" onchange="calculreversenetmaskval();" readonly >

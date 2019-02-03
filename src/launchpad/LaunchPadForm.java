@@ -10,6 +10,7 @@ import com.mnnit.server.ui.MainFrame;
 import static com.mnnit.server.ui.MainFrame.getLookAndFeel;
 import com.mnnit.server.ui.PopUpMenu;
 import java.awt.AWTException;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.Dimension;
@@ -54,7 +55,6 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -64,16 +64,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -132,18 +133,45 @@ public class LaunchPadForm extends javax.swing.JFrame {
         ImageIcon icon;
         Image img;
         Image newimg;
-        
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        String strClassification = PropertyHandler.getInstance().getValue("SettingClassification");
+        System.out.println("Classification: " + strClassification);
+        Color strClassificationColor = new Color(4,159,168);
+        if("unclassified".equalsIgnoreCase(strClassification)) {
+                    strClassificationColor = new Color(0,122,61);
+        }
+        if("confidential".equalsIgnoreCase(strClassification)) {
+                    strClassificationColor = new Color(0,56,168);
+        }
+        if("secret".equalsIgnoreCase(strClassification)) {
+                    strClassificationColor = new Color(206,17,38);
+        }
+        if("top secret".equalsIgnoreCase(strClassification)) {
+                    strClassificationColor = new Color(249,99,2);
+        }
+        if("sci".equalsIgnoreCase(strClassification)) {
+                    strClassificationColor = new Color(240,240,0);
+        }        
+        if("coalition".equalsIgnoreCase(strClassification)) {
+                    strClassificationColor = new Color(127,127,255);
+        } 
+        if("none".equalsIgnoreCase(strClassification)) {
+                    strClassificationColor = new Color(0,0,0);
+        }         
+        getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, strClassificationColor));
+
+
         addWindowListener(new WindowAdapter() {
             @Override
             //--- Listen for window close
-            public void windowClosing(WindowEvent e) {
-              int confirmed = JOptionPane.showConfirmDialog(null, 
-                  "Are you sure you want to exit LaunchPad?", "Ya sure?",
-                  JOptionPane.YES_NO_OPTION);
-
-              if (confirmed == JOptionPane.YES_OPTION) {
-                dispose();
-              }
+            public void windowClosing(WindowEvent we)
+            { 
+                String ObjButtons[] = {"Yes","No"};
+                int PromptResult = JOptionPane.showOptionDialog(null,"Are you sure you want to exit LaunchPad?","You sure??",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
+                if(PromptResult==JOptionPane.YES_OPTION)
+                {
+                    System.exit(0);
+                }
             }
             //--- Gray out the username and password when loaded
             public void windowOpened(WindowEvent e) {
@@ -170,66 +198,135 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 }
             });
         
+        //--- Listen for online/offline reference button
+        jToggleOfflineMode.addItemListener((ItemEvent ev) -> {
+            if(ev.getStateChange()==ItemEvent.SELECTED){
+                System.out.println("Offline is selected");
+                jToggleOfflineMode.setText("Offline");
+                jToggleOfflineMode.setBackground(Color.GRAY);
+            } else if(ev.getStateChange()==ItemEvent.DESELECTED){
+                System.out.println("Offline is not selected");
+                jToggleOfflineMode.setText("Online");
+                jToggleOfflineMode.setBackground(Color.GREEN);
+            }
+        });
 
         
         try {
             //Button01
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button01icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton1.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
             //Button2
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button02icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton2.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
             //Button3
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button03icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton3.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
             //Button4
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button04icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton4.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
             //Button5
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button05icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton5.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
             //Button6
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button06icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton6.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
             //Button7
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button07icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton7.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
             //Button8
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button08icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton8.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
             //Button9
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button09icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton9.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
             //Button10
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button10icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton10.setIcon(new ImageIcon(newimg));
-            //Button11
+         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
+           //Button11
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button11icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton11.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
             //Button12
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button12icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton12.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
             //Button13
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button13icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton13.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
             //Button14
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button14icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton14.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
             //Button15
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button15icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton15.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
             //Button16
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button16icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton16.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
             //Button17
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button17icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton17.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
             //Button18
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button18icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton18.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
             //Button19
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button19icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton19.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
+        }
+        try {
             //Button20
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button20icon") + ".png"));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton20.setIcon(new ImageIcon(newimg));
@@ -244,9 +341,10 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
             }
             String trace = sb.toString();
-            JOptionPane.showMessageDialog(null, trace);
+            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
 
         }
+        
 
 //        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button01icon") + ".png")));
 //        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button02icon") + ".png")));
@@ -269,7 +367,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
 //        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button19icon") + ".png")));
 //        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button20icon") + ".png")));
 
-        
+    
+
         //--- Load preloaded IPs
         jTextFieldConnectHostname.setText(PropertyHandler.getInstance().getValue("PreloadSSH"));
         jTextFieldPingHostname.setText(PropertyHandler.getInstance().getValue("PreloadPing"));
@@ -307,7 +406,24 @@ public class LaunchPadForm extends javax.swing.JFrame {
         //--- Set Zip Text
         String strPathDesktop = pathDesktop.toString();
         jTextFieldZipFilename.setText(strPathDesktop + "\\Backup_" + dateTime + ".zip");
- 
+        
+        
+        //--- Load Reference button text
+        jButtonReferenceCustom01.setText(PropertyHandler.getInstance().getValue("ReferenceFile01Text"));
+        jButtonReferenceCustom02.setText(PropertyHandler.getInstance().getValue("ReferenceFile02Text"));
+        jButtonReferenceCustom03.setText(PropertyHandler.getInstance().getValue("ReferenceFile03Text"));
+        jButtonReferenceCustom04.setText(PropertyHandler.getInstance().getValue("ReferenceFile04Text"));
+        jButtonReferenceCustom05.setText(PropertyHandler.getInstance().getValue("ReferenceFile05Text"));
+        jButtonReferenceCustom06.setText(PropertyHandler.getInstance().getValue("ReferenceFile06Text"));
+
+
+        //--- Load Script button text
+        jButtonCustomScript01.setText(PropertyHandler.getInstance().getValue("ScriptCustom01Text"));
+        jButtonCustomScript02.setText(PropertyHandler.getInstance().getValue("ScriptCustom02Text"));
+        jButtonCustomScript03.setText(PropertyHandler.getInstance().getValue("ScriptCustom03Text"));
+        jButtonCustomScript04.setText(PropertyHandler.getInstance().getValue("ScriptCustom04Text"));
+        jButtonCustomScript05.setText(PropertyHandler.getInstance().getValue("ScriptCustom05Text"));
+        jButtonCustomScript06.setText(PropertyHandler.getInstance().getValue("ScriptCustom06Text"));
        
         //--- Chat stuff
         try {
@@ -612,6 +728,13 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanelScripts = new javax.swing.JPanel();
         jButtonScriptSyncStandalones = new javax.swing.JButton();
         jButtonScriptBackupShares = new javax.swing.JButton();
+        jButtonCustomScript03 = new javax.swing.JButton();
+        jLabel32 = new javax.swing.JLabel();
+        jButtonCustomScript06 = new javax.swing.JButton();
+        jButtonCustomScript02 = new javax.swing.JButton();
+        jButtonCustomScript01 = new javax.swing.JButton();
+        jButtonCustomScript04 = new javax.swing.JButton();
+        jButtonCustomScript05 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jButtonFolderToZip = new javax.swing.JButton();
@@ -622,22 +745,9 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPasswordFieldZip = new javax.swing.JPasswordField();
         jLabel18 = new javax.swing.JLabel();
         jProgressBarZip = new javax.swing.JProgressBar();
-        jLabel19 = new javax.swing.JLabel();
-        jButtonGenerateHash = new javax.swing.JButton();
-        jTextFieldFileHashGenerate = new javax.swing.JTextField();
         jLabelFolderToZip4 = new javax.swing.JLabel();
-        jButton27 = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
-        jTextFieldHashSHA512 = new javax.swing.JTextField();
-        jTextFieldHashMD5 = new javax.swing.JTextField();
-        jTextFieldHashSHA1 = new javax.swing.JTextField();
-        jTextFieldHashSHA256 = new javax.swing.JTextField();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
         jSeparator9 = new javax.swing.JSeparator();
-        jLabelFolderToZip5 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jSeparator8 = new javax.swing.JSeparator();
         jTextFieldType7Input = new javax.swing.JTextField();
@@ -646,6 +756,20 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldType7Output = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jButton23 = new javax.swing.JButton();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        jButtonGenerateHash = new javax.swing.JButton();
+        jTextFieldFileHashGenerate = new javax.swing.JTextField();
+        jButton27 = new javax.swing.JButton();
+        jTextFieldHashSHA512 = new javax.swing.JTextField();
+        jTextFieldHashMD5 = new javax.swing.JTextField();
+        jTextFieldHashSHA1 = new javax.swing.JTextField();
+        jTextFieldHashSHA256 = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabelFolderToZip5 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabelFolderToZip3 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -660,13 +784,26 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jSeparator7 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextAreaNTPMessage = new javax.swing.JTextArea();
+        jPanel10 = new javax.swing.JPanel();
+        jButton24 = new javax.swing.JButton();
+        jButtonReferenceCustom06 = new javax.swing.JButton();
+        jButton36 = new javax.swing.JButton();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jSeparator11 = new javax.swing.JSeparator();
+        jButton37 = new javax.swing.JButton();
+        jButtonReferenceCustom01 = new javax.swing.JButton();
+        jButtonReferenceCustom02 = new javax.swing.JButton();
+        jButtonReferenceCustom03 = new javax.swing.JButton();
+        jButtonReferenceCustom04 = new javax.swing.JButton();
+        jButtonReferenceCustom05 = new javax.swing.JButton();
+        jToggleOfflineMode = new javax.swing.JToggleButton();
         jPanel4 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        userList = new javax.swing.JList();
+        jTextField1 = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         mainChatArea = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        userList = new javax.swing.JList();
         jLabel15 = new javax.swing.JLabel();
         jPanelSettings = new javax.swing.JPanel();
         jLabelSSHClient = new javax.swing.JLabel();
@@ -684,10 +821,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButton34 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
         jButtonScriptUpdateLaunchPad = new javax.swing.JButton();
-        jPanel10 = new javax.swing.JPanel();
-        jButton24 = new javax.swing.JButton();
-        jButton35 = new javax.swing.JButton();
-        jButton36 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LaunchPad - Pre-Alpha");
@@ -1147,7 +1280,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                             .addComponent(jTextFieldFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
@@ -1238,6 +1371,61 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanelScripts.add(jButtonScriptBackupShares);
         jButtonScriptBackupShares.setBounds(30, 20, 160, 30);
 
+        jButtonCustomScript03.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript03.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript03ActionPerformed(evt);
+            }
+        });
+        jPanelScripts.add(jButtonCustomScript03);
+        jButtonCustomScript03.setBounds(380, 160, 170, 30);
+
+        jLabel32.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel32.setText("Custom Scripts");
+        jPanelScripts.add(jLabel32);
+        jLabel32.setBounds(10, 130, 550, 20);
+
+        jButtonCustomScript06.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanelScripts.add(jButtonCustomScript06);
+        jButtonCustomScript06.setBounds(380, 200, 170, 30);
+
+        jButtonCustomScript02.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript02.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript02ActionPerformed(evt);
+            }
+        });
+        jPanelScripts.add(jButtonCustomScript02);
+        jButtonCustomScript02.setBounds(200, 160, 170, 30);
+
+        jButtonCustomScript01.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript01.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript01ActionPerformed(evt);
+            }
+        });
+        jPanelScripts.add(jButtonCustomScript01);
+        jButtonCustomScript01.setBounds(20, 160, 170, 30);
+
+        jButtonCustomScript04.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript04.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript04ActionPerformed(evt);
+            }
+        });
+        jPanelScripts.add(jButtonCustomScript04);
+        jButtonCustomScript04.setBounds(20, 200, 170, 30);
+
+        jButtonCustomScript05.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript05.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript05ActionPerformed(evt);
+            }
+        });
+        jPanelScripts.add(jButtonCustomScript05);
+        jButtonCustomScript05.setBounds(200, 200, 170, 30);
+
         jTabbedMain.addTab("Scripts", jPanelScripts);
 
         jPanel7.setLayout(null);
@@ -1284,81 +1472,19 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel7.add(jProgressBarZip);
         jProgressBarZip.setBounds(20, 140, 530, 20);
 
-        jLabel19.setText("SHA512:");
-        jPanel7.add(jLabel19);
-        jLabel19.setBounds(10, 350, 90, 20);
-
-        jButtonGenerateHash.setText("Generate!");
-        jButtonGenerateHash.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGenerateHashActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jButtonGenerateHash);
-        jButtonGenerateHash.setBounds(240, 260, 90, 23);
-        jPanel7.add(jTextFieldFileHashGenerate);
-        jTextFieldFileHashGenerate.setBounds(50, 230, 400, 20);
-
         jLabelFolderToZip4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelFolderToZip4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFolderToZip4.setText("Folder to Encrypted Zip (AES-256)");
         jPanel7.add(jLabelFolderToZip4);
         jLabelFolderToZip4.setBounds(110, 20, 350, 20);
 
-        jButton27.setText("Browse");
-        jButton27.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton27ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jButton27);
-        jButton27.setBounds(460, 230, 90, 20);
-
         jLabel20.setText("Source Folder:");
         jPanel7.add(jLabel20);
         jLabel20.setBounds(10, 50, 90, 20);
-
-        jTextFieldHashSHA512.setEditable(false);
-        jPanel7.add(jTextFieldHashSHA512);
-        jTextFieldHashSHA512.setBounds(70, 350, 480, 20);
-
-        jTextFieldHashMD5.setEditable(false);
-        jPanel7.add(jTextFieldHashMD5);
-        jTextFieldHashMD5.setBounds(70, 290, 480, 20);
-
-        jTextFieldHashSHA1.setEditable(false);
-        jPanel7.add(jTextFieldHashSHA1);
-        jTextFieldHashSHA1.setBounds(70, 310, 480, 20);
-
-        jTextFieldHashSHA256.setEditable(false);
-        jPanel7.add(jTextFieldHashSHA256);
-        jTextFieldHashSHA256.setBounds(70, 330, 480, 20);
-
-        jLabel22.setText("MD5:");
-        jPanel7.add(jLabel22);
-        jLabel22.setBounds(10, 290, 90, 20);
-
-        jLabel23.setText("SHA1:");
-        jPanel7.add(jLabel23);
-        jLabel23.setBounds(10, 310, 90, 20);
-
-        jLabel24.setText("SHA256:");
-        jPanel7.add(jLabel24);
-        jLabel24.setBounds(10, 330, 90, 20);
         jPanel7.add(jSeparator9);
         jSeparator9.setBounds(10, 180, 550, 10);
 
-        jLabelFolderToZip5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabelFolderToZip5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelFolderToZip5.setText("Hash Generator");
-        jPanel7.add(jLabelFolderToZip5);
-        jLabelFolderToZip5.setBounds(110, 200, 350, 20);
-
-        jLabel25.setText("File:");
-        jPanel7.add(jLabel25);
-        jLabel25.setBounds(10, 230, 90, 20);
-
-        jTabbedPane1.addTab("Drawer 1", jPanel7);
+        jTabbedPane1.addTab("Zip & Encrypt", jPanel7);
 
         jPanel8.setLayout(null);
         jPanel8.add(jSeparator8);
@@ -1405,7 +1531,73 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel8.add(jButton23);
         jButton23.setBounds(480, 110, 70, 20);
 
-        jTabbedPane1.addTab("Drawer 2", jPanel8);
+        jTabbedPane1.addTab("Type 7", jPanel8);
+
+        jPanel12.setLayout(null);
+
+        jLabel19.setText("SHA512:");
+        jPanel12.add(jLabel19);
+        jLabel19.setBounds(10, 170, 90, 20);
+
+        jButtonGenerateHash.setText("Generate!");
+        jButtonGenerateHash.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGenerateHashActionPerformed(evt);
+            }
+        });
+        jPanel12.add(jButtonGenerateHash);
+        jButtonGenerateHash.setBounds(240, 80, 90, 23);
+        jPanel12.add(jTextFieldFileHashGenerate);
+        jTextFieldFileHashGenerate.setBounds(50, 50, 400, 20);
+
+        jButton27.setText("Browse");
+        jButton27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton27ActionPerformed(evt);
+            }
+        });
+        jPanel12.add(jButton27);
+        jButton27.setBounds(460, 50, 90, 20);
+
+        jTextFieldHashSHA512.setEditable(false);
+        jPanel12.add(jTextFieldHashSHA512);
+        jTextFieldHashSHA512.setBounds(70, 170, 480, 20);
+
+        jTextFieldHashMD5.setEditable(false);
+        jPanel12.add(jTextFieldHashMD5);
+        jTextFieldHashMD5.setBounds(70, 110, 480, 20);
+
+        jTextFieldHashSHA1.setEditable(false);
+        jPanel12.add(jTextFieldHashSHA1);
+        jTextFieldHashSHA1.setBounds(70, 130, 480, 20);
+
+        jTextFieldHashSHA256.setEditable(false);
+        jPanel12.add(jTextFieldHashSHA256);
+        jTextFieldHashSHA256.setBounds(70, 150, 480, 20);
+
+        jLabel22.setText("MD5:");
+        jPanel12.add(jLabel22);
+        jLabel22.setBounds(10, 110, 90, 20);
+
+        jLabel23.setText("SHA1:");
+        jPanel12.add(jLabel23);
+        jLabel23.setBounds(10, 130, 90, 20);
+
+        jLabel24.setText("SHA256:");
+        jPanel12.add(jLabel24);
+        jLabel24.setBounds(10, 150, 90, 20);
+
+        jLabelFolderToZip5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelFolderToZip5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelFolderToZip5.setText("Hash Generator");
+        jPanel12.add(jLabelFolderToZip5);
+        jLabelFolderToZip5.setBounds(110, 20, 350, 20);
+
+        jLabel25.setText("File:");
+        jPanel12.add(jLabel25);
+        jLabel25.setBounds(10, 50, 90, 20);
+
+        jTabbedPane1.addTab("Hash Generate", jPanel12);
 
         jPanel9.setLayout(null);
 
@@ -1474,13 +1666,122 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanel9.add(jScrollPane4);
         jScrollPane4.setBounds(20, 190, 530, 220);
 
-        jTabbedPane1.addTab("Drawer 3", jPanel9);
+        jTabbedPane1.addTab("NTP Time", jPanel9);
 
         jTabbedMain.addTab("ToolBox", jTabbedPane1);
 
-        jPanel4.setLayout(null);
+        jPanel10.setLayout(null);
 
-        jPanel6.setLayout(null);
+        jButton24.setText("IPv4 Subnet Chart");
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(jButton24);
+        jButton24.setBounds(20, 40, 170, 30);
+
+        jButtonReferenceCustom06.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom06ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(jButtonReferenceCustom06);
+        jButtonReferenceCustom06.setBounds(380, 250, 170, 30);
+
+        jButton36.setText("IPv4 Subnet Cheat Sheet");
+        jButton36.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton36ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(jButton36);
+        jButton36.setBounds(200, 40, 170, 30);
+
+        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel30.setText("Custom Items");
+        jPanel10.add(jLabel30);
+        jLabel30.setBounds(10, 140, 550, 20);
+
+        jLabel31.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel31.setText("Embedded Items");
+        jPanel10.add(jLabel31);
+        jLabel31.setBounds(110, 10, 350, 20);
+        jPanel10.add(jSeparator11);
+        jSeparator11.setBounds(20, 120, 550, 10);
+
+        jButton37.setText("Stretch's Cheat Sheets");
+        jButton37.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton37ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(jButton37);
+        jButton37.setBounds(380, 40, 170, 30);
+
+        jButtonReferenceCustom01.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom01ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(jButtonReferenceCustom01);
+        jButtonReferenceCustom01.setBounds(20, 210, 170, 30);
+
+        jButtonReferenceCustom02.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom02ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(jButtonReferenceCustom02);
+        jButtonReferenceCustom02.setBounds(200, 210, 170, 30);
+
+        jButtonReferenceCustom03.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom03ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(jButtonReferenceCustom03);
+        jButtonReferenceCustom03.setBounds(380, 210, 170, 30);
+
+        jButtonReferenceCustom04.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom04ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(jButtonReferenceCustom04);
+        jButtonReferenceCustom04.setBounds(20, 250, 170, 30);
+
+        jButtonReferenceCustom05.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom05ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(jButtonReferenceCustom05);
+        jButtonReferenceCustom05.setBounds(200, 250, 170, 30);
+
+        jToggleOfflineMode.setBackground(new java.awt.Color(0, 204, 51));
+        jToggleOfflineMode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jToggleOfflineMode.setText("Online");
+        jToggleOfflineMode.setToolTipText("Alternate between using network and local files.");
+        jPanel10.add(jToggleOfflineMode);
+        jToggleOfflineMode.setBounds(200, 170, 170, 30);
+
+        jTabbedMain.addTab("Reference", jPanel10);
+
+        jTextField1.setMaximumSize(new java.awt.Dimension(6, 2147483647));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        mainChatArea.setEditable(false);
+        mainChatArea.setColumns(20);
+        mainChatArea.setRows(5);
+        jScrollPane3.setViewportView(mainChatArea);
 
         userList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -1492,33 +1793,36 @@ public class LaunchPadForm extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(userList);
 
-        jPanel6.add(jScrollPane2);
-        jScrollPane2.setBounds(400, 30, 140, 380);
-
-        mainChatArea.setEditable(false);
-        mainChatArea.setColumns(20);
-        mainChatArea.setRows(5);
-        jScrollPane3.setViewportView(mainChatArea);
-
-        jPanel6.add(jScrollPane3);
-        jScrollPane3.setBounds(10, 30, 380, 380);
-
-        jTextField1.setMaximumSize(new java.awt.Dimension(6, 2147483647));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        jPanel6.add(jTextField1);
-        jTextField1.setBounds(10, 420, 530, 30);
-
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Chat doesn't really work yet.  Sorry.");
-        jPanel6.add(jLabel15);
-        jLabel15.setBounds(10, 4, 530, 20);
 
-        jPanel4.add(jPanel6);
-        jPanel6.setBounds(10, 10, 550, 460);
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3))
+                .addGap(18, 18, 18)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         jTabbedMain.addTab("Chat", jPanel4);
 
@@ -1651,37 +1955,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButtonScriptUpdateLaunchPad.setBounds(390, 20, 160, 30);
 
         jTabbedMain.addTab("Settings", jPanelSettings);
-
-        jPanel10.setLayout(null);
-
-        jButton24.setText("IPv4 Subnet Chart");
-        jButton24.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton24ActionPerformed(evt);
-            }
-        });
-        jPanel10.add(jButton24);
-        jButton24.setBounds(20, 20, 170, 30);
-
-        jButton35.setText("IPv4 Subnet Chart");
-        jButton35.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton35ActionPerformed(evt);
-            }
-        });
-        jPanel10.add(jButton35);
-        jButton35.setBounds(380, 20, 170, 30);
-
-        jButton36.setText("IPv4 Subnet Chart");
-        jButton36.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton36ActionPerformed(evt);
-            }
-        });
-        jPanel10.add(jButton36);
-        jButton36.setBounds(200, 20, 170, 30);
-
-        jTabbedMain.addTab("Reference", jPanel10);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -2510,21 +2783,38 @@ public class LaunchPadForm extends javax.swing.JFrame {
         System.out.println("Log file: " + fileLog);
 
         if (jRadioButtonSSHClientPuTTY.isSelected() == true) {
-            String passText = new String(jPasswordFieldConnectPassword.getPassword());
-            String strEXEC = strPuTTYexe + " -ssh " + jTextFieldConnectHostname.getText() + " -l " + jTextFieldConnectUsername.getText() + " -pw \"" + passText + "\"  ";
-            try {
-                Runtime.getRuntime().exec(strEXEC);
+            
+            if (!jCheckBoxAlternateLogin.isSelected()) {
+                //if (jTextFieldConnectUsername.getText().equals("")){
+                    //if (jPasswordFieldConnectPassword.getPassword().length == 0){
+                        String strEXEC = strPuTTYexe + " -ssh " + jTextFieldConnectHostname.getText() + "  ";
+                        try {
+                            Runtime.getRuntime().exec(strEXEC);
+                        }
+                        catch (IOException e) {
+                            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                            JOptionPane.showMessageDialog(null, "Something is wrong!");
+                        }
+                    //}
+                //}
             }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            else {
+                String passText = new String(jPasswordFieldConnectPassword.getPassword());
+                String strEXEC = strPuTTYexe + " -ssh " + jTextFieldConnectHostname.getText() + " -l " + jTextFieldConnectUsername.getText() + " -pw \"" + passText + "\"  ";
+                try {
+                    Runtime.getRuntime().exec(strEXEC);
+                }
+                catch (IOException e) {
+                    System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                    JOptionPane.showMessageDialog(null, "Something is wrong!");
+                }
             }
         }
         if (jRadioButtonSSHClientSecureCRT.isSelected() == true) {
 
             if (!jCheckBoxAlternateLogin.isSelected()) {
-                if (jTextFieldConnectUsername.getText().equals("")){
-                    if (jPasswordFieldConnectPassword.getPassword().length == 0){
+                //if (jTextFieldConnectUsername.getText().equals("")){
+                    //if (jPasswordFieldConnectPassword.getPassword().length == 0){
                         String strEXEC = strSecureCRTexe + " /LOG \"" + fileLog + "\" /T /SSH2 /ACCEPTHOSTKEYS " + jTextFieldConnectHostname.getText();
                         System.out.println(strEXEC);
                         try {
@@ -2534,8 +2824,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
                             System.out.println("HEY Buddy ! U r Doing Something Wrong ");
                             JOptionPane.showMessageDialog(null, "Something is wrong!");
                         }
-                    }
-                }
+                    //}
+                //}
             }
             else {
                 String passText = new String(jPasswordFieldConnectPassword.getPassword());
@@ -3243,7 +3533,34 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }  
                         
             if ("settingsfile".equals(jTextField2.getText())) {
-            
+                
+                String strPathPropertiesFile = pathDesktop + "\\LaunchPad\\launchpad.properties";
+
+                //text file, should be opening in default text editor
+                File file = new File(strPathPropertiesFile);
+
+                //first check if Desktop is supported by Platform or not
+                if(!Desktop.isDesktopSupported()){
+                    System.out.println("Desktop is not supported");
+                    return;
+                }
+
+                Desktop desktop = Desktop.getDesktop();
+                if(file.exists()) try {
+                    desktop.open(file);
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
+                }
+
+                // Open
+                if(file.exists()) try {
+                    desktop.open(file);
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
+
+                }
                 
             jTextField2.setText("");
             }                          
@@ -3378,16 +3695,195 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
         // TODO add your handling code here:
+        String inputPdf = "files/IPv4_Subnetting.pdf";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".pdf");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+            File userManual = new File (tempOutput.toFile().getPath());
+            if (userManual.exists())
+        {
+            try {
+                Desktop.getDesktop().open(userManual);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
     }//GEN-LAST:event_jButton36ActionPerformed
 
-    private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
+    private void jButtonReferenceCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom06ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton35ActionPerformed
+    }//GEN-LAST:event_jButtonReferenceCustom06ActionPerformed
 
     private void jCheckBoxAlternateLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxAlternateLoginActionPerformed
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jCheckBoxAlternateLoginActionPerformed
+
+    private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
+        // TODO add your handling code here:
+                String inputPdf = "files/Cheat Sheets - PacketLife.net.zip";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".zip");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+            File userManual = new File (tempOutput.toFile().getPath());
+            if (userManual.exists())
+        {
+            try {
+                Desktop.getDesktop().open(userManual);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton37ActionPerformed
+
+    private void jButtonReferenceCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom01ActionPerformed
+        // TODO add your handling code here:
+        String strReference01;
+        strReference01 = PropertyHandler.getInstance().getValue("ReferenceFile01");
+
+        if(jToggleOfflineMode.isSelected()){
+            strReference01 =  PropertyHandler.getInstance().getValue("ReferenceFolderOffline") + strReference01;
+            System.out.println("Using Offline: " + strReference01);
+        }
+        else{
+            strReference01 =  PropertyHandler.getInstance().getValue("ReferenceFolderOnline") + strReference01;
+        }
+         
+        //text file, should be opening in default text editor
+        File file = new File(strReference01);
+
+        //first check if Desktop is supported by Platform or not
+        if(!Desktop.isDesktopSupported()){
+            System.out.println("Desktop is not supported");
+            return;
+        }
+        
+        Desktop desktop = Desktop.getDesktop();
+        if(file.exists()) try {
+            desktop.open(file);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
+        }
+        
+        // Open
+        if(file.exists()) try {
+            desktop.open(file);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
+            
+        }
+    
+    }//GEN-LAST:event_jButtonReferenceCustom01ActionPerformed
+
+    private void jButtonReferenceCustom02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom02ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom02ActionPerformed
+
+    private void jButtonReferenceCustom03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom03ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom03ActionPerformed
+
+    private void jButtonReferenceCustom04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom04ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom04ActionPerformed
+
+    private void jButtonReferenceCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom05ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom05ActionPerformed
+
+    private void jButtonCustomScript01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript01ActionPerformed
+        // TODO add your handling code here:
+        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom01").replace("%USERPROFILE%", pathUserProfile);
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonCustomScript01ActionPerformed
+
+    private void jButtonCustomScript02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript02ActionPerformed
+        // TODO add your handling code here:
+        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom02").replace("%USERPROFILE%", pathUserProfile);
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }        
+    }//GEN-LAST:event_jButtonCustomScript02ActionPerformed
+
+    private void jButtonCustomScript03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript03ActionPerformed
+        // TODO add your handling code here:
+        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom03").replace("%USERPROFILE%", pathUserProfile);
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonCustomScript03ActionPerformed
+
+    private void jButtonCustomScript04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript04ActionPerformed
+        // TODO add your handling code here:
+                String myValue = PropertyHandler.getInstance().getValue("ScriptCustom04").replace("%USERPROFILE%", pathUserProfile);
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonCustomScript04ActionPerformed
+
+    private void jButtonCustomScript05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript05ActionPerformed
+        // TODO add your handling code here:
+                String myValue = PropertyHandler.getInstance().getValue("ScriptCustom05").replace("%USERPROFILE%", pathUserProfile);
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonCustomScript05ActionPerformed
 
     
     /**
@@ -3415,13 +3911,17 @@ public class LaunchPadForm extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            try {
-                new LaunchPadForm().setVisible(true);
-            } catch (IOException | URISyntaxException | AWTException | InterruptedException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(() -> {
+//            try {
+//                
+//                new LaunchPadForm().setVisible(true);
+//            } catch (IOException | URISyntaxException | AWTException | InterruptedException ex) {
+//                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        });
+        
+
+
         
     }
     
@@ -3610,8 +4110,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton34;
-    private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;
+    private javax.swing.JButton jButton37;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -3620,12 +4120,24 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JButton jButtonConfigBuilder;
     private javax.swing.JButton jButtonConsole;
+    private javax.swing.JButton jButtonCustomScript01;
+    private javax.swing.JButton jButtonCustomScript02;
+    private javax.swing.JButton jButtonCustomScript03;
+    private javax.swing.JButton jButtonCustomScript04;
+    private javax.swing.JButton jButtonCustomScript05;
+    private javax.swing.JButton jButtonCustomScript06;
     private javax.swing.JButton jButtonFolderToZip;
     private javax.swing.JButton jButtonGenerateHash;
     private javax.swing.JButton jButtonHTTPS;
     private javax.swing.JButton jButtonJSDiff;
     private javax.swing.JButton jButtonJSDiff1;
     private javax.swing.JButton jButtonPing;
+    private javax.swing.JButton jButtonReferenceCustom01;
+    private javax.swing.JButton jButtonReferenceCustom02;
+    private javax.swing.JButton jButtonReferenceCustom03;
+    private javax.swing.JButton jButtonReferenceCustom04;
+    private javax.swing.JButton jButtonReferenceCustom05;
+    private javax.swing.JButton jButtonReferenceCustom06;
     private javax.swing.JButton jButtonSSH;
     private javax.swing.JButton jButtonScriptBackupShares;
     private javax.swing.JButton jButtonScriptSyncStandalones;
@@ -3652,6 +4164,9 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabelConsoleClient;
     private javax.swing.JLabel jLabelFolderToZip3;
     private javax.swing.JLabel jLabelFolderToZip4;
@@ -3663,11 +4178,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JList<String> jListSessions;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
@@ -3687,6 +4202,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
@@ -3715,6 +4231,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldType7Output;
     private javax.swing.JTextField jTextFieldZipFilename;
     private javax.swing.JTextField jTextFieldZipSourceFolder;
+    private javax.swing.JToggleButton jToggleOfflineMode;
     private javax.swing.JTextArea mainChatArea;
     private javax.swing.JList userList;
     // End of variables declaration//GEN-END:variables
