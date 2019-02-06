@@ -24,6 +24,8 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
@@ -114,6 +116,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     String dateTime = simpleDateFormat.format(new Date());
         
     
+    
     /**
      * Creates new form LaunchPadForm
      * @throws java.io.IOException
@@ -179,6 +182,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jPasswordFieldConnectPassword.setEnabled(false);
             }
         });
+        
+
         
         //--- Listen for credential checkbox
 
@@ -849,6 +854,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jListSessions);
+        jListSessions.addMouseListener(new MyMouseListener());
 
         jPanel1.setLayout(null);
 
@@ -3922,10 +3928,10 @@ public class LaunchPadForm extends javax.swing.JFrame {
         
 
 
-        
+
     }
     
-
+    
 
    
      private ArrayList getSessionList() throws FileNotFoundException, IOException, URISyntaxException
@@ -4076,6 +4082,19 @@ public class LaunchPadForm extends javax.swing.JFrame {
         
       throw new UnsupportedOperationException("Cannot list files for URL "+dirURL);
   }
+  
+    class MyMouseListener extends MouseAdapter {
+        public void mouseClicked(MouseEvent evt) {
+          if (evt.getClickCount() == 3) {
+            System.out.println("triple-click");
+          } else if (evt.getClickCount() == 2) {
+            System.out.println("double-click");
+            jButtonSSH.doClick();
+          }
+        }
+      }
+  
+  
 
   
     
@@ -4176,6 +4195,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelListTextSizePreview;
     private javax.swing.JLabel jLabelSSHClient;
     private javax.swing.JList<String> jListSessions;
+
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel12;
