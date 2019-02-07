@@ -740,6 +740,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButtonCustomScript01 = new javax.swing.JButton();
         jButtonCustomScript04 = new javax.swing.JButton();
         jButtonCustomScript05 = new javax.swing.JButton();
+        jButtonScriptSyncStandalones1 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jButtonFolderToZip = new javax.swing.JButton();
@@ -1366,7 +1367,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptSyncStandalones);
-        jButtonScriptSyncStandalones.setBounds(210, 20, 160, 30);
+        jButtonScriptSyncStandalones.setBounds(200, 20, 170, 30);
 
         jButtonScriptBackupShares.setText("Backup Shares");
         jButtonScriptBackupShares.addActionListener(new java.awt.event.ActionListener() {
@@ -1375,7 +1376,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptBackupShares);
-        jButtonScriptBackupShares.setBounds(30, 20, 160, 30);
+        jButtonScriptBackupShares.setBounds(20, 20, 170, 30);
 
         jButtonCustomScript03.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonCustomScript03.addActionListener(new java.awt.event.ActionListener() {
@@ -1431,6 +1432,15 @@ public class LaunchPadForm extends javax.swing.JFrame {
         });
         jPanelScripts.add(jButtonCustomScript05);
         jButtonCustomScript05.setBounds(200, 200, 170, 30);
+
+        jButtonScriptSyncStandalones1.setText("Map Standalone Share");
+        jButtonScriptSyncStandalones1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptSyncStandalones1ActionPerformed(evt);
+            }
+        });
+        jPanelScripts.add(jButtonScriptSyncStandalones1);
+        jButtonScriptSyncStandalones1.setBounds(380, 20, 170, 30);
 
         jTabbedMain.addTab("Scripts", jPanelScripts);
 
@@ -2977,7 +2987,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonScriptUpdateLaunchPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptUpdateLaunchPadActionPerformed
         // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + PropertyHandler.getInstance().getValue("FileUpdateScript") + "\"";
+        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("FileUpdateScript") + "\"";
         System.out.println(myValue);
         try {
             Runtime.getRuntime().exec(myValue);
@@ -2991,7 +3001,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonScriptSyncStandalonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptSyncStandalonesActionPerformed
         // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + PropertyHandler.getInstance().getValue("ScriptStandaloneSync") + "\"";
+        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("ScriptStandaloneSync") + "\"";
         System.out.println(myValue);
         try {
             Runtime.getRuntime().exec(myValue);
@@ -3004,7 +3014,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonScriptBackupSharesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptBackupSharesActionPerformed
         // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + PropertyHandler.getInstance().getValue("ScriptBackupShare") + "\"";
+        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("ScriptBackupShare") + "\"";
         System.out.println(myValue);
         try {
             Runtime.getRuntime().exec(myValue);
@@ -3880,7 +3890,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonCustomScript05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript05ActionPerformed
         // TODO add your handling code here:
-                String myValue = PropertyHandler.getInstance().getValue("ScriptCustom05").replace("%USERPROFILE%", pathUserProfile);
+        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom05").replace("%USERPROFILE%", pathUserProfile);
         System.out.println(myValue);
         try {
             Runtime.getRuntime().exec(myValue);
@@ -3890,6 +3900,19 @@ public class LaunchPadForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Something is wrong!");
         }
     }//GEN-LAST:event_jButtonCustomScript05ActionPerformed
+
+    private void jButtonScriptSyncStandalones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptSyncStandalones1ActionPerformed
+        // TODO add your handling code here:
+        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("ScriptStandaloneMapShare") + "\"";
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }  
+    }//GEN-LAST:event_jButtonScriptSyncStandalones1ActionPerformed
 
     
     /**
@@ -4084,6 +4107,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
   }
   
     class MyMouseListener extends MouseAdapter {
+        @Override
         public void mouseClicked(MouseEvent evt) {
           if (evt.getClickCount() == 3) {
             System.out.println("triple-click");
@@ -4160,6 +4184,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSSH;
     private javax.swing.JButton jButtonScriptBackupShares;
     private javax.swing.JButton jButtonScriptSyncStandalones;
+    private javax.swing.JButton jButtonScriptSyncStandalones1;
     private javax.swing.JButton jButtonScriptUpdateLaunchPad;
     private javax.swing.JButton jButtonShowCOMList;
     private javax.swing.JButton jButtonTracert;
