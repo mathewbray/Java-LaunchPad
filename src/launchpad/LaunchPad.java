@@ -32,17 +32,19 @@ public class LaunchPad {
      * @throws java.awt.AWTException
      * @throws java.lang.InterruptedException
      */
-    public static void main(String[] args) throws IOException, FileNotFoundException, URISyntaxException, AWTException, InterruptedException {
+    public static void main(String[] args) throws IOException, FileNotFoundException, URISyntaxException, AWTException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         // TODO code application logic here
         //--- Shared Items
         String pathUserProfile = System.getenv("USERPROFILE");
         File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
         String pathLaunchPadFolder = pathDesktop + "\\LaunchPad\\";
+        String strSessionListFavoritesFolder = pathUserProfile + "\\.launchpad\\";
         
-     System.out.println("creating directory: " + pathLaunchPadFolder);
-
-        //--- Check for LaunchPad Folder
+        
+        //--- Check for Folders
         new File(pathLaunchPadFolder).mkdirs();
+        new File(strSessionListFavoritesFolder).mkdirs();
+        
 //        File directory = new File(pathLaunchPadFolder);
 //        if (!directory.exists()){
 //            System.out.println("creating directory: " + directory.getName());
