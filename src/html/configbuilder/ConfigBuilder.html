@@ -3,7 +3,7 @@
 <html>
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 	<head>
-		<title>NSB Config Builder</title>
+		<title>Config Builder</title>
     	<!-- LOAD JQUERY -->
         <!--<script type="text/javascript" src="jquery-1.12.4.min.js"></script>-->
         <script type="text/javascript">
@@ -25,7 +25,41 @@ padding:"inner"+a,content:b,"":"outer"+a},function(c,d){n.fn[d]=function(d,e){va
     applySplitSlider();
     // LOAD CONFIG FILE LISTENER
     document.getElementById('file').addEventListener('change', readFile, false);
+    // LOAD PASTE LISTENER
+    document.getElementById('output-box').addEventListener('paste', handlePaste);
+
+
+
+    // document.addEventListener('paste', function(e){
+    //     if (window.clipboardData === undefined) {
+    //         var clipText = e.originalEvent.clipboardData.getData('Text') // use this method in Chrome to get clipboard data.
+    //         makeOutput(clipText);
+    // generateConfigOutput0();
+    //      } else{
+    //         var clipText = window.clipboardData.getData('Text') // use this method in IE/Edge to get clipboard data.
+    //         makeOutput(clipText);
+    //         generateConfigOutput0();
+    //      }
+    // });
+
 };
+
+function handlePaste (e) {
+    var clipboardData, pastedData;
+
+    // Stop data actually being pasted into div
+    e.stopPropagation();
+    e.preventDefault();
+
+    // Get pasted data via clipboard API
+    clipboardData = e.clipboardData || window.clipboardData;
+    pastedData = clipboardData.getData('Text');
+
+    // Do whatever with pasteddata
+    //alert(pastedData);
+    loadAlternateConfig(pastedData);
+}
+
 
 // TIMESTAMP
 var timestamp
