@@ -786,6 +786,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton30 = new javax.swing.JButton();
         jSeparator10 = new javax.swing.JSeparator();
         jButtonJSDiff1 = new javax.swing.JButton();
+        jButton35 = new javax.swing.JButton();
         jPanelScripts = new javax.swing.JPanel();
         jButtonScriptSyncStandalones = new javax.swing.JButton();
         jButtonScriptBackupShares = new javax.swing.JButton();
@@ -1426,6 +1427,15 @@ final JFXPanel fxPanel = new JFXPanel();
         });
         jPanel3.add(jButtonJSDiff1);
         jButtonJSDiff1.setBounds(40, 40, 140, 30);
+
+        jButton35.setText("Puppeteer");
+        jButton35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton35ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton35);
+        jButton35.setBounds(200, 160, 170, 30);
 
         jTabbedMain.addTab("Apps", jPanel3);
 
@@ -4300,6 +4310,37 @@ final JFXPanel fxPanel = new JFXPanel();
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordFieldZipExtractActionPerformed
 
+    private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
+        // TODO add your handling code here:
+                String inputPdf = "apps/Puppeteer.jar";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".jar");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+            File userManual = new File (tempOutput.toFile().getPath());
+            if (userManual.exists())
+        {
+            try {
+                Desktop.getDesktop().open(userManual);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_jButton35ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -4554,6 +4595,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton34;
+    private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton37;
     private javax.swing.JButton jButton39;
