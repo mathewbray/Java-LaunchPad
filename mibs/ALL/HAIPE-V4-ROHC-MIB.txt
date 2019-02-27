@@ -1,0 +1,225 @@
+--
+--                 Unclassified//For Official Use Only
+--
+-- This entire document, which defines SNMP MIB objects in the SMIv2
+-- language should be considered U//FOUO.
+--
+-- The data that will be transmitted on the wire as a result of
+-- accessing these MIB objects MUST NOT BE CONSIDERED U//FOUO and is
+-- subject to separate classification.  The classification level of this
+-- data is not defined or within the scope of this document.
+--
+
+HAIPE-V4-ROHC-MIB  DEFINITIONS  ::= BEGIN
+
+IMPORTS
+    OBJECT-TYPE, Unsigned32,
+    NOTIFICATION-TYPE,
+    MODULE-IDENTITY                     FROM SNMPv2-SMI
+    SnmpAdminString                     FROM SNMP-FRAMEWORK-MIB
+    RowPointer, RowStatus, TimeStamp    FROM SNMPv2-TC
+    HAIPEROHCCompressionProfiles        FROM HAIPE-V4-TEXTUAL-CONVENTIONS-MIB
+    hv4ROHC                             FROM HAIPE-V4-FEATURE-HIERARCHY-MIB;
+
+haipev4ROHCMIB MODULE-IDENTITY
+    LAST-UPDATED "201006231600Z"
+    ORGANIZATION "HAIPE PO"
+    CONTACT-INFO
+         "(U//FOUO) Not Available"
+    DESCRIPTION
+        "(U//FOUO) This MIB defines the HAIPE ROHC MIB objects."
+    REVISION     "201006231600Z"
+    DESCRIPTION  "(U//FOUO) MIB 4.1.0 FINAL Release"		
+    ::= { hv4ROHC 1 }
+
+-- **********************************************************************
+-- ROHC Information Segments
+-- **********************************************************************
+
+hROHCControlObjects             OBJECT IDENTIFIER ::= { haipev4ROHCMIB 1 }
+hROHCParameters                 OBJECT IDENTIFIER ::= { haipev4ROHCMIB 2 }
+hEstablishedROHCParameters      OBJECT IDENTIFIER ::= { hROHCParameters 1 }
+
+-- Defines all traffic protection notifications
+hROHCNotifications              OBJECT IDENTIFIER ::= { haipev4ROHCMIB 3 }
+
+
+-- **********************************************************************
+-- ROHC Control Objects
+-- **********************************************************************
+
+-- **********************************************************************
+-- ROHC Parameters
+-- **********************************************************************
+
+-- =========
+-- Established ROHC Parameters Profile Table
+-- =========
+
+hEstROHCParamTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hEstROHCParamTable."
+    ::= { hEstablishedROHCParameters 1 }
+
+hEstROHCParamTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime the last time any entry in the
+         hEstROHCParamTable was modified, created, or deleted by either SNMP or
+         other management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hEstablishedROHCParameters 2 }
+
+hEstROHCParamTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HEstROHCParamTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO)  This table stores all the established ROHC parameters
+         associated to ROHC-enabled Manual or IKEv2 CHILD SAs. Both
+         hManualSADTable and hIKEv2CHILDSADTable reference this table for SAs
+         configured to perform ROHC."
+    ::= { hEstablishedROHCParameters 3 }
+
+hEstROHCParamTableEntry OBJECT-TYPE
+    SYNTAX     HEstROHCParamTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO)  An entry in the hEstROHCParamTable."
+    INDEX  { hEstROHCParamIndex }
+    ::= { hEstROHCParamTable 1 }
+
+HEstROHCParamTableEntry ::= SEQUENCE
+{
+   hEstROHCParamIndex              Unsigned32,
+   hEstROHCMAXCID                  Unsigned32,
+   hEstROHCCompressionProfiles     HAIPEROHCCompressionProfiles,
+   hEstROHCTimeout                 Unsigned32,
+   hEstROHCRepeatIR                Unsigned32,
+   hEstROHCFeedbackChannel         RowPointer,
+   hEstROHCRowStatus               RowStatus
+}
+
+hEstROHCParamIndex OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO)  A unique index for a row entry in the hEstROHCParamTable.
+         Note, this column is populated internally and can not be read or configured."
+    ::= { hEstROHCParamTableEntry 1 }
+
+hEstROHCMAXCID OBJECT-TYPE
+    SYNTAX     Unsigned32 (0..16383)
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO)  The highest CID number to be used by the local or peer compressor.
+         If the SA has a direction of 'Inbound', this value represents the agreed
+         minimum number of contexts, MAX_CID+1, the local decompressor must maintain.
+         If the SA has a direction of 'Outbound', this value represents the agreed
+         minimum number of contexts, MAX_CID+1, the peer decompressor must maintain."
+    ::= { hEstROHCParamTableEntry 2 }
+
+hEstROHCCompressionProfiles OBJECT-TYPE
+    SYNTAX     HAIPEROHCCompressionProfiles
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO)  The set of compression profiles the local or peer
+         decompressor supports represented by a 16 bit field.  If the SA has a
+         direction of 'Inbound', this field represents the Compression Profiles
+         the local decompressor supports.  If the SA has a direction of 'Outbound', 
+         this field represents the Compression Profiles the peer decompressor supports.
+
+         (U//FOUO) Only ROHCv2 Compression Profiles are supported.  Implementations might not
+         support all the Compression Profiles.  A wrongValue exception should be
+         returned when a Compression Profile that the local decompressor does not support
+         is manually configured."
+    ::= { hEstROHCParamTableEntry 3 }
+
+hEstROHCTimeout OBJECT-TYPE
+    SYNTAX     Unsigned32
+    UNITS      "milliseconds"
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO)  The time delay, in milliseconds, the local compressor sends one or
+         more IR packets to the peer decompressor to refresh its context states.  This
+         value is used in the optimistic approach to determine how frequent to 
+	 send IR packets in order to gain confidence that the peer decompressor 
+	 has the necessary context information.
+
+         (U//FOUO) A valid value of 0 indicates that periodic IR packets will not be sent.
+
+         (U//FOUO)  This column must not exist for Inbound SAs."
+    ::= { hEstROHCParamTableEntry 4 }
+
+hEstROHCRepeatIR OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of IR packets the local compressor sends to the peer 
+         decompressor in the optimistic approach. This value is used to determine 
+         how many IR packets are needed to refresh a context and gain confidence 
+         that the peer decompressor has the necessary context information.
+
+         (U//FOUO) This value must not be zero. This column must not exist for Inbound SAs."
+
+    ::= { hEstROHCParamTableEntry 5 }    
+    
+hEstROHCFeedbackChannel OBJECT-TYPE
+    SYNTAX     RowPointer
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO)  The SA used to send or receive feedback.
+
+         (U//FOUO) This column references an 'Outbound' SA if the SA has a
+         direction of 'Inbound', has a feedback channel available to send
+         feedback and if sending feedback is an enabled/desired
+         behavior.  This column references an 'Inbound' SA if the SA has
+         a direction of 'Outbound' and has a feedback channel available
+         to receive feedback.
+
+         (U//FOUO) This column must not exist for an 'Outbound' SA if
+         there is no 'Inbound' SA available to listen for feedback.  This
+         column also must not exist for an 'Inbound' SA if there is no
+         'Outbound' SA available to send feedback or sending feedback
+         is not a desired behavior."
+
+    ::= { hEstROHCParamTableEntry 6 }
+    
+hEstROHCRowStatus OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO)  The status of this row, by which entries may be created and
+         deleted from this table.
+
+         (U//FOUO) At a minimum, implementations must support createAndGo, active
+	 and destroy management functions. Support for createAndWait, 
+	 notInService, and notReady management functions is optional."
+    ::= { hEstROHCParamTableEntry 7 }
+
+
+
+-- **********************************************************************
+-- ROHC Notifications
+-- **********************************************************************
+
+END
