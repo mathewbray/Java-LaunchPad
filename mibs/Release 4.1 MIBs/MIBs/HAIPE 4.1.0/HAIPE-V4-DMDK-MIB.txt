@@ -1,0 +1,563 @@
+--
+--                 Unclassified//For Official Use Only
+--
+-- This entire document, which defines SNMP MIB objects in the SMIv2
+-- language should be considered U//FOUO.
+--
+-- The data that will be transmitted on the wire as a result of
+-- accessing these MIB objects MUST NOT BE CONSIDERED U//FOUO and is
+-- subject to separate classification.  The classification level of this
+-- data is not defined or within the scope of this document.
+--
+
+HAIPE-V4-DMDK-MIB  DEFINITIONS  ::= BEGIN
+
+IMPORTS 
+    hv4DMDK                             FROM HAIPE-V4-FEATURE-HIERARCHY-MIB
+    OBJECT-TYPE, Unsigned32,
+    MODULE-IDENTITY                     FROM SNMPv2-SMI
+    RowStatus, TruthValue, TimeStamp, 
+    RowPointer                          FROM SNMPv2-TC
+    IPAddress, IPv4Address, PortNumber,
+    IPAddressType                       FROM HAIPE-V4-TEXTUAL-CONVENTIONS-MIB;
+
+haipev4DMDKMIB MODULE-IDENTITY
+    LAST-UPDATED "201006231600Z"
+    ORGANIZATION "HAIPE PO"
+    CONTACT-INFO
+         "(U//FOUO) Not Availablee"
+    DESCRIPTION
+         "(U//FOUO) This MIB defines the HAIPE directory MIB objects."
+    REVISION     "201006231600Z"
+    DESCRIPTION  "(U//FOUO) MIB 4.1.0 FINAL Release"		 
+    ::= { hv4DMDK 1 }
+
+hDMDK                       OBJECT IDENTIFIER ::= { haipev4DMDKMIB 1 }
+hDMDKControlObjects         OBJECT IDENTIFIER ::= { hDMDK 1 }
+hDMDKScalars                OBJECT IDENTIFIER ::= { hDMDK 2 }
+hDMDKServerInformation      OBJECT IDENTIFIER ::= { hDMDK 3 }
+hDMDKInformation            OBJECT IDENTIFIER ::= { hDMDK 4 }
+
+
+-- ******************************************************************
+-- Dynamic Multicast Discovery And Keying Control Objects
+-- ******************************************************************
+
+hDMDKEnableGroupLeadership OBJECT-TYPE
+    SYNTAX     TruthValue
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The indication of whether the device will register 
+         as a Multicast Group Leader."
+    DEFVAL { false }
+    ::= { hDMDKControlObjects 1 }
+
+-- ******************************************************************
+-- Dynamic Multicast Discovery And Keying Scalar Objects
+-- ******************************************************************
+
+hDMDKMcastQueryTimeout OBJECT-TYPE
+    SYNTAX     Unsigned32
+    UNITS       "seconds"
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The timeout value, in seconds, for DMDK Query 
+         messages."
+    ::= { hDMDKScalars 1 }
+
+hDMDKMcastQueryRetries OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of times DMDK Query messages will be 
+         resent if no DMDK Response is received within the timeout 
+         specified by the hDMDKMcastQueryTimeout object. A  
+         configuration value of ZERO would indicate continuously 
+         sending the message until a DMDK Response message is received."
+    ::= { hDMDKScalars 2 } 
+
+hDMDKMcastRegistrationTimeout OBJECT-TYPE
+    SYNTAX     Unsigned32
+    UNITS      "seconds"
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The timeout value, in seconds, for DMDK 
+         Registration messages."
+    ::= { hDMDKScalars 3 }
+
+hDMDKMcastRegistrationRetries OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of times DMDK Registration messages will be 
+         resent if no DMDK Response is received within the timeout 
+         specified by the hDMDKMcastRegistrationTimeout object. A  
+         configuration value of ZERO would indicate continuously 
+         sending the message until a DMDK Response message is received."
+    ::= { hDMDKScalars 4 } 
+
+hDMDKIBKTRequestTimeout OBJECT-TYPE
+    SYNTAX     Unsigned32
+    UNITS      "seconds"
+    MAX-ACCESS read-write
+    STATUS     current 
+    DESCRIPTION
+        "(U//FOUO) The timeout value, in seconds, for DMDK IBKT
+         Key Transfer Request messages."
+    ::= { hDMDKScalars 5 }
+
+hDMDKIBKTRequestRetries OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of times DMDK In Band Key Transfer 
+         Request payload will be resent if no DMDK In Band Key 
+         Transfer payload is received within the timeout specified
+         by the hDMDKIBKTRequestTimeout object. A configuration value
+         of ZERO would indicate continuously sending the message until 
+         a DMDK In Band Key Transfer payload is received."
+    ::= { hDMDKScalars 6 }
+
+-- ******************************************************************
+-- Dynamic Multicast Discovery And Keying Server Information 
+-- ******************************************************************
+
+-- =========
+-- Dynamic Multicast Discovery And Keying Server Table
+-- =========
+
+hDMDKServerTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hDMDKServerTable."
+    ::= { hDMDKServerInformation 1 } 
+
+hDMDKServerTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime the last time any entry
+         in the hDMDKServerTable was modified, created, or deleted by
+         either SNMP or other management method (e.g. via an HMI).
+
+         (U//FOUO) A manager can use this object to ensure that no 
+         changes to the configuration of this table have happened 
+         since the last time it examined the table. 
+
+         (U//FOUO) A value of 0 indicates that no entry has been 
+         changed since the agent initialized."
+   ::= { hDMDKServerInformation 2 }
+
+hDMDKServerTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HDMDKServerTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The table containing a set of PT IP Addresses and ports  that
+         DMDK Query and Registration messages should be sent to. 
+
+         (U//FOUO) DMDK Query messages will be sent to all addresses
+         specified in this table.
+
+         (U//FOUO) DMDK Registration messages will be sent to all 
+         addresses specified in this table. 
+
+         (U//FOUO) If the PT address of a given DMDK Query or 
+         Registration is remote, the messages to that server will be
+         treated as an outbound PT packet. Hence, the messages will
+         need verification against the hPolicyRuleTable to determine
+         the appropriate level of protection needed.
+
+         (U//FOUO) Note: The HAIPE IS refers to this table as the 
+         'DMDK Server Table'."
+    ::= { hDMDKServerInformation 3 }
+
+hDMDKServerTableEntry OBJECT-TYPE
+    SYNTAX     HDMDKServerTableEntry
+    MAX-ACCESS not-accessible 
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) An entry defines a particular PT IP destination to
+         send DMDK Query and Registration messages."
+    INDEX { hDMDKServerPriority }
+    ::= { hDMDKServerTable 1 }
+
+HDMDKServerTableEntry ::= SEQUENCE
+{
+   hDMDKServerPriority                 Unsigned32,
+   hDMDKServerPTIPAddrType             IPAddressType,
+   hDMDKServerPTIPAddress              IPAddress,
+   hDMDKServerPTPort                   PortNumber,
+   hDMDKServerRowStatus                RowStatus
+} 
+
+hDMDKServerPriority OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A unique numeric index that indicates the priority 
+         of the Discovery Server in context. Lower values have a 
+         higher priority. This column is also the primary index for 
+         this table."
+    ::= { hDMDKServerTableEntry 1 }
+
+hDMDKServerPTIPAddrType OBJECT-TYPE
+    SYNTAX     IPAddressType
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol Version, IPv4 or IPv6, of 
+         the Discovery Server destination PT Address. Specifically
+         the value of this property determines the size and format of
+         the hDMDKServerPTIPAddress."
+    ::= { hDMDKServerTableEntry 2 }
+
+hDMDKServerPTIPAddress OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol addressing information for
+         the PT address where the DMDK Query and Registration 
+         messages should be sent."
+    ::= { hDMDKServerTableEntry 3 }
+
+hDMDKServerPTPort OBJECT-TYPE
+    SYNTAX     PortNumber
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The port number associated with the 
+         hDMDKServerPTIPAddress where DMDK Query and DMDK Registration
+         messages should be sent to."
+    ::= { hDMDKServerTableEntry 4 }
+
+hDMDKServerRowStatus OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may be
+         created, or old entries deleted from this table. 
+
+         (U//FOUO) If an attempt to create a new row via createAndGo
+         does not include values for columns for the new row, an 
+         inconsistentName error will be returned for this object. 
+
+         (U//FOUO) A row cannot be set to active while 
+         hDMDKServerPTIPAddrType, hDMDKServerPTIPAddress, and
+         hDMDKServerPTPort do not contain consistent values for the 
+         row. An inconsistentValue error will be returned for this 
+         object. 
+
+         (U//FOUO) An active row may not be changed to an inconsistent
+         state. If such an attempt is made, an inconsistentValue error 
+         will be returned. In other words, any new values must be 
+         valid values for an active row. 
+
+         (U//FOUO) At a minimum, implementations must support 
+         createAndGo and destroy management functions. Support for 
+         createAndWait, active, notInService, and notReady management
+         functions is optional."
+    ::= { hDMDKServerTableEntry 5 }
+
+-- ******************************************************************
+-- Dynamic Multicast Discovery And Keying Information 
+-- ******************************************************************
+
+-- =========
+-- Dynamic Multicast Discovery And Keying Information Table
+-- =========
+
+hDMDKInformationTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hDMDKInformationTable."
+    ::= { hDMDKInformation 1 } 
+
+hDMDKInformationTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime the last time any entry
+         in the hDMDKInformationTable was modified, created, or deleted by
+         either SNMP or other management method (e.g. via an HMI).
+
+         (U//FOUO) A manager can use this object to ensure that no 
+         changes to the configuration of this table have happened 
+         since the last time it examined the table. 
+
+         (U//FOUO) A value of 0 indicates that no entry has been 
+         changed since the agent initialized."
+   ::= { hDMDKInformation 2 }
+
+hDMDKInformationTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HDMDKInformationTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+         "(U//FOUO) The table containing information on Multicast Groups using 
+         DMDK.  This table contains static PT to CT Multicast Group mappings, a
+         row pointer to a Manual SA, and Multicast Group Leader addressing 
+         information (if exists). 
+         
+         (U//FOUO) This table is used by the agent to store information about 
+         the multicast groups learned by throught the DMDK protocol. The table 
+         can also be used to manually configure a subset of the information, 
+         such as PT to CT mappings or manually configured leaders, or even 
+         manually configured SAs."
+    ::= { hDMDKInformation 3 }
+
+hDMDKInformationTableEntry OBJECT-TYPE
+    SYNTAX     HDMDKInformationTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) An entry in this table describes a Multicast Group which 
+         uses DMDK."
+    INDEX { hDMDKInfoIndex } 
+    ::= { hDMDKInformationTable 1 }
+
+HDMDKInformationTableEntry ::= SEQUENCE
+{
+    hDMDKInfoIndex                   Unsigned32,
+    hDMDKInfoMcastIPAddrType         IPAddressType,
+    hDMDKInfoMcastPTIPAddressStart   IPAddress,
+    hDMDKInfoMcastPTIPAddressEnd     IPAddress,
+    hDMDKInfoMcastCTIPAddress        IPAddress,
+    hDMDKInfoManualSAIndex           RowPointer,
+    hDMDKInfoGroupLeaderIPAddrType   IPAddressType,
+    hDMDKInfoGroupLeaderPTIPAddress  IPAddress,
+    hDMDKInfoGroupLeaderCTIPAddress  IPAddress,
+    hDMDKInfoRowStatus               RowStatus
+}
+
+hDMDKInfoIndex OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A unique numeric index that identifies one entry
+         in this table. This column is the primary index for this 
+         table."
+    ::= { hDMDKInformationTableEntry 1 } 
+
+hDMDKInfoMcastIPAddrType OBJECT-TYPE
+    SYNTAX     IPAddressType
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol Version, IPv4 or IPv6, of the PT and
+	 CT multicast addresses associated with a DMDK group. Specifically, 
+	 the value of this property determines the size and format of the 
+         hDMDKInfoMcastPTIPAddressStart,hDMDKInfoMcastPTIPAddressEnd, and
+         hDMDKInfoMcastCTIPAddress columns."
+    ::= { hDMDKInformationTableEntry 2 }
+
+hDMDKInfoMcastPTIPAddressStart OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The starting address of a PT IP address range associated
+	 with a DMDK group. The value in this column is matched against the 
+	 destination Multicast PT IP Address of the packet that initiated the
+	 DMDK process.
+
+         (U//FOUO) The address type value set (IPv4 address value,
+         IPv6 address value) in this column must be consistent with the
+         hDMDKInfoMcastIPAddrType column.	 
+	 
+         (U//FOUO) Populating hDMDKInfoMcastPTIPAddressEnd, 
+	 hMDKInfoMcastCTIPAddress, and this column with valid addresses
+	 indicates a PT-to-CT multicast address mapping associated with a DMDK
+	 group. Hence, this column must only be populated if 
+	 hDMDKInfoMcastPTIPAddressEnd and hDMDKInfoMcastCTIPAddress are also
+	 populated with valid addresses.
+
+         (U//FOUO) Populating 0.0.0.0 for IPv4 or to ::0 for IPv6 indicates
+	 that this row is used to configure a preferred Multicast CT IP address,
+	 as indicated by hDMDKInfoMcastCTIPAddress, for DMDK Registration. Upon
+	 successful registration of a DMDK group, the agent must internally 
+	 configure this column as well as hDMDKInfoMcastPTIPAddressEnd with a 
+	 valid range containing the destination Mulitcast PT IP Address of the 
+	 packet that initiated the DMDK process. 
+	 
+	 (U//FOUO) Not populating this column also indicates that this row is
+	 used to configure a preferred Multicast CT IP address, as indicated by
+	 hDMDKInfoMcastCTIPAddress, for DMDK Registration. However, upon
+	 successful registration of a DMDK group, the agent must not populate
+	 this column and hDMDKInfoMcastPTIPAddressEnd. A new entry must be
+	 created in this table configured with the appropriate information while
+	 this entry is left intact for future use."
+    ::= { hDMDKInformationTableEntry 3 }
+    
+hDMDKInfoMcastPTIPAddressEnd OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The ending address of a PT IP address range associated
+	 with a DMDK group. The value in this column is matched against the 
+	 destination Multicast PT IP Address of the packet that initiated the
+	 DMDK process.
+
+         (U//FOUO) The address type value set (IPv4 address value,
+         IPv6 address value) in this column must be consistent with the
+         hDMDKInfoMcastIPAddrType column.	 
+	 
+         (U//FOUO) Populating hDMDKInfoMcastPTIPAddressStart, 
+	 hMDKInfoMcastCTIPAddress, and this column with valid addresses
+	 indicates a PT-to-CT multicast address mapping associated with a DMDK
+	 group. Hence, this column must only be populated if 
+	 hDMDKInfoMcastPTIPAddressStart and hDMDKInfoMcastCTIPAddress are also
+	 populated with valid addresses.
+
+         (U//FOUO) Populating 255.255.255.255 for IPv4 or 
+	 FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF for IPv6 indicates
+	 that this row is used to configure a preferred Multicast CT IP address,
+	 as indicated by hDMDKInfoMcastCTIPAddress, for DMDK Registration. Upon
+	 successful registration of a DMDK group, the agent must internally 
+	 configure this column as well as hDMDKInfoMcastPTIPAddressStart with a 
+	 valid range containing the destination Mulitcast PT IP Address of the 
+	 packet that initiated the DMDK process. 
+	 
+	 (U//FOUO) Not populating this column also indicates that this row is
+	 used to configure a preferred Multicast CT IP address, as indicated by
+	 hDMDKInfoMcastCTIPAddress, for DMDK Registration. However, upon
+	 successful registration of a DMDK group, the agent must not populate
+	 this column and hDMDKInfoMcastPTIPAddressEnd. A new entry must be
+	 created in this table configured with the appropriate information while
+	 this entry is left intact for future use."
+    ::= { hDMDKInformationTableEntry 4 }    
+
+hDMDKInfoMcastCTIPAddress OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The CT IP Address associated with the Multicast Group. The 
+	 value in this column is the corresponding Multicast CT IP Address for 
+	 the PT Multicast Group indicated by hDMDKInfoMcastPTIPAddressStart and
+	 hDMDKInfoMcastPTIPAddressEnd.
+         
+         (U//FOUO) Values in this column are either configured by the manager 
+         (to be used in DMDK Registrations) or received through the 
+         DMDK protocol and internally configured."
+    ::= { hDMDKInformationTableEntry 5 }
+
+hDMDKInfoManualSAIndex OBJECT-TYPE
+    SYNTAX     RowPointer
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A row pointer to the hManualSADTable. 
+
+         (U//FOUO) If this column exists, the row pointer indicates an active 
+	 SA protecting the Multicast Group indicated by 
+	 hDMDKInfoMcastPTIPAddressStart and hDMDKInfoMcastPTIPAddressEnd.
+
+         (U//FOUO) This column may also be configured with an hManualSADTable
+	 entry not created via DMDK."
+    ::= { hDMDKInformationTableEntry 6 }
+
+hDMDKInfoGroupLeaderIPAddrType OBJECT-TYPE
+    SYNTAX     IPAddressType
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol Version, IPv4 or IPv6, of 
+        the PT CT IP Address of the Multicast Group Leader. 
+        Specifically, the value of this property determines the size
+        and format of the hDMDKInfoGroupLeaderPTIPAddress and
+        hDMDKInfoGroupLeaderCTIPAddress columns."
+    ::= { hDMDKInformationTableEntry 7 }
+
+hDMDKInfoGroupLeaderPTIPAddress OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The PT IP Address of the Multicast Group Leader.
+        
+         (U//FOUOU) If present, this value indicates that the group
+         indicated by hDMDKInfoMcastPTIPAddressStart, 
+	 hDMDKInfoMcastPTIPAddressEnd and hDMDKInfoMcastCTIPAddress currently
+         has a Multicast Group Leader.
+	 
+         (U//FOUO) The address type value set (IPv4 address value,
+         IPv6 address value) in this column must be consistent with the
+         hDMDKInfoGroupLeaderIPAddrType column.
+
+         (U//FOUO) This column may be manually prior to the DMDK process or
+	 internally configured during the DMDK process. If manually configured,
+	 valid values must exist for hDMDKInfoMcastPTIPAddressStart, 
+	 hDMDKInfoMcastPTIPAddressEnd and hDMDKInfoMcastCTIPAddress."
+    ::= { hDMDKInformationTableEntry 8 }
+
+hDMDKInfoGroupLeaderCTIPAddress OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The PT IP Address of the Multicast Group Leader.
+        
+         (U//FOUOU) If present, this value indicates that the group
+         indicated by hDMDKInfoMcastPTIPAddressStart, 
+	 hDMDKInfoMcastPTIPAddressEnd and hDMDKInfoMcastCTIPAddress currently
+         has a Multicast Group Leader.
+
+         (U//FOUO) The address type value set (IPv4 address value,
+         IPv6 address value) in this column must be consistent with the
+         hDMDKInfoGroupLeaderIPAddrType column.	 
+	 
+         (U//FOUO) This column may be manually prior to the DMDK process or
+	 internally configured during the DMDK process. If manually configured,
+	 valid values must exist for hDMDKInfoMcastPTIPAddressStart, 
+	 hDMDKInfoMcastPTIPAddressEnd and hDMDKInfoMcastCTIPAddress."
+    ::= { hDMDKInformationTableEntry 9 }
+
+hDMDKInfoRowStatus OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may be
+         created, or old entries deleted from this table.
+
+         (U//FOUO) If an attempt to create a new row via createAndGo 
+         does not include values for columns for the new row, an
+         inconsistentName error will be returned for this object.
+
+         (U//FOUO) A row cannot be set to active while all populated address
+	 columns and their associated address type columns do not contain 
+	 consistent values for the row. An inconsistentValue error will be 
+	 returned for inconsistent values.
+
+         (U//FOUO) An active row may not be changed to an inconsistent
+         state. If such an attempt is made, an inconsistentValue error 
+         will be returned. In other words, any new values must be 
+         valid values for an active row. 
+
+         (U//FOUO) At a minimum, implementations must support 
+         createAndGo and destroy management functions. Support for 
+         createAndWait, active, notInService, and notReady management
+         functions is optional."
+    ::= { hDMDKInformationTableEntry 10 }
+
+END
+
+

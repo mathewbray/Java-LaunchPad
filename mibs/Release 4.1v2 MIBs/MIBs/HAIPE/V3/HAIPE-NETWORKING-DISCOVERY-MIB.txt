@@ -1,0 +1,1627 @@
+--
+--                 Unclassified//For Official Use Only
+--
+-- This entire document, which defines SNMP MIB objects in the SMIv2
+-- language should be considered U//FOUO.
+--
+-- The data that will be transmitted on the wire as a result of
+-- accessing these MIB objects MUST NOT BE CONSIDERED U//FOUO and is
+-- subject to separate classification.  The classification level of this
+-- data is not defined or within the scope of this document.
+--
+
+HAIPE-NETWORKING-DISCOVERY-MIB  DEFINITIONS  ::= BEGIN
+
+IMPORTS
+    OBJECT-TYPE, Unsigned32, Integer32,
+    MODULE-IDENTITY                     FROM SNMPv2-SMI
+
+    RowStatus, TruthValue, DateAndTime,
+    TimeStamp, TEXTUAL-CONVENTION       FROM SNMPv2-TC
+
+    InetAddressType, InetAddress,
+    InetPortNumber,
+    InetAddressPrefixLength             FROM INET-ADDRESS-MIB
+
+    HaipeSide                           FROM HAIPE-TC-MIB
+
+    hNetDiscovery                       FROM HAIPE-NETWORKING-MIB;
+
+haipeNetworkingDiscoveryMIB MODULE-IDENTITY
+    LAST-UPDATED "200808111500Z"
+    ORGANIZATION "HAIPE PO"
+    CONTACT-INFO
+         "(U//FOUO) Not Available"
+    DESCRIPTION
+        "(U//FOUO) This MIB defines the HAIPE discovery MIB objects."
+    ::= { hNetDiscovery 1 }
+
+-- ***************** Textual Conventions *******************************
+
+ -- the RouteTag type represents the contents of the
+ -- Route Domain field in the packet header or route entry.
+ -- The use of the Route Domain is deprecated.
+
+ HaipeRouteTag ::= TEXTUAL-CONVENTION
+     STATUS      current
+     DESCRIPTION
+        "(U//FOUO) HaipeRouteTag type represents the contents of the Route
+        Domain field in the packet header or route entry"
+     SYNTAX      OCTET STRING (SIZE (2))
+
+-- *********************************************************************
+-- *********************************************************************
+--
+-- Discovery Group
+--
+-- *********************************************************************
+-- *********************************************************************
+
+hNetDiscoveryPeer            OBJECT IDENTIFIER ::= { hNetDiscovery 2 }
+hNetDiscoveryLocal           OBJECT IDENTIFIER ::= { hNetDiscovery 3 }
+
+hNetDiscoveryPeerConfig      OBJECT IDENTIFIER ::= { hNetDiscoveryPeer 1 }
+hNetTopologyPeerAssignments  OBJECT IDENTIFIER ::= { hNetDiscoveryPeer 2 }
+
+hRIPConfig                   OBJECT IDENTIFIER ::= { hNetDiscoveryLocal 6 }
+
+-- ***********************************************************
+-- Config
+--
+
+hDiscoveryEnabled OBJECT-TYPE
+    SYNTAX      TruthValue
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The indication of whether the HAIPE will
+        dynamically discover remote HAIPEs and establish an SA using
+        the services listed in the hDiscoveryDeliveryTable."
+    DEFVAL { true }
+    ::= { hNetDiscoveryPeerConfig 1 }
+
+hDiscoveryAdvertiseAdminCost OBJECT-TYPE
+    SYNTAX      Integer32 (0..255)
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The administrative cost to advertise for local 
+        prefixes that were learned via automated mechanisms (E.G.,
+        RIPv2).  Entries placed into the hTopologyTable or 
+        hLocalEnclaveTable which are learned from automated mechanisms 
+        will set the hTopologyDestAdminCost or hLocalEnclaveDestAdminCost 
+        to this value."
+    ::= { hNetDiscoveryPeerConfig 2 }
+
+hDiscoveryMessageConfig OBJECT IDENTIFIER ::= { hNetDiscoveryPeerConfig 3 }
+
+-- ***************************************
+
+
+hDiscoveryProbeTimeout OBJECT-TYPE
+    SYNTAX      Unsigned32
+    UNITS       "seconds"
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The timeout value, in seconds, for PROBE messages.
+
+        (U//FOUO) This only applies to sending discovery messages
+        where an acknowledgement is expected and sending a request
+        again is appropriate.
+        "
+    ::= { hDiscoveryMessageConfig 1 }
+
+hDiscoveryProbeRetry OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The number of times PROBE messages will be resent
+        if no response is received within the timeout specified by
+        the hDiscoveryProbeTimeout object.
+
+        (U//FOUO) This only applies to sending discovery messages
+        where an acknowledgement is expected and sending a request
+        again is appropriate.
+        "
+    ::= { hDiscoveryMessageConfig 2 }
+
+-- ***************************************
+
+hDiscoveryRegistrationTimeout OBJECT-TYPE
+    SYNTAX      Unsigned32
+    UNITS       "seconds"
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The timeout value, in seconds, for REGISTRATION messages"
+    ::= { hDiscoveryMessageConfig 3 }
+
+hDiscoveryRegistrationRetry OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The number of times REGISTRATION messages will be resent
+        if no response is received within the timeout specified by the 
+        hDiscoveryRegistrationTimeout object.  A configuration value of ZERO
+        would indicate continuously sending the message until receiving an
+        ACK."
+    ::= { hDiscoveryMessageConfig 4 }
+
+-- ***************************************
+
+hDiscoverySolicitationTimeout OBJECT-TYPE
+    SYNTAX      Unsigned32
+    UNITS       "seconds"
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The timeout value, in seconds, for SOLICITATION messages"
+    ::= { hDiscoveryMessageConfig 5 }
+
+hDiscoverySolicitationRetry OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The number of times SOLICITATION messages will be resent
+        if no response is received within the timeout specified by the 
+        hDiscoverySolicitationTimeout object.  A configuration value of ZERO
+        would indicate continuously sending the message until receiving an
+        ACK."
+    ::= { hDiscoveryMessageConfig 6 }
+
+
+-- ***********************************************************
+--
+-- hDiscoveryDeliveryTable defines a sequence of addresses, in order, that
+-- discovery requests (i.e. SOLICITATION/PROBE) should be sent to. 
+--
+
+hDiscoveryDelivery OBJECT IDENTIFIER ::= { hNetDiscoveryPeerConfig 4 }
+
+hDiscoveryDeliveryTableCount OBJECT-TYPE
+        SYNTAX      Unsigned32
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The number of rows in the hDiscoveryDeliveryTable."
+        ::= { hDiscoveryDelivery 1 }
+
+
+hDiscoveryDeliveryTableLastChanged OBJECT-TYPE
+        SYNTAX      TimeStamp
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The value of sysUpTime the last time any entry in
+            the hDiscoveryDeliveryTable was modified, created, or deleted
+            by either SNMP or other management method (e.g., via an HMI).
+
+            (U//FOUO) Managers can use this object to ensure that no
+            changes to configuration of this table have happened since
+            the last time it examined the table.
+
+            (U//FOUO) A value of 0 indicates that no entry has been
+            changed since the agent initialized."
+        ::= { hDiscoveryDelivery 2 }
+
+hDiscoveryDeliveryTable    OBJECT-TYPE
+        SYNTAX          SEQUENCE OF HDiscoveryDeliveryEntry
+        MAX-ACCESS      not-accessible
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The table containing a sequence of IP addresses
+            (multicast, unicast, anycast, or otherwise), in
+            prioritized order, that discovery SOLICITATION requests
+            should be sent to.  The indexes to this table are first
+            indexed by a network address to allow for different
+            network address ranges to be served by different discovery
+            service types.
+
+            (U//FOUO) The addresses listed in this table are the PT
+            addresses of a given discovery delivery destination.  If
+            that address is remote, the hTopologyTable will likely
+            need a row in it as well to indicate behind which remote
+            HAIPE the discovery address lies so the message can
+            actually be sent.
+
+            (U//FOUO) To use this table, take the PT address a given
+            packet should be delivered to and look up the every
+            matching row for the values hDiscSearchAddressType,
+            hDiscSearchAddressStart, hDiscSearchAddressEnd.  This
+            search will result in a list of rows prioritized by the
+            hDiscDelivPriority column.  These rows can then be
+            processed in the prioritized order of service types and
+            PT addresses to which the discovery request should be
+            sent.  Implementations are not required to support
+            overlapping ranges, or network ranges with more specific
+            sub-ranges but may choose to do so if desired.  An
+            attempt to create a new row that has address sub-ranges
+            or overlapping addresses which are not supported, should
+            return a wrongValue error when the RowStatus column is
+            set to createAndGo or createAndWait.
+
+            (U//FOUO) Note: The HAIPE IS refers to this as the
+            'Solicitation Transmission Address Table'."
+        ::= { hDiscoveryDelivery 3 }
+
+hDiscoveryDeliveryEntry  OBJECT-TYPE
+        SYNTAX          HDiscoveryDeliveryEntry
+        MAX-ACCESS      not-accessible
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) A row defining a particular discovery search
+            method and PT delivery addresses for a given PT network
+            address range."
+        INDEX { hDiscDelivPriority }
+        ::= { hDiscoveryDeliveryTable 1 }
+
+HDiscoveryDeliveryEntry ::= SEQUENCE
+    {
+	hDiscSearchAddressType           InetAddressType,
+	hDiscSearchStartAddress          InetAddress,
+	hDiscSearchEndAddress            InetAddress,
+	hDiscDelivPriority               Unsigned32,
+	hDiscDelivType                   INTEGER,
+	hDiscDelivPTAddressType          InetAddressType,
+	hDiscDelivPTAddress              InetAddress,
+	hDiscDelivPTPort                 InetPortNumber,
+	hDiscDelivStatus                 RowStatus
+    }
+
+hDiscSearchAddressType OBJECT-TYPE
+        SYNTAX      InetAddressType
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The address type of the PT network range that these
+            services are assigned to."
+        DEFVAL { ipv6 }
+        ::= { hDiscoveryDeliveryEntry 1 }
+
+hDiscSearchStartAddress OBJECT-TYPE
+        SYNTAX      InetAddress
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The start address of the PT network range that these
+            discovery services are assigned to."
+        ::= { hDiscoveryDeliveryEntry 2 }
+
+hDiscSearchEndAddress OBJECT-TYPE
+        SYNTAX      InetAddress
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The end address of the PT network range that these
+            discovery services are assigned to."
+        ::= { hDiscoveryDeliveryEntry 3 }
+
+hDiscDelivPriority       OBJECT-TYPE
+        SYNTAX          Unsigned32 (1..4294967295)
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The priority of the discovery service (lowest
+            numerical value being contacted first)."
+        ::= { hDiscoveryDeliveryEntry 4 }
+
+hDiscDelivType          OBJECT-TYPE
+        SYNTAX          INTEGER { v1(1), v3GDC(2), impepd(3) }
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The discovery method used for this entry.
+
+            (U//FOUO) v1:
+                Version 1 discovery ('legacy')
+
+            (U//FOUO) v3GDC:
+                Version 3 Generic Discovery Client (both unicast and
+                multicast support of the HAIPE IS V3 discovery
+                protocol)
+
+            (U//FOUO) impepd:
+                IMplicit Peer-Enclave-Prefix-Discovery.  This type of
+                discovery delivery is actually based on a calculated
+                mechanism for determining the remote CT address of a
+                HAIPE.  A row with the impepd value will indicate that
+                this network search range (hDiscSearchStartAddress
+                through hDiscSearchEndAddress) will use IM-PEPD
+                mechansims to determine the remote CT address of a
+                HAIPE fronting an PT prefix.  The priority ordering of
+                this table must still be followed in order to ensure
+                deterministic behaviour, however.  I.E., it is
+                possible to configure a GDC server to be consulted
+                before falling back to IM-PEPD calculations.  HAIPEs
+                which do not allow for overlapping search address
+                ranges with different modes of discovery must reject
+                configuration attempts with a inconsistentValue
+                exception.  Columns hDiscDelivPTAddressType(6) through
+                hDiscDelivPTPort(8) are not used for IM-PEPD support
+                and should be set to unknown(0), '', and 0
+                respectively when this column is set to impepd(3)."
+        ::= { hDiscoveryDeliveryEntry 5 }
+
+hDiscDelivPTAddressType  OBJECT-TYPE
+        SYNTAX          InetAddressType
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The address type of the PT address where the
+            discovery request will be sent to."
+        ::= { hDiscoveryDeliveryEntry 6 }
+
+hDiscDelivPTAddress      OBJECT-TYPE
+        SYNTAX          InetAddress (SIZE (0|4|16|20))
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The PT address where the discovery request will
+            be sent to."
+        ::= { hDiscoveryDeliveryEntry 7 }
+
+hDiscDelivPTPort         OBJECT-TYPE
+        SYNTAX          InetPortNumber
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The PT port number the request should be sent
+            to, if appropriate for the given the service type.
+            Entries with a hDiscDelivType of v1 must use port 3623.
+
+             (U//FOUO) A wrongValue SNMP exception should be returned
+             when this object is set to an unsupported value.  This
+             may occur, for example, when devices do not support the
+             configuration of differing port numbers for
+             hDiscRegPTPort, hDiscSolRcvPort and hDiscDelivPTPort.
+            "
+        ::= { hDiscoveryDeliveryEntry 8 }
+
+hDiscDelivStatus         OBJECT-TYPE
+        SYNTAX          RowStatus
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The status of the row, by which new entries may be
+            created, or old entries deleted from this table.
+
+            (U//FOUO) If an attempt to create a new row via
+            createAndGo does not include values for columns without
+            defaults (hDiscDelivType, hDiscDelivPTAddressType,
+            hDiscDelivPTAddress and hDiscDelivPTPort) for the new row,
+            an inconsistentName error will be returned for this
+            object.
+
+            (U//FOUO) A row cannot be set to active while
+            hDiscDelivType, hDiscDelivPTAddressType,
+            hDiscDelivPTAddress and hDiscDelivPTPort do not contain
+            consistent values for the row (an inconsistentValue error
+            will be returned for this object).
+
+            (U//FOUO) If any column is set to an invalid or unsupported
+            value (during row creation or any other time), a wrongValue
+            error will be returned for that object.
+
+            (U//FOUO) The value of this object has no effect on
+            whether other objects in this row can be modified.
+
+            (U//FOUO) An active row may not be changed to an inconsistent
+            state (an inconsistentValue error will be returned for the
+            object). In other words, any new values must be valid values for
+            an active row."
+        ::= { hDiscoveryDeliveryEntry 9 }
+
+-- *************************************************
+--
+hDiscRegistration OBJECT IDENTIFIER ::= { hNetDiscoveryPeerConfig 5 }
+
+hDiscRegistrationTableCount OBJECT-TYPE
+        SYNTAX      Unsigned32
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The number of rows in the hDiscRegistrationTable."
+        ::= { hDiscRegistration 1 }
+
+hDiscRegistrationTableLastChanged OBJECT-TYPE
+        SYNTAX      TimeStamp
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The value of sysUpTime the last time any entry in
+            the hDiscRegistrationTable was modified, created, or deleted
+            by either SNMP or other management method (e.g., via a HMI).
+
+            (U//FOUO) Managers can use this object to ensure that no
+            changes to configuration of this table have happened since
+            the last time it examined the table.
+
+            (U//FOUO) A value of 0 indicates that no entry has been
+            changed since the agent initialized."
+        ::= { hDiscRegistration 2 }
+
+hDiscRegistrationTable    OBJECT-TYPE
+        SYNTAX          SEQUENCE OF HDiscRegistrationEntry
+        MAX-ACCESS      not-accessible
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The table containing a set of IP addresses
+            (multicast, unicast, anycast, or otherwise) that discovery 
+            REGISTRATION messages should be sent to.  The addresses 
+            listed in this table are the PT addresses for the GenericClient
+            discovery servers.  If an address is remote, the 
+            hTopologyTable will likely need a row in it as well to 
+            indicate behind which remote HAIPE the GDC server lies so
+            the message can actually be sent.
+
+            (U//FOUO) REGISTRATION messages will be sent to all
+            addresses specified in this table.
+
+            (U//FOUO) Note: The HAIPE IS refers to this as the
+            'Registration Transmission Address Table'."
+        ::= { hDiscRegistration 3 }
+
+hDiscRegistrationEntry  OBJECT-TYPE
+        SYNTAX          HDiscRegistrationEntry
+        MAX-ACCESS      not-accessible
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) A row defining a particular registration destination."
+        INDEX
+                { hDiscRegPriority }
+        ::= { hDiscRegistrationTable 1 }
+
+HDiscRegistrationEntry ::= SEQUENCE
+    {
+	hDiscRegPriority                 Unsigned32,
+	hDiscRegPTAddressType            InetAddressType,
+	hDiscRegPTAddress                InetAddress,
+	hDiscRegPTPort                   InetPortNumber,
+	hDiscRegStatus                   RowStatus
+    }
+
+hDiscRegPriority       OBJECT-TYPE
+        SYNTAX          Unsigned32 (1..4294967295)
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) A unique numeric index for each configured 
+            Registration Address.
+
+            (U//FOUO) Note: Despite the name, this value does not imply 
+            a fixed ordering or prioritization of Registration Addresses."
+        ::= { hDiscRegistrationEntry 1 }
+
+hDiscRegPTAddressType  OBJECT-TYPE
+        SYNTAX          InetAddressType
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The Internet address type of the server's PT
+            address to be used.
+
+            (U//FOUO) Only ipv4(1), ipv6(2) and ipv6z(4) address types
+            are supported."
+        ::= { hDiscRegistrationEntry 2 }
+
+hDiscRegPTAddress      OBJECT-TYPE
+        SYNTAX          InetAddress (SIZE (4|16|20))
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The PT address the request should be sent to."
+        ::= { hDiscRegistrationEntry 3 }
+
+hDiscRegPTPort         OBJECT-TYPE
+        SYNTAX          InetPortNumber
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The PT port number the request should be sent to.
+
+
+             (U//FOUO) A wrongValue SNMP exception should be returned
+             when this object is set to an unsupported value.  This
+             may occur, for example, when devices do not support the
+             configuration of differing port numbers for
+             hDiscRegPTPort, hDiscSolRcvPort and hDiscDelivPTPort.
+            "
+        ::= { hDiscRegistrationEntry 4 }
+
+hDiscRegStatus         OBJECT-TYPE
+        SYNTAX          RowStatus
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The status of the row, by which new entries may be
+            created, or old entries deleted from this table.
+
+            (U//FOUO) If an attempt to create a new row via
+            createAndGo does not include values for columns without
+            defaults (hDiscRegPTAddressType hDiscRegPTPort and
+            hDiscRegPTAddress for the new row, an inconsistentName
+            error will be returned for this object.
+
+            (U//FOUO) A row cannot be set to active while
+            hDiscRegPTAddressType, hDiscRegPTAddress and hDiscRegPTPort do
+            not contain consistent values for the row (an inconsistentValue
+            error will be returned for this object).
+
+            (U//FOUO) If any column is set to an invalid or unsupported
+            value (during row creation or any other time), a wrongValue
+            error will be returned for that object.
+
+            (U//FOUO) The value of this object has no effect on
+            whether other objects in this row can be modified.
+
+            (U//FOUO) An active row may not be changed to an inconsistent
+            state (an inconsistentValue error will be returned for the
+            object). In other words, any new values must be valid values for
+            an active row."
+        ::= { hDiscRegistrationEntry 5 }
+
+hDiscRegistrationDefaultLifetime OBJECT-TYPE
+        SYNTAX      Unsigned32
+        UNITS       "seconds"
+        MAX-ACCESS  read-write
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) This value indicates the default 'prefix
+            lifetime parameter' to use when registering an address
+            range with a discovery server.  This value should be used
+            in registration messages when no other more specific
+            information is available."
+        DEFVAL { 4294967295 }
+        ::= { hDiscRegistration 4 }
+
+-- *************************************************
+--
+hDiscSolReception OBJECT IDENTIFIER ::= { hNetDiscoveryPeerConfig 6 }
+
+hDiscSolReceptionTableCount OBJECT-TYPE
+        SYNTAX      Unsigned32
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) This object indicates the number of rows in the
+            hDiscSolReceptionTable."
+        ::= { hDiscSolReception 1 }
+
+hDiscSolReceptionTableLastChanged OBJECT-TYPE
+        SYNTAX      TimeStamp
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The value of sysUpTime the last time any entry in
+            the hDiscSolReceptionTable was modified, created, or deleted
+            by either SNMP or other management method (e.g., via a HMI).
+
+            (U//FOUO) Managers can use this object to ensure that no
+            changes to configuration of this table have happened since
+            the last time it examined the table.
+
+            (U//FOUO) A value of 0 indicates that no entry has been
+            changed since the agent initialized."
+        ::= { hDiscSolReception 2 }
+
+hDiscSolReceptionTable    OBJECT-TYPE
+        SYNTAX          SEQUENCE OF HDiscSolReceptionEntry
+        MAX-ACCESS      not-accessible
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) hDiscSolReceptionTable defines a sequence of IP
+            addresses (multicast, unicast, anycast, or otherwise) and ports,
+            that will listen for solicitation messages.
+
+            (U//FOUO) Note: The HAIPE IS refers to this as the
+            'Solicitation Reception Address Table'."
+        ::= { hDiscSolReception 3 }
+
+hDiscSolReceptionEntry  OBJECT-TYPE
+        SYNTAX          HDiscSolReceptionEntry
+        MAX-ACCESS      not-accessible
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) A row defining a particular address/port pair for
+            listening for discovery solicitation messages."
+        INDEX
+                { hDiscSolRcvSide, hDiscSolRcvAddressType,
+                  hDiscSolRcvAddress, hDiscSolRcvPort }
+        ::= { hDiscSolReceptionTable 1 }
+
+HDiscSolReceptionEntry ::= SEQUENCE
+    {
+	hDiscSolRcvSide                  HaipeSide,
+	hDiscSolRcvAddressType           InetAddressType,
+	hDiscSolRcvAddress               InetAddress,
+	hDiscSolRcvPort                  InetPortNumber,
+	hDiscSolRcvType                  INTEGER,
+	hDiscSolRcvStatus                RowStatus
+    }
+
+hDiscSolRcvSide  OBJECT-TYPE
+        SYNTAX          HaipeSide
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The device side (PT(1)/CT(2)).  Devices may
+            chose to only support the reception of discovery
+            solicitation messages on the PT side of the device."
+        ::= { hDiscSolReceptionEntry 1 }
+
+hDiscSolRcvAddressType  OBJECT-TYPE
+        SYNTAX          InetAddressType
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The address type of the address to be used."
+        ::= { hDiscSolReceptionEntry 2 }
+
+hDiscSolRcvAddress      OBJECT-TYPE
+        SYNTAX          InetAddress (SIZE (4|16|20))
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The address to listen on."
+        ::= { hDiscSolReceptionEntry 3 }
+
+hDiscSolRcvPort         OBJECT-TYPE
+        SYNTAX          InetPortNumber
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The port number to listen on.
+
+             (U//FOUO) A wrongValue SNMP exception should be returned
+             when this object is set to an unsupported value.  This
+             may occur, for example, when devices do not support the
+             configuration of differing port numbers for
+             hDiscRegPTPort, hDiscSolRcvPort and hDiscDelivPTPort.
+            "
+        ::= { hDiscSolReceptionEntry 4 }
+
+hDiscSolRcvType         OBJECT-TYPE
+        SYNTAX          INTEGER { v1(1), v3GDC(2) }
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The discovery protocol for this entry."
+        ::= { hDiscSolReceptionEntry 5 }
+
+hDiscSolRcvStatus         OBJECT-TYPE
+        SYNTAX          RowStatus
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The status of the row, by which new entries may be
+            created, or old entries deleted from this table.
+
+            (U//FOUO) If an attempt to create a new row via createAndGo
+            does not include values for columns without defaults
+            for the new row, an inconsistentName error will be returned
+            for this object.
+
+            (U//FOUO) A row cannot be set to active while all columns do
+            not contain consistent values for the row (an inconsistentValue
+            error will be returned for this object).
+
+            (U//FOUO) If any column is set to an invalid or unsupported
+            value (during row creation or any other time), a wrongValue
+            error will be returned for that object.
+
+            (U//FOUO) The value of this object has no effect on
+            whether other objects in this row can be modified.
+
+            (U//FOUO) An active row may not be changed to an inconsistent
+            state (an inconsistentValue error will be returned for the
+            object). In other words, any new values must be valid values for
+            an active row."
+        ::= { hDiscSolReceptionEntry 6 }
+
+
+-- ***********************************************************
+--
+-- hRIPConfig
+--
+hRIPConfTableCount OBJECT-TYPE
+        SYNTAX      Unsigned32
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U) The number of rows in the hRIPConfTable."
+        ::= { hRIPConfig 1 }
+
+hRIPConfTableLastChanged OBJECT-TYPE
+        SYNTAX      TimeStamp
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U) The value of sysUpTime the last time any entry in
+            the hRIPConfTable was modified, created, or deleted
+            by either SNMP or other management method (e.g., via a HMI).
+
+            (U) Managers can use this object to ensure that no
+            changes to configuration of this table have happened since
+            the last time it examined the table.
+
+            (U) A value of 0 indicates that no entry has been
+            changed since the agent initialized."
+        ::= { hRIPConfig 2 }
+
+-- The RIP Interface Configuration Table.
+
+hRIPConfTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF HRIPConfEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U) The table containing a list of subnets which require
+        separate configuration in RIP."
+    ::= { hRIPConfig 3 }
+
+hRIPConfEntry OBJECT-TYPE
+    SYNTAX   HRIPConfEntry
+    MAX-ACCESS   not-accessible
+    STATUS   current
+    DESCRIPTION
+        "(U) A row describing a single routing domain in a single subnet."
+    INDEX { hrcAddrType, hrcAddr }
+    ::= { hRIPConfTable 1 }
+
+HRIPConfEntry ::= SEQUENCE
+    {
+	hrcAddrType                      InetAddressType,
+	hrcAddr                          InetAddress,
+	hrcAuthType                      INTEGER,
+	hrcAuthKey                       OCTET STRING,
+	hrcSend                          INTEGER,
+	hrcReceive                       INTEGER,
+	hrcDefaultMetric                 Integer32,
+	hrcAdvertising                   INTEGER,
+	hrcFilterDefaultRoutes           TruthValue,
+	hrcSrcAddress                    InetAddress,
+	hrcStatus                        RowStatus,
+	hrcIfConfDomain                  HaipeRouteTag,
+	hrcMetric                        Integer32
+    }
+
+hrcAddrType OBJECT-TYPE
+    SYNTAX          InetAddressType
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U) The IP Address type of the hrcAddr and hrcSrcAddress objects."
+    ::= { hRIPConfEntry 1 }
+
+hrcAddr OBJECT-TYPE
+    SYNTAX          InetAddress
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U) The IP Address of this system on the indicated subnet."
+    ::= { hRIPConfEntry 2 }
+
+hrcAuthType OBJECT-TYPE
+    SYNTAX   INTEGER {
+                    noAuthentication (1),
+                    simplePassword (2),
+                    md5 (3)
+                 }
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U) The type of Authentication used on this interface. Note that
+        simplePassword and md5 are only valid for RIPv1 and RIPv2."
+    DEFVAL { noAuthentication }
+    ::= { hRIPConfEntry 3 }
+
+hrcAuthKey OBJECT-TYPE
+    SYNTAX   OCTET STRING (SIZE(0..16))
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U) The value to be used as the Authentication Key
+        whenever the corresponding instance of hrcAuthType has
+        a value other than noAuthentication.  A modification of
+        the corresponding instance of hrcAuthType does not modify
+        the hrcAuthKey value.  If a string shorter than 16 octets
+        is supplied, it will be left-justified and padded to 16
+        octets, on the right, with nulls (0x00).
+
+        (U) Reading this object always results in an  OCTET
+        STRING of length zero; authentication may not
+        be bypassed by reading the MIB object."
+    DEFVAL { ''h }
+    ::= { hRIPConfEntry 4 }
+
+hrcSend OBJECT-TYPE
+    SYNTAX   INTEGER {
+                        doNotSend (1),
+                        ripVersion1 (2),
+                        rip1Compatible (3),
+                        ripVersion2 (4),
+                        ripV1Demand (5),
+                        ripV2Demand (6),
+                        ripNG (7)
+                      }
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U) What the router sends on this interface.
+        ripVersion1 implies sending RIP updates compliant
+        with  RFC  1058.   rip1Compatible implies
+        broadcasting RIP-2 updates using RFC 1058 route
+        subsumption rules.  ripVersion2 implies
+        multicasting RIP-2 updates.  ripV1Demand indicates
+        the use of Demand RIP on a WAN interface under RIP
+        Version 1 rules.  ripV2Demand indicates the use of
+        Demand RIP on a WAN interface under Version 2 rules. ripNG
+        indicates RIPng updates compliant with RFC 2080."
+    DEFVAL { doNotSend }
+    ::= { hRIPConfEntry 5 }
+
+hrcReceive OBJECT-TYPE
+    SYNTAX   INTEGER {
+                    doNotReceive (1),
+                    rip1 (2),
+                    rip2 (3),
+                    rip1OrRip2 (4),
+                    ripNG (5)
+                 }
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U) The version(s) of RIP updates that
+        are to be accepted.  Note that rip2 and
+        rip1OrRip2 implies reception of multicast
+        packets."
+    DEFVAL { doNotReceive }
+    ::= { hRIPConfEntry 6 }
+
+hrcDefaultMetric OBJECT-TYPE
+    SYNTAX   Integer32 ( 0..15 )
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U) The metric that is to be used for the default
+        route entry in RIP updates originated on this interface.
+        A value of zero indicates that no default route should
+        be originated; in this case, a default route via
+        another router may be propagated."
+    ::= { hRIPConfEntry 7 }
+
+hrcAdvertising OBJECT-TYPE
+    SYNTAX   INTEGER { noHorizon(1), splitHorizon(2), poisonedReverse(3),
+                       defaultOnly(4) }
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U) The algorithm used to decide which routes are include
+        in a route update message. A value of defaultOnly indicates
+        only the default route will be advertised."
+    DEFVAL { splitHorizon }
+    ::= { hRIPConfEntry 8 }
+
+hrcFilterDefaultRoutes OBJECT-TYPE
+    SYNTAX    TruthValue
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U) The indication of whether default routes learned via RIP
+        on this address should be filtered (discarded)."
+    DEFVAL { true }
+    ::= { hRIPConfEntry 9 }
+
+hrcSrcAddress OBJECT-TYPE
+    SYNTAX   InetAddress
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U) The IP Address this system will use as a source
+        address on this interface."
+    ::= { hRIPConfEntry 10 }
+
+hrcStatus OBJECT-TYPE
+    SYNTAX   RowStatus
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U) The status of the row, by which new entries may be
+        created, or old entries deleted from this table.
+
+        (U) If an attempt to create a new row via createAndGo
+        does not include values for columns without defaults
+        (hrcSend, hrcReceive, hrcDefaultMetric, hrcSrcAddress) for
+        the new row, an inconsistentName error will be returned for
+        this object.
+
+        (U) A row cannot be set to active while the values for hrcSend,
+        hrcReceive and hrcSrcAddress are not consistent with the
+        hrcAddrType for this row (an inconsistentValue error will be
+        returned for this object).
+
+        (U) If any column is set to an invalid or unsupported
+        value (during row creation or any other time), a wrongValue
+        error will be returned for that object.
+
+        (U) The value of this object has no effect on
+        whether other objects in this row can be modified.
+
+        (U) An active row cannot be changed to an inconsistent
+        state (an inconsistentValue error will be returned for the
+        object). In other words, the  hrcSend, hrcReceive and
+        hrcSrcAddress columns cannot be changed unless
+        the new values contain consistent values for the row."
+    ::= { hRIPConfEntry 11 }
+
+hrcIfConfDomain OBJECT-TYPE
+    SYNTAX   HaipeRouteTag
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U) Value inserted into the Routing Domain field
+        of all RIP packets sent on this interface."
+    DEFVAL { '0000'h }
+   ::= { hRIPConfEntry 12 }
+
+hrcMetric OBJECT-TYPE
+    SYNTAX   Integer32 ( 0..15 )
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U) The metric that is to be used for all non-default
+        route entries in RIP updates originated on this interface.
+
+        (U) Values 1-15 (inclusive) indicate an exact metric value 
+        to be used.
+
+        (U) When hrcMetric is absent or set to 0, the HAIPE may use an
+        alternate/unspecified mechanism to populate the route 
+        metrics."
+    DEFVAL { 1 }
+    ::= { hRIPConfEntry 13 }
+
+
+-- ***********************************************************
+-- hTopologyAssignments
+--
+
+hTopologyTableCount OBJECT-TYPE
+        SYNTAX      Unsigned32
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The number of rows in the hTopologyTable."
+        ::= { hNetTopologyPeerAssignments 1 }
+
+hTopologyTableLastChanged OBJECT-TYPE
+        SYNTAX      TimeStamp
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The value of sysUpTime the last time any entry in
+            the hTopologyTable was modified, created, or deleted by
+            either SNMP or other management method (e.g., via a HMI).
+
+            (U//FOUO) Managers can use this object to ensure that no
+            changes to configuration of this table have happened since
+            the last time it examined the table.
+
+            (U//FOUO) A value of 0 indicates that no entry has been
+            changed since the agent initialized."
+        ::= { hNetTopologyPeerAssignments 2 }
+
+hTopologyTable  OBJECT-TYPE
+        SYNTAX          SEQUENCE OF HTopologyEntry
+        MAX-ACCESS      not-accessible
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The table containing a list of known
+            prefix/HAIPE relationships.  The contents of this table
+            can be populated by either manual assignment, or through
+            the use of discovery services.  The table should contain
+            a list of all known prefixes and the HAIPE devices that
+            they are behind.  For the local enclave that this HAIPE
+            fronts, this HAIPE's own CT address is used in the
+            table.  This table should also be used for multicast
+            address mappings that must be made as multicast packets
+            traverse a HAIPE.
+
+            (U//FOUO) Note: This table does not hold any topology
+            information learned from NAT-T."
+        ::= { hNetTopologyPeerAssignments 3 }
+
+hTopologyEntry  OBJECT-TYPE
+        SYNTAX          HTopologyEntry
+        MAX-ACCESS      not-accessible
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) A row indicating that a particular prefix is reachable
+            via particular HAIPE."
+        INDEX  { hTopologyDestHostAddrType,
+                 hTopologyDestHost,
+                 hTopologyDestHostPTPfxLen,
+                 hTopologyDestHaipeCTAddrType,
+                 hTopologyDestHaipeCTAddr
+               }
+        ::= { hTopologyTable 1 }
+
+HTopologyEntry ::= SEQUENCE
+    {
+	hTopologyDestHostAddrType        InetAddressType,
+	hTopologyDestHost                InetAddress,
+	hTopologyDestHostPTPfxLen        InetAddressPrefixLength,
+	hTopologyDestHaipeCTAddrType     InetAddressType,
+	hTopologyDestHaipeCTAddr         InetAddress,
+	hTopologyDestHaipePTAddrType     InetAddressType,
+	hTopologyDestHaipePTAddr         InetAddress,
+	hTopologyRowStatus               RowStatus,
+	hTopologyDestAdminCost           Unsigned32,
+	hTopologyMethod                  INTEGER,
+	hTopologyLifetime                DateAndTime
+    }
+
+hTopologyDestHostAddrType  OBJECT-TYPE
+        SYNTAX          InetAddressType
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The PT Host Internet address type.
+
+            (U//FOUO) Only ipv4(1), ipv6(2) and ipv6z(4) address types
+            are supported."
+        ::= { hTopologyEntry 1 }
+
+hTopologyDestHost        OBJECT-TYPE
+        SYNTAX          InetAddress (SIZE (4|16|20))
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The PT Host (or network) IP
+            address(es)."
+        ::= { hTopologyEntry 2 }
+
+hTopologyDestHostPTPfxLen  OBJECT-TYPE
+        SYNTAX          InetAddressPrefixLength
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The prefix length of the address
+            stored in hTopologyDestHost (IE, the network mask)."
+        ::= { hTopologyEntry 3 }
+
+hTopologyDestHaipeCTAddrType OBJECT-TYPE
+        SYNTAX          InetAddressType
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The Destination HAIPE CT Internet
+            address type.
+
+            (U//FOUO) Only ipv4(1), ipv6(2) and ipv6z(4) address types
+            are supported."
+        ::= { hTopologyEntry 4 }
+
+hTopologyDestHaipeCTAddr       OBJECT-TYPE
+        SYNTAX          InetAddress (SIZE (4|16|20))
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The Destination HAIPE CT IP address."
+        ::= { hTopologyEntry 5 }
+
+hTopologyDestHaipePTAddrType OBJECT-TYPE
+        SYNTAX          InetAddressType
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The Destination HAIPE PT Internet
+            address type.
+
+            (U//FOUO) Only ipv4(1), ipv6(2) and ipv6z(4) address types
+            are supported."
+        ::= { hTopologyEntry 6 }
+
+hTopologyDestHaipePTAddr       OBJECT-TYPE
+        SYNTAX          InetAddress (SIZE (4|16|20))
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The Destination HAIPE PT IP address."
+        ::= { hTopologyEntry 7 }
+
+hTopologyRowStatus   OBJECT-TYPE
+        SYNTAX          RowStatus
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The status of the row, by which new entries may be
+            created, or old entries deleted from this table.
+
+            (U//FOUO) If an attempt to create a new row via
+            createAndGo does not include values for columns without
+            defaults for the new row, an inconsistentName error will
+            be returned for this object.
+
+            (U//FOUO) A row cannot be set to active while
+            hTopologyDestAdminCost, hTopologyDestHaipePTAddrType and
+            hTopologyDestHaipePTAddr do not contain consistent values
+            for the row (an inconsistentValue error will be returned
+            for this object).
+
+            (U//FOUO) If any column is set to an invalid or unsupported
+            value (during row creation or any other time), a wrongValue
+            error will be returned for that object.
+
+            (U//FOUO) The value of this object has no effect on
+            whether other objects in this row can be modified.
+
+            (U//FOUO) An active row cannot be changed to an
+            inconsistent state (an inconsistentValue error will be
+            returned for the object). In other words, the
+            hTopologyDestHaipePTAddrType, hTopologyDestHaipePTAddr and
+            hTopologyDestAdminCost columns cannot be changed unless
+            the new values contain consistent values for the row."
+        ::= { hTopologyEntry 8 }
+
+hTopologyDestAdminCost          OBJECT-TYPE
+        SYNTAX          Unsigned32 (0..256)
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The administrative cost of reaching the 
+            hTopologyDestHost host. 
+
+            (U//FOUO) For local prefix entries learned via automated 
+            mechanisms, this object will be populated with 
+            hDiscoveryAdvertiseAdminCost. For remote prefixes learned 
+            via Discovery, this object will be populated with the 
+            associated Discovery cost/metric learned.  
+
+            (U//FOUO) Use of the value 256 is Deprecated."
+        ::= { hTopologyEntry 9 }
+
+hTopologyMethod     OBJECT-TYPE
+    SYNTAX      INTEGER {
+                        other(0),
+                        v1(1),
+                        v3GDC(2),
+                        manual(3),
+                        rip(4)
+                }
+    MAX-ACCESS  read-only
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The method by which this row was configured."
+    ::= { hTopologyEntry 10 }
+
+hTopologyLifetime OBJECT-TYPE
+    SYNTAX      DateAndTime
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The date and time that this particular entry will
+        become invalid and removed from the local topology information
+        cache."
+    ::= { hTopologyEntry 11 }
+
+
+-- ***********************************************************
+-- hLocalEnclaveTable
+--
+
+hLocalEnclaveTableCount OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hLocalEnclaveTable."
+    ::= { hNetTopologyPeerAssignments 4 }
+
+hLocalEnclaveTableLastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The value of sysUpTime the last time any entry in
+        the hLocalEnclaveTable was modified, created, or deleted by
+        either SNMP or other management method (e.g., via a HMI).
+
+        (U//FOUO) Managers can use this object to ensure that no
+        changes to configuration of this table have happened since
+        the last time it examined the table.
+
+        (U//FOUO) A value of 0 indicates that no entry has been
+        changed since the agent initialized."
+    ::= { hNetTopologyPeerAssignments 5 }
+
+hLocalEnclaveTable  OBJECT-TYPE
+    SYNTAX          SEQUENCE OF HLocalEnclaveEntry
+    MAX-ACCESS      not-accessible
+    STATUS          current
+    DESCRIPTION
+        "(U//FOUO) The table containing a list of the known address
+        prefixes that this HAIPE is fronting.  The contents of this
+        table can be populated by either manual assignment, or
+        through the use of discovery services (e.g. RIP).  The table
+        should contain a list of all known prefixes for the local
+        enclave that this HAIPE fronts."
+    ::= { hNetTopologyPeerAssignments 6 }
+
+hLocalEnclaveEntry  OBJECT-TYPE
+    SYNTAX          HLocalEnclaveEntry
+    MAX-ACCESS      not-accessible
+    STATUS          current
+    DESCRIPTION
+        "(U//FOUO) A row indicating that a particular prefix is
+        reachable via a particular HAIPE."
+    INDEX  { hLocalEnclaveDestHostAddrType,
+             hLocalEnclaveDestHost,
+             hLocalEnclaveDestHostPTPfxLen
+           }
+    ::= { hLocalEnclaveTable 1 }
+
+HLocalEnclaveEntry ::= SEQUENCE
+    {
+	hLocalEnclaveDestHostAddrType    InetAddressType,
+	hLocalEnclaveDestHost            InetAddress,
+	hLocalEnclaveDestHostPTPfxLen    InetAddressPrefixLength,
+	hLocalEnclaveDestAdminCost       Unsigned32,
+	hLocalEnclaveMethod              INTEGER,
+	hLocalEnclaveLifetime            DateAndTime,
+	hLocalEnclaveRowStatus           RowStatus
+    }
+
+hLocalEnclaveDestHostAddrType  OBJECT-TYPE
+    SYNTAX          InetAddressType
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The Plain Text (PT) Host Internet Protocol (IP)
+        address type.
+
+        (U//FOUO) Only ipv4(1), ipv6(2) and ipv6z(4) address types
+        are supported."
+    ::= { hLocalEnclaveEntry 1 }
+
+hLocalEnclaveDestHost        OBJECT-TYPE
+    SYNTAX          InetAddress (SIZE (4|16|20))
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The PT Host or network IP address(es)."
+    ::= { hLocalEnclaveEntry 2 }
+
+hLocalEnclaveDestHostPTPfxLen  OBJECT-TYPE
+    SYNTAX          InetAddressPrefixLength
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The prefix length of the address stored in
+        hLocalEnclaveDestHost (i.e., the network mask)."
+    ::= { hLocalEnclaveEntry 3 }
+
+hLocalEnclaveDestAdminCost          OBJECT-TYPE
+    SYNTAX          Unsigned32 (0..256)
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The administrative cost of reaching the 
+        hLocalEnclaveDestHost host or subnet. 
+
+        (U//FOUO) For local prefix entries learned via automated 
+        mechanisms, this object will be populated with 
+        hDiscoveryAdvertiseAdminCost. 
+
+        (U//FOUO) Use of the value 256 is Deprecated."
+    ::= { hLocalEnclaveEntry 4 }
+
+hLocalEnclaveMethod     OBJECT-TYPE
+    SYNTAX      INTEGER {
+                          other(1),
+                          manual(2),
+                          rip(3)
+                        }
+    MAX-ACCESS  read-only
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The method by which this row was configured."
+    ::= { hLocalEnclaveEntry 5 }
+
+hLocalEnclaveLifetime OBJECT-TYPE
+    SYNTAX      DateAndTime
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The date and time that this particular entry will
+        become invalid and removed from the local topology information
+        cache."
+    ::= { hLocalEnclaveEntry 6 }
+
+hLocalEnclaveRowStatus   OBJECT-TYPE
+    SYNTAX          RowStatus
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may
+        be created, or old entries deleted from this table.
+
+        (U//FOUO) If an attempt to create a new row via createAndGo
+        does not include values for columns without defaults for the
+        new row, an inconsistentName error will be returned for this
+        object.
+
+        (U//FOUO) A row cannot be set to active while
+        hLocalEnclaveDestAdminCost does not contain a consistent
+        value for the row (an inconsistentValue error will be
+        returned for this object).
+
+        (U//FOUO) If any column is set to an invalid or unsupported
+        value (during row creation or any other time), a wrongValue
+        error will be returned for that object.
+
+        (U//FOUO) The value of this object has no effect on whether
+        other objects in this row can be modified.
+
+        (U//FOUO) An active row cannot be changed to an inconsistent
+        state (an inconsistentValue error will be returned for the
+        object). In other words, the hLocalEnclaveDestAdminCost
+        columns cannot be changed unless the new values contain
+        consistent values for the row."
+    ::= { hLocalEnclaveEntry 7 }
+
+
+-- ***********************************************************
+-- hRemoteEnclaveTable
+--
+
+hRemoteEnclaveTableCount OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hRemoteEnclaveTable."
+    ::= { hNetTopologyPeerAssignments 7 }
+
+hRemoteEnclaveTableLastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The value of sysUpTime the last time any entry in
+        the hRemoteEnclaveTable was modified, created, or deleted
+        by either SNMP or other management method (e.g., via a HMI).
+
+        (U//FOUO) Managers can use this object to ensure that no
+        changes to configuration of this table have happened since
+        the last time it examined the table.
+
+        (U//FOUO) A value of 0 indicates that no entry has been
+        changed since the agent initialized."
+    ::= { hNetTopologyPeerAssignments 8 }
+
+hRemoteEnclaveTable  OBJECT-TYPE
+    SYNTAX          SEQUENCE OF HRemoteEnclaveEntry
+    MAX-ACCESS      not-accessible
+    STATUS          current
+    DESCRIPTION
+        "(U//FOUO) The table containing a list of known HAIPE remote
+        (peer) enclave topology information.  The contents of this
+        table can be populated by either manual assignment, or
+        through the use of discovery services.  The table should
+        contain a list of the known remote PT prefixes and the HAIPE
+        devices that they are behind.  This table should also be
+        used for multicast address mappings that must be made as
+        multicast packets traverse a HAIPE.  This table is not used
+        for obtaining local enclave topology information."
+    ::= { hNetTopologyPeerAssignments 9 }
+
+hRemoteEnclaveEntry  OBJECT-TYPE
+    SYNTAX          HRemoteEnclaveEntry
+    MAX-ACCESS      not-accessible
+    STATUS          current
+    DESCRIPTION
+        "(U//FOUO) A row indicating that a particular prefix is
+        reachable via particular HAIPE."
+    INDEX  { hRemoteEnclaveDestHostAddrType,
+             hRemoteEnclaveDestHost,
+             hRemoteEnclaveDestHostPTPfxLen,
+             hRemoteEnclaveDestHaipePTAddrType,
+             hRemoteEnclaveDestHaipePTAddr
+           }
+    ::= { hRemoteEnclaveTable 1 }
+
+HRemoteEnclaveEntry ::= SEQUENCE
+    {
+	hRemoteEnclaveDestHostAddrType   InetAddressType,
+	hRemoteEnclaveDestHost           InetAddress,
+	hRemoteEnclaveDestHostPTPfxLen   InetAddressPrefixLength,
+	hRemoteEnclaveDestHaipePTAddrType InetAddressType,
+	hRemoteEnclaveDestHaipePTAddr    InetAddress,
+	hRemoteEnclaveDestHaipeCTAddrType InetAddressType,
+	hRemoteEnclaveDestHaipeCTAddr    InetAddress,
+	hRemoteEnclaveDestHaipeNATAddr   InetAddress,
+	hRemoteEnclaveDestHaipeNATPort   Unsigned32,
+	hRemoteEnclaveDestAdminCost      Unsigned32,
+	hRemoteEnclaveMethod             INTEGER,
+	hRemoteEnclaveLifetime           DateAndTime,
+	hRemoteEnclaveRowStatus          RowStatus
+    }
+
+hRemoteEnclaveDestHostAddrType  OBJECT-TYPE
+    SYNTAX          InetAddressType
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The Plain Text (PT) Host Internet Protocol (IP)
+        address type.
+
+        (U//FOUO) Only ipv4(1), ipv6(2) and ipv6z(4) address types
+        are supported."
+    ::= { hRemoteEnclaveEntry 1 }
+
+hRemoteEnclaveDestHost        OBJECT-TYPE
+    SYNTAX          InetAddress (SIZE (4|16|20))
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The PT Host or network IP address(es)."
+    ::= { hRemoteEnclaveEntry 2 }
+
+hRemoteEnclaveDestHostPTPfxLen  OBJECT-TYPE
+    SYNTAX          InetAddressPrefixLength
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The prefix length of the address stored in
+        hRemoteEnclaveDestHost (i.e., the network mask)."
+    ::= { hRemoteEnclaveEntry 3 }
+
+hRemoteEnclaveDestHaipePTAddrType OBJECT-TYPE
+    SYNTAX          InetAddressType
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The Destination HAIPE PT IP address type.
+
+        (U//FOUO) Only ipv4(1), ipv6(2) and ipv6z(4) address types
+        are supported."
+    ::= { hRemoteEnclaveEntry 4 }
+
+hRemoteEnclaveDestHaipePTAddr       OBJECT-TYPE
+    SYNTAX          InetAddress (SIZE (4|16|20))
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The Destination HAIPE PT IP address."
+    ::= { hRemoteEnclaveEntry 5 }
+
+hRemoteEnclaveDestHaipeCTAddrType OBJECT-TYPE
+    SYNTAX          InetAddressType
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The Destination HAIPE Cipher Text (CT) IP address
+        type.
+
+        (U//FOUO) Only ipv4(1), ipv6(2) and ipv6z(4) address types
+        are supported."
+    ::= { hRemoteEnclaveEntry 6 }
+
+hRemoteEnclaveDestHaipeCTAddr       OBJECT-TYPE
+    SYNTAX          InetAddress (SIZE (4|16|20))
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The Destination HAIPE CT IP address (original
+        address)."
+    ::= { hRemoteEnclaveEntry 7 }
+
+hRemoteEnclaveDestHaipeNATAddr       OBJECT-TYPE
+    SYNTAX          InetAddress (SIZE (4|16|20))
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The Destination HAIPE's Network Address
+        Translation (NAT) IP address (perceived address).  This
+        address will be of type hRemoteEnclaveDestHaipeCTAddType.
+
+        (U//FOUO) Note: for rows of non-NAT'd enclaves, this value
+        will default to an address of 0.0.0.0 for ipv4 addresses and
+        0::0 for ipv6 or ipv6z addresses."
+    ::= { hRemoteEnclaveEntry 8 }
+
+hRemoteEnclaveDestHaipeNATPort       OBJECT-TYPE
+    SYNTAX          Unsigned32
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The Destination HAIPE's NAT port.
+
+        (U//FOUO) Note: for rows of non-NAT'd enclaves, this value
+        will default to 0."
+    ::= { hRemoteEnclaveEntry 9 }
+
+hRemoteEnclaveDestAdminCost          OBJECT-TYPE
+    SYNTAX          Unsigned32 (0..256)
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The administrative cost of reaching the 
+        hRemoteEnclaveDestHost host (or subnet) via the specified 
+        HAIPE (hRemoteEnclaveDestHaipeCTAddr). 
+
+        (U//FOUO) For remote prefixes learned via Discovery, this 
+        object will be populated with the associated Discovery 
+        cost/metric learned.  
+
+        (U//FOUO) Use of the value 256 is Deprecated."
+    ::= { hRemoteEnclaveEntry 10 }
+
+hRemoteEnclaveMethod     OBJECT-TYPE
+    SYNTAX          INTEGER { 
+                              other(1),
+                              v1(2),
+                              v3GDC(3),
+                              manual(4),
+                              topoPayload(5),
+                              impepd(6)
+                            }
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The method by which this row was configured."
+    ::= { hRemoteEnclaveEntry 11 }
+
+hRemoteEnclaveLifetime OBJECT-TYPE
+    SYNTAX      DateAndTime
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The date and time that this particular entry will
+        become invalid and removed from the remote topology
+        information cache."
+    ::= { hRemoteEnclaveEntry 12 }
+
+hRemoteEnclaveRowStatus   OBJECT-TYPE
+    SYNTAX           RowStatus
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may
+        be created, or old entries deleted from this table.
+
+        (U//FOUO) If an attempt to create a new row via createAndGo
+        does not include values for columns without defaults for the
+        new row, an inconsistentName error will be returned for this
+        object.
+
+        (U//FOUO) A row cannot be set to active while
+        hRemoteEnclaveDestAdminCost,
+        hRemoteEnclaveDestHaipePTAddrType and
+        hRemoteEnclaveDestHaipePTAddr do not contain consistent
+        values for the row (an inconsistentValue error will be
+        returned for this object).
+
+        (U//FOUO) If any column is set to an invalid or unsupported
+        value (during row creation or any other time), a wrongValue
+        error will be returned for that object.
+
+        (U//FOUO) The value of this object has no effect on whether
+        other objects in this row can be modified.
+
+        (U//FOUO) An active row cannot be changed to an inconsistent
+        state (an inconsistentValue error will be returned for the
+        object). In other words, the
+        hRemoteEnclaveDestHaipePTAddrType,
+        hRemoteEnclaveDestHaipePTAddr and
+        hRemoteEnclaveDestAdminCost columns cannot be changed
+        unless the new values contain consistent values for the
+        row."
+    ::= { hRemoteEnclaveEntry 13 }
+
+END

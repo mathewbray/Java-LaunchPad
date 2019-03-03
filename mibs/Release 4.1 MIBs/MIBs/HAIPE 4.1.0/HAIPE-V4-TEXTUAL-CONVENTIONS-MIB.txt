@@ -1,0 +1,724 @@
+--
+--                 Unclassified//For Official Use Only
+--
+-- This entire document, which defines SNMP MIB objects in the SMIv2
+-- language should be considered U//FOUO.
+--
+-- The data that will be transmitted on the wire as a result of
+-- accessing these MIB objects MUST NOT BE CONSIDERED U//FOUO and is
+-- subject to seperate classification.  The classification level of this
+-- data is not defined or within the scope of this document.
+--
+
+HAIPE-V4-TEXTUAL-CONVENTIONS-MIB  DEFINITIONS  ::= BEGIN
+
+IMPORTS
+    haipe                                       FROM HAIPE-ASSIGNMENTS-MIB
+    haipev4FeatureHierarchyMIB                  FROM HAIPE-V4-FEATURE-HIERARCHY-MIB
+    MODULE-IDENTITY, Integer32, Unsigned32      FROM SNMPv2-SMI
+    TEXTUAL-CONVENTION                          FROM SNMPv2-TC;
+
+haipev4TextualConventionMIB MODULE-IDENTITY
+    LAST-UPDATED "201006231600Z"
+    ORGANIZATION "HAIPE WG"
+    CONTACT-INFO
+         "(U) Not Available"
+    DESCRIPTION
+        "(U//FOUO) This MIB defines all the textual conventions used in HAIPE 
+	 MIBs"
+    REVISION     "201006231600Z"
+    DESCRIPTION  "(U//FOUO) MIB 4.1.0 FINAL Release"	 
+    ::= { haipev4FeatureHierarchyMIB 1 }
+
+-- **********************************************************************
+-- IP Address Textual Conventions
+-- **********************************************************************
+
+IPAddressType ::= TEXTUAL-CONVENTION
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) A value that represents a type of Internet address.
+         ipv4(1)     An IPv4 address as defined by the
+                     IPv4Address textual convention.
+
+         ipv6(2)     An IPv6 address as defined by the
+                     IPv6Address textual convention.
+
+         (U//FOUO) Implementations must ensure that IPAddressType objects
+         and any dependent objects (e.g. IPv4Address and IPv6Address
+         objects) are consistent.  An inconsistentValue error must 
+         be generated if an attempt to change an IPv4Address or 
+         IPv6Address object would, for example, lead to an undefined
+         value.  IPAddressType/IPv4Address and IPAddressType/IPv6Address
+         pairs must be changed together if IPAddressType changes."
+    SYNTAX       INTEGER {
+                     ipv4(1),
+                     ipv6(2)
+                 }
+
+IPAddress ::= TEXTUAL-CONVENTION
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) Denotes a generic Internet address that is either IPv4 or 
+	 IPv6.
+
+         (U//FOUO) Every usage of the IPAddress textual convention is required 
+	 to specify the IPAddressType object which provides the context.  It is 
+	 suggested that the IPAddressType object is logically registered before 
+	 the object(s) which use the IPAddress textual convention if
+         they appear in the same logical row.
+	 
+         (U//FOUO) The value of an IPAddress object must always be
+         consistent with the value of the associated IPAddressType
+         object. Attempts to set an IPAddress object to a value
+         which is inconsistent with the associated IPAddressType
+         must fail with an inconsistentValue error.
+
+	 (U//FOUO) See the IPv4Address and IPv6Address textual conventions for 
+	 more details."
+    SYNTAX       OCTET STRING (SIZE (4|16))
+
+IPv4Address ::= TEXTUAL-CONVENTION
+    DISPLAY-HINT "1d.1d.1d.1d"
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) Represents an IPv4 network address:
+
+           octets   contents         encoding
+            1-4     IPv4 address     network-byte order
+
+         (U//FOUO) The corresponding IPAddressType value is ipv4(1)."
+    SYNTAX       OCTET STRING (SIZE (4))
+
+IPv6Address ::= TEXTUAL-CONVENTION
+    DISPLAY-HINT "2x:2x:2x:2x:2x:2x:2x:2x"
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) Represents an IPv6 network address:
+
+           octets   contents         encoding
+            1-16    IPv6 address     network-byte order
+
+         (U//FOUO) The corresponding InetAddressType value is ipv6(2)."
+    SYNTAX       OCTET STRING (SIZE (16))
+
+PortNumber ::= TEXTUAL-CONVENTION
+    DISPLAY-HINT "d"
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) Represents a 16 bit port number of an Internet transport
+         layer protocol. Port numbers are assigned by IANA. A
+         current list of all assignments is available from
+         <http://www.iana.org/>.
+
+         (U//FOUO) The value zero represents the ANY (wildcard) value. In
+	 regards to a filter or rule, this means that any port 
+	 number satisfies the filter or rule."
+    SYNTAX       Unsigned32 (0..65535)
+    
+
+-- **********************************************************************
+-- Key Information Textual Conventions
+-- **********************************************************************
+
+FireflyUniversalID ::= TEXTUAL-CONVENTION
+    STATUS  current
+    DESCRIPTION
+        "(U//FOUO) The universal ID uniquely identifying a FF
+        universal.  This is an ASCII encoded number from
+        0000-9999, as defined by the HAIPE IS."
+    SYNTAX   OCTET STRING (SIZE(4))
+
+FireflyKMID ::= TEXTUAL-CONVENTION
+    DISPLAY-HINT "6d"
+    STATUS  current
+    DESCRIPTION
+        "(U//FOUO) The Key Material ID of a Firefly key.
+
+        (U//FOUO) Current convention is that the left more 16 bits
+        will be 0 value only.  However, implementations should be
+        prepared to use full 48-bit values for use in the future.
+        It is possible that future values and/or values assigned
+        by other organizations may be larger than 32 bits so
+        storing these values as a 32-bit integer and prepending
+        zeros is not a recommended implementation."
+    SYNTAX   OCTET STRING (SIZE (6))
+
+FireflyPartitionCode ::= TEXTUAL-CONVENTION
+        DISPLAY-HINT "6d"
+        STATUS  current
+        DESCRIPTION
+            "(U//FOUO) The partition code for segmenting a universal
+            into separate networks.
+
+            (U//FOUO) Note that current convention is that values for
+            partition codes limit the left 16 bits to 0 values
+            only. Only the right 32 bits will vary (EKS322).  However,
+            implementers should be aware that this could change in the
+            future."
+        SYNTAX   OCTET STRING (SIZE (6))
+
+FireflyExpirationDate ::= TEXTUAL-CONVENTION
+        DISPLAY-HINT "2d-1d-1d"
+        STATUS   current
+        DESCRIPTION
+            "(U//FOUO) The expiration date of a Firefly key.
+
+            (U//FOUO) Firefly keys expire at 2400 (UTC) on the date given.
+            Note that for use within HAIPE, the day value for this object
+            must be the last day of the month.  Time is
+
+                (U//FOUO) 
+                field  octets  contents                  range
+                -----  ------  --------                  -----
+                  1      1-2   year*                     0..65536
+                  2       3    month                     1..12
+                  3       4    day                       1..31
+
+                * (U//FOUO) Notes:
+                - Much of this format is similar to the DateAndTime TC
+                  from the SNMPv2-TC MIB (RFC2579) but the unneeded
+                  portions were removed.
+                - the value of year is in network-byte order
+                "
+        SYNTAX   OCTET STRING (SIZE(4))
+
+PreplacedKeyShortTitle ::= TEXTUAL-CONVENTION
+        DISPLAY-HINT "18x"
+        STATUS   current
+        DESCRIPTION
+            "(U//FOUO) The short title for a pre-placed key (PPK).  It
+            is sent as the 24 character, six-bit encoded ShortTitle
+            field extracted from the key itself without modification
+            (see EKMS308C).  "
+        SYNTAX   OCTET STRING (SIZE (18))
+
+PreplacedKeyEdition ::= TEXTUAL-CONVENTION
+        STATUS   current
+        DESCRIPTION
+            "(U//FOUO) The HAIPE edition for a pre-placed key (PPK).
+            This field is encoded using the six-bit encoding as
+            specified in EKMS308C.  It is 36 bits wide, and the right
+            most 4 bits in this field SHOULD be set to 0 and MUST be
+            ignored by implementations expecting only exactly 36 bits."
+        SYNTAX   OCTET STRING (SIZE (5))
+
+PreplacedKeySegment ::= TEXTUAL-CONVENTION
+        DISPLAY-HINT "d"
+        STATUS   current
+        DESCRIPTION
+            "(U//FOUO) The HAIPE segment number for a pre-placed key (PPK)."
+        SYNTAX   Unsigned32 (0..255)
+
+HaipeShortTitle64 ::= TEXTUAL-CONVENTION
+        DISPLAY-HINT "64a"
+        STATUS   current
+        DESCRIPTION
+            "(U//FOUO) 64 character 8-bit ASCII encoded Short Title"
+        SYNTAX   OCTET STRING (SIZE (64))
+
+-- **********************************************************************
+-- Traffic Protection Textual Conventions
+-- **********************************************************************
+
+HaipeIKEv2IKESATransformSuites ::= TEXTUAL-CONVENTION
+        STATUS          current
+        DESCRIPTION
+                "(U//FOUO) The list of IKEv2 IKE_SA transform suites as defined 
+                by the HAIPE IS.  The following description fully defines the
+                specific details of each transform suite:
+
+                (U//FOUO)(1) suiteAMedleyGCM128: Medley GCM128 with No 
+                Integrity Algorithm, Random ECP Group 1 (Diffie Hellman Group), 
+                and HMAC SHA384 (Pseudorandom Function).
+
+                (U//FOUO)(2) suiteBAESGCM128: AES GCM128 with No Integrity Algorithm,
+                384-bit Random ECP Group (Diffie Hellman Group Attribute ID of 20), 
+                and HMAC SHA384 (Pseudorandom Function).
+
+                (U//FOUO) Note, enumeration values 3 to 1023 are RESERVED FOR 
+                HAIPE values.
+
+                (U//FOUO) Note, enumeration values 1024 to 2047 are RESERVED FOR 
+                Australia values.
+
+                (U//FOUO) Note, enumeration values 2048 to 3071 are RESERVED FOR 
+                Canada values.
+
+                (U//FOUO) Note, enumeration values 3072 to 4095 are RESERVED FOR 
+                New Zealand values.
+
+                (U//FOUO) Note, enumeration values 4096 to 5119 are RESERVED FOR 
+                United Kingdom values.
+
+                (U//FOUO) Note, enumeration values 5120 to 65535 are RESERVED 
+                FOR HAIPE values.
+                
+                (U//FOUO) Note, enumeration values 65536 to 100000 are PRIVATE 
+                USE values."
+
+        SYNTAX   INTEGER { suiteAMedleyGCM128 (1),
+                           suiteBAESGCM128 (2)
+                         }
+
+
+HaipeIKEv2CHILDSATransformSuites ::= TEXTUAL-CONVENTION
+        STATUS          current
+        DESCRIPTION
+                "(U//FOUO) The list of IKEv2 CHILD_SA transform suites as defined 
+                by the HAIPE IS.  The following description fully defines the
+                specific details of each transform suite:
+
+                (U//FOUO)(0) any: this option is specified when it is designated
+                that any transform suite may protect this flow of traffic.  
+                Note, this option only applies to the Security Policy Database 
+                context and as a result, this enumeration value can not be 
+                used in the hIKEv2CHILDSADTable table.  Note, the determination 
+                of transform suites ordering (during the IKEv2 negotiation 
+                process) is considered a local implementation matter. 
+
+                (U//FOUO)(1) suiteAMedleyGCM128: Medley GCM128 with No 
+                Integrity Algorithm and Extended Sequence Numbers.  Note, this
+                enumeration value is agnostic to the Diffie Hellman Group; 
+                perfect forward secrecy is considered a local implementation
+                matter.
+
+                (U//FOUO)(2) suiteAMedleyGCM96: Medley GCM96 with No 
+                Integrity Algorithm and Extended Sequence Numbers.  Note, this
+                enumeration value is agnostic to the Diffie Hellman Group; 
+                perfect forward secrecy is considered a local implementation
+                matter.
+
+                (U//FOUO)(3) suiteAMedleyGCM64: Medley GCM64 with No 
+                Integrity Algorithm and Extended Sequence Numbers.  Note, this
+                enumeration value is agnostic to the Diffie Hellman Group; 
+                perfect forward secrecy is considered a local implementation
+                matter.
+
+                (U//FOUO)(4) suiteAMedleyGCM32: Medley GCM32 with No 
+                Integrity Algorithm and Extended Sequence Numbers.  Note, this
+                enumeration value is agnostic to the Diffie Hellman Group; 
+                perfect forward secrecy is considered a local implementation
+                matter.
+
+                (U//FOUO)(5) suiteAMedleyGCM0: Medley GCM0 with No 
+                Integrity Algorithm and Extended Sequence Numbers.  Note, this
+                enumeration value is agnostic to the Diffie Hellman Group; 
+                perfect forward secrecy is considered a local implementation
+                matter.
+
+                (U//FOUO)(6) suiteBAESGCM128: AES GCM128 with No Integrity 
+                Algorithm and Extended Sequence Numbers.  Note, this enumeration 
+                value is agnostic to the Diffie Hellman Group; perfect forward 
+                secrecy is considered a local implementation matter.
+
+                (U//FOUO)(7) suiteBAESGCM96: AES GCM96 with No Integrity 
+                Algorithm and Extended Sequence Numbers.   Note, this enumeration 
+                value is agnostic to the Diffie Hellman Group; perfect forward 
+                secrecy is considered a local implementation matter.
+
+                (U//FOUO)(8) suiteBAESGCM64: AES GCM64 with No Integrity 
+                Algorithm and Extended Sequence Numbers.   Note, this enumeration 
+                value is agnostic to the Diffie Hellman Group; perfect forward 
+                secrecy is considered a local implementation matter.
+
+                (U//FOUO)(9) suiteBAESGCM32: AES GCM32 with No Integrity 
+                Algorithm and Extended Sequence Numbers.   Note, this enumeration 
+                value is agnostic to the Diffie Hellman Group; perfect forward 
+                secrecy is considered a local implementation matter.
+
+                (U//FOUO)(10) suiteBAESGCM0: AES GCM0 with No Integrity 
+                Algorithm and Extended Sequence Numbers.   Note, this enumeration 
+                value is agnostic to the Diffie Hellman Group; perfect forward 
+                secrecy is considered a local implementation matter.
+
+                (U//FOUO) Note, enumeration values 11 to 1023 are RESERVED FOR 
+                HAIPE values.
+
+                (U//FOUO) Note, enumeration values 1024 to 2047 are RESERVED FOR 
+                Australia values.
+
+                (U//FOUO) Note, enumeration values 2048 to 3071 are RESERVED FOR 
+                Canada values.
+
+                (U//FOUO) Note, enumeration values 3072 to 4095 are RESERVED FOR 
+                New Zealand values.
+
+                (U//FOUO) Note, enumeration values 4096 to 5119 are RESERVED FOR 
+                United Kingdom values.
+
+                (U//FOUO) Note, enumeration values 5120 to 65535 are RESERVED 
+                FOR HAIPE values.
+                
+                (U//FOUO) Note, enumeration values 65536 to 100000 are PRIVATE 
+                USE values."
+
+        SYNTAX   INTEGER { any (0),
+                           suiteAMedleyGCM128 (1),
+                           suiteAMedleyGCM96 (2),
+                           suiteAMedleyGCM64 (3),
+                           suiteAMedleyGCM32 (4),
+                           suiteAMedleyGCM0 (5),
+                           suiteBAESGCM128 (6),
+                           suiteBAESGCM96 (7),
+                           suiteBAESGCM64 (8),
+                           suiteBAESGCM32 (9),
+                           suiteBAESGCM0 (10)
+                         }
+
+HaipeIKEv1SATransformSuites ::= TEXTUAL-CONVENTION
+        STATUS          current
+        DESCRIPTION
+                "(U//FOUO) The list of IKEv1 SA transform suites as defined by 
+                the HAIPE IS.  The following description fully defines the
+                specific details of each transform suite:
+
+                (U//FOUO)(0) any: this option is specified when it is designated
+                that any transform suite may protect this flow of traffic.  
+                Note, this option only applies to the Security Policy Database 
+                context and as a result, this enumeration value can not be 
+                used in the hIKEv1SADTable table.  Note, the determination of 
+                transform suites ordering (during the IKEv1 negotiation 
+                process) is considered a local implementation matter. 
+
+                (U//FOUO)(1) suiteAMedleyGCM128TunnelMode: Medley with GCM128
+                (Data Integrity Algorithm), SHA384 (Hash Algorithm), EFF 
+                (Authentication Method), and EFF Derived (Group Description).
+                Additionally, the Crypto Block Size is 4 bytes, the Key Update
+                mechanism is MTEK and the ESP Mechanism is ESPv3 in Tunnel Mode.
+
+                (U//FOUO)(2) suiteAMedleyGCM96TunnelMode: Medley with GCM96
+                (Data Integrity Algorithm), SHA384 (Hash Algorithm), EFF 
+                (Authentication Method), and EFF Derived (Group Description).
+                Additionally, the Crypto Block Size is 4 bytes, the Key Update
+                mechanism is MTEK and the ESP Mechanism is ESPv3 in Tunnel Mode.
+
+                (U//FOUO)(3) suiteAMedleyGCM128TransportMode: Medley with 
+                GCM128 (Data Integrity Algorithm), SHA384 (Hash Algorithm), 
+                EFF (Authentication Method), and EFF Derived (Group 
+                Description).  Additionally, the Crypto Block Size is 4 bytes, 
+                the Key Update mechanism is MTEK and the ESP Mechanism is ESPv3 
+                in Transport Mode.
+
+                (U//FOUO)(4) suiteAMedleyGCM96TransportMode: Medley with GCM96 
+                (Data Integrity Algorithm), SHA384 (Hash Algorithm), EFF 
+                (Authentication Method), and EFF Derived (Group Description).  
+                Additionally, the Crypto Block Size is 4 bytes, the Key Update 
+                mechanism is MTEK and the ESP Mechanism is ESPv3 in Transport 
+                Mode.
+
+                (U//FOUO)(5) suiteAMedleyGCM64TransportMode: Medley with GCM64
+                (Data Integrity Algorithm), SHA384 (Hash Algorithm), EFF 
+                (Authentication Method), and EFF Derived (Group Description).  
+                Additionally, the Crypto Block Size is 4 bytes, the Key Update 
+                mechanism is MTEK and the ESP Mechanism is ESPv3 in Transport 
+                Mode.
+
+                (U//FOUO)(6) suiteAMedleyGCM32TransportMode: Medley with GCM32 
+                (Data Integrity Algorithm), SHA384 (Hash Algorithm), EFF 
+                (Authentication Method), and EFF Derived (Group Description).  
+                Additionally, the Crypto Block Size is 4 bytes, the Key Update 
+                mechanism is MTEK and the ESP Mechanism is ESPv3 in Transport 
+                Mode.
+
+                (U//FOUO)(7) suiteAMedleyGCM0TransportMode: Medley with GCM0
+                (Data Integrity Algorithm), SHA384 (Hash Algorithm), EFF 
+                (Authentication Method), and EFF Derived (Group Description).  
+                Additionally, the Crypto Block Size is 4 bytes, the Key Update 
+                mechanism is MTEK and the ESP Mechanism is ESPv3 in Transport 
+                Mode.
+
+                (U//FOUO)(8) suiteBAESGCM128TunnelMode: AES with GCM128 (Data 
+                Integrity Algorithm), SHA384 (Hash Algorithm), and EC MQV
+                (Authentication Method and Group Description).  Additionally, 
+                the Crypto Block Size is 4 bytes, the Key Update mechanism is 
+                MTEK and the ESP Mechanism is ESPv3 in Tunnel Mode.
+
+                (U//FOUO)(9) suiteBAESGCM96TunnelMode: AES with GCM96 (Data 
+                Integrity Algorithm), SHA384 (Hash Algorithm), and EC MQV
+                (Authentication Method and Group Description).  Additionally, 
+                the Crypto Block Size is 4 bytes, the Key Update mechanism is 
+                MTEK and the ESP Mechanism is ESPv3 in Tunnel Mode.
+
+                (U//FOUO)(10) suiteBAESGCM128TransportMode: AES with GCM128 
+                (Data Integrity Algorithm), SHA384 (Hash Algorithm), and EC MQV
+                (Authentication Method and Group Description).  Additionally, 
+                the Crypto Block Size is 4 bytes, the Key Update mechanism is 
+                MTEK and the ESP Mechanism is ESPv3 in Transport Mode.
+
+                (U//FOUO)(11) suiteBAESGCM96TransportMode: AES with GCM96 (Data 
+                Integrity Algorithm), SHA384 (Hash Algorithm), and EC MQV 
+                (Authentication Method and Group Description).  Additionally, 
+                the Crypto Block Size is 4 bytes, the Key Update mechanism is 
+                MTEK and the ESP Mechanism is ESPv3 in Transport Mode.
+
+                (U//FOUO)(12) suiteBAESGCM64TransportMode: AES with GCM64 (Data 
+                Integrity Algorithm), SHA384 (Hash Algorithm), and EC MQV 
+                (Authentication Method and Group Description).  Additionally, 
+                the Crypto Block Size is 4 bytes, the Key Update mechanism is 
+                MTEK and the ESP Mechanism is ESPv3 in Transport Mode.
+
+                (U//FOUO)(13) suiteBAESGCM32TransportMode: AES with GCM32 (Data 
+                Integrity Algorithm), SHA384 (Hash Algorithm), and EC MQV 
+                (Authentication Method and Group Description).  Additionally, 
+                the Crypto Block Size is 4 bytes, the Key Update mechanism is 
+                MTEK and the ESP Mechanism is ESPv3 in Transport Mode.
+
+                (U//FOUO)(14) suiteBAESGCM0TransportMode: AES with GCM0 (Data 
+                Integrity Algorithm), SHA384 (Hash Algorithm), and EC MQV 
+                (Authentication Method and Group Description).  Additionally, 
+                the Crypto Block Size is 4 bytes, the Key Update mechanism is 
+                MTEK and the ESP Mechanism is ESPv3 in Transport Mode.
+
+                (U//FOUO)(15) legacyMedley: Medley with BIP32 (Data Integrity 
+                Algorithm), and SHA1 (Hash Algorithm).  Additionally, the Crypto 
+                Block Size is 8 bytes, the Key Update mechanism is MTEK and the 
+                ESP Mechanism is HAIPE ESP in Tunnel Mode.  Note, the 
+                Authentication Method/Group Description transforms (EFF/EFF 
+                Derived or BFF/Firefly) is determined by the presence of the 
+                key material currently loaded in the HAIPE.
+
+                (U//FOUO)(16) legacyBaton: Baton with BIP32 (Data Integrity 
+                Algorithm), and SHA1 (Hash Algorithm).  Additionally, the Crypto 
+                Block Size is 48 bytes, the Key Update mechanism is MTEK and the 
+                ESP Mechanism is HAIPE ESP in Tunnel Mode.  Note, the
+                Authentication Method/Group Description transforms (EFF/EFF
+                Derived or BFF/Firefly) is determined by the presence of the
+                key material currently loaded in the HAIPE.
+
+                (U//FOUO) Note, enumeration values 17 to 1023 are RESERVED FOR 
+                HAIPE values.
+
+                (U//FOUO) Note, enumeration values 1024 to 2047 are RESERVED FOR 
+                Australia values.
+
+                (U//FOUO) Note, enumeration values 2048 to 3071 are RESERVED FOR 
+                Canada values.
+
+                (U//FOUO) Note, enumeration values 3072 to 4095 are RESERVED FOR 
+                New Zealand values.
+
+                (U//FOUO) Note, enumeration values 4096 to 5119 are RESERVED FOR 
+                United Kingdom values.
+
+                (U//FOUO) Note, enumeration values 5120 to 65535 are RESERVED 
+                FOR HAIPE values.
+                
+                (U//FOUO) Note, enumeration values 65536 to 100000 are PRIVATE 
+                USE values."
+
+        SYNTAX   INTEGER { any (0),
+                           suiteAMedleyGCM128TunnelMode (1),
+                           suiteAMedleyGCM96TunnelMode (2),
+                           suiteAMedleyGCM128TransportMode (3),
+                           suiteAMedleyGCM96TransportMode (4),
+                           suiteAMedleyGCM64TransportMode (5),
+                           suiteAMedleyGCM32TransportMode (6),
+                           suiteAMedleyGCM0TransportMode (7),
+                           suiteBAESGCM128TunnelMode (8),
+                           suiteBAESGCM96TunnelMode (9),
+                           suiteBAESGCM128TransportMode (10),
+                           suiteBAESGCM96TransportMode (11),
+                           suiteBAESGCM64TransportMode (12),
+                           suiteBAESGCM32TransportMode (13),
+                           suiteBAESGCM0TransportMode (14),
+                           legacyMedley (15),
+                           legacyBaton (16)
+                         }
+
+HaipeManualSATransformSuites ::= TEXTUAL-CONVENTION
+        STATUS          current
+        DESCRIPTION
+                "(U//FOUO) The list of Manual SA transform suites as defined by 
+                the HAIPE IS.  The following description fully defines the
+                specific details of each transform suite:
+
+                (U//FOUO)(0) any: this option is specified when it is designated
+                that any transform suite may protect this flow of traffic.  
+                Note, this option only applies to the Security Policy Database 
+                context and as a result, this enumeration value can not be 
+                used in the hManualSADTable table.  
+
+                (U//FOUO)(1) suiteAMedleyGCM128TunnelMode: Medley with GCM128
+                (Data Integrity Algorithm).  Additionally, the Crypto Block Size 
+                is 4 bytes, the Key Update mechanism is Accordion 3.0 and the 
+                ESP Mechanism is ESPv3 in Tunnel Mode.
+
+                (U//FOUO)(2) suiteAMedleyGCM96TunnelMode: Medley with GCM96
+                (Data Integrity Algorithm).  Additionally, the Crypto Block Size 
+                is 4 bytes, the Key Update mechanism is Accordion 3.0 and the 
+                ESP Mechanism is ESPv3 in Tunnel Mode.
+
+                (U//FOUO)(3) suiteAMedleyGCM128TransportMode: Medley with 
+                GCM128 (Data Integrity Algorithm).  Additionally, the Crypto 
+                Block Size is 4 bytes, the Key Update mechanism is Accordion 3.0 
+                and the ESP Mechanism is ESPv3 in Transport Mode.
+
+                (U//FOUO)(4) suiteAMedleyGCM96TransportMode: Medley with GCM96
+                (Data Integrity Algorithm).  Additionally, the Crypto Block Size 
+                is 4 bytes, the Key Update mechanism is Accordion 3.0 and the 
+                ESP Mechanism is ESPv3 in Transport Mode.
+
+                (U//FOUO)(5) suiteAMedleyGCM64TransportMode: Medley with GCM64
+                (Data Integrity Algorithm).  Additionally, the Crypto Block Size 
+                is 4 bytes, the Key Update mechanism is Accordion 3.0 and the 
+                ESP Mechanism is ESPv3 in Transport Mode.
+
+                (U//FOUO)(6) suiteAMedleyGCM32TransportMode: Medley with GCM32
+                (Data Integrity Algorithm).  Additionally, the Crypto Block Size 
+                is 4 bytes, the Key Update mechanism is Accordion 3.0 and the 
+                ESP Mechanism is ESPv3 in Transport Mode.
+
+                (U//FOUO)(7) suiteAMedleyGCM0TransportMode: Medley with GCM0
+                (Data Integrity Algorithm).  Additionally, the Crypto Block Size 
+                is 4 bytes, the Key Update mechanism is Accordion 3.0 and the 
+                ESP Mechanism is ESPv3 in Transport Mode.
+
+                (U//FOUO)(8) suiteBAESGCM128TunnelMode: AES with GCM128 (Data 
+                Integrity Algorithm).  Additionally, the Crypto Block Size is 4 
+                bytes, the Key Update mechanism is AES Key Wrap and the ESP
+		Mechanism is ESPv3 in Tunnel Mode.
+
+                (U//FOUO)(9) suiteBAESGCM96TunnelMode: AES with GCM96 (Data 
+                Integrity Algorithm).  Additionally, the Crypto Block Size is 4 
+                bytes, the Key Update mechanism is AES Key Wrap and the ESP
+		Mechanism is ESPv3 in Tunnel Mode.
+
+                (U//FOUO)(10) suiteBAESGCM128TransportMode: AES with GCM128 
+                (Data Integrity Algorithm).  Additionally, the Crypto Block Size 
+                is 4 bytes, the Key Update mechanism is AES Key Wrap and the ESP 
+                Mechanism is ESPv3 in Transport Mode.
+
+                (U//FOUO)(11) suiteBAESGCM96TransportMode: AES with GCM96 (Data 
+                Integrity Algorithm).  Additionally, the Crypto Block Size is 4 
+                bytes, the Key Update mechanism is AES Key Wrap and the ESP
+		Mechanism is ESPv3 in Transport Mode.
+
+                (U//FOUO)(12) suiteBAESGCM64TransportMode: AES with GCM64 (Data 
+                Integrity Algorithm).  Additionally, the Crypto Block Size is 4 
+                bytes, the Key Update mechanism is AES Key Wrap and the ESP
+		Mechanism is ESPv3 in Transport Mode.
+
+                (U//FOUO)(13) suiteBAESGCM32TransportMode: AES with GCM32 (Data 
+                Integrity Algorithm).  Additionally, the Crypto Block Size is 4 
+                bytes, the Key Update mechanism is AES Key Wrap and the ESP
+		Mechanism is ESPv3 in Transport Mode.
+
+                (U//FOUO)(14) suiteBAESGCM0TransportMode: AES with GCM0 (Data 
+                Integrity Algorithm).  Additionally, the Crypto Block Size is 4 
+                bytes, the Key Update mechanism is AES Key Wrap and the ESP
+		Mechanism is ESPv3 in Transport Mode.
+
+                (U//FOUO)(15) legacyMedley: Medley with BIP32 (Data Integrity 
+                Algorithm).  Additionally, the Crypto Block Size is 8 bytes, the 
+                Key Update mechanism is Accordion 3.0 and the ESP Mechanism is
+		HAIPE ESP in Tunnel Mode.
+
+                (U//FOUO)(16) legacyBaton: Baton with BIP32 (Data Integrity 
+                Algorithm).  Additionally, the Crypto Block Size is 48 bytes, 
+                the Key Update mechanism is Accordion 1.3 and the ESP Mechanism
+		is HAIPE ESP in Tunnel Mode.
+
+                (U//FOUO) Note, enumeration values 17 to 1023 are RESERVED FOR 
+                HAIPE values.
+
+                (U//FOUO) Note, enumeration values 1024 to 2047 are RESERVED FOR 
+                Australia values.
+
+                (U//FOUO) Note, enumeration values 2048 to 3071 are RESERVED FOR 
+                Canada values.
+
+                (U//FOUO) Note, enumeration values 3072 to 4095 are RESERVED FOR 
+                New Zealand values.
+
+                (U//FOUO) Note, enumeration values 4096 to 5119 are RESERVED FOR 
+                United Kingdom values.
+
+                (U//FOUO) Note, enumeration values 5120 to 65535 are RESERVED 
+                FOR HAIPE values.
+                
+                (U//FOUO) Note, enumeration values 65536 to 100000 are PRIVATE 
+                USE values."
+
+        SYNTAX   INTEGER { any (0),
+                           suiteAMedleyGCM128TunnelMode (1),
+                           suiteAMedleyGCM96TunnelMode (2),
+                           suiteAMedleyGCM128TransportMode (3),
+                           suiteAMedleyGCM96TransportMode (4),
+                           suiteAMedleyGCM64TransportMode (5),
+                           suiteAMedleyGCM32TransportMode (6),
+                           suiteAMedleyGCM0TransportMode (7),
+                           suiteBAESGCM128TunnelMode (8),
+                           suiteBAESGCM96TunnelMode (9),
+                           suiteBAESGCM128TransportMode (10),
+                           suiteBAESGCM96TransportMode (11),
+                           suiteBAESGCM64TransportMode (12),
+                           suiteBAESGCM32TransportMode (13),
+                           suiteBAESGCM0TransportMode (14),
+                           legacyMedley (15),
+                           legacyBaton (16)
+                         }
+
+
+HaipeDeviceSide ::= TEXTUAL-CONVENTION
+        STATUS   current
+        DESCRIPTION
+            "(U//FOUO) A given side of the HAIPE device.
+
+             (U//FOUO) ct: The cypher-text side, where encrypted
+             traffic is generally sent and received.
+
+             (U//FOUO) pt: The plain-text side, where unencrypted
+             traffic is generally sent and received.
+
+             (U//FOUO) other: A interface that isn't responsible
+             for processing traffic between networks.  EG, a
+             management interface or some other secondary
+             interface."
+        SYNTAX INTEGER { pt(1), ct(2), other(3) }
+
+HaipeStationID ::= TEXTUAL-CONVENTION
+        DISPLAY-HINT    "1a-4a-2a-5a2a"
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The ASCII-encoded electronic serial number of
+            this HAIPE device.
+
+            (U//FOUO) The octet breakdown, as described in the HAIPE IS
+            and EKMS308:
+              1 octets for serial number format
+              4 octets for manufacturer ID
+              2 octets for equipment type ID
+              5 octets for unit number
+              2 octets equal to ASCII spaces
+
+            (U//FOUO) All octets in this field must be uppercase ASCII
+            characters that are used to represent hexadecimal code
+            (I.E., characters 0-9 and A-F, corresponding to values
+            0x30-0x39 and 0x41-0x46)."
+         -- Reference  EKMS 308, KM-TG-002-96, IS20062, IS20063
+         SYNTAX OCTET STRING (SIZE(14))
+
+HAIPEROHCCompressionProfiles ::= TEXTUAL-CONVENTION
+    STATUS          current
+    DESCRIPTION
+            "(U//FOUO) A 16-bit field that conveys the compression profiles the
+             local or peer decompressor supports.  Only ROHCv2 compression
+             profiles are used and they are defined using the following bit
+             setting scheme shown below.  Note that the bit setting scheme does
+             not correspond to the compression profile values defined in RFC5225.
+             It is purely used in the MIB to convey the compression profiles the
+             local or peer decompressor supports.
+
+             (U//FOUO)(0)     compressionProfile1: IP/UDP/RTP
+             (U//FOUO)(1)     compressionProfile2: IP/UDP
+             (U//FOUO)(2)     compressionProfile3: IP/ESP
+             (U//FOUO)(3)     compressionProfile4: IP
+             (U//FOUO)(4)     compressionProfile5: IP/UDP-Lite/RTP
+             (U//FOUO)(5)     compressionProfile6: IP/UDP-Lite
+             (U//FOUO)(6-15)  RESERVED"
+
+    SYNTAX     BITS { compressionProfile1(0), compressionProfile2(1),
+                      compressionProfile3(2), compressionProfile4(3),
+                      compressionProfile5(4), compressionProfile6(5)}
+END

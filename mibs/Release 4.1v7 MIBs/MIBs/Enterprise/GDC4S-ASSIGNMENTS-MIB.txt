@@ -1,0 +1,150 @@
+--BEGIN Revision History
+--
+--20060726  Changed:
+--a. the 'name' of this MIB module
+--b. 'generalDynamics' references to 'gdc4sAssignmentsMIB'
+--from GENERAL-DYNAMICS-C4-SYSTEMS-ASSIGNMENTS-MIB to GDC4S-ASSIGNMENTS-MIB
+--c. the description/name of the gdc4sAssignmentsMIB.25 OID assignment
+--from 'JTRS Cluster 5 ...' to 'JTRS HMS ...', and defined the meaning of
+--the JTRS and HMS acronyms
+--
+--20060524  T. Huemiller Note: Renamed file containing this MIB module
+--from GENERAL-DYNAMICS-C4-SYSTEMS-ASSIGNMENTS-MIB to GDC4S-ASSIGNMENTS-MIB, for
+--consistent file naming of GDC4S Encryption Products Enterprise MIB modules.
+--
+--END Revision History
+
+GDC4S-ASSIGNMENTS-MIB DEFINITIONS ::= BEGIN
+    --
+    --J. Holzhauer Note: changed the above 'name' of this module
+    --from GENERAL-DYNAMICS-C4-SYSTEMS-ASSIGNMENTS-MIB to GDC4S-ASSIGNMENTS-MIB:
+    --a. to match the name of the file containing this module, per generally
+    --accepted SNMP MIB module file/module naming conventions
+    --b. because the GDC4S-ENCRYPTION-PRODUCTS-MIB module in the
+    --GDC4S-ENCRYPTION-PRODUCTS-MIB.mib IMPORTS gdc4sAssignmentsMIB FROM
+    --GDC4S-ASSIGNMENTS-MIB, not from
+    --GENERAL-DYNAMICS-C4-SYSTEMS-ASSIGNMENTS-MIB.
+    --
+    IMPORTS
+    MODULE-IDENTITY, enterprises
+        FROM SNMPv2-SMI;
+
+    gdc4sAssignmentsMIB MODULE-IDENTITY
+        LAST-UPDATED	    "200607262300Z"
+        ORGANIZATION	    "General Dynamics C4 Systems"
+        CONTACT-INFO        "Infosec Support                                
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            General Dynamics C4
+                            Systems Corporation
+                            77 A Street
+                            Needham Heights, MA
+                            02494-2806
+                            Telephone: 877-230-0236
+                            email: INFOSECSUPPORT@GDC4S.COM"
+        DESCRIPTION         "This MIB supports communications products developed
+                            by General Dynamics C4 Systems."
+
+            --26 July 2006
+
+        REVISION	    "200607262300Z"
+        DESCRIPTION         "This revision of this MIB module fills in all
+                            missing OIDs/branches up to 1.3.1.6.4.1.576.27
+                            under private enterprise number 576 (OID sub-tree
+                            1.3.6.1.4.1.576)."
+            --21 April 2006
+
+        REVISION	    "200604212300Z"
+        DESCRIPTION         "This revision of this MIB module fills in all
+                            missing OIDs/branches up to 1.3.1.6.4.1.576.27
+                            under private enterprise number 576 (OID sub-tree
+                            1.3.6.1.4.1.576)."
+            --03 February 2006
+
+        REVISION	    "200602030858Z"
+        DESCRIPTION         "The initial version/revision of this MIB module.
+                            This version of the General Dynamics C4 Systems
+                            Enterprise MIB module documents the assignment
+                            of OIDs/branches under private enterprise number
+                            576 (OID sub-tree 1.3.6.1.4.1.576) assigned by
+                            the IANA to the General Dynamics C4 Systems (GDC4S)
+                            organization. Refer to the follwoing IANA URL: 
+                            http://www.iana.org/assignments/enterprise-numbers."
+        ::= { enterprises 576 }
+
+
+    --
+    --    
+    -- Note: Current top-level OID assignments within the General Dynamics C4 
+    -- Systems (GDC4S) 576 mib tree:
+    --    
+    --    gdc4sAssignmentsMIB.1  : co155-physical - SPANet (TM) CO155 ATM 
+    --                             Physical MIB
+    --    gdc4sAssignmentsMIB.2  : taclane - TACLANE-Enterprise-MIB, TACLANE 
+    --                             program's product Enterprise MIB
+    --                             (Originally assigned to SPANet (TM) CO155 ATM 
+    --                             Physical MIB, but inadvertently 're-used' by 
+    --                             TACLANE-Enterprise-MIB 
+    --    gdc4sAssignmentsMIB.3  : 10-g-physical - SPANet (TM) 10G ATM Physical 
+    --                             MIB
+    --    gdc4sAssignmentsMIB.4  : 10-g-virtual  - SPANet (TM) 10G ATM Virtual 
+    --                             MIB
+    --    gdc4sAssignmentsMIB.5  : GTE GSC NSCS organization: used for NMIP, 
+    --                             Task Force 21, ISYSCON, and other programs
+    --    gdc4sAssignmentsMIB.6  : tasa-physical - TaSA ATM Physical MIB
+    --    gdc4sAssignmentsMIB.7  : tasa-virtual  - TaSA ATM Virtual MIB
+    --    gdc4sAssignmentsMIB.8  : liafecta -  LIA/FECTA product Enterpise MIB
+    --    gdc4sAssignmentsMIB.9  : fastlane -  FASTLANE program's product 
+    --                             Enterprise MIB
+    --    gdc4sAssignmentsMIB.10 : originally assigned to TACLANE program's  
+    --                             product Enterprise MIB, which inadvertently 
+    --                             're-used' 576.2
+    --    gdc4sAssignmentsMIB.11 : infoguard - INFOGUARD program's product 
+    --                             Enterprise MIB
+    --    gdc4sAssignmentsMIB,12 : gtegsc2generic
+    --    gdc4sAssignmentsMIB.13 : gtegsc2experimental   
+    --    gdc4sAssignmentsMIB.14 : gtegsc2registration
+    --    gdc4sAssignmentsMIB.15 : gtegsc2products
+    --    gdc4sAssignmentsMIB.16 : gtegsc2capabilities
+    --    gdc4sAssignmentsMIB.17 : gtegsc2requirements
+    --    gdc4sAssignmentsMIB.18 : tacticalCircuitSwitch - ACUS ATM First 
+    --                             Digitized Division (FDD) program's Circuit 
+    --                             Switch (CS) product Enterprise MIB
+    --    gdc4sAssignmentsMIB.19 : ssmi - Simplified Soldier-Machine Interface 
+    --                             (SSMI) MIB
+    --    gdc4sAssignmentsMIB.20 : Future Battlefield Communications (FBC) ID 
+    --                             LDAP OIDs  
+    --    gdc4sAssignmentsMIB.21 : Bowman Program Enterprise MIB   
+    --    gdc4sAssignmentsMIB.22 : Vantage Program Enterprise MIB
+    --    gdc4sAssignmentsMIB.23 : secteraINEEnterpriseMIB - Sectéra product  
+    --                             Enterprise SNMP MIB for Sectéra INE program   
+    --    gdc4sAssignmentsMIB.24 : GDC4S-ENCRYPTION-PRODUCTS-MIB
+    --    gdc4sAssignmentsMIB.25 : Joint Tactical Radio System (JTRS) Handheld, 
+    --                             Manpack, and Small Form Fit (HMS)  program's 
+    --                             SNMP MIB   
+    --    gdc4sAssignmentsMIB.26 : Quality of Service Edge Device (QED) product  
+    --                             Enterprise MIB for WIN-T Bridge program  
+    --    gdc4sAssignmentsMIB.27 : NETOPS ID SNMP MIB    
+    --    gdc4sAssignmentsMIB.28 : Unassigned    
+    --    gdc4sAssignmentsMIB.29 : Unassigned    
+    --    gdc4sAssignmentsMIB.30 : Unassigned    
+    --    gdc4sAssignmentsMIB.31 : Unassigned    
+    --    gdc4sAssignmentsMIB.32 : Unassigned    
+    --    
+    --    
+    --
+
+END
+

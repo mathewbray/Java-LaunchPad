@@ -1,0 +1,1354 @@
+--
+--                 Unclassified//For Official Use Only
+--
+-- This entire document, which defines SNMP MIB objects in the SMIv2
+-- language should be considered U//FOUO.
+--
+-- The data that will be transmitted on the wire as a result of
+-- accessing these MIB objects MUST NOT BE CONSIDERED U//FOUO and is
+-- subject to separate classification.  The classification level of this
+-- data is not defined or within the scope of this document.
+--
+
+HAIPE-NETWORKING-MIB  DEFINITIONS  ::= BEGIN
+
+IMPORTS
+    OBJECT-TYPE, Unsigned32, Integer32,
+    MODULE-IDENTITY, NOTIFICATION-TYPE  FROM SNMPv2-SMI
+
+    RowStatus, TruthValue, TimeStamp    FROM SNMPv2-TC
+
+    hStationID                          FROM HAIPE-MANAGEMENT-MIB
+
+    hrSystemDate                        FROM HOST-RESOURCES-MIB
+
+    InetAddressType, InetAddress,
+    InetAddressPrefixLength             FROM INET-ADDRESS-MIB
+
+    InterfaceIndex                      FROM IF-MIB  
+
+    Ipv6AddressIfIdentifierTC,
+    IpAddressPrefixOriginTC,
+    ipv4InterfaceEntry,
+    ipv6InterfaceEntry                  FROM IP-MIB
+
+    HaipeSide                           FROM HAIPE-TC-MIB
+
+    hNetworking                         FROM HAIPE-FEATURE-HIERARCHY-MIB;
+
+haipeNetworkingMIB MODULE-IDENTITY
+    LAST-UPDATED "200808111500Z"
+    ORGANIZATION "HAIPE PO"
+    CONTACT-INFO
+         "(U//FOUO) Not Available"
+    DESCRIPTION
+        "(U//FOUO) This MIB defines the HAIPE networking MIB objects."
+    ::= { hNetworking 1 }
+
+
+--
+-- Networking Information Segments
+--
+hNetIP             OBJECT IDENTIFIER ::= { hNetworking 2 }
+hNetDiscovery      OBJECT IDENTIFIER ::= { hNetworking 3 }
+hNetRouting        OBJECT IDENTIFIER ::= { hNetworking 4 }
+hNetNotifObjs      OBJECT IDENTIFIER ::= { hNetworking 5 }
+
+-- hTPPolicyObjects tree
+hNetNotifs         OBJECT IDENTIFIER ::= { hNetNotifObjs 0 }
+hNetNotifObjects   OBJECT IDENTIFIER ::= { hNetNotifObjs 1 }
+
+
+-- *********************************************************************
+-- *********************************************************************
+--
+-- IP Networking Objects
+--
+-- *********************************************************************
+-- *********************************************************************
+--
+-- IP Addressing information
+--
+
+hIfAddrAssignments OBJECT IDENTIFIER ::= { hNetIP 7 }
+
+hIfAddrAssignmentTableCount OBJECT-TYPE
+        SYNTAX      Unsigned32
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The number of rows in the hIfAddrAssignmentTable."
+        ::= { hIfAddrAssignments 1 }
+
+hIfAddrAssignmentTableLastChanged OBJECT-TYPE
+        SYNTAX      TimeStamp
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The value of sysUpTime the last time any entry in
+            in the hIfAddrAssignmentTable was modified, created, or deleted
+            by either SNMP or other management method (e.g., via an HMI).
+
+            (U//FOUO) Managers can use this object to ensure that no
+            changes to configuration of this table have happened since
+            the last time it examined the table.
+
+            (U//FOUO) A value of 0 indicates that no entry has been
+            changed since the agent initialized."
+        ::= { hIfAddrAssignments 2 }
+
+hIfAddrAssignmentTable OBJECT-TYPE
+        SYNTAX      SEQUENCE OF HIfAddrAssignmentEntry
+        MAX-ACCESS  not-accessible
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The table containing a list of all IP addresses
+            assigned to each interface.  It supports both IPv4 and
+            IPv6 addresses."
+        ::= { hIfAddrAssignments 3 }
+
+hIfAddrAssignmentEntry OBJECT-TYPE
+        SYNTAX      HIfAddrAssignmentEntry
+        MAX-ACCESS  not-accessible
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) A row mapping an IP address to a given interface."
+        INDEX   { hiaaInterface, hiaaType, hiaaAddress }
+        ::= { hIfAddrAssignmentTable 1 }
+
+HIfAddrAssignmentEntry ::= SEQUENCE
+    {
+	hiaaInterface                    InterfaceIndex,
+	hiaaType                         InetAddressType,
+	hiaaAddress                      InetAddress,
+	hiaaPrefixLen                    InetAddressPrefixLength,
+	hiaaRowStatus                    RowStatus
+    }
+
+hiaaInterface OBJECT-TYPE
+        SYNTAX      InterfaceIndex
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The device side for the address assignment."
+        ::= { hIfAddrAssignmentEntry 1 }
+
+hiaaType OBJECT-TYPE
+        SYNTAX      InetAddressType
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The Internet address type for the assigned address.
+             Only ipv4(1), ipv6(2) and ipv6z(4) address types are supported."
+        ::= { hIfAddrAssignmentEntry 2 }
+
+hiaaAddress OBJECT-TYPE
+        SYNTAX      InetAddress (SIZE (4|16|20))
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The assigned Internet address for this entry."
+        ::= { hIfAddrAssignmentEntry 3 }
+
+hiaaPrefixLen OBJECT-TYPE
+        SYNTAX      InetAddressPrefixLength
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The prefix length for this address."
+        ::= { hIfAddrAssignmentEntry 4 }
+
+hiaaRowStatus OBJECT-TYPE
+        SYNTAX      RowStatus
+        MAX-ACCESS	 read-create
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The status of this row, by which new entries may be
+            created, or old entries deleted from this table.
+
+            (U//FOUO) If an attempt to create a new row via createAndGo does
+            not include a value for columns without defaults (aaPrefixLen) for
+            the new row, an inconsistentName error will be returned for this
+            object.
+
+            (U//FOUO) If any column is set to an invalid or unsupported
+            value (during row creation or any other time), a wrongValue
+            error will be returned for that object.
+
+            (U//FOUO) The value of this object has no effect on
+            whether other objects in this row can be modified."
+        ::= { hIfAddrAssignmentEntry 5 }
+
+-- ***********************************************************
+-- Interface Networking Objects (IP version neutral)
+--
+
+hIf OBJECT IDENTIFIER ::= { hNetIP 2 }
+
+-- ***********************************************************
+-- IPv4 Networking Objects
+--
+
+hIPv4 OBJECT IDENTIFIER ::= { hNetIP 4 }
+
+
+-- *************************************************
+-- IPv4 Box level settings
+
+hIpv4Settings OBJECT IDENTIFIER ::= { hIPv4 1 }
+
+-- *************************************************
+-- IPv4 interface augment table.
+
+hv4IfTableAugmentation OBJECT IDENTIFIER ::= { hIPv4 2 }
+
+hIfv4HaipeTableCount OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hIfv4HaipeTable."
+    ::= { hv4IfTableAugmentation 1 }
+
+hIfv4HaipeTableLastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The value of sysUpTime the last time any entry in
+        the hIfv4HaipeTable was modified, created, or deleted by
+        either SNMP or other management method (e.g., via an HMI).
+
+        (U//FOUO) Managers can use this object to ensure that no
+        changes to configuration of this table have happened since the
+        last time it examined the table.
+
+        (U//FOUO) A value of 0 indicates that no entry has been
+        changed since the agent initialized."
+    ::= { hv4IfTableAugmentation 2 }
+
+hIfv4HaipeTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF HIfv4HaipeEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The table containing a list of HAIPE-specific interface
+        objects for IPv4.  It augments the ipv4InterfaceTable in the
+        IP-MIB."
+    ::= { hv4IfTableAugmentation 3 }
+
+hIfv4HaipeEntry OBJECT-TYPE
+    SYNTAX      HIfv4HaipeEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) A row mapping IPv4 interface variables to an interface."
+    AUGMENTS { ipv4InterfaceEntry }
+    ::= { hIfv4HaipeTable 1 }
+
+HIfv4HaipeEntry ::= SEQUENCE
+    {
+	hIfv4Side                        HaipeSide,
+	hIfv4DFBit                       INTEGER,
+	hIfv4LowPMTUThreshold            Unsigned32,
+	hIfv4PMTUResetPeriod             Unsigned32,
+	hIfv4LastChanged                 TimeStamp,
+	hIfv4MTU                         Unsigned32,
+	hIfv4TTL                         Integer32,
+	hIfv4OutputPacketPadding         INTEGER,
+	hIfv4OutputPacketFixedSize       Unsigned32,
+	hIfv4NATTEnable                  INTEGER,
+	hIfv4SegCoreModeEnable           INTEGER
+    }
+
+hIfv4Side OBJECT-TYPE
+    SYNTAX      HaipeSide
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The device side (PT(1)/CT(2))."
+    ::= { hIfv4HaipeEntry 1 }
+
+hIfv4DFBit OBJECT-TYPE
+    SYNTAX      INTEGER { clear(0), set(1), copy(2) }
+    MAX-ACCESS	 read-write
+    STATUS      deprecated
+    DESCRIPTION
+        "(U//FOUO) This object is deprecated in favor of per-SA
+        objects available in the HAIPE-TRAFFIC-PROTECTION-MIB
+        (hIPhPPKSADFBit hIPhFFSADFBit)."
+    DEFVAL { copy }
+    ::= { hIfv4HaipeEntry 2 }
+
+hIfv4LowPMTUThreshold         OBJECT-TYPE
+    SYNTAX          Unsigned32
+    UNITS           "bytes"
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The packet size threshold in bytes for determining
+        whether PMTU processing and/or forced fragmentation will occur
+        across an interface.  I.E., This value is the minimum PMTU
+        allowed on an interface PMTU values lower than this will force
+        packets to fragment or the PMTU to be recalculated."
+    ::= { hIfv4HaipeEntry 3 }
+
+hIfv4PMTUResetPeriod     OBJECT-TYPE
+    SYNTAX          Unsigned32
+    UNITS           "seconds"
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The period in seconds at which the IPv4 PMTU
+        discovery process will be reset and the PMTU value will
+        be reset to the first-hop data-link MTU."
+    ::= { hIfv4HaipeEntry 4 }
+
+hIfv4LastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The value of sysUpTime the last time any entry in
+        this row of the hIfv4HaipeTable was modified by either SNMP
+        or other management method (e.g., via an HMI).
+
+        (U//FOUO) Managers can use this object to ensure that no
+        changes to configuration of this table have happened since the
+        last time it examined the table.
+
+        (U//FOUO) A value of 0 indicates that no entry has been
+        changed since the agent initialized."
+    ::= { hIfv4HaipeEntry 5 }
+
+hIfv4MTU            OBJECT-TYPE
+    SYNTAX          Unsigned32
+    UNITS           "bytes"
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The size of the MTU for the devices own
+        outgoing-packet-size.
+
+        (U//FOUO) Devices should use a default value of 1500 which is
+        specified as the default in RFC 894 as the default ethernet
+        MTU.  However, managers should not assume that a device will
+        implement this as this suggested default occurred after first
+        publication."
+    ::= { hIfv4HaipeEntry 6 }
+
+hIfv4TTL OBJECT-TYPE
+    SYNTAX      Integer32 (1..255)
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The Time To Live (TTL) value for outgoing packets
+        for this interface."
+--  RFC 1340 specifies default of 64
+    DEFVAL { 64 }
+    ::= { hIfv4HaipeEntry 7 }
+
+hIfv4OutputPacketPadding OBJECT-TYPE
+    SYNTAX      INTEGER { fixedSize(1), randomSize(2), noPadding(3) }
+    MAX-ACCESS  read-write
+    STATUS      deprecated
+    DESCRIPTION
+        "(U//FOUO) This object is deprecated. 
+        New implementations should use the hTPTFCConfigTable with 
+        hIPhFFSATFCConfig and hTPSATFCConfig to configure TFC.
+
+        (U//FOUO) The type of padding for output traffic.  It
+        indicates whether the output traffic (CT) will be padded to
+        a fixed packet length, a random packet length or not at
+        all."
+    DEFVAL { noPadding }
+    ::= { hIfv4HaipeEntry 8 }
+
+hIfv4OutputPacketFixedSize OBJECT-TYPE
+   SYNTAX      Unsigned32
+   MAX-ACCESS  read-write
+   STATUS      deprecated
+   DESCRIPTION
+       "(U//FOUO) This object is deprecated. 
+       New implementations should use the hTPTFCConfigTable with 
+       hIPhFFSATFCConfig and hTPSATFCConfig to configure TFC.
+
+       (U//FOUO) If hIfv4OutputPacketPadding is set to fixedSize,
+       this object will indicate the actual fixed size of the
+       packets to be sent.  Implementations will certainly not
+       support the setting of all possible values to this object,
+       and a wrongValue exception should be returned when an attempt
+       to set this object to an unsupported value occurs."
+   ::= { hIfv4HaipeEntry 9 }
+
+hIfv4NATTEnable OBJECT-TYPE
+    SYNTAX      INTEGER { on(1), off(2) }
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This indicates whether or not NAT-T is enabled
+        for IPv4 on this interface."
+    DEFVAL { on }
+    ::= { hIfv4HaipeEntry 10 }
+
+hIfv4SegCoreModeEnable OBJECT-TYPE
+    SYNTAX      INTEGER { on(1), off(2) }
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This indicates whether or not Segmented Core Mode is enabled
+        for IPv4 on this interface.
+	
+	(U//FOUO) This object only applies to CT interfaces, hIfv4Side=ct(2),
+	and should not be present otherwise."
+    DEFVAL { off }
+    ::= { hIfv4HaipeEntry 11 }
+
+-- ***********************************************************
+-- IPv6 Networking Objects
+--
+
+hIPv6 OBJECT IDENTIFIER ::= { hNetIP 6 }
+
+-- *************************************************
+-- IPv6 Box level settings
+
+hIpv6Settings OBJECT IDENTIFIER ::= { hIPv6 1 }
+
+
+-- *************************************************
+-- ipv6interface augment table.
+
+hv6IfTableAugmentation OBJECT IDENTIFIER ::= { hIPv6 2 }
+
+hIfv6HaipeTableCount OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U) The number of rows in the hIfv6HaipeTable."
+    ::= { hv6IfTableAugmentation 1 }
+
+hIfv6HaipeTableLastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U) The value of sysUpTime the last time any entry in
+        the hIfv6HaipeTable was modified, created, or deleted by
+        either SNMP or other management method (e.g., via an HMI).
+
+        (U) Managers can use this object to ensure that no
+        changes to configuration of this table have happened since the
+        last time it examined the table.
+
+        (U) A value of 0 indicates that no entry has been
+        changed since the agent initialized."
+    ::= { hv6IfTableAugmentation 2 }
+
+hIfv6HaipeTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF HIfv6HaipeEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U) The table containing a list of HAIPE-specific interface
+        objects for IPv6.  It augments the ipv6InterfaceTable in the
+        IP-MIB."
+    ::= { hv6IfTableAugmentation 3 }
+
+hIfv6HaipeEntry OBJECT-TYPE
+    SYNTAX      HIfv6HaipeEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U) A row mapping IPv6 interface variables to an interface."
+    AUGMENTS { ipv6InterfaceEntry }
+    ::= { hIfv6HaipeTable 1 }
+
+HIfv6HaipeEntry ::= SEQUENCE
+    {
+	hIfv6Side                        HaipeSide,
+	hIfv6AddressAutoConfig           TruthValue,
+	hIfv6DupAddressDetection         TruthValue,
+	hIfv6DupAddressRecoveryID        Ipv6AddressIfIdentifierTC,
+	hIfv6UseDepAddress               TruthValue,
+	hIfv6RouterSolicitation          TruthValue,
+	hIfv6DiscardUnauthRed            TruthValue,
+	hIfv6TrymeSA                     TruthValue,
+	hIfv6LowPMTUThreshold            Unsigned32,
+	hIfv6PMTUResetPeriod             Unsigned32,
+	hIfv6LastChanged                 TimeStamp,
+	hIfv6MTU                         Unsigned32,
+	hIfv6HopLimit                    Integer32,
+	hIfv6BaseReachableTime           Unsigned32,
+	hIfv6ReachableTime               Unsigned32,
+	hIfv6RetransmitTime              Unsigned32,
+	hIfv6NextHeaderSkipList          OCTET STRING,
+	hIfv6OutputPacketPadding         INTEGER,
+	hIfv6OutputPacketFixedSize       Unsigned32,
+	hIfv6InterfaceIdentifier         Ipv6AddressIfIdentifierTC,
+	hIfv6NATTEnable                  INTEGER,
+	hIfv6SegCoreModeEnable           INTEGER,
+	hIfv6SubIdentifier               OCTET STRING
+    }
+
+hIfv6Side OBJECT-TYPE
+    SYNTAX      HaipeSide
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U) The device side (PT(1)/CT(2))."
+    ::= { hIfv6HaipeEntry 1 }
+
+hIfv6AddressAutoConfig OBJECT-TYPE
+    SYNTAX      TruthValue
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U) The indication of whether stateless or
+        statefull address configuration should take place on this
+        interface.  A value of 'true' indicates that stateless
+        address configuration should take place. The default value
+        is 'false', which indicates that no stateless address
+        configuration should take place.
+
+        (U) This entry is only required for the hIfv6Side value
+        of 'CT' (i.e. the HAIPE CT Host interface).
+
+        (U) Note that for the CT interface, this object must be in
+        sync with the hIfv6DupAddressDetection object. If stateless
+        address configuration is enabled, duplicate address detection
+        must also be enabled. If one is disabled, the other must also
+        be disabled."
+    DEFVAL { false }
+    ::= { hIfv6HaipeEntry 2 }
+
+hIfv6DupAddressDetection OBJECT-TYPE
+    SYNTAX      TruthValue
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U) The indication of whether the interface should use
+        duplicate address detection.  A value of 'true' indicates that
+        duplicate address detection should be attempted.  The
+        default value is 'false', which indicates that no duplicate
+        address detection should take place.
+
+        (U) Note that for the CT interface, this object must be in
+        sync with the hIfv6AddressAutoConfig object. If stateless
+        address configuration is enabled, duplicate address detection
+        must also be enabled. If one is disabled, the other must also
+        be disabled."
+    DEFVAL { false }
+    ::= { hIfv6HaipeEntry 3 }
+
+hIfv6DupAddressRecoveryID OBJECT-TYPE
+    SYNTAX      Ipv6AddressIfIdentifierTC
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U) The interface identifier to be used if duplicate address
+        is detected.  If set to a non-zero length value, the value of this
+        object will be used as a backup identifier for the interface when
+        duplicate address detection is enabled and has discovered a
+        duplicate address."
+    DEFVAL { ''H }
+    ::= { hIfv6HaipeEntry 4 }
+
+hIfv6UseDepAddress OBJECT-TYPE
+    SYNTAX      TruthValue
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U) The indication of whether new communication are
+        allowed to use a deprecated address.  A value of 'true' indicates
+        that new communications using a deprecated address are allowed.
+        The default value is to not allow the use of deprecated
+        addresses, 'false'.  This entry is only required for the
+        hIfv6Side value of 'CT' (i.e. the HAIPE CT Host interface)."
+    DEFVAL { false }
+    ::= { hIfv6HaipeEntry 5 }
+
+hIfv6RouterSolicitation OBJECT-TYPE
+    SYNTAX      TruthValue
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U) The indication of whether an interface should
+        send Router Solicitations.  A value of 'true' indicates that sending
+        Router Solicitations is allowed.  The default is to not send
+        Router Solicitations, 'false'.  This entry is only required for
+        the hIfv6Side value of 'CT' (i.e. the HAIPE CT Host interface)."
+    DEFVAL { false }
+    ::= { hIfv6HaipeEntry 6 }
+
+hIfv6DiscardUnauthRed OBJECT-TYPE
+    SYNTAX      TruthValue
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U) The indication of whether an interface processes or
+        discards all unauthenticated Redirect Messages.  The default
+        is to process the Redirect Messages, 'true'.  A value of
+        'false' indicates that the interface discards unauthenticated
+        Redirect Messages.  This entry is only required for the
+        hIfv6Side value of 'CT' (i.e. the HAIPE CT Host interface)."
+    DEFVAL { true }
+    ::= { hIfv6HaipeEntry 7 }
+
+hIfv6TrymeSA OBJECT-TYPE
+    SYNTAX      TruthValue
+    MAX-ACCESS	 read-write
+    STATUS      deprecated
+    DESCRIPTION
+        "(U) This object has been deprecated.  RFC2401bis uses
+        the populate from packet SPD setting to accomplish this, which
+        is reflected in the
+        HAIPE-TRAFFIC-PROTECTION-MIB::hIPhFFSAPopulateFromPacket
+        object.
+
+        (U) The indication of whether the HAIPE should attempt to
+        associate the target host (destination address) with an
+        existing SA or initiate an IKE exchange to create an SA with
+        the HAIPE fronting the target host.  The default is to reuse
+        an existing SA.  This entry is only required for the hIfv6Side
+        value of 'CT' (i.e. the HAIPE CT interface)."
+    DEFVAL { false }
+    ::= { hIfv6HaipeEntry 8 }
+
+hIfv6LowPMTUThreshold         OBJECT-TYPE
+    SYNTAX          Unsigned32
+    UNITS           "bytes"
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U) The packet size threshold in bytes for
+        determining whether PMTU processing and/or forced
+        fragmentation will occur across an interface."
+    ::= { hIfv6HaipeEntry 9 }
+
+hIfv6PMTUResetPeriod     OBJECT-TYPE
+    SYNTAX          Unsigned32
+    UNITS           "seconds"
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U) The period in seconds at which the IPv6 PMTU
+        discovery process will be reset and the PMTU value will be
+        reset to the first-hop data-link MTU."
+    ::= { hIfv6HaipeEntry 10 }
+
+hIfv6LastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS		 current
+    DESCRIPTION
+        "(U) The value of sysUpTime the last time any entry in
+        this row of the hIfv6HaipeTable was modified by either SNMP
+        or other management method (e.g., via an HMI).
+
+        (U) Managers can use this object to ensure that no
+        changes to configuration of this table have happened since the
+        last time it examined the table.
+
+        (U) A value of 0 indicates that no entry has been
+        changed since the agent initialized."
+    ::= { hIfv6HaipeEntry 11 }
+
+hIfv6MTU OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U) The size in octets of the MTU."
+--  REFERENCE  RFC 2461 IPv6, sect. 6.3.2 Host Variables
+--  REFERENCE  RFC 2464 has a default ethernet MTU of 1500.
+    DEFVAL { 1500 }
+    ::= { hIfv6HaipeEntry 12 }
+
+hIfv6HopLimit   OBJECT-TYPE
+    SYNTAX      Integer32 (0..255)
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U) The default hop limit to be used when sending
+         (unicast) IP packets."
+--  REFERENCE  RFC 2461 IPv6, sect. 6.3.2 Host Variables
+--  RFC 1340 lists 64 as TTL default value
+    DEFVAL { 64 }
+    ::= { hIfv6HaipeEntry 13 }
+
+hIfv6BaseReachableTime   OBJECT-TYPE
+    SYNTAX      Unsigned32 
+    UNITS       "milliseconds"
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U) A base value in milliseconds used for computing
+        the random ReachableTime value."
+--  REFERENCE  RFC 2461 IPv6, sect. 6.3.2 Host Variables
+    DEFVAL { 30000 }
+    ::= { hIfv6HaipeEntry 14 }
+
+hIfv6ReachableTime   OBJECT-TYPE
+    SYNTAX      Unsigned32 
+    UNITS       "milliseconds"
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U) The time in milliseconds a neighbor is considered
+         reachable after receiving a reachability confirmation.
+         This value should be a uniformly-distributed random value
+         between MIN_RANDOM_FACTOR and MAX_RANDOM_FACTOR times
+         BaseReachableTime milliseconds.  A new random value should
+         be calculated when BaseReachableTime changes (due to Router
+         Advertisements) or at least every few hours even if no
+         Router Advertisements are received."
+--  REFERENCE  RFC 2461 IPv6, sect. 6.3.2 Host Variables
+--             MIN_RANDOM_FACTOR = .5, MAX_RANDOM_FACTOR = 1.5
+    ::= { hIfv6HaipeEntry 15 }
+
+hIfv6RetransmitTime   OBJECT-TYPE
+    SYNTAX      Unsigned32 
+    UNITS       "milliseconds"
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U) The time in milliseconds between retransmissions
+         of Neighbor Solicitation messages to a neighbor when
+         resolving the address or when probing the reachability of a
+         neighbor."
+--  REFERENCE  RFC 2461 IPv6, sect. 6.3.2 Host Variables
+--             default of RETRANS_TIMER = 1000
+    DEFVAL { 1000 }
+    ::= { hIfv6HaipeEntry 16 }
+
+hIfv6NextHeaderSkipList OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE(0..256))
+    MAX-ACCESS  read-write
+    STATUS current
+    DESCRIPTION
+        "(U) The list of IPv6 extension header values to skip
+        (i.e. ignore) when selecting on the Next Header value for an
+        SA selector or a SPD rule selector.  Each octet in this OCTET
+        STRING represents a header value that should be ignored.
+
+        (U) The default list of Next Header values to skip is
+        0 (Hop-by-hop Options), 43 (Routing Header), 44
+        (Fragmentation Header), and 60 (Destination Options)."
+    DEFVAL { "0x002B2C3C" }
+    ::= { hIfv6HaipeEntry 17 }
+
+hIfv6OutputPacketPadding OBJECT-TYPE
+    SYNTAX      INTEGER { fixedSize(1), randomSize(2), noPadding(3) }
+    MAX-ACCESS  read-write
+    STATUS      deprecated
+    DESCRIPTION
+        "(U//FOUO) This object is deprecated. 
+        New implementations should use the hTPTFCConfigTable with 
+        hIPhFFSATFCConfig and hTPSATFCConfig to configure TFC.
+
+        (U//FOUO) The type of padding for output traffic.  It
+        indicates whether the output traffic (CT) will be padded to
+        a fixed packet length, a random packet length or not at
+        all."
+    DEFVAL { noPadding }
+    ::= { hIfv6HaipeEntry 18 }
+
+hIfv6OutputPacketFixedSize OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-write
+    STATUS      deprecated
+    DESCRIPTION
+        "(U//FOUO) This object is deprecated. 
+        New implementations should use the hTPTFCConfigTable with 
+        hIPhFFSATFCConfig and hTPSATFCConfig to configure TFC.
+
+        (U//FOUO) If hIfv6OutputPacketPadding is set to fixedSize,
+        this object will indicate the actual fixed size of the
+        packets to be sent.  Implementations will certainly not
+        support the setting of all possible values to this object,
+        and a wrongValue exception should be returned when an
+        attempt to set this object to an unsupported value occurs."
+    ::= { hIfv6HaipeEntry 19 }
+
+hIfv6InterfaceIdentifier OBJECT-TYPE
+    SYNTAX     Ipv6AddressIfIdentifierTC
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Interface Identifier for this interface.  The
+        Interface Identifier is combined with an address prefix to
+        form an interface address.
+
+        (U//FOUO) By default, the Interface Identifier is
+        auto-configured according to the rules of the link type to
+        which this interface is attached.
+
+        (U//FOUO) A zero length identifier may be used where
+        appropriate.  One possible example is a loopback interface."
+--  REFERENCE "NET.IP.V6.PT.ICMP.ADD.5"
+    ::= { hIfv6HaipeEntry 20 }
+
+hIfv6NATTEnable OBJECT-TYPE
+    SYNTAX      INTEGER { on(1), off(2) }
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This indicates whether or not NAT-T is enabled
+        for IPv6 on this interface.
+
+	(U//FOUO) This object only applies to CT interfaces, hIfv6Side=ct(2),
+	and should not be present otherwise."
+    DEFVAL { on }
+    ::= { hIfv6HaipeEntry 21 }
+
+hIfv6SegCoreModeEnable OBJECT-TYPE
+    SYNTAX      INTEGER { on(1), off(2) }
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This indicates whether or not Segmented Core Mode is enabled
+        for IPv6 on this interface.
+
+	(U//FOUO) This object only applies to CT interfaces, hIfv6Side=ct(2),
+	and should not be present otherwise."
+    DEFVAL { off }
+    ::= { hIfv6HaipeEntry 22 }
+
+hIfv6SubIdentifier OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE(0..64))
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This subidentifier is used as the value to place
+        between the learned IPv6 prefix and the host identifier.  If
+        the length of this field is longer than the needed number of
+        bits to fill into the IPv6 address generation then the left
+        most bits will be truncated until the length is the length
+        desired and the right most bits will be used for filling the
+        needed addressing bit space."
+    DEFVAL { ''H }
+    ::= { hIfv6HaipeEntry 23 }
+
+-- *************************************************
+-- ipv6AddressPrefix table.  Mostly a copy of the
+-- IP-MIB::ipAddressPrefixTable.  Needed for read-write access to
+-- the address prefix list and for indication of prefix inclusion in
+-- router advertisement.
+
+
+hv6AddressPrefixSettings OBJECT IDENTIFIER ::= { hIPv6 3 }
+
+hv6AddressPrefixTableCount OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U) The number of rows in the hv6AddressPrefixTable."
+    ::= { hv6AddressPrefixSettings 1 }
+
+hv6AddressPrefixTableLastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U) The value of sysUpTime the last time any entry in the
+        hv6AddressPrefixTable was modified, created, or deleted by
+        either SNMP or other management method (e.g., via an HMI).
+
+        (U) Managers can use this object to ensure that no
+        changes to configuration of this table have happened since
+        the last time it examined the table.
+
+        (U) A value of 0 indicates that no entry has been
+        changed since the agent initialized."
+    ::= { hv6AddressPrefixSettings 2 }
+
+hv6AddressPrefixTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF Hv6AddressPrefixEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U) The table containing a list of HAIPE-specific address
+        prefix objects.  It is mostly a reproduction of the
+        ipAddressPrefixTable in the IP-MIB with an additional prefix
+        advertisement column and read-write access to the columns.
+
+        (U) This table allows the user to determine the source of an
+        IP addressor set of IP addresses and allows other tables to
+        share the information via pointer rather than by copying.
+
+        (U) This table primarily provides support for IPv6 prefixes
+        and several of the objects are less meaningful for IPv4.
+
+        (U) All prefixes used by this entity should be included in
+        this table independent of how the entity learned the prefix.
+        (This table isn't limited to prefixes learned from router
+        advertisements.)"
+    ::= { hv6AddressPrefixSettings 3 }
+
+hv6AddressPrefixEntry OBJECT-TYPE
+    SYNTAX      Hv6AddressPrefixEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U) A row mapping IPv6 adress prefix variables to an
+        interface."
+    INDEX    { hv6APAddressPrefixIfIndex, hv6APAddressPrefixType,
+               hv6APAddressPrefixPrefix, hv6APAddressPrefixLength }
+    ::= { hv6AddressPrefixTable 1 }
+
+Hv6AddressPrefixEntry ::= SEQUENCE
+    {
+	hv6APAddressPrefixIfIndex        InterfaceIndex,
+	hv6APAddressPrefixType           InetAddressType,
+	hv6APAddressPrefixPrefix         InetAddress,
+	hv6APAddressPrefixLength         InetAddressPrefixLength,
+	hv6APAddressPrefixOrigin         IpAddressPrefixOriginTC,
+	hv6APAddressPrefixOnLinkFlag     TruthValue,
+	hv6APAddressPrefixAutonomousFlag TruthValue,
+	hv6APAddressPrefixAdvPreferredLifetime Unsigned32,
+	hv6APAddressPrefixAdvValidLifetime Unsigned32,
+	hv6APAdvertisePrefix             TruthValue,
+	hv6APRowStatus                   RowStatus,
+	hv6APTableLastChanged            TimeStamp,
+	hv6APLastChanged                 TimeStamp
+    }
+
+hv6APAddressPrefixIfIndex OBJECT-TYPE
+    SYNTAX     InterfaceIndex
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U) The index value which uniquely identifies the interface
+        on which this prefix is configured.  The interface
+        identified by a particular value of this index is the same
+        interface as identified by the same value of the IF-MIB's
+        ifIndex."
+    ::= { hv6AddressPrefixEntry 1 }
+
+hv6APAddressPrefixType OBJECT-TYPE
+    SYNTAX     InetAddressType
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U) The address type of hv6APAddressPrefix."
+    ::= { hv6AddressPrefixEntry 2 }
+
+hv6APAddressPrefixPrefix OBJECT-TYPE
+    SYNTAX     InetAddress
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U) The address prefix.  The address type of this object is
+        specified in hv6APAddressPrefixType.  The length of this
+        object is the standard length for objects of that type (4 or
+        16 bytes).  Any bits after hv6APAddressPrefixLength must be
+        zero.
+
+        (U) Implementors need to be aware that if the size of
+        hv6APAddressPrefixPrefix exceeds 114 octets then OIDS of
+        instances of columns in this row will have more than 128
+        sub-identifiers and cannot be accessed using SNMPv1, SNMPv2c
+        or SNMPv3."
+    ::= { hv6AddressPrefixEntry 3 }
+
+hv6APAddressPrefixLength OBJECT-TYPE
+    SYNTAX     InetAddressPrefixLength
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U) The prefix length associated with this prefix.  The
+        value 0 has no special meaning for this object.  It simply
+        refers to address '::/0'."
+    ::= { hv6AddressPrefixEntry 4 }
+
+hv6APAddressPrefixOrigin OBJECT-TYPE
+    SYNTAX     IpAddressPrefixOriginTC
+    MAX-ACCESS	 read-create
+    STATUS     current
+    DESCRIPTION
+        "(U) The origin of this prefix."
+    ::= { hv6AddressPrefixEntry 5 }
+
+hv6APAddressPrefixOnLinkFlag OBJECT-TYPE
+    SYNTAX     TruthValue
+    MAX-ACCESS	 read-create
+    STATUS     current
+    DESCRIPTION
+        "(U) This object has the value 'true(1)', if this prefix can
+        be used for on-link determination and the value 'false(2)'
+        otherwise.
+
+        (U) The default for IPv4 prefixes is 'true(1)'."
+--    REFERENCE "For IPv6 RFC2461, especially sections 2 and 4.6.2,
+--               RFC2462, and RFC2011 section 6"
+    ::= { hv6AddressPrefixEntry 6 }
+
+hv6APAddressPrefixAutonomousFlag OBJECT-TYPE
+    SYNTAX     TruthValue
+    MAX-ACCESS	 read-create
+    STATUS     current
+    DESCRIPTION
+        "(U) Autonomous address configuration flag. When true(1),
+        indicates that this prefix can be used for autonomous
+        address configuration (i.e. can be used to form a local
+        interface address using stateless autoconfiguration).  If
+        false(2), it is not used to auto-configure a local interface
+        address.
+
+        (U) The default for IPv4 prefixes is 'false(2)'."
+--    REFERENCE "For IPv6 RFC2461, especially sections 2 and 4.6.2,
+--               RFC2462, and RFC2011 section 6"
+    ::= { hv6AddressPrefixEntry 7 }
+
+hv6APAddressPrefixAdvPreferredLifetime OBJECT-TYPE
+    SYNTAX     Unsigned32
+    UNITS       "seconds"
+    MAX-ACCESS	 read-create
+    STATUS     current
+    DESCRIPTION
+        "(U) The remaining length of time in seconds that this
+        prefix will continue to be preferred, i.e. time until
+        deprecation.
+
+        (U) A value of 4,294,967,295 represents infinity.
+
+        (U) The address generated from a deprecated prefix should
+        no longer be used as a source address in new communications,
+        but packets received on such an interface are processed as
+        expected.
+
+        (U) The default for IPv4 prefixes is 4,294,967,295 (infinity)."
+--    REFERENCE "For IPv6 RFC2461, especially sections 2 and 4.6.2,
+--               RFC2462, and RFC2011 section 6"
+    ::= { hv6AddressPrefixEntry 8 }
+
+hv6APAddressPrefixAdvValidLifetime OBJECT-TYPE
+    SYNTAX     Unsigned32
+    UNITS       "seconds"
+    MAX-ACCESS	 read-create
+    STATUS     current
+    DESCRIPTION
+        "(U) The remaining length of time, in seconds, that this
+        prefix will continue to be valid, i.e. time until
+        invalidation.  A value of 4,294,967,295 represents infinity.
+
+        (U) The address generated from an invalidated prefix should
+        not appear as the destination or source address of a packet.
+
+        (U) The default for IPv4 prefixes is 4,294,967,295
+        (infinity)."
+--    REFERENCE "For IPv6 RFC2461, especially sections 2 and 4.6.2,
+--               RFC2462, and RFC2011 section 6"
+    ::= { hv6AddressPrefixEntry 9 }
+
+hv6APAdvertisePrefix OBJECT-TYPE
+    SYNTAX      TruthValue
+    MAX-ACCESS	 read-create
+    STATUS      current
+    DESCRIPTION
+        "(U) This object indicates whether the address prefix
+        this row indicates should be included in router
+        advertisements.
+
+        (U) Note: this object should normally default to the
+        value of the hv6APOnLinkFlag column in this row."
+--    REFERENCE "RFC2011 section 6.3"
+    ::= { hv6AddressPrefixEntry 10 }
+
+hv6APRowStatus OBJECT-TYPE
+     SYNTAX      RowStatus
+     MAX-ACCESS	 read-create
+     STATUS		 current
+     DESCRIPTION
+         "(U) The status of this row, by which new entries may be
+         created, or old entries deleted from this table.
+
+         (U) If an attempt to create a new row via createAndGo
+         does not include a value for columns without defaults for
+         the new row, an inconsistentName error will be returned for
+         this object.
+
+         (U) If any column is set to an invalid or unsupported
+         value (during row creation or any other time), a wrongValue
+         error will be returned for that object.
+
+         (U) The value of this object has no effect on whether
+         other objects in this row can be modified."
+    ::= { hv6AddressPrefixEntry 11 }
+
+
+hv6APTableLastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS      deprecated
+    DESCRIPTION
+        "(U) THIS OBJECT IS DEPRECATED in favor of the new object
+        'hv6APLastChanged' which references the last changed object of
+        the row.  The original text for this item, which indicates
+        this value is updated any time the any part of the table has
+        changed, is below:
+
+        (U) The value of sysUpTime the last time any entry in the
+        hv6AddressPrefixTable was modified, created, or deleted by
+        either SNMP or other management method (e.g., via an HMI).
+
+        (U) Managers can use this object to ensure that no
+        changes to configuration of this table have happened since the
+        last time it examined the table.
+
+        (U) A value of 0 indicates that no entry has been
+        changed since the agent initialized."
+    ::= { hv6AddressPrefixEntry 12 }
+
+hv6APLastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U) The value of sysUpTime the last time this entry in the
+        hv6AddressPrefixTable was modified, created, or deleted by
+        either SNMP or other management method (e.g., via an HMI).
+
+        (U) Managers can use this object to ensure that no
+        changes to configuration of this entry have happened since the
+        last time it examined the table.
+
+        (U) A value of 0 indicates that this entry has not been
+        changed since the agent initialized."
+    ::= { hv6AddressPrefixEntry 13 }
+
+-- ***********************************************************
+-- Multicast Networking Objects
+--
+
+hMulticast OBJECT IDENTIFIER ::= { hNetRouting 1 }
+
+
+--
+-- IPv4 Multicast objects
+
+hMcast4 OBJECT IDENTIFIER ::= { hMulticast 4 }
+
+hIGMPMode           OBJECT-TYPE
+    SYNTAX          INTEGER { hostIGMP(1), bypassIGMP(2) }
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The IGMP support method."
+    DEFVAL { hostIGMP }
+    ::= { hMcast4 1 }
+
+
+--
+-- IPv6 Multicast objects
+
+hMcast6 OBJECT IDENTIFIER ::= { hMulticast 6 }
+
+hMLDMode            OBJECT-TYPE
+    SYNTAX          INTEGER { hostMLD(1), bypassMLD(2) }
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The MLD support method."
+    DEFVAL { hostMLD }
+    ::= { hMcast6 1 }
+
+-- **********************************************************************
+-- Notifications
+--
+
+hNetDuplicateAddressCheck NOTIFICATION-TYPE
+    OBJECTS         { hStationID, hrSystemDate }
+-- XXX: can we include some address info here?
+    STATUS        current
+    DESCRIPTION
+         "(U//FOUO) This notification event indicates that an incoming neighbor
+         solicitation messages with an unspecified address was received
+         during duplicate address checking.
+
+         (U//FOUO) The recommended hAuditConfigTable defaults for this
+         notification are:
+              ThrottlingEnabled: true
+              LogThrottleCfg   : Once per minute
+              NotifEnabled     : true
+              NotifThrottleCfg : Once per minute"
+    ::= { hNetNotifs 1 }
+
+hNetDuplicateAddressDetected NOTIFICATION-TYPE
+    OBJECTS         { hStationID, hrSystemDate,
+                      hNetSourceAddressType, hNetSourceAddress }
+    STATUS        current
+    DESCRIPTION
+         "(U//FOUO) This notification event indicates that a duplicate
+         address has been detected during the duplicate address
+         detection process.
+
+         (U//FOUO) hNetSourceAddressType and hNetSourceAddress indicate
+         the duplicated address.
+
+         (U//FOUO) The recommended hAuditConfigTable defaults for this
+         notification are:
+              ThrottlingEnabled: true
+              LogThrottleCfg   : Once per minute
+              NotifEnabled     : true
+              NotifThrottleCfg : Once per minute"
+    ::= { hNetNotifs 2 }
+
+hNetDuplicateAddressIfDown NOTIFICATION-TYPE
+    OBJECTS         { hStationID, hrSystemDate }
+    STATUS        current
+    DESCRIPTION
+         "(U//FOUO) This notification event indicates that a duplicate
+         address formed from an interface identifier was detected for
+         a link local address, and the interface has been disabled.
+
+         (U//FOUO) The recommended hAuditConfigTable defaults for this
+         notification are:
+              ThrottlingEnabled: true
+              LogThrottleCfg   : Once per minute
+              NotifEnabled     : true
+              NotifThrottleCfg : Once per minute"
+    ::= { hNetNotifs 3 }
+
+--
+-- Notification objects
+--
+
+hNetSourceAddressType    OBJECT-TYPE
+        SYNTAX          InetAddressType
+        MAX-ACCESS      accessible-for-notify
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The source address type of a packet."
+        ::= { hNetNotifObjects 1}
+
+hNetSourceAddress        OBJECT-TYPE
+        SYNTAX          InetAddress
+        MAX-ACCESS      accessible-for-notify
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The source address of a packet."
+        ::= { hNetNotifObjects 2}
+
+
+-- **********************************************************************
+-- **********************************************************************
+-- **********************************************************************
+-- DEPRECATED OBJECTS.  DO NOT USE.
+-- **********************************************************************
+-- **********************************************************************
+-- **********************************************************************
+
+hAddressAssignments OBJECT IDENTIFIER ::= { hNetIP 1 }
+
+hAddressAssignmentTableCount OBJECT-TYPE
+        SYNTAX      Unsigned32
+        MAX-ACCESS  read-only
+        STATUS      deprecated
+        DESCRIPTION
+            "(U//FOUO) The number of rows in the hAddressAssignmentTable."
+        ::= { hAddressAssignments 1 }
+
+hAddressAssignmentTableLastChanged OBJECT-TYPE
+        SYNTAX      TimeStamp
+        MAX-ACCESS  read-only
+        STATUS      deprecated
+        DESCRIPTION
+            "(U//FOUO) The value of sysUpTime the last time any entry in
+            in the hAddressAssignmentTable was modified, created, or deleted
+            by either SNMP or other management method (e.g., via an HMI).
+
+            (U//FOUO) Managers can use this object to ensure that no
+            changes to configuration of this table have happened since
+            the last time it examined the table.
+
+            (U//FOUO) A value of 0 indicates that no entry has been
+            changed since the agent initialized."
+        ::= { hAddressAssignments 2 }
+
+hAddressAssignmentTable OBJECT-TYPE
+        SYNTAX      SEQUENCE OF HAddressAssignmentEntry
+        MAX-ACCESS  not-accessible
+        STATUS      deprecated
+        DESCRIPTION
+            "(U//FOUO) The table containing a list of all IP addresses
+            assigned to each interface.  It supports both IPv4 and
+            IPv6 addresses."
+        ::= { hAddressAssignments 3 }
+
+hAddressAssignmentEntry OBJECT-TYPE
+        SYNTAX      HAddressAssignmentEntry
+        MAX-ACCESS  not-accessible
+        STATUS      deprecated
+        DESCRIPTION
+            "(U//FOUO) A row mapping an IP address to a given interface."
+        INDEX   { haaSide, haaType, haaAddress }
+        ::= { hAddressAssignmentTable 1 }
+
+HAddressAssignmentEntry ::= SEQUENCE
+    {
+	haaSide                          HaipeSide,
+	haaType                          InetAddressType,
+	haaAddress                       InetAddress,
+	haaPrefixLen                     InetAddressPrefixLength,
+	haaRowStatus                     RowStatus
+    }
+
+haaSide OBJECT-TYPE
+        SYNTAX      HaipeSide
+        MAX-ACCESS	 read-create
+        STATUS      deprecated
+        DESCRIPTION
+            "(U//FOUO) The device side for the address assignment."
+        ::= { hAddressAssignmentEntry 1 }
+
+haaType OBJECT-TYPE
+        SYNTAX      InetAddressType
+        MAX-ACCESS	 read-create
+        STATUS      deprecated
+        DESCRIPTION
+            "(U//FOUO) The Internet address type for the assigned address.
+             Only ipv4(1), ipv6(2) and ipv6z(4) address types are supported."
+        ::= { hAddressAssignmentEntry 2 }
+
+haaAddress OBJECT-TYPE
+        SYNTAX      InetAddress (SIZE (4|16|20))
+        MAX-ACCESS	 read-create
+        STATUS      deprecated
+        DESCRIPTION
+            "(U//FOUO) The assigned Internet address for this entry."
+        ::= { hAddressAssignmentEntry 3 }
+
+haaPrefixLen OBJECT-TYPE
+        SYNTAX      InetAddressPrefixLength
+        MAX-ACCESS	 read-create
+        STATUS      deprecated
+        DESCRIPTION
+            "(U//FOUO) The prefix length for this address."
+        ::= { hAddressAssignmentEntry 4 }
+
+haaRowStatus OBJECT-TYPE
+        SYNTAX      RowStatus
+        MAX-ACCESS	 read-create
+        STATUS      deprecated
+        DESCRIPTION
+            "(U//FOUO) The status of this row, by which new entries may be
+            created, or old entries deleted from this table.
+
+            (U//FOUO) If an attempt to create a new row via createAndGo does
+            not include a value for columns without defaults (aaPrefixLen) for
+            the new row, an inconsistentName error will be returned for this
+            object.
+
+            (U//FOUO) If any column is set to an invalid or unsupported
+            value (during row creation or any other time), a wrongValue
+            error will be returned for that object.
+
+            (U//FOUO) The value of this object has no effect on
+            whether other objects in this row can be modified."
+        ::= { hAddressAssignmentEntry 5 }
+
+END

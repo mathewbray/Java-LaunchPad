@@ -1,0 +1,234 @@
+--BEGIN Revision History
+--
+--END Revision History
+
+GDC4S-FEATURE-MIB DEFINITIONS ::= BEGIN
+    IMPORTS
+    OBJECT-TYPE, MODULE-IDENTITY, NOTIFICATION-TYPE,
+    Unsigned32, 
+        FROM SNMPv2-SMI
+    NOTIFICATION-GROUP, OBJECT-GROUP
+        FROM SNMPv2-CONF
+    SnmpAdminString
+        FROM SNMP-FRAMEWORK-MIB
+    gdc4sEncryptionProductsMIB
+        FROM GDC4S-ENCRYPTION-PRODUCTS-MIB
+	commonStationID, commonSystemDate, commonName
+		FROM GDC4S-COMMON-NOTIFICATIONS-MIB;
+
+    gdc4sFeatures MODULE-IDENTITY
+        LAST-UPDATED	    "201201300000Z"
+        ORGANIZATION	    "General Dynamics C4 Systems"
+        CONTACT-INFO        "Infosec Support                        
+                            General Dynamics C4
+                            Systems Corporation
+                            77 A Street
+                            Needham Heights, MA
+                            02494-2806
+                            Telephone: 877-230-0236
+                            email: INFOSECSUPPORT@GDC4S.COM"
+        DESCRIPTION         "This MIB supports additional MIB features necessary
+                            to configure the devices developed by General
+                            Dynamics C4 Systems."
+
+        ::= { gdc4sEncryptionProductsMIB 6 }
+
+
+    gdc4sFeatureHierarchy OBJECT IDENTIFIER ::= { gdc4sFeatures 1 }
+    
+    vlanFeature OBJECT IDENTIFIER ::= { gdc4sFeatureHierarchy 1 }
+
+    pstatsFeature OBJECT IDENTIFIER ::= { gdc4sFeatureHierarchy 2 }
+
+	dpiFeature OBJECT IDENTIFIER ::= { gdc4sFeatureHierarchy 3 }     
+
+    gdc4sFeatureActivAndConfig OBJECT IDENTIFIER ::= { gdc4sFeatures 2 }
+
+    gdc4sFeatureTableCount OBJECT-TYPE
+        SYNTAX              Unsigned32
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The number of rows in the gdc4sFeatureTable."
+        ::= { gdc4sFeatureActivAndConfig 1 }
+
+    gdc4sFeatureTable OBJECT-TYPE
+        SYNTAX              SEQUENCE OF Gdc4sFeatureTableEntry
+        MAX-ACCESS          not-accessible
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Contains rows representing the features."
+        ::= { gdc4sFeatureActivAndConfig 2 }
+
+    gdc4sFeatureTableEntry OBJECT-TYPE
+        SYNTAX              Gdc4sFeatureTableEntry
+        MAX-ACCESS          not-accessible
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) A row in the gdc4sFeatureTable"
+        INDEX               {
+                                gdc4sFeatureID
+                            }
+        ::= { gdc4sFeatureTable 1 }
+
+    Gdc4sFeatureTableEntry ::= SEQUENCE {
+        gdc4sFeatureID
+            Unsigned32,
+        gdc4sFeatureName
+            SnmpAdminString,
+        gdc4sFeatureAgeLimit
+            Unsigned32,
+        gdc4sFeatureAge
+            Unsigned32,
+        gdc4sFeatureStatus
+            INTEGER
+    }
+
+    gdc4sFeatureID OBJECT-TYPE
+        SYNTAX              Unsigned32 (1..32)
+        MAX-ACCESS          not-accessible
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The ID associated with a feature."
+        ::= { gdc4sFeatureTableEntry 1 }
+
+    gdc4sFeatureName OBJECT-TYPE
+        SYNTAX              SnmpAdminString (SIZE(1..32))
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The feature name."
+        ::= { gdc4sFeatureTableEntry 2 }
+
+    gdc4sFeatureAgeLimit OBJECT-TYPE
+        SYNTAX              Unsigned32
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Indicates the maximum number of days
+                            that a trial feature will be active. This number
+                            will be 0 when a feature has a status of enabled
+                            or disabled."
+        ::= { gdc4sFeatureTableEntry 3 }
+
+    gdc4sFeatureAge OBJECT-TYPE
+        SYNTAX              Unsigned32
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Indicates the number of days used for
+                            an active trial feature. This number will be
+                            0 when a feature has a status of enabled or disabled."
+        ::= { gdc4sFeatureTableEntry 4 }
+
+    gdc4sFeatureStatus OBJECT-TYPE
+        SYNTAX              INTEGER {
+                                enabled( 1 ),
+                                disabled( 2 ),
+                                trial( 3 ),
+                                trialExpired( 4 )
+                            }
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The feature activation status."
+        ::= { gdc4sFeatureTableEntry 5 }
+
+    gdc4sFeatureNotifs OBJECT IDENTIFIER ::= { gdc4sFeatureActivAndConfig 3 }
+
+    gdc4sFeatureNotifVariables OBJECT IDENTIFIER ::= { gdc4sFeatureNotifs 1 }
+
+    gdc4sFeatureActivationFailedReason OBJECT-TYPE
+        SYNTAX              INTEGER {
+                                notIntendedForEcuEsn( 1 ),
+                                invalidEquipmentType( 2 ),
+                                cryptoIntegrityCheckFailed( 3 ),
+								unsupportedFeature( 4 )
+                            }
+        MAX-ACCESS          accessible-for-notify
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The reason for a Feature activation
+                            failure."
+        ::= { gdc4sFeatureNotifVariables 1 }
+
+    gdc4sFeatureNotifEvents OBJECT IDENTIFIER ::= { gdc4sFeatureNotifs 2 }
+
+    gdc4sFeatureActivationSucceeded NOTIFICATION-TYPE
+        OBJECTS	{
+        		commonStationID,
+        		commonSystemDate,
+        		gdc4sFeatureName,
+        		gdc4sFeatureAgeLimit,
+        		gdc4sFeatureAge
+        	}
+        STATUS		    	current
+        DESCRIPTION         "(U//FOUO) This notification is sent when a feature
+                            has been activated."
+        ::= { gdc4sFeatureNotifEvents 1 }
+
+    gdc4sFeatureActivationFailed NOTIFICATION-TYPE
+        OBJECTS	{
+        		commonStationID,
+        		commonSystemDate,
+        		commonName,
+        		gdc4sFeatureActivationFailedReason
+        	}
+        STATUS		    	current
+        DESCRIPTION         "(U//FOUO) This notification is sent when a feature
+                            fails activation."
+        ::= { gdc4sFeatureNotifEvents 2 }
+		
+    gdc4sFeatureTrialExpiringWarning NOTIFICATION-TYPE
+        OBJECTS	{
+        		commonStationID,
+        		commonSystemDate,
+        		gdc4sFeatureName,
+        		gdc4sFeatureAgeLimit,
+        		gdc4sFeatureAge
+        	}
+        STATUS		    	current
+        DESCRIPTION         "(U//FOUO) This notification is sent when a trial
+                            feature is about to expire."
+        ::= { gdc4sFeatureNotifEvents 3 }
+		
+    gdc4sFeatureTrialExpired NOTIFICATION-TYPE
+        OBJECTS	{
+        		commonStationID,
+        		commonSystemDate,
+        		gdc4sFeatureName
+        	}
+        STATUS		    	current
+        DESCRIPTION         "(U//FOUO) This notification is sent when a trial
+                            feature has expired."
+        ::= { gdc4sFeatureNotifEvents 4 }
+
+    gdc4sFeatureConformance OBJECT IDENTIFIER ::= { gdc4sFeatures 3 }
+
+    gdc4sFeatureActivAndConfigGroup OBJECT-GROUP
+        OBJECTS	{
+        		gdc4sFeatureTableCount,
+        		gdc4sFeatureName,
+        		gdc4sFeatureAgeLimit,
+        		gdc4sFeatureAge,
+        		gdc4sFeatureStatus
+        	}
+        STATUS		    	current
+        DESCRIPTION         "(U//FOUO) The objects related to the gdc4s feature
+                            activation and configuration."
+        ::= { gdc4sFeatureConformance 1 }
+
+    gdc4sFeatureNotifVariablesGroup OBJECT-GROUP
+        OBJECTS	{
+        		gdc4sFeatureActivationFailedReason
+        	}
+        STATUS		    	current
+        DESCRIPTION         "(U//FOUO) The notification variables associated
+                            with Feature activation and administration."
+        ::= { gdc4sFeatureConformance 2 }
+
+    gdc4sFeatureNotifEventsGroup NOTIFICATION-GROUP
+        NOTIFICATIONS       {
+                                gdc4sFeatureActivationSucceeded,
+                                gdc4sFeatureActivationFailed,
+                                gdc4sFeatureTrialExpiringWarning,
+                                gdc4sFeatureTrialExpired
+                            }
+        STATUS		    	current
+        DESCRIPTION         "(U//FOUO) The notifications associated with Feature
+                            activation and administration."
+        ::= { gdc4sFeatureConformance 3 }
+
+
+END

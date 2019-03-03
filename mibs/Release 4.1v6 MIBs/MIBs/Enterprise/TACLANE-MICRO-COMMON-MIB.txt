@@ -1,0 +1,121 @@
+TACLANE-MICRO-COMMON-MIB DEFINITIONS ::= BEGIN
+    IMPORTS
+    MODULE-IDENTITY, OBJECT-IDENTITY, OBJECT-TYPE
+        FROM SNMPv2-SMI
+    taclaneMicroProducts
+        FROM GDC4S-ENCRYPTION-PRODUCTS-MIB
+    OBJECT-GROUP
+        FROM SNMPv2-CONF
+    DateAndTime
+        FROM SNMPv2-TC;
+
+    taclaneMicroCommonMIB MODULE-IDENTITY
+        LAST-UPDATED	    "200602031011Z"
+        ORGANIZATION	    "General Dynamics C4 Systems"
+        CONTACT-INFO        "Infosec Support                              
+                            
+                            
+                            
+                            
+                            General Dynamics C4
+                            Systems Corporation
+                            77 A Street
+                            Needham Heights, MA
+                            02494-2806
+                            Telephone: 877-230-0236
+                            email: INFOSECSUPPORT@GDC4S.COM"
+        DESCRIPTION         "(U//FOUO) This MIB supports the TACLANE-Micro
+                            family of Encryption Products designed and developed
+                            by General Dynamics Corporation."
+
+        REVISION	    "200602031011Z"
+        DESCRIPTION         "initial version of this module"
+        ::= { taclaneMicroProducts 1 }
+
+
+    taclaneMicroSystem OBJECT IDENTIFIER ::= { taclaneMicroCommonMIB 1 }
+
+    taclaneMicroState OBJECT IDENTIFIER ::= { taclaneMicroSystem 1 }
+
+    mine135PCikPending OBJECT-IDENTITY
+        STATUS		current
+        DESCRIPTION         "(U//FOUO) The system state following restart in
+                            which the device checks for an active Crypto
+                            Ignition Key, and if none is inserted, waits
+                            for one to be inserted."
+        ::= { taclaneMicroState 1 }
+
+    mine135PInitialized OBJECT-IDENTITY
+        STATUS		current
+        DESCRIPTION         "Software has been loaded and the CIK is present.
+                            Interfaces can be configured."
+        ::= { taclaneMicroState 2 }
+
+    mine135POffline OBJECT-IDENTITY
+        STATUS		current
+        DESCRIPTION         "(U//FOUO) Interfaces have been configured."
+        ::= { taclaneMicroState 3 }
+
+    mine135PSecureComm OBJECT-IDENTITY
+        STATUS		current
+        DESCRIPTION         "(U//FOUO) Traffic can be encrypted by this device."
+        ::= { taclaneMicroState 4 }
+
+    mine135PMaintenance OBJECT-IDENTITY
+        STATUS		current
+        DESCRIPTION         "The device is in maintenance mode in support of
+                            a Software download."
+        ::= { taclaneMicroState 5 }
+
+    mine135PSystemFaulted OBJECT-IDENTITY
+        STATUS		current
+        DESCRIPTION         "(U//FOUO) The state resulting from a continued
+                            alarm after a restart. Normal mission processing
+                            is not available. However, the display of internal
+                            data may be supported."
+        ::= { taclaneMicroState 6 }
+
+    mine135PTampered OBJECT-IDENTITY
+        STATUS		current
+        DESCRIPTION         "(U//FOUO) The physical boundary of the device
+                            has been violated."
+        ::= { taclaneMicroState 7 }
+
+    taclaneMicroBatteryInfo OBJECT IDENTIFIER ::= { taclaneMicroSystem 2 }
+
+    taclaneMicroBatteryType OBJECT-TYPE
+        SYNTAX              INTEGER {
+                                alkaline( 1 ),
+                                lithium( 2 )
+                            }
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The type of battery installed in the
+                            TACLANE-Micro."
+        ::= { taclaneMicroBatteryInfo 1 }
+
+    taclaneMicroBatteryChangeDate OBJECT-TYPE
+        SYNTAX              DateAndTime
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The date and time at which the battery
+                            in this TACLANE-Micro was last changed."
+        ::= { taclaneMicroBatteryInfo 2 }
+
+    taclaneMicroCommonMIBConformance OBJECT IDENTIFIER ::= { taclaneMicroCommonMIB 2 }
+
+    taclaneMicroCommonMIBGroups OBJECT IDENTIFIER
+        ::= { taclaneMicroCommonMIBConformance 1 }
+
+    taclaneMicroBatteryInfoGroup OBJECT-GROUP
+        OBJECTS	{
+        		taclaneMicroBatteryType,
+        		taclaneMicroBatteryChangeDate
+        	}
+        STATUS		    current
+        DESCRIPTION         "(U//FOUO) TACLANE-Micro specific battery management
+                            information"
+        ::= { taclaneMicroCommonMIBGroups 2 }
+
+
+END

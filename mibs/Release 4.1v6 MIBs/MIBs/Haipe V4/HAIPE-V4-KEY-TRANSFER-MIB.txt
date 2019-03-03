@@ -1,0 +1,874 @@
+--
+--                 Unclassified//For Official Use Only
+--
+-- This entire document, which defines SNMP MIB objects in the SMIv2
+-- language should be considered U//FOUO.
+--
+-- The data that will be transmitted on the wire as a result of
+-- accessing these MIB objects MUST NOT BE CONSIDERED U//FOUO and is
+-- subject to separate classification.  The classification level of this
+-- data is not defined or within the scope of this document.
+--
+
+HAIPE-V4-KEY-TRANSFER-MIB  DEFINITIONS  ::= BEGIN
+
+IMPORTS
+    hv4Management                       FROM HAIPE-V4-FEATURE-HIERARCHY-MIB
+    OBJECT-TYPE, Unsigned32, Integer32,
+    MODULE-IDENTITY                     FROM SNMPv2-SMI
+    SnmpAdminString                     FROM SNMP-FRAMEWORK-MIB
+    RowStatus, TruthValue, DateAndTime,
+    TimeStamp, RowPointer               FROM SNMPv2-TC
+    IPAddress, IPv4Address, PortNumber,
+    IPAddressType, PreplacedKeySegment,
+    PreplacedKeyShortTitle, 
+    PreplacedKeyEdition                 FROM HAIPE-V4-TEXTUAL-CONVENTIONS-MIB;
+
+haipev4KeyTransferMIB MODULE-IDENTITY
+    LAST-UPDATED "201006231600Z"
+    ORGANIZATION "HAIPE PO"
+    CONTACT-INFO
+         "(U//FOUO) Not Available"
+    DESCRIPTION
+        "(U//FOUO) This MIB defines the HAIPE key transfer MIB objects."
+    REVISION     "201006231600Z"
+    DESCRIPTION  "(U//FOUO) MIB 4.1.0 FINAL Release"		
+    ::= { hv4Management 2 }
+
+hKeyTransferControlObjects    OBJECT IDENTIFIER ::= { haipev4KeyTransferMIB 1 }
+hKeyTransferGlobalScalars     OBJECT IDENTIFIER ::= { haipev4KeyTransferMIB 2 }
+
+hH2HKT                        OBJECT IDENTIFIER ::= { haipev4KeyTransferMIB 3 }
+hOutofBandKeyTransfer         OBJECT IDENTIFIER ::= { hH2HKT 1 }
+hOutofBandKeyTransferClients  OBJECT IDENTIFIER ::= { hOutofBandKeyTransfer 1 }
+hOutofBandKeyTransferKeyFiles OBJECT IDENTIFIER ::= { hOutofBandKeyTransfer 2 }
+hInBandKeyTransfer            OBJECT IDENTIFIER ::= { hH2HKT 2 }
+hInBandKeyTransferClients     OBJECT IDENTIFIER ::= { hInBandKeyTransfer 1 }
+hLoadedKeys                   OBJECT IDENTIFIER ::= { hH2HKT 3 }
+hAuthorizedControllers        OBJECT IDENTIFIER ::= { hH2HKT 4 }
+
+hKeyTransferNotifications     OBJECT IDENTIFIER ::= { haipev4KeyTransferMIB 4 }
+
+-- **********************************************************************
+-- Out of Band Key Transfer
+-- **********************************************************************
+
+-- =========
+-- Out of Band Key Transfer Clients Table
+-- =========
+
+hOOBKTClientsTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hOOBKTClientsTable."
+    ::= { hOutofBandKeyTransferClients 1 }
+
+hOOBKTClientsTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime is the last time any entry in the
+         hOOBKTClientsTable was modified, created, or deleted by either SNMP or
+         other management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hOutofBandKeyTransferClients 2 }
+
+hOOBKTClientsTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HOOBKTClientsTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The table for configuring a list of a HAIPE's Out-of-Band
+         Transfer Clients.
+
+         (U//FOUO) To functionally turn Out-Of-Band key transfer off for this
+         controller, all rows in this table are either deleted or set to a
+         state other than 'active'."
+    ::= { hOutofBandKeyTransferClients 3 }
+
+hOOBKTClientsTableEntry OBJECT-TYPE
+    SYNTAX     HOOBKTClientsTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A row which describes the Plaintext (PT) IP information
+         for an Out-of-Band Key Transfer Client that can receive key files from this
+         node."
+    INDEX  { hOOBKTClientName }
+    ::= { hOOBKTClientsTable 1 }
+
+HOOBKTClientsTableEntry ::= SEQUENCE
+{
+   hOOBKTClientName                SnmpAdminString,
+   hOOBKTKeyFiles                  SnmpAdminString,
+   hOOBKTAddressType               IPAddressType,
+   hOOBKTAddress                   IPAddress,
+   hOOBKTClientPath                OCTET STRING,
+   hOOBKTClientPushKey             TruthValue,
+   hOOBKTClientRowStatus           RowStatus
+}
+
+hOOBKTClientName OBJECT-TYPE
+    SYNTAX     SnmpAdminString (SIZE(1..32))
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This sets an administrative name for the given client and
+         is used to index into this table. It is of administrative use only and
+         does not indicate a binding to any sort of naming system like the DNS."
+    ::= { hOOBKTClientsTableEntry 1 }
+
+hOOBKTKeyFiles OBJECT-TYPE
+    SYNTAX     SnmpAdminString (SIZE(1..32))
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A reference string that points to one or more entries in the
+         hOOBKTKeyFileTable. This column defines the file containing one or more
+         keys that can to be sent to the key transfer client indicated by
+         hOOBKTClientName.
+
+         (U//FOUO) Note, an empty value in this column indicates that no key file
+         should be sent to this client, this column has no affect on the status of
+         this row."
+    ::= { hOOBKTClientsTableEntry 2 }
+
+hOOBKTAddressType OBJECT-TYPE
+    SYNTAX     IPAddressType
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol version, IPv4 or IPv6, of the PT address
+         for the Out-of-Band Key Transfer Client. Specifically, the value of this
+         property determines the size and format of the hOOBKTAddress."
+    ::= { hOOBKTClientsTableEntry 3 }
+
+hOOBKTAddress OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol addressing information for the the
+         Out-of-Band Key Transfer Client. The size and format of this column is
+         determined by the hOOBKTAddressType."
+    ::= { hOOBKTClientsTableEntry 4 }
+
+hOOBKTClientPath OBJECT-TYPE
+    SYNTAX     OCTET STRING (SIZE(0..256))
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This object specifies the filename to be given to the client
+         (receiver) during the key file transfer. Different device vendors may
+         require a particular filename to be used to indicate that the files
+         were received via Out-of-Band Key transfers."
+    ::= { hOOBKTClientsTableEntry 5 }
+
+hOOBKTClientPushKey OBJECT-TYPE
+    SYNTAX     TruthValue
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This object, when set to true, is used to initiate a TFTP
+         write request (WRQ) to push key files to a client.  Implementations will
+         ignore setting it to false, and it will always return false when read.
+
+         (U//FOUO) If this object is set to true, but one or more of the key
+         files indicated by the hOOBKTKeyFiles column are not available (e.g. one
+         has been deleted), then this operation should fail and an
+         inconsistentValue error returned to the sender.
+         
+         (U//FOUO) When this object is set to true and the TFTP transfer is 
+         successfully completed, the entire row is deleted by the agent."
+    ::= { hOOBKTClientsTableEntry 6 }
+
+hOOBKTClientRowStatus OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The status of the row by which new entries may be created,
+         existing entries enabled/disabled or existing entries deleted from
+         this table.
+
+         (U//FOUO) Entries created within this table may not become active
+         unless all read-create columns of this table have valid values, as
+         detailed by each individual column's description.
+
+         (U//FOUO) At a minimum, implementations must support createAndGo and
+         destroy management functions. Support for createAndWait, active,
+         notInService, and notReady management functions is option."
+    ::= { hOOBKTClientsTableEntry 7 }
+
+-- =========
+-- Out of Band Key Transfer Key Files Table
+-- =========
+
+hOOBKTKeyFileTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hOOBKTKeyFileTable."
+    ::= { hOutofBandKeyTransferKeyFiles 1 }
+
+hOOBKTKeyFileTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime is the last time any entry in the
+         hOOBKTKeyFileTable was modified, created, or deleted by either SNMP or
+         other management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hOutofBandKeyTransferKeyFiles 2 }
+
+hOOBKTKeyFileTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HOOBKTKeyFileTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The table for configuring the keys in the key file that
+         can be sent to an Out-of-Band Key Transfer Clients.
+
+         (U//FOUO) Entries in this table are referenced by the hOOBKTKeyFileName.
+         Each file is associated with a set of keys; these keys are represented
+         as a RowPointer to index the hLoadedKeyTable.
+
+         (U//FOUO) Note: the file names in this table do not necessarily reflect
+         anything about real file storage names used by the SNMP agent within the
+         device itself. They are administrative names used solely within this
+         MIB, although implementations may choose to reuse the names internally."
+    ::= { hOutofBandKeyTransferKeyFiles 3 }
+
+hOOBKTKeyFileTableEntry OBJECT-TYPE
+    SYNTAX     HOOBKTKeyFileTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A row which indicates what keys can be sent in the key file
+         to a key transfer client."
+    INDEX  { hOOBKTKeyFileName, hOOBKTKeyFileIndex }
+    ::= { hOOBKTKeyFileTable 1 }
+
+HOOBKTKeyFileTableEntry ::= SEQUENCE
+{
+   hOOBKTKeyFileName               SnmpAdminString,
+   hOOBKTKeyFileIndex              Unsigned32,
+   hOOBKTKeyFileLoadedKey          RowPointer,
+   hOOBKTKeyFileRowStatus          RowStatus
+}
+
+hOOBKTKeyFileName OBJECT-TYPE
+    SYNTAX     SnmpAdminString (SIZE(1..32))
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) An adminstrative name given that identifies a file within this
+         table. This column, along with the hOOBKTKeyFileIndex, are used as indices
+         into this table."
+    ::= { hOOBKTKeyFileTableEntry 1 }
+
+hOOBKTKeyFileIndex OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This is an administrative way of creating a unique row
+         within this table. This value shows the position of a given key
+         within a file indicated by hOOBKTKeyFileName. This object allows for
+         multiple rows in this table to be associated with one matching value of
+         hOOBKTKeyFileName."
+    ::= { hOOBKTKeyFileTableEntry 2 }
+
+hOOBKTKeyFileLoadedKey OBJECT-TYPE
+    SYNTAX     RowPointer
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A row pointer that points to a unique entry in the
+         hLoadedKeyTable, which provides the key material to be sent to an
+         Out-of-Band Key Transfer Client. Note, a row's hOOBKTKeyFileRowStatus
+         can only be set to active if this column references an active row in 
+         the hLoadedKeyTable." 
+    ::= { hOOBKTKeyFileTableEntry 3 }
+
+hOOBKTKeyFileRowStatus OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may be created,
+         or old entries deleted from this table.
+
+         (U//FOUO) Entries created within this table may not become active unless
+         all read-create columns in this table have valid values, as detailed
+         by each individual column's description.
+
+         (U//FOUO) At a minimum, implementations must support createAndGo and
+         destroy management functions. Support for createAndWait, active,
+         notInService, and notReady management functions is option."
+    ::= { hOOBKTKeyFileTableEntry 4 }
+
+-- **********************************************************************
+-- In Band Key Transfer
+-- **********************************************************************
+
+-- =========
+-- In Band Key Transfer Clients Table
+-- =========
+
+hIBKTClientsTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hIBKTClientsTable."
+    ::= { hInBandKeyTransferClients 1 }
+
+hIBKTClientsTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime is the last time any entry in the
+         hIBKTClientsTable was modified, created, or deleted by either SNMP or
+         other management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hInBandKeyTransferClients 2 }
+
+hIBKTClientsTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HIBKTClientsTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The table for configuring a list of a Net Controller's In-
+         Band Key Transfer Clients. This table indicates a client (by address), a
+         PPK Chain used to connect to that client, and a PPK. The PPK is sent
+         to the client at the time indicated by hIBKTClientsTransferTime through
+         an SA that uses the PPK Chain referenced by hIBKTClientsManSAChainName. The
+         PPK sent to the  client is added by the client to the PPK Chain it used
+         for the receiving SA and given an effective date, hIBKTClientsEffectiveDate.
+         A row pointer is used to index a key in the hLoadedKeyTable table.
+
+         (U//FOUO) To functionally turn In-Band key transfer off for this controller,
+         all rows in this table are either deleted or set to a state other than
+         'active'."
+    ::= { hInBandKeyTransferClients 3 }
+
+hIBKTClientsTableEntry OBJECT-TYPE
+    SYNTAX     HIBKTClientsTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A row which describes the information for an In-Band Crypto-
+         Net Client that can receive key files by this node."
+    INDEX  { hIBKTClientsCTAddressType, hIBKTClientsCTAddress, hIBKTClientsKeyIndex }
+    ::= { hIBKTClientsTable 1 }
+
+HIBKTClientsTableEntry ::= SEQUENCE
+{
+   hIBKTClientsCTAddressType              IPAddressType,
+   hIBKTClientsCTAddress                  IPAddress,
+   hIBKTClientsKeyIndex                   Unsigned32,
+   hIBKTClientsLoadedKey                  RowPointer,
+   hIBKTClientsManSAChainName             SnmpAdminString,
+   hIBKTClientsTransferTime               DateAndTime,
+   hIBKTClientsTransferRetries            Unsigned32,
+   hIBKTClientsTransRetryPeriod           Unsigned32,
+   hIBKTClientsEffectiveDate              DateAndTime,
+   hIBKTClientsRowStatus                  RowStatus
+}
+
+hIBKTClientsCTAddressType OBJECT-TYPE
+    SYNTAX     IPAddressType
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+         "(U//FOUO) The Internet Protocol version, IPv4 or IPv6, of the CT address
+         for the In-Band Key Transfer Client. Specifically, the value of this
+         property determines the size and format of the hIBKTClientsCTAddress.
+
+         (U//FOUO) This column, along with the hIBKTClientsCTAddress and
+         hIBKTClientsKeyIndex, are used as the indices into this table."
+    ::= { hIBKTClientsTableEntry 1 }
+
+hIBKTClientsCTAddress OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol CT addressing information for the the
+         In-Band Key Transfer Client. The size and format of this column is
+         determined by the hIBKTClientsCTAddressType.
+
+         (U//FOUO) This column, along with the hIBKTClientsCTAddressType and
+         hIBKTClientsKeyIndex, are used as the indices into this table."
+    ::= { hIBKTClientsTableEntry 2 }
+
+hIBKTClientsKeyIndex OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A numeric index for rows, or keys, that allow the
+         assignment of multiple keys for transfer to one key transfer client.
+         This value is not a priority, but solely used to allow the
+         administrator to assign multiple keys for a transfer to a single
+         In-Band Key Transfer Client.
+
+         (U//FOUO) This column, along with the hIBKTClientsCTAddressType and
+         hKTInBandClientsCTAddress, are used as the indices into this table."
+    ::= { hIBKTClientsTableEntry 3 }
+
+hIBKTClientsLoadedKey OBJECT-TYPE
+    SYNTAX     RowPointer
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A row pointer that points to a unique entry in the
+         hLoadedKeyTable, which provides the key material to be sent to an
+         In-Band Key Transfer Client. Note, hIBKTClientsRowStatus cannot be set to
+         active unless a valid value has been set for this column."
+    ::= { hIBKTClientsTableEntry 4 }
+
+hIBKTClientsManSAChainName OBJECT-TYPE
+    SYNTAX     SnmpAdminString (SIZE(1..32))
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A reference string that points to a group of PPKs/APPKs in
+         the hManSAKeyChainTable, which provides the key chain material
+         associated with the Manual SA that the In-Band key transfer will be
+         used to update. Note, a row's hIBKTClientsRowStatus can only be set
+         to active if a valid value has been set for the
+         hIBKTClientsManSAChainName column - the current effective PPK/APPK in
+         the PPK/APPK chain must have a row status of active."
+    ::= { hIBKTClientsTableEntry 5 }
+
+hIBKTClientsTransferTime OBJECT-TYPE
+    SYNTAX     DateAndTime
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This indicates the date and time that the key indicated by
+         this row should be sent to the client indicated by this row.
+
+         (U//FOUO) Note: In accordance with the HAIPE IS, certain configurations
+         of this object may be illegal. For example, If the month and year of
+         this object matches the month and year of the hIBKTClientsEffectiveDate
+         object in this row, it is illegal to schedule the transfer to occur
+         within the HAIPE IS specified changeover window."
+    ::= { hIBKTClientsTableEntry 6 }
+
+hIBKTClientsTransferRetries OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This indicates the number of times the key should be re-sent
+         to the client. For example, a value of zero indicates that the key
+         should be sent once. A value of 2 indicates the key should be sent
+         three times (once for the initial send, and then two retries)."
+    ::= { hIBKTClientsTableEntry 7 }
+
+hIBKTClientsTransRetryPeriod OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This indicates the number of seconds between each attempt to
+         re-send the key to a client."
+    ::= { hIBKTClientsTableEntry 8 }
+
+hIBKTClientsEffectiveDate OBJECT-TYPE
+    SYNTAX     DateAndTime
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This indicates the effective date placed in the packet sent
+         to the to the client indicated by this row.
+
+         (U//FOUO) Note: Only the Year and Month values of this object are used.
+         The other values in this object (e.g. hours, minutes, seconds,...) are
+         ignored. "
+    ::= { hIBKTClientsTableEntry 9 }
+
+hIBKTClientsRowStatus OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The status of the row by which new entries may be created,
+         existing entries enabled/disabled or existing entries deleted from
+         this table.
+
+         (U//FOUO) Entries created within this table may not become active
+         unless all read-create columns of this table have valid values, as
+         detailed by each individual column's description. Entries may be
+         active, however, even though they are currently not used to protect
+         traffic. For example, the In-Band key transfer may be intended to take
+         place at a future time, indicated by hIBKTClientsTransferTime.
+
+         (U//FOUO) At a minimum, implementations must support createAndGo and
+         destroy management functions. Support for createAndWait, active,
+         notInService, and notReady management functions is option."
+    ::= { hIBKTClientsTableEntry 10 }
+
+-- **********************************************************************
+-- Loaded Keys
+-- **********************************************************************
+
+-- =========
+-- Loaded Keys Table
+-- =========
+
+hLoadedKeyTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hLoadedKeyTable."
+    ::= { hLoadedKeys 1 }
+
+hLoadedKeyTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime is the last time any entry in the
+         hLoadedKeyTable was modified, created, or deleted by either SNMP or
+         other management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hLoadedKeys 2 }
+
+hLoadedKeyTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HLoadedKeyTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The table for listing the keys available for key transfer.
+         The keys in this table are available for transfer to In-Band Key
+         Transfer Clients and Out-of-Band Key Transfer Clients. However, keys
+         in this table may also be consumed locally if hLoadedKeyAction is
+         set to fill.
+
+         (U//FOUO) This table should be populated automatically when the
+         controller is loaded with key transfer keys.
+
+         (U//FOUO) If a manager sets hLoadedKeyAction to fill for a PPK
+         in this table, the key is still available for key transfer. This
+         implies that the agent does not necessarily delete the PPK from this
+         table after setting hLoadedKeyAction to fill. Alternatively, if
+         key filled from this table is a Firefly key, they key is no longer
+         available for key transfer. This implies that the agent must remove
+         the firefly key from this table after setting hLoadedKeyAction to
+         fill."
+    ::= { hLoadedKeys 3 }
+
+hLoadedKeyTableEntry OBJECT-TYPE
+    SYNTAX     HLoadedKeyTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A row which indicates a key available for sending to key
+         transfer clients or for local consumption."
+    INDEX  { hLoadedKeyShortTitle, hLoadedKeyEdition, hLoadedKeySegment,
+             hLoadedKeyRegister }
+    ::= { hLoadedKeyTable 1 }
+
+HLoadedKeyTableEntry ::= SEQUENCE
+{
+   hLoadedKeyShortTitle          PreplacedKeyShortTitle,
+   hLoadedKeyEdition             PreplacedKeyEdition,
+   hLoadedKeySegment             PreplacedKeySegment,
+   hLoadedKeyRegister            OCTET STRING,
+   hLoadedKeyUse                 INTEGER,
+   hLoadedKeyClassification      INTEGER,
+   hLoadedKeyText                OCTET STRING,
+   hLoadedKeyAction              INTEGER,
+   hLoadedKeyRowStatus           RowStatus
+}
+
+hLoadedKeyShortTitle OBJECT-TYPE
+    SYNTAX     PreplacedKeyShortTitle
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The short title of the loaded key."
+    ::= { hLoadedKeyTableEntry 1 }
+
+hLoadedKeyEdition OBJECT-TYPE
+    SYNTAX     PreplacedKeyEdition
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The edition of this loaded key."
+    ::= { hLoadedKeyTableEntry 2 }
+
+hLoadedKeySegment OBJECT-TYPE
+    SYNTAX     PreplacedKeySegment
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The segment number of this loaded key."
+    ::= { hLoadedKeyTableEntry 3 }
+
+hLoadedKeyRegister OBJECT-TYPE
+    SYNTAX     OCTET STRING (SIZE(5))
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The DS-100-1 Register Number of this loaded key. This number
+         conforms to network-byte order and the 4 most significant bits should
+         be set to zero."
+    ::= { hLoadedKeyTableEntry 4 }
+
+hLoadedKeyUse OBJECT-TYPE
+    SYNTAX     INTEGER { na(0), ffct(1), kek(2), kpk(3), msk(4), qkek(5),
+                         tek(6), tsk(7), trkek(8), eff(9), ebff(10), aek(11) }
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This object indicates the type of key.  This is from the use
+         field of the DS-100-1 tag for this key.
+
+         (U//FOUO) The enumerations are equivalent to the DS-100-1 use field.
+
+         (U//FOUO) [na]    = Not Applicable
+
+         (U//FOUO) [ffct]  = FIREFLY/CROSSTALK Key
+
+         (U//FOUO) [kek]   = Key Encryption Key
+
+         (U//FOUO) [kpk]   = Key Production Key
+
+         (U//FOUO) [msk]   = Message Signature Key
+
+         (U//FOUO) [qkek]  = QUADRANT Key Encryption Key
+
+         (U//FOUO) [tek]   = Traffic Encryption Key
+
+         (U//FOUO) [tsk]   = Transmission Security Key
+
+         (U//FOUO) [trkek] = Transfer Key Encryption Key
+
+         (U//FOUO) [eff]   = Enhanced FIREFLY Key
+
+         (U//FOUO) [ebff]  = Enhanceable Basic FIREFLY Key
+
+         (U//FOUO) [aek]   = Algorithm Encryption Key."
+    ::= { hLoadedKeyTableEntry 5 }
+
+hLoadedKeyClassification OBJECT-TYPE
+    SYNTAX     INTEGER(0..2147483647)
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This object indicates the classification field from the
+         DS-100-1 tag."
+    ::= { hLoadedKeyTableEntry 6 }
+
+hLoadedKeyText OBJECT-TYPE
+    SYNTAX     OCTET STRING (SIZE(0|16))
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This object is the text field from the DS-100-1 tag.  If the
+         field does not exist for this key, this object will be a zero length
+         Octet String."
+    ::= { hLoadedKeyTableEntry 7 }
+
+hLoadedKeyAction OBJECT-TYPE
+    SYNTAX     INTEGER { noAction(1), fill(2) }
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This object signals the HAIPE to perform actions on the
+         the ISSUEd key.
+
+         (U//FOUO) [noAction] = Default State of the ISSUEd Key
+
+         (U//FOUO) [fill] = FILL key for local use
+
+         (U//FOUO) Setting this object to '2' will FILL the key indicated by
+         this row into the local HAIPE. A FILLED Firefly key may be automatically
+         deleted from this table by the HAIPE. A FILLED PPK is not automatically
+         deleted.
+
+         (U//FOUO) Keys are deleted in this table by setting the RowStatus object
+         to destroy."
+    DEFVAL {noAction}         
+    ::= { hLoadedKeyTableEntry 8 }
+
+hLoadedKeyRowStatus OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which old entries may be edited
+         or deleted from this table.
+
+         (U//FOUO) At a minimum, implementations must support active
+         and destroy management functions. Support for notInService 
+         and notReady management functions is optional. Implementations must 
+         not support createAndWait and createAndGo management functions for 
+         this object."
+ ::= { hLoadedKeyTableEntry 9 }
+
+-- **********************************************************************
+-- Authorized Controllers
+-- **********************************************************************
+
+-- =========
+-- Authorized Controllers Table
+-- =========
+
+hKTAuthCtrlsTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hKTAuthCtrlsTable."
+    ::= { hAuthorizedControllers 1 }
+
+hKTAuthCtrlsTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime is the last time any entry in the
+         hKTAuthCtrlsTable was modified, created, or deleted by either
+         SNMP or other management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hAuthorizedControllers 2 }
+
+hKTAuthCtrlsTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HKTAuthCtrlsTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The table for configuring a list of a HAIPE's authorized
+         Crypto-Net Controllers on the client: In-Band and Out-of-Band.
+
+         (U//FOUO) Note: a row with a rowStatus of anything other than 'active'
+         indicates that the associated PT/CT IP address is no longer an
+         authorized Crypto-Net Controller and the client MUST NOT accept key
+         files from it.
+
+         (U//FOUO) To functionally turn In-Band or Out-of-Band key transfers
+         off for this client, all rows in this table are either deleted or set
+         to a state other than 'active'."
+    ::= { hAuthorizedControllers 3 }
+
+hKTAuthCtrlsTableEntry OBJECT-TYPE
+    SYNTAX     HKTAuthCtrlsTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "   (U//FOUO) A row which describes the IP addressing information for an
+         authorized Crypto-Net Controller."
+    INDEX  { hKTAuthCtrlsName, hKTAuthCtrlsKeyTransferType }
+    ::= { hKTAuthCtrlsTable 1 }
+
+HKTAuthCtrlsTableEntry ::= SEQUENCE
+{
+   hKTAuthCtrlsName                     SnmpAdminString,
+   hKTAuthCtrlsKeyTransferType          INTEGER,
+   hKTAuthCtrlsAddressType              IPAddressType,
+   hKTAuthCtrlsAddress                  IPAddress,
+   hKTAuthCtrlsRowStatus                RowStatus
+}
+
+hKTAuthCtrlsName OBJECT-TYPE
+    SYNTAX     SnmpAdminString (SIZE(1..32))
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This sets an administrative string for the given controller.
+         This column, along with hKTAuthCtrlsKeyTransferType, are the indices into
+         this table."
+    ::= { hKTAuthCtrlsTableEntry 1 }
+
+hKTAuthCtrlsKeyTransferType OBJECT-TYPE
+    SYNTAX     INTEGER { inBand(1), outOfBand(2) }
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This column identifies whether this row provides information
+         for an In-Band or Out-of-Band Crypto-Net controller. This column, along
+         with hKTAuthCtrlsName, are the indices into this table."
+    ::= { hKTAuthCtrlsTableEntry 2 }
+
+hKTAuthCtrlsAddressType OBJECT-TYPE
+    SYNTAX     IPAddressType
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol version, IPv4 or IPv6, of the IP address
+         assigned to this interface. Specifically, the value of this property
+         determines the size and format of the hKTAuthCtrlsAddress."
+    ::= { hKTAuthCtrlsTableEntry 3 }
+
+hKTAuthCtrlsAddress OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This sets the CT IP address of an authorized In-Band Crypto-
+         Net controller, or PT IP address of an authorized Out-of-Band Crypto-
+         Net Controller. "
+    ::= { hKTAuthCtrlsTableEntry 4 }
+
+hKTAuthCtrlsRowStatus OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The status of the row by which new entries may be created,
+         existing entries enabled/disabled or existing entries deleted from
+         this table.
+
+         (U//FOUO) Entries created within this table may not become active
+         unless all read-create columns of this table have valid values, as
+         detailed by each individual column's description.
+
+         (U//FOUO) At a minimum, implementations must support createAndGo and
+         destroy management functions. Support for createAndWait, active,
+         notInService, and notReady management functions is optional."
+    ::= { hKTAuthCtrlsTableEntry 5 }
+
+END

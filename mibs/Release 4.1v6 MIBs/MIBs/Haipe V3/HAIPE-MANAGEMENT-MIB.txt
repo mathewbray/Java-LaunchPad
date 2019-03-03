@@ -1,0 +1,2198 @@
+--
+--                 Unclassified//For Official Use Only
+--
+-- This entire document, which defines SNMP MIB objects in the SMIv2
+-- language should be considered U//FOUO.
+--
+-- The data that will be transmitted on the wire as a result of
+-- accessing these MIB objects MUST NOT BE CONSIDERED U//FOUO and is
+-- subject to separate classification.  The classification level of this
+-- data is not defined or within the scope of this document.
+--
+
+HAIPE-MANAGEMENT-MIB  DEFINITIONS  ::= BEGIN
+
+IMPORTS
+    OBJECT-TYPE, Unsigned32, Integer32,
+    MODULE-IDENTITY, NOTIFICATION-TYPE,
+    Counter32                           FROM SNMPv2-SMI
+    hrSystemDate                        FROM HOST-RESOURCES-MIB
+    RowStatus, TestAndIncr,
+    TruthValue, DateAndTime,
+    TEXTUAL-CONVENTION, TimeStamp       FROM SNMPv2-TC
+    SnmpAdminString                     FROM SNMP-FRAMEWORK-MIB
+    nlmConfigGlobalEntryLimit           FROM NOTIFICATION-LOG-MIB
+    hManagement                         FROM HAIPE-FEATURE-HIERARCHY-MIB
+    HaipeSide,
+    HaipeSecurityLevel,
+    HaipeSecurityLevels,
+    HaipeSecurityAuthority,
+    ShortTitle64                        FROM HAIPE-TC-MIB;
+
+haipeManagementMIB MODULE-IDENTITY
+    LAST-UPDATED "200810031500Z"
+    ORGANIZATION "HAIPE PO"
+    CONTACT-INFO
+         "(U//FOUO) Not Available"
+    DESCRIPTION
+        "(U//FOUO) This MIB defines the HAIPE management MIB objects."
+    ::= { hManagement 1 }
+
+-- **********************************************************************
+-- Textual Conventions
+-- **********************************************************************
+
+HAIPEStationID ::= TEXTUAL-CONVENTION
+        DISPLAY-HINT    "1a-4a-2a-5a2a"
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The ASCII-encoded electronic serial number of
+            this HAIPE device.
+
+            (U//FOUO) The octet breakdown, as described in the HAIPE IS
+            and EKMS308:
+              1 octets for serial number format
+              4 octets for manufacturer ID
+              2 octets for equipment type ID
+              5 octets for unit number
+              2 octets equal to ASCII spaces
+
+            (U//FOUO) All octets in this field must be uppercase ASCII
+            characters that are used to represent hexadecimal code
+            (I.E., characters 0-9 and A-F, corresponding to values
+            0x30-0x39 and 0x41-0x46)."
+         -- Reference  EKMS 308, KM-TG-002-96, IS20062, IS20063
+         SYNTAX OCTET STRING (SIZE(14))
+
+--
+-- Management Information Segments
+--
+hSystemInformation      OBJECT IDENTIFIER ::= { hManagement 2 }
+hDeviceControl          OBJECT IDENTIFIER ::= { hManagement 3 }
+hAuditing               OBJECT IDENTIFIER ::= { hManagement 4 }
+hManagementNetwork      OBJECT IDENTIFIER ::= { hManagement 5 }
+hFirmwareDownload       OBJECT IDENTIFIER ::= { hManagement 6 }
+hFileTransfer           OBJECT IDENTIFIER ::= { hManagement 7 }
+
+hDeviceInformation      OBJECT IDENTIFIER ::= { hSystemInformation 1 }
+hDeviceVersions         OBJECT IDENTIFIER ::= { hSystemInformation 2 }
+hSnmpManagementObjects  OBJECT IDENTIFIER ::= { hSystemInformation 3 }
+hBatteryInformation     OBJECT IDENTIFIER ::= { hSystemInformation 4 }
+
+--
+-- Device Information
+--
+
+
+hStationID               OBJECT-TYPE
+        SYNTAX          HAIPEStationID
+        MAX-ACCESS	 read-only
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The ASCII-encoded HAIPE IS station identifier
+            of this HAIPE device.
+
+            (U//FOUO) Note that the hStationID is not required to match
+            the chassis serial number."
+        ::= { hDeviceInformation 1 }
+
+hCurrentState            OBJECT-TYPE
+        SYNTAX          INTEGER
+                        {
+                                notConfigured (0),
+                                networkActive (2),
+                                secureCommunications (3)
+                        }
+        MAX-ACCESS      read-write
+        STATUS          deprecated
+        DESCRIPTION
+            "(U//FOUO)This object has been deprecated and should not be 
+            implemented."
+
+         ::= { hDeviceInformation 2 }
+
+hSecurityAuthority   OBJECT-TYPE
+        SYNTAX          HaipeSecurityAuthority
+        MAX-ACCESS      read-only
+        STATUS          deprecated
+        DESCRIPTION
+            "(U//FOUO) This object is deprecated and should not be
+            implemented."
+        ::= { hDeviceInformation 3 }
+
+
+hSecurityLevel   OBJECT-TYPE
+        SYNTAX          HaipeSecurityLevel
+        MAX-ACCESS      read-only
+        STATUS          deprecated
+        DESCRIPTION
+            "(U//FOUO) Deprecated object.  Please use the MLS
+            compliant hSecurityLevels object instead.
+
+            (U//FOUO) The security level that this device is operating at."
+        ::= { hDeviceInformation 4 }
+
+hSecurityLevels  OBJECT-TYPE
+        SYNTAX          HaipeSecurityLevels
+        MAX-ACCESS      read-only
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The security levels that this device is
+            currently operating at."
+        ::= { hDeviceInformation 5 }
+
+
+-- **********************************************************************
+-- Device version information
+-- **********************************************************************
+
+hDeviceVersionTableCount OBJECT-TYPE
+        SYNTAX      Unsigned32
+        MAX-ACCESS	 read-only
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The number of rows in the hDeviceVersionTable."
+        ::= { hDeviceVersions 1 }
+
+hDeviceVersionTableLastChanged OBJECT-TYPE
+        SYNTAX          TimeStamp
+        MAX-ACCESS	 read-only
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The value of sysUpTime the last time any entry in
+            the hDeviceVersionTable was modified, created, or deleted
+            by either SNMP or other management method (e.g., via an HMI).
+
+            (U//FOUO) Managers can use this object to ensure that no
+            changes to configuration of this table have happened since
+            the last time it examined the table.
+
+            (U//FOUO) A value of 0 indicates that no entry has been
+            changed since the agent initialized.
+
+            (U//FOUO) If dynamic-runtime modifications of modules is
+            not supported, this object will always be 0."
+        ::= { hDeviceVersions 2 }
+
+hDeviceVersionTable      OBJECT-TYPE
+        SYNTAX          SEQUENCE OF HDeviceVersionEntry
+        MAX-ACCESS      not-accessible
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The table containing a description
+            of the specification versions of components or
+            specifications supported by the HAIPE.  Note that it is
+            possible for multiple versions of a given specification to
+            be registered within the table."
+        ::= { hDeviceVersions 3 }
+
+hDeviceVersionEntry      OBJECT-TYPE
+        SYNTAX          HDeviceVersionEntry
+        MAX-ACCESS      not-accessible
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) A row containing a module descriptive name and
+            its version."
+        INDEX   { hdvName, hdvVersion }
+        ::= { hDeviceVersionTable 1 }
+
+HDeviceVersionEntry ::= SEQUENCE
+    {
+	hdvName                          SnmpAdminString,
+	hdvVersion                       SnmpAdminString
+    }
+
+
+hdvName                  OBJECT-TYPE
+        SYNTAX          SnmpAdminString (SIZE(1..32))
+        MAX-ACCESS	 read-only
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The module name or specification name.  The
+            string value to be used in this field should be documented
+            in the text of the specification a given row is reporting
+            information on.
+
+            (U//FOUO) Specification names beginning with a prefix of
+            'vendor-' are reserved for private use by the vendor of
+            the device.
+
+            (U//FOUO) The string 'device' (exact) is reserved for
+            vendors to register a software revision version of the
+            device.
+
+            (U//FOUO) The string 'hardware' (exact) is reserved for
+            vendors to register a model number of the hardware of the
+            HAIPE.
+
+            (U//FOUO) All other prefix strings are reserved for use by
+            the NSA.  "
+        ::= { hDeviceVersionEntry 1 }
+
+hdvVersion               OBJECT-TYPE
+        SYNTAX          SnmpAdminString (SIZE(1..32))
+        MAX-ACCESS	 read-only
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The version implemented by this box of the
+            specification or component name listed in the hdvName
+            object field of the row.  The string value to be used in
+            this field should be documented in the text of a
+            specification, of the device, or elsewhere.  If the hdvName
+            begins with a 'vendor-' prefix the format of this field is
+            vendor specific."
+        ::= { hDeviceVersionEntry 2 }
+
+-- **********************************************************************
+-- SNMP management objects
+-- **********************************************************************
+
+hSpinLock OBJECT-TYPE
+        SYNTAX      TestAndIncr
+        MAX-ACCESS  read-write
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The SpinLock that HMS stations can use to
+            ensure that no other management entities (using the same
+            lock) have performed configuration tasks to the agent
+            since the last read state of this object.  Note: The value
+            of this object is not affected by changes made through
+            other management mechanisms, for example through the use
+            of HMI infrastructure.  Generally, this object should be
+            used by managers to ensure that conflicts don't occur
+            between two managers who are using this object for
+            conflict detection within the haipe enterprise tree.  It
+            should not be used as a conflict detection tool outside
+            the haipe enterprise tree and other objects, like the
+            SNMPv2::snmpSetSerialNo or other more specific objects,
+            should be used in those cases."
+        ::= { hSnmpManagementObjects 1 }
+
+hHMISpinLock OBJECT-TYPE
+        SYNTAX      TestAndIncr
+        MAX-ACCESS  read-write
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The SpinLock that HMS stations can use to
+            ensure that no other management entities of any kind,
+            regardless of whether or not the changes are made through
+            SNMP, HMI or other mechanism.  This value of this object
+            must increment by one every time a set of changes is
+            applied to any configurable objects within the HAIPE device
+            is made.  It is not required, however, that managers use
+            this object when configuring a device.  This object may
+            also not be supported by all HAIPE devices."
+        ::= { hSnmpManagementObjects 2 }
+
+hLastChanged OBJECT-TYPE
+        SYNTAX      TimeStamp
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The value of sysUpTime the last time any
+            configurable object within the MIBs supported by the HAIPE
+            has been modified by either SNMP or any other management
+            method (e.g., via an HMI).
+
+            (U//FOUO) Managers can use this object to ensure that no
+            changes to any configuration within the device have
+            happened since the last time it examined the device.
+
+            (U//FOUO) A value of 0 indicates that no objects have been
+            changed since the agent initialized."
+        ::= { hSnmpManagementObjects 3 }
+
+-- **********************************************************************
+-- Battery information
+-- **********************************************************************
+
+hBatteryLevelWarningPercentage OBJECT-TYPE
+    SYNTAX      Integer32 (-1..100)
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The percentage of capacity at which the hBatteryLow
+        notification will be generated. A value of zero indicates that
+        the notification should never be sent.  This object should not
+        be implemented if no battery is present in the system or if
+        the device will detect a low battery, but the actual
+        percentage is not measurable. This object only need be
+        writable for implementations that support modification of the
+        warning level percentage."
+    DEFVAL { 20 }
+    ::= { hBatteryInformation 1 }
+
+hBatteryTableCount OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hBatteryTable."
+    ::= { hBatteryInformation 2 }
+
+hBatteryTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF HBatteryEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The table describing the status of the batteries in
+        the HAIPE."
+    ::= { hBatteryInformation 3 }
+
+hBatteryEntry OBJECT-TYPE
+    SYNTAX      HBatteryEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) A row describing a particular battery level
+        indication within the HAIPE"
+    INDEX   { hBatteryNumber }
+    ::= { hBatteryTable 1 }
+
+HBatteryEntry ::= SEQUENCE
+    {
+	hBatteryNumber                   Unsigned32,
+	hBatteryLevelPercentage          Integer32,
+	hBatteryOperStatus               INTEGER,
+	hBatteryChangeDate               DateAndTime
+    }
+
+hBatteryNumber OBJECT-TYPE
+        SYNTAX          Unsigned32
+        MAX-ACCESS      read-only
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The unique number enumerating a given battery."
+        ::= { hBatteryEntry 1 }
+
+hBatteryLevelPercentage  OBJECT-TYPE
+        SYNTAX          Integer32 (0..100)
+        MAX-ACCESS      read-only
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The estimated power left in the battery,
+            measured as a percentage.  Devices that are not able to
+            measure the battery as a percentage should not implement
+            this object."
+        ::= { hBatteryEntry 2 }
+
+hBatteryOperStatus      OBJECT-TYPE
+        SYNTAX          INTEGER { nominal(1), low(2) }
+        MAX-ACCESS      read-only
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) This object indicates the current state of a given
+            battery. If hBatteryLevelWarningPercentage is a supported
+            object then this object will be low when
+            hBatteryLevelPercentage <= hBatteryLevelWarningPercentage."
+        ::= { hBatteryEntry 3 }
+
+hBatteryChangeDate       OBJECT-TYPE
+        SYNTAX          DateAndTime
+        MAX-ACCESS      read-only
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The date and time a changeable battery was
+            last replaced.  If a batteries is not changeable, this
+            column should be not-accessible.  If a battery is
+            changeable, but has not been changed or the last change
+            time was lost then this value should be composed with
+            all 0 values."
+        ::= { hBatteryEntry 4 }
+
+--
+-- battery notifications
+--
+
+hBatteryNotifications        OBJECT IDENTIFIER ::= { hBatteryInformation 0 }
+
+hBatteryLow             NOTIFICATION-TYPE
+        OBJECTS         { hStationID, hrSystemDate }
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The notification from HAIPE device to HMS
+            indicating the battery should be charged or changed.
+
+            (U//FOUO) if an implementation supports the
+            hBatteryLevelPercentage object, it must include this
+            object in the PDU after the hrSystemDate object.
+
+            (U//FOUO) The recommended hAuditConfigTable defaults for this
+            notification are:
+                ThrottlingEnabled: false
+                NotifEnabled     : true"
+        ::={ hBatteryNotifications 3 }
+
+hBatteryOK             NOTIFICATION-TYPE
+        OBJECTS         { hStationID, hrSystemDate }
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The notification from HAIPE device to HMS
+            indicating the battery level is acceptable again.
+
+            (U//FOUO) if an implementation supports the
+            hBatteryLevelPercentage object, it must include this
+            object in the PDU after the hrSystemDate object.
+
+            (U//FOUO) The recommended hAuditConfigTable defaults for this
+            notification are:
+                ThrottlingEnabled: false
+                NotifEnabled     : true"
+        ::={ hBatteryNotifications 4 }
+
+
+-- **********************************************************************
+-- Firmware Download Support
+-- **********************************************************************
+
+hTFTPConfiguration             OBJECT IDENTIFIER ::= { hFirmwareDownload 1 }
+hHTTPConfiguration             OBJECT IDENTIFIER ::= { hFirmwareDownload 2 }
+hFirmwareDownloadServers       OBJECT IDENTIFIER ::= { hFirmwareDownload 3 }
+hFirmwareDownloadControl       OBJECT IDENTIFIER ::= { hFirmwareDownload 4 }
+hFirmwareDownloadNotifications OBJECT IDENTIFIER ::= { hFirmwareDownload 5 }
+hFirmwareKeys                  OBJECT IDENTIFIER ::= { hFirmwareDownload 6 }
+
+--
+-- TFTP configuration
+--
+
+
+hTFTPDesiredBlockSize    OBJECT-TYPE
+    SYNTAX          Unsigned32 (8..65464)
+    UNITS           "Octets"
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The desired block size in octets to use for
+        firmware TFTP downloads."
+    REFERENCE "RFC 2348"
+    DEFVAL { 512 }
+    ::= { hTFTPConfiguration 1 }
+
+hTFTPDesiredTimeoutInterval    OBJECT-TYPE
+    SYNTAX          Unsigned32 (1..255)
+    UNITS           "Seconds"
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The desired timeout interval to be used during
+        firmware TFTP downloads."
+    REFERENCE "RFC 2349"
+    DEFVAL      { 5 }
+    ::= { hTFTPConfiguration 2 }
+
+hTFTPMaximumFileTransferSize    OBJECT-TYPE
+    SYNTAX          Unsigned32
+    UNITS           "kilobytes"
+    MAX-ACCESS	 read-write
+    STATUS	 current 
+    DESCRIPTION
+        "(U//FOUO) The maximum file transfer size allowed for
+        firmware TFTP downloads."
+    REFERENCE "RFC 2349"
+    ::= { hTFTPConfiguration 3 }
+
+--
+-- HTTP client configuration
+--
+
+-- (none to date)
+
+
+--
+-- Firmware download server configuration
+--
+
+hFirmwareDownloadServersTableCount OBJECT-TYPE
+        SYNTAX      Unsigned32
+        MAX-ACCESS  read-only
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The number of rows in the
+            hFirmwareDownloadServersTable."
+        ::= { hFirmwareDownloadServers 1 }
+
+hFirmwareDownloadServersTableLastChanged OBJECT-TYPE
+        SYNTAX          TimeStamp
+        MAX-ACCESS  read-only
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The value of sysUpTime the last time any entry in
+            the hFirmwareDownloadServersTable was modified, created,
+            or deleted by either SNMP or other management method
+            (e.g., via an HMI).
+
+            (U//FOUO) Managers can use this object to ensure that no
+            changes to configuration of this table have happened since
+            the last time it examined the table.
+
+            (U//FOUO) A value of 0 indicates that no entry has been
+            changed since the agent initialized.
+
+            (U//FOUO) If dynamic-runtime modifications of firmware
+            download servers is not supported, this object will always
+            be 0."
+        ::= { hFirmwareDownloadServers 2 }
+
+hFirmwareDownloadServersTable OBJECT-TYPE
+        SYNTAX      SEQUENCE OF HFirmwareDownloadServersEntry
+        MAX-ACCESS  not-accessible
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The table containing the configuration information
+            about firmware download servers."
+        ::= { hFirmwareDownloadServers 3 }
+
+hFirmwareDownloadServersEntry OBJECT-TYPE
+        SYNTAX      HFirmwareDownloadServersEntry
+        MAX-ACCESS  not-accessible
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) A row describing the particular information associated
+            with a firmware download server."
+        INDEX   { hFdsPriority }
+        ::= { hFirmwareDownloadServersTable 1 }
+
+HFirmwareDownloadServersEntry ::= SEQUENCE
+    {
+	hFdsPriority                     Unsigned32,
+	hFdsURI                          OCTET STRING,
+	hFdsSide                         HaipeSide,
+	hFdsLoginName                    SnmpAdminString,
+	hFdsPassword                     SnmpAdminString,
+	hFdsLastChanged                  TimeStamp,
+	hFdsRowStatus                    RowStatus
+    }
+
+hFdsPriority OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The priority level of the given server.  Servers
+        with a lower priority level should be used first when attempting
+        a new firmware download."
+    ::= { hFirmwareDownloadServersEntry 1 }
+
+hFdsURI OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE(1..1024))
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The URI to indicate a download server,
+        path, etc... from which to pull a firmware image from.
+        URIs containing username and/or password will be rejected. The
+        hFdsLoginName and hFdsPassword objects should be used instead
+        of embedding these values in the URI.
+
+        (U//FOUO) It is important to note that devices may or may not
+        support DNS name resolution and thus some devices may only
+        support URIs containing IP addresses.
+
+        (U//FOUO) It is also important to note that some protocols may
+        restricted in the size of the URI they can handle, in which
+        case an wrongValue exception should be returned when an
+        illegally long URI is requested."
+    ::= { hFirmwareDownloadServersEntry 2 }
+
+hFdsSide OBJECT-TYPE
+    SYNTAX      HaipeSide
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The side of the device from which the firmware
+        should be pulled."
+    ::= { hFirmwareDownloadServersEntry 3 }
+
+hFdsLoginName OBJECT-TYPE
+    SYNTAX      SnmpAdminString
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The login name to use for logging into the server
+        defined by this row.  A zero length string should be used when
+        a login name is not needed. "
+    DEFVAL { ''H }
+    ::= { hFirmwareDownloadServersEntry 4 }
+
+hFdsPassword OBJECT-TYPE
+    SYNTAX      SnmpAdminString
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The password to be used when connecting to the
+        server defined by this row.  A zero length string should be
+        used when a password is not required.  This object should
+        return a zero length string when accessed and should not
+        return the password string itself."
+    DEFVAL { ''H }
+    ::= { hFirmwareDownloadServersEntry 5 }
+
+hFdsLastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The value of sysUpTime the last time any value in
+        this row of the hFirmwareDownloadServersTable was modified by
+        either SNMP or other management method (e.g., via an HMI).
+
+        (U//FOUO) Managers can use this object to ensure that no
+        changes to configuration of this table have happened since the
+        last time it examined the table.
+
+        (U//FOUO) A value of 0 indicates that no entry has been
+        changed since the agent initialized."
+    ::= { hFirmwareDownloadServersEntry 6 }
+
+hFdsRowStatus OBJECT-TYPE
+    SYNTAX      RowStatus
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The status of this row, by which new entries may be
+        created, or old entries may be deleted from this table.
+
+        (U//FOUO) If an attempt to create a new row via createAndGo
+        does not include a value for columns without defaults
+        (fdsAddress, fdsPath) for the new row, an inconsistentName
+        error will be returned for this object.
+
+        (U//FOUO) If any column is set to an invalid or unsupported
+        value (during row creation or any other time), a wrongValue
+        error will be returned for that object.
+
+        (U//FOUO) The value of this object has no effect on
+        whether other objects in this row can be modified."
+    ::= { hFirmwareDownloadServersEntry 7 }
+
+--
+-- Firmware actions
+--
+
+
+hFirmwareDownloadAdminStatus OBJECT-TYPE
+    SYNTAX      INTEGER {
+                           downloadFirmware(1),
+                           downloadAndInstall(2),
+                           installFirmware(3),
+                           discardDownload(4),
+                           allowFirmwareDownloadAction(5)
+                        }       
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) This scalar controls the firmware download process.
+        When read, it will return allowFirmwareDownloadAction if the
+        last action succeeded, or the last requested action, if an
+        action failed or is still in progress. The value
+        discardDownload will never be returned, as that action should
+        always succeed immediately.
+
+        (U//FOUO) The values which may be set depend on the current value
+        of this object and the hFirmwareDownloadOperStatus object.
+
+        (U//FOUO) To initiate a new download, this object must contain the
+        value allowFirmwareDownloadAction, and the
+        hFirmwareDownloadOperStatus must be completeFromMgt. If the requested
+        action is downloadFirmware or downloadAndInstall, the
+        hFirmwareDownloadOperStatus should transition to inProgress and the
+        HAIPE will begin the process of attempting to transfer a firmware
+        image from the servers listed in the hFirmwareDownloadServersTable, in
+        order, until a download succeeds or all servers have been tried.
+
+        (U//FOUO) While a download is in progress, or if the download
+        fails (indicated by a hFirmwareDownloadOperStatus value of
+        downloadFailed), this object will return an inconsistentValue error
+        for any new value except discardDownload (which will cancel the
+        current download). If the download fails, this object must be set to
+        discardDownload before a new download or install may be attempted.
+
+        (U//FOUO) If the download succeeded and the requested action was
+        downloadFirmware, the hFirmwareDownloadOperStatus value transitions
+        to downloadedFirmware and any new value other than installFirmware or
+        discardDownload will return an inconsistentValue error.
+
+        (U//FOUO) If the download succeeded and the requested action was
+        downloadAndInstall, the hFirmwareDownloadOperStatus value remains
+        inProgress and the device attempts to install the firmware
+        immediately.
+
+        (U//FOUO) While the firmware is being installed, all new
+        values will return inconsistentValue error (i.e. the install
+        process can not be aborted). If the install fails, the
+        hFirmwareDownloadOperStatus will transition to installFailed,
+        and this object must be set to discardDownload before a new
+        download or install may be attempted.  During the installation
+        process the HAIPE will likely need to change states in such a
+        way as to prevent communication with the manager.
+
+        (U//FOUO) A summary of allowed values, based on the value of
+        hFirmwareDownloadOperStatus, is included in the description of the
+        hFirmwareDownloadOperStatus object.
+
+        (U//FOUO) Implementations MUST implement the download and
+        install enum values.  It is optional to implement the
+        combined downloadAndInstall value."
+    ::= { hFirmwareDownloadControl 1 }
+
+
+hFirmwareDownloadOperStatus OBJECT-TYPE
+    SYNTAX      INTEGER {
+                           inProgress(1),
+                           downloadedFirmware(2),
+                           completeFromMgt(3),
+                           downloadFailed(4),
+                           installFailed(5)
+                         }              
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This scalar indicates the current state of a firmware
+        download.  inProgress(1) indicates that a download is underway, or
+        new firmware image is being installed. downloadedFirmare(2)
+        indicates that a download was successful but it has not yet been
+        installed. completeFromMgt(3) indicates that the last requested
+        firmware action was sucessful. downloadFailed(4) indicates that the
+        last attempted download failed.  installFailed(5) indicates that the
+        installation of an image failed.
+
+        (U//FOUO) The relationship of allowable
+        hFirmwareDownloadAdminStatus values, based on the current value
+        of this object, is as follows:
+
+
+                                     (U//FOUO) 
+                                        optional
+                              |        |download|        |        |allow
+                              |download|And     |install |discard |Firmware
+                              |Firmware|Install |Firmware|Download|Download
+        ----------------------+--------+--------+--------+--------+--------
+        (1)inProgress         |  error |  error |  error |  3     | error
+        ----------------------+--------+--------+--------+--------+--------
+        (2)downloadedFirmware |  error |  error |   3    |  3     | error
+                              |        |        |   5    |        |
+        ----------------------+--------+--------+--------+--------+--------
+                              |    / 2 |    / 3 |        |        |
+        (3)completeFromMgt    | 1 <    | 1 <- 4 |  error |  error |  3
+                              |    \ 4 |    \ 5 |        |        |
+        ----------------------+--------+--------+--------+--------+--------
+        (4)downloadFailed     |  error |  error |  error |  3     |  error
+        ----------------------+--------+--------+--------+--------+--------
+        (5)installFailed      |  error |  error |  error |  3     |  error
+        ----------------------+--------+--------+--------+--------+--------
+                                     (U//FOUO) 
+        "
+    ::= { hFirmwareDownloadControl 2 }
+
+--
+-- Firmware Keys
+--
+
+hFirmwareKeysTableCount OBJECT-TYPE
+        SYNTAX      Unsigned32
+        MAX-ACCESS  read-only
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The number of rows in the hFirmwareKeysTable."
+        ::= { hFirmwareKeys 1 }
+
+hFirmwareKeysTableLastChanged OBJECT-TYPE
+        SYNTAX          TimeStamp
+        MAX-ACCESS      read-only
+        STATUS		current
+        DESCRIPTION
+            "(U//FOUO) The value of sysUpTime the last time any entry in
+            the hFirmwareKeysTable was created or deleted by either SNMP 
+            or other management method (e.g., via an HMI).
+
+            (U//FOUO) Managers can use this object to ensure that no
+            changes to configuration of this table have happened since
+            the last time it examined the table.
+
+            (U//FOUO) A value of 0 indicates that no entry has been
+            changed since the agent initialized."
+        ::= { hFirmwareKeys 2 }
+
+hFirmwareKeysTable OBJECT-TYPE
+        SYNTAX      SEQUENCE OF HFirmwareKeysEntry
+        MAX-ACCESS  not-accessible
+        STATUS		 current
+        DESCRIPTION
+            "(U//FOUO) The table containing information used to 
+            validate firmware downloads."
+        ::= { hFirmwareKeys 3 }
+
+hFirmwareKeysEntry OBJECT-TYPE
+        SYNTAX      HFirmwareKeysEntry
+        MAX-ACCESS  not-accessible
+        STATUS	    current
+        DESCRIPTION
+            "(U//FOUO) A row containing parameters related to the 
+            keys used to validate a firmware download."
+        INDEX   { hFirmwareKeysKMID }
+        ::= { hFirmwareKeysTable 1 }
+
+HFirmwareKeysEntry ::= SEQUENCE
+    {
+        hFirmwareKeysKMID                OCTET STRING,
+	hFirmwareKeysAppVer              ShortTitle64
+    }
+
+hFirmwareKeysKMID OBJECT-TYPE
+    SYNTAX       OCTET STRING (SIZE(6))
+    MAX-ACCESS	 not-accessible
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The tag (KMID) of S1 CSC."
+    ::= { hFirmwareKeysEntry 1 }
+
+hFirmwareKeysAppVer OBJECT-TYPE
+    SYNTAX       ShortTitle64
+    MAX-ACCESS	 read-only
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The ASCII App/Ver (Short Title) from the 
+	CSC Sector 1 of S1."
+    ::= { hFirmwareKeysEntry 2 }
+
+--
+-- Firmware Notifications
+--
+
+hFdNotifications       OBJECT IDENTIFIER
+     ::= { hFirmwareDownloadNotifications 0 }
+hFdNotificationObjects OBJECT IDENTIFIER 
+    ::= { hFirmwareDownloadNotifications 1 }
+
+hFirmwareDownloadError  NOTIFICATION-TYPE
+       OBJECTS  { hStationID, hrSystemDate,
+                  hFdsURI, hFdErrorCode, hFdErrorDetail }
+       STATUS   current
+       DESCRIPTION
+           "(U//FOUO) This notification is sent when a download
+           fails due to a transfer error.  The hFdsURI column should
+           reference the URI with which the error occurred.
+
+           (U//FOUO) The recommended hAuditConfigTable defaults for
+           this notification are:
+                ThrottlingEnabled: false
+                NotifEnabled     : true"
+       ::= { hFdNotifications 1 }
+
+hFirmwareDownloadSuccess NOTIFICATION-TYPE
+       OBJECTS  { hStationID, hrSystemDate, hFdsURI }
+       STATUS   current
+       DESCRIPTION
+           "(U//FOUO) This notification is sent when a download has
+           been completed and has succeeded.  The hFdsURI column
+           should reference the URI that was used for the download.
+
+           (U//FOUO) The recommended hAuditConfigTable defaults for this
+           notification are:
+                ThrottlingEnabled: false
+                NotifEnabled     : true"
+       ::= { hFdNotifications 2 }
+
+hFirmwareInstallFailed NOTIFICATION-TYPE
+       OBJECTS  { hStationID, hrSystemDate, hFdsURI, hFdErrorDetail }
+       STATUS   current
+       DESCRIPTION
+           "(U//FOUO) This notification is sent when the installation
+           of a new firmware image has failed.
+
+           (U//FOUO) The recommended hAuditConfigTable defaults for this
+           notification are:
+                ThrottlingEnabled: false
+                NotifEnabled     : true"
+       ::= { hFdNotifications 3 }
+
+hFirmwareInstallSucceeded NOTIFICATION-TYPE
+       OBJECTS  { hStationID, hrSystemDate, hFdsURI }
+       STATUS   current
+       DESCRIPTION
+           "(U//FOUO) This notification is sent when the installation
+           of a new firmware image has succeed to the point that the
+           device is about to restart to load the nwe firmware.  IE,
+           this is sent just before resetting the device and not after
+           it has rebooted. Sending of this notification is not mandatory.
+
+           (U//FOUO) The recommended hAuditConfigTable defaults for this
+           notification are:
+                ThrottlingEnabled: false
+                NotifEnabled     : true"
+       ::= { hFdNotifications 4 }
+
+-- Support Objects
+
+hFdErrorCode OBJECT-TYPE
+       SYNTAX      Integer32
+       MAX-ACCESS  accessible-for-notify
+       STATUS      current
+       DESCRIPTION
+           "(U//FOUO) The Error code that triggered the notification.
+           This code is protocol-specific depending on the type of
+           transfer being performed based on the hFdsURI column."
+       ::= { hFdNotificationObjects 1 }
+
+hFdErrorDetail OBJECT-TYPE
+       SYNTAX      OCTET STRING (SIZE(0..4096))
+       MAX-ACCESS  accessible-for-notify
+       STATUS      current
+       DESCRIPTION
+           "(U//FOUO) The error string, which is likely to be hFdsURI
+           protocol-specific or action-specific, indicating the nature
+           of the error.  The value contained within this object must
+           not be expected to be machine parsable.  If no supplemental
+           information is needed to be transmitted, this object should
+           consist of a zero-length string."
+       ::= { hFdNotificationObjects 2 }
+
+
+-- **********************************************************************
+-- File Transfer Support
+-- **********************************************************************
+
+hFileTransferConfiguration     OBJECT IDENTIFIER ::= { hFileTransfer 1 }
+hFileTransferTableInfo         OBJECT IDENTIFIER ::= { hFileTransfer 2 }
+hFileTransferControl           OBJECT IDENTIFIER ::= { hFileTransfer 3 }
+hFileTransferNotifications     OBJECT IDENTIFIER ::= { hFileTransfer 4 }
+
+--
+-- TFTP configuration
+--
+
+hFTTFTPConfiguration  OBJECT IDENTIFIER ::= { hFileTransferConfiguration 1 }
+
+
+
+
+hFTTFTPDesiredBlockSize     OBJECT-TYPE
+    SYNTAX          Unsigned32 (8..65464)
+    UNITS           "Octets"
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) This object indicates the maximum block size in
+        octets to use for TFTP file transfers.
+
+	(U//FOUO) Note that this object only applies to TFTP transfers
+	using the general purpose hFileTransferTable."
+    REFERENCE "RFC 2348"
+    DEFVAL { 512 }
+    ::= { hFTTFTPConfiguration 1 }
+
+-- XXX: default value?
+
+hFTTFTPDesiredTimeoutInterval    OBJECT-TYPE
+    SYNTAX          Unsigned32 (1..255)
+    UNITS           "Seconds"
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) This object indicates the timeout value to use
+        for TFTP file transfers.
+
+	(U//FOUO) Note that this object only applies to TFTP transfers
+	using the general purpose hFileTransferTable."
+    REFERENCE   "RFC 2349"
+    DEFVAL      { 5 }
+    ::= { hFTTFTPConfiguration 2 }
+
+-- XXX: is there a good default?, 5 pulled from a tftp implementation
+
+hFTTFTPMaximumFileTransferSize    OBJECT-TYPE
+    SYNTAX          Unsigned32
+    UNITS           "kilobytes"
+    MAX-ACCESS	 read-write
+    STATUS	 current 
+    DESCRIPTION
+        "(U//FOUO) The maximum file transfer size allowed for TFTP
+        file transfers.
+
+	(U//FOUO) Note that this object only applies to TFTP transfers
+	using the general purpose hFileTransferTable."
+    REFERENCE   "RFC 2349"
+    ::= { hFTTFTPConfiguration 3 }
+
+
+--
+-- HTTP client configuration
+--
+
+-- (none to date)
+
+
+--
+-- File Transfer configuration
+--
+
+hFileTransferTableCount OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-only
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the
+        hFileTransferTable."
+    ::= { hFileTransferTableInfo 1 }
+
+hFileTransferTableLastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The value of sysUpTime the last time any entry in
+        the hFileTransferTable was modified, created, or deleted by
+        either SNMP or other management method (e.g., via an HMI).
+
+        (U//FOUO) Managers can use this object to ensure that no
+        changes to configuration of this table have happened since
+        the last time it examined the table.
+
+        (U//FOUO) A value of 0 indicates that no entry has been
+        changed since the agent initialized.
+
+        (U//FOUO) If dynamic-runtime modifications of file transfer
+        servers is not supported, this object will always be 0.
+
+        (U//FOUO) While the CKL file formats is defined, the formats
+        of the audit and configuration files are vendor specific."
+    ::= { hFileTransferTableInfo 2 }
+
+hFileTransferTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF HFileTransferEntry
+    MAX-ACCESS  not-accessible
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The table containing the configuration
+        information for file transfers."
+    ::= { hFileTransferTableInfo 3 }
+
+hFileTransferEntry OBJECT-TYPE
+    SYNTAX      HFileTransferEntry
+    MAX-ACCESS  not-accessible
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) A row describing the particular information
+        associated with a file transfer."
+    INDEX   { hFTName, hFTPriority }
+    ::= { hFileTransferTable 1 }
+
+HFileTransferEntry ::= SEQUENCE
+    {
+	hFTName                          SnmpAdminString,
+	hFTPriority                      Unsigned32,
+	hFTURI                           OCTET STRING,
+	hFTSide                          HaipeSide,
+	hFTLoginName                     SnmpAdminString,
+	hFTPassword                      SnmpAdminString,
+	hFTLastChanged                   TimeStamp,
+	hFTRowStatus                     RowStatus
+    }
+
+hFTName OBJECT-TYPE
+    SYNTAX       SnmpAdminString (SIZE(1..32))
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) An administrative name for a set of files to
+        transfer."
+    ::= { hFileTransferEntry 1 }
+
+hFTPriority OBJECT-TYPE
+    SYNTAX       Unsigned32
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The priority level of the row.  Rows with a lower
+        numeric priority level should be transferred first (1 before
+        2 before 3, etc...)."
+    ::= { hFileTransferEntry 2 }
+
+hFTURI OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE(1..1024))
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The URI to indicate a server, path, etc... for
+        the transferring of files.  URIs containing username and/or
+        password will be rejected. The hFTLoginName and hFTPassword
+        objects should be used instead of embedding these values in
+        the URI.
+
+        (U//FOUO) It is important to note that devices may or may
+        not support DNS name resolution and thus some devices may
+        only support URIs containing IP addresses.
+
+        (U//FOUO) It is also important to note that some protocols
+        may be restricted in the size of the URI they can handle.
+        In this case, a wrongValue exception should be returned when
+        an illegally long URI is requested."
+    ::= { hFileTransferEntry 3 }
+
+hFTSide OBJECT-TYPE
+    SYNTAX      HaipeSide
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The side of the device on which the transfer
+        should occur."
+    ::= { hFileTransferEntry 4 }
+
+hFTLoginName OBJECT-TYPE
+    SYNTAX      SnmpAdminString
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The login name to use for logging into the server
+        defined by this row.  A zero length string should be used
+        when a login name is not needed. "
+    DEFVAL { ''H }
+    ::= { hFileTransferEntry 5 }
+
+hFTPassword OBJECT-TYPE
+    SYNTAX      SnmpAdminString
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The password to be used when connecting to the
+        server defined by this row.  A zero length string should be
+        used when a password is not required.  
+
+        (U//FOUO) This object should return a zero length string
+        when accessed and should not return the password string
+        itself."
+    DEFVAL { ''H }
+    ::= { hFileTransferEntry 6 }
+
+hFTLastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The value of sysUpTime the last time any value in
+        this row of the hFileTransferTable was modified by
+        either SNMP or other management method (e.g., via an HMI).
+
+        (U//FOUO) Managers can use this object to ensure that no
+        changes to configuration of this table have happened since
+        the last time it examined the table.
+
+        (U//FOUO) A value of 0 indicates that no entry has been
+        changed since the agent initialized."
+    ::= { hFileTransferEntry 7 }
+
+hFTRowStatus OBJECT-TYPE
+    SYNTAX      RowStatus
+    MAX-ACCESS	 read-create
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The status of this row, by which new entries may
+        be created, or old entries may be deleted from this table.
+
+        (U//FOUO) If an attempt to create a new row via createAndGo
+        does not include a value for columns without defaults for
+        the new row, an inconsistentName error will be returned for
+        this object.
+
+        (U//FOUO) If any column is set to an invalid or unsupported
+        value (during row creation or any other time), a wrongValue
+        error will be returned for that object.
+
+        (U//FOUO) The value of this object has no effect on whether
+        other objects in this row can be modified."
+    ::= { hFileTransferEntry 8 }
+
+--
+-- File Transfer actions
+--
+
+
+hFileTransferName OBJECT-TYPE
+    SYNTAX      SnmpAdminString (SIZE(1..32))
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION 
+    "(U//FOUO) This scalar indicates the value of the hFileName
+    index into the hFileTransferTable that is operated on by the
+    hFileTransferAdminStatus and hFileTransferOperStatus control
+    scalars.  In normal use, it should be set to a value that
+    matches one or more rows in the hFileTransferTable."
+    ::= { hFileTransferControl 1 }
+
+
+hFileTransferAdminStatus OBJECT-TYPE
+    SYNTAX      INTEGER {
+                       allowFileTransfer(1),
+                       downloadConfig(2),
+                       installConfig(3),
+                       downloadAndInstallConfig(4),
+                       downloadAndInstallCkl(5),
+                       uploadAudit(6),
+                       uploadAllAudit(7),
+                       discardTransfer(8)
+                    }       
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION 
+
+    "(U//FOUO) This scalar controls the file transfer process.  When
+    read, it will return allowFileTransfer if the last action
+    succeeded, or the last requested action, if an action failed or
+    is still in progress. The value discardTransfer will never be
+    returned, as that action should always succeed immediately.
+
+    (U//FOUO) The values which may be set depend on the current
+    value of this object and the hFileTransferOperStatus object.
+
+    (U//FOUO) To initiate a new file transfer, this object must
+    contain the value allowFileTransfer, and the
+    hFileTransferOperStatus must be completeFromMgt. If the
+    requested action is downloadConfig, downloadAndInstallConfig,
+    downloadAndInstallCkl, or uploadAudit the
+    hFileTransferOperStatus should transition to inProgress and the
+    HAIPE will begin the process of attempting to transfer the file
+    as indicated by the set of matching rows in the
+    hFileTransferTable with a hFTName column matching
+    hFileTransferName.  The URIs indicated by this set will be tried
+    in hFTPriority order until a transfer succeeds or all the URIs
+    have been tried.  That is, the HAIPE will attempt to transfer
+    files until there is one success or all the URIs in the set have
+    been attempted.
+
+    (U//FOUO) If the requested action is uploadAllAudit, the
+    hFileTransferOperStatus should transition to inProgress and the
+    HAIPE will start the process of transferring all the audit log
+    files as indicated by the set of rows in the hFileTransferTable
+    with a hFTName column matching hFileTransferName.  The URIs
+    indicated by this set will be tried in hFTPriority order until
+    all the URIs have been tried.  That is, the HAIPE will attempt
+    to send audit log files to all the URIs in the set.
+
+    (U//FOUO) Transfer in progress or Fails: While a transfer is in
+    progress, or if the transfer fails (indicated by a
+    hFileTransferOperStatus value of transferFailed), this object
+    will return an inconsistentValue error for any new value except
+    discardTransfer (which will cancel the current transfer). If the
+    transfer fails, this object must be set to discardTransfer
+    before a new transfer or install may be attempted.
+
+    (U//FOUO) Transfer succeeds for Audit actions: If the transfer
+    succeeded and the requested action was uploadAudit or
+    uploadAllAudit, processing is done and this object returns
+    allowFileTransfers and hFileTransferOperStatus should
+    return completeFromMgt.
+
+    (U//FOUO) Transfer succeeds for CKL actions: If the transfer
+    succeeded and the requested action was downloadAndInstallCkl,
+    the hFileTransferOperStatus value remains inProgress and the
+    device attempts to install the CKL immediately. If the CKL
+    install fails (it may be an older version or there is another
+    problem), the hFileTransferOperStatus will transition to
+    installFailed, and this object must be set to discardTransfer
+    before a new transfer or install may be attempted.
+
+    (U//FOUO) Transfer succeeds for Config actions: If the transfer
+    succeeded and the requested action was downloadConfig, the
+    hFileTransferOperStatus value transitions to downloadedConfig
+    and any new value other than installConfig or discardTransfer
+    will return an inconsistentValue error.
+
+    (U//FOUO) If the transfer succeeded and the requested action was
+    downloadAndInstallConfig, the hFileTransferOperStatus value
+    remains inProgress and the device attempts to install the
+    configuration immediately.
+
+    (U//FOUO) While the configuration is being installed, all new
+    values will return inconsistentValue error (i.e. the install
+    process can not be aborted). If the install fails, the
+    hFileTransferOperStatus will transition to installFailed, and
+    this object must be set to discardTransfer before a new transfer
+    or install may be attempted.  During the installation process
+    the HAIPE will likely need to change states in such a way as to
+    prevent communication with the manager.
+
+    (U//FOUO) Implementations MUST implement the downloadConfig and
+    installConfig enum values.  It is optional to implement the
+    combined downloadAndInstallConfig value.
+
+    (U//FOUO) A summary of allowed values, based on the value of
+    hFileTransferOperStatus, is included in the description of the
+    hFileTransferOperStatus object."  
+    ::= { hFileTransferControl 2 }
+
+
+hFileTransferOperStatus OBJECT-TYPE
+    SYNTAX      INTEGER {
+                       inProgress(1),
+                       downloadedConfig(2),
+                       completeFromMgt(3),
+                       transferFailed(4),
+                       installFailed(5)
+                     }              
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+
+    "(U//FOUO) This scalar indicates the current state of a file
+    transfer.  inProgress indicates that a transfer is underway, or
+    that a configuration or CKL is being installed. downloadedConfig
+    indicates that a configuration was download successfully but it
+    has not yet been installed. completeFromMgt indicates that the
+    last requested transfer action was successful. transferFailed
+    indicates that the last attempted transfer failed.
+    installFailed indicates that the last requested install failed.
+
+    (U//FOUO) The relationship of allowable hFileTransferAdminStatus
+    values, based on the current value of this object, is as
+    follows:
+
+                                 (U//FOUO) 
+    \   OperStatus =   |   in   |downloaded|complete|transfer|install
+            \          |Progress|  Config  |FromMgt | Failed |Failed
+    AdminStatus set  \ |  (1)   |   (2)    |  (3)   |  (4)   | (5)
+    -------------------+--------+----------+--------+--------+---------
+    allowFileTransfer  | error  |  error   |   3    | error  | error
+    -------------------+--------+----------+--------+--------+---------
+                       |        |          |   1    |        |
+    downloadConfig     | error  |  error   |  / \   | error  | error
+                       |        |          | 2   4  |        |
+    -------------------+--------+----------+--------+--------+---------
+    installConfig      | error  |  3 or 5  | error  | error  | error
+    -------------------+--------+----------+--------+--------+---------
+    downloadAnd-       |        |          |   1    |        |
+    InstallConfig      | error  |  error   |  /|\   | error  | error
+                       |        |          | 3 4 5  |        |
+    -------------------+--------+----------+--------+--------+---------
+    downloadAnd-       |        |          |   1    |        |
+    InstallCkl         | error  |  error   |  /|\   | error  | error
+                       |        |          | 3 4 5  |        |
+    -------------------+--------+----------+--------+--------+---------
+                       |        |          |   1    |        |
+    uploadAudit        | error  |  error   |  / \   | error  | error
+                       |        |          | 3   4  |        |
+    -------------------+--------+----------+--------+--------+---------
+                       |        |          |   1    |        |
+    uploadAllAudit     | error  |  error   |  / \   | error  | error
+                       |        |          | 3   4  |        |
+    -------------------+--------+----------+--------+--------+---------
+    discardTransfer    |  3     |    3     | error  |   3    |  3
+    -------------------+--------+----------+--------+--------+---------
+                                 (U//FOUO) 
+    "
+    ::= { hFileTransferControl 3 }
+
+--
+-- File Transfer Notifications
+--
+
+hFTNotifications       OBJECT IDENTIFIER
+     ::= { hFileTransferNotifications 0 }
+hFTNotificationObjects OBJECT IDENTIFIER 
+    ::= { hFileTransferNotifications 1 }
+
+hFileTransferError  NOTIFICATION-TYPE
+       OBJECTS  { hStationID, hrSystemDate, hFileTransferAdminStatus,
+                  hFTURI, hFTErrorCode, hFTErrorDetail }
+       STATUS   current
+       DESCRIPTION
+           "(U//FOUO) This notification is sent when a transfer
+           fails due an error.  The hFTURI column should reference
+           the URI with which the error occurred.  The
+           hFileTransferAdminStatus value should be the value set to
+           this object before the error.
+
+           (U//FOUO) The recommended hAuditConfigTable defaults for
+           this notification are:
+             ThrottlingEnabled: false
+             NotifEnabled     : true"
+       ::= { hFTNotifications 1 }
+
+hFileTransferSuccess NOTIFICATION-TYPE
+       OBJECTS  { hStationID, hrSystemDate, hFileTransferAdminStatus,
+                  hFTURI }
+       STATUS   current
+       DESCRIPTION
+           "(U//FOUO) This notification is sent when a transfer has
+           been completed and has succeeded.  The hFTURI column
+           should reference the URI that was used for the transfer.
+           The hFileTransferAdminStatus value should be the value
+           set to this object before the error.
+
+           (U//FOUO) The recommended hAuditConfigTable defaults for
+           this notification are:
+             ThrottlingEnabled: false
+             NotifEnabled     : true"
+       ::= { hFTNotifications 2 }
+
+hFileTransferInstallFailed NOTIFICATION-TYPE
+       OBJECTS { hStationID, hrSystemDate, hFileTransferAdminStatus, 
+                 hFTURI, hFTErrorDetail }
+       STATUS current 
+       DESCRIPTION 
+           "(U//FOUO) This notification is sent when the
+           installation of a file transfer has failed.  The hFTURI
+           column should reference the URI that was used for the
+           transfer.  The hFileTransferAdminStatus value should be
+           the value set to this object before the error.
+
+           (U//FOUO) The recommended hAuditConfigTable defaults for
+           this notification are:
+             ThrottlingEnabled: false
+             NotifEnabled     : true"
+       ::= { hFTNotifications 3 }
+
+hFileTransferInstallSucceeded NOTIFICATION-TYPE
+       OBJECTS  { hStationID, hrSystemDate, 
+                  hFileTransferAdminStatus, hFTURI }
+       STATUS   current
+       DESCRIPTION
+           "(U//FOUO) This notification is sent when the
+           installation of a new transfer has succeed.  The hFTURI
+           column should reference the URI that was used for the
+           transfer.  The hFileTransferAdminStatus value should be
+           the value set to this object before the error.
+
+           (U//FOUO) The recommended hAuditConfigTable defaults for
+           this notification are:
+             ThrottlingEnabled: false
+             NotifEnabled     : true"
+       ::= { hFTNotifications 4 }
+
+--
+-- File Transfer Notification Support Objects
+--
+
+hFTErrorCode OBJECT-TYPE
+       SYNTAX      Integer32
+       MAX-ACCESS  accessible-for-notify
+       STATUS      current
+       DESCRIPTION
+           "(U//FOUO) The Error code that triggered the notification.
+           This code is protocol-specific depending on the type of
+           transfer being performed based on the hFTURI column."
+       ::= { hFTNotificationObjects 1 }
+
+hFTErrorDetail OBJECT-TYPE
+       SYNTAX      OCTET STRING (SIZE(0..4096))
+       MAX-ACCESS  accessible-for-notify
+       STATUS      current
+       DESCRIPTION
+           "(U//FOUO) The error string, which is likely to be hFTURI
+           protocol-specific or action-specific, indicating the nature
+           of the error.  The value contained within this object must
+           not be expected to be machine parsable.  If no supplemental
+           information is needed to be transmitted, this object should
+           consist of a zero-length string."
+       ::= { hFTNotificationObjects 2 }
+
+
+-- **********************************************************************
+-- Device Control Objects
+-- **********************************************************************
+
+haipeResetDevice   OBJECT-TYPE
+       SYNTAX      TruthValue
+       MAX-ACCESS  read-write
+       STATUS      current
+       DESCRIPTION
+           "(U//FOUO) The indication of whether a device should be
+           reset.  Setting this object to 'true' will perform a
+           reset operation of the device.  This must not affect the
+           state of any persistent configuration data, zeroize any of
+           the key material or erase the audit log.  When read this
+           object should return false.  When set to false this object
+           must not perform any operation but should accept this as a
+           valid SET operation."
+       ::= { hDeviceControl 1 }
+
+haipeSanitizeDevice OBJECT-TYPE
+       SYNTAX      TruthValue
+       MAX-ACCESS  read-write
+       STATUS      current
+       DESCRIPTION
+           "(U//FOUO) The indication of whether persistent data should
+           be erased.  Setting this object to 'true' will erase all
+           persistent data and return the box to an unitialized state.
+           It will zeroize all keying data, erase all persistent
+           storage and auditing information.  Setting this object will
+           certainly render the HAIPE unreachable from distant
+           managers since it will be unconfigured.  When read this
+           object should return false.  When set to false this object
+           must not perform any operation but should accept this as a
+           valid SET operation."
+       ::= { hDeviceControl 2 }
+
+hVendorSpecificConfiguration OBJECT-TYPE
+       SYNTAX      TruthValue
+       MAX-ACCESS  read-write
+       STATUS      current
+       DESCRIPTION
+           "(U//FOUO) This object indicates the presence/absence of
+           non-default vendor specific box-level settings. This object
+           shall be true(1) if one or more non-default vendor specific
+           configuration settings are present (I.E. configuration
+           settings that exist to support features beyond those
+           documented in the HAIPE IS).
+
+           (U//FOUO) Attempts to set this object to true(1) will be
+           ignored. Setting this object to false(2) will reset all
+           vendor specific configuration settings to defaults that
+           ensure HAIPE interoperability.  If this is impossible to
+           accomplish or is unsupported the device should return the
+           wrongValue exception and a manager will need to perform a
+           full reset using the haipeResetDevice object instead."
+       ::= { hDeviceControl 3 }
+
+-- **********************************************************************
+-- Management.Networking objects
+-- **********************************************************************
+
+hManagementNetworkNotifications OBJECT IDENTIFIER ::= { hManagementNetwork 1 }
+
+hManagementNetworkNotifDefs OBJECT IDENTIFIER 
+  ::= { hManagementNetworkNotifications 0 }
+
+hManagementNetworkNotifObjs OBJECT IDENTIFIER 
+  ::= { hManagementNetworkNotifications 1 }
+
+hICMPTooBigMakesPTMTUTooSmall  NOTIFICATION-TYPE
+       OBJECTS  { hStationID, hrSystemDate }
+       STATUS		 current
+       DESCRIPTION
+           "(U//FOUO) This notification is sent if a ICMPv6 Packet Too
+           Big message arrives on the CT interface which would result
+           in setting the PT MTU less than 1280.
+
+           (U//FOUO) The recommended hAuditConfigTable defaults for this
+           notification are:
+                ThrottlingEnabled: true
+                LogThrottleCfg   : Once per day
+                NotifEnabled     : false"
+       ::= { hManagementNetworkNotifDefs 1 }
+
+hICMPDestUnreachMakesPTMTUTooSmall  NOTIFICATION-TYPE
+       OBJECTS  { hStationID, hrSystemDate }
+       STATUS		 current
+       DESCRIPTION
+           "(U//FOUO) This notification is sent if a ICMPv4 Destination
+           Unreachable message is received on the CT interface which
+           would result in setting the PT MTU to less than 512 bytes.
+
+           (U//FOUO) The recommended hAuditConfigTable defaults for this
+           notification are:
+                ThrottlingEnabled: true
+                LogThrottleCfg   : Once per day
+                NotifEnabled     : false"
+       ::= { hManagementNetworkNotifDefs 2 }
+
+--
+-- Object definitions
+--
+hExtraInformation       OBJECT-TYPE
+        SYNTAX          SnmpAdminString
+        MAX-ACCESS      accessible-for-notify
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) This object should contain a human readable
+            string with extra details about an event.  Consult the
+            DESCRIPTION clause of the notification for information on
+            how to interpret this string.  The value SHOULD be human
+            readable and not machine parsible unless specified
+            otherwise by a notification definition."
+        ::= { hManagementNetworkNotifObjs 1 }
+
+
+-- **********************************************************************
+-- Auditing objects
+-- **********************************************************************
+
+--
+-- Current usage-level of audit storage
+
+hAuditConfigScalars OBJECT IDENTIFIER ::= { hAuditing 1 }
+hAuditInformation   OBJECT IDENTIFIER ::= { hAuditing 2 }
+hAuditNotifications OBJECT IDENTIFIER ::= { hAuditing 0 }
+
+hNotificationLogCapacityPercentage OBJECT-TYPE
+        SYNTAX          Unsigned32 (0..100)
+        MAX-ACCESS      read-only
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The current utilized percentage
+            of storage capacity for audit events. When the log reaches
+            its full capacity, the hNotificationLogFull notification will
+            be generated. The fate of new events will be determined by
+            the hNotificationLogFullBehavior object."
+        ::= { hAuditConfigScalars 1 }
+
+hNotificationLogWarningPercentage       OBJECT-TYPE
+        SYNTAX          Unsigned32 (0..100)
+        MAX-ACCESS      read-write
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The percentage of capacity at which the
+            hNotificationLogWarning notification will be generated. A
+            value of zero indicates that the notification should never
+            be sent.  HAIPEs with a fixed warning percentage will not
+            support SET operations to this object."
+        DEFVAL { 80 }
+        ::= { hAuditConfigScalars 2 }
+
+hNotificationLogFullBehavior  OBJECT-TYPE
+        SYNTAX          INTEGER { logWrap(1), logDrop(2) }
+        MAX-ACCESS      read-write
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The object used for determining the fate of new
+            audit events when the audit log has reached its maximum
+            capacity. If the value is logWrap, new events will overwrite
+            the oldest events. If the value is logDrop, new events will
+            be dropped. Notifications for the event, if configured will
+            still be sent.
+            
+            (U//FOUO) HAIPEs with a fixe behavior will not support SET
+            operations to this object."
+        ::= { hAuditConfigScalars 3 }
+
+
+hNotificationLogReset       OBJECT-TYPE
+        SYNTAX          TruthValue
+        MAX-ACCESS      read-write
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The object used for clearing the audit logs.
+            Setting this object to true will reset (clear) all audit
+            logs. When read, this object will always return false.
+            
+            (U//FOUO) Note that this will also reset the
+            hAudCfgLogCount and hAuditCfgLogThrottled Unsigned32
+            counters in the hAuditConfigTable."
+        ::= { hAuditConfigScalars 4 }
+
+hNotificationLogPartialReset OBJECT-TYPE
+        SYNTAX          Unsigned32 (1..4294967295)
+        MAX-ACCESS      read-write
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The object used for clearing some entries from the
+            default (unnamed) audit log. When this object is set, the
+            value will be used to locate the entry in the nlmLogTable
+            with a zero length nlmLogName and and nlmLogIndex equal
+            to the set value. All entried in the default log table
+            which are older than the located entry will be deleted.
+            
+            (U//FOUO) Note that the nlmLogIndex may wrap, so some entries
+            with lower nlmLogIndex values may be newer than the specified
+            index. These newer entries should not be deleted.
+
+            (U//FOUO) Note that this only affects the default (unnamed)
+            log table entries. Entried in name logs are not affected."
+        ::= { hAuditConfigScalars 5 }
+
+-- The audit group is a table of events
+-- with an event number, time, and an event ID.
+
+hAuditConfigTableCount OBJECT-TYPE
+        SYNTAX      Unsigned32
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The number of rows in the hAuditConfigTable."
+        ::= { hAuditInformation 1 }
+
+hAuditConfigTableLastChanged OBJECT-TYPE
+        SYNTAX      TimeStamp
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The value of sysUpTime the last time any entry in
+            the hAuditConfigTable was modified by either SNMP or other
+            management method (e.g., via an HMI).
+
+            (U//FOUO) Managers can use this object to ensure that no
+            changes to configuration of this table have happened since
+            the last time it examined the table.
+
+            (U//FOUO) The values of the hAudCfgLogCount,
+            hAudCfgLogThrottled, hAudCfgLogThrottleStatus,
+            hAudCfgNotifCount, hAudCfgNotifThrottled and
+            hAudCfgNotifThrottleStatus columns are not considered
+            configuration, and therefore do not affect this
+            object. (IE the TimeStamp will not change when a counter
+            is incremented.)
+
+            (U//FOUO) A value of 0 indicates that no entry has been
+            changed since the agent initialized."
+        ::= { hAuditInformation 2 }
+
+hAuditConfigTable OBJECT-TYPE
+        SYNTAX  SEQUENCE OF HAuditConfigEntry
+        MAX-ACCESS  not-accessible
+        STATUS  current
+        DESCRIPTION
+            "(U//FOUO) The table containing information about audit events
+            which this device may generate.  Functionally, this table
+            acts as a super-layer above the normal SNMP notification
+            mechanism.  When a device generates an auditable event,
+            it should evaluate the configuration in this table to
+            determine if the event should be sent and/or logged.  If so,
+            then the standard SNMP mechanisms for sending and
+            logging SNMP events should be used (see the
+            SNMP-TARGET-MIB, SNMP-NOTIFICATION-MIB and the
+            NOTIFICATION-LOG-MIB for further details)."
+        ::= { hAuditInformation 3 }
+
+hAuditConfigEntry OBJECT-TYPE
+        SYNTAX  HAuditConfigEntry
+        MAX-ACCESS  not-accessible
+        STATUS  current
+        DESCRIPTION
+            "(U//FOUO) A row containing audit event throttling information."
+        INDEX     { hAudCfgID }
+        ::= { hAuditConfigTable 1 }
+
+HAuditConfigEntry ::= SEQUENCE
+    {
+	hAudCfgID                        OBJECT IDENTIFIER,
+	hAudCfgThrottlingEnabled         TruthValue,
+	hAudCfgLogThrottleCfg            SnmpAdminString,
+	hAudCfgLogThrottleStatus         INTEGER,
+	hAudCfgLogCount                  Unsigned32,
+	hAudCfgLogThrottled              Unsigned32,
+	hAudCfgNotifEnabled              TruthValue,
+	hAudCfgNotifThrottleCfg          SnmpAdminString,
+	hAudCfgNotifThrottleStatus       INTEGER,
+	hAudCfgNotifCount                Counter32,
+	hAudCfgNotifThrottled            Counter32,
+	hAudCfgRowStatus                 RowStatus
+    }
+
+hAudCfgID                OBJECT-TYPE
+        SYNTAX          OBJECT IDENTIFIER
+        MAX-ACCESS      read-only
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The object identifier (OID) of the event to which
+            this configuration row is applied."
+        ::= { hAuditConfigEntry 1 }
+
+hAudCfgThrottlingEnabled OBJECT-TYPE
+        SYNTAX          TruthValue
+        MAX-ACCESS      read-create
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The administrative status for this row. If this
+            object has a value of true, the rows pointed to by 
+            hAudCfgLogThrottleCfg and hAudCfgNotifThrottleCfg are used to
+            throttle events. If this object has a value of false,
+            this event will not be throttled."
+        DEFVAL        { true }
+        ::= { hAuditConfigEntry 2 }
+
+hAudCfgLogThrottleCfg     OBJECT-TYPE
+        SYNTAX           SnmpAdminString (SIZE(0..32))
+        MAX-ACCESS       read-create
+        STATUS           current
+        DESCRIPTION
+            "(U//FOUO) The name of the throttle configuration to use for
+            throttling the logging of this audit event. This name is used
+            to look up a row in the audThrottleConfigTable.
+
+            (U//FOUO) This row may not be set to active if this object
+            contains a string which is not the index of an active row
+            in the audThrottleConfigTable."
+        DEFVAL { ''H }
+        ::= { hAuditConfigEntry 3 }
+
+hAudCfgLogThrottleStatus  OBJECT-TYPE
+        SYNTAX           INTEGER {
+                                currentlyThrottled(1),
+                                notCurrentlyThrottled(2)
+                                }
+        MAX-ACCESS       read-create
+        STATUS           current
+        DESCRIPTION
+            "(U//FOUO) The current status of log throttling for this event.
+
+            (U//FOUO) If this object has a value of
+            notCurrentlyThrottled, this event has not yet triggered
+            throttling.
+
+            (U//FOUO) If this object has a value of
+            currentlyThrottled, the logging of this event is currently
+            being throttled.
+
+            (U//FOUO) When the value is currentlyThrottled, setting
+            the value to notCurrentlyThrottled will reset the
+            threshold counter for this event. Note that the interval
+            timer is not reset."
+        DEFVAL { notCurrentlyThrottled }
+        ::= { hAuditConfigEntry 4 }
+
+hAudCfgLogCount        OBJECT-TYPE
+        SYNTAX           Unsigned32
+        MAX-ACCESS       read-only
+        STATUS           current
+        DESCRIPTION
+            "(U//FOUO) The total number of times this event has been logged.
+
+            (U//FOUO) Note that this object functions like a counter
+            in that when the count reaches its maximum value, it will
+            wrap back to zero.  It is implemented using an Unsigned32
+            type instead of a Counter32 type so that it can be reset
+            to zero when the audit log is cleared via the
+            hNotificationLogReset object."
+        ::= { hAuditConfigEntry 5 }
+
+hAudCfgLogThrottled    OBJECT-TYPE
+        SYNTAX           Unsigned32
+        MAX-ACCESS       read-only
+        STATUS           current
+        DESCRIPTION
+            "(U//FOUO) The number of times this event was not logged due to
+            throttling.
+
+            (U//FOUO) Note that this object functions like a counter
+            in that when the count reaches its maximum value, it will
+            wrap back to zero.  It is implemented using an Unsigned32
+            type instead of a Counter32 type so that it can be reset
+            to zero when the audit log is cleared via the
+            hNotificationLogReset object."
+        ::= { hAuditConfigEntry 6 }
+
+hAudCfgNotifEnabled    OBJECT-TYPE
+        SYNTAX           TruthValue
+        MAX-ACCESS       read-create
+        STATUS           current
+        DESCRIPTION
+            "(U//FOUO) The indication of whether or not a notification should
+            be sent when this event occurs.
+
+            (U//FOUO) Note that the configuration of the
+            snmpNotifyFilterTable may result in events being filtered
+            on a per-host basis."
+        DEFVAL { true }
+        ::= { hAuditConfigEntry 7 }
+
+hAudCfgNotifThrottleCfg OBJECT-TYPE
+        SYNTAX           SnmpAdminString (SIZE(0..32))
+        MAX-ACCESS       read-create
+        STATUS           current
+        DESCRIPTION
+            "(U//FOUO) The name of the throttle configuration to use for
+            throttling the notifications sent for this audit event. This name
+            is used to look up a row in the audThrottleConfigTable.
+
+            (U//FOUO) This row may not be set to active if this object
+            contains a string which is not the index of an active row
+            in the audThrottleConfigTable.
+
+            (U//FOUO) Note that the configuration of the
+            snmpNotifyFilterTable may result in events being filtered
+            on a per-host basis."
+        DEFVAL { ''H }
+        ::= { hAuditConfigEntry 8 }
+
+hAudCfgNotifThrottleStatus OBJECT-TYPE
+        SYNTAX           INTEGER {
+                                currentlyThrottled(1),
+                                notCurrentlyThrottled(2)
+                                }
+        MAX-ACCESS       read-create
+        STATUS           current
+        DESCRIPTION
+            "(U//FOUO) The current status of notification throttling for this
+            event.
+
+            (U//FOUO) If this object has a value of
+            notCurrentlyThrottled, this event has not yet triggered
+            throttling.
+
+            (U//FOUO) If this object has a value of
+            currentlyThrottled, notifications of this event are
+            currently being throttled.
+
+            (U//FOUO) When the value is currentlyThrottled, setting
+            the value to notCurrentlyThrottled will reset the
+            threshold counter for this event. Note that the interval
+            timer is not reset."
+        DEFVAL { notCurrentlyThrottled }
+        ::= { hAuditConfigEntry 9 }
+
+hAudCfgNotifCount      OBJECT-TYPE
+        SYNTAX           Counter32
+        MAX-ACCESS       read-only
+        STATUS           current
+        DESCRIPTION
+            "(U//FOUO) The total number of times this event caused a
+            notification to be generated and sent to the SNMP engine
+            for processing.
+
+            (U//FOUO) Note that the configuration of the tables in the
+            SNMP-NOTIFICATION-MIB may result in a notification being
+            sent to 0, 1 or many hosts. This counter will only be
+            incremented once, regardless of how many notifications are
+            actually sent
+
+            (U//FOUO) This object is not reset to zero when the
+            hNotificationLogReset object is used to reset the audit logs. "
+        ::= { hAuditConfigEntry 10 }
+
+hAudCfgNotifThrottled  OBJECT-TYPE
+        SYNTAX           Counter32
+        MAX-ACCESS       read-only
+        STATUS           current
+        DESCRIPTION
+            "(U//FOUO) The number of times an event was not sent to the
+            SNMP engine for notification processing due to throttling.
+
+            (U//FOUO) Note that this counter only counts throttled
+            notifications, and does not include notifications filtered
+            by the SNMP-NOTIFICATION-MIB.
+
+            (U//FOUO) This object is not reset to zero when the
+            hNotificationLogReset object is used to reset the audit logs."
+        ::= { hAuditConfigEntry 11 }
+
+hAudCfgRowStatus OBJECT-TYPE
+        SYNTAX          RowStatus
+        MAX-ACCESS      read-create
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The status of the row, by which new entries may be
+            created, or old entries deleted from this table.
+
+            (U//FOUO) Since all writable columns in this table have
+            default value, a new row may be created by setting this
+            object to createAndGo. If this object is set to createAndGo and
+            any columns included in the request contain inconsistent values
+            an inconsistentName error will be returned for this object.
+
+            (U//FOUO) A row may not be set to active unless
+            hAudCfgLogThrottleCfg and hAudCfgNotifThrottleCfg contain
+            values that are valid indexes of active rows in the
+            hAudThrottleConfigTable (an inconsistentValue error will
+            be returned for this object).
+
+            (U//FOUO) If any column is set to an invalid or unsupported
+            value (during row creation or any other time), a wrongValue
+            error will be returned for that object.
+
+            (U//FOUO) The value of this object has no effect on
+            whether other objects in this row can be modified.
+
+            (U//FOUO) An active row may not be changed to an
+            inconsistent state (an inconsistentValue error will be
+            returned for the oject). In other words, the
+            hAudCfgLogThrottleCfg and hAudCfgNotifThrottleCfg may not
+            be changed unless they contain valid indexes of active
+            rows in the audThrottleConfigTable (an inconsistentValue
+            error will be returned for the object)."
+
+        ::= { hAuditConfigEntry 12 } 
+
+-- 
+-- Audit event throttle configurations
+--
+
+hAudThrottleConfigTableCount OBJECT-TYPE
+        SYNTAX     Unsigned32
+        MAX-ACCESS read-only
+        STATUS     current
+        DESCRIPTION
+            "(U//FOUO) The number of rows in the hAudThrottleConfigTable."
+        ::= { hAuditInformation 4 }
+
+hAudThrottleConfigTableLastChanged OBJECT-TYPE
+        SYNTAX     TimeStamp
+        MAX-ACCESS read-only
+        STATUS     current
+        DESCRIPTION
+            "(U//FOUO) The value of sysUpTime the last time any entry in
+            the hAudThrottleConfigTable was created, modified or deleted
+            by either SNMP or other management method (e.g., via an HMI).
+
+            (U//FOUO) Managers can use this object to ensure that no
+            changes to configuration of this table have happened since
+            the last time it examined the table.
+
+            (U//FOUO) A value of 0 indicates that no entry has been
+            changed since the agent initialized."
+        ::= { hAuditInformation 5 }
+
+hAudThrottleConfigTable OBJECT-TYPE
+        SYNTAX     SEQUENCE OF HAudThrottleConfigEntry
+        MAX-ACCESS not-accessible
+        STATUS     current
+        DESCRIPTION
+            "(U//FOUO) The table containing configuration parameters which
+            may be used for throttling audit events."
+        ::= { hAuditInformation 6 }
+
+hAudThrottleConfigEntry OBJECT-TYPE
+        SYNTAX      HAudThrottleConfigEntry
+        MAX-ACCESS  not-accessible
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) A row containing a set of throttling configuration
+            parameters."
+        INDEX     { hAudThrottleCfgName }
+        ::= { hAudThrottleConfigTable 1 }
+
+HAudThrottleConfigEntry ::= SEQUENCE
+    {
+	hAudThrottleCfgName              SnmpAdminString,
+	hAudThrottleCfgThreshold         Unsigned32,
+	hAudThrottleCfgInterval          Unsigned32,
+	hAudThrottleCfgLastChanged       TimeStamp,
+	hAudThrottleCfgRowStatus         RowStatus
+    }
+
+hAudThrottleCfgName      OBJECT-TYPE
+        SYNTAX          SnmpAdminString (SIZE(1..32))
+        MAX-ACCESS      read-create
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The unique name for this set of throttling configuration
+            parameters."
+        ::= { hAudThrottleConfigEntry 1 }
+
+hAudThrottleCfgThreshold OBJECT-TYPE
+        SYNTAX          Unsigned32 (1..2147483647)
+        MAX-ACCESS      read-create
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The number of events (per hAudThrottleCfgInterval) which
+            must occur to trigger throttling."
+        DEFVAL        { 1 }
+        ::= { hAudThrottleConfigEntry 2 }
+
+hAudThrottleCfgInterval  OBJECT-TYPE
+        SYNTAX          Unsigned32 (1..86400) -- 24 hours
+        UNITS           "Seconds"
+        MAX-ACCESS      read-create
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The interval used for monitoring event thresholds. If
+            the same event occurs more than hAudThrottleCfgThreshold times in
+            this time period, throttling will be triggered. Note: this is a
+            fixed (not sliding) window interval."
+        DEFVAL        { 60 }
+        ::= { hAudThrottleConfigEntry 3 }
+
+hAudThrottleCfgLastChanged OBJECT-TYPE
+        SYNTAX          TimeStamp
+        MAX-ACCESS      read-only
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The value of sysUpTime the last time any value
+            in this row was modified, created, or deleted by either
+            SNMP or other means (e.g. via an HMI).
+
+            (U//FOUO) Managers can use this object to ensure that no
+            changes to configuration of this row have happened since
+            the last time it examined the row.
+
+            (U//FOUO) A value of 0 indicates that no value has been
+            changed since the agent initialized."
+        ::= { hAudThrottleConfigEntry 4 }
+
+hAudThrottleCfgRowStatus OBJECT-TYPE
+        SYNTAX          RowStatus
+        MAX-ACCESS      read-create
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The status of the row, by which new entries may be
+            created, or old entries deleted from this table.
+
+            (U//FOUO) Since all writable columns in this table have
+            default values, a new row may be created by setting this
+            object to createAndGo. If this object is set to createAndGo and
+            any columns included in the request contain inconsistent values
+            an inconsistentName error will be returned for this object.
+
+            (U//FOUO) If any column is set to an invalid or unsupported
+            value (during row creation or any other time), a wrongValue
+            error will be returned for that object.
+
+            (U//FOUO) An active row may not be deleted while it is referenced
+            by any active row in the hAuditConfigTable (an inconsistentValue
+            error will be returned for this object).
+
+            (U//FOUO) The value of this object has no effect on
+            whether other objects in this row can be modified."
+        ::= { hAudThrottleConfigEntry 5 }
+
+-- **********************************************************************
+-- audit notifications
+
+hAudNotificationLogWarning NOTIFICATION-TYPE
+        OBJECTS         { hStationID, hrSystemDate,
+                          nlmConfigGlobalEntryLimit }
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) Notification from HAIPE device to HMS
+            warning that the notification log (nlmLogTable) is close
+            to being full and needs to be downloaded and possibly
+            cleared.
+
+            (U//FOUO) The recommended hAuditConfigTable defaults for this
+            notification are:
+                ThrottlingEnabled: false
+                NotifEnabled     : true"
+        ::={ hAuditNotifications 1 }
+
+hAudNotificationLogFull NOTIFICATION-TYPE
+        OBJECTS         { hStationID, hrSystemDate, nlmConfigGlobalEntryLimit }
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The notification from HAIPE device to HMS
+            indicating that the notification log (nlmLogTable) is
+            full, and HAIPE device will begin deleting or overwriting
+            the oldest events.
+
+            (U//FOUO) The recommended hAuditConfigTable defaults for this
+            notification are:
+                ThrottlingEnabled: false
+                NotifEnabled     : true"
+        ::={ hAuditNotifications 2 }
+
+hAudNotificationLogOk NOTIFICATION-TYPE
+        OBJECTS         { hStationID, hrSystemDate, nlmConfigGlobalEntryLimit }
+        STATUS          current
+        DESCRIPTION
+            "(U//FOUO) The notification from HAIPE device to HMS
+            indicating that the notification log (nlmLogTable) is no
+            longer full or close to full.  This notificatino should be
+            sent after a hAudNotificationLogFull or
+            hAudNotificationLogWarning notification when room has been
+            made in the log for any reason (EG, an operator or an HMS
+            has cleared the log).
+
+            (U//FOUO) The recommended hAuditConfigTable defaults for this
+            notification are:
+                ThrottlingEnabled: false
+                NotifEnabled     : true"
+        ::={ hAuditNotifications 3 }
+
+hGenericAuditNotification NOTIFICATION-TYPE
+    OBJECTS         { hStationID, hrSystemDate, hExtraInformation }
+    STATUS        current
+    DESCRIPTION
+         "(U//FOUO) This audit event should only be used when no others
+          are suitable. This may be used for any type of audit event,
+          not just ones pertaining to network management (ie, it may
+          be used for traffic protection events, etc).  The
+          hExtraInformation object should contain as much information
+          as possible and must be a human readable value.
+
+          (U//FOUO) The recommended hAuditConfigTable defaults for this
+          notification are:
+                ThrottlingEnabled: true
+                LogThrottleCfg   : Once per minute
+                NotifEnabled     : true
+                NotifThrottleCfg : Once per minute"
+    ::= { hAuditNotifications 4 }
+
+END

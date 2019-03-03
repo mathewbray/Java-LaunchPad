@@ -1,0 +1,55 @@
+--
+--                 Unclassified//For Official Use Only
+--
+-- This entire document, which defines SNMP MIB objects in the SMIv2
+-- language should be considered U//FOUO.
+--
+-- The data that will be transmitted on the wire as a result of
+-- accessing these MIB objects MUST NOT BE CONSIDERED U//FOUO and is
+-- subject to seperate classification.  The classification level of this
+-- data is not defined or within the scope of this document.
+--
+
+HAIPE-ASSIGNMENTS-MIB  DEFINITIONS  ::= BEGIN
+
+IMPORTS
+    MODULE-IDENTITY, enterprises		FROM SNMPv2-SMI;
+
+haipeAssignmentsMIB MODULE-IDENTITY
+    LAST-UPDATED "200701121500Z"
+    ORGANIZATION "HAIPE WG"
+    CONTACT-INFO
+         "(U//FOUO) Not Available"
+    DESCRIPTION
+        "(U//FOUO) This MIB defines the HAIPE MIB tree hierarchial
+        assigments below it and acts as a reservation mechanism.  New
+        HAIPE related projects and programs will get individual
+        assignment numbers within this tree.  
+
+	(U//FOUO) This MIB also defines some HAIPE specific
+	TEXTUAL-CONVENTIONs (TCs) for use with management objects for
+	the HAIPE version 2 specification.  These management TCs are
+	defined here as the values and data ranges are expected to be
+	expanded upon as time progresses.  By defining them here, it
+	is expected that the MIBs which make use of these definitions
+	will not need to be changed as frequently as this MIB might."
+    ::= { haipe 3 }
+
+haipe    OBJECT IDENTIFIER ::= { enterprises 21079 }
+
+--
+-- Note: Current top-level OID assignments within the haipe mib tree:
+--    haipe.1 : HAIPE-V2-MIB
+--    haipe.2 : HAIPE-IETF-CONFORMANCE-MIB
+--    haipe.3 : HAIPE-ASSIGNMENTS-MIB
+--    haipe.4 : HAIPE-FEATURE-HIERARCHY-MIB
+--    haipe.5 : HAIPE-V3-MIB
+--    haipe.6 : HAIPE-TC-MIB
+--    haipe.7 : IETF works-in-progress tree
+--    haipe.8 : HAIPE-COMPLIANCE-MIB
+--
+
+hIETF    OBJECT IDENTIFIER ::= { haipe 7 }
+--    hIETF.1 : MGMD-MIB  (in last stages of IETF)
+
+END
