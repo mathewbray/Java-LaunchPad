@@ -1,0 +1,2233 @@
+--
+--                 Unclassified//For Official Use Only
+--
+-- This entire document, which defines SNMP MIB objects in the SMIv2
+-- language should be considered U//FOUO.
+--
+-- The data that will be transmitted on the wire as a result of
+-- accessing these MIB objects MUST NOT BE CONSIDERED U//FOUO and is
+-- subject to separate classification.  The classification level of this
+-- data is not defined or within the scope of this document.
+--
+
+HAIPE-V4-KEY-INFORMATION-MIB  DEFINITIONS  ::= BEGIN
+
+IMPORTS
+    OBJECT-TYPE, Unsigned32,
+    MODULE-IDENTITY                     FROM SNMPv2-SMI
+    SnmpAdminString                     FROM SNMP-FRAMEWORK-MIB
+    RowPointer, RowStatus, DateAndTime,
+    TruthValue, TimeStamp               FROM SNMPv2-TC
+    PreplacedKeyEdition,
+    PreplacedKeySegment,
+    PreplacedKeyShortTitle, 
+    HaipeShortTitle64, FireflyKMID, 
+    FireflyUniversalID,
+    FireflyPartitionCode, 
+    FireflyExpirationDate,
+    DGSharedKeyShortTitle               FROM HAIPE-V4-TEXTUAL-CONVENTIONS-MIB
+    hv4TrafficProtection                FROM HAIPE-V4-FEATURE-HIERARCHY-MIB;
+
+haipeKeyInformationMIB MODULE-IDENTITY
+    LAST-UPDATED "201602190530Z"
+    ORGANIZATION "HAIPE PO"
+    CONTACT-INFO
+         "(U//FOUO) Not Available"
+    DESCRIPTION
+        "(U//FOUO) This MIB defines all key information MIB objects necessary
+         for HAIPE traffic protection."
+    REVISION     "201602190530Z"
+    DESCRIPTION  "(U//FOUO) MIB 4.2.3 Final"		 
+    ::= { hv4TrafficProtection 2 }
+
+-- **********************************************************************
+-- Traffic Protection Information Segments
+-- **********************************************************************
+
+-- Defines the traffic protection objects that trigger some action when set to
+-- some value
+hKeyInformationControlObjects OBJECT IDENTIFIER ::= { haipeKeyInformationMIB 1 }
+
+-- Defines all traffic protection notifications
+hKeyInformationNotifications  OBJECT IDENTIFIER ::= { haipeKeyInformationMIB 2 }
+
+-- Defines key material information
+hManSAKeyChainInformation     OBJECT IDENTIFIER ::= { haipeKeyInformationMIB 3 }
+hEKMSKeyInformation           OBJECT IDENTIFIER ::= { haipeKeyInformationMIB 4 }
+hPKCInformation               OBJECT IDENTIFIER ::= { haipeKeyInformationMIB 5 }
+hTAInformation                OBJECT IDENTIFIER ::= { haipeKeyInformationMIB 6 }
+hCRLInformation               OBJECT IDENTIFIER ::= { haipeKeyInformationMIB 7 }
+hDGSharedKeyInformation       OBJECT IDENTIFIER ::= { haipeKeyInformationMIB 8 }
+
+hEKMS308Information           OBJECT IDENTIFIER ::= { hEKMSKeyInformation 1 }
+hAPPKTAInformation            OBJECT IDENTIFIER ::= { hEKMS308Information 1 }
+hPrePlacedKeyInformation      OBJECT IDENTIFIER ::= { hEKMS308Information 2 }
+hEKInformation                OBJECT IDENTIFIER ::= { hEKMS308Information 3 }
+
+hEKMS322Information           OBJECT IDENTIFIER ::= { hEKMSKeyInformation 2 }
+hFireFlyInformation           OBJECT IDENTIFIER ::= { hEKMS322Information 1 }
+hRemoteFireFlyInformation     OBJECT IDENTIFIER ::= { hEKMS322Information 2 }
+
+hDPModuliInformation          OBJECT IDENTIFIER ::= { hEKMSKeyInformation 3 }
+
+
+-- **********************************************************************
+-- Key Information Control objects
+-- **********************************************************************
+
+hZeroizeAllKeys OBJECT-TYPE
+        SYNTAX      TruthValue
+        MAX-ACCESS  read-write
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) Setting this object to 'true' will zeroize all the keys 
+             and DGSKs used to generate keys contained within the device.  It 
+             must not modify any other information in the device such as the 
+             persistent storage or the audit log. When read this object should 
+             return false. If this object is set to the same value as the 
+             current value, the device must not perform any operation but should 
+             accept this as a valid SET operation.
+
+             (U//FOUO) Note after being set to true, an agent should reset this 
+             object to false once it has zeroized all the keys stored in the 
+             device." 
+        ::= { hKeyInformationControlObjects 1 }
+	
+hGenerateSharedKey OBJECT-TYPE
+        SYNTAX      TruthValue
+        MAX-ACCESS  read-write
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) Setting this object to 'true' will force the generation 
+	           of a raw string (DGSK) to be used as key material. 
+             Post-generation, the agent must create an entry in the 
+             hDGSharedKeyTable that captures information on this DGSK.
+
+             (U//FOUO) Note after being set to true, an agent should reset this 
+             object to false once it has generated the DGSK and configured an 
+             entry in the hDGSharedKeyTable." 
+        ::= { hKeyInformationControlObjects 2 }
+        
+hDGSKDefaultCOI   OBJECT-TYPE
+       SYNTAX INTEGER { can(1), nz(2), reserved1(3), reserved2(4), reserved3(5), 
+                        reserved4(6), us(7), usHighRisk(8), cceb(9), 
+                        coalition(10), chvp(11), nato(12), natoNations(13), 
+                        uk(14), aus(15), undefined(16) }
+
+        MAX-ACCESS  read-write
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The COI to which newly generated Suite B CDGSKs will be 
+            assigned  when created using the hGenerateSharedKey object. This 
+            object is used by the agent in developing the Short Title for 
+            locally Generated DGSK. Agents MUST restrict the values accepted 
+            based on loaded key material such as a Trust Anchor, Q-key, or PAC 
+            for that COI.  This scalar must be set to a valid value before   
+            Suite B CDGSK generation - 'undefined' is an invalid value.
+
+            (U//FOUO) All Suite A CDGSKs will signal the US COI in the last 4
+            bits of the Short Title. For display purposes (16)undefined should 
+            be used.
+
+
+            (U//FOUO) Agents not supporting the assignment of a particular 
+            COI should return a wrongValue SNMP exception. Agents may default
+            this object to any COI based on loaded key material." 
+        DEFVAL{undefined}
+        ::= { hKeyInformationControlObjects 3 }
+
+hDGSKDefaultSuite    OBJECT-TYPE
+   SYNTAX INTEGER { suiteA(1), suiteB(2) }
+
+        MAX-ACCESS  read-write
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The Suite to which newly generated DGSKs will be 
+            assigned when created using the hGenerateSharedKey object.
+
+            (U//FOUO) Agents not supporting the assignment of a particular 
+            Suite should return a wrongValue SNMP exception." 
+        ::= { hKeyInformationControlObjects 4 }
+
+hDGSKDefaultClassification   OBJECT-TYPE
+    SYNTAX     BITS { unclassified(0), restricted(1), confidential(2), 
+                      secret(3), top-secret(4) }
+
+        MAX-ACCESS  read-write
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The Classification which newly generated DGSKs will be 
+            assigned when created using the hGenerateSharedKey object. This 
+            object is used by the agent in developing the Short Title for 
+            locally Generated DGSK. 
+
+            (U//FOUO) Agents may restrict the assigned values based on local 
+            security policy. Agents not supporting the assignment of a 
+            particular Classification should return a wrongValue SNMP 
+            exception." 
+        ::= { hKeyInformationControlObjects 5 }        
+        
+hPKCAutoRekeyInterval   OBJECT-TYPE
+   SYNTAX     INTEGER 
+        MAX-ACCESS  read-write
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) Indicates relative time when a PKC rekey is attempted  
+            (units in days).  The rekey attempt time is relative to the 
+            expiration of the PKC minus this scalar's value.  Note, only PKCs 
+            (hPKCTable entries) with the hPKCAutoRekeyEnable column set to 
+            'true' are rekeyed in an automated fashion.  Note, setting this
+            scalar to the zero value effectively disables automatic rekey for 
+            all PKCs regardless of hPKCAutoRekeyEnable settings.
+
+            (U//FOUO) This scalar is optional to support."
+        ::= { hKeyInformationControlObjects 6 }        
+
+hPKCAllowLocalExpiredPKC   OBJECT-TYPE
+   SYNTAX     TruthValue 
+        MAX-ACCESS  read-write
+        STATUS      current
+        DESCRIPTION
+             "(U//FOUO) Controls local authentication procedures (e.g., HAIPE 
+             IKEV2 authentication) with expired local PKCs. 
+
+            (U//FOUO) [true]  Enables authentication with expired local PKCs.
+            Expired local PKCs will be offered in HAIPE IKEv2.
+            
+            (U//FOUO) [false] Disables authentication with expired local PKCs.
+            Expired local PKCs will be offered in HAIPE IKEv2.
+
+            (U//FOUO) Note, this scalar applies to authentication with IA(M) 
+            PKCs only, namely HAIPE IKEv2 Certificate authentication."
+        ::= { hKeyInformationControlObjects 7 }        
+
+hPKCAllowRemoteExpiredPKC   OBJECT-TYPE
+   SYNTAX     TruthValue 
+        MAX-ACCESS  read-write
+        STATUS      current
+        DESCRIPTION
+             "(U//FOUO) Controls peer authentication procedures (e.g., HAIPE 
+             IKEV2 authentication) with expired peer PKCs. 
+
+            (U//FOUO) [true]  Enables authentication with expired peer PKCs.
+            Peer PKCs past the expiration date will be accepted in HAIPE IKEv2.
+            
+            (U//FOUO) [false] Disables authentication with expired peer PKCs.
+            Peer PKCs past the expiration date will not be accepted in HAIPE 
+            IKEv2.
+            
+            (U//FOUO) Note, this scalar applies to authentication with IA(M) 
+            PKCs only, namely HAIPE IKEv2 Certificate authentication."
+        ::= { hKeyInformationControlObjects 8 }        
+
+hPKCAllowNoLocalCRL OBJECT-TYPE
+   SYNTAX     TruthValue 
+        MAX-ACCESS  read-write
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) Allows peer authentication (e.g., HAIPE IKEV2 
+            authentication) when no CRL is loaded.
+
+            (U//FOUO) [true] Enables HAIPE IKEv2 authentication with peer PKCs 
+            when no associated CRL is loaded.
+            
+            (U//FOUO) [false] Disables HAIPE IKEv2 authentication with peer PKCs 
+            when no associated CRL is loaded.
+
+            (U//FOUO) Note, this scalar applies to authentication with IA(M) 
+            PKCs only, namely HAIPE IKEv2 Certificate authentication."
+        ::= { hKeyInformationControlObjects 9 }        
+
+hPKCAllowExpiredLocalCRL OBJECT-TYPE
+   SYNTAX     TruthValue 
+        MAX-ACCESS  read-write
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) Allows peer authentication (e.g., HAIPE IKEV2 
+            authentication) when CRL is expired.
+
+            (U//FOUO) [true] Enables HAIPE IKEv2 authentication with peer PKCs 
+            when the associated CRL is expired.
+            
+            (U//FOUO) [false] Disables HAIPE IKEv2 authentication with peer PKCs 
+            when the associated CRL is expired.
+
+            (U//FOUO) Note, this scalar applies to authentication with IA(M) 
+            PKCs only, namely HAIPE IKEv2 Certificate authentication."
+
+        ::= { hKeyInformationControlObjects 10 }        
+
+-- **********************************************************************
+-- Key Information Notifications
+-- **********************************************************************
+	
+
+-- **********************************************************************
+-- Manual SA Key Chain Table
+-- **********************************************************************
+
+hManSAKeyChainTableCount OBJECT-TYPE
+        SYNTAX      Unsigned32
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The number of rows in the hManSAKeyChainTable."
+        ::= { hManSAKeyChainInformation 1 }
+
+hManSAKeyChainTableLastChanged OBJECT-TYPE
+        SYNTAX      TimeStamp
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The value of hSystemUpTime the last time any entry in
+             the hManSAKeyChainTable was modified, created, or deleted
+             by either SNMP or other management method (e.g., via an HMI).
+
+             (U//FOUO) Managers can use this object to ensure that no
+             changes to configuration of this table have happened since
+             the last time it examined the table.
+
+             (U//FOUO) A value of 0 indicates that no entry has been
+             changed since the agent initialized."
+        ::= { hManSAKeyChainInformation 2 }
+
+hManSAKeyChainTable OBJECT-TYPE
+        SYNTAX       SEQUENCE OF HManSAKeyChainTableEntry
+        MAX-ACCESS   not-accessible
+        STATUS       current
+        DESCRIPTION
+            "(U//FOUO) The table containing a list of symmetric key chains
+             known to the device. All rows in this table reference a unique
+             symmetric key where its intended usage is for manually-created
+             security associations. This table is referenced by the
+             hManualSADTable."
+        ::= { hManSAKeyChainInformation 3 }
+
+hManSAKeyChainTableEntry OBJECT-TYPE
+        SYNTAX      HManSAKeyChainTableEntry
+        MAX-ACCESS  not-accessible
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) A row describing a particular symmetric key within a
+             key chain designated to protect manually-created security
+             associations."
+        INDEX { hManSAKeyChainName, hManSAKeyChainKeyOrder }
+        ::= { hManSAKeyChainTable 1 }
+
+HManSAKeyChainTableEntry ::= SEQUENCE
+    {
+         hManSAKeyChainName              SnmpAdminString,
+         hManSAKeyChainKeyOrder          Unsigned32,
+         hManSAKeyChainKeyEffectiveDate  DateAndTime,
+         hManSAKeyChainKeyIndex          RowPointer,
+         hManSAKeyChainRowStatus         RowStatus
+    }
+
+hManSAKeyChainName OBJECT-TYPE
+        SYNTAX       SnmpAdminString (SIZE(1..32))
+        MAX-ACCESS   not-accessible
+        STATUS       current
+        DESCRIPTION
+            "(U//FOUO) The administrative name defining a unique symmetric
+             key chain. The hManSAKeyChainName and hManSAKeyChainKeyOrder
+             columns form a unique index to a row in the hManSAKeyChainTable."
+        ::= { hManSAKeyChainTableEntry 1 }
+
+hManSAKeyChainKeyOrder OBJECT-TYPE
+        SYNTAX       Unsigned32
+        MAX-ACCESS   not-accessible
+        STATUS       current
+        DESCRIPTION
+            "(U//FOUO) A unique numeric index used to indicate the 
+             ordering of the keys within a chain. This ordering is
+             based off of hManSAKeyChainKeyEffectiveDate.
+
+             (U//FOUO) The hManSAKeyChainName and 
+             hManSAKeyChainKeyOrder columns form a unique index in
+             hManSAKeyChainTable."
+        ::= { hManSAKeyChainTableEntry 2 }
+
+hManSAKeyChainKeyEffectiveDate OBJECT-TYPE
+        SYNTAX       DateAndTime
+        MAX-ACCESS   read-create
+        STATUS       current
+        DESCRIPTION
+            "(U//FOUO) The local date and time when this key was or will be
+             active within this chain."
+        ::= { hManSAKeyChainTableEntry 3 }
+
+hManSAKeyChainKeyIndex OBJECT-TYPE
+        SYNTAX       RowPointer
+        MAX-ACCESS   read-create
+        STATUS       current
+        DESCRIPTION
+            "(U//FOUO) This object indicates the symmetric key to use for the
+             chain. It may point to a specific row in the hPrePlacedKeyTable, or any
+             other symmetric key table."
+        ::= { hManSAKeyChainTableEntry 4 }
+
+hManSAKeyChainRowStatus OBJECT-TYPE
+        SYNTAX       RowStatus
+        MAX-ACCESS   read-create
+        STATUS       current
+        DESCRIPTION
+            "(U//FOUO) The status of the row by which new entries may be
+             created, existing entries enabled/disabled or existing entries
+             deleted from this table.
+
+             (U//FOUO) Entries created within this table may not become active
+             unless all columns of this table have valid values. Entries may
+             be active, however, even though they are currently not used to
+             protect traffic. For example, a chain for future use may have an
+             effective start date beyond the current time.
+
+             (U//FOUO) At a minimum, implementations must support createAndGo
+             and destroy management functions. Support for createAndWait,
+             active, notInService, and notReady management functions is
+             optional."
+        ::= { hManSAKeyChainTableEntry 5 }
+
+-- **********************************************************************
+-- EKMS 308 Key Material
+-- **********************************************************************
+
+-- =========
+-- APPK Trust Anchor Table
+-- =========
+
+hAPPKTATableCount OBJECT-TYPE
+        SYNTAX      Unsigned32
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The number of rows in the hAPPKTATable."
+        ::= { hAPPKTAInformation 1 }
+
+hAPPKTATableLastChanged OBJECT-TYPE
+        SYNTAX      TimeStamp
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The value of hSystemUpTime the last time any entry in
+             the hAPPKTATable was modified, created, or deleted
+             by either SNMP or other management method (e.g., via an HMI).
+
+             (U//FOUO) Managers can use this object to ensure that no
+             changes to configuration of this table have happened since
+             the last time it examined the table.
+
+             (U//FOUO) A value of 0 indicates that no entry has been
+             changed since the agent initialized."
+        ::= { hAPPKTAInformation 2 }
+
+hAPPKTATable OBJECT-TYPE
+        SYNTAX       SEQUENCE OF HAPPKTATableEntry
+        MAX-ACCESS   not-accessible
+        STATUS       current
+        DESCRIPTION
+            "(U//FOUO) The table containing a list of loaded APPK Trust
+             Anchors. The Trust Anchors are used to verify the signature of
+             an APPK. This table only applies to Authenticated PPKs."
+        ::= { hAPPKTAInformation 3 }
+
+hAPPKTATableEntry OBJECT-TYPE
+        SYNTAX      HAPPKTATableEntry
+        MAX-ACCESS  not-accessible
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) A row describing one particular APPK Trust Anchor."
+        INDEX { hAPPKTAPartialKeyData }
+        ::= { hAPPKTATable 1 }
+
+HAPPKTATableEntry ::= SEQUENCE
+    {
+         hAPPKTAPartialKeyData   OCTET STRING,
+         hAPPKTAShortTitle       HaipeShortTitle64
+    }
+
+hAPPKTAPartialKeyData OBJECT-TYPE
+        SYNTAX       OCTET STRING (SIZE(8))
+        MAX-ACCESS   not-accessible
+        STATUS       current
+        DESCRIPTION
+            "(U//FOUO) The low order 64 bits of the ECDSA Public Key. This
+             information is matched against the Partial Key Data inherent in
+             the APPK material."
+        ::= { hAPPKTATableEntry 1 }
+
+hAPPKTAShortTitle OBJECT-TYPE
+        SYNTAX       HaipeShortTitle64
+        MAX-ACCESS   read-only
+        STATUS       current
+        DESCRIPTION
+            "(U//FOUO) The 64 byte ASCII short title of the APPK Trust Anchor."
+        ::= { hAPPKTATableEntry 2 }
+
+-- =========
+-- PrePlacedKey Table
+-- =========
+
+hPrePlacedKeyTableCount OBJECT-TYPE
+    SYNTAX       Unsigned32
+    MAX-ACCESS  read-only
+    STATUS   current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hPrePlacedKeyTable."
+    ::= { hPrePlacedKeyInformation 1 }
+
+hPrePlacedKeyTableLastChanged OBJECT-TYPE
+    SYNTAX       TimeStamp
+    MAX-ACCESS  read-only
+    STATUS   current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime the last time any entry in the
+         hPrePlacedKeyTable was modified, created, or deleted by either SNMP 
+         or other management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hPrePlacedKeyInformation 2 }
+
+hPrePlacedKeyTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF HPrePlacedKeyTableEntry
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION
+        "(U//FOUO) The table containing information about the loaded pre-placed
+         keys (PPKs). This table is the base table for all PPKs and APPKs that
+         have been loaded into this device."
+    ::= { hPrePlacedKeyInformation 3 }
+
+hPrePlacedKeyTableEntry OBJECT-TYPE
+    SYNTAX      HPrePlacedKeyTableEntry
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION
+        "(U//FOUO) A row describing the information about a particular
+         pre-placed key (PPK) uniquely identified by the tuple: hPrePlacedKeyShortTitle,
+         hPrePlacedKeyEdition, and hPrePlacedKeySegment."
+    INDEX  { hPrePlacedKeyShortTitle, hPrePlacedKeyEdition, hPrePlacedKeySegment }
+    ::= { hPrePlacedKeyTable 1 }
+
+HPrePlacedKeyTableEntry ::= SEQUENCE
+    {
+         hPrePlacedKeyShortTitle               PreplacedKeyShortTitle,
+         hPrePlacedKeyEdition                  PreplacedKeyEdition,
+         hPrePlacedKeySegment                  PreplacedKeySegment,
+         hPrePlacedKeyisAuthenticated          TruthValue,
+         hPrePlacedKeyIBKTDisable              TruthValue,
+         hPrePlacedKeyUsageType                BITS,
+         hPrePlacedKeyClassification           BITS,
+         hPrePlacedKeyLabel                    SnmpAdminString,
+         hPrePlacedKeyRowStatus                RowStatus,
+	 hPrePlacedKeyEffectiveDate            DateAndTime
+    }
+
+hPrePlacedKeyShortTitle OBJECT-TYPE
+    SYNTAX  PreplacedKeyShortTitle
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION
+        "(U//FOUO) The short title of the pre-placed key (PPK). This value is
+         taken directly from the DS-100-1 Tag and is normally divided into three
+         additional fields separated by a space character. The three fields are:
+         Alpha Portion, Net Number, and EKMS ID.
+
+         (U//FOUO) This column, along with the hPrePlacedKeyEdition and 
+         hPrePlacedKeySegment columns, create a unique index for a loaded PPK 
+         in this table."
+    ::= { hPrePlacedKeyTableEntry 1 }
+
+hPrePlacedKeyEdition OBJECT-TYPE
+    SYNTAX  PreplacedKeyEdition
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION
+        "(U//FOUO) The edition of this pre-placed key (PPK). This value is taken
+         directly from the DS-100-1 Tag and consists of six alphanumeric
+         characters using a six-bit encoding scheme.
+
+         (U//FOUO) This column, along with the hPrePlacedKeyShortTitle and 
+         hPrePlacedKeySegment, create a unique index for a loaded PPK in this table."
+    ::= { hPrePlacedKeyTableEntry 2 }
+
+hPrePlacedKeySegment OBJECT-TYPE
+    SYNTAX  PreplacedKeySegment
+    MAX-ACCESS not-accessible
+    STATUS  current
+    DESCRIPTION
+        "(U//FOUO) The segment number of this pre-placed key (PPK). This value
+         is taken directly from the DS-100-1 Tag and is used to identify the
+         management data within an edition.
+
+         (U//FOUO) This column, along with the hPrePlacedKeyShortTitle and 
+         hPrePlacedKEdition, create a unique index for a loaded PPK in this table."
+    ::= { hPrePlacedKeyTableEntry 3 }
+
+hPrePlacedKeyisAuthenticated OBJECT-TYPE
+    SYNTAX  TruthValue
+    MAX-ACCESS read-only
+    STATUS  current
+    DESCRIPTION
+        "(U//FOUO) Indicates whether the key is an authenticated pre-placed
+         key (APPK). This column is provided for informational purposes,
+         specifically to indicate whether this key is Suite A or Suite B. This
+         information is taken directly from the key material itself."
+    ::= { hPrePlacedKeyTableEntry 4 }
+
+hPrePlacedKeyIBKTDisable OBJECT-TYPE
+    SYNTAX  TruthValue
+    MAX-ACCESS read-write
+    STATUS  current
+    DESCRIPTION
+        "(U//FOUO) Indicates whether supersession is allowed for this
+         pre-placed key (PPK) via In-Band Key Transfer.
+
+         (U//FOUO) [true] If this column is set to true, IBKT 
+         supersession is disabled for this key.
+
+         (U//FOUO) [false] If this column is set to false, IBKT 
+         supersession is allowed for this key."
+    ::= { hPrePlacedKeyTableEntry 5 }
+
+hPrePlacedKeyUsageType OBJECT-TYPE
+    SYNTAX  BITS { manual-sa(0), ek(1), shared-secret(2), modepek(4), modeppsk(5)}
+    MAX-ACCESS read-write
+    STATUS  current
+    DESCRIPTION
+        "(U//FOUO) Indicates how this pre-placed key (PPK) is used.
+
+         (U//FOUO) Setting this column will determine the storage area for the
+         remaining key information. A PPK can be designated for multiple
+         usages, however classification must be consistent across usages.
+
+         (U//FOUO) The bits value translations:
+                   0000 0000 = Unassigned
+                   1000 0000 = Manual SA
+                   0100 0000 = EK
+                   0010 0000 = Shared Secret
+                   0001 0000 = Mode P EK
+                   0000 1000 = Mode P PSK
+                   0000 0xxx = RESERVED
+
+         (U//FOUO) The bit positions are represented in big-endian format, 
+         where the high/left most bit is the most significant bit. No bits
+         set is equivalent to the key being unassigned to a particular usage
+         type.
+
+         (U//FOUO) hPrePlacedKeyUsageType is not related to the Use and Use 
+         Expansion subfields in the DS-100-1 Tag."
+    ::= { hPrePlacedKeyTableEntry 6 }
+
+hPrePlacedKeyClassification OBJECT-TYPE
+    SYNTAX     BITS { unclassified(0), restricted(1), confidential(2), secret(3),
+                      top-secret(4), nato-restricted(5), nato-confidential(6), 
+		      nato-secret (7), cosmic-top-secret(8) }
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The classification level of this pre-placed key (PPK).
+
+         (U//FOUO) Bits value translation:
+             1000 0000 0000 0000 = UNCLASSIFIED
+             0100 0000 0000 0000 = RESTRICTED
+	     0010 0000 0000 0000 = CONFIDENTIAL
+             0001 0000 0000 0000 = SECRET
+             0000 1000 0000 0000 = TOP SECRET
+             0000 0100 0000 0000 = NATO RESTRICTED
+             0000 0010 0000 0000 = NATO CONFIDENTIAL
+             0000 0001 0000 0000 = NATO SECRET
+             0000 0000 1000 0000 = COSMIC TOP SECRET                 
+
+         (U//FOUO) All other bits values are reserved." 
+    ::= { hPrePlacedKeyTableEntry 7 }
+
+hPrePlacedKeyLabel OBJECT-TYPE
+    SYNTAX      SnmpAdminString
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This object is a free text field allowing the user
+         to tag PPKs with helpful information. For example, a label
+         could indicate the intended usage of a particular PPK." 
+    ::= { hPrePlacedKeyTableEntry 8 }    
+    
+hPrePlacedKeyRowStatus OBJECT-TYPE
+    SYNTAX  RowStatus
+    MAX-ACCESS read-write
+    STATUS  current
+    DESCRIPTION
+        "(U//FOUO) The status of this row by which existing entries may be
+         deleted from this table.
+
+         (U//FOUO) Setting this column to destroy is synonymous with zeroizing
+         the key. Any reference(s) to this object, upon setting this RowStatus
+         to destroy, should be destroyed as well.
+
+         (U//FOUO) When a key has been filled, the hPrePlacedKeyRowStatus should
+         automatically be set to notReady. Only after valid information has
+         been entered by the manager, can the manager set this column to
+         active.
+
+         (U//FOUO) Note, once the RowStatus for this object has been set to
+         active, attempts to modify the hPrePlacedKClassification column 
+         should be rejected.
+
+         (U//FOUO) At a minimum, implementations must support active and
+         destroy management functions. Support for notInService and notReady
+         management functions is optional. Implementations must not support
+         createAndWait and createAndGo management functions for this object."
+    ::= { hPrePlacedKeyTableEntry 9 }
+
+hPrePlacedKeyEffectiveDate OBJECT-TYPE
+    SYNTAX     DateAndTime
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The effective date of this pre-placed key. This column
+	 must only exist if this pre-placed key is used as a shared secret
+	 (i.e. bit corresponding to 'shared-secret' in the value of 
+	 hPrePlacedKeyUsageType is set). If the bit corresponding to 
+	 'manual-sa' in the value of hPrePlacedKeyUsageType is set, an 
+	 implementation would instead refer to hManSAKeyChainKeyEffectiveDate.
+	 If the bit corresponding to 'ek' in the value of 
+	 hPrePlacedKeyUsageType is set, an implementation would instead 
+	 refer to hEKEffectiveDate."
+    ::= { hPrePlacedKeyTableEntry 10 } 
+
+-- =========
+-- EK Table
+-- =========
+
+hEKTableCount OBJECT-TYPE
+    SYNTAX       Unsigned32
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hEKTable."
+    ::= { hEKInformation 1 }
+
+hEKTableLastChanged OBJECT-TYPE
+    SYNTAX       TimeStamp
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime the last time any entry in the
+         hEKTable was modified, created, or deleted by either SNMP or
+         other management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hEKInformation 2 }
+
+hEKTable OBJECT-TYPE
+    SYNTAX       SEQUENCE OF HEKTableEntry
+    MAX-ACCESS   not-accessible
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The table containing a list of exclusion keys known to the
+         device. All rows in this table reference a key in either the 
+         hPrePlacedKeyTable or hDGSharedKeyTable where the usage types have 
+         been designated as an exclusion key ('ek'). Keys that are stored in 
+         this table are used when negotiating security associations (SAs) 
+         using Internet Key Exchange version 1 (IKEv1) or Internet Key 
+         Exchange version 2 (IKEv2)."
+    ::= { hEKInformation 3 }
+
+hEKTableEntry OBJECT-TYPE
+    SYNTAX       HEKTableEntry
+    MAX-ACCESS   not-accessible
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) A row describing a particular exclusion key."
+    INDEX  { hEKName }
+    ::= { hEKTable 1 }
+
+HEKTableEntry ::= SEQUENCE
+    {
+        hEKName          SnmpAdminString,
+        hEKKeyIndex      RowPointer,
+        hEKUniversalID   FireflyUniversalID,
+        hEKType          INTEGER,
+        hEKEffectiveDate DateAndTime,
+        hEKRowStatus     RowStatus,
+        hEKGroupName     SnmpAdminString
+    }
+
+hEKName OBJECT-TYPE
+    SYNTAX       SnmpAdminString (SIZE(1..32))
+    MAX-ACCESS   not-accessible
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The administrative name defining a name for a particular
+         exclusion key. This column is the primary index in this table."
+    ::= { hEKTableEntry 1 }
+
+hEKKeyIndex OBJECT-TYPE
+    SYNTAX       RowPointer
+    MAX-ACCESS   read-create
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) A row pointer that points to a unique entry in either the
+         hPrePlacedKeyTable or hDGSharedKeyTable, which provides the key material 
+	 associated with this exclusion key. Note, a row's RowStatus column can 
+	 only be set to active if a valid value has been set for this column; 
+	 the row pointed to by this column must have a RowStatus of active."
+    ::= { hEKTableEntry 2 }
+
+hEKUniversalID OBJECT-TYPE
+    SYNTAX       FireflyUniversalID
+    MAX-ACCESS   read-create
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The FF Universal ID the EK is associated with. When
+         initially creating this object, a string of four ASCII zeroes (0x30) 
+         should be used if no suitable default Universal ID can be automatically
+         determined.  Note, this column only applies to IKEv1 exchanges."
+    ::= { hEKTableEntry 3 }
+
+hEKType OBJECT-TYPE
+    SYNTAX       INTEGER { local(1), global(2), separation(3), privacy(4), psk(5)}
+    MAX-ACCESS   read-create
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) Indicates the key type of this exclusion key. The possible
+         values are: local, global, separation, privacy, and psk. Note that PSKs
+         are only used during IKEv1 Mode P."
+    ::= { hEKTableEntry 4 }
+
+hEKEffectiveDate OBJECT-TYPE
+    SYNTAX       DateAndTime
+    MAX-ACCESS   read-create
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The local date and time when this EK was or will be used
+         during the negotiation of IKEv1 or IKEv2 SAs. Note, if this column's 
+	 value is not manually configured with a future date and time then the 
+	 value will be automatically populated with the date and time defined by
+         hSystemDate the moment the RowStatus column is first set to active.
+	 
+	 (U//FOUO) If this EK references a generated key (hDGSharedKeyTable
+	 entry), this column's value must match the referenced entry's 
+	 hDGSharedKeyEffectiveDate value."
+    ::= { hEKTableEntry 5 }
+
+hEKRowStatus OBJECT-TYPE
+    SYNTAX       RowStatus
+    MAX-ACCESS   read-create
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The status of the row by which new entries may be created,
+         existing entries enabled/disabled or existing entries deleted from
+         this table.
+
+         (U//FOUO) Entries created within this table may not become active
+         unless all Read-Create columns of this table have valid values, as
+         detailed by each individual column's description. Entries may be
+         active, however, even though they are currently not used to protect
+         traffic. For example, an EK intended for future use would have an
+         effective start date beyond the current time.
+
+         (U//FOUO) At a minimum, implementations must support createAndGo and
+         destroy management functions. Support for createAndWait, active,
+         notInService, and notReady management functions is optional."
+    ::= { hEKTableEntry 6 }
+    
+hEKGroupName OBJECT-TYPE
+    SYNTAX       SnmpAdminString (SIZE(1..32))
+    MAX-ACCESS   read-create
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The administrative name for a particular group/chain of 
+	 exclusion keys. This column, along with hEKEffectiveDate aids in 
+	 determining which exclusion keys should be negotiated during an IKEv1 
+	 or IKEv2 exchange."
+    ::= { hEKTableEntry 7 }    
+
+-- **********************************************************************
+-- EKMS 322 Key Material
+-- **********************************************************************
+
+-- =========
+-- FireFly Table
+-- =========
+
+hFireFlyTableCount OBJECT-TYPE
+    SYNTAX       Unsigned32
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hFireFlyTable."
+    ::= { hFireFlyInformation 1 }
+
+hFireFlyTableLastChanged OBJECT-TYPE
+    SYNTAX       TimeStamp
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime the last time any entry in the
+         hFireFlyTable was modified, created, or deleted by either SNMP or other
+         management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hFireFlyInformation 2 }
+
+hFireFlyTable OBJECT-TYPE
+    SYNTAX       SEQUENCE OF HFireFlyTableEntry
+    MAX-ACCESS   not-accessible
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The table containing information about loaded Firefly keys."
+    ::= { hFireFlyInformation 3 }
+
+hFireFlyTableEntry OBJECT-TYPE
+    SYNTAX       HFireFlyTableEntry
+    MAX-ACCESS   not-accessible
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) A row describing the information about a particular Firefly
+         key uniquely identified by the tuple: hFireFlyKMID, hFireFlyUniversalID, and
+         hFireFlyUniversalEdition."
+    INDEX  { hFireFlyKMID, hFireFlyUniversalID, hFireFlyUniversalEdition }
+    ::= { hFireFlyTable 1 }
+
+HFireFlyTableEntry ::= SEQUENCE
+    {
+        hFireFlyKMID               FireflyKMID,
+        hFireFlyUniversalID        FireflyUniversalID,
+        hFireFlyUniversalEdition   OCTET STRING,
+        hFireFlyNationalShortTitle OCTET STRING,
+        hFireFlyMaterialType       INTEGER,
+        hFireFlyPartitionCode      FireflyPartitionCode,
+        hFireFlyisTestKey          TruthValue,
+        hFireFlyKeyType            INTEGER,
+        hFireFlyExpirationDate     FireflyExpirationDate,
+        hFireFlyClassification     BITS,
+        hFireFlyLabel              SnmpAdminString,
+        hFireFlyRowStatus          RowStatus
+    }
+
+hFireFlyKMID OBJECT-TYPE
+    SYNTAX       FireflyKMID
+    MAX-ACCESS   not-accessible
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The Firefly Key Material ID for this Firefly key. This
+         column, along with hFireFlyUniversalID and hFireFlyUniversalEdition, form the
+         unique index to identify a specific Firefly key in this table."
+    ::= { hFireFlyTableEntry 1 }
+
+hFireFlyUniversalID OBJECT-TYPE
+    SYNTAX       FireflyUniversalID
+    MAX-ACCESS   not-accessible
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The Universal ID of this Firefly key. This column, along
+         with hFireFlyKMID and hFireFlyUniversalEdition, form the unique index to
+         identify a specific Firefly key in this table."
+    ::= { hFireFlyTableEntry 2 }
+
+hFireFlyUniversalEdition OBJECT-TYPE
+    SYNTAX       OCTET STRING (SIZE(2))
+    MAX-ACCESS   not-accessible
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The Universal Edition of this Firefly key. This is an ASCII
+         encoded number from 01-99, as defined by the HAIPE IS. This column,
+         along with the hFireFlyKMID and hFireFlyUniversalID, form the unique index to
+         identify a specific Firefly key in this table."
+    ::= { hFireFlyTableEntry 3 }
+
+hFireFlyNationalShortTitle OBJECT-TYPE
+    SYNTAX       OCTET STRING (SIZE(18))
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The Short Title for a FF/EFF Vector Set (FFVS). This column
+         is directly populated from the six-bit encoded short title field
+         extracted from the key itself without modification."
+    ::= { hFireFlyTableEntry 4 }
+
+hFireFlyMaterialType OBJECT-TYPE
+    SYNTAX       INTEGER { seed(1), operational(2), oneTimeUse(3) }
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The Material Type of this Firefly key. This value is taken
+         directly from the key material itself without modification. The
+         possible values are: seed, operational, and oneTimeUse."
+    ::= { hFireFlyTableEntry 5 }
+
+hFireFlyPartitionCode OBJECT-TYPE
+    SYNTAX       FireflyPartitionCode
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The Partition Code of this Firefly key. This value is used
+         to segment the Universal into separate networks. This value is taken
+         directly from the key material itself without modification."
+    ::= { hFireFlyTableEntry 6 }
+
+hFireFlyisTestKey OBJECT-TYPE
+    SYNTAX       TruthValue
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) Indicates whether this Firefly key is a test or an
+         operational key. If this object is true, the key is only to be used
+         in test networks. The possible values are: true and false."
+    ::= { hFireFlyTableEntry 7 }
+
+hFireFlyKeyType OBJECT-TYPE
+    SYNTAX       INTEGER { transition(1), enhanced(2), basic(3), alderflyff(4) }
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) Indicates the usage potential of the key. This value is
+         taken directly from the key material itself without modification. The
+         possible values are: transition, enhanced, basic, and alderflyff."
+    ::= { hFireFlyTableEntry 8 }
+
+hFireFlyExpirationDate OBJECT-TYPE
+    SYNTAX       FireflyExpirationDate
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) Indicates the date time at which this key will no longer be
+         valid. This value is taken directly from the key material itself
+         without modification."
+    ::= { hFireFlyTableEntry 9 }
+
+hFireFlyClassification OBJECT-TYPE
+    SYNTAX       BITS { unclassified(0), restricted(1), confidential(2), 
+	                secret(3), top-secret(4), nato-restricted(5),
+                        nato-confidential(6), nato-secret(7),
+                        cosmic-top-secret(8)}
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The classification level of this Firefly key. 
+
+         (U//FOUO) Bits value translation:
+             1000 0000 0000 0000 = UNCLASSIFIED
+             0100 0000 0000 0000 = RESTRICTED
+             0010 0000 0000 0000 = CONFIDENTIAL
+             0001 0000 0000 0000 = SECRET
+             0000 1000 0000 0000 = TOP SECRET
+             0000 0100 0000 0000 = NATO RESTRICTED
+             0000 0010 0000 0000 = NATO CONFIDENTIAL
+             0000 0001 0000 0000 = NATO SECRET
+             0000 0000 1000 0000 = COSMIC TOP SECRET    
+
+         (U//FOUO) All other bits values are reserved."
+    ::= { hFireFlyTableEntry 10 }
+
+hFireFlyLabel OBJECT-TYPE
+    SYNTAX       SnmpAdminString
+    MAX-ACCESS   read-write
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) This object is a free text field allowing the user
+         to tag loaded Firefly key with helpful information. For 
+         example, a label could indicate the intended usage of a
+         particular Firefly key."
+    ::= { hFireFlyTableEntry 11 }    
+    
+hFireFlyRowStatus OBJECT-TYPE
+    SYNTAX       RowStatus
+    MAX-ACCESS   read-write
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The status of this row by which existing entries may be
+         deleted from this table.
+
+         (U//FOUO) Setting this column to destroy is synonymous with zeroizing
+         the key. Any reference(s) to this object, upon setting this RowStatus
+         to destroy, should be destroyed as well. A special case exists for
+         the hEKTable when referencing the hFireFlyUniversalID; upon setting this
+         object to 'Destroy', a string of NULL characters should be placed in
+         the hEKUniversalID column.
+
+         (U//FOUO) Note, the default value for this column is Active, and the
+         only available action for a manager is to set this column to destroy.
+
+         (U//FOUO) At a minimum, implementations must support active and
+         destroy management functions. Support for notInService, and notReady
+         management functions is optional. Implementations must not support
+         createAndWait and createAndGo management functions for this object."
+    ::= { hFireFlyTableEntry 12 }
+
+
+-- =========
+-- Remote FireFly Table
+-- =========
+
+hRemoteFireFlyTableCount OBJECT-TYPE
+    SYNTAX       Unsigned32
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hRemoteFireFlyTable."
+    ::= { hRemoteFireFlyInformation 1 }
+
+hRemoteFireFlyTableLastChanged OBJECT-TYPE
+    SYNTAX       TimeStamp
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime the last time any entry in the
+         hRemoteFireFlyTable was modified, created, or deleted by either SNMP or other
+         management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hRemoteFireFlyInformation 2 }
+
+hRemoteFireFlyTable OBJECT-TYPE
+    SYNTAX       SEQUENCE OF HRemoteFireFlyTableEntry
+    MAX-ACCESS   not-accessible
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The table contain a list of FireFly keys used for remote 
+         authententication during IKEv1 negotiation"
+    ::= { hRemoteFireFlyInformation 3 }
+
+hRemoteFireFlyTableEntry OBJECT-TYPE
+    SYNTAX       HRemoteFireFlyTableEntry
+    MAX-ACCESS   not-accessible
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) A row describing the information about a particular Firefly
+         key uniquely identified by the tuple: hRemoteFireFlyKMID, hRemoteFireFlyUniversalID, and
+         hRemoteFireFlyUniversalEdition."
+    INDEX  { hRemoteFireFlyKMID, hRemoteFireFlyUniversalID, hRemoteFireFlyUniversalEdition }
+    ::= { hRemoteFireFlyTable 1 }
+
+HRemoteFireFlyTableEntry ::= SEQUENCE
+    {
+        hRemoteFireFlyKMID               FireflyKMID,
+        hRemoteFireFlyUniversalID        FireflyUniversalID,
+        hRemoteFireFlyUniversalEdition   OCTET STRING,
+        hRemoteFireFlyPartitionCode      FireflyPartitionCode,
+        hRemoteFireFlyKeyType            INTEGER,
+        hRemoteFireFlyExpirationDate     FireflyExpirationDate,
+        hRemoteFireFlyClassification     BITS
+    }
+
+hRemoteFireFlyKMID OBJECT-TYPE
+    SYNTAX       FireflyKMID
+    MAX-ACCESS   not-accessible
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The Firefly Key Material ID for this Firefly key. This
+         column, along with hRemoteFireFlyUniversalID and hRemoteFireFlyUniversalEdition, form the
+         unique index to identify a specific Firefly key in this table."
+    ::= { hRemoteFireFlyTableEntry 1 }
+
+hRemoteFireFlyUniversalID OBJECT-TYPE
+    SYNTAX       FireflyUniversalID
+    MAX-ACCESS   not-accessible
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The Universal ID of this Firefly key. This column, along
+         with hRemoteFireFlyKMID and hRemoteFireFlyUniversalEdition, form the unique index to
+         identify a specific Firefly key in this table."
+    ::= { hRemoteFireFlyTableEntry 2 }
+
+hRemoteFireFlyUniversalEdition OBJECT-TYPE
+    SYNTAX       OCTET STRING (SIZE(2))
+    MAX-ACCESS   not-accessible
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The Universal Edition of this Firefly key. This is an ASCII
+         encoded number from 01-99, as defined by the HAIPE IS. This column,
+         along with the hRemoteFireFlyKMID and hRemoteFireFlyUniversalID, form the unique index to
+         identify a specific Firefly key in this table."
+    ::= { hRemoteFireFlyTableEntry 3 }
+
+hRemoteFireFlyPartitionCode OBJECT-TYPE
+    SYNTAX       FireflyPartitionCode
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The Partition Code of this Firefly key. This value is used
+         to segment the Universal into separate networks. This value is taken
+         directly from the key material itself without modification."
+    ::= { hRemoteFireFlyTableEntry 4 }
+
+hRemoteFireFlyKeyType OBJECT-TYPE
+    SYNTAX       INTEGER { transition(1), enhanced(2), basic(3), alderflyff(4) }
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) Indicates the usage potential of the key. This value is
+         taken directly from the key material itself without modification. The
+         possible values are: transition, enhanced, basic, and alderflyff."
+    ::= { hRemoteFireFlyTableEntry 5 }
+
+hRemoteFireFlyExpirationDate OBJECT-TYPE
+    SYNTAX       FireflyExpirationDate
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) Indicates the date time at which this key will no longer be
+         valid. This value is taken directly from the key material itself
+         without modification."
+    ::= { hRemoteFireFlyTableEntry 6 }
+
+hRemoteFireFlyClassification OBJECT-TYPE
+    SYNTAX       BITS { unclassified(0), restricted(1), confidential(2), 
+	                secret(3), top-secret(4), nato-restricted(5),
+                        nato-confidential(6), nato-secret(7),
+                        cosmic-top-secret(8)}
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+        "(U//FOUO) The classification level of this Firefly key. 
+
+         (U//FOUO) Bits value translation:
+             1000 0000 0000 0000 = UNCLASSIFIED
+             0100 0000 0000 0000 = RESTRICTED
+             0010 0000 0000 0000 = CONFIDENTIAL
+             0001 0000 0000 0000 = SECRET
+             0000 1000 0000 0000 = TOP SECRET
+             0000 0100 0000 0000 = NATO RESTRICTED
+             0000 0010 0000 0000 = NATO CONFIDENTIAL
+             0000 0001 0000 0000 = NATO SECRET
+             0000 0000 1000 0000 = COSMIC TOP SECRET    
+
+         (U//FOUO) All other bits values are reserved."
+    ::= { hRemoteFireFlyTableEntry 7 }
+
+
+-- **********************************************************************
+-- DePAC Moduli Information
+-- **********************************************************************
+
+hDPModuliTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number or rows in the hDPModuliTable."
+    ::= { hDPModuliInformation 1 }
+
+hDPModuliTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime is the last time any entry in
+         the hDPModuliTable was modified, created, or deleted by either
+         SNMP or other management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hDPModuliInformation 2 }
+
+hDPModuliTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HDPModuliEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The table containing a list of DePAC moduli."
+    ::= { hDPModuliInformation 3 }
+
+hDPModuliTableEntry OBJECT-TYPE
+    SYNTAX     HDPModuliEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A row describing information about a loaded DePAC moduli."
+    INDEX { hDPModuliIndex }
+    ::= { hDPModuliTable 1 }
+
+HDPModuliEntry ::= SEQUENCE
+    {
+        hDPModuliIndex                    Unsigned32,
+        hDPModuliBaseType                 INTEGER,
+        hDPModuliID                       OCTET STRING,
+        hDPModuliCOI                      INTEGER,
+        hDPModuliUserID                   OCTET STRING,
+        hDPModuliSourceID                 OCTET STRING,
+        hDPModuliNationalID               OCTET STRING,
+        hDPModuliShortTitleName           HaipeShortTitle64,
+        hDPModuliType                     INTEGER
+    }
+
+hDPModuliIndex OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A unique numeric index that identifies this DePAC moduli.
+         This column is the primary index for this table. Note,
+         this column is populated internally and can not be read or
+         configured."
+    ::= { hDPModuliTableEntry 1 }
+
+hDPModuliBaseType OBJECT-TYPE
+    SYNTAX      INTEGER { base(1), alternate(2) }
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) Identifies whether this is a Base or Alternate moduli."
+    ::= { hDPModuliTableEntry 2 }
+
+hDPModuliID OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE(6))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The 6 byte integer value of the Moduli ID from
+        the CPC/PPC in network byte order."
+    ::= { hDPModuliTableEntry 3 }
+
+hDPModuliCOI OBJECT-TYPE
+    SYNTAX      INTEGER { us(1), nato(2), natoNations(3), cceb(4),
+                          coalition(5), foreignSovereign(6), reserved(7) }
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The COI associated with the Moduli ID indicated
+        by this row."
+    ::= { hDPModuliTableEntry 4 }
+
+hDPModuliUserID OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE(16))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) 16 Character ASCII value from the User ID from
+        the CPC."
+    ::= { hDPModuliTableEntry 5 }
+
+hDPModuliSourceID OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE(16))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) 16 Character ASCII value from the Source ID from
+        the CPC."
+    ::= { hDPModuliTableEntry 6 }
+
+hDPModuliNationalID OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE(16))
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) 16 Character ASCII value from the National ID
+        from the PPC."
+    ::= { hDPModuliTableEntry 7 }
+
+hDPModuliShortTitleName OBJECT-TYPE
+    SYNTAX      HaipeShortTitle64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The 64 byte ASCII short title for a DePAC moduli."
+    ::= { hDPModuliTableEntry 8 }
+
+hDPModuliType OBJECT-TYPE
+    SYNTAX      INTEGER { standard(1), alderfly(2) }
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) Identifies whether the DePAC Moduli corresponds
+        to standard FIREFLY key material (standard(1)) or ALDERFLY
+        FIREFLY key material (alderfly(2))."
+    ::= { hDPModuliTableEntry 9 }
+
+-- **********************************************************************
+-- Public Key Certificate [PKC] Table
+-- **********************************************************************
+
+hPKCTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hPKCTable."
+    ::= { hPKCInformation 1 }
+
+hPKCTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of sysUpTime the last time any entry in the
+         hPKCTable was modified, created, or deleted by either SNMP or other
+         management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hPKCInformation 2 }
+
+hPKCTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HPKCTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO)  The table containing information about the Public Key 
+	Certificates (PKCs) that are obtained from KMI.  This table stores End Entity 
+        PKC information (End Entity certificates issued to the device) and 
+        Certification Authority PKC information."
+    ::= { hPKCInformation 3 }
+
+hPKCTableEntry OBJECT-TYPE
+    SYNTAX     HPKCTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO)  A row in the hPKCTable that defines a PKC."
+    INDEX  { hPKCSerialNumber, hPKCIssuer }
+    ::= { hPKCTable 1 }
+
+HPKCTableEntry ::= SEQUENCE
+{
+       hPKCSerialNumber                OCTET STRING,
+       hPKCIssuer                      OCTET STRING,
+       hPKCVersion                     INTEGER,
+       hPKCSignature                   OCTET STRING,
+       hPKCNotBefore                   DateAndTime,
+       hPKCNotAfter                    DateAndTime,
+       hPKCSubject                     OCTET STRING,
+       hPKCIsCA                        TruthValue,
+       hPKCType                        INTEGER,
+       hPKCClearanceClassList          BITS,
+       hPKCFromPDE                     Unsigned32,
+       hPKCRowStatus                   RowStatus,
+       hPKCSubAltNameType              INTEGER,
+       hPKCSubAltNameValue1            OCTET STRING,
+       hPKCSubAltNameValue2            OCTET STRING,
+       hPKCRekey                       TruthValue,
+       hPKCAutoRekeyEnable             TruthValue
+}
+
+hPKCSerialNumber OBJECT-TYPE
+    SYNTAX     OCTET STRING (SIZE(1..20))
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The unique positive integer assigned to the Public Key 
+	 Certificate [PKC] by the certification authority [CA]. The value in this
+	 column can be up to 20 bytes long per Section '4.1.2.2.  Serial 
+	 Number' of RFC 5280."
+    ::= { hPKCTableEntry 1 }    
+
+hPKCIssuer OBJECT-TYPE
+    SYNTAX     OCTET STRING (SIZE(1..255))
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The distinguished name (DN) of the entity that has signed and
+	 issued the Public Key Certificate [PKC]."
+    ::= { hPKCTableEntry 2 }
+    
+hPKCVersion OBJECT-TYPE
+    SYNTAX     INTEGER
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The version of the Public Key Certificate [PKC]. Since KMI 
+	 supports version 3 of X.509 PKCs, the version expected for all PKCs 
+	 is 3.  A value of '2' in hPKCVersion implies version 3.  A value of 
+	 '1' in hPKCVersion implies version 2. It is not expected to obtain a 
+	 value of  '1' since KMI is only currently supporting version 3
+	 (value '2')."
+    ::= { hPKCTableEntry 3 }
+
+hPKCSignature OBJECT-TYPE
+    SYNTAX     OCTET STRING (SIZE(1..255))
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The algorithm identifier for the algorithm used by the
+	 certification authority [CA] to sign the Public Key Certificate [PKC]."
+    ::= { hPKCTableEntry 4 }
+
+hPKCNotBefore OBJECT-TYPE
+    SYNTAX     DateAndTime
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO)  The date on which the validity period of the Public Key
+	 Certificate [PKC] begins."
+    ::= { hPKCTableEntry 5 }
+
+hPKCNotAfter OBJECT-TYPE
+    SYNTAX     DateAndTime
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO)  The date on which the validity period of the Public Key
+	 Certificate [PKC] ends."
+    ::= { hPKCTableEntry 6 }
+
+hPKCSubject OBJECT-TYPE
+    SYNTAX     OCTET STRING (SIZE(1..255))
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The entity associated with the Public Key Certificate [PKC]."
+    ::= { hPKCTableEntry 7 }
+
+hPKCIsCA OBJECT-TYPE
+    SYNTAX     TruthValue
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) An indication if the subject (hPKCSubject) of the Public Key
+         Certificate [PKC] is a certification authority [CA]."
+    ::= { hPKCTableEntry 8 }
+
+hPKCType OBJECT-TYPE
+    SYNTAX     INTEGER { iaInfrastructure(1), iaMission(2), keInfrastructure(3),
+                         keMission(4), iaTransport(5) }
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The type of Public Key Certificate [PKC]. The following types 
+	 are supported:  
+
+         hPKCType Description 
+         -------  -------------- 
+         (1)      IA(I) (operational) Identity and Authentication for Key 
+                  Management Infrastructure Communications.
+         (2)      IA(M) Identity and Authentication for Mission Communications.
+         (3)      KE(I) Key Establishment for Key Management Infrastructure 
+                  Communications.
+         (4)      KE(M) Key Establishment for Mission Communications.
+         (5)      IA(I) (transport) Identity and Authentication for Key 
+                  Management Infrastructure Communications.  Note, this 
+                  enumeration value is optional."
+    ::= { hPKCTableEntry 9 }
+
+hPKCClearanceClassList OBJECT-TYPE
+    SYNTAX     BITS { unclassified(0), restricted(1), confidential(2), 
+                      secret(3), top-secret(4) }
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The supported clearance of the Public Key Certificate [PKC].
+	
+	 (U//FOUO) Bits value translation:
+             1000 0000 = UNCLASSIFIED
+	     0100 0000 = RESTRICTED
+             0010 0000 = CONFIDENTIAL
+             0001 0000 = SECRET
+             0000 1000 = TOP SECRET
+	     
+	 (U//FOUO) All other bit values are reserved.  A value with no bits set may 
+         indicate the absence of a Clearance Attribute."
+    ::= { hPKCTableEntry 10 }
+
+hPKCFromPDE OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A reference to the hPDETable entry, indicating the URI 
+	from which this row was created. This column contains the hPDEIndex value of 
+        the appropriate row as the reference.
+ 
+        (U//FOUO) This column is optional to support."
+    ::= { hPKCTableEntry 11 }
+
+hPKCRowStatus OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which old entries may be edited or
+         deleted from this table.
+
+         (U//FOUO) At a minimum, implementations must support active and destroy
+         management functions. Support for notInService, and notReady management
+         functions is optional. Implementations must not support createAndWait
+         and createAndGo management functions for this object."
+    ::= { hPKCTableEntry 12 }
+
+hPKCSubAltNameType OBJECT-TYPE
+    SYNTAX     INTEGER { dnsName(1), rfc822Name(2), ediPartyName(3),
+                         uniformResourceIdentifier(4), ipAddress(5),
+                         none(6), esn(7) }
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The type of the Subject Alternative Name as defined in 
+         RFC 5280, Section 4.2.1.6.  Note, a specific subset of valid types 
+         were chosen based on Section 3.3.1 of the 'National Security Systems 
+         Public Key Certificate and Certificate Revocation List Profiles 
+         Standard' document (Version 1.6.1 - 02/11/2015).
+
+         (U//FOUO) Specifically, the value of this object determines the format 
+         of hPKCSubAltNameValue1 and hPKCSubAltNameValue2."
+    ::= { hPKCTableEntry 13 }
+
+hPKCSubAltNameValue1 OBJECT-TYPE
+    SYNTAX     OCTET STRING
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The main value of the Subject Alternative Name. The format 
+         of the value must match its Type as defined in RFC 5280, Section 
+         4.2.1.6.
+
+         (U//FOUO) This column is the main value and is used for all 
+         hPKCSubAltNameType types.  For ediPartyName(5), this column provides 
+         the value of the 'partyName'.  For all other types, this column 
+         provides the value as defined in RFC 5280, Section 4.2.1.6."
+    ::= { hPKCTableEntry 14 }
+
+hPKCSubAltNameValue2 OBJECT-TYPE
+    SYNTAX     OCTET STRING
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This column is a supplement to the main value 
+         hPKCSubAltNameValue1 and may only be used when the hPKCSubAltNameType 
+         is ediPartyName(5).  For ediPartyName(5), this column provides the 
+         value of the 'nameAssigner' as defined in RFC 5280, Section 4.2.1.6.
+
+         (U//FOUO) For all other values of hPKCSubAltNameType or when the
+         'nameAssigner' is not used for ediPartyName(5), this column will not 
+         exist."
+    ::= { hPKCTableEntry 15 }
+
+hPKCRekey OBJECT-TYPE
+    SYNTAX     TruthValue
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) If Rekey is supported for this particular PKC, setting this
+         object to 'true' will trigger the ECU to attempt to Rekey this PKC with
+         the KMI infrastructure.
+         
+         (U//FOUO) Note after being set to true, an agent should reset this 
+         object to false once it has initiated the Rekey process."
+    DEFVAL{false}
+    ::= { hPKCTableEntry 16 }
+
+ hPKCAutoRekeyEnable OBJECT-TYPE
+    SYNTAX     TruthValue
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) Controls the automatic rekey settings  for this PKC.
+
+        (U//FOUO) [true]  Enables automatic rekey.
+        (U//FOUO) [false] Disables automatic rekey.
+         
+        (U//FOUO) This column is optional to support."
+    DEFVAL{false}
+    ::= { hPKCTableEntry 17 }
+-- **********************************************************************
+-- Trust Anchor [TA] Table
+-- **********************************************************************
+
+hTATableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hTATable."
+    ::= { hTAInformation 1 }
+
+hTATableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of sysUpTime the last time any entry in the
+         hTATable was modified, created, or deleted by either SNMP or other
+         management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hTAInformation 2 }
+
+hTATable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HTATableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The table containing information about the Trust Anchors 
+         [TAs] that are necessary for the HAIPE to operate properly with KMI. 
+         This table is based off of RFC 5914."
+    ::= { hTAInformation 3 }
+
+hTATableEntry OBJECT-TYPE
+    SYNTAX     HTATableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO)  A row in the hTATable that defines a Trust Anchor [TA]."
+    INDEX  { hTAIndex }
+    ::= { hTATable 1 }
+
+HTATableEntry ::= SEQUENCE
+{
+       hTAIndex                        Unsigned32,
+       hTAName                         OCTET STRING,
+       hTAVersion                      INTEGER,
+       hTAKeyIdentifier                OCTET STRING,
+       hTARowStatus                    RowStatus
+}
+
+hTAIndex OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A unique numeric index that identifies a Trust Anchor [TA].
+         This column is the sole index to the hTATable."
+    ::= { hTATableEntry 1 }
+
+hTAName OBJECT-TYPE
+    SYNTAX     OCTET STRING (SIZE(1..255))
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The X.500 distinguished name (DN) associated with the Trust
+	 Anchor [TA] used to construct and validate an X.509 certification path.  Note,
+         this column may be set to an empty value if the distinguished name is not
+         present."
+    ::= { hTATableEntry 2 }    
+    
+hTAVersion OBJECT-TYPE
+    SYNTAX     INTEGER
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The version of the Trust Anchor [TA]. The current known 
+	 default version is v1.  A value of '1' implies version 1."
+    ::= { hTATableEntry 3 }
+    
+hTAKeyIdentifier OBJECT-TYPE
+    SYNTAX     OCTET STRING (SIZE(1..255))
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO)  The identifier of the Trust Anchor's [TA's] public key."
+    ::= { hTATableEntry 4 }    
+
+hTARowStatus OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which old entries may be edited or
+         deleted from this table.
+
+         (U//FOUO) At a minimum, implementations must support active management
+         function.  Support for destroy, notInService, and notReady management
+         functions is optional. Implementations must not support createAndWait
+         and createAndGo management functions for this object."
+    ::= { hTATableEntry 5 }
+
+    
+-- **********************************************************************
+-- Certificate Revocation List [CRL] Table
+-- **********************************************************************
+
+hCRLTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hCRLTable."
+    ::= { hCRLInformation 1 }
+
+hCRLTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of sysUpTime the last time any entry in the
+         hCRLTable was modified, created, or deleted by either SNMP or other
+         management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hCRLInformation 2 }
+
+hCRLTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HCRLTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The table containing information about the Certificate 
+	 Revocation Lists [CRLs] that are obtained from KMI."
+    ::= { hCRLInformation 3 }
+
+hCRLTableEntry OBJECT-TYPE
+    SYNTAX     HCRLTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO)  A row in the hCRLTable that defines a Certificate Revocation
+	 List [CRL]."
+    INDEX  { hCRLNumber, hCRLIssuer }
+    ::= { hCRLTable 1 }
+
+HCRLTableEntry ::= SEQUENCE
+{
+       hCRLNumber                      OCTET STRING,
+       hCRLIssuer                      OCTET STRING,
+       hCRLVersion                     INTEGER,
+       hCRLThisUpdate                  DateAndTime,
+       hCRLNextUpdate                  DateAndTime,
+       hCRLLastUpdate                  DateAndTime,
+       hCRLFromPDE                     Unsigned32,
+       hCRLRowStatus                   RowStatus
+}
+
+hCRLNumber OBJECT-TYPE
+    SYNTAX     OCTET STRING (SIZE(20))
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A monotonically increasing sequence number for a given 
+         Certificate Revocation List [CRL] scope and CRL issuer.  The 
+         hCRLNumber allows users to easily determine when a particular CRL
+         supersedes another CRL.  The value in this column must be 20 bytes
+         long per Section '5.2.3.  CRL Number' of RFC 5280. This value, in 
+         combination with hCRLIssuer, uniquely identifies each row or one CRL."
+    ::= { hCRLTableEntry 1 }
+
+hCRLIssuer OBJECT-TYPE
+    SYNTAX     OCTET STRING (SIZE(1..255))
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The X.500 distinguished name (DN) of the entity that has
+	 signed and issued the Certificate Revocation List [CRL]."
+    ::= { hCRLTableEntry 2 }    
+    
+hCRLVersion OBJECT-TYPE
+    SYNTAX     INTEGER
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The version of the Certificate Revocation List [CRL]. Since
+         extensions are used, the CRL version is 2.  This value is expected to
+         be '1' and it denotes a CRL version 2."
+    ::= { hCRLTableEntry 3 }
+
+hCRLThisUpdate OBJECT-TYPE
+    SYNTAX     DateAndTime
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The issue date of this Certificate Revocation List [CRL]."
+    ::= { hCRLTableEntry 4 }
+
+hCRLNextUpdate OBJECT-TYPE
+    SYNTAX     DateAndTime
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The date by which the next Certificate Revocation List [CRL] 
+	 will be issued. The next CRL could be issued before the indicated date,
+	 but it will not be issued any later than the indicated date."
+    ::= { hCRLTableEntry 5 }
+
+hCRLLastUpdate OBJECT-TYPE
+    SYNTAX     DateAndTime
+    MAX-ACCESS read-only
+    STATUS     deprecated
+    DESCRIPTION
+        "(U//FOUO) This object has been deprecated and should not be 
+        implemented.
+            
+        (U//FOUO) The date this Certificate Revocation List [CRL] was last 
+	updated."
+    ::= { hCRLTableEntry 6 }
+
+hCRLFromPDE OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     deprecated
+    DESCRIPTION
+        "(U//FOUO) This object has been deprecated and should not be 
+        implemented."
+    ::= { hCRLTableEntry 7 }
+
+hCRLRowStatus OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-write
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which old entries may be edited or
+         deleted from this table.
+
+         (U//FOUO) At a minimum, implementations must support active and destroy
+         management functions. Support for notInService, and notReady management
+         functions is optional. Implementations must not support createAndWait
+         and createAndGo management functions for this object."
+    ::= { hCRLTableEntry 8 }
+
+-- **********************************************************************
+-- Device Generated Shared Key Table
+-- **********************************************************************
+
+hDGSharedKeyTableCount OBJECT-TYPE
+        SYNTAX      Unsigned32
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The number of rows in the hDGSharedKeyTable."
+        ::= { hDGSharedKeyInformation 1 }
+
+hDGSharedKeyTableLastChanged OBJECT-TYPE
+        SYNTAX      TimeStamp
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+            "(U//FOUO) The value of hSystemUpTime the last time any entry in
+             the hDGSharedKeyTable was modified, created, or deleted
+             by either SNMP or other management method (e.g., via an HMI).
+
+             (U//FOUO) Managers can use this object to ensure that no
+             changes to configuration of this table have happened since
+             the last time it examined the table.
+
+             (U//FOUO) A value of 0 indicates that no entry has been
+             changed since the agent initialized."
+        ::= { hDGSharedKeyInformation 2 }
+
+hDGSharedKeyTable OBJECT-TYPE
+        SYNTAX       SEQUENCE OF HDGSharedKeyTableEntry
+        MAX-ACCESS   not-accessible
+        STATUS       current
+        DESCRIPTION
+            "(U//FOUO) The table containing DGSKs, used as key material.  Rows 
+             may be populated via local generation, received via transfer 
+             (e.g., H2HKT) or locally input via HMI.  The keys that are in this 
+             table must only be used for the establishment of security 
+             associations between HAIPE devices. They must not be used to 
+             protect SNMP traffic."
+        ::= { hDGSharedKeyInformation 3 }
+
+hDGSharedKeyTableEntry OBJECT-TYPE
+        SYNTAX     HDGSharedKeyTableEntry
+        MAX-ACCESS not-accessible
+        STATUS     current
+        DESCRIPTION
+            "(U//FOUO) A row describing a particular DGSK."
+        INDEX  { hDGSharedKeyIndex } 
+        ::= { hDGSharedKeyTable 1 }
+
+HDGSharedKeyTableEntry ::= SEQUENCE
+    {
+         hDGSharedKeyIndex                Unsigned32,
+         hDGSharedKeyShortTitle           DGSharedKeyShortTitle,
+         hDGSharedKeyUsageType            BITS,
+         hDGSharedKeyClassification       BITS,
+	       hDGSharedKeyEffectiveDate        DateAndTime,
+	       hDGSharedKeyLabel                SnmpAdminString,
+	       hDGSharedKeyMaterial             OCTET STRING,
+	       hDGSharedKeyRowStatus            RowStatus,
+	       hDGSharedKeySuite                INTEGER,
+	       hDGSharedKeyOrigin               INTEGER,
+         hDGSharedKeyPushToLoadedKeyTable TruthValue, 
+	       hDGSharedKeyCOI                  INTEGER,
+         hDGSharedKeyIBKTDisable          TruthValue,
+         hDGSharedKeyEdition              PreplacedKeyEdition,
+         hDGSharedKeySegment              PreplacedKeySegment,
+         hDGSharedKeyRegister             OCTET STRING                        
+    }
+
+hDGSharedKeyIndex OBJECT-TYPE
+        SYNTAX     Unsigned32 
+        MAX-ACCESS not-accessible
+        STATUS     current
+        DESCRIPTION
+            "(U//FOUO) A unique numeric index that identifies this DGSK."
+        ::= { hDGSharedKeyTableEntry 1 }
+
+hDGSharedKeyShortTitle OBJECT-TYPE
+        SYNTAX     DGSharedKeyShortTitle 
+        MAX-ACCESS read-only
+        STATUS     current
+        DESCRIPTION
+            "(U//FOUO) The device-generated short title identifying this DGSK."
+        ::= { hDGSharedKeyTableEntry 2 }
+
+hDGSharedKeyUsageType OBJECT-TYPE
+        SYNTAX     BITS { ek(0), shared-secret(1), ikev1ek(2), 
+                          manualSAtek(3), modepek(4), modeppsk(5) }
+        MAX-ACCESS read-create
+        STATUS     current
+        DESCRIPTION
+            "(U//FOUO) Indicates how this DGSK will be used. Implementations may 
+             restrict values for hDGSharedKeyUsageType to usage types that are 
+             allowed for DGSKs by the security doctrine of the device. 
+             Implementations may restrict changes to the value of this column in 
+             a row once set. 
+             
+             (U//FOUO) The bit position of '0' indicates an IKEv2 EK, whereas a
+             bit position of '2' indicates an IKEv1 EK. A bit position of 1 
+             indicates an IKEv2 Shared Secret.  
+             
+             (U//FOUO) the bit positions of '4' and '5' indicates that the key
+             should be used as Mode P EK and PSK.
+
+             (U//FOUO) Agents not supporting the assignment of a particular 
+             usage type should return a wrongValue SNMP exception."
+        ::= { hDGSharedKeyTableEntry 3 } 
+
+hDGSharedKeyClassification OBJECT-TYPE
+        SYNTAX     BITS { unclassified(0), restricted(1), confidential(2), 
+                          secret(3),  top-secret(4) }  
+        MAX-ACCESS read-create
+        STATUS     current
+        DESCRIPTION
+            "(U//FOUO) The classification of the DGSK.  Note, a valid 
+             classification value must be set in order for this row to be active 
+             (hDGSharedKeyRowStatus set with 'active' value).  Implementations 
+             may restrict values for this column to classifications that are 
+             allowed for DGSKs by the security doctrine of the device. 
+             Implementations may also restrict how this column is changed in a 
+             row once set.
+
+             (U//FOUO) Agents not supporting the assignment of a particular 
+             classification should return a wrongValue SNMP exception." 
+        ::= { hDGSharedKeyTableEntry 4 } 
+	
+hDGSharedKeyEffectiveDate OBJECT-TYPE
+        SYNTAX     DateAndTime
+        MAX-ACCESS read-create
+        STATUS     current
+        DESCRIPTION
+            "(U//FOUO) The effective date of this DGSK."
+        ::= { hDGSharedKeyTableEntry 5 } 
+
+hDGSharedKeyLabel OBJECT-TYPE
+        SYNTAX     SnmpAdminString
+        MAX-ACCESS read-create
+        STATUS     current
+        DESCRIPTION
+            "(U//FOUO) A free text field allowing the user to tag the DGSK with 
+             helpful information. For example, a label could indicate the 
+             intended usage of the DGSK."
+        ::= { hDGSharedKeyTableEntry 6 } 
+
+hDGSharedKeyMaterial OBJECT-TYPE
+        SYNTAX     OCTET STRING 
+        MAX-ACCESS read-create
+        STATUS     current
+        DESCRIPTION
+            "(U//FOUO) The hexadecimal character representation of the DGSK (CRC 
+             included).
+  
+             (U//FOUO) Managers must restrict the display of this value to four 
+             hex characters at a time.
+
+             (U//FOUO) This column must only be writeable when the  
+             hDGSharedKeyClassification is set for unclassified classification
+             only. Otherwise, the agent must set this column to the value 
+             'VIEWING RESTRICTED'."
+        ::= { hDGSharedKeyTableEntry 7 } 	
+	
+hDGSharedKeyRowStatus OBJECT-TYPE
+        SYNTAX     RowStatus  
+        MAX-ACCESS read-create
+        STATUS     current
+        DESCRIPTION
+            "(U//FOUO) The status of the row by which new entries may be created,
+             existing entries enabled/disabled or existing entries deleted from
+             this table.
+	     
+             (U//FOUO) Entries created within this table may not become active
+             unless all read-create columns of this table have valid values, as
+             detailed by each individual column's description. Entries may be
+             active, however, even though they are currently not used to protect
+             traffic. For example, a DGSK intended for future use would have an 
+             effective start date beyond the current time.
+             
+             (U//FOUO) Setting this column to destroy is synonymous with 
+             zeroizing the DGSK. Any reference(s) to this object upon setting 
+             this RowStatus to 'destroy' should be destroyed as well.
+              
+             (U//FOUO) At a minimum, implementations must support the 
+	     createAndGo, active and destroy management functions. Support for 
+             createAndWait, notInService and notReady management functions is 
+	     optional." 
+        ::= { hDGSharedKeyTableEntry 8 }  
+	
+hDGSharedKeySuite OBJECT-TYPE
+        SYNTAX     INTEGER { suiteA(1), suiteB(2) }
+        MAX-ACCESS read-create
+        STATUS     current
+        DESCRIPTION
+            "(U//FOUO) Associates the DGSK with a suite type.
+
+             (U//FOUO) This column can only be written upon manual UDGSK entry 
+             (row creation).  Otherwise, this column is automatically set based
+             on the hDGSKDefaultSuite value.  Once an entry (row) has been 
+             created, this column is read-only.
+
+             (U//FOUO) Agents not supporting the assignment of a particular 
+             Suite or combination should return a wrongValue SNMP exception."
+        ::= { hDGSharedKeyTableEntry 9 } 	
+
+hDGSharedKeyOrigin OBJECT-TYPE
+        SYNTAX     INTEGER { locallyGenerated(1), manuallyEntered(2), ibkt(3),
+                             oobkt(4), pushedFromLoadedKeys(5)}
+        MAX-ACCESS read-only
+        STATUS     current
+        DESCRIPTION
+            "(U//FOUO) Displays how the DGSK was entered into the device.  
+
+             (U//FOUO) locallyGenerated(1) is set when the device created the 
+             DGSK internally, using a local randomizer.
+
+             (U//FOUO) manuallyEntered(2) is set when the DGSK was entered into 
+             the device through the HMI or a management operation. Keys manually 
+             entered are restricted to hDGSharedKeyClassification of 
+             unclassified(0).
+
+             (U//FOUO) ibkt(3) is set when key was received through H2HKT 
+             In-Band Key Transfer.
+
+             (U//FOUO) oobkt(4) is set when key was received through H2HKT Out 
+             Of Band Key Transfer.
+             
+             (U//FOUO) pushedFromLoadedKeys(5) is set when the device FILLs this
+             key from the hLoadedKeyTable. 
+             
+             (U//FOUO) When a key is pushed from the hLoadedKeyTable 
+             (HAIPE-V4-KEY-TRANSFER-MIB), Agents may not know whether the key 
+             was received over OOBKT or ISSUEd from the fill port. In that case
+             pushedFromLoadedKeys is appropriate."
+        ::= { hDGSharedKeyTableEntry 10 }
+
+hDGSharedKeyPushToLoadedKeyTable OBJECT-TYPE
+        SYNTAX     TruthValue   
+        MAX-ACCESS read-create
+        STATUS     current
+        DESCRIPTION
+            "(U//FOUO) When set to true, the DGSK associated will be added as a 
+             new entry in the hLoadedKeyTable (HAIPE-V4-KEY-TRANSFER-MIB).  Thus 
+             the DGSK associated will be readied for HAIPE-to-HAIPE Key 
+             Transfer.  Note, this column and its associated functions are 
+             contingent upon the hDGSharedKeyRowStatus having a value of 
+             'active'.
+
+             (U//FOUO) Note, when a DGSK is pushed to the hLoadedKeyTable, a new  
+             outer DS-100-1 Tag is generated.  The new hLoadedKeyTable entry 
+             columns are populated with values from this outer DS-100-1 Tag.
+
+             (U//FOUO) When read, this object will always return false."
+        ::= { hDGSharedKeyTableEntry 11 }
+        
+        
+hDGSharedKeyCOI OBJECT-TYPE
+       SYNTAX INTEGER { can(1), nz(2), reserved1(3), reserved2(4), reserved3(5),
+                         reserved4(6), us(7), usHighRisk(8), cceb(9), 
+                         coalition(10), chvp(11), nato(12), natoNations(13),
+                         uk(14), aus(15), none(16)}
+        MAX-ACCESS read-write
+        STATUS     current
+        DESCRIPTION
+            "(U//FOUO) Displays the COI assigned to the DGSK.
+            
+            (U//FOUO) All UNCLASSIFIED DGSK, and all Suite A DSGK
+            should be assigned none(16), however agents should not
+            reject a DGSK which does not conform.
+
+            (U//FOUO) This field is populated either by the FILL
+            DS-100-1 tag (when available) or via the hDGSKDefaultCOI
+            when locally generated.
+
+            (U//FOUO) Implementations may allow for this object to be
+            read-write when the hDGSharedKeyClassification is
+            unclassified(0) or when hDGSharedKeySuite is suiteA(1).
+            Otherwise agents must restrict this value from being
+            changed."
+
+        ::= { hDGSharedKeyTableEntry 12 }
+        
+hDGSharedKeyIBKTDisable OBJECT-TYPE
+        SYNTAX  TruthValue
+        MAX-ACCESS read-create
+        STATUS  current
+        DESCRIPTION
+            "(U//FOUO) Indicates whether supersession is allowed for this
+             DGSK via In-Band Key Transfer.
+
+             (U//FOUO) [true] If this column is set to true, IBKT 
+             supersession is disabled for this key.
+
+             (U//FOUO) [false] If this column is set to false, IBKT 
+             supersession is allowed for this key."
+        ::= { hDGSharedKeyTableEntry 13 }      
+        
+hDGSharedKeyEdition OBJECT-TYPE
+        SYNTAX  PreplacedKeyEdition
+        MAX-ACCESS read-create
+        STATUS  current
+        DESCRIPTION
+            "(U//FOUO) The Edition of the DGSK - to be used for optional 
+            sorting.  This object must be set on row creation; once an entry has
+            been created, this object becomes read-only." 
+        ::= { hDGSharedKeyTableEntry 14 }
+                     
+hDGSharedKeySegment OBJECT-TYPE
+        SYNTAX  PreplacedKeySegment
+        MAX-ACCESS read-create
+        STATUS  current
+        DESCRIPTION
+            "(U//FOUO) The Segement Number of the DGSK - to be used for optional 
+            sorting.  This object must be set on row creation; once an entry has
+            been created, this object becomes read-only." 
+        ::= { hDGSharedKeyTableEntry 15 }
+        
+hDGSharedKeyRegister OBJECT-TYPE
+        SYNTAX  OCTET STRING (SIZE(5))
+        MAX-ACCESS read-only
+        STATUS  current
+        DESCRIPTION
+            "(U//FOUO) Register is set to:
+              FA000 for Suite A DGSK
+              FB000 for Suite B DGSK
+              
+            (U//FOUO) Other values are RESERVED.  This applies to UDGSKs and
+            CDGSKs." 
+        ::= { hDGSharedKeyTableEntry 16 }        
+END

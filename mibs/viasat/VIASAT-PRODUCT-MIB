@@ -1,0 +1,30 @@
+--
+--            UNCLASSIFIED//FOR OFFICIAL USE ONLY
+--
+-- This entire document, which defines ViaSat MIB objects in the
+-- SMIv2 language should be considered U//FOUO.
+--
+-- The data that will be transmitted on the wire as a result of
+-- accessing these MIB objects MUST NOT BE CONSIDERED U//FOUO and is
+-- subject to separate classification.  The classification level of this
+-- data is not defined or within the scope of this document.
+--
+
+VIASAT-PRODUCT-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    enterprises            FROM SNMPv2-SMI;
+
+
+viaSat      OBJECT IDENTIFIER ::= { enterprises 8698 }
+
+--
+-- AltaSec Product MIB
+--
+altasecMIB  OBJECT IDENTIFIER ::= { viaSat 3 }
+
+END
+
+--
+--            UNCLASSIFIED//FOR OFFICIAL USE ONLY
+--

@@ -1,0 +1,653 @@
+--BEGIN Revision History
+--
+--20120130 - R. Berman: Add VLAN feature elements
+--
+--END Revision History
+
+GDC4S-VLAN-MIB DEFINITIONS ::= BEGIN
+    IMPORTS
+    MODULE-IDENTITY, OBJECT-TYPE, Unsigned32,
+    Counter64
+        FROM SNMPv2-SMI
+    OBJECT-GROUP
+        FROM SNMPv2-CONF
+    RowStatus, TruthValue, MacAddress
+        FROM SNMPv2-TC
+    SnmpAdminString
+        FROM SNMP-FRAMEWORK-MIB
+    InetAddress, InetAddressType
+        FROM INET-ADDRESS-MIB
+    gdc4sFeatureHierarchy
+        FROM GDC4S-FEATURE-MIB;
+
+    vlanFeature MODULE-IDENTITY
+        LAST-UPDATED	    "201201300000Z"
+        ORGANIZATION	    "General Dynamics C4 Systems"
+        CONTACT-INFO        "Infosec Support                               
+                            General Dynamics C4
+                            Systems Corporation
+                            77 A Street
+                            Needham Heights, MA
+                            02494-2806
+                            Telephone: 877-230-0236
+                            email: INFOSECSUPPORT@GDC4S.COM"
+        DESCRIPTION         "This MIB supports additional MIB features necessary
+                            to configure the devices developed by General
+                            Dynamics C4 Systems."
+
+        ::= { gdc4sFeatureHierarchy 1 }
+
+
+    --**********************************************************************
+    --VLAN
+    --**********************************************************************
+    vlanFeatureElements OBJECT IDENTIFIER ::= { vlanFeature 1 }
+
+    vlanFramesDiscarded OBJECT-TYPE
+        SYNTAX              Unsigned32
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The number of frames discarded."
+        ::= { vlanFeatureElements 1 }
+
+    vlanIDMappings OBJECT IDENTIFIER ::= { vlanFeatureElements 2 }
+
+    vlanIDMappingTableCount OBJECT-TYPE
+        SYNTAX              Unsigned32
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The number of rows in the vlanIDMappingTable."
+        ::= { vlanIDMappings 1 }
+
+    vlanIDMappingTable OBJECT-TYPE
+        SYNTAX              SEQUENCE OF VlanIDMappingTableEntry
+        MAX-ACCESS          not-accessible
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Configures a linkage of 802.1q, VLAN
+                            Tag ID to the remote addressing used by an SA.
+                            The remote addressing can be either unicast or
+                            multicast depending on the application. Unicast
+                            addresses are used for point-to-point delivery
+                            of VLAN frames. Multicast addresses are used
+                            to deliver VLAN frames over a multicast SA. Configuring
+                            the mapping directs the fastpath how to process
+                            received tagged VLAN frames."
+        ::= { vlanIDMappings 2 }
+
+    vlanIDMappingTableEntry OBJECT-TYPE
+        SYNTAX              VlanIDMappingTableEntry
+        MAX-ACCESS          not-accessible
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) A row in the vlanIDMappingTable"
+        INDEX               {
+                                vlanIDMappingTagID
+                            }
+        ::= { vlanIDMappingTable 1 }
+
+    VlanIDMappingTableEntry ::= SEQUENCE {
+        vlanIDMappingTagID
+            Unsigned32,
+        vlanIDMappingName
+            SnmpAdminString,
+        vlanIDMappingRmtAddrType
+            InetAddressType,
+        vlanIDMappingRmtAddr
+            InetAddress,
+        vlanIDMappingFramesRcvd
+            Unsigned32,
+        vlanIDMappingCmprssnEnable
+            TruthValue,
+        vlanIDMappingCmprssnStatsEnable
+            TruthValue,
+        vlanIDMappingRowStatus
+            RowStatus
+    }
+
+    vlanIDMappingTagID OBJECT-TYPE
+        SYNTAX              Unsigned32 (1..4094)
+        MAX-ACCESS          not-accessible
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The 802.1q VLAN Tag ID associated with
+                            this mapping."
+        ::= { vlanIDMappingTableEntry 1 }
+
+    vlanIDMappingName OBJECT-TYPE
+        SYNTAX              SnmpAdminString (SIZE(0..32))
+        MAX-ACCESS          read-create
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The optional textual name of the VLAN."
+        ::= { vlanIDMappingTableEntry 2 }
+
+    vlanIDMappingRmtAddrType OBJECT-TYPE
+        SYNTAX              InetAddressType
+        MAX-ACCESS          read-create
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The address type of the remote address."
+        ::= { vlanIDMappingTableEntry 3 }
+
+    vlanIDMappingRmtAddr OBJECT-TYPE
+        SYNTAX              InetAddress
+        MAX-ACCESS          read-create
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The unicast or multicast address terminating
+                            the remote end of the SA."
+        ::= { vlanIDMappingTableEntry 4 }
+
+    vlanIDMappingFramesRcvd OBJECT-TYPE
+        SYNTAX              Unsigned32
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Indicates the number of frames received
+                            that match this VLAN record."
+        ::= { vlanIDMappingTableEntry 5 }
+
+    vlanIDMappingCmprssnEnable OBJECT-TYPE
+        SYNTAX              TruthValue
+        MAX-ACCESS          read-create
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Setting this object to 'true' will enable
+                            VLAN compression. When read this object should
+                            return its value. If this object is set to the
+                            same value as the current value, the device must
+                            not perform any operation but should accept this
+                            as a valid SET operation."
+        ::= { vlanIDMappingTableEntry 6 }
+
+    vlanIDMappingCmprssnStatsEnable OBJECT-TYPE
+        SYNTAX              TruthValue
+        MAX-ACCESS          read-create
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Setting this object to 'true' will enable
+                            VLAN compression statistics collection. When read
+                            this object should return its value. If this
+                            object is set to the same value as the current
+                            value, the device must not perform any operation
+                            but should accept this as a valid SET operation."
+        ::= { vlanIDMappingTableEntry 7 }
+
+    vlanIDMappingRowStatus OBJECT-TYPE
+        SYNTAX              RowStatus
+        MAX-ACCESS          read-create
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The status of the row by which new entries
+                            may be created, existing entries modified or
+                            deleted from this table."
+        ::= { vlanIDMappingTableEntry 8 }
+
+    vlanEthernetMappings OBJECT IDENTIFIER ::= { vlanFeatureElements 3 }
+
+    vlanEthernetMappingTableCount OBJECT-TYPE
+        SYNTAX              Unsigned32
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The number of rows in the vlanEthernetMappingTable."
+        ::= { vlanEthernetMappings 1 }
+
+    vlanEthernetMappingTable OBJECT-TYPE
+        SYNTAX              SEQUENCE OF VlanEthernetMappingTableEntry
+        MAX-ACCESS          not-accessible
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Configures a linkage of Ethernet Destination
+                            MAC Address (DMAC) to the remote addressing used
+                            by an SA. The remote addressing can be either
+                            unicast or multicast depending on the application.
+                            Unicast addresses are used for point-to-point
+                            delivery of VLAN frames. Multicast addresses
+                            are used to deliver VLAN frames over a multicast
+                            SA. Configuring the mapping directs the fastpath
+                            how to process received tagged Ethernet frames."
+        ::= { vlanEthernetMappings 2 }
+
+    vlanEthernetMappingTableEntry OBJECT-TYPE
+        SYNTAX              VlanEthernetMappingTableEntry
+        MAX-ACCESS          not-accessible
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) A row in the vlanEthernetMappingTable"
+        INDEX               {
+                                vlanEthernetMappingMacAddr
+                            }
+        ::= { vlanEthernetMappingTable 1 }
+
+    VlanEthernetMappingTableEntry ::= SEQUENCE {
+        vlanEthernetMappingMacAddr
+            MacAddress,
+        vlanEthernetMappingName
+            SnmpAdminString,
+        vlanEthernetMappingDSCPValue
+            OCTET STRING,
+        vlanEthernetMappingRmtAddrType
+            InetAddressType,
+        vlanEthernetMappingRmtAddr
+            InetAddress,
+        vlanEthernetMappingFramesRcvd
+            Unsigned32,
+        vlanEthernetMappingCmprssnEnable
+            TruthValue,
+        vlanEthernetMappingCmprssnStatsEnable
+            TruthValue,
+        vlanEthernetMappingRowStatus
+            RowStatus
+    }
+
+    vlanEthernetMappingMacAddr OBJECT-TYPE
+        SYNTAX              MacAddress
+        MAX-ACCESS          not-accessible
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The Ethernet Destination MAC address
+                            associated with this mapping."
+        ::= { vlanEthernetMappingTableEntry 1 }
+
+    vlanEthernetMappingName OBJECT-TYPE
+        SYNTAX              SnmpAdminString (SIZE(0..32))
+        MAX-ACCESS          read-create
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The optional textual name of the VLAN."
+        ::= { vlanEthernetMappingTableEntry 2 }
+
+    vlanEthernetMappingDSCPValue OBJECT-TYPE
+        SYNTAX              OCTET STRING (SIZE(8))
+        MAX-ACCESS          read-create
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The DSCP Value used to enable service
+                            designation for delivery of the ethernet frames."
+        ::= { vlanEthernetMappingTableEntry 3 }
+
+    vlanEthernetMappingRmtAddrType OBJECT-TYPE
+        SYNTAX              InetAddressType
+        MAX-ACCESS          read-create
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The address type of the remote address."
+        ::= { vlanEthernetMappingTableEntry 4 }
+
+    vlanEthernetMappingRmtAddr OBJECT-TYPE
+        SYNTAX              InetAddress
+        MAX-ACCESS          read-create
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The unicast or multicast address terminating
+                            the remote end of the SA."
+        ::= { vlanEthernetMappingTableEntry 5 }
+
+    vlanEthernetMappingFramesRcvd OBJECT-TYPE
+        SYNTAX              Unsigned32
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Indicates the number of frames received
+                            that match this VLAN record."
+        ::= { vlanEthernetMappingTableEntry 6 }
+
+    vlanEthernetMappingCmprssnEnable OBJECT-TYPE
+        SYNTAX              TruthValue
+        MAX-ACCESS          read-create
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Setting this object to 'true' will enable
+                            VLAN compression. When read this object should
+                            return its value. If this object is set to the
+                            same value as the current value, the device must
+                            not perform any operation but should accept this
+                            as a valid SET operation."
+        ::= { vlanEthernetMappingTableEntry 7 }
+
+    vlanEthernetMappingCmprssnStatsEnable OBJECT-TYPE
+        SYNTAX              TruthValue
+        MAX-ACCESS          read-create
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Setting this object to 'true' will enable
+                            VLAN compression statistics collection. When read
+                            this object should return its value. If this
+                            object is set to the same value as the current
+                            value, the device must not perform any operation
+                            but should accept this as a valid SET operation."
+        ::= { vlanEthernetMappingTableEntry 8 }
+
+    vlanEthernetMappingRowStatus OBJECT-TYPE
+        SYNTAX              RowStatus
+        MAX-ACCESS          read-create
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The status of the row by which new entries
+                            may be created, existing entries modified or
+                            deleted from this table."
+        ::= { vlanEthernetMappingTableEntry 9 }
+
+    vlanPriorities OBJECT IDENTIFIER ::= { vlanFeatureElements 4 }
+
+    vlanPCP1DSCPValue OBJECT-TYPE
+        SYNTAX              OCTET STRING (SIZE(8))
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The DSCP Value for Priority Code Point
+                            1."
+        ::= { vlanPriorities 1 }
+
+    vlanPCP2DSCPValue OBJECT-TYPE
+        SYNTAX              OCTET STRING (SIZE(8))
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The DSCP Value for Priority Code Point
+                            2."
+        ::= { vlanPriorities 2 }
+
+    vlanPCP3DSCPValue OBJECT-TYPE
+        SYNTAX              OCTET STRING (SIZE(8))
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The DSCP Value for Priority Code Point
+                            3."
+        ::= { vlanPriorities 3 }
+
+    vlanPCP4DSCPValue OBJECT-TYPE
+        SYNTAX              OCTET STRING (SIZE(8))
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The DSCP Value for Priority Code Point
+                            4."
+        ::= { vlanPriorities 4 }
+
+    vlanPCP5DSCPValue OBJECT-TYPE
+        SYNTAX              OCTET STRING (SIZE(8))
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The DSCP Value for Priority Code Point
+                            5."
+        ::= { vlanPriorities 5 }
+
+    vlanPCP6DSCPValue OBJECT-TYPE
+        SYNTAX              OCTET STRING (SIZE(8))
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The DSCP Value for Priority Code Point
+                            6."
+        ::= { vlanPriorities 6 }
+
+    vlanPCP7DSCPValue OBJECT-TYPE
+        SYNTAX              OCTET STRING (SIZE(8))
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The DSCP Value for Priority Code Point
+                            7."
+        ::= { vlanPriorities 7 }
+
+    vlanPCP8DSCPValue OBJECT-TYPE
+        SYNTAX              OCTET STRING (SIZE(8))
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The DSCP Value for Priority Code Point
+                            8."
+        ::= { vlanPriorities 8 }
+
+    vlanDefaultMapping OBJECT IDENTIFIER ::= { vlanFeatureElements 5 }
+
+    vlanDefaultDSCPValue OBJECT-TYPE
+        SYNTAX              OCTET STRING (SIZE(8))
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The DSCP Value for the default VLAN
+                            mapping."
+        ::= { vlanDefaultMapping 1 }
+
+    vlanDefaultRmtAddrType OBJECT-TYPE
+        SYNTAX              InetAddressType
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The address type of the remote address."
+        ::= { vlanDefaultMapping 2 }
+
+    vlanDefaultRmtAddr OBJECT-TYPE
+        SYNTAX              InetAddress
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The unicast or multicast address terminating
+                            the remote end of the SA."
+        ::= { vlanDefaultMapping 3 }
+
+    vlanDefaultFramesRcvd OBJECT-TYPE
+        SYNTAX              Unsigned32
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Indicates the number of frames received
+                            on the default VLAN mapping."
+        ::= { vlanDefaultMapping 4 }
+
+    vlanDefaultCmprssnEnable OBJECT-TYPE
+        SYNTAX              TruthValue
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Setting this object to 'true' will enable
+                            VLAN compression. When read this object should
+                            return its value. If this object is set to the
+                            same value as the current value, the device must
+                            not perform any operation but should accept this
+                            as a valid SET operation."
+        ::= { vlanDefaultMapping 5 }
+
+    vlanDefaultCmprssnStatsEnable OBJECT-TYPE
+        SYNTAX              TruthValue
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Setting this object to 'true' will enable
+                            VLAN compression statistics collection. When read
+                            this object should return its value. If this
+                            object is set to the same value as the current
+                            value, the device must not perform any operation
+                            but should accept this as a valid SET operation."
+        ::= { vlanDefaultMapping 6 }
+
+    vlanDiscovery OBJECT IDENTIFIER ::= { vlanFeatureElements 6 }
+
+    vlanDiscoveryEnable OBJECT-TYPE
+        SYNTAX              TruthValue
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Setting this object to 'true' will enable
+                            VLAN Discovery. When read this object should
+                            return its value. If this object is set to the
+                            same value as the current value, the device must
+                            not perform any operation but should accept this
+                            as a valid SET operation."
+        ::= { vlanDiscovery 1 }
+
+    vlanDiscoveryTimeout OBJECT-TYPE
+        SYNTAX              Unsigned32 (1..20)
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Iindicates the number of minutes after
+                            which an inactive entry in the VLAN Discovery
+                            Table is aged out."
+        ::= { vlanDiscovery 2 }
+        
+    vlanCmprssn OBJECT IDENTIFIER ::= { vlanFeatureElements 7 }
+
+    vlanCmprssnConfig OBJECT IDENTIFIER ::= { vlanCmprssn 1 }
+
+    vlanCmprssnEnableAll OBJECT-TYPE
+        SYNTAX              TruthValue
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Setting this object to 'true' will enable
+                            compression for all VLAN mappings. When read this object 
+                            should return 'false'. This value cannot be set to 'true' 
+                            when vlanCmprssnDisableAll is also set to 'true'."
+        ::= { vlanCmprssnConfig 1 }
+
+    vlanCmprssnDisableAll OBJECT-TYPE
+        SYNTAX              TruthValue
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Setting this object to 'true' will disable
+                            compression for all VLAN mappings. When read this object 
+                            should return 'false'. This value cannot be set to 'true' 
+                            when vlanCmprssnEnableAll is also set to 'true'."
+        ::= { vlanCmprssnConfig 2 }
+        
+    vlanStats OBJECT IDENTIFIER ::= { vlanFeatureElements 8 }
+
+    vlanCmprssnStats OBJECT IDENTIFIER ::= { vlanStats 1 }
+
+    vlanCmprssnStatsConfig OBJECT IDENTIFIER ::= { vlanCmprssnStats 1 }
+
+    vlanStatsCmprssnStatsClear OBJECT-TYPE
+        SYNTAX              TruthValue
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Setting this object to 'true' will clear
+                            all VLAN packet statistics. When read this object
+                            should return 'false'."
+        ::= { vlanCmprssnStatsConfig 1 }
+
+    vlanStatsCmprssnStatsEnableAll OBJECT-TYPE
+        SYNTAX              TruthValue
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Setting this object to 'true' will enable
+                            compression statistics collection for all VLAN
+                            mappings. When read this object should return
+                            'false'. This value cannot be set to 'true' when 
+							vlanStatsCmprssnStatsDisableAll is also set to 'true'."
+        ::= { vlanCmprssnStatsConfig 2 }
+
+    vlanStatsCmprssnStatsDisableAll OBJECT-TYPE
+        SYNTAX              TruthValue
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) Setting this object to 'true' will disable
+                            compression statistics collection for all VLAN
+                            mappings. When read this object should return
+                            'false'. This value cannot be set to 'true' when 
+							vlanStatsCmprssnStatsEnableAll is also set to 'true'."
+        ::= { vlanCmprssnStatsConfig 3 }
+
+    vlanStatsCmprssnPacketThreshold OBJECT-TYPE
+        SYNTAX              Unsigned32
+        MAX-ACCESS          read-write
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The minimum packet size that can be
+                            compressed."
+        ::= { vlanCmprssnStatsConfig 4 }
+
+    vlanCmprssnStatsStatistics OBJECT IDENTIFIER ::= { vlanCmprssnStats 2 }
+
+    vlanStatsCmprssdPackets OBJECT-TYPE
+        SYNTAX              Unsigned32
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The number of packets that have been
+                            compressed."
+        ::= { vlanCmprssnStatsStatistics 1 }
+
+    vlanStatsCmprssnBypassedPackets OBJECT-TYPE
+        SYNTAX              Unsigned32
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The number of packets that have bypassed
+                            compression."
+        ::= { vlanCmprssnStatsStatistics 2 }        
+
+    vlanStatsUncmprssdBytesIn OBJECT-TYPE
+        SYNTAX              Counter64
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The number of received bytes that have
+                            not been compressed."
+        ::= { vlanCmprssnStatsStatistics 3 }
+
+    vlanStatsCmprssdBytesOut OBJECT-TYPE
+        SYNTAX              Counter64
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The number of transmitted bytes that
+                            have been compressed."
+        ::= { vlanCmprssnStatsStatistics 4 }
+
+    vlanStatsDecmprssdPackets OBJECT-TYPE
+        SYNTAX              Unsigned32
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The number of packets that have been
+                            decompressed."
+        ::= { vlanCmprssnStatsStatistics 5 }
+        
+    vlanStatsDecmprssnDiscardPackets OBJECT-TYPE
+        SYNTAX              Unsigned32
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The number of packets that have discarded
+                            due to compression failure or lack of resources."
+        ::= { vlanCmprssnStatsStatistics 6 }        
+
+    vlanStatsCmprssdBytesIn OBJECT-TYPE
+        SYNTAX              Counter64
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The number of received bytes that have
+                            been compressed."
+        ::= { vlanCmprssnStatsStatistics 7 }
+
+    vlanStatsDecmprssdBytesOut OBJECT-TYPE
+        SYNTAX              Counter64
+        MAX-ACCESS          read-only
+        STATUS              current
+        DESCRIPTION         "(U//FOUO) The number of transmitted bytes that
+                            have been decompressed."
+        ::= { vlanCmprssnStatsStatistics 8 }
+
+    vlanFeatureConformance OBJECT IDENTIFIER ::= { vlanFeature 2 }
+
+    vlanFeatureGroups OBJECT IDENTIFIER ::= { vlanFeatureConformance 1 }
+
+    vlanFeatureGroup OBJECT-GROUP
+        OBJECTS	{
+        		vlanFramesDiscarded,
+        		vlanIDMappingTableCount,
+        		vlanIDMappingName,
+        		vlanIDMappingRmtAddrType,
+        		vlanIDMappingRmtAddr,
+        		vlanIDMappingFramesRcvd,
+        		vlanIDMappingCmprssnEnable,
+        		vlanIDMappingCmprssnStatsEnable,
+        		vlanIDMappingRowStatus,
+        		vlanEthernetMappingTableCount,
+        		vlanEthernetMappingName,
+        		vlanEthernetMappingDSCPValue,
+        		vlanEthernetMappingRmtAddrType,
+        		vlanEthernetMappingRmtAddr,
+        		vlanEthernetMappingFramesRcvd,
+        		vlanEthernetMappingCmprssnEnable,
+        		vlanEthernetMappingCmprssnStatsEnable,
+        		vlanEthernetMappingRowStatus,
+        		vlanPCP1DSCPValue,
+        		vlanPCP2DSCPValue,
+        		vlanPCP3DSCPValue,
+        		vlanPCP4DSCPValue,
+        		vlanPCP5DSCPValue,
+        		vlanPCP6DSCPValue,
+        		vlanPCP7DSCPValue,
+        		vlanPCP8DSCPValue,
+        		vlanDefaultDSCPValue,
+        		vlanDefaultRmtAddrType,
+        		vlanDefaultRmtAddr,
+        		vlanDefaultFramesRcvd,
+        		vlanDefaultCmprssnEnable,
+        		vlanDefaultCmprssnStatsEnable,
+        		vlanDiscoveryEnable,
+        		vlanDiscoveryTimeout,
+        		vlanCmprssnEnableAll,
+        		vlanCmprssnDisableAll,
+        		vlanStatsCmprssnStatsClear,
+        		vlanStatsCmprssnStatsEnableAll,
+        		vlanStatsCmprssnStatsDisableAll,
+				vlanStatsCmprssnPacketThreshold,
+        		vlanStatsCmprssdPackets,
+        		vlanStatsCmprssnBypassedPackets,        		
+        		vlanStatsUncmprssdBytesIn,
+        		vlanStatsCmprssdBytesOut,
+        		vlanStatsDecmprssdPackets,
+        		vlanStatsDecmprssnDiscardPackets,        		
+        		vlanStatsCmprssdBytesIn,
+        		vlanStatsDecmprssdBytesOut
+        	}
+        STATUS		    current
+        DESCRIPTION         "(U//FOUO) The objects related to the VLAN Feature."
+        ::= { vlanFeatureGroups 1 }
+
+
+END
+

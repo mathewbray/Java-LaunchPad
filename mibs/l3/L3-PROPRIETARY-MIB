@@ -1,0 +1,585 @@
+--
+----------------------------------------------------------------------------
+--                        RESTRICTED RIGHTS
+--
+--  Contract Number       MDA904-02-D-0705
+--  Contractor Name       L-3 Communication Systems East
+--  Contractor Address    1 Federal Street  Camden, NJ  08103
+--
+--  The Government's rights to use, modify, reproduce, release, perform,
+--  display, or disclose this software are restricted by paragraph (b)(3)
+--  of the Rights in Noncommercial Computer Software and Noncommercial
+--  Computer Software Documentation clause contained in the above identified
+--  contract. Any reproduction of computer software or portions thereof
+--  marked with this legend must also reproduce the markings. Any person,
+--  other than the Government, who has been provided access to such software
+--  must promptly notify the above named Contractor.
+--
+----------------------------------------------------------------------------
+--| BEGIN PROLOGUE
+--|
+--| CLASSIFICATION:  UNCLASSIFIED // FOUO
+--|
+--| FILE NAME:   L3-PROPRIETARY-MIB.mib
+--|
+--| ABSTRACT:
+--|    L3 Propreitary MIB, contains items not present in HAIPE MIBs
+--|
+--| HISTORY:
+--|   CCCQ_NAME:M:/mfahren_view4/RedEagle_Common_Manag MIBs/L3-PR MIBs/L3-PROPRI
+--|   CCCQ_NAMX:er/Proprietary MIBs/L3-PROPRIETARY-MIB.MIB@@/main/swit/swit_3.1/14 MIBs/L3-PR MIBs/L3-PROPRI
+--|   CCCQ_VER: 2/7/2013 mfahren RCMPC00001538  MIBs/L3-PR MIBs/L3-PROPRI
+--|   CCCQ_VER: merge to SWIT MIBs/L3-PR MIBs/L3-PROPRI
+--|   CCCQ_VER: 2/7/2013 mfahren  MIBs/L3-PR MIBs/L3-PROPRI
+--|   CCCQ_VER: updating to match MIB on classified ne MIBs/L3-PR MIBs/L3-PROPRI
+--|   CCCQ_VER: 11/23/2011 mfahren RCMPC00001259  MIBs/L3-PR MIBs/L3-PROPRI
+--|   CCCQ_VER: merge from DR to SWIT MIBs/L3-PR MIBs/L3-PROPRI
+--|   CCCQ_VER: 11/9/2011 kdurham  MIBs/L3-PROPRI
+--|   CCCQ_VER: task 15 mib updates MIBs/L3-PROPRI
+--|   CCCQ_VER: 8/1/2011 jsharkey Gigee00005908  MIBs/L3-PROPRI
+--|   CCCQ_VER: merge to 245x hv31 branch MIBs/L3-PROPRI
+--|   CCCQ_VER: 7/27/2011 apostosk Gigee00005908  MIBs/L3-PROPRI
+--|   CCCQ_VER: DR-5908 245X HV3.1: Add Raytheon RIP Enhancements MIBs/L3-PROPRI
+--|   CCCQ_VER: 6/9/2011 alblum Gigee00005886  MIBs/L3-PROPRI
+--|   CCCQ_VER: Merge to release branch. MIBs/L3-PROPRI
+--|   CCCQ_VER: 6/8/2011 apostosk Gigee00005886  MIBs/L3-PROPRI
+--|   CCCQ_VER: Configurable Next-One-Up processing (SNMP updates MIBs/L3-PROPRI
+--|   CCCQ_VER: 7/8/2009 gmarshall  MIBs/L3-PROPRI
+--|   CCCQ_VER:  MIBs/L3-PROPRI
+--|   CCCQ_VER: 7/1/2009 gmarsh  MIBs/L3-PROPRI
+--|   CCCQ_VER: CLI Password Change Scalar MIBs/L3-PROPRI
+--|   CCCQ_VER: 7/1/2009 gmarsh  MIBs/L3-PROPRI
+--|
+--| END PROLOGUE
+----------------------------------------------------------------------------
+--
+
+
+L3-PROPRIETARY-MIB  DEFINITIONS ::= BEGIN
+    IMPORTS
+        MODULE-IDENTITY, OBJECT-TYPE, NOTIFICATION-TYPE, Integer32, Unsigned32
+            FROM SNMPv2-SMI
+        InetAddressType, InetAddress
+            FROM INET-ADDRESS-MIB
+        TruthValue, DateAndTime, DisplayString
+            FROM SNMPv2-TC
+        hFFShortTitleName, hFFUniversalID, hFFUniversalEdition, hFFKMID, hPPKShortTitleName, hPPKEdition, hPPKSegment
+         FROM HAIPE-TRAFFIC-PROTECTION-MIB
+        hKTLoadedKeyShortTitle, hKTLoadedKeyEdition, hKTLoadedKeySegment, hKTLoadedKeyRegister
+            FROM HAIPE-KEY-TRANSFER-MIB
+        l3Proprietary
+            FROM L3
+        hStationID
+            FROM HAIPE-MANAGEMENT-MIB
+      hrSystemDate
+          FROM HOST-RESOURCES-MIB
+      HaipeSide, HaipeSecurityLevel
+         FROM HAIPE-TC-MIB
+      IpAddressStatusTC
+         FROM IP-MIB;
+
+l3MibModule  MODULE-IDENTITY
+   LAST-UPDATED   "201205010000Z"
+   ORGANIZATION   "L3 Communications Systems - East"
+   CONTACT-INFO   "Keith Minnick
+
+             L3 Communications Systems - East
+             1 Federal Street
+             Camden, NJ 08102
+             USA
+             MS: AE-2C Library
+
+             Tel: +1 856.338.2031
+             Fax: +1 856.338.3152
+             WWW: http://www.l-3com.com/cs-east/
+
+             E-mail: keith.minnick@L-3Com.com"
+   DESCRIPTION    "Addition of ctIcmpNetUnreachableRateLimit Scalar"
+
+   REVISION       "201107260000Z"
+   DESCRIPTION    "Addition of discoveryGroup Group"
+
+   REVISION       "201106080000Z"
+   DESCRIPTION    "Addition of routeAuditInterval Scalar"
+
+   REVISION       "200907010000Z"
+   DESCRIPTION    "Addition of ineCLIPassword Scalar"
+
+   REVISION       "200903170000Z"
+   DESCRIPTION    "Addition of New Traps and CHM Interoperability Objects"
+
+   REVISION       "200901140000Z"
+   DESCRIPTION    "Addition of Interface Group and Objects"
+
+   REVISION       "200812050000Z"
+   DESCRIPTION    "Addition of Admin Group and Objects"
+
+   REVISION       "200810060000Z"
+   DESCRIPTION    "Additional traps and temperatureThreshold scalar object added"
+
+   REVISION       "200206270000Z"
+   DESCRIPTION      "RedEagle"
+   ::=  {  l3Proprietary  1 }
+
+admin           OBJECT IDENTIFIER  ::=  {  l3Proprietary  2  }
+trapNotifications        OBJECT IDENTIFIER  ::=  {  l3Proprietary  3  }
+traps        OBJECT IDENTIFIER ::= { trapNotifications 0 }
+
+cliGroup       OBJECT IDENTIFIER  ::=  {  admin  1  }
+temperature    OBJECT IDENTIFIER  ::=  {  admin  2  }
+smwGroup       OBJECT IDENTIFIER  ::=  {  admin  3  }
+moduli         OBJECT IDENTIFIER  ::=  {  admin  4  }
+adminGroup     OBJECT IDENTIFIER  ::=  {  admin  5  }
+interfaceGroup  OBJECT IDENTIFIER  ::=  {  admin  6  }
+discoveryGroup  OBJECT IDENTIFIER  ::=  {  admin  7  }
+
+-- Start L3 error-status Defines
+--
+--  securityLevelNotWritable     = 30  This Error Pertains to the ineSecurityLevel object in the L-3-PROPRIETARY-MIB.
+--  usmAuthAndPrivPasswordsEqual = 31  This Error Pertains to the usmUserAuthKeyChange, usmUserOwnAuthKeyChange,
+--                               usmUserPrivKeyChange, and usmUserOwnPrivKeyChange objects in the SNMP-USER-BASED-SM-MIB.
+-- hIPhSelectorReadOnly       = 32  This Error Pertains to the hIPhSelectorName object in the HAIPE-TRAFFIC-PROTECTION-MIB.
+--
+-- End L3 error-status Defines
+
+-- start of adminControl group
+
+-- start of cliGroup
+
+resetCLIPassword OBJECT-TYPE
+   SYNTAX   TruthValue
+   MAX-ACCESS  read-write
+   STATUS   current
+   DESCRIPTION
+      "(U//FOUO) Writing true to this object will reset the CLI password"
+   ::=  {  cliGroup    1  }
+
+ineCLIPassword OBJECT-TYPE
+   SYNTAX   DisplayString (SIZE (1..255))
+   MAX-ACCESS  read-write
+   STATUS   current
+   DESCRIPTION
+      "(U//FOUO) Change the CLI Password
+     NOTE:
+         HV3.1
+            - Minimum of 8 characters
+            - Maximum of 15 characters
+            - At least one Alpha character
+            - At least one numerical character
+            - At Least one speacial character"
+   ::=  {  cliGroup    2  }
+
+-- start of temperature Group
+
+temperatureCurrent   OBJECT-TYPE
+   SYNTAX   Integer32
+   MAX-ACCESS  read-only
+   STATUS   current
+   DESCRIPTION
+      "Current temperature (degrees Celcius)
+       NOTE: Object Only Populated during criticalTempReached Trap"
+
+   ::=  {  temperature  1  }
+
+temperatureThreshold  OBJECT-TYPE
+   SYNTAX   Integer32
+   MAX-ACCESS  read-write
+   STATUS   current
+   DESCRIPTION
+      "Threshold temperature (degrees Celcius)"
+
+   ::=  {  temperature  2  }
+
+
+-- end of temperature Group
+
+
+-- start of smwGroup
+-- (use in TRAP Message only)
+
+smwPreviousCurrentIpAddressType  OBJECT-TYPE
+    SYNTAX       InetAddressType
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+     "Indicates previous current Manager. Used in Trap message only."
+    ::=  { smwGroup 1 }
+
+smwPreviousCurrentIpAddress  OBJECT-TYPE
+    SYNTAX       InetAddress
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+     "Indicates previous current Manager. Used in Trap message only."
+    ::=  { smwGroup 2 }
+
+smwIpAddressType OBJECT-TYPE
+    SYNTAX       InetAddressType
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+    "Manager IP address. Used in Trap message only."
+    ::=  { smwGroup 3 }
+
+smwIpAddress OBJECT-TYPE
+    SYNTAX       InetAddress
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+    "Manager IP address. Used in Trap message only."
+    ::=  { smwGroup 4 }
+
+ineIpAddressType OBJECT-TYPE
+    SYNTAX       InetAddressType
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+    "INE IP address type. Used in Trap messages only."
+    ::=  { smwGroup 5 }
+
+ineIpAddress OBJECT-TYPE
+    SYNTAX       InetAddress
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+    "INE IP address. Used in Trap messages only."
+    ::=  { smwGroup 6 }
+
+ineInterface OBJECT-TYPE
+    SYNTAX       HaipeSide
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+    "INE Interface. Used in Trap messages only."
+    ::=  { smwGroup 7 }
+
+ineIpv6AddressState OBJECT-TYPE
+    SYNTAX       IpAddressStatusTC
+    MAX-ACCESS   read-only
+    STATUS       current
+    DESCRIPTION
+    "INE IPv6 Transition State. Used in Trap messages only."
+    ::=  { smwGroup 8 }
+-- End of smwGroup
+
+
+-- start of moduli group
+-- (use in TRAP Message only)
+
+ppcModuliId OBJECT-TYPE
+   SYNTAX   OCTET STRING (SIZE(3))
+   MAX-ACCESS  read-only
+   STATUS   current
+   DESCRIPTION
+   "PPC Moduli ID"
+   ::= { moduli 1 }
+
+ppcLoadStatus OBJECT-TYPE
+   SYNTAX   Integer32
+   MAX-ACCESS  read-only
+   STATUS   current
+   DESCRIPTION
+   "PPC Load Status:
+      PPC Loaded:
+          Ok(0)
+          Invalid(1)
+          No NVM(2)"
+   ::= { moduli 2 }
+
+-- start of moduli group
+
+-- start of adminGroup
+
+adminSoftwareTable OBJECT-TYPE
+   SYNTAX SEQUENCE OF AdminSoftwareEntry
+   MAX-ACCESS not-accessible
+   STATUS   current
+   DESCRIPTION
+      "Table for all the software versions residing in the device."
+
+   ::=  { adminGroup 1 }
+
+adminSoftwareEntry OBJECT-TYPE
+   SYNTAX   AdminSoftwareEntry
+   MAX-ACCESS not-accessible
+   STATUS   current
+   DESCRIPTION
+      "An entry in the software versions table."
+   INDEX {  asSoftwareName }
+   ::=  { adminSoftwareTable 1 }
+
+AdminSoftwareEntry  ::=  SEQUENCE {
+            asSoftwareName OCTET STRING,
+            asSoftwareDate DateAndTime,
+            asSoftwareStatus INTEGER
+   }
+
+asSoftwareName OBJECT-TYPE
+   SYNTAX   OCTET STRING (SIZE (0..64))
+   MAX-ACCESS read-only
+   STATUS current
+   DESCRIPTION
+      "Software version name. "
+
+   ::=  {  adminSoftwareEntry  1  }
+
+asSoftwareDate OBJECT-TYPE
+   SYNTAX   DateAndTime
+   MAX-ACCESS read-only
+   STATUS current
+   DESCRIPTION
+      "Date this version was downloaded. "
+
+   ::=  {  adminSoftwareEntry  2  }
+
+asSoftwareStatus OBJECT-TYPE
+   SYNTAX INTEGER {
+            running(1),
+            nextToRun(2),
+            notRunning(3), -- loaded but not running
+            destroy(4)      -- delete from device
+
+        }
+   MAX-ACCESS read-write
+   STATUS current
+   DESCRIPTION
+      "Status of this Software image. "
+
+   ::=  {  adminSoftwareEntry  3  }
+
+
+bypassLimit  OBJECT-TYPE
+   SYNTAX   INTEGER
+   MAX-ACCESS  read-write
+   STATUS   current
+   DESCRIPTION
+      "Get/Set the Max Bypass Rate(packets/seconds)."
+
+   ::=  {  adminGroup 2 }
+
+ineSecurityLevel  OBJECT-TYPE
+   SYNTAX   HaipeSecurityLevel
+   MAX-ACCESS  read-write
+   STATUS   current
+   DESCRIPTION
+      "Get/Set the INE Security Level. The INE will return an error-status of
+    securityLevelNotWritable if this object is currently not writable."
+
+   ::=  {  adminGroup 3 }
+
+routeAuditInterval  OBJECT-TYPE
+   SYNTAX   Unsigned32
+   MAX-ACCESS  read-write
+   STATUS   current
+   DESCRIPTION
+      "Get/Set the Route Audit Interval (in seconds).
+    Default and Off equals zero.
+    For range of values see product users manual."
+
+   ::=  {  adminGroup 4 }
+   
+ctIcmpNetUnreachableRateLimit  OBJECT-TYPE
+   SYNTAX   Unsigned32
+   MAX-ACCESS  read-write
+   STATUS   current
+   DESCRIPTION
+      "Get/Set the ICMP Net Unreachable Rate Limit (in seconds).
+    Default and Off equals zero.
+    For range of values see product users manual."
+
+   ::=  {  adminGroup 5 }
+
+-- end of adminGroup
+
+-- start of interfaceGroup
+
+fiberAutoNegotiation OBJECT-TYPE
+   SYNTAX   TruthValue
+   MAX-ACCESS  read-only
+   STATUS   current
+   DESCRIPTION
+      "(U//FOUO) The Current status of Auto Negotiation feature on the Fiber Interface "
+   ::=  {  interfaceGroup 1 }
+
+
+ctPtInterfaceLoss OBJECT-TYPE
+   SYNTAX   TruthValue
+   MAX-ACCESS  read-write
+   STATUS   current
+   DESCRIPTION
+      "(U//FOUO) This will enable or disable the CT Loss/PT Loss functionality.
+        If enabled(True)the device will administratively place the PT interface
+        into the down state if the CT interface is detected to be  administratively
+        down"
+   ::=  {  interfaceGroup 2 }
+
+-- end of interfaceGroup
+
+-- start of discoveryGroup
+
+ripLearnedLeptCostSource OBJECT-TYPE
+   SYNTAX   INTEGER {
+               discoveryAdvertiseAdminCost(0),  -- set based on static value
+               ripMetric(1)                     -- set based on RIP metric
+               }
+   MAX-ACCESS  read-write
+   STATUS   current
+   DESCRIPTION
+      "Enumeration that defines how to set the value of a RIP-learned LEPT
+       entry's cost"
+   ::=  {  discoveryGroup 1 }
+
+-- end of discoveryGroup
+
+-- end of adminControl group
+
+
+--  --------------------
+--
+--  SNMP Trap Definition
+--
+--  --------------------
+
+
+criticalTempReached NOTIFICATION-TYPE
+        OBJECTS {
+            temperatureCurrent
+        }
+     STATUS current
+        DESCRIPTION
+        "This trap is sent when the device reaches the critical temperature"
+        ::={ traps 1 }
+
+
+ffkLoaded NOTIFICATION-TYPE
+        OBJECTS {
+          hFFShortTitleName,
+          hFFUniversalID,
+          hFFUniversalEdition,
+          hFFKMID
+        }
+     STATUS current
+        DESCRIPTION
+        "This trap is sent when an FFK is loaded into the device"
+        ::={ traps 2 }
+
+
+ppkLoaded NOTIFICATION-TYPE
+        OBJECTS {
+          hPPKShortTitleName,
+          hPPKEdition,
+          hPPKSegment
+        }
+     STATUS current
+        DESCRIPTION
+        "This trap is sent when an PPK is loaded into the device"
+        ::={ traps 3 }
+
+
+bypassExceeded NOTIFICATION-TYPE
+     STATUS current
+        DESCRIPTION
+        "The maximum rate of bypass was exceeded"
+        ::={ traps 4 }
+
+
+currentSmwChanged NOTIFICATION-TYPE
+      OBJECTS {
+          smwIpAddress,
+          smwPreviousCurrentIpAddress
+        }
+     STATUS current
+        DESCRIPTION
+        "The trap is sent when the Current Manager has changed"
+        ::={ traps 5 }
+
+
+smwDeleted NOTIFICATION-TYPE
+      OBJECTS {
+          smwIpAddress
+         }
+     STATUS current
+        DESCRIPTION
+        "The trap is sent when a Manager has been deleted from Manager List"
+        ::={ traps 6 }
+
+
+ppc NOTIFICATION-TYPE
+   OBJECTS {
+     ppcModuliId,
+     ppcLoadStatus
+   }
+   STATUS current
+   DESCRIPTION
+   "This trap is sent when a PPC load is attempted"
+   ::={ traps 7 }
+
+
+keyReceivedFromTransfer NOTIFICATION-TYPE
+        OBJECTS {
+          hKTLoadedKeyShortTitle,
+          hKTLoadedKeyEdition,
+          hKTLoadedKeySegment,
+          hKTLoadedKeyRegister
+        }
+     STATUS current
+        DESCRIPTION
+        "This trap is sent when a key is transferred successfully to the device"
+        ::={ traps 8 }
+
+keyTransferFailure NOTIFICATION-TYPE
+        OBJECTS {
+          hKTLoadedKeyShortTitle,
+          hKTLoadedKeyEdition,
+          hKTLoadedKeySegment,
+          hKTLoadedKeyRegister
+        }
+     STATUS current
+        DESCRIPTION
+        "This trap is sent when a key is transferred unsuccessfully to the device"
+        ::={ traps 9 }
+
+ineIpAddressAdded NOTIFICATION-TYPE
+      OBJECTS {
+          hStationID, hrSystemDate,
+          ineInterface,
+          ineIpAddressType,
+          ineIpAddress
+        }
+     STATUS current
+        DESCRIPTION
+        "The trap is sent when an IP address has been added"
+        ::={ traps 10 }
+
+changeBattery NOTIFICATION-TYPE
+     STATUS current
+        DESCRIPTION
+        "This trap is sent when a battery must be changed in the device"
+        ::={ traps 11 }
+
+ineIpAddressDeleted NOTIFICATION-TYPE
+      OBJECTS {
+          hStationID, hrSystemDate,
+          ineInterface,
+          ineIpAddressType,
+          ineIpAddress
+        }
+     STATUS current
+        DESCRIPTION
+        "The trap is sent when an IP address has been deleted"
+        ::={ traps 12 }
+
+ineIpv6AddressTransition NOTIFICATION-TYPE
+      OBJECTS {
+          hStationID, hrSystemDate,
+          ineInterface,
+          ineIpAddressType,
+          ineIpAddress,
+       ineIpv6AddressState
+        }
+     STATUS current
+        DESCRIPTION
+        "The trap is sent when an IPv6 address state has transitioned from preferred to deprecated"
+        ::={ traps 13 }
+
+END

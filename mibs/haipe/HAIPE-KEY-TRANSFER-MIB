@@ -1,0 +1,1307 @@
+--
+--                 Unclassified//For Official Use Only
+--
+-- This entire document, which defines SNMP MIB objects in the SMIv2
+-- language should be considered U//FOUO.
+--
+-- The data that will be transmitted on the wire as a result of
+-- accessing these MIB objects MUST NOT BE CONSIDERED U//FOUO and is
+-- subject to separate classification.  The classification level of this
+-- data is not defined or within the scope of this document.
+--
+
+HAIPE-KEY-TRANSFER-MIB  DEFINITIONS  ::= BEGIN
+
+IMPORTS
+    OBJECT-TYPE, Unsigned32,
+    NOTIFICATION-TYPE, Integer32,
+    MODULE-IDENTITY                     FROM SNMPv2-SMI
+    SnmpAdminString                     FROM SNMP-FRAMEWORK-MIB
+    RowStatus, 
+    DateAndTime, TimeStamp, TruthValue  FROM SNMPv2-TC
+    hTrafficProtection                  FROM HAIPE-FEATURE-HIERARCHY-MIB
+    InetAddressType, InetAddress        FROM INET-ADDRESS-MIB
+    hPPKChainID, PPKShortTitle, 
+    PPKEdition, HaipeSegment            FROM HAIPE-TRAFFIC-PROTECTION-MIB
+    HaipeSecurityLevel                  FROM HAIPE-TC-MIB;
+
+haipeKeyTransferMIB MODULE-IDENTITY
+    LAST-UPDATED "200810031500Z"
+    ORGANIZATION "HAIPE PO"
+    CONTACT-INFO
+         "(U//FOUO) Not Available"
+    DESCRIPTION
+        "(U//FOUO) This MIB defines the HAIPE key transfer MIB objects."
+    ::= { hTrafficProtection 6 }
+
+-- **********************************************************************
+-- Traffic Protection Information Segments
+-- **********************************************************************
+
+-- shared OOB and IB configuration objects OID tree
+hKTConfigObjects            OBJECT IDENTIFIER ::= { haipeKeyTransferMIB 1 }
+
+-- Out-of-Band OID tree
+hKTOOBConfigObjects         OBJECT IDENTIFIER ::= { haipeKeyTransferMIB 2 }
+
+-- In-Band OID tree
+hKTIBConfigObjects          OBJECT IDENTIFIER ::= { haipeKeyTransferMIB 3 }
+
+-- CKL OID tree
+hKTCKLConfigObjects         OBJECT IDENTIFIER ::= { haipeKeyTransferMIB 4 }
+
+-- Key Transfer Notification OID tree
+hKTNotifications            OBJECT IDENTIFIER ::= { haipeKeyTransferMIB 5 }
+
+
+hKTKeyInformation           OBJECT IDENTIFIER ::= { hKTConfigObjects 1 }
+
+hKTOOBTFTPConfigObjects     OBJECT IDENTIFIER ::= { hKTOOBConfigObjects 1 }
+hKTOOBClientObjects         OBJECT IDENTIFIER ::= { hKTOOBConfigObjects 2 }
+hKTOOBControllerObjects     OBJECT IDENTIFIER ::= { hKTOOBConfigObjects 3 }
+
+hKTOOBControllerInformation OBJECT IDENTIFIER ::= { hKTOOBClientObjects 1 }
+hKTOOBClientsInformation    OBJECT IDENTIFIER ::= { hKTOOBControllerObjects 1 }
+hKTOOBKeyFileInformation    OBJECT IDENTIFIER ::= { hKTOOBControllerObjects 2 }
+
+hKTIBClientObjects          OBJECT IDENTIFIER ::= { hKTIBConfigObjects 1 }
+hKTIBControllerObjects      OBJECT IDENTIFIER ::= { hKTIBConfigObjects 2 }
+
+hKTIBControllerInformation  OBJECT IDENTIFIER ::= { hKTIBClientObjects 1 }
+hKTIBDisabledKeyInformation OBJECT IDENTIFIER ::= { hKTIBClientObjects 2 }
+hKTIBClientsInformation     OBJECT IDENTIFIER ::= { hKTIBControllerObjects 1 }
+
+hKTCKLServersInformation    OBJECT IDENTIFIER ::= { hKTCKLConfigObjects 1 }
+
+
+-- **************************************************************************
+-- Key Transfer MIB              ********************************************
+-- Crypto-Net Shared Objects     ********************************************
+-- **************************************************************************
+
+-- ********************************************************************
+-- hKTLoadedKeyTable
+-- holds the list of keys that have been loaded on this device
+-- in order to be transferred.
+
+hKTLoadedKeyTableCount OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hKTLoadedKeyTable."
+     ::= { hKTKeyInformation 4 }
+
+hKTLoadedKeyTableLastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The value of sysUpTime the last time any entry
+         in the hKTLoadedKeyTable was modified, created, or deleted
+         by either SNMP or other management method (.eg., via an
+         HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no
+         changes to configuration of this table have happened since
+         the last time it examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been
+         changed since the agent initialized."
+     ::= { hKTKeyInformation 5 }
+
+hKTLoadedKeyTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF HKTLoadedKeyEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The table for listing the keys available for
+        transfer.  This may be to In-Band Crypto_Net clients,
+        Out-of-Band Crypto-Net clients or internally (i.e. FILL
+        keys).  This table should be populated automatically when
+        the controller is loaded with key transfer keys."
+    ::= { hKTKeyInformation 6 }
+
+hKTLoadedKeyEntry OBJECT-TYPE
+    SYNTAX      HKTLoadedKeyEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) A row which indicates a key available for sending
+        to Crypto-Net Clients or moving to this box for its use."
+    INDEX { hKTLoadedKeyShortTitle, hKTLoadedKeyEdition,
+            hKTLoadedKeySegment, hKTLoadedKeyRegister }
+    ::= { hKTLoadedKeyTable 1 }
+
+HKTLoadedKeyEntry ::= SEQUENCE
+    {
+	hKTLoadedKeyShortTitle           PPKShortTitle,
+	hKTLoadedKeyEdition              PPKEdition,
+	hKTLoadedKeySegment              HaipeSegment,
+	hKTLoadedKeyRegister             OCTET STRING,
+	hKTLoadedKeyUse                  INTEGER,
+	hKTLoadedKeyClassification       HaipeSecurityLevel,
+	hKTLoadedKeyText                 OCTET STRING,
+	hKTLoadedKeyAction               INTEGER,
+	hKTLoadedKeyRowStatus            RowStatus
+    }
+
+hKTLoadedKeyShortTitle      OBJECT-TYPE
+    SYNTAX          PPKShortTitle
+    MAX-ACCESS	 read-only
+    STATUS          current
+    DESCRIPTION
+        "(U//FOUO) The short title of this loaded key."
+    ::= { hKTLoadedKeyEntry 1 }
+
+hKTLoadedKeyEdition             OBJECT-TYPE
+    SYNTAX          PPKEdition
+    MAX-ACCESS	 read-only
+    STATUS          current
+    DESCRIPTION
+        "(U//FOUO) The edition of this loaded key."
+    ::= { hKTLoadedKeyEntry 2 }
+
+hKTLoadedKeySegment             OBJECT-TYPE
+    SYNTAX          HaipeSegment
+    MAX-ACCESS	 read-only
+    STATUS          current
+    DESCRIPTION
+        "(U//FOUO) The segment number of this loaded key."
+    ::= { hKTLoadedKeyEntry 3 }
+
+hKTLoadedKeyRegister        OBJECT-TYPE
+    SYNTAX          OCTET STRING (SIZE(5))
+    MAX-ACCESS	 read-only
+    STATUS          current
+    DESCRIPTION
+        "(U//FOUO) The DS-100-1 Register Number of this loaded key.
+         This number conforms to network-byte order and the 4 most
+         significant bits should be set to zero."
+    ::= { hKTLoadedKeyEntry 4 }
+
+hKTLoadedKeyUse OBJECT-TYPE
+    SYNTAX      INTEGER { na(0), ffct(1), kek(2), 
+                          kpk(3), msk(4), qkek(5), 
+			  tek(6), tsk(7), trkek(8), 
+			  eff(9), ebff(10), aek(11) }
+    MAX-ACCESS	 read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This object indicates the type of key.  This is
+        from the use field of the DS-100-1 tag for this key.
+
+        (U//FOUO) The enumerations are equivelant to the DS-100-1
+        use field for the following:
+        na(0)    = Not Applicable
+        ffct(1)  = FIREFLY/CROSSTALK Key
+        kek(2)   = Key Encryption Key
+        kpk(3)   = Key Production Key
+        msk(4)   = Message Signature Key
+        qkek(5)  = QUADRANT Key Encryption Key
+        tek(6)   = Traffic Encryption Key
+        tsk(7)   = Transmission Security Key
+        trkek(8) = Transfer Key Encryption Key
+        eff(9)   = Enhanced FIREFLY Key
+        ebff(10) = Enhanceable Basic FIREFLY Key
+        aek(11)  = Algorithm Encryption Key
+        "
+    ::= { hKTLoadedKeyEntry 5 }
+
+hKTLoadedKeyClassification OBJECT-TYPE
+    SYNTAX      HaipeSecurityLevel
+    MAX-ACCESS	 read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This object indicates the classification field
+        from the DS-100-1 tag."
+    ::= { hKTLoadedKeyEntry 6 }
+
+hKTLoadedKeyText OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE(0|16))
+    MAX-ACCESS	 read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This object is the text field from the DS-100-1
+        tag.  If the field does not exist for this key, this object
+        will be a zero length Octet String."
+    ::= { hKTLoadedKeyEntry 7 }
+
+hKTLoadedKeyAction OBJECT-TYPE
+    SYNTAX      INTEGER { noaction(1), fill(2) }
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This object signals the HAIPE to perform actions on the 
+        the ISSUEd key. 
+        noaction(1) = Default State of the ISSUEd Key
+        fill(2)     = FILL key for local use. 
+
+        (U//FOUO) Setting this object to '2' will FILL the key
+        indicated by this row into the local HAIPE.  A FILLed
+        Firefly key may be automatically deleted from this table by the 
+        HAIPE.  A FILLED PPK is not automatically deleted.
+
+        (U//FOUO) Keys are deleted in this table using the RowStatus object."
+    DEFVAL  { noaction }
+    ::= { hKTLoadedKeyEntry 8 }
+
+hKTLoadedKeyRowStatus OBJECT-TYPE
+    SYNTAX      RowStatus
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which entries may be
+        deleted from this table.
+
+        (U//FOUO) The value of this object has no effect on whether
+        other objects in this row can be modified.
+
+        (U//FOUO) An active row cannot be changed to an inconsistent
+        state (an inconsistentValue error will be returned for the
+        object)."
+    ::= { hKTLoadedKeyEntry 9 }
+
+
+-- **************************************************************************
+-- Out-of-Band                   ********************************************
+-- TFTP Configuration Objects    ********************************************
+-- **************************************************************************
+ 
+hKTOOBTFTPDesiredBlockSize    OBJECT-TYPE
+    SYNTAX          Unsigned32 (8..65464)
+    UNITS           "Octets"
+    MAX-ACCESS	 read-write
+    STATUS		 current
+    DESCRIPTION
+        "(U//FOUO) The desired block size in octets to use when
+        negotiating Out-of-Band TFTP connections."
+    REFERENCE "RFC 2348"
+    DEFVAL { 512 }
+    ::= { hKTOOBTFTPConfigObjects 1 }
+
+
+hKTOOBTFTPDesiredTimeoutInterval OBJECT-TYPE
+    SYNTAX      Unsigned32 (1..255)
+    UNITS       "Seconds"
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This object indicates the desired timeout value
+        (in seconds) this node should use when negotiating
+        Out-of-Band TFTP connections."
+    REFERENCE "RFC 2349"
+    DEFVAL      { 5 }
+    ::= { hKTOOBTFTPConfigObjects 2 }
+
+hKTOOBTFTPMaximumFileTransferSize    OBJECT-TYPE
+    SYNTAX          Unsigned32
+    UNITS           "kilobytes"
+    MAX-ACCESS	 read-write
+    STATUS	 current
+    DESCRIPTION
+        "(U//FOUO) The maximum file transfer size used for
+        negotiating TFTP Out-of-Band connections."
+    REFERENCE "RFC 2349" 
+    ::= { hKTOOBTFTPConfigObjects 3 }
+
+
+
+-- **************************************************************************
+-- Out-of-Band                   ********************************************
+-- Crypto-Net Client Objects     ********************************************
+-- **************************************************************************
+ 
+
+-- ********************************************************************
+-- hKTOOBAuthControllersTable
+-- holds the list of Plaintext IP address for authorized
+-- Out-of-Band Crypto-Net Controllers.
+
+hKTOOBAuthControllersTableCount OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the
+        HKOOBAuthControllersTable.  It is administrative only and does
+        not indicate a binding to any sort of naming system like the
+        DNS."
+     ::= { hKTOOBControllerInformation 1 }
+
+hKTOOBAuthControllersTableLastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The value of sysUpTime the last time any entry
+         in the hKTOOBAuthControllersTable was modified, created, or
+         deleted by either SNMP or other management method (.eg.,
+         via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no
+         changes to configuration of this table have happened since
+         the last time it examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been
+         changed since the agent initialized."
+     ::= { hKTOOBControllerInformation 2 }
+
+hKTOOBAuthControllersTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF HKTOOBAuthControllersEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The table for configuring a list of a HAIPE's
+         authorized Out-of-Band Crypto-Net Controllers.  
+         
+         (U//FOUO) Note: a row with a rowStatus of anything other
+         than 'active' indicates that the associated PT IP address
+         is no longer an authorized Crypto-Net Controller and the
+         client MUST NOT accept key files from it.
+
+         (U//FOUO) To functionally turn Out-Of-Band key transfer off
+         for this client, all rows in this table are either deleted
+         or set to a state other than 'active'."
+    ::= { hKTOOBControllerInformation 3 }
+
+hKTOOBAuthControllersEntry OBJECT-TYPE
+    SYNTAX      HKTOOBAuthControllersEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) A row which describes the Plaintext (PT) IP
+        information for an authorized Out-of-Band Crypto-Net
+        Controller."
+    INDEX   { hKTOOBACName }
+    ::= { hKTOOBAuthControllersTable 1 }
+
+HKTOOBAuthControllersEntry ::= SEQUENCE
+    {
+	hKTOOBACName                     SnmpAdminString,
+	hKTOOBACAddressType              InetAddressType,
+	hKTOOBACAddress                  InetAddress,
+	hKTOOBACRowStatus                RowStatus
+    }
+
+hKTOOBACName        OBJECT-TYPE
+    SYNTAX	SnmpAdminString (SIZE(1..32))
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This sets an administrative string for the given
+        controller."
+    ::= { hKTOOBAuthControllersEntry 1 }
+
+hKTOOBACAddressType OBJECT-TYPE
+    SYNTAX      InetAddressType
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This sets the address type of the address to use
+        for an authorized Out-of-Band Crypto-Net controller."
+    ::= { hKTOOBAuthControllersEntry 2 }
+
+hKTOOBACAddress OBJECT-TYPE
+    SYNTAX      InetAddress
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This sets the Plaintext (PT) IP address of an
+        authorized Out-of-Band Crypto-Net Controller."
+    ::= { hKTOOBAuthControllersEntry 3 }
+
+hKTOOBACRowStatus OBJECT-TYPE
+    SYNTAX      RowStatus
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may
+        be created, or old entries deleted from this table.
+
+        (U//FOUO) The value of this object has no effect on whether
+        other objects in this row can be modified.
+
+        (U//FOUO) If any column is set to an invalid or unsupported
+        value (during row creation or any other time), a wrongValue
+        error will be returned for that object.
+
+        (U//FOUO) An active row cannot be changed to an inconsistent
+        state (an inconsistentValue error will be returned for the
+        object).
+
+        (U//FOUO) A row with a rowStatus of anything other than
+        'active' indicates that the associated PT IP address is no
+        longer an authorized Crypto-Net Controller and the client
+        MUST NOT accept key files from them."
+    ::= { hKTOOBAuthControllersEntry 4 }
+
+
+-- ***********************************************************************
+-- Out-of-Band                       *************************************
+-- Crypto-Net Controller Objects     *************************************
+-- ***********************************************************************
+
+-- ********************************************************************
+-- hKTOOBClientsTable
+-- holds the list of Plaintext IP address for authorized
+-- Out-of-Band Crypto-Net Controllers.
+
+hKTOOBClientsTableCount OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hKTOOBClientsTable."
+     ::= { hKTOOBClientsInformation 1 }
+
+hKTOOBClientsTableLastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The value of sysUpTime the last time any entry
+         in the hKTOOBClientsTable was modified, created, or deleted
+         by either SNMP or other management method (.eg., via an
+         HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no
+         changes to configuration of this table have happened since
+         the last time it examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been
+         changed since the agent initialized."
+     ::= { hKTOOBClientsInformation 2 }
+
+hKTOOBClientsTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF HKTOOBClientsEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The table for configuring a list of a HAIPE's
+         Out-of-Band Crypto-Net Clients.
+
+         (U//FOUO) To functionally turn Out-Of-Band key transfer off
+         for this controller, all rows in this table are either
+         deleted or set to a state other than 'active'."
+    ::= { hKTOOBClientsInformation 3 }
+
+hKTOOBClientsEntry OBJECT-TYPE
+    SYNTAX      HKTOOBClientsEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) A row which describes the Plaintext (PT) IP
+        information for an Out-of-Band Crypto-Net Client that can be
+        sent key files by this node."
+    INDEX   { hKTOOBClientName }
+    ::= { hKTOOBClientsTable 1 }
+
+HKTOOBClientsEntry ::= SEQUENCE
+    {
+	hKTOOBClientName                 SnmpAdminString,
+	hKTOOBClientAddressType          InetAddressType,
+	hKTOOBClientAddress              InetAddress,
+	hKTOOBClientKeyFile              SnmpAdminString,
+	hKTOOBClientPath                 OCTET STRING,
+	hKTOOBClientPushKey              TruthValue,
+	hKTOOBClientRowStatus            RowStatus
+    }
+
+hKTOOBClientName       OBJECT-TYPE
+    SYNTAX	SnmpAdminString (SIZE(1..32))
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This sets an administrative string for the given
+        client.  It is administrative only and does not indicate a
+        binding to any sort of naming system like the DNS."
+    ::= { hKTOOBClientsEntry 1 }
+
+hKTOOBClientAddressType OBJECT-TYPE
+    SYNTAX      InetAddressType
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This sets the address type of the address to use
+        for an Out-of-Band Crypto-Net Client."
+    ::= { hKTOOBClientsEntry 2 }
+
+hKTOOBClientAddress OBJECT-TYPE
+    SYNTAX      InetAddress
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This sets the Plaintext (PT) IP address of an
+        Out-of-Band Crypto-Net Client."
+    ::= { hKTOOBClientsEntry 3 }
+
+hKTOOBClientKeyFile OBJECT-TYPE
+    SYNTAX	SnmpAdminString (SIZE(0..32))
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This indicates the entry in the 
+        hKTOOBKeyFileTable which lists the keys that can be sent 
+        to the client indicated by this row.
+
+        (U//FOUO) An empty value indicates that no key file should
+        be sent to this client."
+    DEFVAL { "" }
+    ::= { hKTOOBClientsEntry 4 }
+
+hKTOOBClientPath OBJECT-TYPE
+    SYNTAX      OCTET STRING (SIZE(0..256))
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This object specifies the Filename to be given to
+        the client during the key file transfer.  Different device
+        vendors are likely to require a particular Filename to be used
+        to indicate OOB Key transfers."
+    ::= { hKTOOBClientsEntry 5 }
+
+hKTOOBClientPushKey OBJECT-TYPE
+    SYNTAX      TruthValue
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This object, when set to true, is used to
+        initiate a TFTP write request (WRQ) to push a key to a
+        client.  Implementations will ignore setting it to false,
+        and it will always return false when read.
+
+        (U//FOUO) If this object is set to true, but one or more of
+        the keys indicated by the hKTOOBClientKeyFile column are not
+        available (e.g. one has been deleted), then this operation
+        should fail and an inconsistentValue error returned to the
+        sender."
+    ::= { hKTOOBClientsEntry 6 }
+
+hKTOOBClientRowStatus OBJECT-TYPE
+    SYNTAX      RowStatus
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may
+        be created, or old entries deleted from this table.
+
+        (U//FOUO) The value of this object has no effect on whether
+        other objects in this row can be modified.
+
+        (U//FOUO) If any column is set to an invalid or unsupported
+        value (during row creation or any other time), a wrongValue
+        error will be returned for that object.
+
+        (U//FOUO) An active row cannot be changed to an inconsistent
+        state (an inconsistentValue error will be returned for the
+        object)."
+    ::= { hKTOOBClientsEntry 7 }
+
+
+-- ********************************************************************
+-- hKTOOBKeyFileTable
+-- holds the list of keys that make up a key file that can be
+-- transfered by an Out-of-Band Controller to a specific Client
+
+hKTOOBKeyFileTableCount OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the
+        hKTOOBKeyFileTable."
+     ::= { hKTOOBKeyFileInformation 1 }
+
+hKTOOBKeyFileTableLastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The value of sysUpTime the last time any entry
+         in the hKTOOBKeyFileTable was modified, created, or
+         deleted by either SNMP or other management method (.eg.,
+         via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no
+         changes to configuration of this table have happened since
+         the last time it examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been
+         changed since the agent initialized."
+     ::= { hKTOOBKeyFileInformation 2 }
+
+hKTOOBKeyFileTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF HKTOOBKeyFileEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The table for configuring the keys in the key
+        file that can be sent to an Out-of-Band Crypto-Net clients.
+
+        (U//FOUO) The set of keys for a file are made up of the set
+        of rows with a matching column value of hKTOOBKeyFileName.
+        For each of the rows in this table, the four columns
+        hKTOOBKeyFile- ShortTitle/Edition/Segment/Register are 
+        used to identify an included key and index a row in the
+        hKTLoadedKeyTable.
+
+        (U//FOUO) Note: the file names in this table do not
+        necessarily reflect anything about real file storage names
+        used by the SNMP agent within the device itself.  They are
+        administrative names used solely within this MIB, although
+        implementations may choose to reuse the names internally."
+    ::= { hKTOOBKeyFileInformation 3 }
+
+hKTOOBKeyFileEntry OBJECT-TYPE
+    SYNTAX      HKTOOBKeyFileEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) A row which indicates what keys can be sent in
+        the key file to a Crypto-Net Client."
+    INDEX   { hKTOOBKeyFileName, hKTOOBKeyFileNum }
+    ::= { hKTOOBKeyFileTable 1 }
+
+HKTOOBKeyFileEntry ::= SEQUENCE
+    {
+	hKTOOBKeyFileName                SnmpAdminString,
+	hKTOOBKeyFileNum                 Unsigned32,
+	hKTOOBKeyFileShortTitle          PPKShortTitle,
+	hKTOOBKeyFileEdition             PPKEdition,
+	hKTOOBKeyFileSegment             HaipeSegment,
+	hKTOOBKeyFileRegister 	         OCTET STRING,
+	hKTOOBKeyFileRowStatus           RowStatus
+    }
+
+hKTOOBKeyFileName OBJECT-TYPE
+    SYNTAX	SnmpAdminString (SIZE(1..32))
+    MAX-ACCESS	 read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This is a an administrative way of creating a
+        unique 'file' ID for a Crypto-Net key file."
+    ::= { hKTOOBKeyFileEntry 1 }
+
+hKTOOBKeyFileNum OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS	 read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This is an administrative way of creating a
+        unique row within this table.  This object allows for
+        multiple rows in this table to be associated with one
+        matching value of hKTOOBKeyFileName.
+
+        (U//FOUO) Note: This value does not indicate order or
+        priority but is just used to create a unique index."
+    ::= { hKTOOBKeyFileEntry 2 }
+
+hKTOOBKeyFileShortTitle      OBJECT-TYPE
+    SYNTAX          PPKShortTitle
+    MAX-ACCESS	 read-create
+    STATUS          current
+    DESCRIPTION
+        "(U//FOUO) The short title of this key's DS-100-1 tag."
+    ::= { hKTOOBKeyFileEntry 3 }
+
+hKTOOBKeyFileEdition             OBJECT-TYPE
+    SYNTAX          PPKEdition
+    MAX-ACCESS	 read-create
+    STATUS          current
+    DESCRIPTION
+        "(U//FOUO) The edition of this key's DS-100-1 tag."
+    ::= { hKTOOBKeyFileEntry 4 }
+
+hKTOOBKeyFileSegment             OBJECT-TYPE
+    SYNTAX          HaipeSegment
+    MAX-ACCESS	 read-create
+    STATUS          current
+    DESCRIPTION
+        "(U//FOUO) The segment number of this key's DS-100-1 tag."
+    ::= { hKTOOBKeyFileEntry 5 }
+
+hKTOOBKeyFileRegister             OBJECT-TYPE
+    SYNTAX          OCTET STRING (SIZE(5))
+    MAX-ACCESS	 read-create
+    STATUS          current
+    DESCRIPTION
+        "(U//FOUO) The Register Number of this key's DS-100-1 tag.
+         This number conforms to network-byte order and the 4 most
+         significant bits should be set to zero."
+    ::= { hKTOOBKeyFileEntry 6 }
+
+hKTOOBKeyFileRowStatus OBJECT-TYPE
+    SYNTAX      RowStatus
+    MAX-ACCESS	 read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may
+        be created, or old entries deleted from this table.
+
+        (U//FOUO) The value of this object has no effect on whether
+        other objects in this row can be modified.
+
+        (U//FOUO) If any column is set to an invalid or unsupported value, 
+        such as the hKTOOBKeyFile- ShortTitle/Edition/Segment/Register
+        columns being set to values that do not index into the
+        hKTLoadedKeyTable, a wrongValue error will be returned for
+        that object.
+
+        (U//FOUO) An active row cannot be changed to an inconsistent
+        state (an inconsistentValue error will be returned for the
+        object)."
+    ::= { hKTOOBKeyFileEntry 7 }
+
+
+-- **************************************************************************
+-- In-Band                       ********************************************
+-- Crypto-Net Client Objects     ********************************************
+-- **************************************************************************
+
+
+-- ********************************************************************
+-- hKTIBAuthControllersTable
+-- holds the list of Ciphertext IP address for authorized
+-- In-Band Crypto-Net Controllers.
+
+hKTIBAuthControllersTableCount OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the
+        hKIBAuthControllersTable.  It is administrative only and
+        does not indicate a binding to any sort of naming system
+        like the DNS."
+     ::= { hKTIBControllerInformation 1 }
+
+hKTIBAuthControllersTableLastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The value of sysUpTime the last time any entry
+         in the hKTIBAuthControllersTable was modified, created, or
+         deleted by either SNMP or other management method (.eg.,
+         via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no
+         changes to configuration of this table have happened since
+         the last time it examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been
+         changed since the agent initialized."
+     ::= { hKTIBControllerInformation 2 }
+
+hKTIBAuthControllersTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF HKTIBAuthControllersEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The table for configuring a list of a HAIPE's
+         authorized In-Band Crypto-Net Controllers.  
+         
+         (U//FOUO) Note: a row with a rowStatus of anything other
+         than 'active' indicates that the associated CT IP address
+         is no longer an authorized Crypto-Net Controller and the
+         client MUST NOT accept keys from it.
+
+         (U//FOUO) To functionally turn In-Band key transfer off for
+         this client, all rows in this table are either deleted or
+         set to a state other than 'active'."
+    ::= { hKTIBControllerInformation 3 }
+
+hKTIBAuthControllersEntry OBJECT-TYPE
+    SYNTAX      HKTIBAuthControllersEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) A row which describes the Ciphertext (CT) IP
+        information for an authorized In-Band Crypto-Net
+        Controller."
+    INDEX   { hKTIBACName }
+    ::= { hKTIBAuthControllersTable 1 }
+
+HKTIBAuthControllersEntry ::= SEQUENCE
+    {
+	hKTIBACName                      SnmpAdminString,
+	hKTIBACAddressType               InetAddressType,
+	hKTIBACAddress                   InetAddress,
+	hKTIBACRowStatus                 RowStatus
+    }
+
+hKTIBACName        OBJECT-TYPE
+    SYNTAX	SnmpAdminString (SIZE(1..32))
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This sets an administrative string for the given
+        controller."
+    ::= { hKTIBAuthControllersEntry 1 }
+
+hKTIBACAddressType OBJECT-TYPE
+    SYNTAX      InetAddressType
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This sets the address type of the address to use
+        for an authorized In-Band Crypto-Net controller."
+    ::= { hKTIBAuthControllersEntry 2 }
+
+hKTIBACAddress OBJECT-TYPE
+    SYNTAX      InetAddress
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This sets the Ciphertext (CT) IP address of an
+        authorized In-Band Crypto-Net Controller."
+    ::= { hKTIBAuthControllersEntry 3 }
+
+hKTIBACRowStatus OBJECT-TYPE
+    SYNTAX      RowStatus
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may
+        be created, or old entries deleted from this table.
+
+        (U//FOUO) The value of this object has no effect on whether
+        other objects in this row can be modified.
+
+        (U//FOUO) If any column is set to an invalid or unsupported
+        value (during row creation or any other time), a wrongValue
+        error will be returned for that object.
+
+        (U//FOUO) An active row cannot be changed to an inconsistent
+        state (an inconsistentValue error will be returned for the
+        object).
+
+        (U//FOUO) A row with a rowStatus of anything other than
+        'active' indicates that the associated CT IP address is no
+        longer an authorized Crypto-Net Controller and the client
+        MUST NOT accept keys from them."
+    ::= { hKTIBAuthControllersEntry 4 }
+
+
+-- ********************************************************************
+-- hKTIBDisabledKeyTable
+-- holds the list of keys disabled for in-band key transfersn
+
+hKTIBDisabledKeyTableCount OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the
+        HKIBDisabledKeyTable."
+     ::= { hKTIBDisabledKeyInformation 1 }
+
+hKTIBDisabledKeyTableLastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The value of sysUpTime the last time any entry
+         in the hKTIBDisabledKeyTable was modified, created, or
+         deleted by either SNMP or other management method (.eg.,
+         via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no
+         changes to configuration of this table have happened since
+         the last time it examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been
+         changed since the agent initialized."
+     ::= { hKTIBDisabledKeyInformation 2 }
+
+hKTIBDisabledKeyTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF HKTIBDisabledKeyEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The table for configuring a list of the client's
+        keys for which in-band key transfer supersession is disabled.
+        This table resides on the client."
+    ::= { hKTIBDisabledKeyInformation 3 }
+
+hKTIBDisabledKeyEntry OBJECT-TYPE
+    SYNTAX      HKTIBDisabledKeyEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) A row which identifies a key that is disabled for
+        in-bound key transfers."
+    INDEX { hKTIBDKShortTitle, hKTIBDKPPKEdition, 
+            hKTIBDKPPKSegment  }
+    ::= { hKTIBDisabledKeyTable 1 }
+
+HKTIBDisabledKeyEntry ::= SEQUENCE
+    {
+	hKTIBDKShortTitle                PPKShortTitle,
+	hKTIBDKPPKEdition                PPKEdition,
+	hKTIBDKPPKSegment                HaipeSegment,
+	hKTIBDKRowStatus                 RowStatus
+    }
+
+hKTIBDKShortTitle OBJECT-TYPE
+    SYNTAX      PPKShortTitle
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The short title of the disabled key."
+    ::= { hKTIBDisabledKeyEntry 1 }
+
+hKTIBDKPPKEdition   OBJECT-TYPE
+    SYNTAX          PPKEdition
+    MAX-ACCESS	 read-create
+    STATUS          current
+    DESCRIPTION
+        "(U//FOUO) The edition of the disabled key."
+    ::= { hKTIBDisabledKeyEntry 2 }
+
+hKTIBDKPPKSegment   OBJECT-TYPE
+    SYNTAX          HaipeSegment
+    MAX-ACCESS	 read-create
+    STATUS          current
+    DESCRIPTION
+        "(U//FOUO) The segment number of the disabled key."
+    ::= { hKTIBDisabledKeyEntry 3 }
+
+hKTIBDKRowStatus OBJECT-TYPE
+    SYNTAX      RowStatus
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may
+        be created, or old entries deleted from this table.
+
+        (U//FOUO) The value of this object has no effect on whether
+        other objects in this row can be modified.
+
+        (U//FOUO) If any column is set to an invalid or unsupported
+        value (during row creation or any other time), a wrongValue
+        error will be returned for that object.
+
+        (U//FOUO) An active row cannot be changed to an inconsistent
+        state (an inconsistentValue error will be returned for the
+        object)."
+    ::= { hKTIBDisabledKeyEntry 4 }
+
+
+
+-- ***********************************************************************
+-- In-Band                           *************************************
+-- Crypto-Net Controller Objects     *************************************
+-- ***********************************************************************
+
+
+-- ********************************************************************
+-- hKTIBClientsTable
+-- Holds the list of In-Band Crypto-Net Client IP addresses and
+-- associated parameters that a Crypto-Net Controller uses to make
+-- key transfers to clients.
+
+hKTIBClientsTableCount OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hKTIBClientsTable."
+     ::= { hKTIBClientsInformation 1 }
+
+hKTIBClientsTableLastChanged OBJECT-TYPE
+    SYNTAX      TimeStamp
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The value of sysUpTime the last time any entry
+         in the hKTIBClientsTable was modified, created, or deleted
+         by either SNMP or other management method (.eg., via an
+         HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no
+         changes to configuration of this table have happened since
+         the last time it examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been
+         changed since the agent initialized."
+     ::= { hKTIBClientsInformation 2 }
+
+hKTIBClientsTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF HKTIBClientsEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The table for configuring a list of a Net
+        Controller's In-Band Crypto-Net Clients.  This table
+        indicates a client (by address), a PPK Chain used to connect
+        to that client, and a PPK.  The PPK is sent to the client at
+        the time indicated by hKTIBClientTransferTime through an SA
+        that uses the PPK Chain, hPPKChainID.  The PPK sent to the
+        client is added by the client to the PPK Chain it used for
+        the receiving SA and given an effective date,
+        hKTIBClientEffectiveDate.  The hKTIBCLientPPK-
+        ShortTitle/Edition/Segment/Register columns index a key 
+        in the hKTLoadedKeyTable table.  
+
+        (U//FOUO) To functionally turn In-Band key transfer off for
+        this controller, all rows in this table are either deleted
+        or set to a state other than 'active'."
+    ::= { hKTIBClientsInformation 3 }
+
+hKTIBClientsEntry OBJECT-TYPE
+    SYNTAX      HKTIBClientsEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) A row which describes the information for an
+        In-Band Crypto-Net Client that can be sent keys by this
+        node."
+    INDEX   { hPPKChainID, hKTIBClientAddressType,
+              hKTIBClientAddress, hKTIBClientPPKShortTitle,
+              hKTIBClientPPKEdition, hKTIBClientPPKSegment,
+              hKTIBClientPPKRegister }
+    ::= { hKTIBClientsTable 1 }
+
+HKTIBClientsEntry ::= SEQUENCE
+    {
+	hKTIBClientAddressType           InetAddressType,
+	hKTIBClientAddress               InetAddress,
+	hKTIBClientPPKShortTitle         PPKShortTitle,
+	hKTIBClientPPKEdition            PPKEdition,
+	hKTIBClientPPKSegment            HaipeSegment,
+	hKTIBClientPPKRegister       OCTET STRING,
+	hKTIBClientTransferTime          DateAndTime,
+	hKTIBClientRetries               Unsigned32,
+	hKTIBClientRetryPeriod           Unsigned32,
+	hKTIBClientEffectiveDate         DateAndTime,
+	hKTIBClientRowStatus             RowStatus
+    }
+
+hKTIBClientAddressType OBJECT-TYPE
+    SYNTAX      InetAddressType
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This sets the address type of the address to use
+        for an In-Band Crypto-Net Client."
+    ::= { hKTIBClientsEntry 1 }
+
+hKTIBClientAddress OBJECT-TYPE
+    SYNTAX      InetAddress
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This sets the Ciphertext (CT) IP address of an
+        In-Band Crypto-Net Client."
+    ::= { hKTIBClientsEntry 2 }
+
+hKTIBClientPPKShortTitle OBJECT-TYPE
+    SYNTAX      PPKShortTitle
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This object is the short title of the pre-placed
+        key (PPK) to be sent to the client."
+    ::= { hKTIBClientsEntry 3 }
+
+hKTIBClientPPKEdition             OBJECT-TYPE
+    SYNTAX          PPKEdition
+    MAX-ACCESS	 read-create
+    STATUS          current
+    DESCRIPTION
+        "(U//FOUO) The edition of the pre-placed key (PPK) to be
+        sent to the client."
+    ::= { hKTIBClientsEntry 4 }
+
+hKTIBClientPPKSegment             OBJECT-TYPE
+    SYNTAX          HaipeSegment
+    MAX-ACCESS	 read-create
+    STATUS          current
+    DESCRIPTION
+        "(U//FOUO) The segment number of the pre-placed key (PPK) to
+        be sent to the client."
+    ::= { hKTIBClientsEntry 5 }
+
+hKTIBClientPPKRegister             OBJECT-TYPE
+    SYNTAX          OCTET STRING (SIZE(5))
+    MAX-ACCESS	 read-create
+    STATUS          current
+    DESCRIPTION
+        "(U//FOUO) The DS-100-1 Register Number of the pre-placed 
+        key (PPK) to be sent to the client. This number conforms
+        to network-byte order and the 4 most significant bits
+        should be set to zero."
+    ::= { hKTIBClientsEntry 6 }
+
+hKTIBClientTransferTime OBJECT-TYPE
+    SYNTAX      DateAndTime
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This indicates the date and time that the key
+        indicated by this row should be sent to the client indicated
+        by this row.
+
+        (U//FOUO) Note: In accordance with the HAIPE IS, certain 
+        configurations of this object may be illegal.  
+        For example, If the month and year of this object matches the
+        month and year of the hKTIBClientEffectiveDate object in
+        this row, it is illegal to schedule the transfer to occur 
+        within the HAIPE IS specified changeover window."
+    ::= { hKTIBClientsEntry 7 }
+
+-- XXX: what are good defaults
+
+hKTIBClientRetries OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This indicates the number of times the key should
+        be re-sent to the client.  For example, a value of zero
+        indicates that the key should be sent once.  A value of 2
+        indicates the key should be sent three times (once for the
+        initial send, and then two retries)."
+    ::= { hKTIBClientsEntry 8 }
+
+hKTIBClientRetryPeriod OBJECT-TYPE
+    SYNTAX      Unsigned32
+    UNITS       "seconds"
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This indicates the number of seconds between each
+        attempt to re-send the key to a client."
+    ::= { hKTIBClientsEntry 9 }
+
+
+hKTIBClientEffectiveDate OBJECT-TYPE
+    SYNTAX      DateAndTime
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This indicates the effective date placed in the
+        packet sent to the to the client indicated by this row.
+
+        (U//FOUO) Note: Only the Year and Month values of this
+        object are used.  The other values in this object
+        (e.g. hours, minutes, seconds,...) are ignored."
+    ::= { hKTIBClientsEntry 10 }
+
+
+hKTIBClientRowStatus OBJECT-TYPE
+    SYNTAX      RowStatus
+    MAX-ACCESS  read-create
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may
+        be created, or old entries deleted from this table.
+
+        (U//FOUO) The value of this object has no effect on whether
+        other objects in this row can be modified.
+
+        (U//FOUO) If any column is set to an invalid or unsupported
+        value, such as the hKTIBClientPPK-
+        ShortTitle/Edition/Segment/Register columns being set to 
+        values that do not index a PPK key in the hKTLoadedKeyTable, a
+        wrongValue error will be returned for that object.
+
+        (U//FOUO) An active row cannot be changed to an inconsistent
+        state (an inconsistentValue error will be returned for the
+        object)."
+    ::= { hKTIBClientsEntry 11 }
+
+
+-- *********************************************************************
+-- Notification Objects                   ******************************
+-- *********************************************************************
+
+hKTControllerNotifications       OBJECT IDENTIFIER ::= { hKTNotifications 0 }
+hKTControllerNotificationObjects OBJECT IDENTIFIER ::= { hKTNotifications 1 }
+
+hKTOOBControllerNNode         OBJECT IDENTIFIER ::= { hKTNotifications 2 }
+hKTOOBControllerNotifications OBJECT IDENTIFIER ::= { hKTOOBControllerNNode 0 }
+hKTOOBControllerNotificationObjects OBJECT IDENTIFIER ::= { hKTOOBControllerNNode 1 }
+
+hKTIBControllerNNode          OBJECT IDENTIFIER ::= { hKTNotifications 3 }
+hKTIBControllerNotifications  OBJECT IDENTIFIER ::= { hKTIBControllerNNode 0 }
+hKTIBControllerNotificationObjects OBJECT IDENTIFIER ::= { hKTIBControllerNNode 1 }
+
+
+-- OOB Notifications
+
+hKTOOBControllerTFTPErrorReceived NOTIFICATION-TYPE
+    OBJECTS     { hKTOOBClientAddressType, hKTOOBClientAddress,
+                  hKTOOBNotificationErrorCode }
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The notification sent when error codes are
+        received from a client during a TFTP transfer."
+    ::={ hKTOOBControllerNotifications 1 }
+
+hKTOOBNotificationErrorCode OBJECT-TYPE
+    SYNTAX      Integer32
+    MAX-ACCESS  accessible-for-notify
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This object represents the error code received
+        from a client on the TFTP connection that caused the
+        notification.
+
+        (U//FOUO) If no error code integer value is available, this
+        value should be '0'."
+    ::= { hKTOOBControllerNotificationObjects 1 }
+
+hKTOOBControllerKeyFileMissingKeyError NOTIFICATION-TYPE
+    OBJECTS      { hKTOOBClientName, hKTOOBClientKeyFile }
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This notification is sent when an attempt is made
+        to send a key file using the hKTOOBClientsTable and it fails
+        because one or more of the keys in the key file indicated by
+        hKTOOBClientKeyFile are missing.  The presence of all keys
+        is checked before any key is sent. Any missing key will 
+        result in this notification being generated."
+    ::= { hKTOOBControllerNotifications 2 }
+
+hKTOOBLoadedKeyDeletedUsedPPKError NOTIFICATION-TYPE
+    OBJECTS      { hKTOOBKeyFileName, hKTOOBKeyFileNum,
+                   hKTLoadedKeyShortTitle, hKTLoadedKeyEdition,
+                   hKTLoadedKeySegment, hKTLoadedKeyRegister }
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This notification is sent when a key is deleted
+        from the hKTLoadedKeyTable that is referenced by the
+        hKTOOBKeyFileTable."
+    ::= { hKTOOBControllerNotifications 3 }
+
+-- IB Notifications
+
+hKTIBLoadedKeyDeletedUsedPPKError NOTIFICATION-TYPE
+    OBJECTS      { hKTIBClientAddressType, hKTIBClientAddress,
+                   hPPKChainID,
+                   hKTLoadedKeyShortTitle, hKTLoadedKeyEdition,
+                   hKTLoadedKeySegment, hKTLoadedKeyRegister }
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This notification is sent when a key is deleted
+        from the hKTLoadedKeyTable that is referenced by the
+        hKTIBClientsTable."
+    ::= { hKTIBControllerNotifications 1 }
+
+hKTIBControllerMissingKeyError NOTIFICATION-TYPE
+    OBJECTS      { hKTIBClientAddressType, hKTIBClientAddress,
+                   hPPKChainID,
+                   hKTLoadedKeyShortTitle, hKTLoadedKeyEdition,
+                   hKTLoadedKeySegment, hKTLoadedKeyRegister }
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) This notification is sent when an attempt is made
+        to send a key using the hKTIBClientsTable and it fails
+        because the indicated key is not present in the hKTLoadedKeyTable."
+    ::= { hKTIBControllerNotifications 2 }
+
+
+END

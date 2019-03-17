@@ -1,0 +1,1587 @@
+--
+--                 Unclassified//For Official Use Only
+--
+-- This entire document, which defines SNMP MIB objects in the SMIv2
+-- language should be considered U//FOUO.
+--
+-- The data that will be transmitted on the wire as a result of
+-- accessing these MIB objects MUST NOT BE CONSIDERED U//FOUO and is
+-- subject to separate classification.  The classification level of this
+-- data is not defined or within the scope of this document.
+--
+
+HAIPE-V4-DISCOVERY-MIB  DEFINITIONS  ::= BEGIN
+
+IMPORTS
+    hv4Discovery                        FROM HAIPE-V4-FEATURE-HIERARCHY-MIB
+    OBJECT-TYPE, Unsigned32, Integer32,
+    MODULE-IDENTITY                     FROM SNMPv2-SMI
+    RowStatus, TruthValue, DateAndTime,
+    TimeStamp, RowPointer               FROM SNMPv2-TC
+    IPAddress, IPv4Address, PortNumber,
+    IPAddressType                       FROM HAIPE-V4-TEXTUAL-CONVENTIONS-MIB;
+
+haipev4DiscoveryMIB MODULE-IDENTITY
+    LAST-UPDATED "201602190530Z"
+    ORGANIZATION "HAIPE PO"
+    CONTACT-INFO
+         "(U//FOUO) Not Available"
+    DESCRIPTION
+        "(U//FOUO) This MIB defines the HAIPE discovery MIB objects."
+    REVISION     "201602190530Z"
+    DESCRIPTION  "(U//FOUO) MIB 4.2.3 Final"
+    ::= { hv4Discovery 1 }
+
+hPeerDiscovery               OBJECT IDENTIFIER ::= { haipev4DiscoveryMIB 1 }
+hLocalDiscovery              OBJECT IDENTIFIER ::= { haipev4DiscoveryMIB 2 }
+
+hPEPT                        OBJECT IDENTIFIER ::= { hPeerDiscovery 1 }
+hIMPEPD                      OBJECT IDENTIFIER ::= { hPeerDiscovery 2 }
+hIMPEPDInterface             OBJECT IDENTIFIER ::= { hPeerDiscovery 3 }
+hLegacyDiscovery             OBJECT IDENTIFIER ::= { hPeerDiscovery 4 }
+hLegacyDiscoveryDelivery     OBJECT IDENTIFIER ::= { hLegacyDiscovery 1 }
+hGDC                         OBJECT IDENTIFIER ::= { hPeerDiscovery 5 }
+
+hGDCRegistration             OBJECT IDENTIFIER ::= { hGDC 1 }
+hGDCSolicitDelivery          OBJECT IDENTIFIER ::= { hGDC 2 }
+hGDCReception                OBJECT IDENTIFIER ::= { hGDC 3 }
+
+hLEPT                        OBJECT IDENTIFIER ::= { hLocalDiscovery 2 }
+hRIPConfig                   OBJECT IDENTIFIER ::= { hLocalDiscovery 3 }
+
+hLearnedLocalPrefixAdminCost OBJECT-TYPE
+    SYNTAX      Integer32 (0..255)
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The administrative cost to advertise for local
+        prefixes. Entries placed into the hLEPTTable which are learned
+        from automated discovery mechanisms will set the hLEPTAdminCost
+        to this value. Note, this is not the administrative cost that is
+        obtained from automated discovery mechanisms (e.g. RIP)."
+    ::= { hLocalDiscovery 1 }
+
+-- **********************************************************************
+-- Peer Enclave Prefix Table [PEPT]
+-- **********************************************************************
+
+hPEPTTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hPEPTTable."
+    ::= { hPEPT 1 }
+
+hPEPTTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime the last time any entry in the
+         hPEPTTable was modified, created, or deleted by either SNMP or other
+         management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hPEPT 2 }
+
+hPEPTTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HPEPTTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The table containing a list of known peer HAIPE PT enclave
+         topology information.  The contents of this table can be populated
+         either by manual assignment, or through the use of discovery services.
+         It is used to route outbound PT packets to the appropriate peer HAIPE
+         and is also used in dynamic SA creation."
+    ::= { hPEPT 3 }
+
+hPEPTTableEntry OBJECT-TYPE
+    SYNTAX     HPEPTTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A row indicating that a particular prefix is reachable via
+         a particular HAIPE."
+    INDEX  { hPEPTRemoteDestHostAddressType, hPEPTRemoteDestHostAddress,
+             hPEPTPrefixLength, hPEPTPeerCTAddress, hPEPTPeerPTAddress }
+    ::= { hPEPTTable 1 }
+
+HPEPTTableEntry ::= SEQUENCE
+{
+   hPEPTRemoteDestHostAddressType IPAddressType,
+   hPEPTRemoteDestHostAddress     IPAddress,
+   hPEPTPrefixLength              Unsigned32,
+   hPEPTPeerCTAddress             IPAddress,
+   hPEPTPeerPTAddress             IPAddress,
+   hPEPTNATAddress                IPAddress,
+   hPEPTNATPort                   PortNumber,
+   hPEPTAdminCost                 Unsigned32,
+   hPEPTRowConfigMethod           INTEGER,
+   hPEPTPrefixLifetime            DateAndTime,
+   hPEPTRowStatus                 RowStatus,
+   hIKEv2KEPPriority              INTEGER
+}
+
+hPEPTRemoteDestHostAddressType  OBJECT-TYPE
+    SYNTAX     IPAddressType
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol version, IPv4 or IPv6, of the remote PT
+         enclave. Specifically, the value of this property determines the size and
+         format of the hPEPTRemoteDestHostAddress, hPEPTPeerCTAddress,
+         hPEPTPeerPTAddress, and hPEPTNATAddress."
+    ::= { hPEPTTableEntry 1 }
+
+hPEPTRemoteDestHostAddress  OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol addressing information for the
+         remote destination host. The size and format of this column is 
+         determined by the hPEPTRemoteDestHostAddressType."
+    ::= { hPEPTTableEntry 2 }
+
+hPEPTPrefixLength  OBJECT-TYPE
+    SYNTAX     Unsigned32 (0..128)
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The prefix length of the address stored in
+         hPEPTRemoteDestHostAddress (e.g., the network mask)."
+    ::= { hPEPTTableEntry 3 }
+
+hPEPTPeerCTAddress OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol addressing information for the
+         remote HAIPE CT address. The size and format of this column is
+         determined by the hPEPTRemoteDestHostAddressType."
+    ::= { hPEPTTableEntry 4 }
+
+hPEPTPeerPTAddress OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol addressing information for the
+         remote HAIPE PT address. The size and format of this column is
+         determined by the hPEPTRemoteDestHostAddressType.
+
+         (U//FOUO) If the PT address of the peer HAIPE is unknown, the column 
+         must be populated with 0.0.0.0 for IPv4 or 
+         0000:0000:0000:0000:0000:0000:0000:0000 for IPv6."
+    ::= { hPEPTTableEntry 5 }
+
+hPEPTNATAddress OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol addressing information for the
+         NAT fronting the remote HAIPE. The size and format of this column is
+         determined by the hPEPTRemoteDestHostAddressType.
+
+         (U//FOUO) Note: For non-NAT'ed enclave entries, this value will default
+         to 0.0.0.0  and :: for IPv4 and IPv6 respectively."
+    ::= { hPEPTTableEntry 6 }
+
+hPEPTNATPort  OBJECT-TYPE
+    SYNTAX     PortNumber
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The port of the NAT fronting the remote HAIPE.
+
+         (U//FOUO) Note: For non-NAT'ed enclave entries, this value will default
+         to 0."
+    ::= { hPEPTTableEntry 7 }
+
+hPEPTAdminCost  OBJECT-TYPE
+    SYNTAX     Unsigned32 (0..255)
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The administrative cost of reaching the
+         hPEPTRemoteDestHostAddress (or subnet) via the specified peer HAIPE,
+         hPEPTPeerCTAddress.
+
+         (U//FOUO) For a remote prefix learned viA Discovery, this object will
+         be populated with the associated Discovery cost/metric learned."
+    ::= { hPEPTTableEntry 8 }
+
+hPEPTRowConfigMethod  OBJECT-TYPE
+    SYNTAX     INTEGER{ manual(1), legacyDiscovery(2), gdc(3), ikeTop(4),
+                        other(5)}
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The method by which this row was configured."
+    ::= { hPEPTTableEntry 9 }
+
+hPEPTPrefixLifetime  OBJECT-TYPE
+    SYNTAX     DateAndTime
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The date and time that this particular entry will become
+         invalid. For remote prefixes learned via Generic Discovery, this object
+         will be populated with the associated Prefix Lifetime received.
+
+         (U//FOUO) When an infinite Prefix Lifetime (0xFFFFFFFF) is received 
+         from a GDC message, this object should be populated as follows:
+
+             Octets   contents    Decimal Value
+              1-2      year         65535
+               3       month         12
+               4        day          31
+               5        hour         23
+               6      minutes        59
+               7      seconds        60
+               8    deci-seconds     9
+
+         (U//FOUO) If this particular entry is the result of a Legacy Discovery or
+         IKE-TOP, this object must not exist. Agents must allow for the creation 
+         of this object for manually created rows."
+    ::= { hPEPTTableEntry 10 }
+
+hPEPTRowStatus  OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may be created,
+         or old entries deleted from this table.
+
+         (U//FOUO) This table is configured independently from the hLEPTTable.
+
+         (U//FOUO) If an attempt to create a new row via createAndGo does not
+         include values for columns for the new row, an inconsistentName error
+         will be returned for this object.
+
+         (U//FOUO) A row cannot be set to active while
+         hPEPTRemoteDestHostAddressType, hPEPTRemoteDestHostAddress,
+         hPEPTPrefixLength, hPEPTPeerCTAddress, hPEPTPeerPTAddress,
+         hPEPTNATAddress, and hPEPTNATPort do not contain consistent values
+         for the row. An inconsistentValue error will be returned for this
+         object.
+
+         (U//FOUO) If any column is set to an invalid or unsupported value
+         (during row creation or any other time), a wrongValue error will be
+         returned for that object.
+
+         (U//FOUO) An active row may not be changed
+         to an inconsistent state.  If such an attempt is made, an
+         inconsistentValue error will be returned. In other words, any new
+         values must be valid values for an active row.
+
+         (U//FOUO) At a minimum, implementations must support createAndGo and
+         destroy management functions. Support for createAndWait, active,
+         notInService, and notReady management functions is optional."
+    ::= { hPEPTTableEntry 11 }
+
+hIKEv2KEPPriority  OBJECT-TYPE
+    SYNTAX     INTEGER { ellipticCurve(1), ecb(2) }
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) Managed on a per-peer basis, this column determines the type
+         of Key Exchange Payload in the first HAIPE IKEv2 - IKE_SA_INIT request 
+         message.
+
+         (U//FOUO) [ellipticCurve] If this object is set to 'ellipticCurve', the 
+         first HAIPE IKEv2 - IKE_SA_INIT request message will include an 
+         non-Early Crossbow Key Exchange Payload.
+
+         (U//FOUO) [ecb] If this object is set to 'ecb', the first 
+         HAIPE IKEv2 - IKE_SA_INIT request message will include an Early 
+         Crossbow based Key Exchange Payload.
+         
+         (U//FOUO) Note: this is intended to assist the device in choosing the 
+         KE payload to be sent in the first attempted IKE_SA_INIT. Upon receipt 
+         of a N(INVALID_KE_PAYLOAD) from a peer, the HAIPE is expected to use 
+         indicated KE Payload type."
+    ::= { hPEPTTableEntry 12 }
+
+-- **********************************************************************
+-- GDC MIB Objects
+-- **********************************************************************
+
+-- =========
+-- GDC Registration
+-- =========
+
+hGDCRegistrationTimeout OBJECT-TYPE
+    SYNTAX      Unsigned32
+    UNITS       "seconds"
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The timeout value, in seconds, for GDC REGISTRATION
+         messages."
+    ::= { hGDCRegistration 1 }
+
+hGDCRegistrationRetryCount OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The number of times GDC REGISTRATION messages will be
+        resent if no response is received within the timeout specified by the
+        hGDCRegistrationTimeout object.  A configuration value of ZERO
+        would indicate continuously sending the message until receiving an
+        acknowledgement."
+    ::= { hGDCRegistration 2 }
+
+hGDCRegistrationTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hGDCRegistrationTable."
+    ::= { hGDCRegistration 3 }
+
+hGDCRegistrationTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime showing the last time any entry in the
+         hGDCRegistrationTable was modified, created, or deleted by either SNMP
+         or other management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to the
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hGDCRegistration 4 }
+
+hGDCRegistrationTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HGDCRegistrationTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The table containing a set of PT IP addresses (multicast or
+         unicast) that discovery REGISTRATION messages should be sent to.
+
+         (U//FOUO) REGISTRATION messages will be sent to all addresses specified
+         in this table.
+
+         (U//FOUO) If the PT address of a given discovery registration
+         destination is remote, the REGISTRATION messages to that server will 
+         be treated as an outbound PT packet.  Hence, this message will need
+         verification against the hPolicyRuleTable to determine the appropriate
+         level of protection needed.
+
+         (U//FOUO) This table configuration is independent of the
+         hGDCSolicitDelivTable, hGDCReceptionTable and hPEPTTable.
+
+         (U//FOUO) Note: The HAIPE IS refers to this as the 'Registration
+         Transmission Address Table'."
+    ::= { hGDCRegistration 5 }
+
+hGDCRegistrationTableEntry OBJECT-TYPE
+    SYNTAX     HGDCRegistrationTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) An entry defines a particular PT IP destination to send GDC
+         REGISTRATION messages to."
+    INDEX  { hGDCRegistrationAddressType, hGDCRegistrationAddress,
+             hGDCRegistrationPort }
+    ::= { hGDCRegistrationTable 1 }
+
+HGDCRegistrationTableEntry ::= SEQUENCE
+{
+   hGDCRegistrationAddressType     IPAddressType,
+   hGDCRegistrationAddress         IPAddress,
+   hGDCRegistrationPort            PortNumber,
+   hGDCRegistrationRowStatus       RowStatus
+}
+
+hGDCRegistrationAddressType  OBJECT-TYPE
+    SYNTAX     IPAddressType
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol Version, IPv4 or IPv6, of the 
+         GDC Registration Server. Specifically, the value of this property 
+         determines the size and format of the hGDCRegistrationAddress."
+    ::= { hGDCRegistrationTableEntry 1 }
+
+hGDCRegistrationAddress OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol addressing information for the
+         PT address to which the REGISTRATION messages should be sent. 
+         The size and format of this column is determined by the
+         hGDCRegistrationAddressType."
+    ::= { hGDCRegistrationTableEntry 2 }
+
+hGDCRegistrationPort OBJECT-TYPE
+    SYNTAX     PortNumber
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The port number associated with the hGDCRegistrationAddress to
+         send REGISTRATION messages to."
+    ::= { hGDCRegistrationTableEntry 3 }
+
+hGDCRegistrationRowStatus  OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+         "(U//FOUO) The status of the row by which new entries may be created, or
+         existing entries deleted from this table.
+
+         (U//FOUO) If an attempt to create a row via createAndGo does not include valid
+         values for all columns for the new row, an inconsistentName error will be
+         returned for this object.
+         
+         (U//FOUO) A row cannot be set to active while hGDCRegistrationAddressType,
+         hGDCRegistrationAddress, and hGDCRegistrationPort do not contain consistent
+         values for the row. An inconsistentValue error will be returned for this
+         object
+         
+         (U//FOUO) At a minimum, implementations must support createAndGo and destroy
+         management functions. Support for createAndWait, active, notInService, and
+         notReady management functions is optional."
+    ::= { hGDCRegistrationTableEntry 4 }
+
+-- =========
+-- GDC Solicitation Delivery
+-- =========
+
+hGDCSolicitDelivTimeout OBJECT-TYPE
+    SYNTAX      Unsigned32
+    UNITS       "seconds"
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The timeout value, in seconds, for GDC SOLICITATION
+         messages."
+    ::= { hGDCSolicitDelivery 1 }
+
+hGDCSolicitDelivRetryCount OBJECT-TYPE
+    SYNTAX      Unsigned32
+    MAX-ACCESS  read-write
+    STATUS      current
+    DESCRIPTION
+        "(U//FOUO) The number of times GDC SOLICITATION messages will be resent
+        if no response is received within the timeout specified by the
+        hGDCSolicitDelivTimeout object."
+    ::= { hGDCSolicitDelivery 2 }
+
+hGDCSolicitDelivTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hGDCSolicitDelivTable."
+    ::= { hGDCSolicitDelivery 3 }
+
+hGDCSolicitDelivTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime the last time any entry in the
+         hGDCSolicitDelivTable was modified, created, or deleted by either
+         SNMP or other management method (e.g. via an HMI).
+
+         (U//FOUO) A manager can use this object to ensure that no changes to
+         the configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hGDCSolicitDelivery 4 }
+
+hGDCSolicitDelivTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HGDCSolicitDelivTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The table containing a prioritized sequence of IP addresses
+         (multicast and unicast) that GDC discovery SOLICITATION message should
+         be sent to when performing peer discovery.
+
+         (U//FOUO) Usage:
+         A Lookup against this table is performed when an outbound PT packet does not
+         have a matching entry in the hPEPTTable. The entry with the highest
+         priority, indicated by hGDCSolicitDelivPriority, is retrieved and a
+         SOLICITATION QUERY message is sent to the specified server. This query
+         message will be sent out until: a) a response is received or b) the number
+         of retries is reached.
+
+         (U//FOUO) If a response is received on a query to a unicast addresss, the
+         hPEPTTable will be updated. If the number of retries is reached, the next
+         highest priority entry (if any) is retrieved and this process is repeated.
+         SOLICITATION Query message retries and timeouts are controlled by global
+         scalars hGDCSolicitDelivRetryCount and hGDCSolicitDelivTimeout respectively.
+
+         (U//FOUO) If the PT address of a given discovery delivery destination
+         is remote, the SOLICITATION QUERY message to such server will be
+         treated as an outbound PT packet. Hence, this query message will need
+         verification against the hPolicyRuleTable to determine the appropriate
+         level of protection needed.
+
+         (U//FOUO) This table configuration is independent of the
+         hGDCRegistrationTable, hGDCReceptionTable, and hPEPTTable.
+
+         (U//FOUO) Note: The HAIPE IS refers to this table as the 'Solicitation
+         Transmission Address Table.'"
+    ::= { hGDCSolicitDelivery 5 }
+
+hGDCSolicitDelivTableEntry OBJECT-TYPE
+    SYNTAX     HGDCSolicitDelivTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A row defines a particular GDC Discovery Server PT address
+         and port that SOLICATION QUERY message should be sent to."
+    INDEX  { hGDCSolicitDelivPriority }
+    ::= { hGDCSolicitDelivTable 1 }
+
+HGDCSolicitDelivTableEntry ::= SEQUENCE
+{
+   hGDCSolicitDelivPriority            Unsigned32,
+   hGDCSolicitDelivDestPTAddrType      IPAddressType,
+   hGDCSolicitDelivDestPTAddress       IPAddress,
+   hGDCSolicitDelivDestPTPort          PortNumber,
+   hGDCSolicitDelivRowStatus           RowStatus
+}
+
+hGDCSolicitDelivPriority OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A unique numeric index that indicates the priority of the GDC
+         server in context. Lower values have a higher priority. This column is also
+         the primary index for this table."
+    ::= { hGDCSolicitDelivTableEntry 1 }
+
+hGDCSolicitDelivDestPTAddrType OBJECT-TYPE
+    SYNTAX     IPAddressType
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol Version, IPv4 or IPv6, of the GDC 
+         Solicitation destination address. Specifically, the value of this property
+         determines the size and format of the hGDCSolicitDelivDestPTAddress."
+    ::= { hGDCSolicitDelivTableEntry 2 }
+
+hGDCSolicitDelivDestPTAddress OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol addressing information for the
+         PT address where the SOLICITATION QUERY message will be sent.
+         This value may be a PT unicast or multicast address. The size and
+         format of this column is determined by the hGDCSolicitDelivDestPTAddrType."
+    ::= { hGDCSolicitDelivTableEntry 3 }
+
+hGDCSolicitDelivDestPTPort  OBJECT-TYPE
+    SYNTAX     PortNumber
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The port number associated with the hGDCSolicitDelivDestPTAddress
+         where a GDC SOLICITATION request should be sent."
+    ::= { hGDCSolicitDelivTableEntry 4 }
+
+hGDCSolicitDelivRowStatus  OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may be created,
+         or old entries deleted from this table.
+
+         (U//FOUO) If an attempt to create a new row via createAndGo does not
+         include values for columns for the new row, an inconsistentName error
+         will be returned for this object.
+
+         (U//FOUO) A row cannot be set to active while
+         hGDCSolicitDelivDestPTAddrType, hGDCSolicitDelivDestPTAddress, and
+         hGDCSolicitDelivDestPTPort do not contain consistent values for the
+         row. An inconsistentValue error will be returned for this object.
+
+         (U//FOUO) If any column is set to an invalid or unsupported value
+         (during row creation or any other time), a wrongValue error will be
+         returned for that object.
+
+         (U//FOUO) An active row may not be changed to an inconsistent state. If
+         such an attempt is made, an inconsistentValue error will be returned.
+         In other words, any new values must be valid values for an active row.
+
+         (U//FOUO) At a minimum, implementations must support createAndGo and
+         destroy management functions. Support for createAndWait, active,
+         notInService, and notReady management functions is optional."
+    ::= { hGDCSolicitDelivTableEntry 5 }
+
+-- =========
+-- GDC Reception
+-- =========
+
+hGDCReceptionTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hGDCReceptionTable."
+    ::= { hGDCReception 1 }
+
+hGDCReceptionTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime representing the last time any entry
+         in the hGDCReceptionTable was modified, created, or deleted by either
+         SNMP or other management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hGDCReception 2 }
+
+hGDCReceptionTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HGDCReceptionTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The table defines a set of IP addresses (multicast or
+         unicast) and ports, that will listen for GDC SOLICITATION QUERY
+         messages.
+
+         (U//FOUO) This table configuration is independent of the
+         hGDCSolicitDelivTable and hGDCRegistrationTable.
+
+         (U//FOUO) Note: The HAIPE IS refers to this as the 'Solicitation
+         Reception Address Table'."
+    ::= { hGDCReception 3 }
+
+hGDCReceptionTableEntry OBJECT-TYPE
+    SYNTAX     HGDCReceptionTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) An entry defines a particular pair of address and port that
+         is listening for GDC  SOLICITATION messages."
+    INDEX  { hGDCReceptionAddressType, hGDCReceptionAddress, hGDCReceptionPort }
+    ::= { hGDCReceptionTable 1 }
+
+HGDCReceptionTableEntry ::= SEQUENCE
+{
+   hGDCReceptionAddressType        IPAddressType,
+   hGDCReceptionAddress            IPAddress,
+   hGDCReceptionPort               PortNumber,
+   hGDCReceptionRowStatus          RowStatus
+}
+
+hGDCReceptionAddressType OBJECT-TYPE
+    SYNTAX     IPAddressType
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol Version, IPv4 or IPv6, of the Solicitation
+         Reception PT address. Specifically, the value of this property determines
+         the size and format of the hGDCReceptionAddress."
+    ::= { hGDCReceptionTableEntry 1 }
+
+hGDCReceptionAddress OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The IP address on which the local HAIPE is listening for 
+         query messages. This value may be an PT unicast or multicast address.
+         The size and format of this column is determined by the
+         hGDCReceptionAddressType."
+    ::= { hGDCReceptionTableEntry 2 }
+
+hGDCReceptionPort OBJECT-TYPE
+    SYNTAX     PortNumber
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The port number associated with the hGDCReceptionAddress where
+         the HAIPE is listening for GDC query messages.
+
+         (U//FOUO) A wrongValue SNMP exception should be returned when this
+         object is set to an unsupported value."
+    ::= { hGDCReceptionTableEntry 3 }
+
+hGDCReceptionRowStatus OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may be created,
+         or old entries deleted from this table.
+
+         (U//FOUO) If an attempt to create a new row via createAndGo does not
+         include values for columns for the new row, an inconsistentName error
+         will be returned for this object.
+
+         (U//FOUO) A row cannot be set to active while hGDCReceptionAddressType,
+         hGDCReceptionAddress, and hGDCReceptionPort do not contain consistent
+         values for the row.  An inconsistentValue error will be returned for
+         this object.
+
+         (U//FOUO) If any column is set to an invalid or unsupported value
+         (during row creation or any other time), a wrongValue error will be
+         returned for that object.
+
+         (U//FOUO) An active row may not be changed to an inconsistent state.
+         If such an attempt is made, an inconsistentValue error will be
+         returned. In other words, any new values must be valid values for an
+         active row.
+
+         (U//FOUO) At a minimum, implementations must support createAndGo and
+         destroy management functions. Support for createAndWait, active,
+         notInService, and notReady management functions is optional."
+    ::= { hGDCReceptionTableEntry 4 }
+
+
+-- **********************************************************************
+-- Legacy Discovery
+-- **********************************************************************
+
+-- =========
+-- Legacy Discovery Delivery
+-- =========
+
+hLegacyDeliveryTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hLegacyDeliveryTable."
+    ::= { hLegacyDiscoveryDelivery 1 }
+
+hLegacyDeliveryTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime the last time any entry in the
+         hLegacyDeliveryTable was modified, created, or deleted by either SNMP
+         or other management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to the
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hLegacyDiscoveryDelivery 2 }
+
+hLegacyDeliveryTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HLegacyDeliveryTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The table containing a set of multicast PT addresses to
+         which Legacy Discovery PROBE messages should be sent.
+
+        (U//FOUO) Usage:
+        If the multicast PT addresses of a given discovery delivery destination 
+        is remote, the PROBE message to the destination will be treated as an
+        outbound PT packet.  Hence, this packet will need verification against
+        the hPolicyRuleTable to determine the appropriate level of protection needed.
+
+        (U//FOUO) This table configuration is independent of the hPEPTTable."
+    ::= { hLegacyDiscoveryDelivery 3 }
+
+hLegacyDeliveryTableEntry OBJECT-TYPE
+    SYNTAX     HLegacyDeliveryTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) An entry identifies a particular PT multicast destination to
+         which to send Legacy PROBE messages."
+    INDEX  { hLegacyDeliveryAddress }
+    ::= { hLegacyDeliveryTable 1 }
+
+HLegacyDeliveryTableEntry ::= SEQUENCE
+{
+   hLegacyDeliveryAddress          IPv4Address,
+   hLegacyDeliveryRowStatus        RowStatus
+}
+
+hLegacyDeliveryAddress OBJECT-TYPE
+    SYNTAX     IPv4Address
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The multicast PT address to which a Legacy PROBE message will
+         be sent.
+
+         (U//FOUO) This column is the primary index to the hLegacyDeliveryTable."
+    ::= { hLegacyDeliveryTableEntry 1 }
+
+hLegacyDeliveryRowStatus  OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may be created,
+         or old entries deleted from this table.
+
+         (U//FOUO) If an attempt to create
+         a new row via createAndGo does not include values for columns for the
+         new row, an inconsistentName error will be returned for this object.
+
+         (U//FOUO) If any column is set to an invalid or unsupported value
+         (during row creation or any other time), a wrongValue error will be
+         returned for that object.
+
+         (U//FOUO) An active row may not be changed to an inconsistent state. If
+         such an attempt is made, an inconsistentValue error will be returned.
+         In other words, any new values must be valid values for an active row.
+
+         (U//FOUO) At a minimum, implementations must support createAndGo and
+         destroy management functions. Support for createAndWait, active,
+         notInService, and notReady management functions is optional."
+    ::= { hLegacyDeliveryTableEntry 3 }
+
+-- **********************************************************************
+-- IMPEPD
+-- **********************************************************************
+
+hIMPEPDTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hIMPEPDTable."
+    ::= { hIMPEPD 1 }
+
+hIMPEPDTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime the last time any entry in the
+         hIMPEPDTable was modified, created, or deleted by either SNMP or other
+         management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hIMPEPD 2 }
+
+hIMPEPDTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HIMPEPDTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The table defines PT IP address ranges that are in the same
+         COI as the local HAIPE. HAIPEs within the COI are assumed to have the
+         same PT and CT IP configuration, including prefix length and host
+         portion of their addresses.
+
+         (U//FOUO) Usage: When an outgoing packet is destined for a remote host
+         that matches an address range configured in this table, the peer HAIPE
+         CT and PT address should be determined using IMPEPD."
+    ::= { hIMPEPD 3 }
+
+hIMPEPDTableEntry OBJECT-TYPE
+    SYNTAX     HIMPEPDTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A row defines a PT prefix that supports IMPEPD."
+    INDEX  { hIMPEPDAddressType, hIMPEPDAddressStart, hIMPEPDAddressEnd }
+    ::= { hIMPEPDTable 1 }
+
+HIMPEPDTableEntry ::= SEQUENCE
+{
+   hIMPEPDAddressType              IPAddressType,
+   hIMPEPDAddressStart             IPAddress,
+   hIMPEPDAddressEnd               IPAddress,
+   hIMPEPDRowStatus                RowStatus
+}
+
+hIMPEPDAddressType  OBJECT-TYPE
+    SYNTAX     IPAddressType
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol Version, IPv4 or IPv6, of the PT
+         address range. Specifically, the value of this property determines the
+         size and format of the hIMPEPDAddressStart and hIMPEPDAddressEnd."
+    ::= { hIMPEPDTableEntry 1 }
+
+hIMPEPDAddressStart  OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The starting address of a PT network range for which IM-PEPD
+         discovery services are to be used to derive the remote HAIPE peer's
+         PT/CT addresses. The size and format of this column is determined by the
+         hIMPEPDAddressType."
+    ::= { hIMPEPDTableEntry 2 }
+
+hIMPEPDAddressEnd  OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The ending address of a PT network range for which IM-PEPD
+         discovery services are to be used to derive the remote HAIPE peer's
+         PT/CT addresses."
+    ::= { hIMPEPDTableEntry 3 }
+
+hIMPEPDRowStatus OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may be created,
+         or old entries deleted from this table.
+
+         (U//FOUO) If an attempt to create a new row via createAndGo does not
+         include values for columns for the new row, an inconsistentName error
+         will be returned for this object.
+
+         (U//FOUO) A row cannot be set to active while hIMPEPDAddressType,
+         hIMPEPDAddressStart, and hIMPEPDAddressEnd do not contain consistent
+         values for the row.  An inconsistentValue error will be returned for
+         this object.
+
+         (U//FOUO) If any column is set to an invalid or unsupported value
+         (during row creation or any other time), a wrongValue error will be
+         returned for that object.
+
+         (U//FOUO) An active row may not be changed to an inconsistent state. If
+         such an attempt is made, an inconsistentValue error will be returned.
+         In other words, any new values must be valid values for an active row.
+
+         (U//FOUO) At a minimum, implementations must support createAndGo and
+         destroy management functions. Support for createAndWait, active,
+         notInService, and notReady management functions is optional."
+    ::= { hIMPEPDTableEntry 4 }
+
+
+-- **********************************************************************
+-- Local Enclave Prefix Table [LEPT]
+-- **********************************************************************
+
+hLEPTTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hLEPTTable."
+    ::= { hLEPT 1 }
+
+hLEPTTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime the last time any entry in the
+         hLEPTTable was modified, created, or deleted by either SNMP or other
+         management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hLEPT 2 }
+
+hLEPTTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HLEPTTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The table containing a list of the known local PT address
+         hosts and/or prefixes that this device is fronting.  The contents of
+         this table can be populated by either manual assignment or through the
+         use of discovery services (e.g., RIP). It is used when routing
+         post-decryption inbound packets to the PT enclave."
+    ::= { hLEPT 3 }
+
+hLEPTTableEntry OBJECT-TYPE
+    SYNTAX     HLEPTTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) An entry identify a host or prefix that is reachable through
+         this device."
+    INDEX  { hLEPTAddressType, hLEPTAddress, hLEPTPrefixLength }
+    ::= { hLEPTTable 1 }
+
+HLEPTTableEntry ::= SEQUENCE
+{
+   hLEPTAddressType                IPAddressType,
+   hLEPTAddress                    IPAddress,
+   hLEPTPrefixLength               Unsigned32,
+   hLEPTAdminCost                  Unsigned32,
+   hLEPTRowConfigMethod            INTEGER,
+   hLEPTRowLifetime                DateAndTime,
+   hLEPTRowStatus                  RowStatus
+}
+
+hLEPTAddressType OBJECT-TYPE
+    SYNTAX     IPAddressType
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol Version, IPv4 or IPv6, of the local PT
+         host or enclave. Specifically, the value of this property determines the
+         size and format of the hLEPTAddress."
+    ::= { hLEPTTableEntry 1 }
+
+hLEPTAddress OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol addressing information for the local PT Host
+         or PT network prefix. The size and format of this column is determined by the
+         hLEPTAddressType."
+    ::= { hLEPTTableEntry 2 }
+
+hLEPTPrefixLength OBJECT-TYPE
+    SYNTAX     Unsigned32 (0..2040)
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The prefix length of the address stored in hLEPTAddress
+         object (e.g., the network mask)."
+    ::= { hLEPTTableEntry 3 }
+
+hLEPTAdminCost OBJECT-TYPE
+    SYNTAX     Unsigned32 (0..255)
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The administrative cost of reaching the hLEPTAddress (or
+         subnet) via this device.
+
+         (U//FOUO) For local prefix learned via automated discovery mechanisms,
+         and for which no better metric is available, this object will be
+         populated with learned cost/metric, hLearnedLocalPrefixAdminCost."
+    ::= { hLEPTTableEntry 4 }
+
+hLEPTRowConfigMethod OBJECT-TYPE
+    SYNTAX     INTEGER{ manual(1), rip(2), other(3) }
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The method by which this row was configured."
+    ::= { hLEPTTableEntry 5 }
+
+hLEPTRowLifetime OBJECT-TYPE
+    SYNTAX     DateAndTime
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The date and time that this particular entry will become
+         invalid. For a local prefix learned via Discovery, this object will be 
+         populated with the associated Discovery lifetime learned.
+         
+	 (U//FOUO) If this particular entry is configured via RIP, this object 
+	 is configured with the value of hSystemDate increased by the number of 
+	 seconds defined in hRIPLEPTLifetimeOffset.
+
+         (U//FOUO) To indicate an infinity lifetime, the following configuration
+         is used: '-' for the direction from UTC field, and all max values for 
+         all other fields.  This configuration is displayed as
+         '65535-12-31,23:59:60.9,-11:59'."
+    ::= { hLEPTTableEntry 6 }
+
+hLEPTRowStatus OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may be created,
+         or old entries deleted from this table.
+
+         (U//FOUO) This table is configured independently from the
+         hPEPTTable and the hRIPTable.
+
+         (U//FOUO) If an attempt to create a new row via createAndGo does not
+         include values for columns for the new row, an inconsistentName
+         error will be returned for this object.
+
+         (U//FOUO) A row cannot be set to active while hLEPTAddressType,
+         hLEPTAddress, and hLEPTPrefixLength do not contain consistent values for
+         the row.  An inconsistentValue error will be returned for this object.
+
+         (U//FOUO) If any column is set to an invalid or unsupported value
+         (during row creation or any other time), a wrongValue error will be
+         returned for that object.
+
+         (U//FOUO) An active row may not be changed to an inconsistent state. If
+         such an attempt is made, an inconsistentValue error will be returned.
+         In other words, any new values must be valid values for an active row.
+
+         (U//FOUO) At a minimum, implementations must support createAndGo and
+         destroy management functions. Support for createAndWait, active,
+         notInService, and notReady management functions is optional."
+    ::= { hLEPTTableEntry 7 }
+
+-- **********************************************************************
+-- RIP Configuration
+-- **********************************************************************
+
+hRIPTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hRIPTable."
+    ::= { hRIPConfig 1 }
+
+hRIPTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of hSystemUpTime the last time any entry in the
+         hRIPTable was modified, created, or deleted by either SNMP or other
+         management method (e.g. via an HMI).
+
+         (U//FOUO) A manager can use this object to ensure that no changes to
+         configuration of this table have happened since the last time it
+         examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hRIPConfig 2 }
+
+hRIPTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HRIPTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The table contain a list of PT IP addresses that send and/or
+         receive RIP messages"
+    ::= { hRIPConfig 3 }
+
+hRIPTableEntry OBJECT-TYPE
+    SYNTAX     HRIPTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A row identifies an IP address that supports RIP."
+    INDEX  { hRIPAddressType, hRIPLocalPTAddress }
+    ::= { hRIPTable 1 }
+
+HRIPTableEntry ::= SEQUENCE
+{
+   hRIPAddressType                 IPAddressType,
+   hRIPLocalPTAddress              IPAddress,
+   hRIPSpeakerSetting              INTEGER,
+   hRIPListenerSetting             INTEGER,
+   hRIPDefaultRouteAdMode          INTEGER,
+   hRIPDefaultRouteMetric          Unsigned32,
+   hRIPAdvertisementRouteTag       OCTET STRING,
+   hRIPAdvertisementRouteMetric    Unsigned32,
+   hRIPPrefixLifetime              DateAndTime,
+   hRIPAdvertiseRoutes             INTEGER,   
+   hRIPRowStatus                   RowStatus,
+   hRIPLEPTLifetimeOffset          Unsigned32
+}
+
+hRIPAddressType  OBJECT-TYPE
+    SYNTAX     IPAddressType
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol Version, IPv4 or IPv6, of the local PT
+         address. Specifically, the value of this property determines the
+         size and format of the hRIPLocalPTAddress."
+    ::= { hRIPTableEntry 1 }
+
+hRIPLocalPTAddress OBJECT-TYPE
+    SYNTAX     IPAddress
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The Internet Protocol addressing information for the local PT
+         address that handles RIP messages. The size and format of this column is
+         determined by the hRIPAddressType."
+    ::= { hRIPTableEntry 2 }
+
+hRIPSpeakerSetting  OBJECT-TYPE
+    SYNTAX     INTEGER{ off(1), ripv1(2), ripv1Compatability(3), ripv2(4),
+                        ripng(5) }
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This object indicates if the local PT address in context will
+         act as a RIP speaker and which RIP message format it will send to the
+         local enclave.
+
+         (U//FOUO)  Note, the RIP message version configured here must be
+         consistent with the value of hRIPAddressType."
+    DEFVAL { off }
+    ::= { hRIPTableEntry 3 }
+
+hRIPListenerSetting OBJECT-TYPE
+    SYNTAX     INTEGER{ off(1), on(2) }
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This object indicates if the local PT address in context will
+         act as a RIP listener.
+
+         (U//FOUO)  Note, the type of RIP message version that the address in
+         context will listen to is consistent with the value of
+         hRIPAddressType."
+    DEFVAL { off }
+    ::= { hRIPTableEntry 4 }
+
+hRIPDefaultRouteAdMode OBJECT-TYPE
+    SYNTAX     INTEGER{ noDefaultRoute(1), includeDefaultRoute(2),
+                        defaultRouteOnly(3) }
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This object indicates if the device will advertise itself to
+         the local PT enclave as a default route.
+
+         (U//FOUO) This object only applies when hRIPSpeakerSetting is 
+         configured to any other enumeration value but 'off'. Otherwise, this 
+         object must not exist."
+    ::= { hRIPTableEntry 5 }
+
+hRIPDefaultRouteMetric OBJECT-TYPE
+    SYNTAX     Unsigned32 (1..15)
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The metric associated with using this device as a default
+         route which will be advertised to the PT enclave.
+
+         (U//FOUO) This object only applies when hRIPSpeakerSetting is 
+         configured to any other enumeration value but 'off'. Otherwise, this 
+         object must not exist."
+    ::= { hRIPTableEntry 6 }
+
+hRIPAdvertisementRouteTag OBJECT-TYPE
+    SYNTAX     OCTET STRING (SIZE(2))
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) Contains the value to be used in the Route Tag field entries
+         (RTE) transmitted by this interface.
+
+         (U//FOUO) This object only applies when hRIPSpeakerSetting is 
+         configured to any other enumeration value but 'off'. Otherwise, this 
+         object must not exist."
+    ::= { hRIPTableEntry 7 }
+
+hRIPAdvertisementRouteMetric OBJECT-TYPE
+    SYNTAX     Unsigned32 (1..15)
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A manager configurable metric associated with the advertised
+         non-default route. 
+
+         (U//FOUO) This object only applies when hRIPSpeakerSetting is 
+	 configured to any other enumeration value but 'off'. Otherwise, this 
+	 object must not exist"
+    ::= { hRIPTableEntry 8 }
+
+hRIPPrefixLifetime OBJECT-TYPE
+    SYNTAX     DateAndTime
+    MAX-ACCESS read-create
+    STATUS     deprecated
+    DESCRIPTION
+        "(U//FOUO) The date and time when a local prefix will become invalid. When
+         RIP is used to populate an entry in the LEPT table, the hLEPTRowLifeTime
+         will be populated with this value."
+    ::= { hRIPTableEntry 9 }    
+    
+hRIPAdvertiseRoutes OBJECT-TYPE
+    SYNTAX     INTEGER{ onlyActiveSAs(1), all(2) }
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) An indication of which remote enclave information (entries 
+         from hPEPTTable) to advertise. 
+
+	 (U//FOUO) [onlyActiveSAs] = If this column is set to 'onlyActiveSAs',
+	 then only the remote enclave information (hPEPTTable entries) 
+	 associated with active SAs will be advertised.
+	 
+	 (U//FOUO) [all] = If this column is set to 'all', then all remote
+	 enclave information (hPEPTTable entries) will be advertised.
+   
+         (U//FOUO) This object is not relevent if hRIPSpeakerSetting is set 
+	 to off(1)."
+    ::= { hRIPTableEntry 10 }       
+    
+hRIPRowStatus OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may be created,
+         or old entries deleted from this table.
+
+         (U//FOUO) This table is configured independently from the hPEPTTable
+         and the hRIPTable.
+
+         (U//FOUO) If an attempt to create a new row via createAndGo does not
+         include values for columns for the new row, an inconsistentName error
+         will be returned for this object.
+
+         (U//FOUO) A row cannot be set to active while hRIPAddressType and
+         hRIPLocalPTAddress do not contain consistent values for the row. An
+         inconsistentValue error will be returned for this object.
+
+         (U//FOUO) A row cannot be set to active while
+         hRIPListenerSetting, hRIPSpeakerSetting, hRIPDefaultRouteAdMode,
+         hRIPDefaultRouteMetric, hRIPAdvertisementRouteTag, and
+         hRIPAdvertisementRouteMetric do not contain consistent values for the
+         row.  An inconsistentValue error will be returned for this object.
+
+         (U//FOUO) If any column is set to an invalid or unsupported value
+         (during row creation or any other time), a wrongValue error will be
+         returned for that object.
+
+         (U//FOUO) An active row may not be changed to an inconsistent state. If
+         such an attempt is made, an inconsistentValue error will be returned.
+         In other words, any new values must be valid values for an active row.
+
+         (U//FOUO) If an implementation has a row preconfigured it MUST at a 
+         minimum allow modification of the row.  If a device does not have this 
+         row preconfigured, at a minimum, implementations must support createAndGo 
+         and destroy management functions. Support for createAndWait, active, 
+         notInService, and notReady management functions is optional."
+    ::= { hRIPTableEntry 11 }
+    
+hRIPLEPTLifetimeOffset OBJECT-TYPE
+    SYNTAX     Unsigned32
+    UNITS      "seconds"
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of seconds that will be added to hSystemDate to
+         populate an hLEPTTable entry's hLEPTRowLifetime if configured via RIP."
+    ::= { hRIPTableEntry 12 }    
+
+
+-- **********************************************************************
+-- IM-PEPD Interface Table
+-- **********************************************************************
+
+hIMPEPDifTableCount OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The number of rows in the hIMPEPDifTable."
+    ::= { hIMPEPDInterface 1 }
+
+hIMPEPDifTableLastChanged OBJECT-TYPE
+    SYNTAX     TimeStamp
+    MAX-ACCESS read-only
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The value of sysUpTime the last time any entry in the
+         hIMPEPDifTable was modified, created, or deleted by either SNMP
+         or other management method (e.g. via an HMI).
+
+         (U//FOUO) Managers can use this object to ensure that no changes to
+         configuration of this table have happened since the last time the 
+         manager examined the table.
+
+         (U//FOUO) A value of 0 indicates that no entry has been changed since
+         the agent initialized."
+    ::= { hIMPEPDInterface 2 }
+
+
+hIMPEPDifTable OBJECT-TYPE
+    SYNTAX     SEQUENCE OF HIMPEPDifTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The table containing a list of IMPEPD attributes associated
+         with a pair of PT and CT prefixes. Note, these prefixes must exist in
+         either in the hAddressAssignTable which defines their PT and CT
+         interfaces."
+    ::= { hIMPEPDInterface 3 }
+
+hIMPEPDifTableEntry OBJECT-TYPE
+    SYNTAX     HIMPEPDifTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) A row describing a pair of PT and CT prefixes along with 
+         their interface that support IM-PEPD."
+    INDEX  { hIMPEPDifIndex }
+    ::= { hIMPEPDifTable 1 }
+
+HIMPEPDifTableEntry ::= SEQUENCE
+{
+      hIMPEPDifIndex                         Unsigned32,
+      hIMPEPDifPTtoInterfaceMapping          RowPointer,
+      hIMPEPDifCTtoInterfaceMapping          RowPointer,
+      hIMPEPDifSegmentedCore                 TruthValue,
+      hIMPEPDifPTSubIdentifier               OCTET STRING,
+      hIMPEPDifCTSubIdentifier               OCTET STRING,
+      hIMPEPDifRowStatus                     RowStatus
+}
+
+
+hIMPEPDifIndex OBJECT-TYPE
+    SYNTAX     Unsigned32
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) An unique numeric index which identifies a pair of PT and
+         CT prefixes that support IM-PEPD."
+    ::= { hIMPEPDifTableEntry 1 }
+
+hIMPEPDifPTtoInterfaceMapping OBJECT-TYPE
+    SYNTAX     RowPointer
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+         "(U//FOUO) A row pointer that points to one entry in the
+         hAddressAssignTable. This identifies a PT address to interface
+         mapping.
+
+         (U//FOUO) The PT IP address referenced here should have consistent
+         IP address type as that referenced by hIMPEPDifCTtoInterfaceMapping.
+
+         (U//FOUO) Note: HAIPE COI Interface ID will be the host portion of the
+         address assignment table. This is derived from the address minus the
+         prefix length and sub-identifier (if applicable)."
+    ::= { hIMPEPDifTableEntry 2 }
+
+hIMPEPDifCTtoInterfaceMapping OBJECT-TYPE
+    SYNTAX     RowPointer
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+         "(U//FOUO) A row pointer that points to one entry in the
+         hAddressAssignTable. This identifies a CT address to interface
+         mapping.
+
+         (U//FOUO) The CT IP address referenced here should have consistent
+         IP address type as that referenced by hIMPEPDifPTtoInterfaceMapping.
+
+         (U//FOUO) Note: HAIPE COI Interface ID will be the host portion of the
+         address assignment table. This is derived from the address minus the
+         prefix length and sub-identifier (if applicable)."
+    ::= { hIMPEPDifTableEntry 3 }
+
+
+hIMPEPDifSegmentedCore OBJECT-TYPE
+    SYNTAX     TruthValue
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) Indicates whether or not Segmented Core Mode is enabled on
+         the CT interface referenced by hIMPEPDifCTtoInterfaceMapping."
+    DEFVAL { false }
+    ::= { hIMPEPDifTableEntry 4 }
+
+hIMPEPDifPTSubIdentifier  OBJECT-TYPE
+    SYNTAX     OCTET STRING (SIZE(0..16))
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This subidentifier is used as the value to place between the
+         learned IPv6 prefix and the host identifier for the PT address
+         referenced by hIMPEPDifPTtoInterfaceMapping.  If the length of this
+         field is longer than the needed number of bits to fill into the IPv6
+         address generation then the left most bits will be truncated until the
+         length is the length desired and the right most bits will be used for
+         filling the needed addressing bit space.
+
+         (U//FOUO) This column must not exists if the address type in context
+         is an IPv4."
+    ::= { hIMPEPDifTableEntry 5 }
+
+hIMPEPDifCTSubIdentifier  OBJECT-TYPE
+    SYNTAX     OCTET STRING (SIZE(0..16))
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) This subidentifier is used as the value to place between the
+         learned IPv6 prefix and the host identifier for the CT address
+         referenced by hIMPEPDifCTtoInterfaceMapping. If the length of this
+         field is longer than the needed number of bits to fill into the IPv6
+         address generation then the left most bits will be truncated until the
+         length is the length desired and the right most bits will be used for
+         filling the needed addressing bit space.
+
+         (U//FOUO) This column must not exists if the address type in context
+         is an IPv4."
+    ::= { hIMPEPDifTableEntry 6}
+
+hIMPEPDifRowStatus OBJECT-TYPE
+    SYNTAX     RowStatus
+    MAX-ACCESS read-create
+    STATUS     current
+    DESCRIPTION
+        "(U//FOUO) The status of the row, by which new entries may be created,
+         or old entries deleted from this table.
+
+         (U//FOUO) If an attempt to create a new row via createAndGo
+         does not include values for columns for the new row, an
+         inconsistentName error will be returned for this object.
+
+         (U//FOUO) A row cannot be set to activewhile
+         hIMPEPDifPTtoInterfaceMapping, hIMPEPDifCTtoInterfaceMapping,
+         hIMPEPDifPTSubIdentifier, and hIMPEPDifCTSubIdentifier do not contain
+         consistent values for the row.  An inconsistentValue error will be
+         returned for this object.
+
+         (U//FOUO) If any column is set to an invalid or unsupported value
+         (during row creation or any other time), a wrongValue error will be
+         returned for that object.
+
+         (U//FOUO) An active row may not be changed to an inconsistent state. If
+         such an attempt is made, an inconsistentValue error will be returned.
+         In other words, any new values must be valid values for an active row.
+
+         (U//FOUO) At a minimum, implementations must support createAndGo and
+         destroy management functions. Support for createAndWait, active,
+         notInService, and notReady management functions is optional."
+    ::= { hIMPEPDifTableEntry 7 }
+
+END
+
+
+
+

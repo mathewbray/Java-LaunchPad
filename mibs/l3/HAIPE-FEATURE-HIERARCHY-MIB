@@ -1,0 +1,47 @@
+--
+--                 Unclassified//For Official Use Only
+--
+-- This entire document, which defines SNMP MIB objects in the SMIv2
+-- language should be considered U//FOUO.
+--
+-- The data that will be transmitted on the wire as a result of
+-- accessing these MIB objects MUST NOT BE CONSIDERED U//FOUO and is
+-- subject to separate classification.  The classification level of this
+-- data is not defined or within the scope of this document.
+--
+
+HAIPE-FEATURE-HIERARCHY-MIB  DEFINITIONS  ::= BEGIN
+
+IMPORTS
+    haipe                                       FROM HAIPE-ASSIGNMENTS-MIB
+    MODULE-IDENTITY                             FROM SNMPv2-SMI;
+
+haipeFeatureAssignmentsMIB MODULE-IDENTITY
+    LAST-UPDATED "200406011700Z"
+    ORGANIZATION "HAIPE PO"
+    CONTACT-INFO
+         "(U//FOUO) Not Available"
+    DESCRIPTION
+        "(U//FOUO) This MIB defines the HAIPE MIB features in
+        hierarchal MIB tree assignments.  It acts as a reservation
+        mechanism for other MIB sets to be anchored below it.  New
+        HAIPE related feature sets will get individual assignment
+        numbers within this tree."
+    ::= { haipe 4 }
+
+--
+-- Traffic Protection features
+--
+hTrafficProtection OBJECT IDENTIFIER ::= { haipeFeatureAssignmentsMIB 1 }
+
+--
+-- Networking features
+--
+hNetworking        OBJECT IDENTIFIER ::= { haipeFeatureAssignmentsMIB 2 }
+
+--
+-- Management features
+--
+hManagement        OBJECT IDENTIFIER ::= { haipeFeatureAssignmentsMIB 3 }
+
+END

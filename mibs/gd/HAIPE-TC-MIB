@@ -1,0 +1,210 @@
+--
+--                 Unclassified//For Official Use Only
+--
+-- This entire document, which defines SNMP MIB objects in the SMIv2
+-- language should be considered U//FOUO.
+--
+-- The data that will be transmitted on the wire as a result of
+-- accessing these MIB objects MUST NOT BE CONSIDERED U//FOUO and is
+-- subject to seperate classification.  The classification level of this
+-- data is not defined or within the scope of this document.
+--
+
+HAIPE-TC-MIB  DEFINITIONS  ::= BEGIN
+
+IMPORTS
+    haipe                                       FROM HAIPE-ASSIGNMENTS-MIB
+    MODULE-IDENTITY, Integer32                  FROM SNMPv2-SMI
+    TEXTUAL-CONVENTION                          FROM SNMPv2-TC;
+
+haipeTCMIB MODULE-IDENTITY
+    LAST-UPDATED "200711301500Z"
+    ORGANIZATION "HAIPE WG"
+    CONTACT-INFO
+         "(U) Not Available"
+    DESCRIPTION
+        "(U) This MIB defines Textual Conventions for use in
+        other HAIPE MIBs"
+    ::= { haipe 6 }
+
+HaipeSecurityAuthority ::= TEXTUAL-CONVENTION
+        STATUS          deprecated
+        DESCRIPTION
+                "(U//FOUO) OBJECTS USING THIS TC HAVE BEEN FORMALLY
+                DEPRECATED AND THIS TC WILL LIKELY NOT BE USED FOR
+                FUTURE OBJECTS.  IT IS LEFT HERE FOR HISTORICAL
+                PURPOSES.
+
+                (U//FOUO) A given security authority defining the
+                legal and conceptual values of a given security level
+                classification.
+
+                (U//FOUO) It is expected that future enumerations will
+                be added to this list and SNMP agents and managers
+                should not rely on these being the only values that
+                are usable.
+
+                (U//FOUO) Implementations of objects based on the
+                HaipeSecurityAuthority or associated TCs MUST expect
+                future modifications and additional types to be
+                defined in the future and MUST NOT solely rely on the
+                exclusivity of existing enumeration lists at the time
+                of implementation."
+        SYNTAX  INTEGER {  usa(1), aus(2), can(3),
+                           gbr(4), nzl(5), nato(6) }
+
+HaipeSecurityLevel ::= TEXTUAL-CONVENTION
+        DISPLAY-HINT    "d"
+        STATUS          current
+        DESCRIPTION
+                "(U//FOUO) A generic security level.  This TC is a
+                global place holder for a more specific security level
+                TC which is interpreted within the context of the 
+                security authority for the associated user community.
+
+                (U//FOUO) At the time of this writing, the following
+                TCs have been defined which relate to this generic
+                definition:
+                    - (U//FOUO) HaipeUSASecurityLevel: the values used
+                      for a US Security Authority
+                    - (U//FOUO) HaipeGRBSecurityLevel: the values used
+                      for a GBR Security Authority
+
+                (U//FOUO) Implementations of objects based on the
+                HaipeSecurityLevel or associated TCs MUST expect
+                future modifications and additional types to be
+                defined in the future and MUST NOT solely rely on the
+                exclusivity of existing enumeration lists at the time
+                of implementation.
+                "
+        SYNTAX          Integer32(0..2147483647)
+
+HaipeSecurityLevels ::= TEXTUAL-CONVENTION
+        STATUS          current
+        DESCRIPTION
+                "(U//FOUO) A generic set of security levels.  This TC
+                is a global place holder for a more specific security
+                level which is interpreted within the context of the
+                security authority for the associated user community.
+
+                (U//FOUO) This definition is functionally equivelent 
+                to the HaipeSecurityLevel definition, but is defined 
+                using BITS to allow for multiple security levels to be 
+                specified at once.
+
+                (U//FOUO) At the time of this writing, the following
+                TCs have been defined which relate to this generic
+                definition:
+                    - (U//FOUO) HaipeUSASecurityLevels: the values used
+                      for a US Security Authority
+                    - (U//FOUO) HaipeGRBSecurityLevels: the values used
+                      for a GBR Security Authority
+
+                (U//FOUO) Implementations of objects based on the
+                HaipeSecurityLevels or associated TCs MUST expect
+                future modifications and additional types to be
+                defined in the future and MUST NOT solely rely on the
+                exclusivity of existing enumeration lists at the time
+                of implementation.
+                "
+        SYNTAX          BITS { seeMoreSpecificTCs(0) }
+
+
+--
+-- USA specific security level definitions.
+--
+
+HaipeUSASecurityLevel ::= TEXTUAL-CONVENTION
+        STATUS          current
+        DESCRIPTION
+                "(U//FOUO) A security level as defined by the 'usa'
+                security authority.  For objects that require the
+                ability to have multiple security levels to be set at
+                once, the HaipeUSASecurityLevels TC should be used
+                instead.  The value of none(4) should only be used to
+                indicate the absence of level information."
+        SYNTAX   INTEGER { unclassified(0),
+                           confidential(1),
+                           secret(2),
+                           topSecret(3),
+                           none(4)
+                         }
+
+HaipeUSASecurityLevels ::= TEXTUAL-CONVENTION
+        STATUS          current
+        DESCRIPTION
+                "(U//FOUO) Potentially multiple security levels as
+                defined by the 'usa' security authority.  This object
+                duplicates the HaipeUSASecurityLevel object, but is
+                defined using BITS instead of an integer enum list to
+                enable multilpe values to be selected at once."
+        SYNTAX   BITS {    unclassified(0),
+                           confidential(1),
+                           secret(2),
+                           topSecret(3) }
+
+--
+-- GRB specific security level definitions.
+--
+
+HaipeGRBSecurityLevel ::= TEXTUAL-CONVENTION
+        STATUS          current
+        DESCRIPTION
+                "(U//FOUO) A security level as defined by the 'gbr'
+                security authority.  For objects that require the
+                ability to have multiple security levels to be set at
+                once, the HaipeGRBSecurityLevels TC should be used
+                instead.  The value
+                of none(5) should only be used to indicate the absence
+                of level information."
+        SYNTAX   INTEGER { unclassified(0),
+                           confidential(1),
+                           restricted(2),
+                           secret(3),
+                           topSecret(4),
+                           none(5)
+                         }
+
+HaipeGRBSecurityLevels ::= TEXTUAL-CONVENTION
+        STATUS          current
+        DESCRIPTION
+                "(U//FOUO) Potentially multiple security levels as
+                defined by the 'gbr' security authority.  This object
+                duplicates the HaipeGRBSecurityLevel object, but is
+                defined using BITS instead of an integer enum list to
+                enable multilpe values to be selected at once."
+        SYNTAX   BITS {    unclassified(0),
+                           confidential(1),
+                           restricted(2),
+                           secret(3),
+                           topSecret(4) }
+
+--
+-- put here since putting it in other mibs caused a circular
+-- dependency which not all tools deal with well.
+--
+HaipeSide ::= TEXTUAL-CONVENTION
+        STATUS   current
+        DESCRIPTION
+            "(U//FOUO) A given side of the HAIPE device.
+
+                (U//FOUO) ct: The cypher-text side, where encrypted
+                    traffic is generally sent and received.
+
+                (U//FOUO) pt: The plain-text side, where unencrypted
+                    traffic is generally sent and received.
+
+                (U//FOUO) other: A interface that isn't responsible
+                for processing traffic between networks.  EG, a
+                management interface or some other secondary
+                interface."
+        SYNTAX INTEGER { pt(1), ct(2), other(3) }
+
+ShortTitle64 ::= TEXTUAL-CONVENTION
+        DISPLAY-HINT "64a"
+        STATUS   current
+        DESCRIPTION
+            "(U//FOUO) 64 character 8-bit ASCII encoded Short Title"
+        SYNTAX   OCTET STRING (SIZE (64))
+
+END

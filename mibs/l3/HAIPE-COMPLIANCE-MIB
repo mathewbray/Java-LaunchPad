@@ -1,0 +1,27 @@
+HAIPE-COMPLIANCE-MIB DEFINITIONS ::= BEGIN
+IMPORTS
+    MODULE-IDENTITY                 FROM SNMPv2-SMI
+    haipe                           FROM HAIPE-ASSIGNMENTS-MIB
+;
+
+haipeComplianceMIB MODULE-IDENTITY
+    LAST-UPDATED "200701221500Z"
+    ORGANIZATION "HAIPE PO"
+    CONTACT-INFO
+         "(U//FOUO) Not Available"
+    DESCRIPTION
+        "(U//FOUO) This MIB defines compliance statements which
+        define the levels of conformance required by the various HAIPE
+        IS documents.  Each HAIPE IS version will contain a
+        sub-mib-module to this tree structure to document MIB
+        requirements imposed by each HAIPE IS version.
+
+        (U//FOUO) The sub-documents to this will be assigned
+        sub-hierarchies based no the version number of the HAIPE IS
+        compliances being documented.  As an example the 3.1.0 IS
+        documents will result in a HAIPE compliance MIB for that
+        document set under the haipeComplianceMIB.3.1.0 space.  This
+        module is merely a top-level node for that space."
+    ::= { haipe 8 }
+
+END
