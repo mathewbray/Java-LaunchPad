@@ -244,8 +244,39 @@ final JFXPanel fxPanel = new JFXPanel();
                 jToggleOfflineMode.setBackground(Color.GREEN);
             }
         });
-
         
+        //--- Set function buttons
+        try {
+            //button 1
+            String myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunction1");
+            if("".equals(myValue)) {
+                PropertyHandler.getInstance().setValue("ButtonExecuteFunction1", "HTTPS");
+            }
+            jButtonExecuteFunction1.setText(PropertyHandler.getInstance().getValue("ButtonExecuteFunction1"));
+
+        } catch (NullPointerException e) {System.out.println("Button1 Goofed");
+        }
+        try {
+            //button 2
+            String myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunction2");
+            if("".equals(myValue)) {
+                PropertyHandler.getInstance().setValue("ButtonExecuteFunction2", "RDP");
+            }         
+            jButtonExecuteFunction2.setText(PropertyHandler.getInstance().getValue("ButtonExecuteFunction2"));
+
+        } catch (NullPointerException e) {System.out.println("Button2 Goofed");
+        }
+        try {
+            //button 3
+            String myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunction3");
+            if("".equals(myValue)) {
+                PropertyHandler.getInstance().setValue("ButtonExecuteFunction3", "SSH");
+            }        
+            jButtonExecuteFunction3.setText(PropertyHandler.getInstance().getValue("ButtonExecuteFunction3"));            
+        } catch (NullPointerException e) {System.out.println("Button3 Goofed");
+        }        
+
+        //--- Apply images to buttons
         try {
             //Button01
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button01icon") + ".png"));
@@ -739,8 +770,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jListSessions = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
         jTextFieldConnectHostname = new javax.swing.JTextField();
-        jButtonHTTPS = new javax.swing.JButton();
-        jButtonSSH = new javax.swing.JButton();
+        jButtonExecuteFunction1 = new javax.swing.JButton();
+        jButtonExecuteFunction3 = new javax.swing.JButton();
         jTextFieldConnectUsername = new javax.swing.JTextField();
         jPasswordFieldConnectPassword = new javax.swing.JPasswordField();
         jSeparator3 = new javax.swing.JSeparator();
@@ -775,6 +806,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton18 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         jCheckBoxAlternateLogin = new javax.swing.JCheckBox();
+        jButtonExecuteFunction2 = new javax.swing.JButton();
         jTextFieldFilter = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
@@ -945,29 +977,29 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel1.add(jTextFieldConnectHostname);
         jTextFieldConnectHostname.setBounds(10, 10, 120, 20);
 
-        jButtonHTTPS.setBackground(new java.awt.Color(255, 204, 153));
-        jButtonHTTPS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonHTTPS.setText("HTTPS");
-        jButtonHTTPS.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonHTTPS.addActionListener(new java.awt.event.ActionListener() {
+        jButtonExecuteFunction1.setBackground(new java.awt.Color(255, 204, 153));
+        jButtonExecuteFunction1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonExecuteFunction1.setText("HTTPS");
+        jButtonExecuteFunction1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonExecuteFunction1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonHTTPSActionPerformed(evt);
+                jButtonExecuteFunction1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonHTTPS);
-        jButtonHTTPS.setBounds(140, 10, 60, 21);
+        jPanel1.add(jButtonExecuteFunction1);
+        jButtonExecuteFunction1.setBounds(140, 10, 60, 21);
 
-        jButtonSSH.setBackground(new java.awt.Color(0, 204, 102));
-        jButtonSSH.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jButtonSSH.setText("SSH");
-        jButtonSSH.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonSSH.addActionListener(new java.awt.event.ActionListener() {
+        jButtonExecuteFunction3.setBackground(new java.awt.Color(0, 204, 102));
+        jButtonExecuteFunction3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonExecuteFunction3.setText("SSH");
+        jButtonExecuteFunction3.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonExecuteFunction3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSSHActionPerformed(evt);
+                jButtonExecuteFunction3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonSSH);
-        jButtonSSH.setBounds(140, 40, 60, 50);
+        jPanel1.add(jButtonExecuteFunction3);
+        jButtonExecuteFunction3.setBounds(140, 70, 60, 20);
 
         jTextFieldConnectUsername.setToolTipText("Username");
         jTextFieldConnectUsername.setNextFocusableComponent(jPasswordFieldConnectPassword);
@@ -980,7 +1012,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jTextFieldConnectUsername.setBounds(10, 50, 120, 20);
 
         jPasswordFieldConnectPassword.setToolTipText("Password");
-        jPasswordFieldConnectPassword.setNextFocusableComponent(jButtonSSH);
+        jPasswordFieldConnectPassword.setNextFocusableComponent(jButtonExecuteFunction3);
         jPasswordFieldConnectPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jPasswordFieldConnectPasswordKeyTyped(evt);
@@ -1304,6 +1336,18 @@ final JFXPanel fxPanel = new JFXPanel();
         });
         jPanel1.add(jCheckBoxAlternateLogin);
         jCheckBoxAlternateLogin.setBounds(10, 30, 120, 20);
+
+        jButtonExecuteFunction2.setBackground(new java.awt.Color(251, 255, 153));
+        jButtonExecuteFunction2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonExecuteFunction2.setText("RDP");
+        jButtonExecuteFunction2.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonExecuteFunction2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExecuteFunction2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonExecuteFunction2);
+        jButtonExecuteFunction2.setBounds(140, 40, 60, 21);
 
         jTextFieldFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2966,7 +3010,7 @@ final JFXPanel fxPanel = new JFXPanel();
             } catch (AWTException ex) {
                 Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
-            jButtonSSH.doClick();
+            jButtonExecuteFunction3.doClick();
         }
     }//GEN-LAST:event_jPasswordFieldConnectPasswordKeyTyped
 
@@ -2979,11 +3023,11 @@ final JFXPanel fxPanel = new JFXPanel();
             } catch (AWTException ex) {
                 Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
-            jButtonSSH.doClick();
+            jButtonExecuteFunction3.doClick();
         }
     }//GEN-LAST:event_jTextFieldConnectUsernameKeyTyped
 
-    private void jButtonSSHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSSHActionPerformed
+    private void jButtonExecuteFunction3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunction3ActionPerformed
         // TODO add your handling code here:
         String strSecureCRTexe = PropertyHandler.getInstance().getValue("SecureCRTexe").replace("%USERPROFILE%", pathUserProfile);
         String strPuTTYexe = PropertyHandler.getInstance().getValue("PuTTYexe").replace("%USERPROFILE%", pathUserProfile);
@@ -3051,9 +3095,9 @@ final JFXPanel fxPanel = new JFXPanel();
                 }
             }
         }
-    }//GEN-LAST:event_jButtonSSHActionPerformed
+    }//GEN-LAST:event_jButtonExecuteFunction3ActionPerformed
 
-    private void jButtonHTTPSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHTTPSActionPerformed
+    private void jButtonExecuteFunction1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunction1ActionPerformed
         // TODO add your handling code here:
         System.out.println("Pressed");
         Icon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
@@ -3118,7 +3162,7 @@ final JFXPanel fxPanel = new JFXPanel();
                 JOptionPane.showMessageDialog(null, "Something is wrong!");
             }
         }
-    }//GEN-LAST:event_jButtonHTTPSActionPerformed
+    }//GEN-LAST:event_jButtonExecuteFunction1ActionPerformed
 
     private void jTextFieldConnectHostnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldConnectHostnameKeyTyped
         // TODO add your handling code here:
@@ -3129,7 +3173,7 @@ final JFXPanel fxPanel = new JFXPanel();
             } catch (AWTException ex) {
                 Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
-            jButtonSSH.doClick();
+            jButtonExecuteFunction3.doClick();
         }
     }//GEN-LAST:event_jTextFieldConnectHostnameKeyTyped
 
@@ -4341,6 +4385,19 @@ final JFXPanel fxPanel = new JFXPanel();
         }
     }//GEN-LAST:event_jButton35ActionPerformed
 
+    private void jButtonExecuteFunction2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunction2ActionPerformed
+        // TODO add your handling code here:
+            System.out.println("RDP enganged.");
+            String strEXEC = "cmd /c start mstsc.exe " + jTextFieldConnectHostname.getText();
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+    }//GEN-LAST:event_jButtonExecuteFunction2ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -4554,7 +4611,19 @@ final JFXPanel fxPanel = new JFXPanel();
                 jTextFieldConnectHostname.setText(arrSelectedValue[1]);
                 jTextFieldPingHostname.setText(arrSelectedValue[1]);
             }
-            jButtonSSH.doClick();
+            String myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionDoubleClick");
+            if("".equals(myValue)) {
+                PropertyHandler.getInstance().setValue("ButtonExecuteFunctionDoubleClick", "3");
+            }              
+            myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionDoubleClick");
+            if("1".equals(myValue)) {
+                jButtonExecuteFunction1.doClick();
+            } else if("2".equals(myValue)) {
+                jButtonExecuteFunction2.doClick();               
+            } else if("3".equals(myValue)){
+                jButtonExecuteFunction3.doClick();
+            }
+            
           }
         }
       }
@@ -4613,9 +4682,11 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonCustomScript04;
     private javax.swing.JButton jButtonCustomScript05;
     private javax.swing.JButton jButtonCustomScript06;
+    private javax.swing.JButton jButtonExecuteFunction1;
+    private javax.swing.JButton jButtonExecuteFunction2;
+    private javax.swing.JButton jButtonExecuteFunction3;
     private javax.swing.JButton jButtonFolderToZip;
     private javax.swing.JButton jButtonGenerateHash;
-    private javax.swing.JButton jButtonHTTPS;
     private javax.swing.JButton jButtonJSDiff;
     private javax.swing.JButton jButtonJSDiff1;
     private javax.swing.JButton jButtonPing;
@@ -4625,7 +4696,6 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonReferenceCustom04;
     private javax.swing.JButton jButtonReferenceCustom05;
     private javax.swing.JButton jButtonReferenceCustom06;
-    private javax.swing.JButton jButtonSSH;
     private javax.swing.JButton jButtonScriptBackupShares;
     private javax.swing.JButton jButtonScriptSyncStandalones;
     private javax.swing.JButton jButtonScriptSyncStandalones1;
