@@ -4388,7 +4388,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private void jButtonExecuteFunction2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunction2ActionPerformed
         // TODO add your handling code here:
             System.out.println("RDP enganged.");
-            String strEXEC = "cmd /c start mstsc.exe " + jTextFieldConnectHostname.getText();
+            String strEXEC = "cmd /c start mstsc.exe /v:" + jTextFieldConnectHostname.getText();
             try {
                 Runtime.getRuntime().exec(strEXEC);
             }
