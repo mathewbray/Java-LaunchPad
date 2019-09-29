@@ -9,15 +9,12 @@ import com.mnnit.server.model.Settings;
 import com.mnnit.server.model.SingletonUIResource;
 import com.mnnit.server.ui.MainFrame;
 import com.mnnit.server.ui.NickChangeFrame;
-import com.mnnit.server.ui.PopUpMenu;
 import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Image;
-import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -520,6 +517,7 @@ final JFXPanel fxPanel = new JFXPanel();
                     } );
             resource = new SingletonUIResource(mainChatArea, jTextField1, userList);
             
+            
             resource.getNetworkController().logOn();
                    ListSelectionListener listSelectionListener = new ListSelectionListener() {
 
@@ -811,16 +809,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonExecuteFunction2 = new javax.swing.JButton();
         jTextFieldFilter = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jPanel3 = new javax.swing.JPanel();
-        jButton28 = new javax.swing.JButton();
-        jButtonJSDiff = new javax.swing.JButton();
-        jButtonConfigBuilder = new javax.swing.JButton();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jButton30 = new javax.swing.JButton();
-        jSeparator10 = new javax.swing.JSeparator();
-        jButtonJSDiff1 = new javax.swing.JButton();
-        jButton35 = new javax.swing.JButton();
+        jPanelLinks = new javax.swing.JPanel();
         jPanelScripts = new javax.swing.JPanel();
         jButtonScriptSyncStandalones = new javax.swing.JButton();
         jButtonScriptBackupShares = new javax.swing.JButton();
@@ -832,7 +821,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonCustomScript04 = new javax.swing.JButton();
         jButtonCustomScript05 = new javax.swing.JButton();
         jButtonScriptSyncStandalones1 = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jTabbedPaneToolBox = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jButtonFolderToZip = new javax.swing.JButton();
         jTextFieldZipSourceFolder = new javax.swing.JTextField();
@@ -895,7 +884,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jSeparator7 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextAreaNTPMessage = new javax.swing.JTextArea();
-        jPanel10 = new javax.swing.JPanel();
+        jPanelReference = new javax.swing.JPanel();
         jButton24 = new javax.swing.JButton();
         jButtonReferenceCustom06 = new javax.swing.JButton();
         jButton36 = new javax.swing.JButton();
@@ -909,7 +898,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonReferenceCustom04 = new javax.swing.JButton();
         jButtonReferenceCustom05 = new javax.swing.JButton();
         jToggleOfflineMode = new javax.swing.JToggleButton();
-        jPanel4 = new javax.swing.JPanel();
+        jPanelChat = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         mainChatArea = new javax.swing.JTextArea();
@@ -932,6 +921,32 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton34 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
         jButtonScriptUpdateLaunchPad = new javax.swing.JButton();
+        jPanelAppsOLD = new javax.swing.JPanel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanelAppsCustom = new javax.swing.JPanel();
+        jLabel29 = new javax.swing.JLabel();
+        jButtonAppCustom02 = new javax.swing.JButton();
+        jButtonAppCustom01 = new javax.swing.JButton();
+        jButtonAppCustom03 = new javax.swing.JButton();
+        jButtonAppCustom04 = new javax.swing.JButton();
+        jButtonAppCustom05 = new javax.swing.JButton();
+        jButtonAppCustom06 = new javax.swing.JButton();
+        jButtonAppCustom8 = new javax.swing.JButton();
+        jButtonAppCustom9 = new javax.swing.JButton();
+        jButtonAppCustom10 = new javax.swing.JButton();
+        jButtonAppCustom11 = new javax.swing.JButton();
+        jButtonAppCustom12 = new javax.swing.JButton();
+        jButtonAppCustom13 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jButtonJSDiff = new javax.swing.JButton();
+        jButtonConfigBuilder = new javax.swing.JButton();
+        jButtonJSDiff1 = new javax.swing.JButton();
+        jButton28 = new javax.swing.JButton();
+        jButton30 = new javax.swing.JButton();
+        jSeparator10 = new javax.swing.JSeparator();
+        jButton35 = new javax.swing.JButton();
+        jLabel36 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LaunchPad - Pre-Alpha");
@@ -1412,98 +1427,40 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jTabbedMain.addTab("Main", jPanelMain);
 
-        jPanel3.setLayout(null);
+        javax.swing.GroupLayout jPanelLinksLayout = new javax.swing.GroupLayout(jPanelLinks);
+        jPanelLinks.setLayout(jPanelLinksLayout);
+        jPanelLinksLayout.setHorizontalGroup(
+            jPanelLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 572, Short.MAX_VALUE)
+        );
+        jPanelLinksLayout.setVerticalGroup(
+            jPanelLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 487, Short.MAX_VALUE)
+        );
 
-        jButton28.setText("IPv4 Subnet Generator");
-        jButton28.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton28.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton28ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton28);
-        jButton28.setBounds(100, 120, 170, 30);
-
-        jButtonJSDiff.setText("jsDiff");
-        jButtonJSDiff.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonJSDiffActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonJSDiff);
-        jButtonJSDiff.setBounds(390, 40, 140, 30);
-
-        jButtonConfigBuilder.setText("Config Builder");
-        jButtonConfigBuilder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConfigBuilderActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonConfigBuilder);
-        jButtonConfigBuilder.setBounds(210, 40, 150, 30);
-
-        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel28.setText("Embedded Web Apps");
-        jPanel3.add(jLabel28);
-        jLabel28.setBounds(110, 10, 350, 20);
-
-        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel29.setText("Embedded Java Apps");
-        jPanel3.add(jLabel29);
-        jLabel29.setBounds(110, 90, 350, 20);
-
-        jButton30.setText("IPv6 Subnet Generator");
-        jButton30.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton30ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton30);
-        jButton30.setBounds(300, 120, 170, 30);
-        jPanel3.add(jSeparator10);
-        jSeparator10.setBounds(10, 80, 550, 10);
-
-        jButtonJSDiff1.setText("Subnet Calculator");
-        jButtonJSDiff1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonJSDiff1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonJSDiff1);
-        jButtonJSDiff1.setBounds(40, 40, 140, 30);
-
-        jButton35.setText("Puppeteer");
-        jButton35.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton35ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton35);
-        jButton35.setBounds(200, 160, 170, 30);
-
-        jTabbedMain.addTab("Apps", jPanel3);
+        jTabbedMain.addTab("Links", jPanelLinks);
 
         jPanelScripts.setLayout(null);
 
         jButtonScriptSyncStandalones.setText("Sync Standalones");
+        jButtonScriptSyncStandalones.setEnabled(false);
         jButtonScriptSyncStandalones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonScriptSyncStandalonesActionPerformed(evt);
             }
         });
         jPanelScripts.add(jButtonScriptSyncStandalones);
-        jButtonScriptSyncStandalones.setBounds(200, 20, 170, 30);
+        jButtonScriptSyncStandalones.setBounds(200, 440, 170, 30);
 
         jButtonScriptBackupShares.setText("Backup Shares");
+        jButtonScriptBackupShares.setEnabled(false);
         jButtonScriptBackupShares.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonScriptBackupSharesActionPerformed(evt);
             }
         });
         jPanelScripts.add(jButtonScriptBackupShares);
-        jButtonScriptBackupShares.setBounds(20, 20, 170, 30);
+        jButtonScriptBackupShares.setBounds(20, 440, 170, 30);
 
         jButtonCustomScript03.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonCustomScript03.addActionListener(new java.awt.event.ActionListener() {
@@ -1512,17 +1469,17 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelScripts.add(jButtonCustomScript03);
-        jButtonCustomScript03.setBounds(380, 160, 170, 30);
+        jButtonCustomScript03.setBounds(380, 40, 170, 30);
 
         jLabel32.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel32.setText("Custom Scripts");
         jPanelScripts.add(jLabel32);
-        jLabel32.setBounds(10, 130, 550, 20);
+        jLabel32.setBounds(10, 10, 550, 20);
 
         jButtonCustomScript06.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jPanelScripts.add(jButtonCustomScript06);
-        jButtonCustomScript06.setBounds(380, 200, 170, 30);
+        jButtonCustomScript06.setBounds(380, 80, 170, 30);
 
         jButtonCustomScript02.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonCustomScript02.addActionListener(new java.awt.event.ActionListener() {
@@ -1531,7 +1488,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelScripts.add(jButtonCustomScript02);
-        jButtonCustomScript02.setBounds(200, 160, 170, 30);
+        jButtonCustomScript02.setBounds(200, 40, 170, 30);
 
         jButtonCustomScript01.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonCustomScript01.addActionListener(new java.awt.event.ActionListener() {
@@ -1540,7 +1497,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelScripts.add(jButtonCustomScript01);
-        jButtonCustomScript01.setBounds(20, 160, 170, 30);
+        jButtonCustomScript01.setBounds(20, 40, 170, 30);
 
         jButtonCustomScript04.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonCustomScript04.addActionListener(new java.awt.event.ActionListener() {
@@ -1549,7 +1506,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelScripts.add(jButtonCustomScript04);
-        jButtonCustomScript04.setBounds(20, 200, 170, 30);
+        jButtonCustomScript04.setBounds(20, 80, 170, 30);
 
         jButtonCustomScript05.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonCustomScript05.addActionListener(new java.awt.event.ActionListener() {
@@ -1558,16 +1515,17 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelScripts.add(jButtonCustomScript05);
-        jButtonCustomScript05.setBounds(200, 200, 170, 30);
+        jButtonCustomScript05.setBounds(200, 80, 170, 30);
 
         jButtonScriptSyncStandalones1.setText("Map Standalone Share");
+        jButtonScriptSyncStandalones1.setEnabled(false);
         jButtonScriptSyncStandalones1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonScriptSyncStandalones1ActionPerformed(evt);
             }
         });
         jPanelScripts.add(jButtonScriptSyncStandalones1);
-        jButtonScriptSyncStandalones1.setBounds(380, 20, 170, 30);
+        jButtonScriptSyncStandalones1.setBounds(380, 440, 170, 30);
 
         jTabbedMain.addTab("Scripts", jPanelScripts);
 
@@ -1723,7 +1681,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel7.add(jPasswordFieldZipExtract);
         jPasswordFieldZipExtract.setBounds(130, 320, 170, 20);
 
-        jTabbedPane1.addTab("Zip & Encrypt", jPanel7);
+        jTabbedPaneToolBox.addTab("Zip & Encrypt", jPanel7);
 
         jPanel8.setLayout(null);
         jPanel8.add(jSeparator8);
@@ -1772,7 +1730,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel8.add(jButton23);
         jButton23.setBounds(480, 110, 70, 20);
 
-        jTabbedPane1.addTab("Type 7", jPanel8);
+        jTabbedPaneToolBox.addTab("Type 7", jPanel8);
 
         jPanel12.setLayout(null);
 
@@ -1839,7 +1797,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel12.add(jLabel25);
         jLabel25.setBounds(10, 50, 90, 20);
 
-        jTabbedPane1.addTab("Hash Generate", jPanel12);
+        jTabbedPaneToolBox.addTab("Hash Generate", jPanel12);
 
         jPanel9.setLayout(null);
 
@@ -1910,11 +1868,11 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel9.add(jScrollPane4);
         jScrollPane4.setBounds(20, 190, 530, 220);
 
-        jTabbedPane1.addTab("NTP", jPanel9);
+        jTabbedPaneToolBox.addTab("NTP", jPanel9);
 
-        jTabbedMain.addTab("ToolBox", jTabbedPane1);
+        jTabbedMain.addTab("ToolBox", jTabbedPaneToolBox);
 
-        jPanel10.setLayout(null);
+        jPanelReference.setLayout(null);
 
         jButton24.setText("IPv4 Subnet Chart");
         jButton24.addActionListener(new java.awt.event.ActionListener() {
@@ -1922,15 +1880,15 @@ final JFXPanel fxPanel = new JFXPanel();
                 jButton24ActionPerformed(evt);
             }
         });
-        jPanel10.add(jButton24);
-        jButton24.setBounds(20, 40, 170, 30);
+        jPanelReference.add(jButton24);
+        jButton24.setBounds(20, 440, 170, 30);
 
         jButtonReferenceCustom06.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom06ActionPerformed(evt);
             }
         });
-        jPanel10.add(jButtonReferenceCustom06);
+        jPanelReference.add(jButtonReferenceCustom06);
         jButtonReferenceCustom06.setBounds(380, 250, 170, 30);
 
         jButton36.setText("IPv4 Subnet Cheat Sheet");
@@ -1940,21 +1898,21 @@ final JFXPanel fxPanel = new JFXPanel();
                 jButton36ActionPerformed(evt);
             }
         });
-        jPanel10.add(jButton36);
-        jButton36.setBounds(200, 40, 170, 30);
+        jPanelReference.add(jButton36);
+        jButton36.setBounds(200, 440, 170, 30);
 
         jLabel30.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel30.setText("Custom Items");
-        jPanel10.add(jLabel30);
+        jPanelReference.add(jLabel30);
         jLabel30.setBounds(10, 140, 550, 20);
 
         jLabel31.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel31.setText("Embedded Items");
-        jPanel10.add(jLabel31);
-        jLabel31.setBounds(110, 10, 350, 20);
-        jPanel10.add(jSeparator11);
+        jPanelReference.add(jLabel31);
+        jLabel31.setBounds(110, 410, 350, 20);
+        jPanelReference.add(jSeparator11);
         jSeparator11.setBounds(20, 120, 550, 10);
 
         jButton37.setText("Stretch's Cheat Sheets");
@@ -1963,15 +1921,15 @@ final JFXPanel fxPanel = new JFXPanel();
                 jButton37ActionPerformed(evt);
             }
         });
-        jPanel10.add(jButton37);
-        jButton37.setBounds(380, 40, 170, 30);
+        jPanelReference.add(jButton37);
+        jButton37.setBounds(380, 440, 170, 30);
 
         jButtonReferenceCustom01.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom01ActionPerformed(evt);
             }
         });
-        jPanel10.add(jButtonReferenceCustom01);
+        jPanelReference.add(jButtonReferenceCustom01);
         jButtonReferenceCustom01.setBounds(20, 210, 170, 30);
 
         jButtonReferenceCustom02.addActionListener(new java.awt.event.ActionListener() {
@@ -1979,7 +1937,7 @@ final JFXPanel fxPanel = new JFXPanel();
                 jButtonReferenceCustom02ActionPerformed(evt);
             }
         });
-        jPanel10.add(jButtonReferenceCustom02);
+        jPanelReference.add(jButtonReferenceCustom02);
         jButtonReferenceCustom02.setBounds(200, 210, 170, 30);
 
         jButtonReferenceCustom03.addActionListener(new java.awt.event.ActionListener() {
@@ -1987,7 +1945,7 @@ final JFXPanel fxPanel = new JFXPanel();
                 jButtonReferenceCustom03ActionPerformed(evt);
             }
         });
-        jPanel10.add(jButtonReferenceCustom03);
+        jPanelReference.add(jButtonReferenceCustom03);
         jButtonReferenceCustom03.setBounds(380, 210, 170, 30);
 
         jButtonReferenceCustom04.addActionListener(new java.awt.event.ActionListener() {
@@ -1995,7 +1953,7 @@ final JFXPanel fxPanel = new JFXPanel();
                 jButtonReferenceCustom04ActionPerformed(evt);
             }
         });
-        jPanel10.add(jButtonReferenceCustom04);
+        jPanelReference.add(jButtonReferenceCustom04);
         jButtonReferenceCustom04.setBounds(20, 250, 170, 30);
 
         jButtonReferenceCustom05.addActionListener(new java.awt.event.ActionListener() {
@@ -2003,17 +1961,17 @@ final JFXPanel fxPanel = new JFXPanel();
                 jButtonReferenceCustom05ActionPerformed(evt);
             }
         });
-        jPanel10.add(jButtonReferenceCustom05);
+        jPanelReference.add(jButtonReferenceCustom05);
         jButtonReferenceCustom05.setBounds(200, 250, 170, 30);
 
         jToggleOfflineMode.setBackground(new java.awt.Color(0, 204, 51));
         jToggleOfflineMode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jToggleOfflineMode.setText("Online");
         jToggleOfflineMode.setToolTipText("Alternate between using network and local files.");
-        jPanel10.add(jToggleOfflineMode);
+        jPanelReference.add(jToggleOfflineMode);
         jToggleOfflineMode.setBounds(200, 170, 170, 30);
 
-        jTabbedMain.addTab("Reference", jPanel10);
+        jTabbedMain.addTab("Reference", jPanelReference);
 
         jTextField1.setMaximumSize(new java.awt.Dimension(6, 2147483647));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -2045,29 +2003,29 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelChatLayout = new javax.swing.GroupLayout(jPanelChat);
+        jPanelChat.setLayout(jPanelChatLayout);
+        jPanelChatLayout.setHorizontalGroup(
+            jPanelChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelChatLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGroup(jPanelChatLayout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanelChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                             .addComponent(jButtonChangeNick, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        jPanelChatLayout.setVerticalGroup(
+            jPanelChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelChatLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGroup(jPanelChatLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonChangeNick)))
@@ -2076,7 +2034,7 @@ final JFXPanel fxPanel = new JFXPanel();
                 .addContainerGap())
         );
 
-        jTabbedMain.addTab("Chat", jPanel4);
+        jTabbedMain.addTab("Chat", jPanelChat);
 
         jPanelSettings.setLayout(null);
 
@@ -2208,6 +2166,192 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jTabbedMain.addTab("Settings", jPanelSettings);
 
+        jPanelAppsOLD.setLayout(null);
+
+        jPanelAppsCustom.setLayout(null);
+
+        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel29.setText("Custom Apps");
+        jPanelAppsCustom.add(jLabel29);
+        jLabel29.setBounds(110, 10, 350, 20);
+
+        jButtonAppCustom02.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom02ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom02);
+        jButtonAppCustom02.setBounds(200, 40, 170, 30);
+
+        jButtonAppCustom01.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom01ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom01);
+        jButtonAppCustom01.setBounds(20, 40, 170, 30);
+
+        jButtonAppCustom03.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom03ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom03);
+        jButtonAppCustom03.setBounds(380, 40, 170, 30);
+
+        jButtonAppCustom04.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom04ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom04);
+        jButtonAppCustom04.setBounds(20, 80, 170, 30);
+
+        jButtonAppCustom05.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom05ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom05);
+        jButtonAppCustom05.setBounds(200, 80, 170, 30);
+
+        jButtonAppCustom06.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom06ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom06);
+        jButtonAppCustom06.setBounds(380, 80, 170, 30);
+
+        jButtonAppCustom8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom8ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom8);
+        jButtonAppCustom8.setBounds(20, 120, 170, 30);
+
+        jButtonAppCustom9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom9ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom9);
+        jButtonAppCustom9.setBounds(200, 120, 170, 30);
+
+        jButtonAppCustom10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom10ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom10);
+        jButtonAppCustom10.setBounds(380, 120, 170, 30);
+
+        jButtonAppCustom11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom11ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom11);
+        jButtonAppCustom11.setBounds(20, 160, 170, 30);
+
+        jButtonAppCustom12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom12ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom12);
+        jButtonAppCustom12.setBounds(200, 160, 170, 30);
+
+        jButtonAppCustom13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom13ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom13);
+        jButtonAppCustom13.setBounds(380, 160, 170, 30);
+
+        jTabbedPane2.addTab("Custom", jPanelAppsCustom);
+
+        jPanel3.setLayout(null);
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel28.setText("Embedded Web Apps");
+        jPanel3.add(jLabel28);
+        jLabel28.setBounds(110, 10, 350, 20);
+
+        jButtonJSDiff.setText("jsDiff");
+        jButtonJSDiff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonJSDiffActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonJSDiff);
+        jButtonJSDiff.setBounds(380, 40, 170, 30);
+
+        jButtonConfigBuilder.setText("Config Builder (Lab Use)");
+        jButtonConfigBuilder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConfigBuilderActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonConfigBuilder);
+        jButtonConfigBuilder.setBounds(200, 40, 170, 30);
+
+        jButtonJSDiff1.setText("Subnet Calculator");
+        jButtonJSDiff1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonJSDiff1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonJSDiff1);
+        jButtonJSDiff1.setBounds(20, 40, 170, 30);
+
+        jButton28.setText("IPv4 Subnet Generator");
+        jButton28.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton28);
+        jButton28.setBounds(10, 130, 170, 30);
+
+        jButton30.setText("IPv6 Subnet Generator");
+        jButton30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton30ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton30);
+        jButton30.setBounds(390, 130, 170, 30);
+        jPanel3.add(jSeparator10);
+        jSeparator10.setBounds(10, 90, 550, 10);
+
+        jButton35.setText("Puppeteer");
+        jButton35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton35ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton35);
+        jButton35.setBounds(200, 130, 170, 30);
+
+        jLabel36.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel36.setText("Embedded Java Apps");
+        jPanel3.add(jLabel36);
+        jLabel36.setBounds(110, 100, 350, 20);
+
+        jTabbedPane2.addTab("tab2", jPanel3);
+
+        jPanelAppsOLD.add(jTabbedPane2);
+        jTabbedPane2.setBounds(0, 0, 570, 490);
+
+        jTabbedMain.addTab("Apps", jPanelAppsOLD);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -2226,219 +2370,213 @@ final JFXPanel fxPanel = new JFXPanel();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jSliderListTextSizeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderListTextSizeStateChanged
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        String strSliderValue = String.valueOf(jSliderListTextSize.getValue());
-        System.out.println(strSliderValue);
+        URL iconURL = getClass().getResource("/icon/icon.png");
+        ImageIcon img = new ImageIcon(iconURL);
+        this.setIconImage(img.getImage());
 
-        if (strSliderValue.equals("0")){
-            jListSessions.setFont(jListSessions.getFont().deriveFont(10.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(10.0f));
-        }
-        if (strSliderValue.equals("1")){
-            jListSessions.setFont(jListSessions.getFont().deriveFont(11.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(11.0f));
-        }
-        if (strSliderValue.equals("2")){
-            jListSessions.setFont(jListSessions.getFont().deriveFont(12.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(12.0f));
-        }
-        if (strSliderValue.equals("3")){
-            jListSessions.setFont(jListSessions.getFont().deriveFont(13.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(13.0f));
-        }
-        if (strSliderValue.equals("4")){
-            jListSessions.setFont(jListSessions.getFont().deriveFont(14.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(14.0f));
-        }
-        if (strSliderValue.equals("5")){
-            jListSessions.setFont(jListSessions.getFont().deriveFont(15.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(15.0f));
-        }
-        if (strSliderValue.equals("6")){
-            jListSessions.setFont(jListSessions.getFont().deriveFont(16.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(16.0f));
-        }
-    }//GEN-LAST:event_jSliderListTextSizeStateChanged
+    }//GEN-LAST:event_formWindowOpened
 
-    private void jRadioButtonConsolePuttyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonConsolePuttyActionPerformed
+    private void jButtonAppCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom01ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonConsolePuttyActionPerformed
+    }//GEN-LAST:event_jButtonAppCustom01ActionPerformed
 
-    private void jRadioButtonConsolePuttyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButtonConsolePuttyMouseClicked
+    private void jButtonAppCustom13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom13ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Console with not work with old garbage versions of PuTTY from 2007(.60)!");
-    }//GEN-LAST:event_jRadioButtonConsolePuttyMouseClicked
+    }//GEN-LAST:event_jButtonAppCustom13ActionPerformed
 
-    private void jRadioButtonSSHClientPuTTYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonSSHClientPuTTYActionPerformed
+    private void jButtonAppCustom12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom12ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonSSHClientPuTTYActionPerformed
+    }//GEN-LAST:event_jButtonAppCustom12ActionPerformed
 
-    private void jPasswordFieldZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldZipActionPerformed
+    private void jButtonAppCustom11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom11ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordFieldZipActionPerformed
+    }//GEN-LAST:event_jButtonAppCustom11ActionPerformed
 
-    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+    private void jButtonAppCustom10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom10ActionPerformed
         // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new java.io.File("."));
-        chooser.setDialogTitle("Choose Folder...");
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        chooser.setAcceptAllFileFilterUsed(false);
+    }//GEN-LAST:event_jButtonAppCustom10ActionPerformed
 
-        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            jTextFieldZipSourceFolder.setText(chooser.getSelectedFile().getAbsolutePath());
-            System.out.println("getCurrentDirectory(): " + chooser.getCurrentDirectory());
-            System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
-        } else {
-            System.out.println("No Selection ");
+    private void jButtonAppCustom9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom9ActionPerformed
+
+    private void jButtonAppCustom8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom8ActionPerformed
+
+    private void jButtonAppCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom06ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom06ActionPerformed
+
+    private void jButtonAppCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom05ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom05ActionPerformed
+
+    private void jButtonAppCustom03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom03ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom03ActionPerformed
+
+    private void jButtonAppCustom02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom02ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom02ActionPerformed
+
+    private void jButtonAppCustom04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom04ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom04ActionPerformed
+
+    private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
+        // TODO add your handling code here:
+        String inputPdf = "apps/Puppeteer.jar";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".jar");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton25ActionPerformed
+        tempOutput.toFile().deleteOnExit();
 
-    private void jButtonFolderToZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFolderToZipActionPerformed
-        // TODO add your handling code here:
-        new Thread(() -> {
-            //Do whatever
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
+        File userManual = new File (tempOutput.toFile().getPath());
+        if (userManual.exists())
+        {
             try {
-                // Initiate ZipFile object with the path/name of the zip file.
-                ZipFile zipFile = new ZipFile(jTextFieldZipFilename.getText());
-
-                // Set runInThread variable of ZipFile to true.
-                // When this variable is set, Zip4j will run any task in a new thread
-                // If this variable is not set, Zip4j will run all tasks in the current
-                // thread.
-                zipFile.setRunInThread(true);
-
-                // Folder to add
-                String folderToAdd = jTextFieldZipSourceFolder.getText();
-
-                // Initiate Zip Parameters which define various properties such
-                // as compression method, etc.
-                ZipParameters parameters = new ZipParameters();
-
-                // set compression method to store compression
-                parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);
-
-                // Set the compression level
-                parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);
-
-                // Set the encryption flag to true
-                // If this is set to false, then the rest of encryption properties are ignored
-                parameters.setEncryptFiles(true);
-
-                // Set the encryption method to Standard Zip Encryption
-                //parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_STANDARD);
-                if (jComboBoxZipEncMethod.getSelectedItem().equals("AES-256 Encryption")) {
-                parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_AES);
-                parameters.setAesKeyStrength(Zip4jConstants.AES_STRENGTH_256);   
-                }
-                if (jComboBoxZipEncMethod.getSelectedItem().equals("Standard Encryption")) {
-                parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_STANDARD);
-                }
-
-                // Set password
-                if (Arrays.equals(jPasswordFieldZip.getPassword(),jPasswordFieldZipConfirm.getPassword())) {
-                    String passText = new String(jPasswordFieldZip.getPassword());
-                    parameters.setPassword(passText);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Passwords don't match!");
-                    return;
-                }
-
-
-                // Add folder to the zip file
-                zipFile.addFolder(folderToAdd, parameters);
-
-                // Get progress monitor from ZipFile
-                ProgressMonitor progressMonitor = zipFile.getProgressMonitor();
-                jProgressBarZip.setStringPainted(true);
-                // PLEASE NOTE: Below code does a lot of Sysout's.
-
-                // ProgressMonitor has two states, READY and BUSY. READY indicates that
-                // Zip4j can now accept any new tasks. BUSY indicates that Zip4j is
-                // currently performing some task and cannot accept any new task at the moment
-                // Any attempt to perform any other task will throw an Exception
-                while (progressMonitor.getState() == ProgressMonitor.STATE_BUSY) {
-                    // ProgressMonitor has a lot of useful information like, the current
-                    // operation being performed by Zip4j, current file being processed,
-                    // percentage done, etc. Once an operation is completed, ProgressMonitor
-                    // also contains the result of the operation. If any exception is thrown
-                    // during an operation, this is also stored in this object and can be retrieved
-                    // as shown below
-
-                    // To get the percentage done
-                    System.out.println("Percent Done: " + progressMonitor.getPercentDone());
-                    jProgressBarZip.setValue(progressMonitor.getPercentDone());
-
-                    // To get the current file being processed
-                    System.out.println("File: " + progressMonitor.getFileName());
-
-                    // To get current operation
-                    // Possible values are:
-                    // ProgressMonitor.OPERATION_NONE - no operation being performed
-                    // ProgressMonitor.OPERATION_ADD - files are being added to the zip file
-                    // ProgressMonitor.OPERATION_EXTRACT - files are being extracted from the zip file
-                    // ProgressMonitor.OPERATION_REMOVE - files are being removed from zip file
-                    // ProgressMonitor.OPERATION_CALC_CRC - CRC of the file is being calculated
-                    // ProgressMonitor.OPERATION_MERGE - Split zip files are being merged
-                    switch (progressMonitor.getCurrentOperation()) {
-                        case ProgressMonitor.OPERATION_NONE:
-                        System.out.println("no operation being performed");
-                        jProgressBarZip.setString("No operation being performed");
-                        break;
-                        case ProgressMonitor.OPERATION_ADD:
-                        System.out.println("Add operation");
-                        jProgressBarZip.setString("Add operation");
-                        break;
-                        case ProgressMonitor.OPERATION_EXTRACT:
-                        System.out.println("Extract operation");
-                        jProgressBarZip.setString("Extract operation");
-                        break;
-                        case ProgressMonitor.OPERATION_REMOVE:
-                        System.out.println("Remove operation");
-                        jProgressBarZip.setString("Remove operation");
-                        break;
-                        case ProgressMonitor.OPERATION_CALC_CRC:
-                        System.out.println("Calcualting CRC");
-                        jProgressBarZip.setString("Calcualting CRC");
-                        break;
-                        case ProgressMonitor.OPERATION_MERGE:
-                        System.out.println("Merge operation");
-                        jProgressBarZip.setString("Merge operation");
-                        break;
-                      
-                        default:
-                        System.out.println("invalid operation");
-                        jProgressBarZip.setString("invalid operation");
-                        break;
-                    }
-                }
-
-                // Once Zip4j is done with its task, it changes the ProgressMonitor
-                // state from BUSY to READY, so the above loop breaks.
-                // To get the result of the operation:
-                // Possible values:
-                // ProgressMonitor.RESULT_SUCCESS - Operation was successful
-                // ProgressMonitor.RESULT_WORKING - Zip4j is still working and is not
-                //									yet done with the current operation
-                // ProgressMonitor.RESULT_ERROR - An error occurred during processing
-                System.out.println("Result: " + progressMonitor.getResult());
-                if (progressMonitor.getResult() == ProgressMonitor.RESULT_ERROR) {
-                    //jProgressBarZip.setString("Result: Error!  Password wrong maybe?");
-                    System.err.println("An error occurred");
-
-                    // Any exception can be retrieved as below:
-                    if (progressMonitor.getException() != null) {
-                    } else {
-                        System.err.println("An error occurred without any exception");
-                    }
-                }
-
-            } catch (ZipException e) {
+                Desktop.getDesktop().open(userManual);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }).start();
-    }//GEN-LAST:event_jButtonFolderToZipActionPerformed
+
+        }
+    }//GEN-LAST:event_jButton35ActionPerformed
+
+    private void jButtonJSDiff1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJSDiff1ActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Pressed");
+        String inputFile = "html/subnetcalculator/SubnetCalculator.html";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputFile);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".html");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File tempFile = new File (tempOutput.toFile().getPath());
+        if (tempFile.exists())
+        {
+            //Desktop.getDesktop().open(tempFile);
+
+        }
+        String strWebpage = tempOutput.toFile().getPath();
+        Icon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
+        Icon iconEdge = new ImageIcon(getClass().getResource("/launchpad/images/buttons/edge.png"));
+        Icon iconFireFox = new ImageIcon(getClass().getResource("/launchpad/images/buttons/firefox.png"));
+        Icon iconChrome = new ImageIcon(getClass().getResource("/launchpad/images/buttons/chrome.png"));
+        Object[] iconArray = {iconExplorer,
+            iconEdge,
+            iconFireFox,
+            iconChrome};
+        int result = JOptionPane.showOptionDialog(null,
+            "IE, Edge, FireFox, Chrome?",
+            "Browser Chooser",
+            JOptionPane.YES_NO_CANCEL_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            iconArray,
+            iconArray[3]);
+        System.out.println("Option selected: " + result);
+
+        if(result == 0) {
+            String strEXEC = "cmd /c start iexplore.exe " + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+        if(result == 2) {
+            String strEXEC = "cmd /c start firefox.exe " + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+        if(result == 1) {
+            String strEXEC = "cmd /c start microsoft-edge:" + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+        if(result == 3) {
+            String strEXEC = "cmd /c start chrome.exe " + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+    }//GEN-LAST:event_jButtonJSDiff1ActionPerformed
+
+    private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
+        // TODO add your handling code here:
+        String inputPdf = "apps/IPv6SubnetCalculator.jar";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".jar");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File userManual = new File (tempOutput.toFile().getPath());
+        if (userManual.exists())
+        {
+            try {
+                Desktop.getDesktop().open(userManual);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton30ActionPerformed
 
     private void jButtonConfigBuilderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfigBuilderActionPerformed
         // TODO add your handling code here:
@@ -2622,6 +2760,766 @@ final JFXPanel fxPanel = new JFXPanel();
         }
     }//GEN-LAST:event_jButtonJSDiffActionPerformed
 
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        // TODO add your handling code here:
+        String inputPdf = "apps/IPSubnetCalculator.jar";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".jar");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File userManual = new File (tempOutput.toFile().getPath());
+        if (userManual.exists())
+        {
+            try {
+                Desktop.getDesktop().open(userManual);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+    }//GEN-LAST:event_jButton28ActionPerformed
+
+    private void jButtonScriptUpdateLaunchPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptUpdateLaunchPadActionPerformed
+        // TODO add your handling code here:
+        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("FileUpdateScript") + "\"";
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+        System.exit(0);
+    }//GEN-LAST:event_jButtonScriptUpdateLaunchPadActionPerformed
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        // TODO add your handling code here:
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
+            if ("ipranger32".equals(jTextField2.getText()) ||
+                "ipranger".equals(jTextField2.getText())) {
+                String inputPdf = "apps/ipranger32.jar";
+                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+                Path tempOutput = null;
+                try {
+                    tempOutput = Files.createTempFile("TempFile", ".jar");
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                tempOutput.toFile().deleteOnExit();
+
+                try {
+                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                File userManual = new File (tempOutput.toFile().getPath());
+                if (userManual.exists())
+                {
+                    try {
+                        Desktop.getDesktop().open(userManual);
+                    } catch (IOException ex) {
+                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                jTextField2.setText("");
+            }
+            if ("ipranger64".equals(jTextField2.getText())) {
+                String inputPdf = "apps/ipranger64.jar";
+                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+                Path tempOutput = null;
+                try {
+                    tempOutput = Files.createTempFile("TempFile", ".jar");
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                tempOutput.toFile().deleteOnExit();
+
+                try {
+                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                File userManual = new File (tempOutput.toFile().getPath());
+                if (userManual.exists())
+                {
+                    try {
+                        Desktop.getDesktop().open(userManual);
+                    } catch (IOException ex) {
+                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                jTextField2.setText("");
+            }
+
+            if ("jdiskreport".equals(jTextField2.getText()) ||
+                "diskreport".equals(jTextField2.getText()) ||
+                "foldersize".equals(jTextField2.getText())) {
+
+                String inputPdf = "apps/jdiskreport-1.4.1.jar";
+                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+                Path tempOutput = null;
+                try {
+                    tempOutput = Files.createTempFile("TempFile", ".jar");
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                tempOutput.toFile().deleteOnExit();
+
+                try {
+                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                File userManual = new File (tempOutput.toFile().getPath());
+                if (userManual.exists())
+                {
+                    try {
+                        Desktop.getDesktop().open(userManual);
+                    } catch (IOException ex) {
+                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                jTextField2.setText("");
+            }
+
+            if ("pixelitor".equals(jTextField2.getText()) ||
+                "paint".equals(jTextField2.getText())) {
+
+                String inputPdf = "apps/pixelitor_4.2.0.jar";
+                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+                Path tempOutput = null;
+                try {
+                    tempOutput = Files.createTempFile("TempFile", ".jar");
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                tempOutput.toFile().deleteOnExit();
+
+                try {
+                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                File userManual = new File (tempOutput.toFile().getPath());
+                if (userManual.exists())
+                {
+                    try {
+                        Desktop.getDesktop().open(userManual);
+                    } catch (IOException ex) {
+                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                jTextField2.setText("");
+            }
+
+            if ("tftp".equals(jTextField2.getText())) {
+
+                String inputPdf = "apps/tftp.jar";
+                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+                Path tempOutput = null;
+                try {
+                    tempOutput = Files.createTempFile("TempFile", ".jar");
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                tempOutput.toFile().deleteOnExit();
+
+                try {
+                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                File userManual = new File (tempOutput.toFile().getPath());
+                if (userManual.exists())
+                {
+                    try {
+                        Desktop.getDesktop().open(userManual);
+                    } catch (IOException ex) {
+                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                jTextField2.setText("");
+            }
+
+            if ("ftp".equals(jTextField2.getText())) {
+
+                String inputPdf = "apps/ftp.jar";
+                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+                Path tempOutput = null;
+                try {
+                    tempOutput = Files.createTempFile("TempFile", ".jar");
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                tempOutput.toFile().deleteOnExit();
+
+                try {
+                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                File userManual = new File (tempOutput.toFile().getPath());
+                if (userManual.exists())
+                {
+                    try {
+                        Desktop.getDesktop().open(userManual);
+                    } catch (IOException ex) {
+                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                jTextField2.setText("");
+            }
+
+            if ("settingsfile".equals(jTextField2.getText())) {
+
+                String strPathPropertiesFile = pathDesktop + "\\LaunchPad\\launchpad.properties";
+
+                //text file, should be opening in default text editor
+                File file = new File(strPathPropertiesFile);
+
+                //first check if Desktop is supported by Platform or not
+                if(!Desktop.isDesktopSupported()){
+                    System.out.println("Desktop is not supported");
+                    return;
+                }
+
+                Desktop desktop = Desktop.getDesktop();
+                if(file.exists()) try {
+                    desktop.open(file);
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
+                }
+
+                // Open
+                if(file.exists()) try {
+                    desktop.open(file);
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
+
+                }
+
+                jTextField2.setText("");
+            }
+
+        }
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
+        // TODO add your handling code here:
+        String strPathPropertiesFile = pathDesktop + "\\LaunchPad\\launchpad.properties";
+        DefaultListModel listModel = new DefaultListModel();
+        ArrayList arrSessionList = new ArrayList();
+
+        File archivo = new File(strPathPropertiesFile);
+
+        try (FileReader fr = new FileReader(archivo)) {
+            BufferedReader buffIn;
+            buffIn = new BufferedReader(fr);
+
+            String line;
+            while ((line = buffIn.readLine()) != null) {
+                arrSessionList.add(line);
+                listModel.addElement(line);
+                //System.out.println(line);
+            }
+            JList list = new JList(listModel);
+
+            JScrollPane scroll = new JScrollPane(list);
+
+            scroll.setPreferredSize(new Dimension(800, 500));
+
+            JFrame frame = new JFrame();
+            frame.add(scroll);
+            frame.setTitle("Settings File");
+            //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        }
+        catch (IOException e) {
+            System.out.println("SessionList.csv no good");
+            JOptionPane.showMessageDialog(null, "SessionList.csv Error!");
+        }
+
+    }//GEN-LAST:event_jButton34ActionPerformed
+
+    private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
+        // TODO add your handling code here:
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new ButtonList();
+            }
+        });
+
+    }//GEN-LAST:event_jButton33ActionPerformed
+
+    private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
+        // TODO add your handling code here:
+        try {
+            Process p = Runtime.getRuntime().exec
+            (new String [] { "cmd.exe", "/c", "assoc", ".xls"});
+            BufferedReader input =
+            new BufferedReader
+            (new InputStreamReader(p.getInputStream()));
+            String extensionType = input.readLine();
+            input.close();
+            // extract type
+            if (extensionType == null) {
+                System.out.println("no office installed ?");
+                String myValue = "cmd.exe /c start wordpad.exe \"" + strSessionListFavorites + "\"";
+                System.out.println(myValue);
+                try {
+                    Runtime.getRuntime().exec(myValue);
+                }
+                catch (IOException e) {
+                    System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                    JOptionPane.showMessageDialog(null, "Something is wrong!");
+                }
+
+                return;
+            }
+            String fileType[] = extensionType.split("=");
+
+            p = Runtime.getRuntime().exec
+            (new String [] { "cmd.exe", "/c", "ftype", fileType[1]});
+            input =
+            new BufferedReader
+            (new InputStreamReader(p.getInputStream()));
+            String fileAssociation = input.readLine();
+            // extract path
+            String officePath = fileAssociation.split("=")[1];
+            Pattern patternInQuotes = Pattern.compile("\"([^\"]*)\"");
+            Matcher matchInQuotes = patternInQuotes.matcher(officePath);
+            while (matchInQuotes.find()) {
+                officePath = matchInQuotes.group(1);
+                System.out.println(matchInQuotes.group(1));
+            }
+            String myValue = "\"" + officePath + " \" \"" + strSessionListFavorites + "\"";
+            System.out.println(myValue);
+            try {
+                Runtime.getRuntime().exec(myValue);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+        catch (IOException err) {
+        }
+
+    }//GEN-LAST:event_jButton32ActionPerformed
+
+    private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
+        // TODO add your handling code here:
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure you want to reset your SecureCRT settings?","Warning", dialogButton);
+        if(dialogResult == JOptionPane.YES_OPTION){
+            String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -noexit -Command \"Remove-Item $env:USERPROFILE\\AppData\\Roaming\\VanDyke\\Config\\ -Force -Recurse; write-host 'SecureCRT Reset!' -foregroundcolor green; pause; exit\"";
+            System.out.println(myValue);
+            try {
+                Runtime.getRuntime().exec(myValue);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+
+    }//GEN-LAST:event_jButton31ActionPerformed
+
+    private void jSliderListTextSizeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderListTextSizeStateChanged
+        // TODO add your handling code here:
+        String strSliderValue = String.valueOf(jSliderListTextSize.getValue());
+        System.out.println(strSliderValue);
+
+        if (strSliderValue.equals("0")){
+            jListSessions.setFont(jListSessions.getFont().deriveFont(10.0f));
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(10.0f));
+        }
+        if (strSliderValue.equals("1")){
+            jListSessions.setFont(jListSessions.getFont().deriveFont(11.0f));
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(11.0f));
+        }
+        if (strSliderValue.equals("2")){
+            jListSessions.setFont(jListSessions.getFont().deriveFont(12.0f));
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(12.0f));
+        }
+        if (strSliderValue.equals("3")){
+            jListSessions.setFont(jListSessions.getFont().deriveFont(13.0f));
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(13.0f));
+        }
+        if (strSliderValue.equals("4")){
+            jListSessions.setFont(jListSessions.getFont().deriveFont(14.0f));
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(14.0f));
+        }
+        if (strSliderValue.equals("5")){
+            jListSessions.setFont(jListSessions.getFont().deriveFont(15.0f));
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(15.0f));
+        }
+        if (strSliderValue.equals("6")){
+            jListSessions.setFont(jListSessions.getFont().deriveFont(16.0f));
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(16.0f));
+        }
+    }//GEN-LAST:event_jSliderListTextSizeStateChanged
+
+    private void jRadioButtonConsolePuttyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonConsolePuttyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonConsolePuttyActionPerformed
+
+    private void jRadioButtonConsolePuttyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButtonConsolePuttyMouseClicked
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Console with not work with old garbage versions of PuTTY from 2007(.60)!");
+    }//GEN-LAST:event_jRadioButtonConsolePuttyMouseClicked
+
+    private void jRadioButtonSSHClientPuTTYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonSSHClientPuTTYActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonSSHClientPuTTYActionPerformed
+
+    private void jButtonChangeNickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeNickActionPerformed
+        // TODO add your handling code here:
+        Thread th = new Thread(){
+            public void run()
+            {
+                JFrame settingsFrame = new NickChangeFrame(Settings.getSettings().getMe().getNick(), resource);
+                settingsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                settingsFrame.setVisible(true);
+            }
+        };
+        th.start();
+    }//GEN-LAST:event_jButtonChangeNickActionPerformed
+
+    private void userListMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userListMouseReleased
+        //        if(evt.isPopupTrigger()&&!userList.isSelectionEmpty())
+        //        {      PopUpMenu popUpMenu =  new PopUpMenu();
+            //            popUpMenu.showUser(evt.getComponent(), evt.getX(), evt.getY() , userSelected);}
+    }//GEN-LAST:event_userListMouseReleased
+
+    private void userListMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userListMousePressed
+        //        Point p = evt.getPoint();
+        //        int index = userList.locationToIndex( p );
+        //
+        //        if ( index != -1 )
+        //        {
+            //            Rectangle r = userList.getCellBounds( index, index );
+            //
+            //            if ( r.x <= p.x && p.x <= r.x + r.width && r.y <= p.y && p.y <= r.y + r.height )
+            //            {
+                //                userList.setSelectedIndex( index );
+                //            }
+            //
+            //            else
+            //            {
+                //                userList.clearSelection();
+                //            }
+            //        }
+        //        if(evt.isPopupTrigger()&&!userList.isSelectionEmpty())
+        //        {      PopUpMenu popUpMenu =  new PopUpMenu();
+            //            popUpMenu.showUser(evt.getComponent(), evt.getX(), evt.getY() , userSelected);}
+    }//GEN-LAST:event_userListMousePressed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+
+        resource.getChatTextFieldController().parseAndActOnMessage();
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButtonReferenceCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom05ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom05ActionPerformed
+
+    private void jButtonReferenceCustom04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom04ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom04ActionPerformed
+
+    private void jButtonReferenceCustom03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom03ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom03ActionPerformed
+
+    private void jButtonReferenceCustom02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom02ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom02ActionPerformed
+
+    private void jButtonReferenceCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom01ActionPerformed
+        // TODO add your handling code here:
+        String strReference01;
+        strReference01 = PropertyHandler.getInstance().getValue("ReferenceFile01");
+
+        if(jToggleOfflineMode.isSelected()){
+            strReference01 =  PropertyHandler.getInstance().getValue("ReferenceFolderOffline") + strReference01;
+            System.out.println("Using Offline: " + strReference01);
+        }
+        else{
+            strReference01 =  PropertyHandler.getInstance().getValue("ReferenceFolderOnline") + strReference01;
+        }
+
+        //text file, should be opening in default text editor
+        File file = new File(strReference01);
+
+        //first check if Desktop is supported by Platform or not
+        if(!Desktop.isDesktopSupported()){
+            System.out.println("Desktop is not supported");
+            return;
+        }
+
+        Desktop desktop = Desktop.getDesktop();
+        if(file.exists()) try {
+            desktop.open(file);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
+        }
+
+        // Open
+        if(file.exists()) try {
+            desktop.open(file);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
+
+        }
+
+    }//GEN-LAST:event_jButtonReferenceCustom01ActionPerformed
+
+    private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
+        // TODO add your handling code here:
+        String inputPdf = "files/Cheat Sheets - PacketLife.net.zip";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".zip");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File userManual = new File (tempOutput.toFile().getPath());
+        if (userManual.exists())
+        {
+            try {
+                Desktop.getDesktop().open(userManual);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton37ActionPerformed
+
+    private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
+        // TODO add your handling code here:
+        String inputPdf = "files/IPv4_Subnetting.pdf";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".pdf");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File userManual = new File (tempOutput.toFile().getPath());
+        if (userManual.exists())
+        {
+            try {
+                Desktop.getDesktop().open(userManual);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }//GEN-LAST:event_jButton36ActionPerformed
+
+    private void jButtonReferenceCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom06ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom06ActionPerformed
+
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        // TODO add your handling code here:
+        String inputPdf = "files/Subnets.pdf";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".pdf");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File userManual = new File (tempOutput.toFile().getPath());
+        if (userManual.exists())
+        {
+            try {
+                Desktop.getDesktop().open(userManual);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton24ActionPerformed
+
+    private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
+        // TODO add your handling code here:
+        // Send message
+        DatagramSocket socket = null;
+        try {
+            socket = new DatagramSocket();
+        } catch (SocketException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            jTextAreaNTPMessage.setText("Socket not opened.");
+
+        }
+        InetAddress address = null;
+        try {
+            address = InetAddress.getByName(jTextFieldNtpServer.getText());
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            jTextAreaNTPMessage.setText("No IP received from DNS.");
+        }
+        byte[] buf = new NtpMessage().toByteArray();
+        DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 123);
+        try {
+            socket.send(packet);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            jTextAreaNTPMessage.setText("Nothing sent.");
+        }
+
+        try {
+            // Get response
+            socket.receive(packet);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            jTextAreaNTPMessage.setText("Nothing received.");
+
+        }
+        NtpMessage msg = new NtpMessage(packet.getData());
+        //double offset = ((msg.receiveTimestamp - msg.originateTimestamp) + (msg.transmitTimestamp - destinationTimestamp)) / 2;
+
+        System.out.println(msg.toString());
+        jTextAreaNTPMessage.setText(msg.toString());
+    }//GEN-LAST:event_jButton29ActionPerformed
+
+    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        // TODO add your handling code here:
+        String SERVER_NAME = jTextFieldNtpServer.getText();
+        //String SERVER_NAME = "pool.ntp.org";
+        NTPUDPClient timeClient = new NTPUDPClient();
+        // We want to timeout if a response takes longer than 10 seconds
+        timeClient.setDefaultTimeout(10000);
+
+        InetAddress inetAddress = null;
+        try {
+            inetAddress = InetAddress.getByName(SERVER_NAME);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Failed - Couldn't find server.");
+            jTextFieldNtpSystemTime.setText("Failed - Couldn't find server: " + SERVER_NAME);
+            jTextFieldNtpAtomicTime.setText("");
+        }
+        TimeInfo timeInfo = null;
+        try {
+            timeInfo = timeClient.getTime(inetAddress);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Failed - Found server, but no time received. ");
+            jTextFieldNtpSystemTime.setText("Failed - Found server: " + SERVER_NAME + ", but no time received. ");
+            jTextFieldNtpAtomicTime.setText("");
+
+        }
+        long returnTime = timeInfo.getReturnTime();
+        TimeStamp destNtpTime = TimeStamp.getNtpTime(returnTime);
+        System.out.println("System time:\t" + destNtpTime + "  " + destNtpTime.toDateString());
+        jTextFieldNtpSystemTime.setText("" + destNtpTime + "  " + destNtpTime.toDateString());
+
+        TimeStamp currentNtpTime = TimeStamp.getCurrentTime();
+        System.out.println("Atomic time:\t" + currentNtpTime + "  " + currentNtpTime.toDateString());
+        jTextFieldNtpAtomicTime.setText("" + currentNtpTime + "  " + currentNtpTime.toDateString());
+
+    }//GEN-LAST:event_jButton26ActionPerformed
+
+    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new java.io.File("."));
+        chooser.setDialogTitle("Choose Folder...");
+        //chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.setAcceptAllFileFilterUsed(false);
+
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            jTextFieldFileHashGenerate.setText(chooser.getSelectedFile().getAbsolutePath());
+            System.out.println("getCurrentDirectory(): " + chooser.getCurrentDirectory());
+            System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
+        } else {
+            System.out.println("No Selection ");
+        }
+    }//GEN-LAST:event_jButton27ActionPerformed
+
+    private void jButtonGenerateHashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerateHashActionPerformed
+        // TODO add your handling code here:
+
+        File file = new File(jTextFieldFileHashGenerate.getText());
+
+        //System.out.println("MD5    : " + toHex(HashGenerate.MD5.checksum(file)));
+        jTextFieldHashMD5.setText(toHex(HashGenerate.MD5.checksum(file)));
+        //System.out.println("SHA1   : " + toHex(HashGenerate.SHA1.checksum(file)));
+        jTextFieldHashSHA1.setText(toHex(HashGenerate.SHA1.checksum(file)));
+        //System.out.println("SHA256 : " + toHex(HashGenerate.SHA256.checksum(file)));
+        jTextFieldHashSHA256.setText(toHex(HashGenerate.SHA256.checksum(file)));
+        //System.out.println("SHA512 : " + toHex(HashGenerate.SHA512.checksum(file)));
+        jTextFieldHashSHA512.setText(toHex(HashGenerate.SHA512.checksum(file)));
+
+    }//GEN-LAST:event_jButtonGenerateHashActionPerformed
+
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
         // TODO add your handling code here:
         String myString = jTextFieldType7Output.getText();
@@ -2644,6 +3542,487 @@ final JFXPanel fxPanel = new JFXPanel();
         jTextFieldType7Output.setText(type7stuff);
     }//GEN-LAST:event_jButton21ActionPerformed
 
+    private void jPasswordFieldZipExtractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldZipExtractActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldZipExtractActionPerformed
+
+    private void jPasswordFieldZipConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldZipConfirmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldZipConfirmActionPerformed
+
+    private void jButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton39ActionPerformed
+        // TODO add your handling code here:
+        new Thread(() -> {
+            //Do whatever
+
+            try {
+                // Initiate ZipFile object with the path/name of the zip file.
+                ZipFile zipFile = new ZipFile(jTextFieldZipSourceFile.getText());
+
+                // Set runInThread variable of ZipFile to true.
+                // When this variable is set, Zip4j will run any task in a new thread
+                // If this variable is not set, Zip4j will run all tasks in the current
+                // thread.
+                zipFile.setRunInThread(true);
+
+                // Folder to add
+                //                String folderToAdd = jTextFieldZipSourceFolder.getText();
+
+                // Initiate Zip Parameters which define various properties such
+                // as compression method, etc.
+                ZipParameters parameters = new ZipParameters();
+
+                // set compression method to store compression
+                //                parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);
+
+                // Set the compression level
+                //                parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);
+
+                // Set the encryption flag to true
+                // If this is set to false, then the rest of encryption properties are ignored
+                //                parameters.setEncryptFiles(true);
+
+                // Set the encryption method to Standard Zip Encryption
+                //parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_STANDARD);
+                //                if (jComboBoxZipEncMethod.getSelectedItem().equals("AES256")) {
+                    //                parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_AES);
+                    //                parameters.setAesKeyStrength(Zip4jConstants.AES_STRENGTH_256);
+                    //                }
+                //                if (jComboBoxZipEncMethod.getSelectedItem().equals("Standard")) {
+                    //                parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_STANDARD);
+                    //                }
+
+                // Set password
+                if (jPasswordFieldZipExtract.getPassword().length != 0) {
+                    String passText = new String(jPasswordFieldZipExtract.getPassword());
+                    zipFile.setPassword(passText);
+                }
+
+                // Add folder to the zip file
+                //                zipFile.addFolder(folderToAdd, parameters);
+
+                // Extracts all files to the path specified
+                try {
+                    if (zipFile.isEncrypted()) {
+                        zipFile.setPassword(jPasswordFieldZipExtract.getPassword());
+                    }
+                    zipFile.extractAll(jTextFieldZipDestinationFolder.getText());
+                } catch (ZipException e) {
+                    e.printStackTrace();
+                }
+
+                // Get progress monitor from ZipFile
+                ProgressMonitor progressMonitor = zipFile.getProgressMonitor();
+                jProgressBarZipExtract.setStringPainted(true);
+                // PLEASE NOTE: Below code does a lot of Sysout's.
+
+                // ProgressMonitor has two states, READY and BUSY. READY indicates that
+                // Zip4j can now accept any new tasks. BUSY indicates that Zip4j is
+                // currently performing some task and cannot accept any new task at the moment
+                // Any attempt to perform any other task will throw an Exception
+                while (progressMonitor.getState() == ProgressMonitor.STATE_BUSY) {
+                    // ProgressMonitor has a lot of useful information like, the current
+                    // operation being performed by Zip4j, current file being processed,
+                    // percentage done, etc. Once an operation is completed, ProgressMonitor
+                    // also contains the result of the operation. If any exception is thrown
+                    // during an operation, this is also stored in this object and can be retrieved
+                    // as shown below
+
+                    // To get the percentage done
+                    System.out.println("Percent Done: " + progressMonitor.getPercentDone());
+                    jProgressBarZipExtract.setValue(progressMonitor.getPercentDone());
+
+                    // To get the current file being processed
+                    System.out.println("File: " + progressMonitor.getFileName());
+
+                    // To get current operation
+                    // Possible values are:
+                    // ProgressMonitor.OPERATION_NONE - no operation being performed
+                    // ProgressMonitor.OPERATION_ADD - files are being added to the zip file
+                    // ProgressMonitor.OPERATION_EXTRACT - files are being extracted from the zip file
+                    // ProgressMonitor.OPERATION_REMOVE - files are being removed from zip file
+                    // ProgressMonitor.OPERATION_CALC_CRC - CRC of the file is being calculated
+                    // ProgressMonitor.OPERATION_MERGE - Split zip files are being merged
+                    switch (progressMonitor.getCurrentOperation()) {
+                        case ProgressMonitor.OPERATION_NONE:
+                        System.out.println("no operation being performed");
+                        jProgressBarZipExtract.setString("No operation being performed");
+                        break;
+                        case ProgressMonitor.OPERATION_ADD:
+                        System.out.println("Add operation");
+                        jProgressBarZipExtract.setString("Add operation");
+                        break;
+                        case ProgressMonitor.OPERATION_EXTRACT:
+                        System.out.println("Extract operation");
+                        jProgressBarZipExtract.setString("Extract operation");
+                        break;
+                        case ProgressMonitor.OPERATION_REMOVE:
+                        System.out.println("Remove operation");
+                        jProgressBarZipExtract.setString("Remove operation");
+                        break;
+                        case ProgressMonitor.OPERATION_CALC_CRC:
+                        System.out.println("Calcualting CRC");
+                        jProgressBarZipExtract.setString("Calcualting CRC");
+                        break;
+                        case ProgressMonitor.OPERATION_MERGE:
+                        System.out.println("Merge operation");
+                        jProgressBarZipExtract.setString("Merge operation");
+                        break;
+                        default:
+                        System.out.println("invalid operation");
+                        jProgressBarZipExtract.setString("invalid operation");
+                        break;
+                    }
+                }
+
+                // Once Zip4j is done with its task, it changes the ProgressMonitor
+                // state from BUSY to READY, so the above loop breaks.
+                // To get the result of the operation:
+                // Possible values:
+                // ProgressMonitor.RESULT_SUCCESS - Operation was successful
+                // ProgressMonitor.RESULT_WORKING - Zip4j is still working and is not
+                //									yet done with the current operation
+                // ProgressMonitor.RESULT_ERROR - An error occurred during processing
+                System.out.println("Result: " + progressMonitor.getResult());
+                if (progressMonitor.getResult() == ProgressMonitor.RESULT_ERROR) {
+                    jProgressBarZip.setString("Result: Error!  Password wrong maybe?");
+                    System.err.println("An error occurred");
+
+                    // Any exception can be retrieved as below:
+                    if (progressMonitor.getException() != null) {
+                    } else {
+                        System.err.println("An error occurred without any exception");
+                    }
+                }
+
+            } catch (ZipException e) {
+            }
+        }).start();
+    }//GEN-LAST:event_jButton39ActionPerformed
+
+    private void jButtonZipBrowseDestinationFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZipBrowseDestinationFolderActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new java.io.File("."));
+        chooser.setDialogTitle("Choose Folder...");
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.setAcceptAllFileFilterUsed(false);
+
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            jTextFieldZipDestinationFolder.setText(chooser.getSelectedFile().getAbsolutePath());
+            System.out.println("getCurrentDirectory(): " + chooser.getCurrentDirectory());
+            System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
+        } else {
+            System.out.println("No Selection ");
+        }
+
+    }//GEN-LAST:event_jButtonZipBrowseDestinationFolderActionPerformed
+
+    private void jButtonZipBrowseSourceZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZipBrowseSourceZipActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new java.io.File("."));
+        chooser.setDialogTitle("Choose Folder...");
+        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        //chooser.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter zipFilter = new FileNameExtensionFilter("ZIP Files", "zip");
+        chooser.setFileFilter(zipFilter);
+
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            jTextFieldZipSourceFile.setText(chooser.getSelectedFile().getAbsolutePath());
+            System.out.println("getCurrentDirectory(): " + chooser.getCurrentDirectory());
+            System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
+        } else {
+            System.out.println("No Selection ");
+        }
+    }//GEN-LAST:event_jButtonZipBrowseSourceZipActionPerformed
+
+    private void jTextFieldZipSourceFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldZipSourceFileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldZipSourceFileActionPerformed
+
+    private void jPasswordFieldZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldZipActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldZipActionPerformed
+
+    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new java.io.File("."));
+        chooser.setDialogTitle("Choose Folder...");
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.setAcceptAllFileFilterUsed(false);
+
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            jTextFieldZipSourceFolder.setText(chooser.getSelectedFile().getAbsolutePath());
+            System.out.println("getCurrentDirectory(): " + chooser.getCurrentDirectory());
+            System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
+        } else {
+            System.out.println("No Selection ");
+        }
+    }//GEN-LAST:event_jButton25ActionPerformed
+
+    private void jButtonFolderToZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFolderToZipActionPerformed
+        // TODO add your handling code here:
+        new Thread(() -> {
+            //Do whatever
+
+            try {
+                // Initiate ZipFile object with the path/name of the zip file.
+                ZipFile zipFile = new ZipFile(jTextFieldZipFilename.getText());
+
+                // Set runInThread variable of ZipFile to true.
+                // When this variable is set, Zip4j will run any task in a new thread
+                // If this variable is not set, Zip4j will run all tasks in the current
+                // thread.
+                zipFile.setRunInThread(true);
+
+                // Folder to add
+                String folderToAdd = jTextFieldZipSourceFolder.getText();
+
+                // Initiate Zip Parameters which define various properties such
+                // as compression method, etc.
+                ZipParameters parameters = new ZipParameters();
+
+                // set compression method to store compression
+                parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);
+
+                // Set the compression level
+                parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);
+
+                // Set the encryption flag to true
+                // If this is set to false, then the rest of encryption properties are ignored
+                parameters.setEncryptFiles(true);
+
+                // Set the encryption method to Standard Zip Encryption
+                //parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_STANDARD);
+                if (jComboBoxZipEncMethod.getSelectedItem().equals("AES-256 Encryption")) {
+                    parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_AES);
+                    parameters.setAesKeyStrength(Zip4jConstants.AES_STRENGTH_256);
+                }
+                if (jComboBoxZipEncMethod.getSelectedItem().equals("Standard Encryption")) {
+                    parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_STANDARD);
+                }
+
+                // Set password
+                if (Arrays.equals(jPasswordFieldZip.getPassword(),jPasswordFieldZipConfirm.getPassword())) {
+                    String passText = new String(jPasswordFieldZip.getPassword());
+                    parameters.setPassword(passText);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Passwords don't match!");
+                    return;
+                }
+
+                // Add folder to the zip file
+                zipFile.addFolder(folderToAdd, parameters);
+
+                // Get progress monitor from ZipFile
+                ProgressMonitor progressMonitor = zipFile.getProgressMonitor();
+                jProgressBarZip.setStringPainted(true);
+                // PLEASE NOTE: Below code does a lot of Sysout's.
+
+                // ProgressMonitor has two states, READY and BUSY. READY indicates that
+                // Zip4j can now accept any new tasks. BUSY indicates that Zip4j is
+                // currently performing some task and cannot accept any new task at the moment
+                // Any attempt to perform any other task will throw an Exception
+                while (progressMonitor.getState() == ProgressMonitor.STATE_BUSY) {
+                    // ProgressMonitor has a lot of useful information like, the current
+                    // operation being performed by Zip4j, current file being processed,
+                    // percentage done, etc. Once an operation is completed, ProgressMonitor
+                    // also contains the result of the operation. If any exception is thrown
+                    // during an operation, this is also stored in this object and can be retrieved
+                    // as shown below
+
+                    // To get the percentage done
+                    System.out.println("Percent Done: " + progressMonitor.getPercentDone());
+                    jProgressBarZip.setValue(progressMonitor.getPercentDone());
+
+                    // To get the current file being processed
+                    System.out.println("File: " + progressMonitor.getFileName());
+
+                    // To get current operation
+                    // Possible values are:
+                    // ProgressMonitor.OPERATION_NONE - no operation being performed
+                    // ProgressMonitor.OPERATION_ADD - files are being added to the zip file
+                    // ProgressMonitor.OPERATION_EXTRACT - files are being extracted from the zip file
+                    // ProgressMonitor.OPERATION_REMOVE - files are being removed from zip file
+                    // ProgressMonitor.OPERATION_CALC_CRC - CRC of the file is being calculated
+                    // ProgressMonitor.OPERATION_MERGE - Split zip files are being merged
+                    switch (progressMonitor.getCurrentOperation()) {
+                        case ProgressMonitor.OPERATION_NONE:
+                        System.out.println("no operation being performed");
+                        jProgressBarZip.setString("No operation being performed");
+                        break;
+                        case ProgressMonitor.OPERATION_ADD:
+                        System.out.println("Add operation");
+                        jProgressBarZip.setString("Add operation");
+                        break;
+                        case ProgressMonitor.OPERATION_EXTRACT:
+                        System.out.println("Extract operation");
+                        jProgressBarZip.setString("Extract operation");
+                        break;
+                        case ProgressMonitor.OPERATION_REMOVE:
+                        System.out.println("Remove operation");
+                        jProgressBarZip.setString("Remove operation");
+                        break;
+                        case ProgressMonitor.OPERATION_CALC_CRC:
+                        System.out.println("Calcualting CRC");
+                        jProgressBarZip.setString("Calcualting CRC");
+                        break;
+                        case ProgressMonitor.OPERATION_MERGE:
+                        System.out.println("Merge operation");
+                        jProgressBarZip.setString("Merge operation");
+                        break;
+
+                        default:
+                        System.out.println("invalid operation");
+                        jProgressBarZip.setString("invalid operation");
+                        break;
+                    }
+                }
+
+                // Once Zip4j is done with its task, it changes the ProgressMonitor
+                // state from BUSY to READY, so the above loop breaks.
+                // To get the result of the operation:
+                // Possible values:
+                // ProgressMonitor.RESULT_SUCCESS - Operation was successful
+                // ProgressMonitor.RESULT_WORKING - Zip4j is still working and is not
+                //									yet done with the current operation
+                // ProgressMonitor.RESULT_ERROR - An error occurred during processing
+                System.out.println("Result: " + progressMonitor.getResult());
+                if (progressMonitor.getResult() == ProgressMonitor.RESULT_ERROR) {
+                    //jProgressBarZip.setString("Result: Error!  Password wrong maybe?");
+                    System.err.println("An error occurred");
+
+                    // Any exception can be retrieved as below:
+                    if (progressMonitor.getException() != null) {
+                    } else {
+                        System.err.println("An error occurred without any exception");
+                    }
+                }
+
+            } catch (ZipException e) {
+            }
+        }).start();
+    }//GEN-LAST:event_jButtonFolderToZipActionPerformed
+
+    private void jButtonScriptSyncStandalones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptSyncStandalones1ActionPerformed
+        // TODO add your handling code here:
+        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("ScriptStandaloneMapShare") + "\"";
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonScriptSyncStandalones1ActionPerformed
+
+    private void jButtonCustomScript05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript05ActionPerformed
+        // TODO add your handling code here:
+        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom05").replace("%USERPROFILE%", pathUserProfile);
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonCustomScript05ActionPerformed
+
+    private void jButtonCustomScript04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript04ActionPerformed
+        // TODO add your handling code here:
+        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom04").replace("%USERPROFILE%", pathUserProfile);
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonCustomScript04ActionPerformed
+
+    private void jButtonCustomScript01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript01ActionPerformed
+        // TODO add your handling code here:
+        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom01").replace("%USERPROFILE%", pathUserProfile);
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonCustomScript01ActionPerformed
+
+    private void jButtonCustomScript02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript02ActionPerformed
+        // TODO add your handling code here:
+        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom02").replace("%USERPROFILE%", pathUserProfile);
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonCustomScript02ActionPerformed
+
+    private void jButtonCustomScript03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript03ActionPerformed
+        // TODO add your handling code here:
+        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom03").replace("%USERPROFILE%", pathUserProfile);
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonCustomScript03ActionPerformed
+
+    private void jButtonScriptBackupSharesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptBackupSharesActionPerformed
+        // TODO add your handling code here:
+        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("ScriptBackupShare") + "\"";
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonScriptBackupSharesActionPerformed
+
+    private void jButtonScriptSyncStandalonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptSyncStandalonesActionPerformed
+        // TODO add your handling code here:
+        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("ScriptStandaloneSync") + "\"";
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonScriptSyncStandalonesActionPerformed
+
+    private void jCheckBox1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBox1StateChanged
+
+    }//GEN-LAST:event_jCheckBox1StateChanged
+
+    private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox1ItemStateChanged
+        // TODO add your handling code here:
+        try {
+            getSessionList();
+        } catch (IOException | URISyntaxException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jCheckBox1ItemStateChanged
+
     private void jTextFieldFilterKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldFilterKeyReleased
         // TODO add your handling code here:
         try {
@@ -2654,6 +4033,28 @@ final JFXPanel fxPanel = new JFXPanel();
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jTextFieldFilterKeyReleased
+
+    private void jTextFieldFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFilterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldFilterActionPerformed
+
+    private void jButtonExecuteFunction2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunction2ActionPerformed
+        // TODO add your handling code here:
+        System.out.println("RDP enganged.");
+        String strEXEC = "cmd /c start mstsc.exe /v:" + jTextFieldConnectHostname.getText();
+        try {
+            Runtime.getRuntime().exec(strEXEC);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonExecuteFunction2ActionPerformed
+
+    private void jCheckBoxAlternateLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxAlternateLoginActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jCheckBoxAlternateLoginActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
@@ -3049,7 +4450,7 @@ final JFXPanel fxPanel = new JFXPanel();
         System.out.println("Log file: " + fileLog);
 
         if (jRadioButtonSSHClientPuTTY.isSelected() == true) {
-            
+
             if (!jCheckBoxAlternateLogin.isSelected()) {
                 //if (jTextFieldConnectUsername.getText().equals("")){
                     //if (jPasswordFieldConnectPassword.getPassword().length == 0){
@@ -3061,8 +4462,8 @@ final JFXPanel fxPanel = new JFXPanel();
                             System.out.println("HEY Buddy ! U r Doing Something Wrong ");
                             JOptionPane.showMessageDialog(null, "Something is wrong!");
                         }
+                        //}
                     //}
-                //}
             }
             else {
                 String passText = new String(jPasswordFieldConnectPassword.getPassword());
@@ -3090,8 +4491,8 @@ final JFXPanel fxPanel = new JFXPanel();
                             System.out.println("HEY Buddy ! U r Doing Something Wrong ");
                             JOptionPane.showMessageDialog(null, "Something is wrong!");
                         }
+                        //}
                     //}
-                //}
             }
             else {
                 String passText = new String(jPasswordFieldConnectPassword.getPassword());
@@ -3200,1226 +4601,6 @@ final JFXPanel fxPanel = new JFXPanel();
             jTextFieldPingHostname.setText(arrSelectedValue[1]);
         }
     }//GEN-LAST:event_jListSessionsValueChanged
-
-    private void userListMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userListMouseReleased
-//        if(evt.isPopupTrigger()&&!userList.isSelectionEmpty())
-//        {      PopUpMenu popUpMenu =  new PopUpMenu();
-//            popUpMenu.showUser(evt.getComponent(), evt.getX(), evt.getY() , userSelected);}
-    }//GEN-LAST:event_userListMouseReleased
-
-    private void userListMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userListMousePressed
-//        Point p = evt.getPoint();
-//        int index = userList.locationToIndex( p );
-//
-//        if ( index != -1 )
-//        {
-//            Rectangle r = userList.getCellBounds( index, index );
-//
-//            if ( r.x <= p.x && p.x <= r.x + r.width && r.y <= p.y && p.y <= r.y + r.height )
-//            {
-//                userList.setSelectedIndex( index );
-//            }
-//
-//            else
-//            {
-//                userList.clearSelection();
-//            }
-//        }
-//        if(evt.isPopupTrigger()&&!userList.isSelectionEmpty())
-//        {      PopUpMenu popUpMenu =  new PopUpMenu();
-//            popUpMenu.showUser(evt.getComponent(), evt.getX(), evt.getY() , userSelected);}
-    }//GEN-LAST:event_userListMousePressed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-
-        resource.getChatTextFieldController().parseAndActOnMessage();
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButtonScriptUpdateLaunchPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptUpdateLaunchPadActionPerformed
-        // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("FileUpdateScript") + "\"";
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }  
-    System.exit(0);
-    }//GEN-LAST:event_jButtonScriptUpdateLaunchPadActionPerformed
-
-    private void jButtonScriptSyncStandalonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptSyncStandalonesActionPerformed
-        // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("ScriptStandaloneSync") + "\"";
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }          
-    }//GEN-LAST:event_jButtonScriptSyncStandalonesActionPerformed
-
-    private void jButtonScriptBackupSharesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptBackupSharesActionPerformed
-        // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("ScriptBackupShare") + "\"";
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }          
-    }//GEN-LAST:event_jButtonScriptBackupSharesActionPerformed
-
-    private void jButtonGenerateHashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerateHashActionPerformed
-        // TODO add your handling code here:
-        
-                File file = new File(jTextFieldFileHashGenerate.getText());
-                
-                //System.out.println("MD5    : " + toHex(HashGenerate.MD5.checksum(file)));
-                jTextFieldHashMD5.setText(toHex(HashGenerate.MD5.checksum(file)));
-                //System.out.println("SHA1   : " + toHex(HashGenerate.SHA1.checksum(file)));
-                jTextFieldHashSHA1.setText(toHex(HashGenerate.SHA1.checksum(file)));
-                //System.out.println("SHA256 : " + toHex(HashGenerate.SHA256.checksum(file)));
-                jTextFieldHashSHA256.setText(toHex(HashGenerate.SHA256.checksum(file)));
-                //System.out.println("SHA512 : " + toHex(HashGenerate.SHA512.checksum(file)));
-                jTextFieldHashSHA512.setText(toHex(HashGenerate.SHA512.checksum(file)));
-                
-
-
-    }//GEN-LAST:event_jButtonGenerateHashActionPerformed
-
-    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
-        // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new java.io.File("."));
-        chooser.setDialogTitle("Choose Folder...");
-        //chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        chooser.setAcceptAllFileFilterUsed(false);
-
-        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            jTextFieldFileHashGenerate.setText(chooser.getSelectedFile().getAbsolutePath());
-            System.out.println("getCurrentDirectory(): " + chooser.getCurrentDirectory());
-            System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
-        } else {
-            System.out.println("No Selection ");
-        }        
-    }//GEN-LAST:event_jButton27ActionPerformed
-
-    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
-        // TODO add your handling code here:
-        String SERVER_NAME = jTextFieldNtpServer.getText();
-        //String SERVER_NAME = "pool.ntp.org";
-        NTPUDPClient timeClient = new NTPUDPClient();
-        // We want to timeout if a response takes longer than 10 seconds
-        timeClient.setDefaultTimeout(10000);
-
-        InetAddress inetAddress = null;
-        try {
-            inetAddress = InetAddress.getByName(SERVER_NAME);
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Failed - Couldn't find server.");
-            jTextFieldNtpSystemTime.setText("Failed - Couldn't find server: " + SERVER_NAME);
-            jTextFieldNtpAtomicTime.setText("");
-        }
-        TimeInfo timeInfo = null;
-        try {
-            timeInfo = timeClient.getTime(inetAddress);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Failed - Found server, but no time received. ");
-           jTextFieldNtpSystemTime.setText("Failed - Found server: " + SERVER_NAME + ", but no time received. ");
-           jTextFieldNtpAtomicTime.setText("");
-           
-        }
-        long returnTime = timeInfo.getReturnTime();
-        TimeStamp destNtpTime = TimeStamp.getNtpTime(returnTime);
-        System.out.println("System time:\t" + destNtpTime + "  " + destNtpTime.toDateString());
-        jTextFieldNtpSystemTime.setText("" + destNtpTime + "  " + destNtpTime.toDateString());
-
-        TimeStamp currentNtpTime = TimeStamp.getCurrentTime();
-        System.out.println("Atomic time:\t" + currentNtpTime + "  " + currentNtpTime.toDateString());
-        jTextFieldNtpAtomicTime.setText("" + currentNtpTime + "  " + currentNtpTime.toDateString());
-        
-    }//GEN-LAST:event_jButton26ActionPerformed
-
-    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        // TODO add your handling code here:
-        String inputPdf = "apps/IPSubnetCalculator.jar";
-        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-        Path tempOutput = null;
-        try {
-            tempOutput = Files.createTempFile("TempFile", ".jar");
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tempOutput.toFile().deleteOnExit();
-
-        try {
-            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-            File userManual = new File (tempOutput.toFile().getPath());
-            if (userManual.exists())
-        {
-            try {
-                Desktop.getDesktop().open(userManual);
-            } catch (IOException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-        
-    }//GEN-LAST:event_jButton28ActionPerformed
-
-    private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
-        // TODO add your handling code here:
-         // Send message
- DatagramSocket socket = null;
-        try {
-            socket = new DatagramSocket();
-        } catch (SocketException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            jTextAreaNTPMessage.setText("Socket not opened.");            
-          
-        }
- InetAddress address = null;
-        try {
-            address = InetAddress.getByName(jTextFieldNtpServer.getText());
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            jTextAreaNTPMessage.setText("No IP received from DNS.");            
-        }
- byte[] buf = new NtpMessage().toByteArray();
- DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 123);
-        try {
-            socket.send(packet);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            jTextAreaNTPMessage.setText("Nothing sent.");            
-        }
- 
-        try {
-            // Get response
-            socket.receive(packet);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            jTextAreaNTPMessage.setText("Nothing received.");
-
-        }
-        NtpMessage msg = new NtpMessage(packet.getData());
-        //double offset = ((msg.receiveTimestamp - msg.originateTimestamp) + (msg.transmitTimestamp - destinationTimestamp)) / 2;
-					
-    System.out.println(msg.toString());
-    jTextAreaNTPMessage.setText(msg.toString());
-
-    }//GEN-LAST:event_jButton29ActionPerformed
-
-    private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
-        // TODO add your handling code here:
-        String inputPdf = "apps/IPv6SubnetCalculator.jar";
-        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-        Path tempOutput = null;
-        try {
-            tempOutput = Files.createTempFile("TempFile", ".jar");
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tempOutput.toFile().deleteOnExit();
-
-        try {
-            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        File userManual = new File (tempOutput.toFile().getPath());
-        if (userManual.exists())
-        {
-            try {
-                Desktop.getDesktop().open(userManual);
-            } catch (IOException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }        
-    }//GEN-LAST:event_jButton30ActionPerformed
-
-    private void jTextFieldFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFilterActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldFilterActionPerformed
-
-    private void jCheckBox1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBox1StateChanged
-
-    }//GEN-LAST:event_jCheckBox1StateChanged
-
-    private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
-        // TODO add your handling code here:
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure you want to reset your SecureCRT settings?","Warning", dialogButton);
-        if(dialogResult == JOptionPane.YES_OPTION){
-            String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -noexit -Command \"Remove-Item $env:USERPROFILE\\AppData\\Roaming\\VanDyke\\Config\\ -Force -Recurse; write-host 'SecureCRT Reset!' -foregroundcolor green; pause; exit\"";
-            System.out.println(myValue);
-            try {
-                Runtime.getRuntime().exec(myValue);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }  
-        }
-
-
-    }//GEN-LAST:event_jButton31ActionPerformed
-
-    private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
-        // TODO add your handling code here:
-        try {
-            Process p = Runtime.getRuntime().exec
-              (new String [] { "cmd.exe", "/c", "assoc", ".xls"});
-            BufferedReader input =
-              new BufferedReader
-                (new InputStreamReader(p.getInputStream()));
-            String extensionType = input.readLine();
-            input.close();
-            // extract type
-            if (extensionType == null) {
-                System.out.println("no office installed ?");
-                String myValue = "cmd.exe /c start wordpad.exe \"" + strSessionListFavorites + "\"";
-                System.out.println(myValue);
-                try {
-                    Runtime.getRuntime().exec(myValue);
-                }
-                catch (IOException e) {
-                    System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                    JOptionPane.showMessageDialog(null, "Something is wrong!");
-                } 
-
-                return;
-            }
-            String fileType[] = extensionType.split("=");
-
-            p = Runtime.getRuntime().exec
-              (new String [] { "cmd.exe", "/c", "ftype", fileType[1]});
-            input =
-              new BufferedReader
-                (new InputStreamReader(p.getInputStream()));
-            String fileAssociation = input.readLine();
-            // extract path
-            String officePath = fileAssociation.split("=")[1];
-            Pattern patternInQuotes = Pattern.compile("\"([^\"]*)\"");
-            Matcher matchInQuotes = patternInQuotes.matcher(officePath);
-            while (matchInQuotes.find()) {
-                officePath = matchInQuotes.group(1);
-                System.out.println(matchInQuotes.group(1));
-            }
-            String myValue = "\"" + officePath + " \" \"" + strSessionListFavorites + "\"";
-            System.out.println(myValue);
-            try {
-                Runtime.getRuntime().exec(myValue);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }  
-        }
-        catch (IOException err) {
-        }
-        
-    }//GEN-LAST:event_jButton32ActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        URL iconURL = getClass().getResource("/icon/icon.png");
-        ImageIcon img = new ImageIcon(iconURL);
-        this.setIconImage(img.getImage());
-
-    }//GEN-LAST:event_formWindowOpened
-
-    private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
-        // TODO add your handling code here:
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    new ButtonList();
-                }
-            });
-        
-    }//GEN-LAST:event_jButton33ActionPerformed
-
-    private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox1ItemStateChanged
-        // TODO add your handling code here:
-        try {
-            getSessionList();
-        } catch (IOException | URISyntaxException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jCheckBox1ItemStateChanged
-
-    private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
-        // TODO add your handling code here:
-        String strPathPropertiesFile = pathDesktop + "\\LaunchPad\\launchpad.properties";
-        DefaultListModel listModel = new DefaultListModel();
-        ArrayList arrSessionList = new ArrayList();
-
-        File archivo = new File(strPathPropertiesFile);
-
-        try (FileReader fr = new FileReader(archivo)) {
-            BufferedReader buffIn;
-            buffIn = new BufferedReader(fr);
-               
-            String line;
-            while ((line = buffIn.readLine()) != null) {
-                arrSessionList.add(line);
-                listModel.addElement(line);
-                //System.out.println(line);
-            }
-            JList list = new JList(listModel);
-            
-            JScrollPane scroll = new JScrollPane(list);
-
-            scroll.setPreferredSize(new Dimension(800, 500));
-
-            JFrame frame = new JFrame();
-            frame.add(scroll);
-            frame.setTitle("Settings File");
-            //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.pack();
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-        }
-        catch (IOException e) {
-            System.out.println("SessionList.csv no good"); 
-            JOptionPane.showMessageDialog(null, "SessionList.csv Error!"); 
-        }
-               
-
-            
-            
-    }//GEN-LAST:event_jButton34ActionPerformed
-
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
-        // TODO add your handling code here:
-        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-            if ("ipranger32".equals(jTextField2.getText()) ||
-                "ipranger".equals(jTextField2.getText())) {
-                String inputPdf = "apps/ipranger32.jar";
-                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-                Path tempOutput = null;
-                try {
-                    tempOutput = Files.createTempFile("TempFile", ".jar");
-                } catch (IOException ex) {
-                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                tempOutput.toFile().deleteOnExit();
-
-                try {
-                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-                } catch (IOException ex) {
-                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                File userManual = new File (tempOutput.toFile().getPath());
-                if (userManual.exists())
-                {
-                    try {
-                        Desktop.getDesktop().open(userManual);
-                    } catch (IOException ex) {
-                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            jTextField2.setText("");
-            }
-            if ("ipranger64".equals(jTextField2.getText())) {
-                String inputPdf = "apps/ipranger64.jar";
-                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-                Path tempOutput = null;
-                try {
-                    tempOutput = Files.createTempFile("TempFile", ".jar");
-                } catch (IOException ex) {
-                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                tempOutput.toFile().deleteOnExit();
-
-                try {
-                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-                } catch (IOException ex) {
-                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                File userManual = new File (tempOutput.toFile().getPath());
-                if (userManual.exists())
-                {
-                    try {
-                        Desktop.getDesktop().open(userManual);
-                    } catch (IOException ex) {
-                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                jTextField2.setText("");
-            }
-            
-            if ("jdiskreport".equals(jTextField2.getText()) ||
-                "diskreport".equals(jTextField2.getText()) ||
-                "foldersize".equals(jTextField2.getText())) {
-            
-                String inputPdf = "apps/jdiskreport-1.4.1.jar";
-                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-                Path tempOutput = null;
-                try {
-                    tempOutput = Files.createTempFile("TempFile", ".jar");
-                } catch (IOException ex) {
-                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                tempOutput.toFile().deleteOnExit();
-
-                try {
-                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-                } catch (IOException ex) {
-                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                File userManual = new File (tempOutput.toFile().getPath());
-                if (userManual.exists())
-                {
-                    try {
-                        Desktop.getDesktop().open(userManual);
-                    } catch (IOException ex) {
-                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            jTextField2.setText("");
-            }       
-            
-            if ("pixelitor".equals(jTextField2.getText()) || 
-                "paint".equals(jTextField2.getText())) {
-            
-                String inputPdf = "apps/pixelitor_4.2.0.jar";
-                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-                Path tempOutput = null;
-                try {
-                    tempOutput = Files.createTempFile("TempFile", ".jar");
-                } catch (IOException ex) {
-                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                tempOutput.toFile().deleteOnExit();
-
-                try {
-                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-                } catch (IOException ex) {
-                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                File userManual = new File (tempOutput.toFile().getPath());
-                if (userManual.exists())
-                {
-                    try {
-                        Desktop.getDesktop().open(userManual);
-                    } catch (IOException ex) {
-                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            jTextField2.setText("");
-            }                
- 
-            if ("tftp".equals(jTextField2.getText())) {
-            
-                String inputPdf = "apps/tftp.jar";
-                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-                Path tempOutput = null;
-                try {
-                    tempOutput = Files.createTempFile("TempFile", ".jar");
-                } catch (IOException ex) {
-                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                tempOutput.toFile().deleteOnExit();
-
-                try {
-                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-                } catch (IOException ex) {
-                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                File userManual = new File (tempOutput.toFile().getPath());
-                if (userManual.exists())
-                {
-                    try {
-                        Desktop.getDesktop().open(userManual);
-                    } catch (IOException ex) {
-                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            jTextField2.setText("");
-            }  
-            
-            
-            
-            if ("ftp".equals(jTextField2.getText())) {
-            
-                String inputPdf = "apps/ftp.jar";
-                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-                Path tempOutput = null;
-                try {
-                    tempOutput = Files.createTempFile("TempFile", ".jar");
-                } catch (IOException ex) {
-                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                tempOutput.toFile().deleteOnExit();
-
-                try {
-                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-                } catch (IOException ex) {
-                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                File userManual = new File (tempOutput.toFile().getPath());
-                if (userManual.exists())
-                {
-                    try {
-                        Desktop.getDesktop().open(userManual);
-                    } catch (IOException ex) {
-                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            jTextField2.setText("");
-            }  
-                        
-            if ("settingsfile".equals(jTextField2.getText())) {
-                
-                String strPathPropertiesFile = pathDesktop + "\\LaunchPad\\launchpad.properties";
-
-                //text file, should be opening in default text editor
-                File file = new File(strPathPropertiesFile);
-
-                //first check if Desktop is supported by Platform or not
-                if(!Desktop.isDesktopSupported()){
-                    System.out.println("Desktop is not supported");
-                    return;
-                }
-
-                Desktop desktop = Desktop.getDesktop();
-                if(file.exists()) try {
-                    desktop.open(file);
-                } catch (IOException ex) {
-                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                    System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
-                }
-
-                // Open
-                if(file.exists()) try {
-                    desktop.open(file);
-                } catch (IOException ex) {
-                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                    System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
-
-                }
-                
-            jTextField2.setText("");
-            }                          
-                        
-        }
-    }//GEN-LAST:event_jTextField2KeyTyped
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jButtonJSDiff1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJSDiff1ActionPerformed
-        // TODO add your handling code here:
-       System.out.println("Pressed");
-        String inputFile = "html/subnetcalculator/SubnetCalculator.html";
-        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputFile);
-
-        Path tempOutput = null;
-        try {
-            tempOutput = Files.createTempFile("TempFile", ".html");
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tempOutput.toFile().deleteOnExit();
-
-        try {
-            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        File tempFile = new File (tempOutput.toFile().getPath());
-        if (tempFile.exists())
-        {
-            //Desktop.getDesktop().open(tempFile);
-
-        }
-        String strWebpage = tempOutput.toFile().getPath();
-        Icon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
-        Icon iconEdge = new ImageIcon(getClass().getResource("/launchpad/images/buttons/edge.png"));
-        Icon iconFireFox = new ImageIcon(getClass().getResource("/launchpad/images/buttons/firefox.png"));
-        Icon iconChrome = new ImageIcon(getClass().getResource("/launchpad/images/buttons/chrome.png"));
-        Object[] iconArray = {iconExplorer,
-            iconEdge,
-            iconFireFox,
-            iconChrome};
-        int result = JOptionPane.showOptionDialog(null,
-            "IE, Edge, FireFox, Chrome?",
-            "Browser Chooser",
-            JOptionPane.YES_NO_CANCEL_OPTION,
-            JOptionPane.QUESTION_MESSAGE,
-            null,
-            iconArray,
-            iconArray[3]);
-        System.out.println("Option selected: " + result);
-
-        if(result == 0) {
-            String strEXEC = "cmd /c start iexplore.exe " + strWebpage;
-            try {
-                Runtime.getRuntime().exec(strEXEC);
-                System.out.println(strEXEC);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
-        }
-        if(result == 2) {
-            String strEXEC = "cmd /c start firefox.exe " + strWebpage;
-            try {
-                Runtime.getRuntime().exec(strEXEC);
-                System.out.println(strEXEC);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
-        }
-        if(result == 1) {
-            String strEXEC = "cmd /c start microsoft-edge:" + strWebpage;
-            try {
-                Runtime.getRuntime().exec(strEXEC);
-                System.out.println(strEXEC);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
-        }
-        if(result == 3) {
-            String strEXEC = "cmd /c start chrome.exe " + strWebpage;
-            try {
-                Runtime.getRuntime().exec(strEXEC);
-                System.out.println(strEXEC);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
-        }        
-    }//GEN-LAST:event_jButtonJSDiff1ActionPerformed
-
-    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        // TODO add your handling code here:
-                                                        String inputPdf = "files/Subnets.pdf";
-        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-        Path tempOutput = null;
-        try {
-            tempOutput = Files.createTempFile("TempFile", ".pdf");
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tempOutput.toFile().deleteOnExit();
-
-        try {
-            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-            File userManual = new File (tempOutput.toFile().getPath());
-            if (userManual.exists())
-        {
-            try {
-                Desktop.getDesktop().open(userManual);
-            } catch (IOException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jButton24ActionPerformed
-
-    private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
-        // TODO add your handling code here:
-        String inputPdf = "files/IPv4_Subnetting.pdf";
-        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-        Path tempOutput = null;
-        try {
-            tempOutput = Files.createTempFile("TempFile", ".pdf");
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tempOutput.toFile().deleteOnExit();
-
-        try {
-            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-            File userManual = new File (tempOutput.toFile().getPath());
-            if (userManual.exists())
-        {
-            try {
-                Desktop.getDesktop().open(userManual);
-            } catch (IOException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
-    }//GEN-LAST:event_jButton36ActionPerformed
-
-    private void jButtonReferenceCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom06ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom06ActionPerformed
-
-    private void jCheckBoxAlternateLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxAlternateLoginActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jCheckBoxAlternateLoginActionPerformed
-
-    private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
-        // TODO add your handling code here:
-                String inputPdf = "files/Cheat Sheets - PacketLife.net.zip";
-        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-        Path tempOutput = null;
-        try {
-            tempOutput = Files.createTempFile("TempFile", ".zip");
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tempOutput.toFile().deleteOnExit();
-
-        try {
-            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-            File userManual = new File (tempOutput.toFile().getPath());
-            if (userManual.exists())
-        {
-            try {
-                Desktop.getDesktop().open(userManual);
-            } catch (IOException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jButton37ActionPerformed
-
-    private void jButtonReferenceCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom01ActionPerformed
-        // TODO add your handling code here:
-        String strReference01;
-        strReference01 = PropertyHandler.getInstance().getValue("ReferenceFile01");
-
-        if(jToggleOfflineMode.isSelected()){
-            strReference01 =  PropertyHandler.getInstance().getValue("ReferenceFolderOffline") + strReference01;
-            System.out.println("Using Offline: " + strReference01);
-        }
-        else{
-            strReference01 =  PropertyHandler.getInstance().getValue("ReferenceFolderOnline") + strReference01;
-        }
-         
-        //text file, should be opening in default text editor
-        File file = new File(strReference01);
-
-        //first check if Desktop is supported by Platform or not
-        if(!Desktop.isDesktopSupported()){
-            System.out.println("Desktop is not supported");
-            return;
-        }
-        
-        Desktop desktop = Desktop.getDesktop();
-        if(file.exists()) try {
-            desktop.open(file);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
-        }
-        
-        // Open
-        if(file.exists()) try {
-            desktop.open(file);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
-            
-        }
-    
-    }//GEN-LAST:event_jButtonReferenceCustom01ActionPerformed
-
-    private void jButtonReferenceCustom02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom02ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom02ActionPerformed
-
-    private void jButtonReferenceCustom03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom03ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom03ActionPerformed
-
-    private void jButtonReferenceCustom04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom04ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom04ActionPerformed
-
-    private void jButtonReferenceCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom05ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom05ActionPerformed
-
-    private void jButtonCustomScript01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript01ActionPerformed
-        // TODO add your handling code here:
-        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom01").replace("%USERPROFILE%", pathUserProfile);
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-    }//GEN-LAST:event_jButtonCustomScript01ActionPerformed
-
-    private void jButtonCustomScript02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript02ActionPerformed
-        // TODO add your handling code here:
-        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom02").replace("%USERPROFILE%", pathUserProfile);
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }        
-    }//GEN-LAST:event_jButtonCustomScript02ActionPerformed
-
-    private void jButtonCustomScript03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript03ActionPerformed
-        // TODO add your handling code here:
-        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom03").replace("%USERPROFILE%", pathUserProfile);
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-    }//GEN-LAST:event_jButtonCustomScript03ActionPerformed
-
-    private void jButtonCustomScript04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript04ActionPerformed
-        // TODO add your handling code here:
-                String myValue = PropertyHandler.getInstance().getValue("ScriptCustom04").replace("%USERPROFILE%", pathUserProfile);
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-    }//GEN-LAST:event_jButtonCustomScript04ActionPerformed
-
-    private void jButtonCustomScript05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript05ActionPerformed
-        // TODO add your handling code here:
-        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom05").replace("%USERPROFILE%", pathUserProfile);
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-    }//GEN-LAST:event_jButtonCustomScript05ActionPerformed
-
-    private void jButtonScriptSyncStandalones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptSyncStandalones1ActionPerformed
-        // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("ScriptStandaloneMapShare") + "\"";
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }  
-    }//GEN-LAST:event_jButtonScriptSyncStandalones1ActionPerformed
-
-    private void jButtonZipBrowseSourceZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZipBrowseSourceZipActionPerformed
-        // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new java.io.File("."));
-        chooser.setDialogTitle("Choose Folder...");
-        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        //chooser.setAcceptAllFileFilterUsed(false);
-        FileNameExtensionFilter zipFilter = new FileNameExtensionFilter("ZIP Files", "zip");
-        chooser.setFileFilter(zipFilter);
-
-        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            jTextFieldZipSourceFile.setText(chooser.getSelectedFile().getAbsolutePath());
-            System.out.println("getCurrentDirectory(): " + chooser.getCurrentDirectory());
-            System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
-        } else {
-            System.out.println("No Selection ");
-        }
-    }//GEN-LAST:event_jButtonZipBrowseSourceZipActionPerformed
-
-    private void jTextFieldZipSourceFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldZipSourceFileActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldZipSourceFileActionPerformed
-
-    private void jButtonZipBrowseDestinationFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZipBrowseDestinationFolderActionPerformed
-        // TODO add your handling code here:
-        JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new java.io.File("."));
-        chooser.setDialogTitle("Choose Folder...");
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        chooser.setAcceptAllFileFilterUsed(false);
-
-        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            jTextFieldZipDestinationFolder.setText(chooser.getSelectedFile().getAbsolutePath());
-            System.out.println("getCurrentDirectory(): " + chooser.getCurrentDirectory());
-            System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
-        } else {
-            System.out.println("No Selection ");
-        }        
-        
-        
-    }//GEN-LAST:event_jButtonZipBrowseDestinationFolderActionPerformed
-
-    private void jButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton39ActionPerformed
-        // TODO add your handling code here:
-               new Thread(() -> {
-            //Do whatever
-
-            try {
-                // Initiate ZipFile object with the path/name of the zip file.
-                ZipFile zipFile = new ZipFile(jTextFieldZipSourceFile.getText());
-
-                // Set runInThread variable of ZipFile to true.
-                // When this variable is set, Zip4j will run any task in a new thread
-                // If this variable is not set, Zip4j will run all tasks in the current
-                // thread.
-                zipFile.setRunInThread(true);
-
-                // Folder to add
-//                String folderToAdd = jTextFieldZipSourceFolder.getText();
-
-                // Initiate Zip Parameters which define various properties such
-                // as compression method, etc.
-                ZipParameters parameters = new ZipParameters();
-
-                // set compression method to store compression
-//                parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);
-
-                // Set the compression level
-//                parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_NORMAL);
-
-                // Set the encryption flag to true
-                // If this is set to false, then the rest of encryption properties are ignored
-//                parameters.setEncryptFiles(true);
-
-                // Set the encryption method to Standard Zip Encryption
-                //parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_STANDARD);
-//                if (jComboBoxZipEncMethod.getSelectedItem().equals("AES256")) {
-//                parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_AES);
-//                parameters.setAesKeyStrength(Zip4jConstants.AES_STRENGTH_256);   
-//                }
-//                if (jComboBoxZipEncMethod.getSelectedItem().equals("Standard")) {
-//                parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_STANDARD);
-//                }
-
-                // Set password
-                if (jPasswordFieldZipExtract.getPassword().length != 0) {
-                String passText = new String(jPasswordFieldZipExtract.getPassword());
-                zipFile.setPassword(passText);
-                }
-
-                // Add folder to the zip file
-//                zipFile.addFolder(folderToAdd, parameters);
-
-                // Extracts all files to the path specified
-                try {
-                    if (zipFile.isEncrypted()) {
-                        zipFile.setPassword(jPasswordFieldZipExtract.getPassword());
-                    }
-                    zipFile.extractAll(jTextFieldZipDestinationFolder.getText());
-                } catch (ZipException e) {
-                e.printStackTrace();
-                }
-
-                // Get progress monitor from ZipFile
-                ProgressMonitor progressMonitor = zipFile.getProgressMonitor();
-                jProgressBarZipExtract.setStringPainted(true);
-                // PLEASE NOTE: Below code does a lot of Sysout's.
-
-                // ProgressMonitor has two states, READY and BUSY. READY indicates that
-                // Zip4j can now accept any new tasks. BUSY indicates that Zip4j is
-                // currently performing some task and cannot accept any new task at the moment
-                // Any attempt to perform any other task will throw an Exception
-                while (progressMonitor.getState() == ProgressMonitor.STATE_BUSY) {
-                    // ProgressMonitor has a lot of useful information like, the current
-                    // operation being performed by Zip4j, current file being processed,
-                    // percentage done, etc. Once an operation is completed, ProgressMonitor
-                    // also contains the result of the operation. If any exception is thrown
-                    // during an operation, this is also stored in this object and can be retrieved
-                    // as shown below
-
-                    // To get the percentage done
-                    System.out.println("Percent Done: " + progressMonitor.getPercentDone());
-                    jProgressBarZipExtract.setValue(progressMonitor.getPercentDone());
-
-                    // To get the current file being processed
-                    System.out.println("File: " + progressMonitor.getFileName());
-
-                    // To get current operation
-                    // Possible values are:
-                    // ProgressMonitor.OPERATION_NONE - no operation being performed
-                    // ProgressMonitor.OPERATION_ADD - files are being added to the zip file
-                    // ProgressMonitor.OPERATION_EXTRACT - files are being extracted from the zip file
-                    // ProgressMonitor.OPERATION_REMOVE - files are being removed from zip file
-                    // ProgressMonitor.OPERATION_CALC_CRC - CRC of the file is being calculated
-                    // ProgressMonitor.OPERATION_MERGE - Split zip files are being merged
-                    switch (progressMonitor.getCurrentOperation()) {
-                        case ProgressMonitor.OPERATION_NONE:
-                        System.out.println("no operation being performed");
-                        jProgressBarZipExtract.setString("No operation being performed");
-                        break;
-                        case ProgressMonitor.OPERATION_ADD:
-                        System.out.println("Add operation");
-                        jProgressBarZipExtract.setString("Add operation");
-                        break;
-                        case ProgressMonitor.OPERATION_EXTRACT:
-                        System.out.println("Extract operation");
-                        jProgressBarZipExtract.setString("Extract operation");
-                        break;
-                        case ProgressMonitor.OPERATION_REMOVE:
-                        System.out.println("Remove operation");
-                        jProgressBarZipExtract.setString("Remove operation");
-                        break;
-                        case ProgressMonitor.OPERATION_CALC_CRC:
-                        System.out.println("Calcualting CRC");
-                        jProgressBarZipExtract.setString("Calcualting CRC");
-                        break;
-                        case ProgressMonitor.OPERATION_MERGE:
-                        System.out.println("Merge operation");
-                        jProgressBarZipExtract.setString("Merge operation");
-                        break;
-                        default:
-                        System.out.println("invalid operation");
-                        jProgressBarZipExtract.setString("invalid operation");
-                        break;
-                    }
-                }
-
-                // Once Zip4j is done with its task, it changes the ProgressMonitor
-                // state from BUSY to READY, so the above loop breaks.
-                // To get the result of the operation:
-                // Possible values:
-                // ProgressMonitor.RESULT_SUCCESS - Operation was successful
-                // ProgressMonitor.RESULT_WORKING - Zip4j is still working and is not
-                //									yet done with the current operation
-                // ProgressMonitor.RESULT_ERROR - An error occurred during processing
-                System.out.println("Result: " + progressMonitor.getResult());
-                if (progressMonitor.getResult() == ProgressMonitor.RESULT_ERROR) {
-                    jProgressBarZip.setString("Result: Error!  Password wrong maybe?");
-                    System.err.println("An error occurred");
-
-                    // Any exception can be retrieved as below:
-                    if (progressMonitor.getException() != null) {
-                    } else {
-                        System.err.println("An error occurred without any exception");
-                    }
-                }
-
-            } catch (ZipException e) {
-            }
-        }).start();
-    }//GEN-LAST:event_jButton39ActionPerformed
-
-    private void jPasswordFieldZipConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldZipConfirmActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordFieldZipConfirmActionPerformed
-
-    private void jPasswordFieldZipExtractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldZipExtractActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordFieldZipExtractActionPerformed
-
-    private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
-        // TODO add your handling code here:
-                String inputPdf = "apps/Puppeteer.jar";
-        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-        Path tempOutput = null;
-        try {
-            tempOutput = Files.createTempFile("TempFile", ".jar");
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tempOutput.toFile().deleteOnExit();
-
-        try {
-            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-            File userManual = new File (tempOutput.toFile().getPath());
-            if (userManual.exists())
-        {
-            try {
-                Desktop.getDesktop().open(userManual);
-            } catch (IOException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-    }//GEN-LAST:event_jButton35ActionPerformed
-
-    private void jButtonExecuteFunction2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunction2ActionPerformed
-        // TODO add your handling code here:
-            System.out.println("RDP enganged.");
-            String strEXEC = "cmd /c start mstsc.exe /v:" + jTextFieldConnectHostname.getText();
-            try {
-                Runtime.getRuntime().exec(strEXEC);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
-    }//GEN-LAST:event_jButtonExecuteFunction2ActionPerformed
-
-    private void jButtonChangeNickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeNickActionPerformed
-        // TODO add your handling code here:
-                Thread th = new Thread(){
-                public void run()
-                {
-                      JFrame settingsFrame = new NickChangeFrame(Settings.getSettings().getMe().getNick(), resource);
-                      settingsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                      settingsFrame.setVisible(true);
-                }
-            };
-        th.start();
-    }//GEN-LAST:event_jButtonChangeNickActionPerformed
 
     
     /**
@@ -4697,6 +4878,18 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButtonAppCustom01;
+    private javax.swing.JButton jButtonAppCustom02;
+    private javax.swing.JButton jButtonAppCustom03;
+    private javax.swing.JButton jButtonAppCustom04;
+    private javax.swing.JButton jButtonAppCustom05;
+    private javax.swing.JButton jButtonAppCustom06;
+    private javax.swing.JButton jButtonAppCustom10;
+    private javax.swing.JButton jButtonAppCustom11;
+    private javax.swing.JButton jButtonAppCustom12;
+    private javax.swing.JButton jButtonAppCustom13;
+    private javax.swing.JButton jButtonAppCustom8;
+    private javax.swing.JButton jButtonAppCustom9;
     private javax.swing.JButton jButtonChangeNick;
     private javax.swing.JButton jButtonConfigBuilder;
     private javax.swing.JButton jButtonConsole;
@@ -4755,6 +4948,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabelConsoleClient;
     private javax.swing.JLabel jLabelFolderToZip3;
     private javax.swing.JLabel jLabelFolderToZip4;
@@ -4767,16 +4961,19 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JList<String> jListSessions;
 
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JPanel jPanelAppsCustom;
+    private javax.swing.JPanel jPanelAppsOLD;
+    private javax.swing.JPanel jPanelChat;
+    private javax.swing.JPanel jPanelLinks;
     private javax.swing.JPanel jPanelMain;
+    private javax.swing.JPanel jPanelReference;
     private javax.swing.JPanel jPanelScripts;
     private javax.swing.JPanel jPanelSettings;
     private javax.swing.JPasswordField jPasswordFieldConnectPassword;
@@ -4804,7 +5001,8 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JSlider jSliderListTextSize;
     private javax.swing.JTabbedPane jTabbedMain;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPaneToolBox;
     private javax.swing.JTextArea jTextAreaNTPMessage;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
