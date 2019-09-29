@@ -1,2 +1,4 @@
 /dist/
 /.tmp.drivedownload/
+/nbproject/private/
+/build/

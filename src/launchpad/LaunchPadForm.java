@@ -5,8 +5,10 @@
  */
 package launchpad;
 
+import com.mnnit.server.model.Settings;
 import com.mnnit.server.model.SingletonUIResource;
 import com.mnnit.server.ui.MainFrame;
+import com.mnnit.server.ui.NickChangeFrame;
 import com.mnnit.server.ui.PopUpMenu;
 import java.awt.AWTException;
 import java.awt.Color;
@@ -913,7 +915,7 @@ final JFXPanel fxPanel = new JFXPanel();
         mainChatArea = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         userList = new javax.swing.JList();
-        jLabel15 = new javax.swing.JLabel();
+        jButtonChangeNick = new javax.swing.JButton();
         jPanelSettings = new javax.swing.JPanel();
         jLabelSSHClient = new javax.swing.JLabel();
         jRadioButtonSSHClientSecureCRT = new javax.swing.JRadioButton();
@@ -2022,27 +2024,31 @@ final JFXPanel fxPanel = new JFXPanel();
 
         mainChatArea.setEditable(false);
         mainChatArea.setColumns(20);
+        mainChatArea.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         mainChatArea.setRows(5);
         jScrollPane3.setViewportView(mainChatArea);
 
         userList.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                userListMouseReleased(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 userListMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                userListMouseReleased(evt);
             }
         });
         jScrollPane2.setViewportView(userList);
 
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Chat doesn't really work yet.  Sorry.");
+        jButtonChangeNick.setText("Change Nickname");
+        jButtonChangeNick.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonChangeNickActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2050,18 +2056,22 @@ final JFXPanel fxPanel = new JFXPanel();
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                            .addComponent(jButtonChangeNick, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3))
-                .addGap(18, 18, 18)
+                    .addComponent(jScrollPane3)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonChangeNick)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -3192,32 +3202,32 @@ final JFXPanel fxPanel = new JFXPanel();
     }//GEN-LAST:event_jListSessionsValueChanged
 
     private void userListMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userListMouseReleased
-        if(evt.isPopupTrigger()&&!userList.isSelectionEmpty())
-        {      PopUpMenu popUpMenu =  new PopUpMenu();
-            popUpMenu.showUser(evt.getComponent(), evt.getX(), evt.getY() , userSelected);}
+//        if(evt.isPopupTrigger()&&!userList.isSelectionEmpty())
+//        {      PopUpMenu popUpMenu =  new PopUpMenu();
+//            popUpMenu.showUser(evt.getComponent(), evt.getX(), evt.getY() , userSelected);}
     }//GEN-LAST:event_userListMouseReleased
 
     private void userListMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userListMousePressed
-        Point p = evt.getPoint();
-        int index = userList.locationToIndex( p );
-
-        if ( index != -1 )
-        {
-            Rectangle r = userList.getCellBounds( index, index );
-
-            if ( r.x <= p.x && p.x <= r.x + r.width && r.y <= p.y && p.y <= r.y + r.height )
-            {
-                userList.setSelectedIndex( index );
-            }
-
-            else
-            {
-                userList.clearSelection();
-            }
-        }
-        if(evt.isPopupTrigger()&&!userList.isSelectionEmpty())
-        {      PopUpMenu popUpMenu =  new PopUpMenu();
-            popUpMenu.showUser(evt.getComponent(), evt.getX(), evt.getY() , userSelected);}
+//        Point p = evt.getPoint();
+//        int index = userList.locationToIndex( p );
+//
+//        if ( index != -1 )
+//        {
+//            Rectangle r = userList.getCellBounds( index, index );
+//
+//            if ( r.x <= p.x && p.x <= r.x + r.width && r.y <= p.y && p.y <= r.y + r.height )
+//            {
+//                userList.setSelectedIndex( index );
+//            }
+//
+//            else
+//            {
+//                userList.clearSelection();
+//            }
+//        }
+//        if(evt.isPopupTrigger()&&!userList.isSelectionEmpty())
+//        {      PopUpMenu popUpMenu =  new PopUpMenu();
+//            popUpMenu.showUser(evt.getComponent(), evt.getX(), evt.getY() , userSelected);}
     }//GEN-LAST:event_userListMousePressed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -4398,6 +4408,19 @@ final JFXPanel fxPanel = new JFXPanel();
             }
     }//GEN-LAST:event_jButtonExecuteFunction2ActionPerformed
 
+    private void jButtonChangeNickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeNickActionPerformed
+        // TODO add your handling code here:
+                Thread th = new Thread(){
+                public void run()
+                {
+                      JFrame settingsFrame = new NickChangeFrame(Settings.getSettings().getMe().getNick(), resource);
+                      settingsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                      settingsFrame.setVisible(true);
+                }
+            };
+        th.start();
+    }//GEN-LAST:event_jButtonChangeNickActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -4674,6 +4697,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButtonChangeNick;
     private javax.swing.JButton jButtonConfigBuilder;
     private javax.swing.JButton jButtonConsole;
     private javax.swing.JButton jButtonCustomScript01;
@@ -4711,7 +4735,6 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JComboBox<String> jComboBoxConsoleCOM;
     private javax.swing.JComboBox<String> jComboBoxZipEncMethod;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
