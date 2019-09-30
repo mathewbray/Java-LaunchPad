@@ -38,6 +38,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLDecoder;
@@ -486,9 +487,9 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonCustomScript01.setText(PropertyHandler.getInstance().getValue("ScriptCustom01Text"));
         jButtonCustomScript02.setText(PropertyHandler.getInstance().getValue("ScriptCustom02Text"));
         jButtonCustomScript03.setText(PropertyHandler.getInstance().getValue("ScriptCustom03Text"));
-        jButtonCustomScript04.setText(PropertyHandler.getInstance().getValue("ScriptCustom04Text"));
-        jButtonCustomScript05.setText(PropertyHandler.getInstance().getValue("ScriptCustom05Text"));
-        jButtonCustomScript06.setText(PropertyHandler.getInstance().getValue("ScriptCustom06Text"));
+        jButtonCustomScript01.setText(PropertyHandler.getInstance().getValue("ScriptCustom04Text"));
+        jButtonCustomScript02.setText(PropertyHandler.getInstance().getValue("ScriptCustom05Text"));
+        jButtonCustomScript03.setText(PropertyHandler.getInstance().getValue("ScriptCustom06Text"));
        
         //--- Chat stuff
         try {
@@ -809,18 +810,105 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonExecuteFunction2 = new javax.swing.JButton();
         jTextFieldFilter = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jPanelLinks = new javax.swing.JPanel();
-        jPanelScripts = new javax.swing.JPanel();
+        jTabbedPanelLinks = new javax.swing.JTabbedPane();
+        jPanelAppsCustom = new javax.swing.JPanel();
+        jButtonLinkCustom01 = new javax.swing.JButton();
+        jButtonAppCustom05 = new javax.swing.JButton();
+        jButtonAppCustom06 = new javax.swing.JButton();
+        jButtonAppCustom8 = new javax.swing.JButton();
+        jButtonAppCustom9 = new javax.swing.JButton();
+        jButtonAppCustom10 = new javax.swing.JButton();
+        jButtonAppCustom11 = new javax.swing.JButton();
+        jButtonAppCustom12 = new javax.swing.JButton();
+        jButtonAppCustom13 = new javax.swing.JButton();
+        jButtonAppCustom3 = new javax.swing.JButton();
+        jButtonAppCustom2 = new javax.swing.JButton();
+        jButtonAppCustom4 = new javax.swing.JButton();
+        jButtonAppCustom5 = new javax.swing.JButton();
+        jButtonAppCustom6 = new javax.swing.JButton();
+        jButtonAppCustom7 = new javax.swing.JButton();
+        jButtonAppCustom14 = new javax.swing.JButton();
+        jButtonAppCustom15 = new javax.swing.JButton();
+        jButtonAppCustom16 = new javax.swing.JButton();
+        jButtonAppCustom17 = new javax.swing.JButton();
+        jButtonAppCustom18 = new javax.swing.JButton();
+        jButtonAppCustom19 = new javax.swing.JButton();
+        jButtonAppCustom20 = new javax.swing.JButton();
+        jButtonAppCustom21 = new javax.swing.JButton();
+        jButtonAppCustom22 = new javax.swing.JButton();
+        jButtonAppCustom23 = new javax.swing.JButton();
+        jButtonAppCustom24 = new javax.swing.JButton();
+        jButtonAppCustom25 = new javax.swing.JButton();
+        jButtonAppCustom27 = new javax.swing.JButton();
+        jButtonAppCustom28 = new javax.swing.JButton();
+        jButtonAppCustom29 = new javax.swing.JButton();
+        jLabel29 = new javax.swing.JLabel();
+        jPanelAppsEmbedded = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jButtonJSDiff = new javax.swing.JButton();
+        jButtonConfigBuilder = new javax.swing.JButton();
+        jButtonJSDiff1 = new javax.swing.JButton();
+        jButton28 = new javax.swing.JButton();
+        jButton30 = new javax.swing.JButton();
+        jSeparator10 = new javax.swing.JSeparator();
+        jButton35 = new javax.swing.JButton();
+        jLabel36 = new javax.swing.JLabel();
+        jTabbedPaneScripts = new javax.swing.JTabbedPane();
+        jPanel3 = new javax.swing.JPanel();
+        jButtonCustomScript03 = new javax.swing.JButton();
+        jButtonCustomScript01 = new javax.swing.JButton();
+        jButtonCustomScript02 = new javax.swing.JButton();
+        jButtonCustomScript7 = new javax.swing.JButton();
+        jButtonCustomScript5 = new javax.swing.JButton();
+        jButtonCustomScript6 = new javax.swing.JButton();
+        jButtonCustomScript8 = new javax.swing.JButton();
+        jButtonCustomScript9 = new javax.swing.JButton();
+        jButtonCustomScript10 = new javax.swing.JButton();
+        jButtonCustomScript4 = new javax.swing.JButton();
+        jButtonCustomScript11 = new javax.swing.JButton();
+        jButtonCustomScript3 = new javax.swing.JButton();
+        jButtonCustomScript2 = new javax.swing.JButton();
+        jButtonCustomScript12 = new javax.swing.JButton();
+        jButtonCustomScript13 = new javax.swing.JButton();
+        jButtonCustomScript14 = new javax.swing.JButton();
+        jButtonCustomScript15 = new javax.swing.JButton();
+        jButtonCustomScript16 = new javax.swing.JButton();
+        jButtonCustomScript17 = new javax.swing.JButton();
+        jButtonCustomScript18 = new javax.swing.JButton();
+        jButtonCustomScript19 = new javax.swing.JButton();
+        jButtonCustomScript20 = new javax.swing.JButton();
+        jButtonCustomScript21 = new javax.swing.JButton();
+        jButtonCustomScript22 = new javax.swing.JButton();
+        jButtonCustomScript23 = new javax.swing.JButton();
+        jButtonCustomScript24 = new javax.swing.JButton();
+        jButtonCustomScript25 = new javax.swing.JButton();
+        jButtonCustomScript26 = new javax.swing.JButton();
+        jButtonCustomScript27 = new javax.swing.JButton();
+        jButtonCustomScript28 = new javax.swing.JButton();
+        jLabel30 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         jButtonScriptSyncStandalones = new javax.swing.JButton();
         jButtonScriptBackupShares = new javax.swing.JButton();
-        jButtonCustomScript03 = new javax.swing.JButton();
-        jLabel32 = new javax.swing.JLabel();
-        jButtonCustomScript06 = new javax.swing.JButton();
-        jButtonCustomScript02 = new javax.swing.JButton();
-        jButtonCustomScript01 = new javax.swing.JButton();
-        jButtonCustomScript04 = new javax.swing.JButton();
-        jButtonCustomScript05 = new javax.swing.JButton();
         jButtonScriptSyncStandalones1 = new javax.swing.JButton();
+        jTabbedPaneReference = new javax.swing.JTabbedPane();
+        jPanel6 = new javax.swing.JPanel();
+        jToggleOfflineMode = new javax.swing.JToggleButton();
+        jButtonReferenceCustom06 = new javax.swing.JButton();
+        jButtonReferenceCustom01 = new javax.swing.JButton();
+        jButtonReferenceCustom02 = new javax.swing.JButton();
+        jButtonReferenceCustom03 = new javax.swing.JButton();
+        jButtonReferenceCustom04 = new javax.swing.JButton();
+        jButtonReferenceCustom05 = new javax.swing.JButton();
+        jButtonReferenceCustom7 = new javax.swing.JButton();
+        jButtonReferenceCustom2 = new javax.swing.JButton();
+        jButtonReferenceCustom3 = new javax.swing.JButton();
+        jButtonReferenceCustom4 = new javax.swing.JButton();
+        jButtonReferenceCustom5 = new javax.swing.JButton();
+        jButtonReferenceCustom6 = new javax.swing.JButton();
+        jPanel10 = new javax.swing.JPanel();
+        jButton24 = new javax.swing.JButton();
+        jButton36 = new javax.swing.JButton();
+        jButton37 = new javax.swing.JButton();
         jTabbedPaneToolBox = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jButtonFolderToZip = new javax.swing.JButton();
@@ -884,20 +972,6 @@ final JFXPanel fxPanel = new JFXPanel();
         jSeparator7 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextAreaNTPMessage = new javax.swing.JTextArea();
-        jPanelReference = new javax.swing.JPanel();
-        jButton24 = new javax.swing.JButton();
-        jButtonReferenceCustom06 = new javax.swing.JButton();
-        jButton36 = new javax.swing.JButton();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jSeparator11 = new javax.swing.JSeparator();
-        jButton37 = new javax.swing.JButton();
-        jButtonReferenceCustom01 = new javax.swing.JButton();
-        jButtonReferenceCustom02 = new javax.swing.JButton();
-        jButtonReferenceCustom03 = new javax.swing.JButton();
-        jButtonReferenceCustom04 = new javax.swing.JButton();
-        jButtonReferenceCustom05 = new javax.swing.JButton();
-        jToggleOfflineMode = new javax.swing.JToggleButton();
         jPanelChat = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -921,32 +995,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton34 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
         jButtonScriptUpdateLaunchPad = new javax.swing.JButton();
-        jPanelAppsOLD = new javax.swing.JPanel();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jPanelAppsCustom = new javax.swing.JPanel();
-        jLabel29 = new javax.swing.JLabel();
-        jButtonAppCustom02 = new javax.swing.JButton();
-        jButtonAppCustom01 = new javax.swing.JButton();
-        jButtonAppCustom03 = new javax.swing.JButton();
-        jButtonAppCustom04 = new javax.swing.JButton();
-        jButtonAppCustom05 = new javax.swing.JButton();
-        jButtonAppCustom06 = new javax.swing.JButton();
-        jButtonAppCustom8 = new javax.swing.JButton();
-        jButtonAppCustom9 = new javax.swing.JButton();
-        jButtonAppCustom10 = new javax.swing.JButton();
-        jButtonAppCustom11 = new javax.swing.JButton();
-        jButtonAppCustom12 = new javax.swing.JButton();
-        jButtonAppCustom13 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel28 = new javax.swing.JLabel();
-        jButtonJSDiff = new javax.swing.JButton();
-        jButtonConfigBuilder = new javax.swing.JButton();
-        jButtonJSDiff1 = new javax.swing.JButton();
-        jButton28 = new javax.swing.JButton();
-        jButton30 = new javax.swing.JButton();
-        jSeparator10 = new javax.swing.JSeparator();
-        jButton35 = new javax.swing.JButton();
-        jLabel36 = new javax.swing.JLabel();
+        jButtonReportIssue = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LaunchPad - Pre-Alpha");
@@ -958,12 +1007,15 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
 
+        jTabbedMain.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTabbedMain.setPreferredSize(new java.awt.Dimension(577, 531));
 
+        jPanelMain.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanelMain.setPreferredSize(new java.awt.Dimension(500, 503));
 
         jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.LINE_AXIS));
 
+        jListSessions.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
         jListSessions.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -979,6 +1031,7 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jPanel1.setLayout(null);
 
+        jTextFieldConnectHostname.setFont(new java.awt.Font("Arial Unicode MS", 0, 10)); // NOI18N
         jTextFieldConnectHostname.setToolTipText("IP or DNS Hostname");
         jTextFieldConnectHostname.setNextFocusableComponent(jTextFieldConnectUsername);
         jTextFieldConnectHostname.addActionListener(new java.awt.event.ActionListener() {
@@ -995,7 +1048,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jTextFieldConnectHostname.setBounds(10, 10, 120, 20);
 
         jButtonExecuteFunction1.setBackground(new java.awt.Color(255, 204, 153));
-        jButtonExecuteFunction1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonExecuteFunction1.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jButtonExecuteFunction1.setText("HTTPS");
         jButtonExecuteFunction1.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonExecuteFunction1.addActionListener(new java.awt.event.ActionListener() {
@@ -1004,10 +1057,10 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel1.add(jButtonExecuteFunction1);
-        jButtonExecuteFunction1.setBounds(140, 10, 60, 21);
+        jButtonExecuteFunction1.setBounds(140, 10, 60, 23);
 
         jButtonExecuteFunction3.setBackground(new java.awt.Color(0, 204, 102));
-        jButtonExecuteFunction3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonExecuteFunction3.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jButtonExecuteFunction3.setText("SSH");
         jButtonExecuteFunction3.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonExecuteFunction3.addActionListener(new java.awt.event.ActionListener() {
@@ -1018,6 +1071,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel1.add(jButtonExecuteFunction3);
         jButtonExecuteFunction3.setBounds(140, 70, 60, 20);
 
+        jTextFieldConnectUsername.setFont(new java.awt.Font("Arial Unicode MS", 0, 10)); // NOI18N
         jTextFieldConnectUsername.setToolTipText("Username");
         jTextFieldConnectUsername.setNextFocusableComponent(jPasswordFieldConnectPassword);
         jTextFieldConnectUsername.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1028,6 +1082,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel1.add(jTextFieldConnectUsername);
         jTextFieldConnectUsername.setBounds(10, 50, 120, 20);
 
+        jPasswordFieldConnectPassword.setFont(new java.awt.Font("Arial Unicode MS", 0, 10)); // NOI18N
         jPasswordFieldConnectPassword.setToolTipText("Password");
         jPasswordFieldConnectPassword.setNextFocusableComponent(jButtonExecuteFunction3);
         jPasswordFieldConnectPassword.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1040,7 +1095,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel1.add(jSeparator3);
         jSeparator3.setBounds(10, 100, 190, 10);
 
-        jTextFieldPingHostname.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextFieldPingHostname.setFont(new java.awt.Font("Arial Unicode MS", 0, 10)); // NOI18N
         jTextFieldPingHostname.setToolTipText("IP or DNS Hostname");
         jTextFieldPingHostname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1055,13 +1110,14 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel1.add(jTextFieldPingHostname);
         jTextFieldPingHostname.setBounds(10, 110, 120, 20);
 
+        jCheckBoxDNS.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jCheckBoxDNS.setText("DNS");
         jCheckBoxDNS.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jPanel1.add(jCheckBoxDNS);
         jCheckBoxDNS.setBounds(140, 110, 60, 20);
 
         jButtonTracert.setBackground(new java.awt.Color(163, 163, 255));
-        jButtonTracert.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonTracert.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jButtonTracert.setText("TRACERT");
         jButtonTracert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1072,7 +1128,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonTracert.setBounds(100, 130, 100, 20);
 
         jButtonPing.setBackground(new java.awt.Color(163, 163, 255));
-        jButtonPing.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonPing.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jButtonPing.setText("PING");
         jButtonPing.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1084,6 +1140,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel1.add(jSeparator5);
         jSeparator5.setBounds(10, 160, 190, 10);
 
+        jComboBoxConsoleCOM.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jComboBoxConsoleCOM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9", "COM10", "COM11", "COM12", "COM13", "COM14", "COM15", "COM16", "COM17", "COM18", "COM19", "COM20" }));
         jComboBoxConsoleCOM.setToolTipText("Serial COM port");
         jComboBoxConsoleCOM.addActionListener(new java.awt.event.ActionListener() {
@@ -1094,6 +1151,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel1.add(jComboBoxConsoleCOM);
         jComboBoxConsoleCOM.setBounds(10, 170, 70, 20);
 
+        jButtonShowCOMList.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jButtonShowCOMList.setText("?");
         jButtonShowCOMList.setToolTipText("List your Serial COM ports");
         jButtonShowCOMList.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1105,13 +1163,14 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel1.add(jButtonShowCOMList);
         jButtonShowCOMList.setBounds(90, 170, 30, 20);
 
+        jComboBoxConsoleBaud.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jComboBoxConsoleBaud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "9600", "115200" }));
         jComboBoxConsoleBaud.setToolTipText("Baud Rate");
         jPanel1.add(jComboBoxConsoleBaud);
         jComboBoxConsoleBaud.setBounds(130, 170, 70, 20);
 
         jButtonConsole.setBackground(new java.awt.Color(92, 146, 255));
-        jButtonConsole.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonConsole.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jButtonConsole.setText("Connect to Serial Port");
         jButtonConsole.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonConsole.addActionListener(new java.awt.event.ActionListener() {
@@ -1345,6 +1404,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel1.add(jButton17);
         jButton17.setBounds(10, 430, 40, 40);
 
+        jCheckBoxAlternateLogin.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jCheckBoxAlternateLogin.setText("Alternate Login");
         jCheckBoxAlternateLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1355,7 +1415,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jCheckBoxAlternateLogin.setBounds(10, 30, 120, 20);
 
         jButtonExecuteFunction2.setBackground(new java.awt.Color(251, 255, 153));
-        jButtonExecuteFunction2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButtonExecuteFunction2.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jButtonExecuteFunction2.setText("RDP");
         jButtonExecuteFunction2.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonExecuteFunction2.addActionListener(new java.awt.event.ActionListener() {
@@ -1364,8 +1424,9 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel1.add(jButtonExecuteFunction2);
-        jButtonExecuteFunction2.setBounds(140, 40, 60, 21);
+        jButtonExecuteFunction2.setBounds(140, 40, 60, 23);
 
+        jTextFieldFilter.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldFilterActionPerformed(evt);
@@ -1377,6 +1438,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
 
+        jCheckBox1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jCheckBox1.setText("Favorites");
         jCheckBox1.setToolTipText("Load an alternate list.");
         jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
@@ -1420,27 +1482,574 @@ final JFXPanel fxPanel = new JFXPanel();
                             .addComponent(jTextFieldFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
 
         jTabbedMain.addTab("Main", jPanelMain);
 
-        javax.swing.GroupLayout jPanelLinksLayout = new javax.swing.GroupLayout(jPanelLinks);
-        jPanelLinks.setLayout(jPanelLinksLayout);
-        jPanelLinksLayout.setHorizontalGroup(
-            jPanelLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 572, Short.MAX_VALUE)
-        );
-        jPanelLinksLayout.setVerticalGroup(
-            jPanelLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 487, Short.MAX_VALUE)
-        );
+        jPanelAppsCustom.setLayout(null);
 
-        jTabbedMain.addTab("Links", jPanelLinks);
+        jButtonLinkCustom01.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLinkCustom01ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonLinkCustom01);
+        jButtonLinkCustom01.setBounds(20, 50, 170, 30);
 
-        jPanelScripts.setLayout(null);
+        jButtonAppCustom05.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom05ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom05);
+        jButtonAppCustom05.setBounds(200, 50, 170, 30);
+
+        jButtonAppCustom06.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom06ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom06);
+        jButtonAppCustom06.setBounds(380, 50, 170, 30);
+
+        jButtonAppCustom8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom8ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom8);
+        jButtonAppCustom8.setBounds(20, 90, 170, 30);
+
+        jButtonAppCustom9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom9ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom9);
+        jButtonAppCustom9.setBounds(200, 90, 170, 30);
+
+        jButtonAppCustom10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom10ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom10);
+        jButtonAppCustom10.setBounds(380, 90, 170, 30);
+
+        jButtonAppCustom11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom11ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom11);
+        jButtonAppCustom11.setBounds(20, 130, 170, 30);
+
+        jButtonAppCustom12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom12ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom12);
+        jButtonAppCustom12.setBounds(200, 130, 170, 30);
+
+        jButtonAppCustom13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom13ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom13);
+        jButtonAppCustom13.setBounds(380, 130, 170, 30);
+
+        jButtonAppCustom3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom3ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom3);
+        jButtonAppCustom3.setBounds(200, 170, 170, 30);
+
+        jButtonAppCustom2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom2ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom2);
+        jButtonAppCustom2.setBounds(20, 170, 170, 30);
+
+        jButtonAppCustom4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom4ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom4);
+        jButtonAppCustom4.setBounds(380, 170, 170, 30);
+
+        jButtonAppCustom5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom5ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom5);
+        jButtonAppCustom5.setBounds(20, 210, 170, 30);
+
+        jButtonAppCustom6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom6ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom6);
+        jButtonAppCustom6.setBounds(200, 210, 170, 30);
+
+        jButtonAppCustom7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom7ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom7);
+        jButtonAppCustom7.setBounds(380, 210, 170, 30);
+
+        jButtonAppCustom14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom14ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom14);
+        jButtonAppCustom14.setBounds(20, 250, 170, 30);
+
+        jButtonAppCustom15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom15ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom15);
+        jButtonAppCustom15.setBounds(200, 250, 170, 30);
+
+        jButtonAppCustom16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom16ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom16);
+        jButtonAppCustom16.setBounds(380, 250, 170, 30);
+
+        jButtonAppCustom17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom17ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom17);
+        jButtonAppCustom17.setBounds(20, 290, 170, 30);
+
+        jButtonAppCustom18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom18ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom18);
+        jButtonAppCustom18.setBounds(200, 290, 170, 30);
+
+        jButtonAppCustom19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom19ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom19);
+        jButtonAppCustom19.setBounds(380, 290, 170, 30);
+
+        jButtonAppCustom20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom20ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom20);
+        jButtonAppCustom20.setBounds(20, 330, 170, 30);
+
+        jButtonAppCustom21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom21ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom21);
+        jButtonAppCustom21.setBounds(200, 330, 170, 30);
+
+        jButtonAppCustom22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom22ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom22);
+        jButtonAppCustom22.setBounds(380, 330, 170, 30);
+
+        jButtonAppCustom23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom23ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom23);
+        jButtonAppCustom23.setBounds(20, 370, 170, 30);
+
+        jButtonAppCustom24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom24ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom24);
+        jButtonAppCustom24.setBounds(200, 370, 170, 30);
+
+        jButtonAppCustom25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom25ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom25);
+        jButtonAppCustom25.setBounds(380, 370, 170, 30);
+
+        jButtonAppCustom27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom27ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom27);
+        jButtonAppCustom27.setBounds(20, 410, 170, 30);
+
+        jButtonAppCustom28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom28ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom28);
+        jButtonAppCustom28.setBounds(200, 410, 170, 30);
+
+        jButtonAppCustom29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAppCustom29ActionPerformed(evt);
+            }
+        });
+        jPanelAppsCustom.add(jButtonAppCustom29);
+        jButtonAppCustom29.setBounds(380, 410, 170, 30);
+
+        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel29.setText("Links");
+        jPanelAppsCustom.add(jLabel29);
+        jLabel29.setBounds(110, 10, 350, 30);
+
+        jTabbedPanelLinks.addTab("User-Defined", jPanelAppsCustom);
+
+        jPanelAppsEmbedded.setLayout(null);
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel28.setText("Embedded Web Apps");
+        jPanelAppsEmbedded.add(jLabel28);
+        jLabel28.setBounds(110, 10, 350, 20);
+
+        jButtonJSDiff.setText("jsDiff");
+        jButtonJSDiff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonJSDiffActionPerformed(evt);
+            }
+        });
+        jPanelAppsEmbedded.add(jButtonJSDiff);
+        jButtonJSDiff.setBounds(380, 40, 170, 30);
+
+        jButtonConfigBuilder.setText("Config Builder (Lab Use)");
+        jButtonConfigBuilder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConfigBuilderActionPerformed(evt);
+            }
+        });
+        jPanelAppsEmbedded.add(jButtonConfigBuilder);
+        jButtonConfigBuilder.setBounds(200, 40, 170, 30);
+
+        jButtonJSDiff1.setText("Subnet Calculator");
+        jButtonJSDiff1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonJSDiff1ActionPerformed(evt);
+            }
+        });
+        jPanelAppsEmbedded.add(jButtonJSDiff1);
+        jButtonJSDiff1.setBounds(20, 40, 170, 30);
+
+        jButton28.setText("IPv4 Subnet Generator");
+        jButton28.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
+        jPanelAppsEmbedded.add(jButton28);
+        jButton28.setBounds(20, 130, 170, 30);
+
+        jButton30.setText("IPv6 Subnet Generator");
+        jButton30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton30ActionPerformed(evt);
+            }
+        });
+        jPanelAppsEmbedded.add(jButton30);
+        jButton30.setBounds(380, 130, 170, 30);
+        jPanelAppsEmbedded.add(jSeparator10);
+        jSeparator10.setBounds(10, 90, 550, 10);
+
+        jButton35.setText("Puppeteer");
+        jButton35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton35ActionPerformed(evt);
+            }
+        });
+        jPanelAppsEmbedded.add(jButton35);
+        jButton35.setBounds(200, 130, 170, 30);
+
+        jLabel36.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel36.setText("Embedded Java Apps");
+        jPanelAppsEmbedded.add(jLabel36);
+        jLabel36.setBounds(110, 100, 350, 20);
+
+        jTabbedPanelLinks.addTab("Embedded", jPanelAppsEmbedded);
+
+        jTabbedMain.addTab("Links", jTabbedPanelLinks);
+
+        jPanel3.setLayout(null);
+
+        jButtonCustomScript03.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript03);
+        jButtonCustomScript03.setBounds(380, 50, 170, 30);
+
+        jButtonCustomScript01.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript01.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript01ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript01);
+        jButtonCustomScript01.setBounds(20, 50, 170, 30);
+
+        jButtonCustomScript02.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript02.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript02ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript02);
+        jButtonCustomScript02.setBounds(200, 50, 170, 30);
+
+        jButtonCustomScript7.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript7);
+        jButtonCustomScript7.setBounds(380, 90, 170, 30);
+
+        jButtonCustomScript5.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript5ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript5);
+        jButtonCustomScript5.setBounds(20, 90, 170, 30);
+
+        jButtonCustomScript6.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript6ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript6);
+        jButtonCustomScript6.setBounds(200, 90, 170, 30);
+
+        jButtonCustomScript8.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript8ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript8);
+        jButtonCustomScript8.setBounds(200, 130, 170, 30);
+
+        jButtonCustomScript9.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript9);
+        jButtonCustomScript9.setBounds(380, 130, 170, 30);
+
+        jButtonCustomScript10.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript10ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript10);
+        jButtonCustomScript10.setBounds(20, 130, 170, 30);
+
+        jButtonCustomScript4.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript4ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript4);
+        jButtonCustomScript4.setBounds(380, 170, 170, 30);
+
+        jButtonCustomScript11.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript11);
+        jButtonCustomScript11.setBounds(380, 210, 170, 30);
+
+        jButtonCustomScript3.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript3ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript3);
+        jButtonCustomScript3.setBounds(200, 170, 170, 30);
+
+        jButtonCustomScript2.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript2);
+        jButtonCustomScript2.setBounds(20, 170, 170, 30);
+
+        jButtonCustomScript12.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript12ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript12);
+        jButtonCustomScript12.setBounds(20, 210, 170, 30);
+
+        jButtonCustomScript13.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript13ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript13);
+        jButtonCustomScript13.setBounds(200, 210, 170, 30);
+
+        jButtonCustomScript14.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript14);
+        jButtonCustomScript14.setBounds(380, 250, 170, 30);
+
+        jButtonCustomScript15.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript15ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript15);
+        jButtonCustomScript15.setBounds(20, 250, 170, 30);
+
+        jButtonCustomScript16.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript16ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript16);
+        jButtonCustomScript16.setBounds(200, 250, 170, 30);
+
+        jButtonCustomScript17.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript17ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript17);
+        jButtonCustomScript17.setBounds(200, 290, 170, 30);
+
+        jButtonCustomScript18.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript18);
+        jButtonCustomScript18.setBounds(380, 290, 170, 30);
+
+        jButtonCustomScript19.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript19ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript19);
+        jButtonCustomScript19.setBounds(20, 290, 170, 30);
+
+        jButtonCustomScript20.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript20);
+        jButtonCustomScript20.setBounds(380, 330, 170, 30);
+
+        jButtonCustomScript21.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript21ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript21);
+        jButtonCustomScript21.setBounds(20, 330, 170, 30);
+
+        jButtonCustomScript22.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript22ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript22);
+        jButtonCustomScript22.setBounds(200, 330, 170, 30);
+
+        jButtonCustomScript23.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript23ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript23);
+        jButtonCustomScript23.setBounds(200, 370, 170, 30);
+
+        jButtonCustomScript24.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript24);
+        jButtonCustomScript24.setBounds(380, 370, 170, 30);
+
+        jButtonCustomScript25.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript25ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript25);
+        jButtonCustomScript25.setBounds(20, 370, 170, 30);
+
+        jButtonCustomScript26.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript26ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript26);
+        jButtonCustomScript26.setBounds(200, 410, 170, 30);
+
+        jButtonCustomScript27.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript27);
+        jButtonCustomScript27.setBounds(380, 410, 170, 30);
+
+        jButtonCustomScript28.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript28ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript28);
+        jButtonCustomScript28.setBounds(20, 410, 170, 30);
+
+        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel30.setText("Scripts");
+        jPanel3.add(jLabel30);
+        jLabel30.setBounds(110, 10, 350, 30);
+
+        jTabbedPaneScripts.addTab("User-Defined", jPanel3);
+
+        jPanel4.setLayout(null);
 
         jButtonScriptSyncStandalones.setText("Sync Standalones");
         jButtonScriptSyncStandalones.setEnabled(false);
@@ -1449,8 +2058,8 @@ final JFXPanel fxPanel = new JFXPanel();
                 jButtonScriptSyncStandalonesActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonScriptSyncStandalones);
-        jButtonScriptSyncStandalones.setBounds(200, 440, 170, 30);
+        jPanel4.add(jButtonScriptSyncStandalones);
+        jButtonScriptSyncStandalones.setBounds(200, 10, 170, 30);
 
         jButtonScriptBackupShares.setText("Backup Shares");
         jButtonScriptBackupShares.setEnabled(false);
@@ -1459,63 +2068,8 @@ final JFXPanel fxPanel = new JFXPanel();
                 jButtonScriptBackupSharesActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonScriptBackupShares);
-        jButtonScriptBackupShares.setBounds(20, 440, 170, 30);
-
-        jButtonCustomScript03.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript03.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript03ActionPerformed(evt);
-            }
-        });
-        jPanelScripts.add(jButtonCustomScript03);
-        jButtonCustomScript03.setBounds(380, 40, 170, 30);
-
-        jLabel32.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel32.setText("Custom Scripts");
-        jPanelScripts.add(jLabel32);
-        jLabel32.setBounds(10, 10, 550, 20);
-
-        jButtonCustomScript06.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanelScripts.add(jButtonCustomScript06);
-        jButtonCustomScript06.setBounds(380, 80, 170, 30);
-
-        jButtonCustomScript02.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript02.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript02ActionPerformed(evt);
-            }
-        });
-        jPanelScripts.add(jButtonCustomScript02);
-        jButtonCustomScript02.setBounds(200, 40, 170, 30);
-
-        jButtonCustomScript01.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript01.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript01ActionPerformed(evt);
-            }
-        });
-        jPanelScripts.add(jButtonCustomScript01);
-        jButtonCustomScript01.setBounds(20, 40, 170, 30);
-
-        jButtonCustomScript04.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript04.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript04ActionPerformed(evt);
-            }
-        });
-        jPanelScripts.add(jButtonCustomScript04);
-        jButtonCustomScript04.setBounds(20, 80, 170, 30);
-
-        jButtonCustomScript05.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript05.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript05ActionPerformed(evt);
-            }
-        });
-        jPanelScripts.add(jButtonCustomScript05);
-        jButtonCustomScript05.setBounds(200, 80, 170, 30);
+        jPanel4.add(jButtonScriptBackupShares);
+        jButtonScriptBackupShares.setBounds(20, 10, 170, 30);
 
         jButtonScriptSyncStandalones1.setText("Map Standalone Share");
         jButtonScriptSyncStandalones1.setEnabled(false);
@@ -1524,10 +2078,153 @@ final JFXPanel fxPanel = new JFXPanel();
                 jButtonScriptSyncStandalones1ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonScriptSyncStandalones1);
-        jButtonScriptSyncStandalones1.setBounds(380, 440, 170, 30);
+        jPanel4.add(jButtonScriptSyncStandalones1);
+        jButtonScriptSyncStandalones1.setBounds(380, 10, 170, 30);
 
-        jTabbedMain.addTab("Scripts", jPanelScripts);
+        jTabbedPaneScripts.addTab("Embedded", jPanel4);
+
+        jTabbedMain.addTab("Scripts", jTabbedPaneScripts);
+
+        jPanel6.setLayout(null);
+
+        jToggleOfflineMode.setBackground(new java.awt.Color(0, 204, 51));
+        jToggleOfflineMode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jToggleOfflineMode.setText("Online");
+        jToggleOfflineMode.setToolTipText("Alternate between using network and local files.");
+        jPanel6.add(jToggleOfflineMode);
+        jToggleOfflineMode.setBounds(200, 10, 170, 30);
+
+        jButtonReferenceCustom06.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom06ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButtonReferenceCustom06);
+        jButtonReferenceCustom06.setBounds(380, 90, 170, 30);
+
+        jButtonReferenceCustom01.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom01ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButtonReferenceCustom01);
+        jButtonReferenceCustom01.setBounds(20, 50, 170, 30);
+
+        jButtonReferenceCustom02.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom02ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButtonReferenceCustom02);
+        jButtonReferenceCustom02.setBounds(200, 50, 170, 30);
+
+        jButtonReferenceCustom03.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom03ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButtonReferenceCustom03);
+        jButtonReferenceCustom03.setBounds(380, 50, 170, 30);
+
+        jButtonReferenceCustom04.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom04ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButtonReferenceCustom04);
+        jButtonReferenceCustom04.setBounds(20, 90, 170, 30);
+
+        jButtonReferenceCustom05.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom05ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButtonReferenceCustom05);
+        jButtonReferenceCustom05.setBounds(200, 90, 170, 30);
+
+        jButtonReferenceCustom7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom7ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButtonReferenceCustom7);
+        jButtonReferenceCustom7.setBounds(380, 170, 170, 30);
+
+        jButtonReferenceCustom2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom2ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButtonReferenceCustom2);
+        jButtonReferenceCustom2.setBounds(20, 130, 170, 30);
+
+        jButtonReferenceCustom3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom3ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButtonReferenceCustom3);
+        jButtonReferenceCustom3.setBounds(200, 130, 170, 30);
+
+        jButtonReferenceCustom4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom4ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButtonReferenceCustom4);
+        jButtonReferenceCustom4.setBounds(380, 130, 170, 30);
+
+        jButtonReferenceCustom5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom5ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButtonReferenceCustom5);
+        jButtonReferenceCustom5.setBounds(20, 170, 170, 30);
+
+        jButtonReferenceCustom6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom6ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(jButtonReferenceCustom6);
+        jButtonReferenceCustom6.setBounds(200, 170, 170, 30);
+
+        jTabbedPaneReference.addTab("User-Defined", jPanel6);
+
+        jPanel10.setLayout(null);
+
+        jButton24.setText("IPv4 Subnet Chart");
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(jButton24);
+        jButton24.setBounds(20, 20, 170, 30);
+
+        jButton36.setText("IPv4 Subnet Cheat Sheet");
+        jButton36.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton36ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(jButton36);
+        jButton36.setBounds(200, 20, 170, 30);
+
+        jButton37.setText("Stretch's Cheat Sheets");
+        jButton37.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton37ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(jButton37);
+        jButton37.setBounds(380, 20, 170, 30);
+
+        jTabbedPaneReference.addTab("Embedded", jPanel10);
+
+        jTabbedMain.addTab("Reference", jTabbedPaneReference);
 
         jPanel7.setLayout(null);
 
@@ -1872,107 +2569,7 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jTabbedMain.addTab("ToolBox", jTabbedPaneToolBox);
 
-        jPanelReference.setLayout(null);
-
-        jButton24.setText("IPv4 Subnet Chart");
-        jButton24.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton24ActionPerformed(evt);
-            }
-        });
-        jPanelReference.add(jButton24);
-        jButton24.setBounds(20, 440, 170, 30);
-
-        jButtonReferenceCustom06.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonReferenceCustom06ActionPerformed(evt);
-            }
-        });
-        jPanelReference.add(jButtonReferenceCustom06);
-        jButtonReferenceCustom06.setBounds(380, 250, 170, 30);
-
-        jButton36.setText("IPv4 Subnet Cheat Sheet");
-        jButton36.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton36.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton36ActionPerformed(evt);
-            }
-        });
-        jPanelReference.add(jButton36);
-        jButton36.setBounds(200, 440, 170, 30);
-
-        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel30.setText("Custom Items");
-        jPanelReference.add(jLabel30);
-        jLabel30.setBounds(10, 140, 550, 20);
-
-        jLabel31.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel31.setText("Embedded Items");
-        jPanelReference.add(jLabel31);
-        jLabel31.setBounds(110, 410, 350, 20);
-        jPanelReference.add(jSeparator11);
-        jSeparator11.setBounds(20, 120, 550, 10);
-
-        jButton37.setText("Stretch's Cheat Sheets");
-        jButton37.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton37ActionPerformed(evt);
-            }
-        });
-        jPanelReference.add(jButton37);
-        jButton37.setBounds(380, 440, 170, 30);
-
-        jButtonReferenceCustom01.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonReferenceCustom01ActionPerformed(evt);
-            }
-        });
-        jPanelReference.add(jButtonReferenceCustom01);
-        jButtonReferenceCustom01.setBounds(20, 210, 170, 30);
-
-        jButtonReferenceCustom02.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonReferenceCustom02ActionPerformed(evt);
-            }
-        });
-        jPanelReference.add(jButtonReferenceCustom02);
-        jButtonReferenceCustom02.setBounds(200, 210, 170, 30);
-
-        jButtonReferenceCustom03.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonReferenceCustom03ActionPerformed(evt);
-            }
-        });
-        jPanelReference.add(jButtonReferenceCustom03);
-        jButtonReferenceCustom03.setBounds(380, 210, 170, 30);
-
-        jButtonReferenceCustom04.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonReferenceCustom04ActionPerformed(evt);
-            }
-        });
-        jPanelReference.add(jButtonReferenceCustom04);
-        jButtonReferenceCustom04.setBounds(20, 250, 170, 30);
-
-        jButtonReferenceCustom05.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonReferenceCustom05ActionPerformed(evt);
-            }
-        });
-        jPanelReference.add(jButtonReferenceCustom05);
-        jButtonReferenceCustom05.setBounds(200, 250, 170, 30);
-
-        jToggleOfflineMode.setBackground(new java.awt.Color(0, 204, 51));
-        jToggleOfflineMode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jToggleOfflineMode.setText("Online");
-        jToggleOfflineMode.setToolTipText("Alternate between using network and local files.");
-        jPanelReference.add(jToggleOfflineMode);
-        jToggleOfflineMode.setBounds(200, 170, 170, 30);
-
-        jTabbedMain.addTab("Reference", jPanelReference);
-
+        jTextField1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextField1.setMaximumSize(new java.awt.Dimension(6, 2147483647));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1982,10 +2579,11 @@ final JFXPanel fxPanel = new JFXPanel();
 
         mainChatArea.setEditable(false);
         mainChatArea.setColumns(20);
-        mainChatArea.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        mainChatArea.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
         mainChatArea.setRows(5);
         jScrollPane3.setViewportView(mainChatArea);
 
+        userList.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         userList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 userListMousePressed(evt);
@@ -2026,7 +2624,7 @@ final JFXPanel fxPanel = new JFXPanel();
                 .addGroup(jPanelChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3)
                     .addGroup(jPanelChatLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonChangeNick)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2058,6 +2656,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelSettings.add(jRadioButtonSSHClientPuTTY);
         jRadioButtonSSHClientPuTTY.setBounds(100, 10, 70, 30);
 
+        jLabelListTextSizePreview.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
         jLabelListTextSizePreview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelListTextSizePreview.setText("c9300-a01-abcde-1234");
         jPanelSettings.add(jLabelListTextSizePreview);
@@ -2087,7 +2686,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jSliderListTextSize.setMaximum(6);
         jSliderListTextSize.setPaintLabels(true);
         jSliderListTextSize.setSnapToTicks(true);
-        jSliderListTextSize.setValue(1);
+        jSliderListTextSize.setValue(3);
         jSliderListTextSize.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSliderListTextSizeStateChanged(evt);
@@ -2153,7 +2752,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelSettings.add(jTextField2);
-        jTextField2.setBounds(370, 450, 190, 20);
+        jTextField2.setBounds(370, 460, 190, 20);
 
         jButtonScriptUpdateLaunchPad.setText("Update LaunchPad");
         jButtonScriptUpdateLaunchPad.addActionListener(new java.awt.event.ActionListener() {
@@ -2164,193 +2763,16 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelSettings.add(jButtonScriptUpdateLaunchPad);
         jButtonScriptUpdateLaunchPad.setBounds(390, 20, 160, 30);
 
+        jButtonReportIssue.setText("Report an Issue");
+        jButtonReportIssue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReportIssueActionPerformed(evt);
+            }
+        });
+        jPanelSettings.add(jButtonReportIssue);
+        jButtonReportIssue.setBounds(10, 460, 160, 23);
+
         jTabbedMain.addTab("Settings", jPanelSettings);
-
-        jPanelAppsOLD.setLayout(null);
-
-        jPanelAppsCustom.setLayout(null);
-
-        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel29.setText("Custom Apps");
-        jPanelAppsCustom.add(jLabel29);
-        jLabel29.setBounds(110, 10, 350, 20);
-
-        jButtonAppCustom02.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom02ActionPerformed(evt);
-            }
-        });
-        jPanelAppsCustom.add(jButtonAppCustom02);
-        jButtonAppCustom02.setBounds(200, 40, 170, 30);
-
-        jButtonAppCustom01.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom01ActionPerformed(evt);
-            }
-        });
-        jPanelAppsCustom.add(jButtonAppCustom01);
-        jButtonAppCustom01.setBounds(20, 40, 170, 30);
-
-        jButtonAppCustom03.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom03ActionPerformed(evt);
-            }
-        });
-        jPanelAppsCustom.add(jButtonAppCustom03);
-        jButtonAppCustom03.setBounds(380, 40, 170, 30);
-
-        jButtonAppCustom04.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom04ActionPerformed(evt);
-            }
-        });
-        jPanelAppsCustom.add(jButtonAppCustom04);
-        jButtonAppCustom04.setBounds(20, 80, 170, 30);
-
-        jButtonAppCustom05.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom05ActionPerformed(evt);
-            }
-        });
-        jPanelAppsCustom.add(jButtonAppCustom05);
-        jButtonAppCustom05.setBounds(200, 80, 170, 30);
-
-        jButtonAppCustom06.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom06ActionPerformed(evt);
-            }
-        });
-        jPanelAppsCustom.add(jButtonAppCustom06);
-        jButtonAppCustom06.setBounds(380, 80, 170, 30);
-
-        jButtonAppCustom8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom8ActionPerformed(evt);
-            }
-        });
-        jPanelAppsCustom.add(jButtonAppCustom8);
-        jButtonAppCustom8.setBounds(20, 120, 170, 30);
-
-        jButtonAppCustom9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom9ActionPerformed(evt);
-            }
-        });
-        jPanelAppsCustom.add(jButtonAppCustom9);
-        jButtonAppCustom9.setBounds(200, 120, 170, 30);
-
-        jButtonAppCustom10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom10ActionPerformed(evt);
-            }
-        });
-        jPanelAppsCustom.add(jButtonAppCustom10);
-        jButtonAppCustom10.setBounds(380, 120, 170, 30);
-
-        jButtonAppCustom11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom11ActionPerformed(evt);
-            }
-        });
-        jPanelAppsCustom.add(jButtonAppCustom11);
-        jButtonAppCustom11.setBounds(20, 160, 170, 30);
-
-        jButtonAppCustom12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom12ActionPerformed(evt);
-            }
-        });
-        jPanelAppsCustom.add(jButtonAppCustom12);
-        jButtonAppCustom12.setBounds(200, 160, 170, 30);
-
-        jButtonAppCustom13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom13ActionPerformed(evt);
-            }
-        });
-        jPanelAppsCustom.add(jButtonAppCustom13);
-        jButtonAppCustom13.setBounds(380, 160, 170, 30);
-
-        jTabbedPane2.addTab("Custom", jPanelAppsCustom);
-
-        jPanel3.setLayout(null);
-
-        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel28.setText("Embedded Web Apps");
-        jPanel3.add(jLabel28);
-        jLabel28.setBounds(110, 10, 350, 20);
-
-        jButtonJSDiff.setText("jsDiff");
-        jButtonJSDiff.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonJSDiffActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonJSDiff);
-        jButtonJSDiff.setBounds(380, 40, 170, 30);
-
-        jButtonConfigBuilder.setText("Config Builder (Lab Use)");
-        jButtonConfigBuilder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConfigBuilderActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonConfigBuilder);
-        jButtonConfigBuilder.setBounds(200, 40, 170, 30);
-
-        jButtonJSDiff1.setText("Subnet Calculator");
-        jButtonJSDiff1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonJSDiff1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonJSDiff1);
-        jButtonJSDiff1.setBounds(20, 40, 170, 30);
-
-        jButton28.setText("IPv4 Subnet Generator");
-        jButton28.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton28.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton28ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton28);
-        jButton28.setBounds(10, 130, 170, 30);
-
-        jButton30.setText("IPv6 Subnet Generator");
-        jButton30.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton30ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton30);
-        jButton30.setBounds(390, 130, 170, 30);
-        jPanel3.add(jSeparator10);
-        jSeparator10.setBounds(10, 90, 550, 10);
-
-        jButton35.setText("Puppeteer");
-        jButton35.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton35ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton35);
-        jButton35.setBounds(200, 130, 170, 30);
-
-        jLabel36.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel36.setText("Embedded Java Apps");
-        jPanel3.add(jLabel36);
-        jLabel36.setBounds(110, 100, 350, 20);
-
-        jTabbedPane2.addTab("tab2", jPanel3);
-
-        jPanelAppsOLD.add(jTabbedPane2);
-        jTabbedPane2.setBounds(0, 0, 570, 490);
-
-        jTabbedMain.addTab("Apps", jPanelAppsOLD);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -2360,7 +2782,7 @@ final JFXPanel fxPanel = new JFXPanel();
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedMain, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
+            .addComponent(jTabbedMain, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
         );
 
         jTabbedMain.getAccessibleContext().setAccessibleName("");
@@ -2377,420 +2799,6 @@ final JFXPanel fxPanel = new JFXPanel();
         this.setIconImage(img.getImage());
 
     }//GEN-LAST:event_formWindowOpened
-
-    private void jButtonAppCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom01ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom01ActionPerformed
-
-    private void jButtonAppCustom13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom13ActionPerformed
-
-    private void jButtonAppCustom12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom12ActionPerformed
-
-    private void jButtonAppCustom11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom11ActionPerformed
-
-    private void jButtonAppCustom10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom10ActionPerformed
-
-    private void jButtonAppCustom9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom9ActionPerformed
-
-    private void jButtonAppCustom8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom8ActionPerformed
-
-    private void jButtonAppCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom06ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom06ActionPerformed
-
-    private void jButtonAppCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom05ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom05ActionPerformed
-
-    private void jButtonAppCustom03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom03ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom03ActionPerformed
-
-    private void jButtonAppCustom02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom02ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom02ActionPerformed
-
-    private void jButtonAppCustom04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom04ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom04ActionPerformed
-
-    private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
-        // TODO add your handling code here:
-        String inputPdf = "apps/Puppeteer.jar";
-        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-        Path tempOutput = null;
-        try {
-            tempOutput = Files.createTempFile("TempFile", ".jar");
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tempOutput.toFile().deleteOnExit();
-
-        try {
-            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        File userManual = new File (tempOutput.toFile().getPath());
-        if (userManual.exists())
-        {
-            try {
-                Desktop.getDesktop().open(userManual);
-            } catch (IOException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-    }//GEN-LAST:event_jButton35ActionPerformed
-
-    private void jButtonJSDiff1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJSDiff1ActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Pressed");
-        String inputFile = "html/subnetcalculator/SubnetCalculator.html";
-        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputFile);
-
-        Path tempOutput = null;
-        try {
-            tempOutput = Files.createTempFile("TempFile", ".html");
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tempOutput.toFile().deleteOnExit();
-
-        try {
-            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        File tempFile = new File (tempOutput.toFile().getPath());
-        if (tempFile.exists())
-        {
-            //Desktop.getDesktop().open(tempFile);
-
-        }
-        String strWebpage = tempOutput.toFile().getPath();
-        Icon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
-        Icon iconEdge = new ImageIcon(getClass().getResource("/launchpad/images/buttons/edge.png"));
-        Icon iconFireFox = new ImageIcon(getClass().getResource("/launchpad/images/buttons/firefox.png"));
-        Icon iconChrome = new ImageIcon(getClass().getResource("/launchpad/images/buttons/chrome.png"));
-        Object[] iconArray = {iconExplorer,
-            iconEdge,
-            iconFireFox,
-            iconChrome};
-        int result = JOptionPane.showOptionDialog(null,
-            "IE, Edge, FireFox, Chrome?",
-            "Browser Chooser",
-            JOptionPane.YES_NO_CANCEL_OPTION,
-            JOptionPane.QUESTION_MESSAGE,
-            null,
-            iconArray,
-            iconArray[3]);
-        System.out.println("Option selected: " + result);
-
-        if(result == 0) {
-            String strEXEC = "cmd /c start iexplore.exe " + strWebpage;
-            try {
-                Runtime.getRuntime().exec(strEXEC);
-                System.out.println(strEXEC);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
-        }
-        if(result == 2) {
-            String strEXEC = "cmd /c start firefox.exe " + strWebpage;
-            try {
-                Runtime.getRuntime().exec(strEXEC);
-                System.out.println(strEXEC);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
-        }
-        if(result == 1) {
-            String strEXEC = "cmd /c start microsoft-edge:" + strWebpage;
-            try {
-                Runtime.getRuntime().exec(strEXEC);
-                System.out.println(strEXEC);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
-        }
-        if(result == 3) {
-            String strEXEC = "cmd /c start chrome.exe " + strWebpage;
-            try {
-                Runtime.getRuntime().exec(strEXEC);
-                System.out.println(strEXEC);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
-        }
-    }//GEN-LAST:event_jButtonJSDiff1ActionPerformed
-
-    private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
-        // TODO add your handling code here:
-        String inputPdf = "apps/IPv6SubnetCalculator.jar";
-        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-        Path tempOutput = null;
-        try {
-            tempOutput = Files.createTempFile("TempFile", ".jar");
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tempOutput.toFile().deleteOnExit();
-
-        try {
-            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        File userManual = new File (tempOutput.toFile().getPath());
-        if (userManual.exists())
-        {
-            try {
-                Desktop.getDesktop().open(userManual);
-            } catch (IOException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jButton30ActionPerformed
-
-    private void jButtonConfigBuilderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfigBuilderActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Pressed");
-        String inputFile = "html/configbuilder/ConfigBuilder.html";
-        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputFile);
-
-        Path tempOutput = null;
-        try {
-            tempOutput = Files.createTempFile("TempFile", ".html");
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tempOutput.toFile().deleteOnExit();
-
-        try {
-            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        File tempFile = new File (tempOutput.toFile().getPath());
-        if (tempFile.exists())
-        {
-            //Desktop.getDesktop().open(tempFile);
-
-        }
-        String strWebpage = tempOutput.toFile().getPath();
-        Icon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
-        Icon iconEdge = new ImageIcon(getClass().getResource("/launchpad/images/buttons/edge.png"));
-        Icon iconFireFox = new ImageIcon(getClass().getResource("/launchpad/images/buttons/firefox.png"));
-        Icon iconChrome = new ImageIcon(getClass().getResource("/launchpad/images/buttons/chrome.png"));
-        Object[] iconArray = {iconExplorer,
-            iconEdge,
-            iconFireFox,
-            iconChrome};
-        int result = JOptionPane.showOptionDialog(null,
-            "IE, Edge, FireFox, Chrome?",
-            "Browser Chooser",
-            JOptionPane.YES_NO_CANCEL_OPTION,
-            JOptionPane.QUESTION_MESSAGE,
-            null,
-            iconArray,
-            iconArray[3]);
-        System.out.println("Option selected: " + result);
-
-        if(result == 0) {
-            String strEXEC = "cmd /c start iexplore.exe " + strWebpage;
-            try {
-                Runtime.getRuntime().exec(strEXEC);
-                System.out.println(strEXEC);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
-        }
-        if(result == 2) {
-            String strEXEC = "cmd /c start firefox.exe " + strWebpage;
-            try {
-                Runtime.getRuntime().exec(strEXEC);
-                System.out.println(strEXEC);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
-        }
-        if(result == 1) {
-            String strEXEC = "cmd /c start microsoft-edge:" + strWebpage;
-            try {
-                Runtime.getRuntime().exec(strEXEC);
-                System.out.println(strEXEC);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
-        }
-        if(result == 3) {
-            String strEXEC = "cmd /c start chrome.exe " + strWebpage;
-            try {
-                Runtime.getRuntime().exec(strEXEC);
-                System.out.println(strEXEC);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
-        }
-    }//GEN-LAST:event_jButtonConfigBuilderActionPerformed
-
-    private void jButtonJSDiffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJSDiffActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Pressed");
-        String inputFile = "html/jsdiff/jsDiff.html";
-        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputFile);
-
-        Path tempOutput = null;
-        try {
-            tempOutput = Files.createTempFile("TempFile", ".html");
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tempOutput.toFile().deleteOnExit();
-
-        try {
-            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        File tempFile = new File (tempOutput.toFile().getPath());
-        if (tempFile.exists())
-        {
-            //Desktop.getDesktop().open(tempFile);
-
-        }
-        String strWebpage = tempOutput.toFile().getPath();
-        Icon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
-        Icon iconEdge = new ImageIcon(getClass().getResource("/launchpad/images/buttons/edge.png"));
-        Icon iconFireFox = new ImageIcon(getClass().getResource("/launchpad/images/buttons/firefox.png"));
-        Icon iconChrome = new ImageIcon(getClass().getResource("/launchpad/images/buttons/chrome.png"));
-        Object[] iconArray = {iconExplorer,
-            iconEdge,
-            iconFireFox,
-            iconChrome};
-        int result = JOptionPane.showOptionDialog(null,
-            "IE, Edge, FireFox, Chrome?",
-            "Browser Chooser",
-            JOptionPane.YES_NO_CANCEL_OPTION,
-            JOptionPane.QUESTION_MESSAGE,
-            null,
-            iconArray,
-            iconArray[3]);
-        System.out.println("Option selected: " + result);
-
-        if(result == 0) {
-            String strEXEC = "cmd /c start iexplore.exe " + strWebpage;
-            try {
-                Runtime.getRuntime().exec(strEXEC);
-                System.out.println(strEXEC);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
-        }
-        if(result == 2) {
-            String strEXEC = "cmd /c start firefox.exe " + strWebpage;
-            try {
-                Runtime.getRuntime().exec(strEXEC);
-                System.out.println(strEXEC);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
-        }
-        if(result == 1) {
-            String strEXEC = "cmd /c start microsoft-edge:" + strWebpage;
-            try {
-                Runtime.getRuntime().exec(strEXEC);
-                System.out.println(strEXEC);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
-        }
-        if(result == 3) {
-            String strEXEC = "cmd /c start chrome.exe " + strWebpage;
-            try {
-                Runtime.getRuntime().exec(strEXEC);
-                System.out.println(strEXEC);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
-        }
-    }//GEN-LAST:event_jButtonJSDiffActionPerformed
-
-    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        // TODO add your handling code here:
-        String inputPdf = "apps/IPSubnetCalculator.jar";
-        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-        Path tempOutput = null;
-        try {
-            tempOutput = Files.createTempFile("TempFile", ".jar");
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tempOutput.toFile().deleteOnExit();
-
-        try {
-            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        File userManual = new File (tempOutput.toFile().getPath());
-        if (userManual.exists())
-        {
-            try {
-                Desktop.getDesktop().open(userManual);
-            } catch (IOException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-
-    }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButtonScriptUpdateLaunchPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptUpdateLaunchPadActionPerformed
         // TODO add your handling code here:
@@ -3072,7 +3080,6 @@ final JFXPanel fxPanel = new JFXPanel();
             System.out.println("SessionList.csv no good");
             JOptionPane.showMessageDialog(null, "SessionList.csv Error!");
         }
-
     }//GEN-LAST:event_jButton34ActionPerformed
 
     private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
@@ -3083,7 +3090,6 @@ final JFXPanel fxPanel = new JFXPanel();
                 new ButtonList();
             }
         });
-
     }//GEN-LAST:event_jButton33ActionPerformed
 
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
@@ -3139,7 +3145,6 @@ final JFXPanel fxPanel = new JFXPanel();
         }
         catch (IOException err) {
         }
-
     }//GEN-LAST:event_jButton32ActionPerformed
 
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
@@ -3157,7 +3162,6 @@ final JFXPanel fxPanel = new JFXPanel();
                 JOptionPane.showMessageDialog(null, "Something is wrong!");
             }
         }
-
     }//GEN-LAST:event_jButton31ActionPerformed
 
     private void jSliderListTextSizeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderListTextSizeStateChanged
@@ -3309,7 +3313,6 @@ final JFXPanel fxPanel = new JFXPanel();
             System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
 
         }
-
     }//GEN-LAST:event_jButtonReferenceCustom01ActionPerformed
 
     private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
@@ -3370,7 +3373,6 @@ final JFXPanel fxPanel = new JFXPanel();
                 Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }//GEN-LAST:event_jButton36ActionPerformed
 
     private void jButtonReferenceCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom06ActionPerformed
@@ -3484,7 +3486,6 @@ final JFXPanel fxPanel = new JFXPanel();
         TimeStamp currentNtpTime = TimeStamp.getCurrentTime();
         System.out.println("Atomic time:\t" + currentNtpTime + "  " + currentNtpTime.toDateString());
         jTextFieldNtpAtomicTime.setText("" + currentNtpTime + "  " + currentNtpTime.toDateString());
-
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
@@ -3517,7 +3518,6 @@ final JFXPanel fxPanel = new JFXPanel();
         jTextFieldHashSHA256.setText(toHex(HashGenerate.SHA256.checksum(file)));
         //System.out.println("SHA512 : " + toHex(HashGenerate.SHA512.checksum(file)));
         jTextFieldHashSHA512.setText(toHex(HashGenerate.SHA512.checksum(file)));
-
     }//GEN-LAST:event_jButtonGenerateHashActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
@@ -3715,7 +3715,6 @@ final JFXPanel fxPanel = new JFXPanel();
         } else {
             System.out.println("No Selection ");
         }
-
     }//GEN-LAST:event_jButtonZipBrowseDestinationFolderActionPerformed
 
     private void jButtonZipBrowseSourceZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZipBrowseSourceZipActionPerformed
@@ -3919,71 +3918,6 @@ final JFXPanel fxPanel = new JFXPanel();
         }
     }//GEN-LAST:event_jButtonScriptSyncStandalones1ActionPerformed
 
-    private void jButtonCustomScript05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript05ActionPerformed
-        // TODO add your handling code here:
-        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom05").replace("%USERPROFILE%", pathUserProfile);
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-    }//GEN-LAST:event_jButtonCustomScript05ActionPerformed
-
-    private void jButtonCustomScript04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript04ActionPerformed
-        // TODO add your handling code here:
-        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom04").replace("%USERPROFILE%", pathUserProfile);
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-    }//GEN-LAST:event_jButtonCustomScript04ActionPerformed
-
-    private void jButtonCustomScript01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript01ActionPerformed
-        // TODO add your handling code here:
-        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom01").replace("%USERPROFILE%", pathUserProfile);
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-    }//GEN-LAST:event_jButtonCustomScript01ActionPerformed
-
-    private void jButtonCustomScript02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript02ActionPerformed
-        // TODO add your handling code here:
-        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom02").replace("%USERPROFILE%", pathUserProfile);
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-    }//GEN-LAST:event_jButtonCustomScript02ActionPerformed
-
-    private void jButtonCustomScript03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript03ActionPerformed
-        // TODO add your handling code here:
-        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom03").replace("%USERPROFILE%", pathUserProfile);
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-    }//GEN-LAST:event_jButtonCustomScript03ActionPerformed
-
     private void jButtonScriptBackupSharesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptBackupSharesActionPerformed
         // TODO add your handling code here:
         String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("ScriptBackupShare") + "\"";
@@ -4009,6 +3943,413 @@ final JFXPanel fxPanel = new JFXPanel();
             JOptionPane.showMessageDialog(null, "Something is wrong!");
         }
     }//GEN-LAST:event_jButtonScriptSyncStandalonesActionPerformed
+
+    private void jButtonCustomScript10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript10ActionPerformed
+
+    private void jButtonCustomScript8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript8ActionPerformed
+
+    private void jButtonCustomScript6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript6ActionPerformed
+
+    private void jButtonCustomScript5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript5ActionPerformed
+
+    private void jButtonCustomScript02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript02ActionPerformed
+        // TODO add your handling code here:
+        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom05").replace("%USERPROFILE%", pathUserProfile);
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonCustomScript02ActionPerformed
+
+    private void jButtonCustomScript01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript01ActionPerformed
+        // TODO add your handling code here:
+        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom04").replace("%USERPROFILE%", pathUserProfile);
+        System.out.println(myValue);
+        try {
+            Runtime.getRuntime().exec(myValue);
+        }
+        catch (IOException e) {
+            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonCustomScript01ActionPerformed
+
+    private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
+        // TODO add your handling code here:
+        String inputPdf = "apps/Puppeteer.jar";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".jar");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File userManual = new File (tempOutput.toFile().getPath());
+        if (userManual.exists())
+        {
+            try {
+                Desktop.getDesktop().open(userManual);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_jButton35ActionPerformed
+
+    private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
+        // TODO add your handling code here:
+        String inputPdf = "apps/IPv6SubnetCalculator.jar";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".jar");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File userManual = new File (tempOutput.toFile().getPath());
+        if (userManual.exists())
+        {
+            try {
+                Desktop.getDesktop().open(userManual);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton30ActionPerformed
+
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        // TODO add your handling code here:
+        String inputPdf = "apps/IPSubnetCalculator.jar";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".jar");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File userManual = new File (tempOutput.toFile().getPath());
+        if (userManual.exists())
+        {
+            try {
+                Desktop.getDesktop().open(userManual);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_jButton28ActionPerformed
+
+    private void jButtonJSDiff1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJSDiff1ActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Pressed");
+        String inputFile = "html/subnetcalculator/SubnetCalculator.html";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputFile);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".html");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File tempFile = new File (tempOutput.toFile().getPath());
+        if (tempFile.exists())
+        {
+            //Desktop.getDesktop().open(tempFile);
+
+        }
+        String strWebpage = tempOutput.toFile().getPath();
+        Icon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
+        Icon iconEdge = new ImageIcon(getClass().getResource("/launchpad/images/buttons/edge.png"));
+        Icon iconFireFox = new ImageIcon(getClass().getResource("/launchpad/images/buttons/firefox.png"));
+        Icon iconChrome = new ImageIcon(getClass().getResource("/launchpad/images/buttons/chrome.png"));
+        Object[] iconArray = {iconExplorer,
+            iconEdge,
+            iconFireFox,
+            iconChrome};
+        int result = JOptionPane.showOptionDialog(null,
+            "IE, Edge, FireFox, Chrome?",
+            "Browser Chooser",
+            JOptionPane.YES_NO_CANCEL_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            iconArray,
+            iconArray[3]);
+        System.out.println("Option selected: " + result);
+
+        if(result == 0) {
+            String strEXEC = "cmd /c start iexplore.exe " + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+        if(result == 2) {
+            String strEXEC = "cmd /c start firefox.exe " + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+        if(result == 1) {
+            String strEXEC = "cmd /c start microsoft-edge:" + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+        if(result == 3) {
+            String strEXEC = "cmd /c start chrome.exe " + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+    }//GEN-LAST:event_jButtonJSDiff1ActionPerformed
+
+    private void jButtonConfigBuilderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfigBuilderActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Pressed");
+        String inputFile = "html/configbuilder/ConfigBuilder.html";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputFile);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".html");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File tempFile = new File (tempOutput.toFile().getPath());
+        if (tempFile.exists())
+        {
+            //Desktop.getDesktop().open(tempFile);
+
+        }
+        String strWebpage = tempOutput.toFile().getPath();
+        Icon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
+        Icon iconEdge = new ImageIcon(getClass().getResource("/launchpad/images/buttons/edge.png"));
+        Icon iconFireFox = new ImageIcon(getClass().getResource("/launchpad/images/buttons/firefox.png"));
+        Icon iconChrome = new ImageIcon(getClass().getResource("/launchpad/images/buttons/chrome.png"));
+        Object[] iconArray = {iconExplorer,
+            iconEdge,
+            iconFireFox,
+            iconChrome};
+        int result = JOptionPane.showOptionDialog(null,
+            "IE, Edge, FireFox, Chrome?",
+            "Browser Chooser",
+            JOptionPane.YES_NO_CANCEL_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            iconArray,
+            iconArray[3]);
+        System.out.println("Option selected: " + result);
+
+        if(result == 0) {
+            String strEXEC = "cmd /c start iexplore.exe " + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+        if(result == 2) {
+            String strEXEC = "cmd /c start firefox.exe " + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+        if(result == 1) {
+            String strEXEC = "cmd /c start microsoft-edge:" + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+        if(result == 3) {
+            String strEXEC = "cmd /c start chrome.exe " + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+    }//GEN-LAST:event_jButtonConfigBuilderActionPerformed
+
+    private void jButtonJSDiffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJSDiffActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Pressed");
+        String inputFile = "html/jsdiff/jsDiff.html";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputFile);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".html");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File tempFile = new File (tempOutput.toFile().getPath());
+        if (tempFile.exists())
+        {
+            //Desktop.getDesktop().open(tempFile);
+
+        }
+        String strWebpage = tempOutput.toFile().getPath();
+        Icon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
+        Icon iconEdge = new ImageIcon(getClass().getResource("/launchpad/images/buttons/edge.png"));
+        Icon iconFireFox = new ImageIcon(getClass().getResource("/launchpad/images/buttons/firefox.png"));
+        Icon iconChrome = new ImageIcon(getClass().getResource("/launchpad/images/buttons/chrome.png"));
+        Object[] iconArray = {iconExplorer,
+            iconEdge,
+            iconFireFox,
+            iconChrome};
+        int result = JOptionPane.showOptionDialog(null,
+            "IE, Edge, FireFox, Chrome?",
+            "Browser Chooser",
+            JOptionPane.YES_NO_CANCEL_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            iconArray,
+            iconArray[3]);
+        System.out.println("Option selected: " + result);
+
+        if(result == 0) {
+            String strEXEC = "cmd /c start iexplore.exe " + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+        if(result == 2) {
+            String strEXEC = "cmd /c start firefox.exe " + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+        if(result == 1) {
+            String strEXEC = "cmd /c start microsoft-edge:" + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+        if(result == 3) {
+            String strEXEC = "cmd /c start chrome.exe " + strWebpage;
+            try {
+                Runtime.getRuntime().exec(strEXEC);
+                System.out.println(strEXEC);
+            }
+            catch (IOException e) {
+                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+        }
+    }//GEN-LAST:event_jButtonJSDiffActionPerformed
 
     private void jCheckBox1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBox1StateChanged
 
@@ -4053,7 +4394,6 @@ final JFXPanel fxPanel = new JFXPanel();
 
     private void jCheckBoxAlternateLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxAlternateLoginActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_jCheckBoxAlternateLoginActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
@@ -4602,6 +4942,232 @@ final JFXPanel fxPanel = new JFXPanel();
         }
     }//GEN-LAST:event_jListSessionsValueChanged
 
+    private void jButtonCustomScript4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript4ActionPerformed
+
+    private void jButtonCustomScript3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript3ActionPerformed
+
+    private void jButtonCustomScript2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript2ActionPerformed
+
+    private void jButtonCustomScript12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript12ActionPerformed
+
+    private void jButtonCustomScript13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript13ActionPerformed
+
+    private void jButtonCustomScript15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript15ActionPerformed
+
+    private void jButtonCustomScript16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript16ActionPerformed
+
+    private void jButtonCustomScript17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript17ActionPerformed
+
+    private void jButtonCustomScript19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript19ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript19ActionPerformed
+
+    private void jButtonCustomScript21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript21ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript21ActionPerformed
+
+    private void jButtonCustomScript22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript22ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript22ActionPerformed
+
+    private void jButtonCustomScript23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript23ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript23ActionPerformed
+
+    private void jButtonCustomScript25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript25ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript25ActionPerformed
+
+    private void jButtonCustomScript26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript26ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript26ActionPerformed
+
+    private void jButtonCustomScript28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript28ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript28ActionPerformed
+
+    private void jButtonAppCustom29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom29ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom29ActionPerformed
+
+    private void jButtonAppCustom28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom28ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom28ActionPerformed
+
+    private void jButtonAppCustom27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom27ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom27ActionPerformed
+
+    private void jButtonAppCustom19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom19ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom19ActionPerformed
+
+    private void jButtonAppCustom18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom18ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom18ActionPerformed
+
+    private void jButtonAppCustom17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom17ActionPerformed
+
+    private void jButtonAppCustom16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom16ActionPerformed
+
+    private void jButtonAppCustom13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom13ActionPerformed
+
+    private void jButtonAppCustom15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom15ActionPerformed
+
+    private void jButtonAppCustom12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom12ActionPerformed
+
+    private void jButtonAppCustom14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom14ActionPerformed
+
+    private void jButtonAppCustom7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom7ActionPerformed
+
+    private void jButtonAppCustom6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom6ActionPerformed
+
+    private void jButtonAppCustom5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom5ActionPerformed
+
+    private void jButtonAppCustom4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom4ActionPerformed
+
+    private void jButtonAppCustom11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom11ActionPerformed
+
+    private void jButtonAppCustom10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom10ActionPerformed
+
+    private void jButtonAppCustom9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom9ActionPerformed
+
+    private void jButtonAppCustom8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom8ActionPerformed
+
+    private void jButtonAppCustom2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom2ActionPerformed
+
+    private void jButtonAppCustom3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom3ActionPerformed
+
+    private void jButtonAppCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom06ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom06ActionPerformed
+
+    private void jButtonAppCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom05ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom05ActionPerformed
+
+    private void jButtonLinkCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom01ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonLinkCustom01ActionPerformed
+
+    private void jButtonAppCustom25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom25ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom25ActionPerformed
+
+    private void jButtonAppCustom24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom24ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom24ActionPerformed
+
+    private void jButtonAppCustom23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom23ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom23ActionPerformed
+
+    private void jButtonAppCustom22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom22ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom22ActionPerformed
+
+    private void jButtonAppCustom21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom21ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom21ActionPerformed
+
+    private void jButtonAppCustom20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom20ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom20ActionPerformed
+
+    private void jButtonReferenceCustom7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom7ActionPerformed
+
+    private void jButtonReferenceCustom2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom2ActionPerformed
+
+    private void jButtonReferenceCustom3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom3ActionPerformed
+
+    private void jButtonReferenceCustom4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom4ActionPerformed
+
+    private void jButtonReferenceCustom5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom5ActionPerformed
+
+    private void jButtonReferenceCustom6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom6ActionPerformed
+
+    private void jButtonReportIssueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReportIssueActionPerformed
+        // TODO add your handling code here:
+        Desktop desktop;
+if (Desktop.isDesktopSupported() 
+    && (desktop = Desktop.getDesktop()).isSupported(Desktop.Action.MAIL)) {
+  URI mailto = null;
+            try {
+                mailto = new URI("mailto:mathew.bray@gmail.com?subject=LaunchPad%20Issue");
+            } catch (URISyntaxException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                desktop.mail(mailto);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+} else {
+  // TODO fallback to some Runtime.exec(..) voodoo?
+  throw new RuntimeException("desktop doesn't support mailto; mail is dead anyway ;)");
+}
+    }//GEN-LAST:event_jButtonReportIssueActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -4878,16 +5444,33 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JButton jButtonAppCustom01;
-    private javax.swing.JButton jButtonAppCustom02;
-    private javax.swing.JButton jButtonAppCustom03;
-    private javax.swing.JButton jButtonAppCustom04;
     private javax.swing.JButton jButtonAppCustom05;
     private javax.swing.JButton jButtonAppCustom06;
     private javax.swing.JButton jButtonAppCustom10;
     private javax.swing.JButton jButtonAppCustom11;
     private javax.swing.JButton jButtonAppCustom12;
     private javax.swing.JButton jButtonAppCustom13;
+    private javax.swing.JButton jButtonAppCustom14;
+    private javax.swing.JButton jButtonAppCustom15;
+    private javax.swing.JButton jButtonAppCustom16;
+    private javax.swing.JButton jButtonAppCustom17;
+    private javax.swing.JButton jButtonAppCustom18;
+    private javax.swing.JButton jButtonAppCustom19;
+    private javax.swing.JButton jButtonAppCustom2;
+    private javax.swing.JButton jButtonAppCustom20;
+    private javax.swing.JButton jButtonAppCustom21;
+    private javax.swing.JButton jButtonAppCustom22;
+    private javax.swing.JButton jButtonAppCustom23;
+    private javax.swing.JButton jButtonAppCustom24;
+    private javax.swing.JButton jButtonAppCustom25;
+    private javax.swing.JButton jButtonAppCustom27;
+    private javax.swing.JButton jButtonAppCustom28;
+    private javax.swing.JButton jButtonAppCustom29;
+    private javax.swing.JButton jButtonAppCustom3;
+    private javax.swing.JButton jButtonAppCustom4;
+    private javax.swing.JButton jButtonAppCustom5;
+    private javax.swing.JButton jButtonAppCustom6;
+    private javax.swing.JButton jButtonAppCustom7;
     private javax.swing.JButton jButtonAppCustom8;
     private javax.swing.JButton jButtonAppCustom9;
     private javax.swing.JButton jButtonChangeNick;
@@ -4896,9 +5479,33 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonCustomScript01;
     private javax.swing.JButton jButtonCustomScript02;
     private javax.swing.JButton jButtonCustomScript03;
-    private javax.swing.JButton jButtonCustomScript04;
-    private javax.swing.JButton jButtonCustomScript05;
-    private javax.swing.JButton jButtonCustomScript06;
+    private javax.swing.JButton jButtonCustomScript10;
+    private javax.swing.JButton jButtonCustomScript11;
+    private javax.swing.JButton jButtonCustomScript12;
+    private javax.swing.JButton jButtonCustomScript13;
+    private javax.swing.JButton jButtonCustomScript14;
+    private javax.swing.JButton jButtonCustomScript15;
+    private javax.swing.JButton jButtonCustomScript16;
+    private javax.swing.JButton jButtonCustomScript17;
+    private javax.swing.JButton jButtonCustomScript18;
+    private javax.swing.JButton jButtonCustomScript19;
+    private javax.swing.JButton jButtonCustomScript2;
+    private javax.swing.JButton jButtonCustomScript20;
+    private javax.swing.JButton jButtonCustomScript21;
+    private javax.swing.JButton jButtonCustomScript22;
+    private javax.swing.JButton jButtonCustomScript23;
+    private javax.swing.JButton jButtonCustomScript24;
+    private javax.swing.JButton jButtonCustomScript25;
+    private javax.swing.JButton jButtonCustomScript26;
+    private javax.swing.JButton jButtonCustomScript27;
+    private javax.swing.JButton jButtonCustomScript28;
+    private javax.swing.JButton jButtonCustomScript3;
+    private javax.swing.JButton jButtonCustomScript4;
+    private javax.swing.JButton jButtonCustomScript5;
+    private javax.swing.JButton jButtonCustomScript6;
+    private javax.swing.JButton jButtonCustomScript7;
+    private javax.swing.JButton jButtonCustomScript8;
+    private javax.swing.JButton jButtonCustomScript9;
     private javax.swing.JButton jButtonExecuteFunction1;
     private javax.swing.JButton jButtonExecuteFunction2;
     private javax.swing.JButton jButtonExecuteFunction3;
@@ -4906,6 +5513,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonGenerateHash;
     private javax.swing.JButton jButtonJSDiff;
     private javax.swing.JButton jButtonJSDiff1;
+    private javax.swing.JButton jButtonLinkCustom01;
     private javax.swing.JButton jButtonPing;
     private javax.swing.JButton jButtonReferenceCustom01;
     private javax.swing.JButton jButtonReferenceCustom02;
@@ -4913,6 +5521,13 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonReferenceCustom04;
     private javax.swing.JButton jButtonReferenceCustom05;
     private javax.swing.JButton jButtonReferenceCustom06;
+    private javax.swing.JButton jButtonReferenceCustom2;
+    private javax.swing.JButton jButtonReferenceCustom3;
+    private javax.swing.JButton jButtonReferenceCustom4;
+    private javax.swing.JButton jButtonReferenceCustom5;
+    private javax.swing.JButton jButtonReferenceCustom6;
+    private javax.swing.JButton jButtonReferenceCustom7;
+    private javax.swing.JButton jButtonReportIssue;
     private javax.swing.JButton jButtonScriptBackupShares;
     private javax.swing.JButton jButtonScriptSyncStandalones;
     private javax.swing.JButton jButtonScriptSyncStandalones1;
@@ -4943,8 +5558,6 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
@@ -4961,20 +5574,20 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JList<String> jListSessions;
 
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanelAppsCustom;
-    private javax.swing.JPanel jPanelAppsOLD;
+    private javax.swing.JPanel jPanelAppsEmbedded;
     private javax.swing.JPanel jPanelChat;
-    private javax.swing.JPanel jPanelLinks;
     private javax.swing.JPanel jPanelMain;
-    private javax.swing.JPanel jPanelReference;
-    private javax.swing.JPanel jPanelScripts;
     private javax.swing.JPanel jPanelSettings;
     private javax.swing.JPasswordField jPasswordFieldConnectPassword;
     private javax.swing.JPasswordField jPasswordFieldZip;
@@ -4992,7 +5605,6 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
-    private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
@@ -5001,8 +5613,10 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JSlider jSliderListTextSize;
     private javax.swing.JTabbedPane jTabbedMain;
-    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPaneReference;
+    private javax.swing.JTabbedPane jTabbedPaneScripts;
     private javax.swing.JTabbedPane jTabbedPaneToolBox;
+    private javax.swing.JTabbedPane jTabbedPanelLinks;
     private javax.swing.JTextArea jTextAreaNTPMessage;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
