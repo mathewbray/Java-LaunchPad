@@ -38,12 +38,13 @@ public class LaunchPad {
         String pathUserProfile = System.getenv("USERPROFILE");
         File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
         String pathLaunchPadFolder = pathDesktop + "\\LaunchPad\\";
-        String strSessionListFavoritesFolder = pathUserProfile + "\\.launchpad\\";
+        String strLocalUserFolder = pathUserProfile + "\\.launchpad\\";
+
         
         
         //--- Check for Folders
         new File(pathLaunchPadFolder).mkdirs();
-        new File(strSessionListFavoritesFolder).mkdirs();
+        new File(strLocalUserFolder).mkdirs();
         
 //        File directory = new File(pathLaunchPadFolder);
 //        if (!directory.exists()){
@@ -66,7 +67,7 @@ public class LaunchPad {
             //JOptionPane.showMessageDialog(null, "Properties file not found.", "RIP!", JOptionPane.INFORMATION_MESSAGE);
             //System.exit( 0 );
             filePropertiesFile.createNewFile();
-                        List<String> lines = Arrays.asList(
+            List<String> lines = Arrays.asList(
 "WindowTitle=LaunchPad Pre-Alpha",                                
 "PreloadSSH=10.0.",
 "PreloadPing=10.0.",
@@ -96,29 +97,30 @@ public class LaunchPad {
 "Button10exe=cmd /c start chrome.exe https://cisco.com/",
 "Button11icon=windowsblue",
 "Button11exe=cmd /c start mstsc /v:SERVERNAME",
-"Button12icon=brocade",
+"Button12icon=coffee",
 "Button12exe=cmd /c start \"\"",
 "Button13icon=circuitboard",
 "Button13exe=cmd /c start chrome.exe https://www.wireshark.org/tools/oui-lookup.html",
-"Button14icon=remedy",
-"Button14exe=cmd /c start chrome.exe http://www.bmc.com/it-solutions/remedy-itsm.html",
-"Button15icon=disastig",
+"Button14icon=favorites",
+"Button14exe=cmd /c start chrome.exe",
+"Button15icon=CygWin",
 "Button15exe=",
-"Button16icon=phoneblue",
+"Button16icon=map",
 "Button16exe=cmd /c start explorer.exe \"%USERPROFILE%\\\\Desktop\\\\\"",
 "Button17icon=backup",
 "Button17exe=",
 "Button18icon=ipconfig",
 "Button18exe-CMD-OPTION=cmd /c start cmd.exe /K \"ipconfig & pause\"",
 "Button18exe=cmd /c start cmd.exe /k powershell.exe -ExecutionPolicy Bypass -noexit -Command \"& {$RunIPconfig = {Clear-Host; ipconfig /all; Write-Host ''; Write-Host 'Press Enter to REFRESH...' -NoNewLine  -ForegroundColor Green; Read-Host -Prompt ' '; .$RunIPconfig}; &$RunIPconfig}\"",
-"Button19icon=securecrt",
-"Button19exe=C:\\\\Program Files\\\\SecureCRT x64\\\\SecureCRT\\\\SecureCRT.exe",
-"Button20icon=putty",
-"Button20exe=\"%USERPROFILE%\\\\Desktop\\\\kitty.exe\"",
+"Button19icon=winscp",
+"Button19exe=",
+"Button20icon=wifi",
+"Button20exe=\"%USERPROFILE%\\\\Desktop\\\\\"",
 "ButtonExecuteFunction1=HTTPS",
 "ButtonExecuteFunction2=RDP",
 "ButtonExecuteFunction3=SSH",
 "ButtonExecuteFunctionDoubleClick=3",
+"ButtonExecuteFunctionOnEnterPress=3",
 "FileLaunchPadLocal=%USERPROFILE%\\\\Desktop\\\\LaunchPad\\\\LaunchPad.jar",
 "FileLaunchPadRemote=%USERPROFILE%\\\\Desktop\\\\new.txt",
 "FileUpdateScript=%USERPROFILE%\\\\Desktop\\\\HelloWorld.ps1",
@@ -135,6 +137,21 @@ public class LaunchPad {
             Files.write(file, lines, Charset.forName("UTF-8"));
 
         } 
+        
+        //--- Check for local user properties file
+        File fileLocalUserPropertiesFile = new File(pathDesktop + "\\LaunchPad\\launchpad.properties");
+        if (!fileLocalUserPropertiesFile.exists()) {
+            System.out.println("Local User Properties file not found.");
+            //JOptionPane.showMessageDialog(null, "Properties file not found.", "RIP!", JOptionPane.INFORMATION_MESSAGE);
+            //System.exit( 0 );
+            fileLocalUserPropertiesFile.createNewFile();
+            List<String> lines = Arrays.asList(
+"TextSize=3",                                
+"ChatNickname=");
+            Path file = Paths.get(fileLocalUserPropertiesFile.getPath());
+            Files.write(file, lines, Charset.forName("UTF-8"));
+
+        } 
 
         //--- Update or Launch
         //- Items to use
@@ -146,7 +163,7 @@ public class LaunchPad {
         System.out.println("Property FileLaunchPadRemote: " + StrFileLaunchPadRemote);
 
 
-        //- Set i to -1 to run app if files don't exist
+        //- Set i to -1 - if i becomes greater than 0, update script will run
         int i = -1;
         
         //- Check if files exist
@@ -175,7 +192,7 @@ public class LaunchPad {
         if (i > 0) {
             System.out.println("Update status: Update found. Running update stuff.");
             JOptionPane.showMessageDialog(null, "Found a newer version...  Click OK to continue.", "Update Found!", JOptionPane.INFORMATION_MESSAGE);
-            String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + PropertyHandler.getInstance().getValue("FileUpdateScript") + "\"" ;
+            String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("FileUpdateScript") + "\"" ;
             System.out.println(myValue);
             try {
                 Runtime.getRuntime().exec(myValue);

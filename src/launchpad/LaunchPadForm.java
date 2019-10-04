@@ -109,7 +109,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
     String pathUserProfile = System.getenv("USERPROFILE");
     File pathLogging = new File(pathDesktop + "\\Logging-Output");
-    String strSessionListFavorites = pathUserProfile + "\\SessionList.csv";
+    String strSessionListFavorites = pathUserProfile + "\\.launchpad\\SessionList.csv";
     String strSessionListDefault = pathDesktop + "\\LaunchPad\\SessionList.csv";
 
     //--- Get Date and time for things
@@ -858,12 +858,12 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonCustomScript03 = new javax.swing.JButton();
         jButtonCustomScript01 = new javax.swing.JButton();
         jButtonCustomScript02 = new javax.swing.JButton();
-        jButtonCustomScript7 = new javax.swing.JButton();
-        jButtonCustomScript5 = new javax.swing.JButton();
-        jButtonCustomScript6 = new javax.swing.JButton();
+        jButtonCustomScript06 = new javax.swing.JButton();
+        jButtonCustomScript04 = new javax.swing.JButton();
+        jButtonCustomScript05 = new javax.swing.JButton();
         jButtonCustomScript8 = new javax.swing.JButton();
         jButtonCustomScript9 = new javax.swing.JButton();
-        jButtonCustomScript10 = new javax.swing.JButton();
+        jButtonCustomScript07 = new javax.swing.JButton();
         jButtonCustomScript4 = new javax.swing.JButton();
         jButtonCustomScript11 = new javax.swing.JButton();
         jButtonCustomScript3 = new javax.swing.JButton();
@@ -1838,27 +1838,27 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel3.add(jButtonCustomScript02);
         jButtonCustomScript02.setBounds(200, 50, 170, 30);
 
-        jButtonCustomScript7.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanel3.add(jButtonCustomScript7);
-        jButtonCustomScript7.setBounds(380, 90, 170, 30);
+        jButtonCustomScript06.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript06);
+        jButtonCustomScript06.setBounds(380, 90, 170, 30);
 
-        jButtonCustomScript5.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript5.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCustomScript04.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript04.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript5ActionPerformed(evt);
+                jButtonCustomScript04ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButtonCustomScript5);
-        jButtonCustomScript5.setBounds(20, 90, 170, 30);
+        jPanel3.add(jButtonCustomScript04);
+        jButtonCustomScript04.setBounds(20, 90, 170, 30);
 
-        jButtonCustomScript6.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript6.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCustomScript05.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript05.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript6ActionPerformed(evt);
+                jButtonCustomScript05ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButtonCustomScript6);
-        jButtonCustomScript6.setBounds(200, 90, 170, 30);
+        jPanel3.add(jButtonCustomScript05);
+        jButtonCustomScript05.setBounds(200, 90, 170, 30);
 
         jButtonCustomScript8.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonCustomScript8.addActionListener(new java.awt.event.ActionListener() {
@@ -1873,14 +1873,14 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel3.add(jButtonCustomScript9);
         jButtonCustomScript9.setBounds(380, 130, 170, 30);
 
-        jButtonCustomScript10.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript10.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCustomScript07.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript07.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript10ActionPerformed(evt);
+                jButtonCustomScript07ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButtonCustomScript10);
-        jButtonCustomScript10.setBounds(20, 130, 170, 30);
+        jPanel3.add(jButtonCustomScript07);
+        jButtonCustomScript07.setBounds(20, 130, 170, 30);
 
         jButtonCustomScript4.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonCustomScript4.addActionListener(new java.awt.event.ActionListener() {
@@ -3944,21 +3944,21 @@ final JFXPanel fxPanel = new JFXPanel();
         }
     }//GEN-LAST:event_jButtonScriptSyncStandalonesActionPerformed
 
-    private void jButtonCustomScript10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript10ActionPerformed
+    private void jButtonCustomScript07ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript07ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript10ActionPerformed
+    }//GEN-LAST:event_jButtonCustomScript07ActionPerformed
 
     private void jButtonCustomScript8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCustomScript8ActionPerformed
 
-    private void jButtonCustomScript6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript6ActionPerformed
+    private void jButtonCustomScript05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript05ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript6ActionPerformed
+    }//GEN-LAST:event_jButtonCustomScript05ActionPerformed
 
-    private void jButtonCustomScript5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript5ActionPerformed
+    private void jButtonCustomScript04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript04ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript5ActionPerformed
+    }//GEN-LAST:event_jButtonCustomScript04ActionPerformed
 
     private void jButtonCustomScript02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript02ActionPerformed
         // TODO add your handling code here:
@@ -4924,7 +4924,19 @@ final JFXPanel fxPanel = new JFXPanel();
             } catch (AWTException ex) {
                 Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
-            jButtonExecuteFunction3.doClick();
+            String myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionOnEnterPress");
+            if("".equals(myValue)) {
+                PropertyHandler.getInstance().setValue("ButtonExecuteFunctionOnEnterPress", "3");
+            }              
+            myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionOnEnterPress");
+            if("1".equals(myValue)) {
+                jButtonExecuteFunction1.doClick();
+            } else if("2".equals(myValue)) {
+                jButtonExecuteFunction2.doClick();               
+            } else if("3".equals(myValue)){
+                jButtonExecuteFunction3.doClick();
+            }
+            
         }
     }//GEN-LAST:event_jTextFieldConnectHostnameKeyTyped
 
@@ -5479,7 +5491,10 @@ if (Desktop.isDesktopSupported()
     private javax.swing.JButton jButtonCustomScript01;
     private javax.swing.JButton jButtonCustomScript02;
     private javax.swing.JButton jButtonCustomScript03;
-    private javax.swing.JButton jButtonCustomScript10;
+    private javax.swing.JButton jButtonCustomScript04;
+    private javax.swing.JButton jButtonCustomScript05;
+    private javax.swing.JButton jButtonCustomScript06;
+    private javax.swing.JButton jButtonCustomScript07;
     private javax.swing.JButton jButtonCustomScript11;
     private javax.swing.JButton jButtonCustomScript12;
     private javax.swing.JButton jButtonCustomScript13;
@@ -5501,9 +5516,6 @@ if (Desktop.isDesktopSupported()
     private javax.swing.JButton jButtonCustomScript28;
     private javax.swing.JButton jButtonCustomScript3;
     private javax.swing.JButton jButtonCustomScript4;
-    private javax.swing.JButton jButtonCustomScript5;
-    private javax.swing.JButton jButtonCustomScript6;
-    private javax.swing.JButton jButtonCustomScript7;
     private javax.swing.JButton jButtonCustomScript8;
     private javax.swing.JButton jButtonCustomScript9;
     private javax.swing.JButton jButtonExecuteFunction1;
