@@ -1,0 +1,124 @@
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<HTML>
+<HEAD>
+<TITLE>
+GrizzMon
+</TITLE>
+ <link href="https://www.my.af.mil/afp/netstorage/login_page_files/styles/logincss_lbp.css" rel="stylesheet" type="text/css">
+    <script src="https://www.my.af.mil/afp/netstorage/login_page_files/js/login.js" language="JavaScript" type="text/javascript"></script>
+
+  <script language="JavaScript" type="text/javascript">
+        function createCookie(name,value,days) {
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime()+(days*24*60*60*1000));
+                var expires = "; expires="+date.toGMTString();
+            }
+            else var expires = "";
+            document.cookie = name+"="+value+expires+"; path=/";
+        }
+
+        function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+
+        function toggleBasedOnCookieValue() {
+            var val = readCookie('AFPORTAL_LOGIN_TAB');
+            if (val == 'PASSWORD')
+                toggle('CAC','PASSWORD');
+            val = readCookie('AFPORTAL_LOGIN_AGREEMENT');
+            if (val == null || val == 'null'){
+
+                document.getElementById('lightbox').style.display = '';
+
+            }
+        }
+    </script>
+    <!--[if lt IE 9]>
+    <script>
+        document.createElement('header');
+        document.createElement('nav');
+        document.createElement('section');
+        document.createElement('aside');
+        document.createElement('footer');
+    </script>
+    <![endif]-->
+
+
+
+
+<!--- DO NOT TRANSLATE OR MODIFY any part of the hidden parameter(s) --->
+<!---
+  The following block of code provides users with a warning message
+  if they do not have cookies configured on their browsers.
+  If this environment does not use cookies to maintain login sessions,
+  simply remove or comment out the block below.
+--->
+<!--- BEGIN Cookie check block --->
+<!---
+DO NOT TRANSLATE anything inside the SCRIPT tag except the quoted
+string warningString.  i.e. var warningString = "Translate this string";
+--->
+<SCRIPT LANGUAGE=JavaScript>
+    var warningString = "<B>WARNING:</B> To maintain your login session, make sure that your browser is configured to accept Cookies.";
+    document.cookie = 'acceptsCookies=yes';
+    if(document.cookie == ''){
+        document.write(warningString);
+    }
+    else{
+        document.cookie = 'acceptsCookies=yes; expires=Fri, 13-Apr-1970 00:00:00 GMT';
+    }
+</SCRIPT>
+<NOSCRIPT>
+    <B>WARNING:</B> To maintain your login session, make sure that<BR>
+    your browser is configured to accept Cookies.
+</NOSCRIPT>
+<!--- END Cookie check block --->
+
+
+<!-- BEGIN: confirmation lightbox -->
+<div id="lightbox" style="display:none;">
+    <div style="height: 100%; width: 100%; z-index: 100; position: absolute;">
+        <div style="margin: 100px auto 0 auto; width: 75ex;">
+            <div class="lightboxTop"><h2>NOTICE</h2></div>
+            <div class="lightboxBody">
+                <div style="padding: 20px 16px;">
+                    <p id="confirmMessage">You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.</p>
+                    <h3>By using  this IS (which includes any device attached to this IS), you consent to the following conditions:</h3>
+                    <ul>
+                        <li>The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.</li>
+                        <li>At any time, the USG may inspect and seize data stored on this IS.</li>
+                        <li>Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG authorized purpose.</li>
+                        <li>This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.</li>
+                       
+	<li>NOTICE:  There is the potential that information presented and exported from
+the AF Portal contains FOUO or Controlled Unclassified Information (CUI).
+It is the responsibility of all users to ensure information extracted from
+the AF Portal is appropriately marked and properly safeguarded.  If you are
+not sure of the safeguards necessary for the information, contact your
+functional lead or Information Security Officer.</li>
+	 <li>Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See <a href="https://www.my.af.mil/afp/netstorage/faq/dod_user_agreement.html" target="_blank">User Agreement</a> for details.</li>
+                    </ul>
+                    <div class="titleRule"></div>
+                    <p class="buttons">
+                        <button class="primaryCTA big" onclick="acceptAgreement('lightbox');createCookie('AFPORTAL_LOGIN_AGREEMENT','accepted');">I Agree</button>
+                    </p>
+                </div>
+            </div>
+            <div class="lightboxBottom"></div>
+        </div>
+    </div>
+    <div style="height: 1000px; width: 100%; background: #333; z-index: 50; position: absolute; opacity: .70; filter: alpha(opacity = 70);"></div>
+</div>
+<!-- END: confirmation ligthbox -->
+
+
+
+</HTML>

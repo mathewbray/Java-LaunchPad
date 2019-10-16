@@ -1,0 +1,4 @@
+8.8.8.8,Google DNS
+192.168.1.1,Private IP
+127.0.0.1,LocalHost
+::1,IPv6 LocalHost

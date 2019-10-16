@@ -2091,6 +2091,11 @@ final JFXPanel fxPanel = new JFXPanel();
         jToggleOfflineMode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jToggleOfflineMode.setText("Online");
         jToggleOfflineMode.setToolTipText("Alternate between using network and local files.");
+        jToggleOfflineMode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleOfflineModeActionPerformed(evt);
+            }
+        });
         jPanel6.add(jToggleOfflineMode);
         jToggleOfflineMode.setBounds(200, 10, 170, 30);
 
@@ -5179,6 +5184,10 @@ if (Desktop.isDesktopSupported()
   throw new RuntimeException("desktop doesn't support mailto; mail is dead anyway ;)");
 }
     }//GEN-LAST:event_jButtonReportIssueActionPerformed
+
+    private void jToggleOfflineModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleOfflineModeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleOfflineModeActionPerformed
 
     
     /**
