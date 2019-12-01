@@ -5,10 +5,6 @@
  */
 package launchpad;
 
-import com.mnnit.server.model.Settings;
-import com.mnnit.server.model.SingletonUIResource;
-import com.mnnit.server.ui.MainFrame;
-import com.mnnit.server.ui.NickChangeFrame;
 import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Component;
@@ -492,60 +488,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonCustomScript03.setText(PropertyHandler.getInstance().getValue("ScriptCustom06Text"));
        
         //--- Chat stuff
-        try {
-            
-//                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                    if ("Windows".equals(info.getName())) {       
-//                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    }
-//                }
-            String laf = UIManager.getSystemLookAndFeelClassName();
-            UIManager.setLookAndFeel(laf);
-                
-                
-//            UIManager.LookAndFeelInfo lookAndFeel = getLookAndFeel( "Windows" );
-//
-//            if ( lookAndFeel != null )
-//                UIManager.setLookAndFeel( lookAndFeel.getClassName() );
-            
-            Runtime.getRuntime().addShutdownHook( new Thread( "ControllerShutdownHook" )
-                    {
-                            @Override
-                            public void run()
-                            {
-                                    logOff(  );
-                                                            }
-                    } );
-            resource = new SingletonUIResource(mainChatArea, jTextField1, userList);
-            
-            
-            resource.getNetworkController().logOn();
-                   ListSelectionListener listSelectionListener = new ListSelectionListener() {
+        //REMOVED
 
-                    @Override
-                    public void valueChanged(ListSelectionEvent e) {
-                        /** Get the particular element selected and act on it accordingly 
-                         *  This method is still under Beta Phase and does not have any
-                         *  reliability associated with it .This is sparta !!
-                         */
-                        boolean adjust = e.getValueIsAdjusting();
-                        if(!adjust)
-                        {
-                            JList list = (JList) e.getSource() ;
-                            int selections[] = list.getSelectedIndices() ;
-                            Object selectionvalues[] = list.getSelectedValues() ;
-                            for(int i = 0 ; i< selections.length ; i++)
-                            {
-                                userSelected = selectionvalues[i].toString();
-                                System.out.println(userSelected);
-                            }
-                        }
-                    }
-                };
-                userList.addListSelectionListener(listSelectionListener);
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
         //--- Populate Button Listing
         //Get image list
 //        String[] arrButtonList = null;
@@ -702,13 +646,6 @@ final JFXPanel fxPanel = new JFXPanel();
     }
     
     
-        public void populateUserList(DefaultListModel listModel)
-    {
-        if(listModel==null)
-               throw new NullPointerException("the jlist is null");
-        else 
-            userList.setModel(listModel);
-    }
       
     //--- Hash generating stuff
     public enum HashGenerate {
@@ -972,13 +909,6 @@ final JFXPanel fxPanel = new JFXPanel();
         jSeparator7 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextAreaNTPMessage = new javax.swing.JTextArea();
-        jPanelChat = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        mainChatArea = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        userList = new javax.swing.JList();
-        jButtonChangeNick = new javax.swing.JButton();
         jPanelSettings = new javax.swing.JPanel();
         jLabelSSHClient = new javax.swing.JLabel();
         jRadioButtonSSHClientSecureCRT = new javax.swing.JRadioButton();
@@ -2574,71 +2504,6 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jTabbedMain.addTab("ToolBox", jTabbedPaneToolBox);
 
-        jTextField1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextField1.setMaximumSize(new java.awt.Dimension(6, 2147483647));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        mainChatArea.setEditable(false);
-        mainChatArea.setColumns(20);
-        mainChatArea.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        mainChatArea.setRows(5);
-        jScrollPane3.setViewportView(mainChatArea);
-
-        userList.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        userList.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                userListMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                userListMouseReleased(evt);
-            }
-        });
-        jScrollPane2.setViewportView(userList);
-
-        jButtonChangeNick.setText("Change Nickname");
-        jButtonChangeNick.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonChangeNickActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelChatLayout = new javax.swing.GroupLayout(jPanelChat);
-        jPanelChat.setLayout(jPanelChatLayout);
-        jPanelChatLayout.setHorizontalGroup(
-            jPanelChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelChatLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanelChatLayout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                            .addComponent(jButtonChangeNick, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
-        );
-        jPanelChatLayout.setVerticalGroup(
-            jPanelChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelChatLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelChatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
-                    .addGroup(jPanelChatLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonChangeNick)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        jTabbedMain.addTab("Chat", jPanelChat);
-
         jPanelSettings.setLayout(null);
 
         jLabelSSHClient.setText("SSH Client:");
@@ -2804,6 +2669,28 @@ final JFXPanel fxPanel = new JFXPanel();
         this.setIconImage(img.getImage());
 
     }//GEN-LAST:event_formWindowOpened
+
+    private void jButtonReportIssueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReportIssueActionPerformed
+        // TODO add your handling code here:
+        Desktop desktop;
+        if (Desktop.isDesktopSupported()
+            && (desktop = Desktop.getDesktop()).isSupported(Desktop.Action.MAIL)) {
+            URI mailto = null;
+            try {
+                mailto = new URI("mailto:mathew.bray@gmail.com?subject=LaunchPad%20Issue");
+            } catch (URISyntaxException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                desktop.mail(mailto);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            // TODO fallback to some Runtime.exec(..) voodoo?
+            throw new RuntimeException("desktop doesn't support mailto; mail is dead anyway ;)");
+        }
+    }//GEN-LAST:event_jButtonReportIssueActionPerformed
 
     private void jButtonScriptUpdateLaunchPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptUpdateLaunchPadActionPerformed
         // TODO add your handling code here:
@@ -3216,203 +3103,6 @@ final JFXPanel fxPanel = new JFXPanel();
     private void jRadioButtonSSHClientPuTTYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonSSHClientPuTTYActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonSSHClientPuTTYActionPerformed
-
-    private void jButtonChangeNickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangeNickActionPerformed
-        // TODO add your handling code here:
-        Thread th = new Thread(){
-            public void run()
-            {
-                JFrame settingsFrame = new NickChangeFrame(Settings.getSettings().getMe().getNick(), resource);
-                settingsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                settingsFrame.setVisible(true);
-            }
-        };
-        th.start();
-    }//GEN-LAST:event_jButtonChangeNickActionPerformed
-
-    private void userListMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userListMouseReleased
-        //        if(evt.isPopupTrigger()&&!userList.isSelectionEmpty())
-        //        {      PopUpMenu popUpMenu =  new PopUpMenu();
-            //            popUpMenu.showUser(evt.getComponent(), evt.getX(), evt.getY() , userSelected);}
-    }//GEN-LAST:event_userListMouseReleased
-
-    private void userListMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userListMousePressed
-        //        Point p = evt.getPoint();
-        //        int index = userList.locationToIndex( p );
-        //
-        //        if ( index != -1 )
-        //        {
-            //            Rectangle r = userList.getCellBounds( index, index );
-            //
-            //            if ( r.x <= p.x && p.x <= r.x + r.width && r.y <= p.y && p.y <= r.y + r.height )
-            //            {
-                //                userList.setSelectedIndex( index );
-                //            }
-            //
-            //            else
-            //            {
-                //                userList.clearSelection();
-                //            }
-            //        }
-        //        if(evt.isPopupTrigger()&&!userList.isSelectionEmpty())
-        //        {      PopUpMenu popUpMenu =  new PopUpMenu();
-            //            popUpMenu.showUser(evt.getComponent(), evt.getX(), evt.getY() , userSelected);}
-    }//GEN-LAST:event_userListMousePressed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-
-        resource.getChatTextFieldController().parseAndActOnMessage();
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButtonReferenceCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom05ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom05ActionPerformed
-
-    private void jButtonReferenceCustom04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom04ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom04ActionPerformed
-
-    private void jButtonReferenceCustom03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom03ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom03ActionPerformed
-
-    private void jButtonReferenceCustom02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom02ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom02ActionPerformed
-
-    private void jButtonReferenceCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom01ActionPerformed
-        // TODO add your handling code here:
-        String strReference01;
-        strReference01 = PropertyHandler.getInstance().getValue("ReferenceFile01");
-
-        if(jToggleOfflineMode.isSelected()){
-            strReference01 =  PropertyHandler.getInstance().getValue("ReferenceFolderOffline") + strReference01;
-            System.out.println("Using Offline: " + strReference01);
-        }
-        else{
-            strReference01 =  PropertyHandler.getInstance().getValue("ReferenceFolderOnline") + strReference01;
-        }
-
-        //text file, should be opening in default text editor
-        File file = new File(strReference01);
-
-        //first check if Desktop is supported by Platform or not
-        if(!Desktop.isDesktopSupported()){
-            System.out.println("Desktop is not supported");
-            return;
-        }
-
-        Desktop desktop = Desktop.getDesktop();
-        if(file.exists()) try {
-            desktop.open(file);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
-        }
-
-        // Open
-        if(file.exists()) try {
-            desktop.open(file);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
-
-        }
-    }//GEN-LAST:event_jButtonReferenceCustom01ActionPerformed
-
-    private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
-        // TODO add your handling code here:
-        String inputPdf = "files/Cheat Sheets - PacketLife.net.zip";
-        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-        Path tempOutput = null;
-        try {
-            tempOutput = Files.createTempFile("TempFile", ".zip");
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tempOutput.toFile().deleteOnExit();
-
-        try {
-            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        File userManual = new File (tempOutput.toFile().getPath());
-        if (userManual.exists())
-        {
-            try {
-                Desktop.getDesktop().open(userManual);
-            } catch (IOException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jButton37ActionPerformed
-
-    private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
-        // TODO add your handling code here:
-        String inputPdf = "files/IPv4_Subnetting.pdf";
-        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-        Path tempOutput = null;
-        try {
-            tempOutput = Files.createTempFile("TempFile", ".pdf");
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tempOutput.toFile().deleteOnExit();
-
-        try {
-            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        File userManual = new File (tempOutput.toFile().getPath());
-        if (userManual.exists())
-        {
-            try {
-                Desktop.getDesktop().open(userManual);
-            } catch (IOException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jButton36ActionPerformed
-
-    private void jButtonReferenceCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom06ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom06ActionPerformed
-
-    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        // TODO add your handling code here:
-        String inputPdf = "files/Subnets.pdf";
-        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
-
-        Path tempOutput = null;
-        try {
-            tempOutput = Files.createTempFile("TempFile", ".pdf");
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tempOutput.toFile().deleteOnExit();
-
-        try {
-            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        File userManual = new File (tempOutput.toFile().getPath());
-        if (userManual.exists())
-        {
-            try {
-                Desktop.getDesktop().open(userManual);
-            } catch (IOException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jButton24ActionPerformed
 
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
         // TODO add your handling code here:
@@ -3910,6 +3600,184 @@ final JFXPanel fxPanel = new JFXPanel();
         }).start();
     }//GEN-LAST:event_jButtonFolderToZipActionPerformed
 
+    private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
+        // TODO add your handling code here:
+        String inputPdf = "files/Cheat Sheets - PacketLife.net.zip";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".zip");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File userManual = new File (tempOutput.toFile().getPath());
+        if (userManual.exists())
+        {
+            try {
+                Desktop.getDesktop().open(userManual);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton37ActionPerformed
+
+    private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
+        // TODO add your handling code here:
+        String inputPdf = "files/IPv4_Subnetting.pdf";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".pdf");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File userManual = new File (tempOutput.toFile().getPath());
+        if (userManual.exists())
+        {
+            try {
+                Desktop.getDesktop().open(userManual);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton36ActionPerformed
+
+    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        // TODO add your handling code here:
+        String inputPdf = "files/Subnets.pdf";
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".pdf");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File userManual = new File (tempOutput.toFile().getPath());
+        if (userManual.exists())
+        {
+            try {
+                Desktop.getDesktop().open(userManual);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton24ActionPerformed
+
+    private void jButtonReferenceCustom6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom6ActionPerformed
+
+    private void jButtonReferenceCustom5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom5ActionPerformed
+
+    private void jButtonReferenceCustom4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom4ActionPerformed
+
+    private void jButtonReferenceCustom3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom3ActionPerformed
+
+    private void jButtonReferenceCustom2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom2ActionPerformed
+
+    private void jButtonReferenceCustom7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom7ActionPerformed
+
+    private void jButtonReferenceCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom05ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom05ActionPerformed
+
+    private void jButtonReferenceCustom04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom04ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom04ActionPerformed
+
+    private void jButtonReferenceCustom03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom03ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom03ActionPerformed
+
+    private void jButtonReferenceCustom02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom02ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom02ActionPerformed
+
+    private void jButtonReferenceCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom01ActionPerformed
+        // TODO add your handling code here:
+        String strReference01;
+        strReference01 = PropertyHandler.getInstance().getValue("ReferenceFile01");
+
+        if(jToggleOfflineMode.isSelected()){
+            strReference01 =  PropertyHandler.getInstance().getValue("ReferenceFolderOffline") + strReference01;
+            System.out.println("Using Offline: " + strReference01);
+        }
+        else{
+            strReference01 =  PropertyHandler.getInstance().getValue("ReferenceFolderOnline") + strReference01;
+        }
+
+        //text file, should be opening in default text editor
+        File file = new File(strReference01);
+
+        //first check if Desktop is supported by Platform or not
+        if(!Desktop.isDesktopSupported()){
+            System.out.println("Desktop is not supported");
+            return;
+        }
+
+        Desktop desktop = Desktop.getDesktop();
+        if(file.exists()) try {
+            desktop.open(file);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
+        }
+
+        // Open
+        if(file.exists()) try {
+            desktop.open(file);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
+
+        }
+    }//GEN-LAST:event_jButtonReferenceCustom01ActionPerformed
+
+    private void jButtonReferenceCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom06ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom06ActionPerformed
+
+    private void jToggleOfflineModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleOfflineModeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleOfflineModeActionPerformed
+
     private void jButtonScriptSyncStandalones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptSyncStandalones1ActionPerformed
         // TODO add your handling code here:
         String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("ScriptStandaloneMapShare") + "\"";
@@ -3948,6 +3816,66 @@ final JFXPanel fxPanel = new JFXPanel();
             JOptionPane.showMessageDialog(null, "Something is wrong!");
         }
     }//GEN-LAST:event_jButtonScriptSyncStandalonesActionPerformed
+
+    private void jButtonCustomScript28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript28ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript28ActionPerformed
+
+    private void jButtonCustomScript26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript26ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript26ActionPerformed
+
+    private void jButtonCustomScript25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript25ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript25ActionPerformed
+
+    private void jButtonCustomScript23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript23ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript23ActionPerformed
+
+    private void jButtonCustomScript22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript22ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript22ActionPerformed
+
+    private void jButtonCustomScript21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript21ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript21ActionPerformed
+
+    private void jButtonCustomScript19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript19ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript19ActionPerformed
+
+    private void jButtonCustomScript17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript17ActionPerformed
+
+    private void jButtonCustomScript16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript16ActionPerformed
+
+    private void jButtonCustomScript15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript15ActionPerformed
+
+    private void jButtonCustomScript13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript13ActionPerformed
+
+    private void jButtonCustomScript12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript12ActionPerformed
+
+    private void jButtonCustomScript2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript2ActionPerformed
+
+    private void jButtonCustomScript3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript3ActionPerformed
+
+    private void jButtonCustomScript4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCustomScript4ActionPerformed
 
     private void jButtonCustomScript07ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript07ActionPerformed
         // TODO add your handling code here:
@@ -4355,6 +4283,126 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         }
     }//GEN-LAST:event_jButtonJSDiffActionPerformed
+
+    private void jButtonAppCustom29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom29ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom29ActionPerformed
+
+    private void jButtonAppCustom28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom28ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom28ActionPerformed
+
+    private void jButtonAppCustom27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom27ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom27ActionPerformed
+
+    private void jButtonAppCustom25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom25ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom25ActionPerformed
+
+    private void jButtonAppCustom24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom24ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom24ActionPerformed
+
+    private void jButtonAppCustom23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom23ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom23ActionPerformed
+
+    private void jButtonAppCustom22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom22ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom22ActionPerformed
+
+    private void jButtonAppCustom21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom21ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom21ActionPerformed
+
+    private void jButtonAppCustom20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom20ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom20ActionPerformed
+
+    private void jButtonAppCustom19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom19ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom19ActionPerformed
+
+    private void jButtonAppCustom18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom18ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom18ActionPerformed
+
+    private void jButtonAppCustom17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom17ActionPerformed
+
+    private void jButtonAppCustom16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom16ActionPerformed
+
+    private void jButtonAppCustom15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom15ActionPerformed
+
+    private void jButtonAppCustom14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom14ActionPerformed
+
+    private void jButtonAppCustom7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom7ActionPerformed
+
+    private void jButtonAppCustom6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom6ActionPerformed
+
+    private void jButtonAppCustom5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom5ActionPerformed
+
+    private void jButtonAppCustom4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom4ActionPerformed
+
+    private void jButtonAppCustom2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom2ActionPerformed
+
+    private void jButtonAppCustom3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom3ActionPerformed
+
+    private void jButtonAppCustom13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom13ActionPerformed
+
+    private void jButtonAppCustom12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom12ActionPerformed
+
+    private void jButtonAppCustom11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom11ActionPerformed
+
+    private void jButtonAppCustom10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom10ActionPerformed
+
+    private void jButtonAppCustom9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom9ActionPerformed
+
+    private void jButtonAppCustom8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom8ActionPerformed
+
+    private void jButtonAppCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom06ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom06ActionPerformed
+
+    private void jButtonAppCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom05ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAppCustom05ActionPerformed
+
+    private void jButtonLinkCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom01ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonLinkCustom01ActionPerformed
 
     private void jCheckBox1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBox1StateChanged
 
@@ -4932,16 +4980,16 @@ final JFXPanel fxPanel = new JFXPanel();
             String myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionOnEnterPress");
             if("".equals(myValue)) {
                 PropertyHandler.getInstance().setValue("ButtonExecuteFunctionOnEnterPress", "3");
-            }              
+            }
             myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionOnEnterPress");
             if("1".equals(myValue)) {
                 jButtonExecuteFunction1.doClick();
             } else if("2".equals(myValue)) {
-                jButtonExecuteFunction2.doClick();               
+                jButtonExecuteFunction2.doClick();
             } else if("3".equals(myValue)){
                 jButtonExecuteFunction3.doClick();
             }
-            
+
         }
     }//GEN-LAST:event_jTextFieldConnectHostnameKeyTyped
 
@@ -4958,236 +5006,6 @@ final JFXPanel fxPanel = new JFXPanel();
             jTextFieldPingHostname.setText(arrSelectedValue[1]);
         }
     }//GEN-LAST:event_jListSessionsValueChanged
-
-    private void jButtonCustomScript4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript4ActionPerformed
-
-    private void jButtonCustomScript3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript3ActionPerformed
-
-    private void jButtonCustomScript2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript2ActionPerformed
-
-    private void jButtonCustomScript12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript12ActionPerformed
-
-    private void jButtonCustomScript13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript13ActionPerformed
-
-    private void jButtonCustomScript15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript15ActionPerformed
-
-    private void jButtonCustomScript16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript16ActionPerformed
-
-    private void jButtonCustomScript17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript17ActionPerformed
-
-    private void jButtonCustomScript19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript19ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript19ActionPerformed
-
-    private void jButtonCustomScript21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript21ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript21ActionPerformed
-
-    private void jButtonCustomScript22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript22ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript22ActionPerformed
-
-    private void jButtonCustomScript23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript23ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript23ActionPerformed
-
-    private void jButtonCustomScript25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript25ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript25ActionPerformed
-
-    private void jButtonCustomScript26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript26ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript26ActionPerformed
-
-    private void jButtonCustomScript28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript28ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript28ActionPerformed
-
-    private void jButtonAppCustom29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom29ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom29ActionPerformed
-
-    private void jButtonAppCustom28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom28ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom28ActionPerformed
-
-    private void jButtonAppCustom27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom27ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom27ActionPerformed
-
-    private void jButtonAppCustom19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom19ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom19ActionPerformed
-
-    private void jButtonAppCustom18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom18ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom18ActionPerformed
-
-    private void jButtonAppCustom17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom17ActionPerformed
-
-    private void jButtonAppCustom16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom16ActionPerformed
-
-    private void jButtonAppCustom13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom13ActionPerformed
-
-    private void jButtonAppCustom15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom15ActionPerformed
-
-    private void jButtonAppCustom12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom12ActionPerformed
-
-    private void jButtonAppCustom14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom14ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom14ActionPerformed
-
-    private void jButtonAppCustom7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom7ActionPerformed
-
-    private void jButtonAppCustom6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom6ActionPerformed
-
-    private void jButtonAppCustom5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom5ActionPerformed
-
-    private void jButtonAppCustom4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom4ActionPerformed
-
-    private void jButtonAppCustom11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom11ActionPerformed
-
-    private void jButtonAppCustom10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom10ActionPerformed
-
-    private void jButtonAppCustom9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom9ActionPerformed
-
-    private void jButtonAppCustom8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom8ActionPerformed
-
-    private void jButtonAppCustom2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom2ActionPerformed
-
-    private void jButtonAppCustom3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom3ActionPerformed
-
-    private void jButtonAppCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom06ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom06ActionPerformed
-
-    private void jButtonAppCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom05ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom05ActionPerformed
-
-    private void jButtonLinkCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom01ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonLinkCustom01ActionPerformed
-
-    private void jButtonAppCustom25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom25ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom25ActionPerformed
-
-    private void jButtonAppCustom24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom24ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom24ActionPerformed
-
-    private void jButtonAppCustom23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom23ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom23ActionPerformed
-
-    private void jButtonAppCustom22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom22ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom22ActionPerformed
-
-    private void jButtonAppCustom21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom21ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom21ActionPerformed
-
-    private void jButtonAppCustom20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom20ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom20ActionPerformed
-
-    private void jButtonReferenceCustom7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom7ActionPerformed
-
-    private void jButtonReferenceCustom2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom2ActionPerformed
-
-    private void jButtonReferenceCustom3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom3ActionPerformed
-
-    private void jButtonReferenceCustom4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom4ActionPerformed
-
-    private void jButtonReferenceCustom5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom5ActionPerformed
-
-    private void jButtonReferenceCustom6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom6ActionPerformed
-
-    private void jButtonReportIssueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReportIssueActionPerformed
-        // TODO add your handling code here:
-        Desktop desktop;
-if (Desktop.isDesktopSupported() 
-    && (desktop = Desktop.getDesktop()).isSupported(Desktop.Action.MAIL)) {
-  URI mailto = null;
-            try {
-                mailto = new URI("mailto:mathew.bray@gmail.com?subject=LaunchPad%20Issue");
-            } catch (URISyntaxException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                desktop.mail(mailto);
-            } catch (IOException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-} else {
-  // TODO fallback to some Runtime.exec(..) voodoo?
-  throw new RuntimeException("desktop doesn't support mailto; mail is dead anyway ;)");
-}
-    }//GEN-LAST:event_jButtonReportIssueActionPerformed
-
-    private void jToggleOfflineModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleOfflineModeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleOfflineModeActionPerformed
 
     
     /**
@@ -5317,24 +5135,6 @@ if (Desktop.isDesktopSupported()
 
     }
     
-    private void logOff()
-    {
-        resource.getNetworkController().sendLogoffMessage();       
-    }
-        //--- Filter the ListBox
-//        try (FileReader fr = new FileReader(arrSessionList)) {
-//            BufferedReader buffIn = new BufferedReader(fr);
-//            DefaultListModel listModel = new DefaultListModel();
-//            String line;
-//            while ((line = buffIn.readLine()) != null) {
-//                listModel.addElement(line);
-//            }
-//            jListSessions.setModel(listModel);
-//            }
-   
-    private String userSelected = null ;
-    private SingletonUIResource resource;
-    private boolean away = false;
     
     
   /**
@@ -5494,7 +5294,6 @@ if (Desktop.isDesktopSupported()
     private javax.swing.JButton jButtonAppCustom7;
     private javax.swing.JButton jButtonAppCustom8;
     private javax.swing.JButton jButtonAppCustom9;
-    private javax.swing.JButton jButtonChangeNick;
     private javax.swing.JButton jButtonConfigBuilder;
     private javax.swing.JButton jButtonConsole;
     private javax.swing.JButton jButtonCustomScript01;
@@ -5607,7 +5406,6 @@ if (Desktop.isDesktopSupported()
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanelAppsCustom;
     private javax.swing.JPanel jPanelAppsEmbedded;
-    private javax.swing.JPanel jPanelChat;
     private javax.swing.JPanel jPanelMain;
     private javax.swing.JPanel jPanelSettings;
     private javax.swing.JPasswordField jPasswordFieldConnectPassword;
@@ -5621,8 +5419,6 @@ if (Desktop.isDesktopSupported()
     private javax.swing.JRadioButton jRadioButtonSSHClientPuTTY;
     private javax.swing.JRadioButton jRadioButtonSSHClientSecureCRT;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
@@ -5639,7 +5435,6 @@ if (Desktop.isDesktopSupported()
     private javax.swing.JTabbedPane jTabbedPaneToolBox;
     private javax.swing.JTabbedPane jTabbedPanelLinks;
     private javax.swing.JTextArea jTextAreaNTPMessage;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldConnectHostname;
     private javax.swing.JTextField jTextFieldConnectUsername;
@@ -5660,8 +5455,6 @@ if (Desktop.isDesktopSupported()
     private javax.swing.JTextField jTextFieldZipSourceFile;
     private javax.swing.JTextField jTextFieldZipSourceFolder;
     private javax.swing.JToggleButton jToggleOfflineMode;
-    private javax.swing.JTextArea mainChatArea;
-    private javax.swing.JList userList;
     // End of variables declaration//GEN-END:variables
 
 
