@@ -76,8 +76,6 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.xml.bind.DatatypeConverter;
@@ -126,7 +124,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
      * @throws java.lang.InstantiationException
      * @throws java.lang.IllegalAccessException
      */
-    public LaunchPadForm() throws IOException, FileNotFoundException, URISyntaxException, AWTException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public LaunchPadForm() throws IOException, FileNotFoundException, URISyntaxException, AWTException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         initComponents();
 final JFXPanel fxPanel = new JFXPanel();
         setTitle(PropertyHandler.getInstance().getValue("WindowTitle"));
@@ -487,8 +485,9 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonCustomScript02.setText(PropertyHandler.getInstance().getValue("ScriptCustom05Text"));
         jButtonCustomScript03.setText(PropertyHandler.getInstance().getValue("ScriptCustom06Text"));
        
-        //--- Chat stuff
-        //REMOVED
+        //--- Make buttons and stuff look less crappy
+            String laf = UIManager.getSystemLookAndFeelClassName();
+            UIManager.setLookAndFeel(laf);
 
         //--- Populate Button Listing
         //Get image list
@@ -779,7 +778,6 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonAppCustom27 = new javax.swing.JButton();
         jButtonAppCustom28 = new javax.swing.JButton();
         jButtonAppCustom29 = new javax.swing.JButton();
-        jLabel29 = new javax.swing.JLabel();
         jPanelAppsEmbedded = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jButtonJSDiff = new javax.swing.JButton();
@@ -790,43 +788,6 @@ final JFXPanel fxPanel = new JFXPanel();
         jSeparator10 = new javax.swing.JSeparator();
         jButton35 = new javax.swing.JButton();
         jLabel36 = new javax.swing.JLabel();
-        jTabbedPaneScripts = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
-        jButtonCustomScript03 = new javax.swing.JButton();
-        jButtonCustomScript01 = new javax.swing.JButton();
-        jButtonCustomScript02 = new javax.swing.JButton();
-        jButtonCustomScript06 = new javax.swing.JButton();
-        jButtonCustomScript04 = new javax.swing.JButton();
-        jButtonCustomScript05 = new javax.swing.JButton();
-        jButtonCustomScript8 = new javax.swing.JButton();
-        jButtonCustomScript9 = new javax.swing.JButton();
-        jButtonCustomScript07 = new javax.swing.JButton();
-        jButtonCustomScript4 = new javax.swing.JButton();
-        jButtonCustomScript11 = new javax.swing.JButton();
-        jButtonCustomScript3 = new javax.swing.JButton();
-        jButtonCustomScript2 = new javax.swing.JButton();
-        jButtonCustomScript12 = new javax.swing.JButton();
-        jButtonCustomScript13 = new javax.swing.JButton();
-        jButtonCustomScript14 = new javax.swing.JButton();
-        jButtonCustomScript15 = new javax.swing.JButton();
-        jButtonCustomScript16 = new javax.swing.JButton();
-        jButtonCustomScript17 = new javax.swing.JButton();
-        jButtonCustomScript18 = new javax.swing.JButton();
-        jButtonCustomScript19 = new javax.swing.JButton();
-        jButtonCustomScript20 = new javax.swing.JButton();
-        jButtonCustomScript21 = new javax.swing.JButton();
-        jButtonCustomScript22 = new javax.swing.JButton();
-        jButtonCustomScript23 = new javax.swing.JButton();
-        jButtonCustomScript24 = new javax.swing.JButton();
-        jButtonCustomScript25 = new javax.swing.JButton();
-        jButtonCustomScript26 = new javax.swing.JButton();
-        jButtonCustomScript27 = new javax.swing.JButton();
-        jButtonCustomScript28 = new javax.swing.JButton();
-        jLabel30 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jButtonScriptSyncStandalones = new javax.swing.JButton();
-        jButtonScriptBackupShares = new javax.swing.JButton();
-        jButtonScriptSyncStandalones1 = new javax.swing.JButton();
         jTabbedPaneReference = new javax.swing.JTabbedPane();
         jPanel6 = new javax.swing.JPanel();
         jToggleOfflineMode = new javax.swing.JToggleButton();
@@ -843,9 +804,6 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonReferenceCustom5 = new javax.swing.JButton();
         jButtonReferenceCustom6 = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
-        jButton24 = new javax.swing.JButton();
-        jButton36 = new javax.swing.JButton();
-        jButton37 = new javax.swing.JButton();
         jTabbedPaneToolBox = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jButtonFolderToZip = new javax.swing.JButton();
@@ -909,6 +867,26 @@ final JFXPanel fxPanel = new JFXPanel();
         jSeparator7 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextAreaNTPMessage = new javax.swing.JTextArea();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel31 = new javax.swing.JLabel();
+        jButtonJSDiff2 = new javax.swing.JButton();
+        jButtonConfigBuilder1 = new javax.swing.JButton();
+        jButtonJSDiff3 = new javax.swing.JButton();
+        jButton38 = new javax.swing.JButton();
+        jButton40 = new javax.swing.JButton();
+        jSeparator11 = new javax.swing.JSeparator();
+        jButton41 = new javax.swing.JButton();
+        jLabel37 = new javax.swing.JLabel();
+        jButton24 = new javax.swing.JButton();
+        jButton36 = new javax.swing.JButton();
+        jButton37 = new javax.swing.JButton();
+        jLabel38 = new javax.swing.JLabel();
+        jSeparator12 = new javax.swing.JSeparator();
+        jButtonScriptSyncStandalones = new javax.swing.JButton();
+        jButtonScriptBackupShares = new javax.swing.JButton();
+        jButtonScriptSyncStandalones1 = new javax.swing.JButton();
+        jSeparator13 = new javax.swing.JSeparator();
+        jLabel39 = new javax.swing.JLabel();
         jPanelSettings = new javax.swing.JPanel();
         jLabelSSHClient = new javax.swing.JLabel();
         jRadioButtonSSHClientSecureCRT = new javax.swing.JRadioButton();
@@ -926,6 +904,37 @@ final JFXPanel fxPanel = new JFXPanel();
         jTextField2 = new javax.swing.JTextField();
         jButtonScriptUpdateLaunchPad = new javax.swing.JButton();
         jButtonReportIssue = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jButtonCustomScript03 = new javax.swing.JButton();
+        jButtonCustomScript01 = new javax.swing.JButton();
+        jButtonCustomScript02 = new javax.swing.JButton();
+        jButtonCustomScript06 = new javax.swing.JButton();
+        jButtonCustomScript04 = new javax.swing.JButton();
+        jButtonCustomScript05 = new javax.swing.JButton();
+        jButtonCustomScript8 = new javax.swing.JButton();
+        jButtonCustomScript9 = new javax.swing.JButton();
+        jButtonCustomScript07 = new javax.swing.JButton();
+        jButtonCustomScript4 = new javax.swing.JButton();
+        jButtonCustomScript11 = new javax.swing.JButton();
+        jButtonCustomScript3 = new javax.swing.JButton();
+        jButtonCustomScript2 = new javax.swing.JButton();
+        jButtonCustomScript12 = new javax.swing.JButton();
+        jButtonCustomScript13 = new javax.swing.JButton();
+        jButtonCustomScript14 = new javax.swing.JButton();
+        jButtonCustomScript15 = new javax.swing.JButton();
+        jButtonCustomScript16 = new javax.swing.JButton();
+        jButtonCustomScript17 = new javax.swing.JButton();
+        jButtonCustomScript18 = new javax.swing.JButton();
+        jButtonCustomScript19 = new javax.swing.JButton();
+        jButtonCustomScript20 = new javax.swing.JButton();
+        jButtonCustomScript21 = new javax.swing.JButton();
+        jButtonCustomScript22 = new javax.swing.JButton();
+        jButtonCustomScript23 = new javax.swing.JButton();
+        jButtonCustomScript24 = new javax.swing.JButton();
+        jButtonCustomScript25 = new javax.swing.JButton();
+        jButtonCustomScript26 = new javax.swing.JButton();
+        jButtonCustomScript27 = new javax.swing.JButton();
+        jButtonCustomScript28 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LaunchPad - Pre-Alpha");
@@ -1427,7 +1436,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom01);
-        jButtonLinkCustom01.setBounds(20, 50, 170, 30);
+        jButtonLinkCustom01.setBounds(20, 20, 170, 30);
 
         jButtonAppCustom05.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1435,7 +1444,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom05);
-        jButtonAppCustom05.setBounds(200, 50, 170, 30);
+        jButtonAppCustom05.setBounds(200, 20, 170, 30);
 
         jButtonAppCustom06.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1443,7 +1452,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom06);
-        jButtonAppCustom06.setBounds(380, 50, 170, 30);
+        jButtonAppCustom06.setBounds(380, 20, 170, 30);
 
         jButtonAppCustom8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1451,7 +1460,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom8);
-        jButtonAppCustom8.setBounds(20, 90, 170, 30);
+        jButtonAppCustom8.setBounds(20, 60, 170, 30);
 
         jButtonAppCustom9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1459,7 +1468,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom9);
-        jButtonAppCustom9.setBounds(200, 90, 170, 30);
+        jButtonAppCustom9.setBounds(200, 60, 170, 30);
 
         jButtonAppCustom10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1467,7 +1476,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom10);
-        jButtonAppCustom10.setBounds(380, 90, 170, 30);
+        jButtonAppCustom10.setBounds(380, 60, 170, 30);
 
         jButtonAppCustom11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1475,7 +1484,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom11);
-        jButtonAppCustom11.setBounds(20, 130, 170, 30);
+        jButtonAppCustom11.setBounds(20, 100, 170, 30);
 
         jButtonAppCustom12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1483,7 +1492,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom12);
-        jButtonAppCustom12.setBounds(200, 130, 170, 30);
+        jButtonAppCustom12.setBounds(200, 100, 170, 30);
 
         jButtonAppCustom13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1491,7 +1500,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom13);
-        jButtonAppCustom13.setBounds(380, 130, 170, 30);
+        jButtonAppCustom13.setBounds(380, 100, 170, 30);
 
         jButtonAppCustom3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1499,7 +1508,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom3);
-        jButtonAppCustom3.setBounds(200, 170, 170, 30);
+        jButtonAppCustom3.setBounds(200, 140, 170, 30);
 
         jButtonAppCustom2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1507,7 +1516,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom2);
-        jButtonAppCustom2.setBounds(20, 170, 170, 30);
+        jButtonAppCustom2.setBounds(20, 140, 170, 30);
 
         jButtonAppCustom4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1515,7 +1524,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom4);
-        jButtonAppCustom4.setBounds(380, 170, 170, 30);
+        jButtonAppCustom4.setBounds(380, 140, 170, 30);
 
         jButtonAppCustom5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1523,7 +1532,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom5);
-        jButtonAppCustom5.setBounds(20, 210, 170, 30);
+        jButtonAppCustom5.setBounds(20, 180, 170, 30);
 
         jButtonAppCustom6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1531,7 +1540,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom6);
-        jButtonAppCustom6.setBounds(200, 210, 170, 30);
+        jButtonAppCustom6.setBounds(200, 180, 170, 30);
 
         jButtonAppCustom7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1539,7 +1548,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom7);
-        jButtonAppCustom7.setBounds(380, 210, 170, 30);
+        jButtonAppCustom7.setBounds(380, 180, 170, 30);
 
         jButtonAppCustom14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1547,7 +1556,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom14);
-        jButtonAppCustom14.setBounds(20, 250, 170, 30);
+        jButtonAppCustom14.setBounds(20, 220, 170, 30);
 
         jButtonAppCustom15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1555,7 +1564,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom15);
-        jButtonAppCustom15.setBounds(200, 250, 170, 30);
+        jButtonAppCustom15.setBounds(200, 220, 170, 30);
 
         jButtonAppCustom16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1563,7 +1572,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom16);
-        jButtonAppCustom16.setBounds(380, 250, 170, 30);
+        jButtonAppCustom16.setBounds(380, 220, 170, 30);
 
         jButtonAppCustom17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1571,7 +1580,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom17);
-        jButtonAppCustom17.setBounds(20, 290, 170, 30);
+        jButtonAppCustom17.setBounds(20, 260, 170, 30);
 
         jButtonAppCustom18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1579,7 +1588,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom18);
-        jButtonAppCustom18.setBounds(200, 290, 170, 30);
+        jButtonAppCustom18.setBounds(200, 260, 170, 30);
 
         jButtonAppCustom19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1587,7 +1596,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom19);
-        jButtonAppCustom19.setBounds(380, 290, 170, 30);
+        jButtonAppCustom19.setBounds(380, 260, 170, 30);
 
         jButtonAppCustom20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1595,7 +1604,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom20);
-        jButtonAppCustom20.setBounds(20, 330, 170, 30);
+        jButtonAppCustom20.setBounds(20, 300, 170, 30);
 
         jButtonAppCustom21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1603,7 +1612,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom21);
-        jButtonAppCustom21.setBounds(200, 330, 170, 30);
+        jButtonAppCustom21.setBounds(200, 300, 170, 30);
 
         jButtonAppCustom22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1611,7 +1620,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom22);
-        jButtonAppCustom22.setBounds(380, 330, 170, 30);
+        jButtonAppCustom22.setBounds(380, 300, 170, 30);
 
         jButtonAppCustom23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1619,7 +1628,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom23);
-        jButtonAppCustom23.setBounds(20, 370, 170, 30);
+        jButtonAppCustom23.setBounds(20, 340, 170, 30);
 
         jButtonAppCustom24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1627,7 +1636,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom24);
-        jButtonAppCustom24.setBounds(200, 370, 170, 30);
+        jButtonAppCustom24.setBounds(200, 340, 170, 30);
 
         jButtonAppCustom25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1635,7 +1644,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom25);
-        jButtonAppCustom25.setBounds(380, 370, 170, 30);
+        jButtonAppCustom25.setBounds(380, 340, 170, 30);
 
         jButtonAppCustom27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1643,7 +1652,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom27);
-        jButtonAppCustom27.setBounds(20, 410, 170, 30);
+        jButtonAppCustom27.setBounds(20, 380, 170, 30);
 
         jButtonAppCustom28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1651,7 +1660,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom28);
-        jButtonAppCustom28.setBounds(200, 410, 170, 30);
+        jButtonAppCustom28.setBounds(200, 380, 170, 30);
 
         jButtonAppCustom29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1659,13 +1668,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelAppsCustom.add(jButtonAppCustom29);
-        jButtonAppCustom29.setBounds(380, 410, 170, 30);
-
-        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel29.setText("Links");
-        jPanelAppsCustom.add(jLabel29);
-        jLabel29.setBounds(110, 10, 350, 30);
+        jButtonAppCustom29.setBounds(380, 380, 170, 30);
 
         jTabbedPanelLinks.addTab("User-Defined", jPanelAppsCustom);
 
@@ -1743,277 +1746,6 @@ final JFXPanel fxPanel = new JFXPanel();
         jTabbedPanelLinks.addTab("Embedded", jPanelAppsEmbedded);
 
         jTabbedMain.addTab("Links", jTabbedPanelLinks);
-
-        jPanel3.setLayout(null);
-
-        jButtonCustomScript03.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanel3.add(jButtonCustomScript03);
-        jButtonCustomScript03.setBounds(380, 50, 170, 30);
-
-        jButtonCustomScript01.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript01.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript01ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript01);
-        jButtonCustomScript01.setBounds(20, 50, 170, 30);
-
-        jButtonCustomScript02.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript02.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript02ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript02);
-        jButtonCustomScript02.setBounds(200, 50, 170, 30);
-
-        jButtonCustomScript06.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanel3.add(jButtonCustomScript06);
-        jButtonCustomScript06.setBounds(380, 90, 170, 30);
-
-        jButtonCustomScript04.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript04.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript04ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript04);
-        jButtonCustomScript04.setBounds(20, 90, 170, 30);
-
-        jButtonCustomScript05.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript05.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript05ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript05);
-        jButtonCustomScript05.setBounds(200, 90, 170, 30);
-
-        jButtonCustomScript8.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript8ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript8);
-        jButtonCustomScript8.setBounds(200, 130, 170, 30);
-
-        jButtonCustomScript9.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanel3.add(jButtonCustomScript9);
-        jButtonCustomScript9.setBounds(380, 130, 170, 30);
-
-        jButtonCustomScript07.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript07.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript07ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript07);
-        jButtonCustomScript07.setBounds(20, 130, 170, 30);
-
-        jButtonCustomScript4.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript4ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript4);
-        jButtonCustomScript4.setBounds(380, 170, 170, 30);
-
-        jButtonCustomScript11.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanel3.add(jButtonCustomScript11);
-        jButtonCustomScript11.setBounds(380, 210, 170, 30);
-
-        jButtonCustomScript3.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript3ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript3);
-        jButtonCustomScript3.setBounds(200, 170, 170, 30);
-
-        jButtonCustomScript2.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript2);
-        jButtonCustomScript2.setBounds(20, 170, 170, 30);
-
-        jButtonCustomScript12.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript12ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript12);
-        jButtonCustomScript12.setBounds(20, 210, 170, 30);
-
-        jButtonCustomScript13.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript13ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript13);
-        jButtonCustomScript13.setBounds(200, 210, 170, 30);
-
-        jButtonCustomScript14.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanel3.add(jButtonCustomScript14);
-        jButtonCustomScript14.setBounds(380, 250, 170, 30);
-
-        jButtonCustomScript15.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript15ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript15);
-        jButtonCustomScript15.setBounds(20, 250, 170, 30);
-
-        jButtonCustomScript16.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript16ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript16);
-        jButtonCustomScript16.setBounds(200, 250, 170, 30);
-
-        jButtonCustomScript17.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript17ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript17);
-        jButtonCustomScript17.setBounds(200, 290, 170, 30);
-
-        jButtonCustomScript18.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanel3.add(jButtonCustomScript18);
-        jButtonCustomScript18.setBounds(380, 290, 170, 30);
-
-        jButtonCustomScript19.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript19ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript19);
-        jButtonCustomScript19.setBounds(20, 290, 170, 30);
-
-        jButtonCustomScript20.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanel3.add(jButtonCustomScript20);
-        jButtonCustomScript20.setBounds(380, 330, 170, 30);
-
-        jButtonCustomScript21.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript21.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript21ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript21);
-        jButtonCustomScript21.setBounds(20, 330, 170, 30);
-
-        jButtonCustomScript22.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript22.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript22ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript22);
-        jButtonCustomScript22.setBounds(200, 330, 170, 30);
-
-        jButtonCustomScript23.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript23.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript23ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript23);
-        jButtonCustomScript23.setBounds(200, 370, 170, 30);
-
-        jButtonCustomScript24.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanel3.add(jButtonCustomScript24);
-        jButtonCustomScript24.setBounds(380, 370, 170, 30);
-
-        jButtonCustomScript25.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript25.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript25ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript25);
-        jButtonCustomScript25.setBounds(20, 370, 170, 30);
-
-        jButtonCustomScript26.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript26.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript26ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript26);
-        jButtonCustomScript26.setBounds(200, 410, 170, 30);
-
-        jButtonCustomScript27.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanel3.add(jButtonCustomScript27);
-        jButtonCustomScript27.setBounds(380, 410, 170, 30);
-
-        jButtonCustomScript28.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript28.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript28ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButtonCustomScript28);
-        jButtonCustomScript28.setBounds(20, 410, 170, 30);
-
-        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel30.setText("Scripts");
-        jPanel3.add(jLabel30);
-        jLabel30.setBounds(110, 10, 350, 30);
-
-        jTabbedPaneScripts.addTab("User-Defined", jPanel3);
-
-        jPanel4.setLayout(null);
-
-        jButtonScriptSyncStandalones.setText("Sync Standalones");
-        jButtonScriptSyncStandalones.setEnabled(false);
-        jButtonScriptSyncStandalones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonScriptSyncStandalonesActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButtonScriptSyncStandalones);
-        jButtonScriptSyncStandalones.setBounds(200, 10, 170, 30);
-
-        jButtonScriptBackupShares.setText("Backup Shares");
-        jButtonScriptBackupShares.setEnabled(false);
-        jButtonScriptBackupShares.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonScriptBackupSharesActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButtonScriptBackupShares);
-        jButtonScriptBackupShares.setBounds(20, 10, 170, 30);
-
-        jButtonScriptSyncStandalones1.setText("Map Standalone Share");
-        jButtonScriptSyncStandalones1.setEnabled(false);
-        jButtonScriptSyncStandalones1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonScriptSyncStandalones1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButtonScriptSyncStandalones1);
-        jButtonScriptSyncStandalones1.setBounds(380, 10, 170, 30);
-
-        jTabbedPaneScripts.addTab("Embedded", jPanel4);
-
-        jTabbedMain.addTab("Scripts", jTabbedPaneScripts);
 
         jPanel6.setLayout(null);
 
@@ -2128,35 +1860,6 @@ final JFXPanel fxPanel = new JFXPanel();
         jTabbedPaneReference.addTab("User-Defined", jPanel6);
 
         jPanel10.setLayout(null);
-
-        jButton24.setText("IPv4 Subnet Chart");
-        jButton24.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton24ActionPerformed(evt);
-            }
-        });
-        jPanel10.add(jButton24);
-        jButton24.setBounds(20, 20, 170, 30);
-
-        jButton36.setText("IPv4 Subnet Cheat Sheet");
-        jButton36.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton36.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton36ActionPerformed(evt);
-            }
-        });
-        jPanel10.add(jButton36);
-        jButton36.setBounds(200, 20, 170, 30);
-
-        jButton37.setText("Stretch's Cheat Sheets");
-        jButton37.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton37ActionPerformed(evt);
-            }
-        });
-        jPanel10.add(jButton37);
-        jButton37.setBounds(380, 20, 170, 30);
-
         jTabbedPaneReference.addTab("Embedded", jPanel10);
 
         jTabbedMain.addTab("Reference", jTabbedPaneReference);
@@ -2502,6 +2205,153 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jTabbedPaneToolBox.addTab("NTP", jPanel9);
 
+        jPanel11.setLayout(null);
+
+        jLabel31.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel31.setText("Web Apps");
+        jPanel11.add(jLabel31);
+        jLabel31.setBounds(110, 10, 350, 20);
+
+        jButtonJSDiff2.setText("jsDiff");
+        jButtonJSDiff2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonJSDiff2ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButtonJSDiff2);
+        jButtonJSDiff2.setBounds(380, 40, 170, 30);
+
+        jButtonConfigBuilder1.setText("Config Builder (Lab Use)");
+        jButtonConfigBuilder1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConfigBuilder1ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButtonConfigBuilder1);
+        jButtonConfigBuilder1.setBounds(200, 40, 170, 30);
+
+        jButtonJSDiff3.setText("Subnet Calculator");
+        jButtonJSDiff3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonJSDiff3ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButtonJSDiff3);
+        jButtonJSDiff3.setBounds(20, 40, 170, 30);
+
+        jButton38.setText("IPv4 Subnet Generator");
+        jButton38.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton38.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton38ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButton38);
+        jButton38.setBounds(20, 130, 170, 30);
+
+        jButton40.setText("IPv6 Subnet Generator");
+        jButton40.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton40ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButton40);
+        jButton40.setBounds(380, 130, 170, 30);
+        jPanel11.add(jSeparator11);
+        jSeparator11.setBounds(10, 260, 550, 10);
+
+        jButton41.setText("Puppeteer");
+        jButton41.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton41ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButton41);
+        jButton41.setBounds(200, 130, 170, 30);
+
+        jLabel37.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel37.setText("Scripts");
+        jPanel11.add(jLabel37);
+        jLabel37.setBounds(110, 270, 350, 20);
+
+        jButton24.setText("IPv4 Subnet Chart");
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButton24);
+        jButton24.setBounds(20, 220, 170, 30);
+
+        jButton36.setText("IPv4 Subnet Cheat Sheet");
+        jButton36.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton36ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButton36);
+        jButton36.setBounds(200, 220, 170, 30);
+
+        jButton37.setText("Stretch's Cheat Sheets");
+        jButton37.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton37ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButton37);
+        jButton37.setBounds(380, 220, 170, 30);
+
+        jLabel38.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel38.setText("Java Apps");
+        jPanel11.add(jLabel38);
+        jLabel38.setBounds(110, 100, 350, 20);
+        jPanel11.add(jSeparator12);
+        jSeparator12.setBounds(10, 90, 550, 10);
+
+        jButtonScriptSyncStandalones.setText("Sync Standalones");
+        jButtonScriptSyncStandalones.setEnabled(false);
+        jButtonScriptSyncStandalones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptSyncStandalonesActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButtonScriptSyncStandalones);
+        jButtonScriptSyncStandalones.setBounds(200, 300, 170, 30);
+
+        jButtonScriptBackupShares.setText("Backup Shares");
+        jButtonScriptBackupShares.setEnabled(false);
+        jButtonScriptBackupShares.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptBackupSharesActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButtonScriptBackupShares);
+        jButtonScriptBackupShares.setBounds(20, 300, 170, 30);
+
+        jButtonScriptSyncStandalones1.setText("Map Standalone Share");
+        jButtonScriptSyncStandalones1.setEnabled(false);
+        jButtonScriptSyncStandalones1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptSyncStandalones1ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButtonScriptSyncStandalones1);
+        jButtonScriptSyncStandalones1.setBounds(380, 300, 170, 30);
+        jPanel11.add(jSeparator13);
+        jSeparator13.setBounds(10, 180, 550, 10);
+
+        jLabel39.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel39.setText("Documents");
+        jPanel11.add(jLabel39);
+        jLabel39.setBounds(110, 190, 350, 20);
+
+        jTabbedPaneToolBox.addTab("Web/Java", jPanel11);
+
         jTabbedMain.addTab("ToolBox", jTabbedPaneToolBox);
 
         jPanelSettings.setLayout(null);
@@ -2643,6 +2493,235 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonReportIssue.setBounds(10, 460, 160, 23);
 
         jTabbedMain.addTab("Settings", jPanelSettings);
+
+        jPanel3.setLayout(null);
+
+        jButtonCustomScript03.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript03);
+        jButtonCustomScript03.setBounds(380, 20, 170, 30);
+
+        jButtonCustomScript01.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript01.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript01ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript01);
+        jButtonCustomScript01.setBounds(20, 20, 170, 30);
+
+        jButtonCustomScript02.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript02.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript02ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript02);
+        jButtonCustomScript02.setBounds(200, 20, 170, 30);
+
+        jButtonCustomScript06.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript06);
+        jButtonCustomScript06.setBounds(380, 60, 170, 30);
+
+        jButtonCustomScript04.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript04.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript04ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript04);
+        jButtonCustomScript04.setBounds(20, 60, 170, 30);
+
+        jButtonCustomScript05.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript05.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript05ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript05);
+        jButtonCustomScript05.setBounds(200, 60, 170, 30);
+
+        jButtonCustomScript8.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript8ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript8);
+        jButtonCustomScript8.setBounds(200, 100, 170, 30);
+
+        jButtonCustomScript9.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript9);
+        jButtonCustomScript9.setBounds(380, 100, 170, 30);
+
+        jButtonCustomScript07.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript07.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript07ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript07);
+        jButtonCustomScript07.setBounds(20, 100, 170, 30);
+
+        jButtonCustomScript4.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript4ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript4);
+        jButtonCustomScript4.setBounds(380, 140, 170, 30);
+
+        jButtonCustomScript11.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript11);
+        jButtonCustomScript11.setBounds(380, 180, 170, 30);
+
+        jButtonCustomScript3.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript3ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript3);
+        jButtonCustomScript3.setBounds(200, 140, 170, 30);
+
+        jButtonCustomScript2.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript2);
+        jButtonCustomScript2.setBounds(20, 140, 170, 30);
+
+        jButtonCustomScript12.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript12ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript12);
+        jButtonCustomScript12.setBounds(20, 180, 170, 30);
+
+        jButtonCustomScript13.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript13ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript13);
+        jButtonCustomScript13.setBounds(200, 180, 170, 30);
+
+        jButtonCustomScript14.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript14);
+        jButtonCustomScript14.setBounds(380, 220, 170, 30);
+
+        jButtonCustomScript15.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript15ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript15);
+        jButtonCustomScript15.setBounds(20, 220, 170, 30);
+
+        jButtonCustomScript16.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript16ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript16);
+        jButtonCustomScript16.setBounds(200, 220, 170, 30);
+
+        jButtonCustomScript17.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript17ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript17);
+        jButtonCustomScript17.setBounds(200, 260, 170, 30);
+
+        jButtonCustomScript18.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript18);
+        jButtonCustomScript18.setBounds(380, 260, 170, 30);
+
+        jButtonCustomScript19.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript19ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript19);
+        jButtonCustomScript19.setBounds(20, 260, 170, 30);
+
+        jButtonCustomScript20.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript20);
+        jButtonCustomScript20.setBounds(380, 300, 170, 30);
+
+        jButtonCustomScript21.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript21ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript21);
+        jButtonCustomScript21.setBounds(20, 300, 170, 30);
+
+        jButtonCustomScript22.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript22ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript22);
+        jButtonCustomScript22.setBounds(200, 300, 170, 30);
+
+        jButtonCustomScript23.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript23ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript23);
+        jButtonCustomScript23.setBounds(200, 340, 170, 30);
+
+        jButtonCustomScript24.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript24);
+        jButtonCustomScript24.setBounds(380, 340, 170, 30);
+
+        jButtonCustomScript25.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript25ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript25);
+        jButtonCustomScript25.setBounds(20, 340, 170, 30);
+
+        jButtonCustomScript26.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript26ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript26);
+        jButtonCustomScript26.setBounds(200, 380, 170, 30);
+
+        jButtonCustomScript27.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel3.add(jButtonCustomScript27);
+        jButtonCustomScript27.setBounds(380, 380, 170, 30);
+
+        jButtonCustomScript28.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonCustomScript28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCustomScript28ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButtonCustomScript28);
+        jButtonCustomScript28.setBounds(20, 380, 170, 30);
+
+        jTabbedMain.addTab("Scripts", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -5007,6 +5086,30 @@ final JFXPanel fxPanel = new JFXPanel();
         }
     }//GEN-LAST:event_jListSessionsValueChanged
 
+    private void jButtonJSDiff2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJSDiff2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonJSDiff2ActionPerformed
+
+    private void jButtonConfigBuilder1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfigBuilder1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonConfigBuilder1ActionPerformed
+
+    private void jButtonJSDiff3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJSDiff3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonJSDiff3ActionPerformed
+
+    private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton38ActionPerformed
+
+    private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton40ActionPerformed
+
+    private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton41ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -5258,8 +5361,11 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton37;
+    private javax.swing.JButton jButton38;
     private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton40;
+    private javax.swing.JButton jButton41;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -5295,6 +5401,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonAppCustom8;
     private javax.swing.JButton jButtonAppCustom9;
     private javax.swing.JButton jButtonConfigBuilder;
+    private javax.swing.JButton jButtonConfigBuilder1;
     private javax.swing.JButton jButtonConsole;
     private javax.swing.JButton jButtonCustomScript01;
     private javax.swing.JButton jButtonCustomScript02;
@@ -5333,6 +5440,8 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonGenerateHash;
     private javax.swing.JButton jButtonJSDiff;
     private javax.swing.JButton jButtonJSDiff1;
+    private javax.swing.JButton jButtonJSDiff2;
+    private javax.swing.JButton jButtonJSDiff3;
     private javax.swing.JButton jButtonLinkCustom01;
     private javax.swing.JButton jButtonPing;
     private javax.swing.JButton jButtonReferenceCustom01;
@@ -5376,12 +5485,14 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabelConsoleClient;
     private javax.swing.JLabel jLabelFolderToZip3;
     private javax.swing.JLabel jLabelFolderToZip4;
@@ -5395,10 +5506,10 @@ final JFXPanel fxPanel = new JFXPanel();
 
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -5422,6 +5533,9 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
@@ -5431,7 +5545,6 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JSlider jSliderListTextSize;
     private javax.swing.JTabbedPane jTabbedMain;
     private javax.swing.JTabbedPane jTabbedPaneReference;
-    private javax.swing.JTabbedPane jTabbedPaneScripts;
     private javax.swing.JTabbedPane jTabbedPaneToolBox;
     private javax.swing.JTabbedPane jTabbedPanelLinks;
     private javax.swing.JTextArea jTextAreaNTPMessage;
