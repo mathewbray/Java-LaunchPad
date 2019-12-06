@@ -18,6 +18,7 @@ import java.nio.file.attribute.FileTime;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -32,16 +33,14 @@ public class LaunchPad {
      * @throws java.awt.AWTException
      * @throws java.lang.InterruptedException
      */
-    public static void main(String[] args) throws IOException, FileNotFoundException, URISyntaxException, AWTException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public static void main(String[] args) throws IOException, FileNotFoundException, URISyntaxException, AWTException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         // TODO code application logic here
         //--- Shared Items
         String pathUserProfile = System.getenv("USERPROFILE");
         File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
         String pathLaunchPadFolder = pathDesktop + "\\LaunchPad\\";
         String strLocalUserFolder = pathUserProfile + "\\.launchpad\\";
-
-        
-        
+       
         //--- Check for Folders
         new File(pathLaunchPadFolder).mkdirs();
         new File(strLocalUserFolder).mkdirs();
