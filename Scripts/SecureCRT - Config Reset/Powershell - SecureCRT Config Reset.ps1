@@ -1,1 +1,0 @@
-Remove-Item $env:USERPROFILE\AppData\Roaming\VanDyke\Config\ -Force -Recurse
