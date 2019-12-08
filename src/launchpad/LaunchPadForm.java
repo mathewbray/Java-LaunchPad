@@ -8,6 +8,7 @@ package launchpad;
 import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -103,8 +104,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
     File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
     String pathUserProfile = System.getenv("USERPROFILE");
     File pathLogging = new File(pathDesktop + "\\Logging-Output");
-    String strSessionListFavorites = pathUserProfile + "\\.launchpad\\SessionList.csv";
-    String strSessionListDefault = pathDesktop + "\\LaunchPad\\SessionList.csv";
+    String strSessionListFavorites = pathUserProfile + "\\.launchpad\\Favorites\\SessionList.csv";
+    String strSessionListDefault = pathUserProfile + "\\.launchPad\\SessionList.csv";
 
     //--- Get Date and time for things
     SimpleDateFormat simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
@@ -462,6 +463,28 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton18.setToolTipText(PropertyHandler.getInstance().getValue("Button18ToolTip"));
         jButton19.setToolTipText(PropertyHandler.getInstance().getValue("Button19ToolTip"));
         jButton20.setToolTipText(PropertyHandler.getInstance().getValue("Button20ToolTip"));
+        
+        //-- Set to use the pointy finger cursor
+        jButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton7.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton8.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton9.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton10.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton11.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton12.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton13.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton14.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton15.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton16.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton17.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton18.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton19.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButton20.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         
        
         //--- Create directories if not exist
@@ -904,10 +927,6 @@ final JFXPanel fxPanel = new JFXPanel();
         jSeparator7 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextAreaNTPMessage = new javax.swing.JTextArea();
-        jPanel4 = new javax.swing.JPanel();
-        jButtonScriptSyncStandalones = new javax.swing.JButton();
-        jButtonScriptBackupShares = new javax.swing.JButton();
-        jButtonScriptSyncStandalones1 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
         jButtonJSDiff2 = new javax.swing.JButton();
@@ -921,6 +940,10 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton24 = new javax.swing.JButton();
         jButton36 = new javax.swing.JButton();
         jButton37 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jButtonScriptSyncStandalones = new javax.swing.JButton();
+        jButtonScriptBackupShares = new javax.swing.JButton();
+        jButtonScriptSyncStandalones1 = new javax.swing.JButton();
         jPanelSettings = new javax.swing.JPanel();
         jLabelSSHClient = new javax.swing.JLabel();
         jRadioButtonSSHClientSecureCRT = new javax.swing.JRadioButton();
@@ -973,7 +996,7 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jPanel1.setLayout(null);
 
-        jTextFieldConnectHostname.setFont(new java.awt.Font("Arial Unicode MS", 0, 10)); // NOI18N
+        jTextFieldConnectHostname.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jTextFieldConnectHostname.setToolTipText("IP or DNS Hostname");
         jTextFieldConnectHostname.setNextFocusableComponent(jTextFieldConnectUsername);
         jTextFieldConnectHostname.addActionListener(new java.awt.event.ActionListener() {
@@ -987,7 +1010,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel1.add(jTextFieldConnectHostname);
-        jTextFieldConnectHostname.setBounds(10, 10, 120, 20);
+        jTextFieldConnectHostname.setBounds(10, 10, 120, 23);
 
         jButtonExecuteFunction1.setBackground(new java.awt.Color(255, 204, 153));
         jButtonExecuteFunction1.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
@@ -1013,7 +1036,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel1.add(jButtonExecuteFunction3);
         jButtonExecuteFunction3.setBounds(140, 70, 60, 20);
 
-        jTextFieldConnectUsername.setFont(new java.awt.Font("Arial Unicode MS", 0, 10)); // NOI18N
+        jTextFieldConnectUsername.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jTextFieldConnectUsername.setToolTipText("Username");
         jTextFieldConnectUsername.setNextFocusableComponent(jPasswordFieldConnectPassword);
         jTextFieldConnectUsername.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1022,9 +1045,9 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel1.add(jTextFieldConnectUsername);
-        jTextFieldConnectUsername.setBounds(10, 50, 120, 20);
+        jTextFieldConnectUsername.setBounds(10, 50, 120, 23);
 
-        jPasswordFieldConnectPassword.setFont(new java.awt.Font("Arial Unicode MS", 0, 10)); // NOI18N
+        jPasswordFieldConnectPassword.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jPasswordFieldConnectPassword.setToolTipText("Password");
         jPasswordFieldConnectPassword.setNextFocusableComponent(jButtonExecuteFunction3);
         jPasswordFieldConnectPassword.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1033,11 +1056,11 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel1.add(jPasswordFieldConnectPassword);
-        jPasswordFieldConnectPassword.setBounds(10, 70, 120, 20);
+        jPasswordFieldConnectPassword.setBounds(10, 70, 120, 23);
         jPanel1.add(jSeparator3);
         jSeparator3.setBounds(10, 100, 190, 10);
 
-        jTextFieldPingHostname.setFont(new java.awt.Font("Arial Unicode MS", 0, 10)); // NOI18N
+        jTextFieldPingHostname.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jTextFieldPingHostname.setToolTipText("IP or DNS Hostname");
         jTextFieldPingHostname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1368,7 +1391,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel1.add(jButtonExecuteFunction2);
         jButtonExecuteFunction2.setBounds(140, 40, 60, 23);
 
-        jTextFieldFilter.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldFilter.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jTextFieldFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldFilterActionPerformed(evt);
@@ -1424,7 +1447,7 @@ final JFXPanel fxPanel = new JFXPanel();
                             .addComponent(jTextFieldFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
@@ -2449,40 +2472,6 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jTabbedPaneToolBox.addTab("NTP", jPanel9);
 
-        jPanel4.setLayout(null);
-
-        jButtonScriptSyncStandalones.setText("Sync Standalones");
-        jButtonScriptSyncStandalones.setEnabled(false);
-        jButtonScriptSyncStandalones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonScriptSyncStandalonesActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButtonScriptSyncStandalones);
-        jButtonScriptSyncStandalones.setBounds(200, 20, 170, 30);
-
-        jButtonScriptBackupShares.setText("Backup Shares");
-        jButtonScriptBackupShares.setEnabled(false);
-        jButtonScriptBackupShares.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonScriptBackupSharesActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButtonScriptBackupShares);
-        jButtonScriptBackupShares.setBounds(20, 20, 170, 30);
-
-        jButtonScriptSyncStandalones1.setText("Map Standalone Share");
-        jButtonScriptSyncStandalones1.setEnabled(false);
-        jButtonScriptSyncStandalones1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonScriptSyncStandalones1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButtonScriptSyncStandalones1);
-        jButtonScriptSyncStandalones1.setBounds(380, 20, 170, 30);
-
-        jTabbedPaneToolBox.addTab("Scripts", jPanel4);
-
         jPanel11.setLayout(null);
 
         jLabel31.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -2491,25 +2480,25 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel11.add(jLabel31);
         jLabel31.setBounds(110, 10, 350, 20);
 
-        jButtonJSDiff2.setText("jsDiff");
+        jButtonJSDiff2.setText("jsDiff (Compare Files)");
         jButtonJSDiff2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonJSDiff2ActionPerformed(evt);
             }
         });
         jPanel11.add(jButtonJSDiff2);
-        jButtonJSDiff2.setBounds(380, 40, 170, 30);
+        jButtonJSDiff2.setBounds(200, 40, 170, 30);
 
-        jButtonConfigBuilder1.setText("Config Builder (Lab Use)");
+        jButtonConfigBuilder1.setText("Config Builder (For Lab Use)");
         jButtonConfigBuilder1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonConfigBuilder1ActionPerformed(evt);
             }
         });
         jPanel11.add(jButtonConfigBuilder1);
-        jButtonConfigBuilder1.setBounds(200, 40, 170, 30);
+        jButtonConfigBuilder1.setBounds(380, 40, 170, 30);
 
-        jButtonSubnetCalculator.setText("Subnet Calculator");
+        jButtonSubnetCalculator.setText("IPv4/v6 Subnet Calculator");
         jButtonSubnetCalculator.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSubnetCalculatorActionPerformed(evt);
@@ -2572,6 +2561,40 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton37.setBounds(380, 220, 170, 30);
 
         jTabbedPaneToolBox.addTab("Web/Java/Docs", jPanel11);
+
+        jPanel4.setLayout(null);
+
+        jButtonScriptSyncStandalones.setText("Sync Standalones");
+        jButtonScriptSyncStandalones.setEnabled(false);
+        jButtonScriptSyncStandalones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptSyncStandalonesActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButtonScriptSyncStandalones);
+        jButtonScriptSyncStandalones.setBounds(200, 20, 170, 30);
+
+        jButtonScriptBackupShares.setText("Backup Shares");
+        jButtonScriptBackupShares.setEnabled(false);
+        jButtonScriptBackupShares.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptBackupSharesActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButtonScriptBackupShares);
+        jButtonScriptBackupShares.setBounds(20, 20, 170, 30);
+
+        jButtonScriptSyncStandalones1.setText("Map Standalone Share");
+        jButtonScriptSyncStandalones1.setEnabled(false);
+        jButtonScriptSyncStandalones1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptSyncStandalones1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButtonScriptSyncStandalones1);
+        jButtonScriptSyncStandalones1.setBounds(380, 20, 170, 30);
+
+        jTabbedPaneToolBox.addTab("Scripts", jPanel4);
 
         jTabbedMain.addTab("ToolBox", jTabbedPaneToolBox);
 
@@ -4706,6 +4729,7 @@ final JFXPanel fxPanel = new JFXPanel();
 
     private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
         // TODO add your handling code here:
+        runFromDesktop("apps/Puppeteer.jar", ".jar");
     }//GEN-LAST:event_jButton41ActionPerformed
 
     private void jButtonAppCustom30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom30ActionPerformed
