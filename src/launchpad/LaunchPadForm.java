@@ -102,6 +102,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
     String pathUserProfile = System.getenv("USERPROFILE");
     File pathLogging = new File(pathDesktop + "\\Logging-Output");
+    String strPathLoggingFolder = pathDesktop + "\\Logging-Output";    
     String strPathLaunchPadFolder = pathUserProfile + "\\.launchpad";
     String strSessionListFavoritesFolder = strPathLaunchPadFolder + "\\Favorites";   
     String strSessionListFavorites = strSessionListFavoritesFolder + "\\SessionList.csv";
@@ -546,36 +547,36 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton20.setBorder(emptyBorder);
        
         //--- Create directories if not exist
-        //new File(pathLogging.toString()).mkdirs();
+        new File(strPathLoggingFolder).mkdirs();
         
         //--- Set Zip Text
         String strPathDesktop = pathDesktop.toString();
         jTextFieldZipFilename.setText(strPathDesktop + "\\Backup_" + dateTime + ".zip");
         
         //--- Load Links button text
-        jButtonLinkCustom01.setText(PropertyHandler.getInstance().getValue("LinkCustom01Text"));
-        jButtonLinkCustom02.setText(PropertyHandler.getInstance().getValue("LinkCustom02Text"));
-        jButtonLinkCustom03.setText(PropertyHandler.getInstance().getValue("LinkCustom03Text"));
-        jButtonLinkCustom04.setText(PropertyHandler.getInstance().getValue("LinkCustom04Text"));
-        jButtonLinkCustom05.setText(PropertyHandler.getInstance().getValue("LinkCustom05Text"));
-        jButtonLinkCustom06.setText(PropertyHandler.getInstance().getValue("LinkCustom06Text"));        
+        jButtonLinkCustom01.setText(PropertyHandler.getInstance().getValue("CustomLink01Text"));
+        jButtonLinkCustom02.setText(PropertyHandler.getInstance().getValue("CustomLink02Text"));
+        jButtonLinkCustom03.setText(PropertyHandler.getInstance().getValue("CustomLink03Text"));
+        jButtonLinkCustom04.setText(PropertyHandler.getInstance().getValue("CustomLink04Text"));
+        jButtonLinkCustom05.setText(PropertyHandler.getInstance().getValue("CustomLink05Text"));
+        jButtonLinkCustom06.setText(PropertyHandler.getInstance().getValue("CustomLink06Text"));        
         
         
         //--- Load Reference button text
-        jButtonReferenceCustom01.setText(PropertyHandler.getInstance().getValue("Reference01Text"));
-        jButtonReferenceCustom02.setText(PropertyHandler.getInstance().getValue("Reference02Text"));
-        jButtonReferenceCustom03.setText(PropertyHandler.getInstance().getValue("Reference03Text"));
-        jButtonReferenceCustom04.setText(PropertyHandler.getInstance().getValue("Reference04Text"));
-        jButtonReferenceCustom05.setText(PropertyHandler.getInstance().getValue("Reference05Text"));
-        jButtonReferenceCustom06.setText(PropertyHandler.getInstance().getValue("Reference06Text"));
+        jButtonReferenceCustom01.setText(PropertyHandler.getInstance().getValue("CustomReference01Text"));
+        jButtonReferenceCustom02.setText(PropertyHandler.getInstance().getValue("CustomReference02Text"));
+        jButtonReferenceCustom03.setText(PropertyHandler.getInstance().getValue("CustomReference03Text"));
+        jButtonReferenceCustom04.setText(PropertyHandler.getInstance().getValue("CustomReference04Text"));
+        jButtonReferenceCustom05.setText(PropertyHandler.getInstance().getValue("CustomReference05Text"));
+        jButtonReferenceCustom06.setText(PropertyHandler.getInstance().getValue("CustomReference06Text"));
 
         //--- Load Script button text
-        jButtonScriptCustom01.setText(PropertyHandler.getInstance().getValue("ScriptCustom01Text"));
-        jButtonScriptCustom02.setText(PropertyHandler.getInstance().getValue("ScriptCustom02Text"));
-        jButtonScriptCustom03.setText(PropertyHandler.getInstance().getValue("ScriptCustom03Text"));
-        jButtonScriptCustom01.setText(PropertyHandler.getInstance().getValue("ScriptCustom04Text"));
-        jButtonScriptCustom02.setText(PropertyHandler.getInstance().getValue("ScriptCustom05Text"));
-        jButtonScriptCustom03.setText(PropertyHandler.getInstance().getValue("ScriptCustom06Text"));
+        jButtonScriptCustom01.setText(PropertyHandler.getInstance().getValue("CustomScript01Text"));
+        jButtonScriptCustom02.setText(PropertyHandler.getInstance().getValue("CustomScript02Text"));
+        jButtonScriptCustom03.setText(PropertyHandler.getInstance().getValue("CustomScript03Text"));
+        jButtonScriptCustom01.setText(PropertyHandler.getInstance().getValue("CustomScript04Text"));
+        jButtonScriptCustom02.setText(PropertyHandler.getInstance().getValue("CustomScript05Text"));
+        jButtonScriptCustom03.setText(PropertyHandler.getInstance().getValue("CustomScript06Text"));
 
          //--- Make buttons and stuff look less crappy - this also allows background coloring
         String laf = UIManager.getSystemLookAndFeelClassName();
@@ -836,6 +837,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton17 = new javax.swing.JButton();
         jCheckBoxAlternateLogin = new javax.swing.JCheckBox();
         jButtonExecuteFunction2 = new javax.swing.JButton();
+        jCheckBoxLOG = new javax.swing.JCheckBox();
         jTextFieldFilter = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
         jPanelAppsCustom = new javax.swing.JPanel();
@@ -1157,35 +1159,37 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel1.add(jTextFieldPingHostname);
-        jTextFieldPingHostname.setBounds(10, 110, 120, 20);
+        jTextFieldPingHostname.setBounds(10, 110, 130, 20);
 
         jCheckBoxDNS.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jCheckBoxDNS.setText("DNS");
         jCheckBoxDNS.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jPanel1.add(jCheckBoxDNS);
-        jCheckBoxDNS.setBounds(140, 110, 60, 20);
+        jCheckBoxDNS.setBounds(150, 110, 50, 20);
 
         jButtonTracert.setBackground(new java.awt.Color(163, 163, 255));
         jButtonTracert.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jButtonTracert.setText("TRACERT");
+        jButtonTracert.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButtonTracert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonTracertActionPerformed(evt);
             }
         });
         jPanel1.add(jButtonTracert);
-        jButtonTracert.setBounds(100, 130, 100, 20);
+        jButtonTracert.setBounds(60, 130, 80, 20);
 
         jButtonPing.setBackground(new java.awt.Color(163, 163, 255));
         jButtonPing.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jButtonPing.setText("PING");
+        jButtonPing.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButtonPing.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonPingActionPerformed(evt);
             }
         });
         jPanel1.add(jButtonPing);
-        jButtonPing.setBounds(10, 130, 80, 20);
+        jButtonPing.setBounds(10, 130, 50, 20);
         jPanel1.add(jSeparator5);
         jSeparator5.setBounds(10, 160, 190, 10);
 
@@ -1474,6 +1478,18 @@ final JFXPanel fxPanel = new JFXPanel();
         });
         jPanel1.add(jButtonExecuteFunction2);
         jButtonExecuteFunction2.setBounds(140, 40, 60, 23);
+
+        jCheckBoxLOG.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jCheckBoxLOG.setSelected(true);
+        jCheckBoxLOG.setText("LOG");
+        jCheckBoxLOG.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jCheckBoxLOG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxLOGActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jCheckBoxLOG);
+        jCheckBoxLOG.setBounds(150, 130, 50, 20);
 
         jTextFieldFilter.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jTextFieldFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -2864,6 +2880,7 @@ final JFXPanel fxPanel = new JFXPanel();
 
         buttonGroupSSHClient.add(jRadioButtonSSHClientPuTTY);
         jRadioButtonSSHClientPuTTY.setText("PuTTY");
+        jRadioButtonSSHClientPuTTY.setEnabled(false);
         jRadioButtonSSHClientPuTTY.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonSSHClientPuTTYActionPerformed(evt);
@@ -2880,6 +2897,7 @@ final JFXPanel fxPanel = new JFXPanel();
 
         buttonGroupConsoleClient.add(jRadioButtonConsolePutty);
         jRadioButtonConsolePutty.setText("PuTTY");
+        jRadioButtonConsolePutty.setEnabled(false);
         jRadioButtonConsolePutty.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jRadioButtonConsolePuttyMouseClicked(evt);
@@ -3452,7 +3470,7 @@ final JFXPanel fxPanel = new JFXPanel();
 
     private void jRadioButtonConsolePuttyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButtonConsolePuttyMouseClicked
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Console with not work with old garbage versions of PuTTY from 2007(.60)!");
+        //JOptionPane.showMessageDialog(null, "Console with not work with old garbage versions of PuTTY from 2007(.60)!");
     }//GEN-LAST:event_jRadioButtonConsolePuttyMouseClicked
 
     private void jRadioButtonSSHClientPuTTYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonSSHClientPuTTYActionPerformed
@@ -4030,7 +4048,7 @@ final JFXPanel fxPanel = new JFXPanel();
 
     private void jButtonReferenceCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom01ActionPerformed
         try {
-            openReferenceUsingRuntimeExec("ReferencePath01");
+            openReference("CustomReference01");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -4157,7 +4175,7 @@ final JFXPanel fxPanel = new JFXPanel();
 
     private void jButtonScriptCustom02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom02ActionPerformed
         // TODO add your handling code here:
-        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom05").replace("%USERPROFILE%", pathUserProfile);
+        String myValue = PropertyHandler.getInstance().getValue("CustomScript05").replace("%USERPROFILE%", pathUserProfile);
         System.out.println(myValue);
         try {
             Runtime.getRuntime().exec(myValue);
@@ -4170,165 +4188,165 @@ final JFXPanel fxPanel = new JFXPanel();
 
     private void jButtonScriptCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom01ActionPerformed
         // TODO add your handling code here:
-        String myValue = PropertyHandler.getInstance().getValue("ScriptCustom04").replace("%USERPROFILE%", pathUserProfile);
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
+        openScriptCustom("CustomScript01");
+//        System.out.println(myValue);
+//        try {
+//            Runtime.getRuntime().exec(myValue);
+//        }
+//        catch (IOException e) {
+//            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+//            JOptionPane.showMessageDialog(null, "Something is wrong!");
+//        }
     }//GEN-LAST:event_jButtonScriptCustom01ActionPerformed
 
     private void jButtonLinkCustom30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom30ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom30");
+        openLinkCustom("CustomLink30");
     }//GEN-LAST:event_jButtonLinkCustom30ActionPerformed
 
     private void jButtonLinkCustom29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom29ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom29");
+        openLinkCustom("CustomLink29");
     }//GEN-LAST:event_jButtonLinkCustom29ActionPerformed
 
     private void jButtonLinkCustom28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom28ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom28");
+        openLinkCustom("CustomLink28");
     }//GEN-LAST:event_jButtonLinkCustom28ActionPerformed
 
     private void jButtonLinkCustom27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom27ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom27");
+        openLinkCustom("CustomLink27");
     }//GEN-LAST:event_jButtonLinkCustom27ActionPerformed
 
     private void jButtonLinkCustom26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom26ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom26");
+        openLinkCustom("CustomLink26");
     }//GEN-LAST:event_jButtonLinkCustom26ActionPerformed
 
     private void jButtonLinkCustom25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom25ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom25");
+        openLinkCustom("CustomLink25");
     }//GEN-LAST:event_jButtonLinkCustom25ActionPerformed
 
     private void jButtonLinkCustom24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom24ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom24");
+        openLinkCustom("CustomLink24");
     }//GEN-LAST:event_jButtonLinkCustom24ActionPerformed
 
     private void jButtonLinkCustom23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom23ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom23");
+        openLinkCustom("CustomLink23");
     }//GEN-LAST:event_jButtonLinkCustom23ActionPerformed
 
     private void jButtonLinkCustom22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom22ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom22");
+        openLinkCustom("CustomLink22");
     }//GEN-LAST:event_jButtonLinkCustom22ActionPerformed
 
     private void jButtonLinkCustom21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom21ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom21");
+        openLinkCustom("CustomLink21");
     }//GEN-LAST:event_jButtonLinkCustom21ActionPerformed
 
     private void jButtonLinkCustom20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom20ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom20");
+        openLinkCustom("CustomLink20");
     }//GEN-LAST:event_jButtonLinkCustom20ActionPerformed
 
     private void jButtonLinkCustom19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom19ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom19");
+        openLinkCustom("CustomLink19");
     }//GEN-LAST:event_jButtonLinkCustom19ActionPerformed
 
     private void jButtonLinkCustom18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom18ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom18");
+        openLinkCustom("CustomLink18");
     }//GEN-LAST:event_jButtonLinkCustom18ActionPerformed
 
     private void jButtonLinkCustom17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom17ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom17");
+        openLinkCustom("CustomLink17");
     }//GEN-LAST:event_jButtonLinkCustom17ActionPerformed
 
     private void jButtonLinkCustom16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom16ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom16");
+        openLinkCustom("CustomLink16");
     }//GEN-LAST:event_jButtonLinkCustom16ActionPerformed
 
     private void jButtonLinkCustom15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom15ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom15");
+        openLinkCustom("CustomLink15");
     }//GEN-LAST:event_jButtonLinkCustom15ActionPerformed
 
     private void jButtonLinkCustom14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom14ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom14");
+        openLinkCustom("CustomLink14");
     }//GEN-LAST:event_jButtonLinkCustom14ActionPerformed
 
     private void jButtonLinkCustom13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom13ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom13");
+        openLinkCustom("CustomLink13");
     }//GEN-LAST:event_jButtonLinkCustom13ActionPerformed
 
     private void jButtonLinkCustom12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom12ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom12");
+        openLinkCustom("CustomLink12");
     }//GEN-LAST:event_jButtonLinkCustom12ActionPerformed
 
     private void jButtonLinkCustom10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom10ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom10");
+        openLinkCustom("CustomLink10");
     }//GEN-LAST:event_jButtonLinkCustom10ActionPerformed
 
     private void jButtonLinkCustom11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom11ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom11");
+        openLinkCustom("CustomLink11");
     }//GEN-LAST:event_jButtonLinkCustom11ActionPerformed
 
     private void jButtonLinkCustom09ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom09ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom09");  
+        openLinkCustom("CustomLink09");  
     }//GEN-LAST:event_jButtonLinkCustom09ActionPerformed
 
     private void jButtonLinkCustom08ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom08ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom08");
+        openLinkCustom("CustomLink08");
     }//GEN-LAST:event_jButtonLinkCustom08ActionPerformed
 
     private void jButtonLinkCustom07ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom07ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom07");
+        openLinkCustom("CustomLink07");
     }//GEN-LAST:event_jButtonLinkCustom07ActionPerformed
 
     private void jButtonLinkCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom06ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom06");
+        openLinkCustom("CustomLink06");
     }//GEN-LAST:event_jButtonLinkCustom06ActionPerformed
 
     private void jButtonLinkCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom05ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom05");
+        openLinkCustom("CustomLink05");
     }//GEN-LAST:event_jButtonLinkCustom05ActionPerformed
 
     private void jButtonLinkCustom04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom04ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom04");
+        openLinkCustom("CustomLink04");
     }//GEN-LAST:event_jButtonLinkCustom04ActionPerformed
 
     private void jButtonLinkCustom03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom03ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom03");
+        openLinkCustom("CustomLink03");
     }//GEN-LAST:event_jButtonLinkCustom03ActionPerformed
 
     private void jButtonLinkCustom02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom02ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom02");
+        openLinkCustom("CustomLink02");
     }//GEN-LAST:event_jButtonLinkCustom02ActionPerformed
 
     private void jButtonLinkCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom01ActionPerformed
         // TODO add your handling code here:
-        linkCustom("LinkCustom01");
+        openLinkCustom("CustomLink01");
     }//GEN-LAST:event_jButtonLinkCustom01ActionPerformed
 
     private void jCheckBox1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBox1StateChanged
@@ -4598,51 +4616,24 @@ final JFXPanel fxPanel = new JFXPanel();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        String myValue = PropertyHandler.getInstance().getValue("Button03exe").replace("%USERPROFILE%", pathUserProfile);
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
+        openCommand("Button03StrCmd");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        String myValue = PropertyHandler.getInstance().getValue("Button02exe").replace("%USERPROFILE%", pathUserProfile);
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
+        openCommand("Button02StrCmd");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String myValue = PropertyHandler.getInstance().getValue("Button01exe").replace("%USERPROFILE%", pathUserProfile);
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
+        openCommand("Button01StrCmd");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsoleActionPerformed
         // TODO add your handling code here:
         String strSecureCRTexe = PropertyHandler.getInstance().getValue("SecureCRTexe").replace("%USERPROFILE%", pathUserProfile);
-        String strPuTTYexe = PropertyHandler.getInstance().getValue("PuTTYexe").replace("%USERPROFILE%", pathUserProfile);
+        //String strPuTTYexe = PropertyHandler.getInstance().getValue("PuTTYexe").replace("%USERPROFILE%", pathUserProfile);
 
         System.out.println("SecureCRT file: " + strSecureCRTexe);
-        System.out.println("PuTTY file: " + strPuTTYexe);
+        //System.out.println("PuTTY file: " + strPuTTYexe);
 
         SimpleDateFormat simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
         String dateTime = simpleDateFormat.format(new Date());
@@ -4650,15 +4641,15 @@ final JFXPanel fxPanel = new JFXPanel();
         System.out.println("Log file: " + fileLog);
 
         if (jRadioButtonConsolePutty.isSelected() == true) {
-            String strEXEC = strPuTTYexe + " -serial " + jComboBoxConsoleCOM.getSelectedItem() + " -sercfg " + jComboBoxConsoleBaud.getSelectedItem() + " ,8,n,1,N  ";
-            System.out.println(strEXEC);
-            try {
-                Runtime.getRuntime().exec(strEXEC);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
+//            String strEXEC = strPuTTYexe + " -serial " + jComboBoxConsoleCOM.getSelectedItem() + " -sercfg " + jComboBoxConsoleBaud.getSelectedItem() + " ,8,n,1,N  ";
+//            System.out.println(strEXEC);
+//            try {
+//                Runtime.getRuntime().exec(strEXEC);
+//            }
+//            catch (IOException e) {
+//                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+//                JOptionPane.showMessageDialog(null, "Something is wrong!");
+//            }
         }
         if (jRadioButtonConsoleSecureCRT.isSelected() == true) {
             String strEXEC = strSecureCRTexe + " /LOG \"" + fileLog + "\" /T /SERIAL " + jComboBoxConsoleCOM.getSelectedItem() + " /BAUD " + jComboBoxConsoleBaud.getSelectedItem();
@@ -4692,11 +4683,27 @@ final JFXPanel fxPanel = new JFXPanel();
         // TODO add your handling code here:
         System.out.println("Pressed");
         String StringPingDNS = "";
+        String StringPingLOG = "";
+        simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
+        dateTime = simpleDateFormat.format(new Date());
+        
         if(jCheckBoxDNS.isSelected()) {
-            StringPingDNS = " -a ";
+            StringPingDNS = "-a";
         }
+        
+        if(jCheckBoxLOG.isSelected()) {
+            StringPingLOG = "| Tee-Object \"" + strPathLoggingFolder + "\\Ping-" + jTextFieldPingHostname.getText() + "-" + dateTime.toString() + ".txt" + "\"";
+        }        
+        
         try {
-            Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"ping -t " + StringPingDNS + " " + jTextFieldPingHostname.getText() + "\"");
+            //- Old CMD Style
+            //Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"ping -t " + StringPingDNS + " " + jTextFieldPingHostname.getText() + "\"");
+            
+            //- PowerShell
+            String strExec = "cmd /c start powershell.exe -ExecutionPolicy Bypass -noexit -Command \"$host.ui.RawUI.WindowTitle = 'Pinging " + jTextFieldPingHostname.getText() + "' ; ping -t " + StringPingDNS + " " + jTextFieldPingHostname.getText() + " 2>&1 |Foreach{'{0} - {1}' -f (Get-Date -f yyyyMMdd_HHmmss),$_} | select -skip 1 " + StringPingLOG;
+            //JOptionPane.showMessageDialog(this, strExec);
+            System.out.println(strExec);           
+            Runtime.getRuntime().exec(strExec);
         }
         catch (IOException e) {
             System.out.println("HEY Buddy ! U r Doing Something Wrong ");
@@ -4761,41 +4768,41 @@ final JFXPanel fxPanel = new JFXPanel();
     private void jButtonExecuteFunction3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunction3ActionPerformed
         // TODO add your handling code here:
         String strSecureCRTexe = PropertyHandler.getInstance().getValue("SecureCRTexe").replace("%USERPROFILE%", pathUserProfile);
-        String strPuTTYexe = PropertyHandler.getInstance().getValue("PuTTYexe").replace("%USERPROFILE%", pathUserProfile);
+//        String strPuTTYexe = PropertyHandler.getInstance().getValue("PuTTYexe").replace("%USERPROFILE%", pathUserProfile);
         System.out.println("SecureCRT file: " + strSecureCRTexe);
-        System.out.println("PuTTY file: " + strPuTTYexe);
+//        System.out.println("PuTTY file: " + strPuTTYexe);
         simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
         dateTime = simpleDateFormat.format(new Date());
         String fileLog = pathDesktop + "\\Logging-Output\\SSH-" + jTextFieldConnectHostname.getText() + " " + dateTime.toString() + ".txt";
         System.out.println("Log file: " + fileLog);
 
         if (jRadioButtonSSHClientPuTTY.isSelected() == true) {
-
-            if (!jCheckBoxAlternateLogin.isSelected()) {
-                //if (jTextFieldConnectUsername.getText().equals("")){
-                    //if (jPasswordFieldConnectPassword.getPassword().length == 0){
-                        String strEXEC = strPuTTYexe + " -ssh " + jTextFieldConnectHostname.getText() + "  ";
-                        try {
-                            Runtime.getRuntime().exec(strEXEC);
-                        }
-                        catch (IOException e) {
-                            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                            JOptionPane.showMessageDialog(null, "Something is wrong!");
-                        }
-                        //}
-                    //}
-            }
-            else {
-                String passText = new String(jPasswordFieldConnectPassword.getPassword());
-                String strEXEC = strPuTTYexe + " -ssh " + jTextFieldConnectHostname.getText() + " -l " + jTextFieldConnectUsername.getText() + " -pw \"" + passText + "\"  ";
-                try {
-                    Runtime.getRuntime().exec(strEXEC);
-                }
-                catch (IOException e) {
-                    System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                    JOptionPane.showMessageDialog(null, "Something is wrong!");
-                }
-            }
+//
+//            if (!jCheckBoxAlternateLogin.isSelected()) {
+//                //if (jTextFieldConnectUsername.getText().equals("")){
+//                    //if (jPasswordFieldConnectPassword.getPassword().length == 0){
+//                        String strEXEC = strPuTTYexe + " -ssh " + jTextFieldConnectHostname.getText() + "  ";
+//                        try {
+//                            Runtime.getRuntime().exec(strEXEC);
+//                        }
+//                        catch (IOException e) {
+//                            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+//                            JOptionPane.showMessageDialog(null, "Something is wrong!");
+//                        }
+//                        //}
+//                    //}
+//            }
+//            else {
+//                String passText = new String(jPasswordFieldConnectPassword.getPassword());
+//                String strEXEC = strPuTTYexe + " -ssh " + jTextFieldConnectHostname.getText() + " -l " + jTextFieldConnectUsername.getText() + " -pw \"" + passText + "\"  ";
+//                try {
+//                    Runtime.getRuntime().exec(strEXEC);
+//                }
+//                catch (IOException e) {
+//                    System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+//                    JOptionPane.showMessageDialog(null, "Something is wrong!");
+//                }
+//            }
         }
         if (jRadioButtonSSHClientSecureCRT.isSelected() == true) {
 
@@ -5117,6 +5124,10 @@ final JFXPanel fxPanel = new JFXPanel();
         openFileUsingDesktop(strPathLaunchPadFolder);
     }//GEN-LAST:event_jButton28ActionPerformed
 
+    private void jCheckBoxLOGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxLOGActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxLOGActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -5299,17 +5310,53 @@ final JFXPanel fxPanel = new JFXPanel();
     
   
 
-    public void linkCustom(String strLinkText) {
-        String myValue = PropertyHandler.getInstance().getValue(strLinkText);
-        System.out.println(myValue);
+    public void openLinkCustom(String strLinkText) {
+        String strCommand = PropertyHandler.getInstance().getValue(strLinkText);
+        System.out.println(strCommand);
         try {
             //- Using ProcessBuilder
-            //String[] args = new String[] {"cmd.exe", "/c", "start", myValue};
+            //String[] args = new String[] {"cmd.exe", "/c", "start", strCommand};
             //Process proc = new ProcessBuilder(args).start();
 
             //- Using Runtime
-            System.out.println("Opening: " + myValue);            
-            Runtime.getRuntime().exec("cmd.exe /c start " + myValue);
+            System.out.println("Opening Link: " + strCommand);            
+            Runtime.getRuntime().exec("cmd.exe /c start " + strCommand);
+        }
+        catch (IOException e) {
+            System.out.println("Something is Wrong!");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }
+    
+    public void openScriptCustom(String strLinkText) {
+        String strCommand = PropertyHandler.getInstance().getValue(strLinkText);
+        System.out.println(strCommand);
+        try {
+            //- Using ProcessBuilder
+            //String[] args = new String[] {"cmd.exe", "/c", "start", strCommand};
+            //Process proc = new ProcessBuilder(args).start();
+
+            //- Using Runtime
+            System.out.println("Opening Script: " + strCommand);            
+            Runtime.getRuntime().exec("cmd.exe /c start " + strCommand);
+        }
+        catch (IOException e) {
+            System.out.println("Something is Wrong!");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }
+    
+    public void openCommand(String strProperty) {
+        String strCommand = PropertyHandler.getInstance().getValue(strProperty);
+        System.out.println(strCommand);
+        try {
+            //- Using ProcessBuilder
+            //String[] args = new String[] {"cmd.exe", "/c", "start", strCommand};
+            //Process proc = new ProcessBuilder(args).start();
+
+            //- Using Runtime
+            System.out.println("Opening Command: " + strCommand);            
+            Runtime.getRuntime().exec("cmd.exe /c start " + strCommand);
         }
         catch (IOException e) {
             System.out.println("Something is Wrong!");
@@ -5330,6 +5377,38 @@ final JFXPanel fxPanel = new JFXPanel();
         }
         
     }
+    
+   
+
+    public void openReference(String strReferenceToOpen) throws IOException {
+    
+        String strReferenceFromPropertiesFile;
+        //strReference = PropertyHandler.getInstance().getValue(strReferenceToOpen);
+
+        if(jToggleOnlineOfflineMode.isSelected()){
+            strReferenceFromPropertiesFile =  PropertyHandler.getInstance().getValue(strReferenceToOpen + "Offline");
+            System.out.println("Using Offline: " + strReferenceFromPropertiesFile);
+        }
+        else{
+            strReferenceFromPropertiesFile =  PropertyHandler.getInstance().getValue(strReferenceToOpen + "Online");
+            System.out.println("Using Online: " + strReferenceFromPropertiesFile);        
+        }
+
+        try {
+            //- Using ProcessBuilder
+            //String[] args = new String[] {"cmd.exe", "/c", "start", strReferenceFromPropertiesFile};
+            //Process proc = new ProcessBuilder(args).start();
+            
+            //- Using Runtime
+            System.out.println("Opening: " + strReferenceFromPropertiesFile);           
+            Runtime.getRuntime().exec("cmd.exe /c start " + strReferenceFromPropertiesFile);
+        }
+        catch (IOException e) {
+            System.out.println("Something is Wrong!");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
+        }
+    }
+
     
     public void openTempFileUsingDesktop(String strFullFilePath,String strExtension) {
     
@@ -5360,42 +5439,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         }
         
-    }
-    
-
-    public void openReferenceUsingRuntimeExec(String strReferenceToOpen) throws IOException {
-    
-        String strReferenceFromPropertiesFile;
-        //strReference = PropertyHandler.getInstance().getValue(strReferenceToOpen);
-
-        if(jToggleOnlineOfflineMode.isSelected()){
-            strReferenceFromPropertiesFile =  PropertyHandler.getInstance().getValue(strReferenceToOpen + "Offline");
-            System.out.println("Using Offline: " + strReferenceFromPropertiesFile);
-        }
-        else{
-            strReferenceFromPropertiesFile =  PropertyHandler.getInstance().getValue(strReferenceToOpen + "Online");
-            System.out.println("Using Online: " + strReferenceFromPropertiesFile);        
-        }
-
-
-
-        try {
-            //- Using ProcessBuilder
-            //String[] args = new String[] {"cmd.exe", "/c", "start", strReferenceFromPropertiesFile};
-            //Process proc = new ProcessBuilder(args).start();
-            
-            //- Using Runtime
-            System.out.println("Opening: " + strReferenceFromPropertiesFile);           
-            Runtime.getRuntime().exec("cmd.exe /c start " + strReferenceFromPropertiesFile);
-        }
-        catch (IOException e) {
-            System.out.println("Something is Wrong!");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-    }
-
-    
-    
+    }    
 
 
 //    static public boolean isValidURL(String urlStr) {
@@ -5608,6 +5652,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBoxAlternateLogin;
     private javax.swing.JCheckBox jCheckBoxDNS;
+    private javax.swing.JCheckBox jCheckBoxLOG;
     private javax.swing.JComboBox<String> jComboBoxConsoleBaud;
     private javax.swing.JComboBox<String> jComboBoxConsoleCOM;
     private javax.swing.JComboBox<String> jComboBoxZipEncMethod;
