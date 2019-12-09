@@ -5,7 +5,6 @@
  */
 package launchpad;
 
-import com.sun.org.apache.xalan.internal.lib.ExsltDatetime;
 import java.awt.AWTException;
 import java.awt.Color;
 import java.awt.Component;
@@ -13,7 +12,6 @@ import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Image;
-import java.awt.Point;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -32,7 +30,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -62,11 +59,8 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javafx.embed.swing.JFXPanel;
 import javax.swing.BorderFactory;
-import javax.swing.ButtonModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
@@ -80,8 +74,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.xml.bind.DatatypeConverter;
@@ -109,8 +102,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
     File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
     String pathUserProfile = System.getenv("USERPROFILE");
     File pathLogging = new File(pathDesktop + "\\Logging-Output");
-    String strSessionListFavorites = pathUserProfile + "\\.launchpad\\Favorites\\SessionList.csv";
-    String strSessionListDefault = pathUserProfile + "\\.launchPad\\SessionList.csv";
+    String strPathLaunchPadFolder = pathUserProfile + "\\.launchpad";
+    String strSessionListFavoritesFolder = strPathLaunchPadFolder + "\\Favorites";   
+    String strSessionListFavorites = strSessionListFavoritesFolder + "\\SessionList.csv";
+    String strSessionListDefault = strPathLaunchPadFolder + "\\SessionList.csv";
+    String strPathPropertiesFile = strPathLaunchPadFolder + "\\launchpad.properties";
 
     //--- Get Date and time for things
     SimpleDateFormat simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
@@ -147,21 +143,10 @@ final JFXPanel fxPanel = new JFXPanel();
         // re-install the Metal Look and Feel
         UIManager.setLookAndFeel(new MetalLookAndFeel());
         
-        //--- Make buttons and stuff look less crappy
-        String laf = UIManager.getSystemLookAndFeelClassName();
-        UIManager.setLookAndFeel(laf);
-
-        // Update the ComponentUIs for all Components. This
-        // needs to be invoked for all windows.
-        SwingUtilities.updateComponentTreeUI(this);
-                
-                
+   
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
-
 
 
         //--- Apply button icons and set size
@@ -236,16 +221,40 @@ final JFXPanel fxPanel = new JFXPanel();
                 }
             });
         
+//        //- Swap LAF for toggle so the background will actually color
+//        jToggleOnlineOfflineMode.setUI(new MetalToggleButtonUI() {
+//            @Override
+//            protected Color getSelectColor() {
+//                return Color.GREEN;
+//            }
+//        });
+//        //- Click it twitce to enable color
+//        jToggleOnlineOfflineMode.doClick();
+//        jToggleOnlineOfflineMode.doClick();
+        
         //--- Listen for online/offline reference button
-        jToggleOfflineMode.addItemListener((ItemEvent ev) -> {
+        jToggleOnlineOfflineMode.addItemListener((ItemEvent ev) -> {
             if(ev.getStateChange()==ItemEvent.SELECTED){
                 System.out.println("Offline is selected");
-                jToggleOfflineMode.setText("Offline");
-                jToggleOfflineMode.setBackground(Color.GRAY);
+                jToggleOnlineOfflineMode.setText("Offline");
+                jToggleOnlineOfflineMode.setBackground(Color.GRAY);
+//                jToggleOnlineOfflineMode.setUI(new MetalToggleButtonUI() {
+//                    @Override
+//                    protected Color getSelectColor() {
+//                        return Color.GRAY;
+//                    }
+//                });                
             } else if(ev.getStateChange()==ItemEvent.DESELECTED){
                 System.out.println("Offline is not selected");
-                jToggleOfflineMode.setText("Online");
-                jToggleOfflineMode.setBackground(Color.GREEN);
+                jToggleOnlineOfflineMode.setText("Online");
+                //- Had to 
+                jToggleOnlineOfflineMode.setBackground(Color.GREEN);
+//                jToggleOnlineOfflineMode.setUI(new MetalToggleButtonUI() {
+//                    @Override
+//                    protected Color getSelectColor() {
+//                        return Color.GREEN;
+//                    }
+//                });
             }
         });
         
@@ -491,31 +500,47 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton19.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         jButton20.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         
-        //- Add the hover function
+        //- Add the slight buuton movement when hovered over function
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton1.getX(); int y = jButton1.getY(); jButton1.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton1.getX(); int y = jButton1.getY(); jButton1.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton1.getX(); int y = jButton1.getY(); jButton1.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton1.getX(); int y = jButton1.getY(); jButton1.setLocation(x - 1, y - 1); } });
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton2.getX(); int y = jButton2.getY(); jButton2.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton2.getX(); int y = jButton2.getY(); jButton2.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton2.getX(); int y = jButton2.getY(); jButton2.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton2.getX(); int y = jButton2.getY(); jButton2.setLocation(x - 1, y - 1); } });
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton3.getX(); int y = jButton3.getY(); jButton3.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton3.getX(); int y = jButton3.getY(); jButton3.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton3.getX(); int y = jButton3.getY(); jButton3.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton3.getX(); int y = jButton3.getY(); jButton3.setLocation(x - 1, y - 1); } });
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton4.getX(); int y = jButton4.getY(); jButton4.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton5.getX(); int y = jButton5.getY(); jButton5.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton5.getX(); int y = jButton5.getY(); jButton5.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton5.getX(); int y = jButton5.getY(); jButton5.setLocation(x - 1, y - 1); } });
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton6.getX(); int y = jButton6.getY(); jButton6.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton6.getX(); int y = jButton6.getY(); jButton6.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton6.getX(); int y = jButton6.getY(); jButton6.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton6.getX(); int y = jButton6.getY(); jButton6.setLocation(x - 1, y - 1); } });
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton7.getX(); int y = jButton7.getY(); jButton7.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton7.getX(); int y = jButton7.getY(); jButton7.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton7.getX(); int y = jButton7.getY(); jButton7.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton7.getX(); int y = jButton7.getY(); jButton7.setLocation(x - 1, y - 1); } });
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton8.getX(); int y = jButton8.getY(); jButton8.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton8.getX(); int y = jButton8.getY(); jButton8.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton8.getX(); int y = jButton8.getY(); jButton8.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton8.getX(); int y = jButton8.getY(); jButton8.setLocation(x - 1, y - 1); } });
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton9.getX(); int y = jButton9.getY(); jButton9.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton9.getX(); int y = jButton9.getY(); jButton9.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton9.getX(); int y = jButton9.getY(); jButton9.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton9.getX(); int y = jButton9.getY(); jButton9.setLocation(x - 1, y - 1); } });
+        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton10.getX(); int y = jButton10.getY(); jButton10.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton10.getX(); int y = jButton10.getY(); jButton10.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton10.getX(); int y = jButton10.getY(); jButton10.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton10.getX(); int y = jButton10.getY(); jButton10.setLocation(x - 1, y - 1); } });
+        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton11.getX(); int y = jButton11.getY(); jButton11.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton11.getX(); int y = jButton11.getY(); jButton11.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton11.getX(); int y = jButton11.getY(); jButton11.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton11.getX(); int y = jButton11.getY(); jButton11.setLocation(x - 1, y - 1); } });
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton12.getX(); int y = jButton12.getY(); jButton12.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton12.getX(); int y = jButton12.getY(); jButton12.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton12.getX(); int y = jButton12.getY(); jButton12.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton12.getX(); int y = jButton12.getY(); jButton12.setLocation(x - 1, y - 1); } });
+        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton13.getX(); int y = jButton13.getY(); jButton13.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton13.getX(); int y = jButton13.getY(); jButton13.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton13.getX(); int y = jButton13.getY(); jButton13.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton13.getX(); int y = jButton13.getY(); jButton13.setLocation(x - 1, y - 1); } });
+        jButton14.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton14.getX(); int y = jButton14.getY(); jButton14.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton14.getX(); int y = jButton14.getY(); jButton14.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton14.getX(); int y = jButton14.getY(); jButton14.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton14.getX(); int y = jButton14.getY(); jButton14.setLocation(x - 1, y - 1); } });
+        jButton15.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton15.getX(); int y = jButton15.getY(); jButton15.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton15.getX(); int y = jButton15.getY(); jButton15.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton15.getX(); int y = jButton15.getY(); jButton15.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton15.getX(); int y = jButton15.getY(); jButton15.setLocation(x - 1, y - 1); } });
+        jButton16.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton16.getX(); int y = jButton16.getY(); jButton16.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton16.getX(); int y = jButton16.getY(); jButton16.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton16.getX(); int y = jButton16.getY(); jButton16.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton16.getX(); int y = jButton16.getY(); jButton16.setLocation(x - 1, y - 1); } });
+        jButton17.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton17.getX(); int y = jButton17.getY(); jButton17.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton17.getX(); int y = jButton17.getY(); jButton17.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton17.getX(); int y = jButton17.getY(); jButton17.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton17.getX(); int y = jButton17.getY(); jButton17.setLocation(x - 1, y - 1); } });
+        jButton18.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton18.getX(); int y = jButton18.getY(); jButton18.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton18.getX(); int y = jButton18.getY(); jButton18.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton19.getX(); int y = jButton19.getY(); jButton19.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton19.getX(); int y = jButton19.getY(); jButton19.setLocation(x - 1, y - 1); } });
+        jButton20.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton20.getX(); int y = jButton20.getY(); jButton20.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton20.getX(); int y = jButton20.getY(); jButton20.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton20.getX(); int y = jButton20.getY(); jButton20.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton20.getX(); int y = jButton20.getY(); jButton20.setLocation(x - 1, y - 1); } });
         
-        
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton1.getX(); int y = jButton1.getY(); jButton1.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton1.getX(); int y = jButton1.getY(); jButton1.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton1.getX(); int y = jButton1.getY(); jButton1.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton1.getX(); int y = jButton1.getY(); jButton1.setLocation(x - 1, y - 1); } });
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton2.getX(); int y = jButton2.getY(); jButton2.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton2.getX(); int y = jButton2.getY(); jButton2.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton2.getX(); int y = jButton2.getY(); jButton2.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton2.getX(); int y = jButton2.getY(); jButton2.setLocation(x - 1, y - 1); } });
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton3.getX(); int y = jButton3.getY(); jButton3.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton3.getX(); int y = jButton3.getY(); jButton3.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton3.getX(); int y = jButton3.getY(); jButton3.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton3.getX(); int y = jButton3.getY(); jButton3.setLocation(x - 1, y - 1); } });
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton4.getX(); int y = jButton4.getY(); jButton4.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton4.getX(); int y = jButton4.getY(); jButton4.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton4.getX(); int y = jButton4.getY(); jButton4.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton4.getX(); int y = jButton4.getY(); jButton4.setLocation(x - 1, y - 1); } });
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton5.getX(); int y = jButton5.getY(); jButton5.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton5.getX(); int y = jButton5.getY(); jButton5.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton5.getX(); int y = jButton5.getY(); jButton5.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton5.getX(); int y = jButton5.getY(); jButton5.setLocation(x - 1, y - 1); } });
-        jButton6.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton6.getX(); int y = jButton6.getY(); jButton6.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton6.getX(); int y = jButton6.getY(); jButton6.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton6.getX(); int y = jButton6.getY(); jButton6.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton6.getX(); int y = jButton6.getY(); jButton6.setLocation(x - 1, y - 1); } });
-        jButton7.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton7.getX(); int y = jButton7.getY(); jButton7.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton7.getX(); int y = jButton7.getY(); jButton7.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton7.getX(); int y = jButton7.getY(); jButton7.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton7.getX(); int y = jButton7.getY(); jButton7.setLocation(x - 1, y - 1); } });
-        jButton8.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton8.getX(); int y = jButton8.getY(); jButton8.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton8.getX(); int y = jButton8.getY(); jButton8.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton8.getX(); int y = jButton8.getY(); jButton8.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton8.getX(); int y = jButton8.getY(); jButton8.setLocation(x - 1, y - 1); } });
-        jButton9.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton9.getX(); int y = jButton9.getY(); jButton9.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton9.getX(); int y = jButton9.getY(); jButton9.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton9.getX(); int y = jButton9.getY(); jButton9.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton9.getX(); int y = jButton9.getY(); jButton9.setLocation(x - 1, y - 1); } });
-        jButton10.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton10.getX(); int y = jButton10.getY(); jButton10.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton10.getX(); int y = jButton10.getY(); jButton10.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton10.getX(); int y = jButton10.getY(); jButton10.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton10.getX(); int y = jButton10.getY(); jButton10.setLocation(x - 1, y - 1); } });
-        jButton11.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton11.getX(); int y = jButton11.getY(); jButton11.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton11.getX(); int y = jButton11.getY(); jButton11.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton11.getX(); int y = jButton11.getY(); jButton11.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton11.getX(); int y = jButton11.getY(); jButton11.setLocation(x - 1, y - 1); } });
-        jButton12.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton12.getX(); int y = jButton12.getY(); jButton12.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton12.getX(); int y = jButton12.getY(); jButton12.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton12.getX(); int y = jButton12.getY(); jButton12.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton12.getX(); int y = jButton12.getY(); jButton12.setLocation(x - 1, y - 1); } });
-        jButton13.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton13.getX(); int y = jButton13.getY(); jButton13.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton13.getX(); int y = jButton13.getY(); jButton13.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton13.getX(); int y = jButton13.getY(); jButton13.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton13.getX(); int y = jButton13.getY(); jButton13.setLocation(x - 1, y - 1); } });
-        jButton14.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton14.getX(); int y = jButton14.getY(); jButton14.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton14.getX(); int y = jButton14.getY(); jButton14.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton14.getX(); int y = jButton14.getY(); jButton14.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton14.getX(); int y = jButton14.getY(); jButton14.setLocation(x - 1, y - 1); } });
-        jButton15.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton15.getX(); int y = jButton15.getY(); jButton15.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton15.getX(); int y = jButton15.getY(); jButton15.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton15.getX(); int y = jButton15.getY(); jButton15.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton15.getX(); int y = jButton15.getY(); jButton15.setLocation(x - 1, y - 1); } });
-        jButton16.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton16.getX(); int y = jButton16.getY(); jButton16.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton16.getX(); int y = jButton16.getY(); jButton16.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton16.getX(); int y = jButton16.getY(); jButton16.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton16.getX(); int y = jButton16.getY(); jButton16.setLocation(x - 1, y - 1); } });
-        jButton17.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton17.getX(); int y = jButton17.getY(); jButton17.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton17.getX(); int y = jButton17.getY(); jButton17.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton17.getX(); int y = jButton17.getY(); jButton17.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton17.getX(); int y = jButton17.getY(); jButton17.setLocation(x - 1, y - 1); } });
-        jButton18.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton18.getX(); int y = jButton18.getY(); jButton18.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton18.getX(); int y = jButton18.getY(); jButton18.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton18.getX(); int y = jButton18.getY(); jButton18.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton18.getX(); int y = jButton18.getY(); jButton18.setLocation(x - 1, y - 1); } });
-        jButton19.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton19.getX(); int y = jButton19.getY(); jButton19.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton19.getX(); int y = jButton19.getY(); jButton19.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton19.getX(); int y = jButton19.getY(); jButton19.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton19.getX(); int y = jButton19.getY(); jButton19.setLocation(x - 1, y - 1); } });
-        jButton20.addMouseListener(new java.awt.event.MouseAdapter() { public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton20.getX(); int y = jButton20.getY(); jButton20.setLocation(x + -1, y + -1);} public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton20.getX(); int y = jButton20.getY(); jButton20.setLocation(x + 1, y + 1); } public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton20.getX(); int y = jButton20.getY(); jButton20.setLocation(x + 1, y + 1); } public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton20.getX(); int y = jButton20.getY(); jButton20.setLocation(x - 1, y - 1); } });
-        
-        
+        //- Remove the button borders
+        Border emptyBorder = BorderFactory.createEmptyBorder();
+        jButton1.setBorder(emptyBorder);
+        jButton2.setBorder(emptyBorder);
+        jButton3.setBorder(emptyBorder);
+        jButton4.setBorder(emptyBorder);
+        jButton5.setBorder(emptyBorder);
+        jButton6.setBorder(emptyBorder);
+        jButton7.setBorder(emptyBorder);
+        jButton8.setBorder(emptyBorder);
+        jButton9.setBorder(emptyBorder);
+        jButton10.setBorder(emptyBorder);
+        jButton12.setBorder(emptyBorder);
+        jButton13.setBorder(emptyBorder);
+        jButton14.setBorder(emptyBorder);
+        jButton15.setBorder(emptyBorder);
+        jButton16.setBorder(emptyBorder);
+        jButton17.setBorder(emptyBorder);
+        jButton18.setBorder(emptyBorder);
+        jButton19.setBorder(emptyBorder);
+        jButton20.setBorder(emptyBorder);
        
         //--- Create directories if not exist
         //new File(pathLogging.toString()).mkdirs();
@@ -548,6 +573,10 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonScriptCustom01.setText(PropertyHandler.getInstance().getValue("ScriptCustom04Text"));
         jButtonScriptCustom02.setText(PropertyHandler.getInstance().getValue("ScriptCustom05Text"));
         jButtonScriptCustom03.setText(PropertyHandler.getInstance().getValue("ScriptCustom06Text"));
+
+         //--- Make buttons and stuff look less crappy - this also allows background coloring
+        String laf = UIManager.getSystemLookAndFeelClassName();
+        UIManager.setLookAndFeel(laf);
 
         //--- Populate Button Listing
         //Get image list
@@ -816,47 +845,68 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonLinkCustom07 = new javax.swing.JButton();
         jButtonLinkCustom08 = new javax.swing.JButton();
         jButtonLinkCustom09 = new javax.swing.JButton();
-        jButtonAppCustom3 = new javax.swing.JButton();
-        jButtonAppCustom2 = new javax.swing.JButton();
-        jButtonAppCustom4 = new javax.swing.JButton();
-        jButtonAppCustom5 = new javax.swing.JButton();
-        jButtonAppCustom6 = new javax.swing.JButton();
-        jButtonAppCustom7 = new javax.swing.JButton();
-        jButtonAppCustom14 = new javax.swing.JButton();
-        jButtonAppCustom15 = new javax.swing.JButton();
-        jButtonAppCustom16 = new javax.swing.JButton();
-        jButtonAppCustom17 = new javax.swing.JButton();
-        jButtonAppCustom18 = new javax.swing.JButton();
-        jButtonAppCustom19 = new javax.swing.JButton();
-        jButtonAppCustom20 = new javax.swing.JButton();
-        jButtonAppCustom21 = new javax.swing.JButton();
-        jButtonAppCustom22 = new javax.swing.JButton();
-        jButtonAppCustom23 = new javax.swing.JButton();
-        jButtonAppCustom24 = new javax.swing.JButton();
-        jButtonAppCustom25 = new javax.swing.JButton();
-        jButtonAppCustom27 = new javax.swing.JButton();
-        jButtonAppCustom28 = new javax.swing.JButton();
-        jButtonAppCustom29 = new javax.swing.JButton();
-        jButtonAppCustom30 = new javax.swing.JButton();
-        jButtonAppCustom31 = new javax.swing.JButton();
-        jButtonAppCustom32 = new javax.swing.JButton();
-        jButtonAppCustom33 = new javax.swing.JButton();
-        jButtonAppCustom34 = new javax.swing.JButton();
-        jButtonAppCustom35 = new javax.swing.JButton();
+        jButtonLinkCustom11 = new javax.swing.JButton();
+        jButtonLinkCustom10 = new javax.swing.JButton();
+        jButtonLinkCustom12 = new javax.swing.JButton();
+        jButtonLinkCustom13 = new javax.swing.JButton();
+        jButtonLinkCustom14 = new javax.swing.JButton();
+        jButtonLinkCustom15 = new javax.swing.JButton();
+        jButtonLinkCustom16 = new javax.swing.JButton();
+        jButtonLinkCustom17 = new javax.swing.JButton();
+        jButtonLinkCustom18 = new javax.swing.JButton();
+        jButtonLinkCustom19 = new javax.swing.JButton();
+        jButtonLinkCustom20 = new javax.swing.JButton();
+        jButtonLinkCustom21 = new javax.swing.JButton();
+        jButtonLinkCustom22 = new javax.swing.JButton();
+        jButtonLinkCustom23 = new javax.swing.JButton();
+        jButtonLinkCustom24 = new javax.swing.JButton();
+        jButtonLinkCustom25 = new javax.swing.JButton();
+        jButtonLinkCustom26 = new javax.swing.JButton();
+        jButtonLinkCustom27 = new javax.swing.JButton();
+        jButtonLinkCustom28 = new javax.swing.JButton();
+        jButtonLinkCustom29 = new javax.swing.JButton();
+        jButtonLinkCustom30 = new javax.swing.JButton();
+        jButtonLinkCustom31 = new javax.swing.JButton();
+        jButtonLinkCustom32 = new javax.swing.JButton();
+        jButtonLinkCustom33 = new javax.swing.JButton();
+        jButtonLinkCustom34 = new javax.swing.JButton();
+        jButtonLinkCustom35 = new javax.swing.JButton();
+        jButtonLinkCustom36 = new javax.swing.JButton();
         jPanelReference = new javax.swing.JPanel();
-        jToggleOfflineMode = new javax.swing.JToggleButton();
-        jButtonReferenceCustom06 = new javax.swing.JButton();
+        jToggleOnlineOfflineMode = new javax.swing.JToggleButton();
         jButtonReferenceCustom01 = new javax.swing.JButton();
         jButtonReferenceCustom02 = new javax.swing.JButton();
         jButtonReferenceCustom03 = new javax.swing.JButton();
         jButtonReferenceCustom04 = new javax.swing.JButton();
         jButtonReferenceCustom05 = new javax.swing.JButton();
-        jButtonReferenceCustom7 = new javax.swing.JButton();
-        jButtonReferenceCustom2 = new javax.swing.JButton();
-        jButtonReferenceCustom3 = new javax.swing.JButton();
-        jButtonReferenceCustom4 = new javax.swing.JButton();
-        jButtonReferenceCustom5 = new javax.swing.JButton();
-        jButtonReferenceCustom6 = new javax.swing.JButton();
+        jButtonReferenceCustom06 = new javax.swing.JButton();
+        jButtonReferenceCustom07 = new javax.swing.JButton();
+        jButtonReferenceCustom08 = new javax.swing.JButton();
+        jButtonReferenceCustom09 = new javax.swing.JButton();
+        jButtonReferenceCustom10 = new javax.swing.JButton();
+        jButtonReferenceCustom11 = new javax.swing.JButton();
+        jButtonReferenceCustom12 = new javax.swing.JButton();
+        jButtonReferenceCustom13 = new javax.swing.JButton();
+        jButtonReferenceCustom14 = new javax.swing.JButton();
+        jButtonReferenceCustom15 = new javax.swing.JButton();
+        jButtonReferenceCustom16 = new javax.swing.JButton();
+        jButtonReferenceCustom17 = new javax.swing.JButton();
+        jButtonReferenceCustom18 = new javax.swing.JButton();
+        jButtonReferenceCustom19 = new javax.swing.JButton();
+        jButtonReferenceCustom20 = new javax.swing.JButton();
+        jButtonReferenceCustom21 = new javax.swing.JButton();
+        jButtonReferenceCustom22 = new javax.swing.JButton();
+        jButtonReferenceCustom23 = new javax.swing.JButton();
+        jButtonReferenceCustom24 = new javax.swing.JButton();
+        jButtonReferenceCustom25 = new javax.swing.JButton();
+        jButtonReferenceCustom26 = new javax.swing.JButton();
+        jButtonReferenceCustom27 = new javax.swing.JButton();
+        jButtonReferenceCustom28 = new javax.swing.JButton();
+        jButtonReferenceCustom29 = new javax.swing.JButton();
+        jButtonReferenceCustom30 = new javax.swing.JButton();
+        jButtonReferenceCustom31 = new javax.swing.JButton();
+        jButtonReferenceCustom32 = new javax.swing.JButton();
+        jButtonReferenceCustom33 = new javax.swing.JButton();
         jPanelScripts = new javax.swing.JPanel();
         jButtonScriptCustom03 = new javax.swing.JButton();
         jButtonScriptCustom01 = new javax.swing.JButton();
@@ -867,33 +917,33 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonScriptCustom08 = new javax.swing.JButton();
         jButtonScriptCustom09 = new javax.swing.JButton();
         jButtonScriptCustom07 = new javax.swing.JButton();
-        jButtonCustomScript4 = new javax.swing.JButton();
-        jButtonCustomScript11 = new javax.swing.JButton();
-        jButtonCustomScript3 = new javax.swing.JButton();
-        jButtonCustomScript2 = new javax.swing.JButton();
-        jButtonCustomScript12 = new javax.swing.JButton();
-        jButtonCustomScript13 = new javax.swing.JButton();
-        jButtonCustomScript14 = new javax.swing.JButton();
-        jButtonCustomScript15 = new javax.swing.JButton();
-        jButtonCustomScript16 = new javax.swing.JButton();
-        jButtonCustomScript17 = new javax.swing.JButton();
-        jButtonCustomScript18 = new javax.swing.JButton();
-        jButtonCustomScript19 = new javax.swing.JButton();
-        jButtonCustomScript20 = new javax.swing.JButton();
-        jButtonCustomScript21 = new javax.swing.JButton();
-        jButtonCustomScript22 = new javax.swing.JButton();
-        jButtonCustomScript23 = new javax.swing.JButton();
-        jButtonCustomScript24 = new javax.swing.JButton();
-        jButtonCustomScript25 = new javax.swing.JButton();
-        jButtonCustomScript26 = new javax.swing.JButton();
-        jButtonCustomScript27 = new javax.swing.JButton();
-        jButtonCustomScript28 = new javax.swing.JButton();
-        jButtonCustomScript29 = new javax.swing.JButton();
-        jButtonCustomScript30 = new javax.swing.JButton();
-        jButtonCustomScript31 = new javax.swing.JButton();
-        jButtonCustomScript32 = new javax.swing.JButton();
-        jButtonCustomScript33 = new javax.swing.JButton();
-        jButtonCustomScript34 = new javax.swing.JButton();
+        jButtonScriptCustom12 = new javax.swing.JButton();
+        jButtonScriptCustom15 = new javax.swing.JButton();
+        jButtonScriptCustom11 = new javax.swing.JButton();
+        jButtonScriptCustom10 = new javax.swing.JButton();
+        jButtonScriptCustom13 = new javax.swing.JButton();
+        jButtonScriptCustom14 = new javax.swing.JButton();
+        jButtonScriptCustom18 = new javax.swing.JButton();
+        jButtonScriptCustom16 = new javax.swing.JButton();
+        jButtonScriptCustom17 = new javax.swing.JButton();
+        jButtonScriptCustom20 = new javax.swing.JButton();
+        jButtonScriptCustom21 = new javax.swing.JButton();
+        jButtonScriptCustom19 = new javax.swing.JButton();
+        jButtonScriptCustom24 = new javax.swing.JButton();
+        jButtonScriptCustom22 = new javax.swing.JButton();
+        jButtonScriptCustom23 = new javax.swing.JButton();
+        jButtonScriptCustom26 = new javax.swing.JButton();
+        jButtonScriptCustom27 = new javax.swing.JButton();
+        jButtonScriptCustom25 = new javax.swing.JButton();
+        jButtonScriptCustom29 = new javax.swing.JButton();
+        jButtonScriptCustom30 = new javax.swing.JButton();
+        jButtonScriptCustom28 = new javax.swing.JButton();
+        jButtonScriptCustom32 = new javax.swing.JButton();
+        jButtonScriptCustom33 = new javax.swing.JButton();
+        jButtonScriptCustom31 = new javax.swing.JButton();
+        jButtonScriptCustom34 = new javax.swing.JButton();
+        jButtonScriptCustom35 = new javax.swing.JButton();
+        jButtonScriptCustom36 = new javax.swing.JButton();
         jTabbedPaneToolBox = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jButtonFolderToZip = new javax.swing.JButton();
@@ -991,6 +1041,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jTextField2 = new javax.swing.JTextField();
         jButtonScriptUpdateLaunchPad = new javax.swing.JButton();
         jButtonReportIssue = new javax.swing.JButton();
+        jButton28 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LaunchPad - Pre-Alpha");
@@ -1558,245 +1609,237 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom09);
         jButtonLinkCustom09.setBounds(380, 90, 170, 30);
 
-        jButtonAppCustom3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom3ActionPerformed(evt);
+                jButtonLinkCustom11ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom3);
-        jButtonAppCustom3.setBounds(200, 130, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom11);
+        jButtonLinkCustom11.setBounds(200, 130, 170, 30);
 
-        jButtonAppCustom2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom2ActionPerformed(evt);
+                jButtonLinkCustom10ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom2);
-        jButtonAppCustom2.setBounds(20, 130, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom10);
+        jButtonLinkCustom10.setBounds(20, 130, 170, 30);
 
-        jButtonAppCustom4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom4ActionPerformed(evt);
+                jButtonLinkCustom12ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom4);
-        jButtonAppCustom4.setBounds(380, 130, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom12);
+        jButtonLinkCustom12.setBounds(380, 130, 170, 30);
 
-        jButtonAppCustom5.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom5ActionPerformed(evt);
+                jButtonLinkCustom13ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom5);
-        jButtonAppCustom5.setBounds(20, 170, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom13);
+        jButtonLinkCustom13.setBounds(20, 170, 170, 30);
 
-        jButtonAppCustom6.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom6ActionPerformed(evt);
+                jButtonLinkCustom14ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom6);
-        jButtonAppCustom6.setBounds(200, 170, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom14);
+        jButtonLinkCustom14.setBounds(200, 170, 170, 30);
 
-        jButtonAppCustom7.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom7ActionPerformed(evt);
+                jButtonLinkCustom15ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom7);
-        jButtonAppCustom7.setBounds(380, 170, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom15);
+        jButtonLinkCustom15.setBounds(380, 170, 170, 30);
 
-        jButtonAppCustom14.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom14ActionPerformed(evt);
+                jButtonLinkCustom16ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom14);
-        jButtonAppCustom14.setBounds(20, 210, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom16);
+        jButtonLinkCustom16.setBounds(20, 210, 170, 30);
 
-        jButtonAppCustom15.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom15ActionPerformed(evt);
+                jButtonLinkCustom17ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom15);
-        jButtonAppCustom15.setBounds(200, 210, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom17);
+        jButtonLinkCustom17.setBounds(200, 210, 170, 30);
 
-        jButtonAppCustom16.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom16ActionPerformed(evt);
+                jButtonLinkCustom18ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom16);
-        jButtonAppCustom16.setBounds(380, 210, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom18);
+        jButtonLinkCustom18.setBounds(380, 210, 170, 30);
 
-        jButtonAppCustom17.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom17ActionPerformed(evt);
+                jButtonLinkCustom19ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom17);
-        jButtonAppCustom17.setBounds(20, 250, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom19);
+        jButtonLinkCustom19.setBounds(20, 250, 170, 30);
 
-        jButtonAppCustom18.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom18ActionPerformed(evt);
+                jButtonLinkCustom20ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom18);
-        jButtonAppCustom18.setBounds(200, 250, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom20);
+        jButtonLinkCustom20.setBounds(200, 250, 170, 30);
 
-        jButtonAppCustom19.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom19ActionPerformed(evt);
+                jButtonLinkCustom21ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom19);
-        jButtonAppCustom19.setBounds(380, 250, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom21);
+        jButtonLinkCustom21.setBounds(380, 250, 170, 30);
 
-        jButtonAppCustom20.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom20ActionPerformed(evt);
+                jButtonLinkCustom22ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom20);
-        jButtonAppCustom20.setBounds(20, 290, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom22);
+        jButtonLinkCustom22.setBounds(20, 290, 170, 30);
 
-        jButtonAppCustom21.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom21ActionPerformed(evt);
+                jButtonLinkCustom23ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom21);
-        jButtonAppCustom21.setBounds(200, 290, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom23);
+        jButtonLinkCustom23.setBounds(200, 290, 170, 30);
 
-        jButtonAppCustom22.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom22ActionPerformed(evt);
+                jButtonLinkCustom24ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom22);
-        jButtonAppCustom22.setBounds(380, 290, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom24);
+        jButtonLinkCustom24.setBounds(380, 290, 170, 30);
 
-        jButtonAppCustom23.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom23ActionPerformed(evt);
+                jButtonLinkCustom25ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom23);
-        jButtonAppCustom23.setBounds(20, 330, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom25);
+        jButtonLinkCustom25.setBounds(20, 330, 170, 30);
 
-        jButtonAppCustom24.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom24ActionPerformed(evt);
+                jButtonLinkCustom26ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom24);
-        jButtonAppCustom24.setBounds(200, 330, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom26);
+        jButtonLinkCustom26.setBounds(200, 330, 170, 30);
 
-        jButtonAppCustom25.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom25ActionPerformed(evt);
+                jButtonLinkCustom27ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom25);
-        jButtonAppCustom25.setBounds(380, 330, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom27);
+        jButtonLinkCustom27.setBounds(380, 330, 170, 30);
 
-        jButtonAppCustom27.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom27ActionPerformed(evt);
+                jButtonLinkCustom28ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom27);
-        jButtonAppCustom27.setBounds(20, 370, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom28);
+        jButtonLinkCustom28.setBounds(20, 370, 170, 30);
 
-        jButtonAppCustom28.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom28ActionPerformed(evt);
+                jButtonLinkCustom29ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom28);
-        jButtonAppCustom28.setBounds(200, 370, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom29);
+        jButtonLinkCustom29.setBounds(200, 370, 170, 30);
 
-        jButtonAppCustom29.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom29ActionPerformed(evt);
+                jButtonLinkCustom30ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom29);
-        jButtonAppCustom29.setBounds(380, 370, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom30);
+        jButtonLinkCustom30.setBounds(380, 370, 170, 30);
 
-        jButtonAppCustom30.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom30ActionPerformed(evt);
+                jButtonLinkCustom31ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom30);
-        jButtonAppCustom30.setBounds(20, 410, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom31);
+        jButtonLinkCustom31.setBounds(20, 410, 170, 30);
 
-        jButtonAppCustom31.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom31ActionPerformed(evt);
+                jButtonLinkCustom32ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom31);
-        jButtonAppCustom31.setBounds(200, 410, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom32);
+        jButtonLinkCustom32.setBounds(200, 410, 170, 30);
 
-        jButtonAppCustom32.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom32ActionPerformed(evt);
+                jButtonLinkCustom33ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom32);
-        jButtonAppCustom32.setBounds(380, 410, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom33);
+        jButtonLinkCustom33.setBounds(380, 410, 170, 30);
 
-        jButtonAppCustom33.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom33ActionPerformed(evt);
+                jButtonLinkCustom34ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom33);
-        jButtonAppCustom33.setBounds(20, 450, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom34);
+        jButtonLinkCustom34.setBounds(20, 450, 170, 30);
 
-        jButtonAppCustom34.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom34ActionPerformed(evt);
+                jButtonLinkCustom35ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom34);
-        jButtonAppCustom34.setBounds(200, 450, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom35);
+        jButtonLinkCustom35.setBounds(200, 450, 170, 30);
 
-        jButtonAppCustom35.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLinkCustom36.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAppCustom35ActionPerformed(evt);
+                jButtonLinkCustom36ActionPerformed(evt);
             }
         });
-        jPanelAppsCustom.add(jButtonAppCustom35);
-        jButtonAppCustom35.setBounds(380, 450, 170, 30);
+        jPanelAppsCustom.add(jButtonLinkCustom36);
+        jButtonLinkCustom36.setBounds(380, 450, 170, 30);
 
         jTabbedMain.addTab("Links", jPanelAppsCustom);
 
         jPanelReference.setLayout(null);
 
-        jToggleOfflineMode.setBackground(new java.awt.Color(0, 204, 51));
-        jToggleOfflineMode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jToggleOfflineMode.setText("Online");
-        jToggleOfflineMode.setToolTipText("Alternate between using network and local files.");
-        jToggleOfflineMode.addActionListener(new java.awt.event.ActionListener() {
+        jToggleOnlineOfflineMode.setBackground(new java.awt.Color(0, 204, 51));
+        jToggleOnlineOfflineMode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jToggleOnlineOfflineMode.setText("Online");
+        jToggleOnlineOfflineMode.setToolTipText("Alternate between using network and local files.");
+        jToggleOnlineOfflineMode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleOfflineModeActionPerformed(evt);
+                jToggleOnlineOfflineModeActionPerformed(evt);
             }
         });
-        jPanelReference.add(jToggleOfflineMode);
-        jToggleOfflineMode.setBounds(200, 10, 170, 30);
-
-        jButtonReferenceCustom06.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonReferenceCustom06ActionPerformed(evt);
-            }
-        });
-        jPanelReference.add(jButtonReferenceCustom06);
-        jButtonReferenceCustom06.setBounds(380, 90, 170, 30);
+        jPanelReference.add(jToggleOnlineOfflineMode);
+        jToggleOnlineOfflineMode.setBounds(200, 10, 170, 30);
 
         jButtonReferenceCustom01.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1838,53 +1881,229 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom05);
         jButtonReferenceCustom05.setBounds(200, 90, 170, 30);
 
-        jButtonReferenceCustom7.addActionListener(new java.awt.event.ActionListener() {
+        jButtonReferenceCustom06.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonReferenceCustom7ActionPerformed(evt);
+                jButtonReferenceCustom06ActionPerformed(evt);
             }
         });
-        jPanelReference.add(jButtonReferenceCustom7);
-        jButtonReferenceCustom7.setBounds(380, 170, 170, 30);
+        jPanelReference.add(jButtonReferenceCustom06);
+        jButtonReferenceCustom06.setBounds(380, 90, 170, 30);
 
-        jButtonReferenceCustom2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonReferenceCustom07.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonReferenceCustom2ActionPerformed(evt);
+                jButtonReferenceCustom07ActionPerformed(evt);
             }
         });
-        jPanelReference.add(jButtonReferenceCustom2);
-        jButtonReferenceCustom2.setBounds(20, 130, 170, 30);
+        jPanelReference.add(jButtonReferenceCustom07);
+        jButtonReferenceCustom07.setBounds(20, 130, 170, 30);
 
-        jButtonReferenceCustom3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonReferenceCustom08.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonReferenceCustom3ActionPerformed(evt);
+                jButtonReferenceCustom08ActionPerformed(evt);
             }
         });
-        jPanelReference.add(jButtonReferenceCustom3);
-        jButtonReferenceCustom3.setBounds(200, 130, 170, 30);
+        jPanelReference.add(jButtonReferenceCustom08);
+        jButtonReferenceCustom08.setBounds(200, 130, 170, 30);
 
-        jButtonReferenceCustom4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonReferenceCustom09.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonReferenceCustom4ActionPerformed(evt);
+                jButtonReferenceCustom09ActionPerformed(evt);
             }
         });
-        jPanelReference.add(jButtonReferenceCustom4);
-        jButtonReferenceCustom4.setBounds(380, 130, 170, 30);
+        jPanelReference.add(jButtonReferenceCustom09);
+        jButtonReferenceCustom09.setBounds(380, 130, 170, 30);
 
-        jButtonReferenceCustom5.addActionListener(new java.awt.event.ActionListener() {
+        jButtonReferenceCustom10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonReferenceCustom5ActionPerformed(evt);
+                jButtonReferenceCustom10ActionPerformed(evt);
             }
         });
-        jPanelReference.add(jButtonReferenceCustom5);
-        jButtonReferenceCustom5.setBounds(20, 170, 170, 30);
+        jPanelReference.add(jButtonReferenceCustom10);
+        jButtonReferenceCustom10.setBounds(20, 170, 170, 30);
 
-        jButtonReferenceCustom6.addActionListener(new java.awt.event.ActionListener() {
+        jButtonReferenceCustom11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonReferenceCustom6ActionPerformed(evt);
+                jButtonReferenceCustom11ActionPerformed(evt);
             }
         });
-        jPanelReference.add(jButtonReferenceCustom6);
-        jButtonReferenceCustom6.setBounds(200, 170, 170, 30);
+        jPanelReference.add(jButtonReferenceCustom11);
+        jButtonReferenceCustom11.setBounds(200, 170, 170, 30);
+
+        jButtonReferenceCustom12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom12ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom12);
+        jButtonReferenceCustom12.setBounds(380, 170, 170, 30);
+
+        jButtonReferenceCustom13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom13ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom13);
+        jButtonReferenceCustom13.setBounds(20, 210, 170, 30);
+
+        jButtonReferenceCustom14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom14ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom14);
+        jButtonReferenceCustom14.setBounds(200, 210, 170, 30);
+
+        jButtonReferenceCustom15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom15ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom15);
+        jButtonReferenceCustom15.setBounds(380, 210, 170, 30);
+
+        jButtonReferenceCustom16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom16ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom16);
+        jButtonReferenceCustom16.setBounds(20, 250, 170, 30);
+
+        jButtonReferenceCustom17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom17ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom17);
+        jButtonReferenceCustom17.setBounds(200, 250, 170, 30);
+
+        jButtonReferenceCustom18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom18ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom18);
+        jButtonReferenceCustom18.setBounds(380, 250, 170, 30);
+
+        jButtonReferenceCustom19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom19ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom19);
+        jButtonReferenceCustom19.setBounds(20, 290, 170, 30);
+
+        jButtonReferenceCustom20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom20ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom20);
+        jButtonReferenceCustom20.setBounds(200, 290, 170, 30);
+
+        jButtonReferenceCustom21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom21ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom21);
+        jButtonReferenceCustom21.setBounds(380, 290, 170, 30);
+
+        jButtonReferenceCustom22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom22ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom22);
+        jButtonReferenceCustom22.setBounds(20, 330, 170, 30);
+
+        jButtonReferenceCustom23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom23ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom23);
+        jButtonReferenceCustom23.setBounds(200, 330, 170, 30);
+
+        jButtonReferenceCustom24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom24ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom24);
+        jButtonReferenceCustom24.setBounds(380, 330, 170, 30);
+
+        jButtonReferenceCustom25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom25ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom25);
+        jButtonReferenceCustom25.setBounds(20, 370, 170, 30);
+
+        jButtonReferenceCustom26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom26ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom26);
+        jButtonReferenceCustom26.setBounds(200, 370, 170, 30);
+
+        jButtonReferenceCustom27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom27ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom27);
+        jButtonReferenceCustom27.setBounds(380, 370, 170, 30);
+
+        jButtonReferenceCustom28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom28ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom28);
+        jButtonReferenceCustom28.setBounds(20, 410, 170, 30);
+
+        jButtonReferenceCustom29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom29ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom29);
+        jButtonReferenceCustom29.setBounds(200, 410, 170, 30);
+
+        jButtonReferenceCustom30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom30ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom30);
+        jButtonReferenceCustom30.setBounds(380, 410, 170, 30);
+
+        jButtonReferenceCustom31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom31ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom31);
+        jButtonReferenceCustom31.setBounds(20, 450, 170, 30);
+
+        jButtonReferenceCustom32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom32ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom32);
+        jButtonReferenceCustom32.setBounds(200, 450, 170, 30);
+
+        jButtonReferenceCustom33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReferenceCustom33ActionPerformed(evt);
+            }
+        });
+        jPanelReference.add(jButtonReferenceCustom33);
+        jButtonReferenceCustom33.setBounds(380, 450, 170, 30);
 
         jTabbedMain.addTab("Reference", jPanelReference);
 
@@ -1956,208 +2175,208 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom07);
         jButtonScriptCustom07.setBounds(20, 90, 170, 30);
 
-        jButtonCustomScript4.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom12.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript4ActionPerformed(evt);
+                jButtonScriptCustom12ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript4);
-        jButtonCustomScript4.setBounds(380, 130, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom12);
+        jButtonScriptCustom12.setBounds(380, 130, 170, 30);
 
-        jButtonCustomScript11.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanelScripts.add(jButtonCustomScript11);
-        jButtonCustomScript11.setBounds(380, 170, 170, 30);
+        jButtonScriptCustom15.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanelScripts.add(jButtonScriptCustom15);
+        jButtonScriptCustom15.setBounds(380, 170, 170, 30);
 
-        jButtonCustomScript3.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom11.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript3ActionPerformed(evt);
+                jButtonScriptCustom11ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript3);
-        jButtonCustomScript3.setBounds(200, 130, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom11);
+        jButtonScriptCustom11.setBounds(200, 130, 170, 30);
 
-        jButtonCustomScript2.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom10.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript2ActionPerformed(evt);
+                jButtonScriptCustom10ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript2);
-        jButtonCustomScript2.setBounds(20, 130, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom10);
+        jButtonScriptCustom10.setBounds(20, 130, 170, 30);
 
-        jButtonCustomScript12.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript12.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom13.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript12ActionPerformed(evt);
+                jButtonScriptCustom13ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript12);
-        jButtonCustomScript12.setBounds(20, 170, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom13);
+        jButtonScriptCustom13.setBounds(20, 170, 170, 30);
 
-        jButtonCustomScript13.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript13.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom14.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript13ActionPerformed(evt);
+                jButtonScriptCustom14ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript13);
-        jButtonCustomScript13.setBounds(200, 170, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom14);
+        jButtonScriptCustom14.setBounds(200, 170, 170, 30);
 
-        jButtonCustomScript14.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanelScripts.add(jButtonCustomScript14);
-        jButtonCustomScript14.setBounds(380, 210, 170, 30);
+        jButtonScriptCustom18.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanelScripts.add(jButtonScriptCustom18);
+        jButtonScriptCustom18.setBounds(380, 210, 170, 30);
 
-        jButtonCustomScript15.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript15.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom16.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript15ActionPerformed(evt);
+                jButtonScriptCustom16ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript15);
-        jButtonCustomScript15.setBounds(20, 210, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom16);
+        jButtonScriptCustom16.setBounds(20, 210, 170, 30);
 
-        jButtonCustomScript16.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript16.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom17.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript16ActionPerformed(evt);
+                jButtonScriptCustom17ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript16);
-        jButtonCustomScript16.setBounds(200, 210, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom17);
+        jButtonScriptCustom17.setBounds(200, 210, 170, 30);
 
-        jButtonCustomScript17.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript17.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom20.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript17ActionPerformed(evt);
+                jButtonScriptCustom20ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript17);
-        jButtonCustomScript17.setBounds(200, 250, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom20);
+        jButtonScriptCustom20.setBounds(200, 250, 170, 30);
 
-        jButtonCustomScript18.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanelScripts.add(jButtonCustomScript18);
-        jButtonCustomScript18.setBounds(380, 250, 170, 30);
+        jButtonScriptCustom21.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanelScripts.add(jButtonScriptCustom21);
+        jButtonScriptCustom21.setBounds(380, 250, 170, 30);
 
-        jButtonCustomScript19.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript19.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom19.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript19ActionPerformed(evt);
+                jButtonScriptCustom19ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript19);
-        jButtonCustomScript19.setBounds(20, 250, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom19);
+        jButtonScriptCustom19.setBounds(20, 250, 170, 30);
 
-        jButtonCustomScript20.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanelScripts.add(jButtonCustomScript20);
-        jButtonCustomScript20.setBounds(380, 290, 170, 30);
+        jButtonScriptCustom24.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanelScripts.add(jButtonScriptCustom24);
+        jButtonScriptCustom24.setBounds(380, 290, 170, 30);
 
-        jButtonCustomScript21.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript21.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom22.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript21ActionPerformed(evt);
+                jButtonScriptCustom22ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript21);
-        jButtonCustomScript21.setBounds(20, 290, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom22);
+        jButtonScriptCustom22.setBounds(20, 290, 170, 30);
 
-        jButtonCustomScript22.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript22.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom23.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript22ActionPerformed(evt);
+                jButtonScriptCustom23ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript22);
-        jButtonCustomScript22.setBounds(200, 290, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom23);
+        jButtonScriptCustom23.setBounds(200, 290, 170, 30);
 
-        jButtonCustomScript23.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript23.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom26.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript23ActionPerformed(evt);
+                jButtonScriptCustom26ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript23);
-        jButtonCustomScript23.setBounds(200, 330, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom26);
+        jButtonScriptCustom26.setBounds(200, 330, 170, 30);
 
-        jButtonCustomScript24.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanelScripts.add(jButtonCustomScript24);
-        jButtonCustomScript24.setBounds(380, 330, 170, 30);
+        jButtonScriptCustom27.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanelScripts.add(jButtonScriptCustom27);
+        jButtonScriptCustom27.setBounds(380, 330, 170, 30);
 
-        jButtonCustomScript25.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript25.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom25.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript25ActionPerformed(evt);
+                jButtonScriptCustom25ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript25);
-        jButtonCustomScript25.setBounds(20, 330, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom25);
+        jButtonScriptCustom25.setBounds(20, 330, 170, 30);
 
-        jButtonCustomScript26.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript26.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom29.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript26ActionPerformed(evt);
+                jButtonScriptCustom29ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript26);
-        jButtonCustomScript26.setBounds(200, 370, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom29);
+        jButtonScriptCustom29.setBounds(200, 370, 170, 30);
 
-        jButtonCustomScript27.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanelScripts.add(jButtonCustomScript27);
-        jButtonCustomScript27.setBounds(380, 370, 170, 30);
+        jButtonScriptCustom30.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanelScripts.add(jButtonScriptCustom30);
+        jButtonScriptCustom30.setBounds(380, 370, 170, 30);
 
-        jButtonCustomScript28.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript28.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom28.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript28ActionPerformed(evt);
+                jButtonScriptCustom28ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript28);
-        jButtonCustomScript28.setBounds(20, 370, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom28);
+        jButtonScriptCustom28.setBounds(20, 370, 170, 30);
 
-        jButtonCustomScript29.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript29.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom32.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript29ActionPerformed(evt);
+                jButtonScriptCustom32ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript29);
-        jButtonCustomScript29.setBounds(200, 410, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom32);
+        jButtonScriptCustom32.setBounds(200, 410, 170, 30);
 
-        jButtonCustomScript30.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanelScripts.add(jButtonCustomScript30);
-        jButtonCustomScript30.setBounds(380, 410, 170, 30);
+        jButtonScriptCustom33.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanelScripts.add(jButtonScriptCustom33);
+        jButtonScriptCustom33.setBounds(380, 410, 170, 30);
 
-        jButtonCustomScript31.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript31.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom31.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript31ActionPerformed(evt);
+                jButtonScriptCustom31ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript31);
-        jButtonCustomScript31.setBounds(20, 410, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom31);
+        jButtonScriptCustom31.setBounds(20, 410, 170, 30);
 
-        jButtonCustomScript32.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript32.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom34.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript32ActionPerformed(evt);
+                jButtonScriptCustom34ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript32);
-        jButtonCustomScript32.setBounds(20, 450, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom34);
+        jButtonScriptCustom34.setBounds(20, 450, 170, 30);
 
-        jButtonCustomScript33.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCustomScript33.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCustom35.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCustomScript33ActionPerformed(evt);
+                jButtonScriptCustom35ActionPerformed(evt);
             }
         });
-        jPanelScripts.add(jButtonCustomScript33);
-        jButtonCustomScript33.setBounds(200, 450, 170, 30);
+        jPanelScripts.add(jButtonScriptCustom35);
+        jButtonScriptCustom35.setBounds(200, 450, 170, 30);
 
-        jButtonCustomScript34.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanelScripts.add(jButtonCustomScript34);
-        jButtonCustomScript34.setBounds(380, 450, 170, 30);
+        jButtonScriptCustom36.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanelScripts.add(jButtonScriptCustom36);
+        jButtonScriptCustom36.setBounds(380, 450, 170, 30);
 
         jTabbedMain.addTab("Scripts", jPanelScripts);
 
@@ -2766,6 +2985,15 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelSettings.add(jButtonReportIssue);
         jButtonReportIssue.setBounds(10, 460, 160, 23);
 
+        jButton28.setText("Open \".launchpad\" Folder");
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
+        jPanelSettings.add(jButton28);
+        jButton28.setBounds(10, 230, 190, 20);
+
         jTabbedMain.addTab("Settings", jPanelSettings);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -3022,7 +3250,6 @@ final JFXPanel fxPanel = new JFXPanel();
 
             if ("settingsfile".equals(jTextField2.getText())) {
 
-                String strPathPropertiesFile = pathDesktop + "\\LaunchPad\\launchpad.properties";
 
                 //text file, should be opening in default text editor
                 File file = new File(strPathPropertiesFile);
@@ -3062,7 +3289,6 @@ final JFXPanel fxPanel = new JFXPanel();
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         // TODO add your handling code here:
-        String strPathPropertiesFile = pathDesktop + "\\LaunchPad\\launchpad.properties";
         DefaultListModel listModel = new DefaultListModel();
         ArrayList arrSessionList = new ArrayList();
 
@@ -3110,57 +3336,59 @@ final JFXPanel fxPanel = new JFXPanel();
 
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
         // TODO add your handling code here:
-        try {
-            Process p = Runtime.getRuntime().exec
-            (new String [] { "cmd.exe", "/c", "assoc", ".xls"});
-            BufferedReader input =
-            new BufferedReader
-            (new InputStreamReader(p.getInputStream()));
-            String extensionType = input.readLine();
-            input.close();
-            // extract type
-            if (extensionType == null) {
-                System.out.println("no office installed ?");
-                String myValue = "cmd.exe /c start wordpad.exe \"" + strSessionListFavorites + "\"";
-                System.out.println(myValue);
-                try {
-                    Runtime.getRuntime().exec(myValue);
-                }
-                catch (IOException e) {
-                    System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                    JOptionPane.showMessageDialog(null, "Something is wrong!");
-                }
-
-                return;
-            }
-            String fileType[] = extensionType.split("=");
-
-            p = Runtime.getRuntime().exec
-            (new String [] { "cmd.exe", "/c", "ftype", fileType[1]});
-            input =
-            new BufferedReader
-            (new InputStreamReader(p.getInputStream()));
-            String fileAssociation = input.readLine();
-            // extract path
-            String officePath = fileAssociation.split("=")[1];
-            Pattern patternInQuotes = Pattern.compile("\"([^\"]*)\"");
-            Matcher matchInQuotes = patternInQuotes.matcher(officePath);
-            while (matchInQuotes.find()) {
-                officePath = matchInQuotes.group(1);
-                System.out.println(matchInQuotes.group(1));
-            }
-            String myValue = "\"" + officePath + " \" \"" + strSessionListFavorites + "\"";
-            System.out.println(myValue);
-            try {
-                Runtime.getRuntime().exec(myValue);
-            }
-            catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
-            }
-        }
-        catch (IOException err) {
-        }
+        openFileUsingDesktop(strSessionListFavorites);
+        
+//        try {
+//            Process p = Runtime.getRuntime().exec
+//            (new String [] { "cmd.exe", "/c", "assoc", ".xls"});
+//            BufferedReader input =
+//            new BufferedReader
+//            (new InputStreamReader(p.getInputStream()));
+//            String extensionType = input.readLine();
+//            input.close();
+//            // extract type
+//            if (extensionType == null) {
+//                System.out.println("no office installed ?");
+//                String myValue = "cmd.exe /c start wordpad.exe \"" + strSessionListFavorites + "\"";
+//                System.out.println(myValue);
+//                try {
+//                    Runtime.getRuntime().exec(myValue);
+//                }
+//                catch (IOException e) {
+//                    System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+//                    JOptionPane.showMessageDialog(null, "Something is wrong!");
+//                }
+//
+//                return;
+//            }
+//            String fileType[] = extensionType.split("=");
+//
+//            p = Runtime.getRuntime().exec
+//            (new String [] { "cmd.exe", "/c", "ftype", fileType[1]});
+//            input =
+//            new BufferedReader
+//            (new InputStreamReader(p.getInputStream()));
+//            String fileAssociation = input.readLine();
+//            // extract path
+//            String officePath = fileAssociation.split("=")[1];
+//            Pattern patternInQuotes = Pattern.compile("\"([^\"]*)\"");
+//            Matcher matchInQuotes = patternInQuotes.matcher(officePath);
+//            while (matchInQuotes.find()) {
+//                officePath = matchInQuotes.group(1);
+//                System.out.println(matchInQuotes.group(1));
+//            }
+//            String myValue = "\"" + officePath + " \" \"" + strSessionListFavorites + "\"";
+//            System.out.println(myValue);
+//            try {
+//                Runtime.getRuntime().exec(myValue);
+//            }
+//            catch (IOException e) {
+//                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+//                JOptionPane.showMessageDialog(null, "Something is wrong!");
+//            }
+//        }
+//        catch (IOException err) {
+//        }
     }//GEN-LAST:event_jButton32ActionPerformed
 
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
@@ -3786,40 +4014,8 @@ final JFXPanel fxPanel = new JFXPanel();
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
         // TODO add your handling code here:
-        runFromDesktop("files/Subnets.pdf", ".pdf");
+        openTempFileUsingDesktop("files/Subnets.pdf", ".pdf");
     }//GEN-LAST:event_jButton24ActionPerformed
-
-    private void jButtonReferenceCustom6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom6ActionPerformed
-
-    private void jButtonReferenceCustom5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom5ActionPerformed
-
-    private void jButtonReferenceCustom4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom4ActionPerformed
-
-    private void jButtonReferenceCustom3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom3ActionPerformed
-
-    private void jButtonReferenceCustom2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom2ActionPerformed
-
-    private void jButtonReferenceCustom7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom7ActionPerformed
-
-    private void jButtonReferenceCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom05ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom05ActionPerformed
-
-    private void jButtonReferenceCustom04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom04ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom04ActionPerformed
 
     private void jButtonReferenceCustom03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom03ActionPerformed
         // TODO add your handling code here:
@@ -3831,51 +4027,49 @@ final JFXPanel fxPanel = new JFXPanel();
 
     private void jButtonReferenceCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom01ActionPerformed
         // TODO add your handling code here:
-        String strReference01;
-        strReference01 = PropertyHandler.getInstance().getValue("ReferencePath01");
-
-        if(jToggleOfflineMode.isSelected()){
-            strReference01 =  PropertyHandler.getInstance().getValue("ReferenceFolderOffline") + strReference01;
-            System.out.println("Using Offline: " + strReference01);
-        }
-        else{
-            strReference01 =  PropertyHandler.getInstance().getValue("ReferenceFolderOnline") + strReference01;
-        }
-
-        //text file, should be opening in default text editor
-        File file = new File(strReference01);
-
-        //first check if Desktop is supported by Platform or not
-        if(!Desktop.isDesktopSupported()){
-            System.out.println("Desktop is not supported");
-            return;
-        }
-
-        Desktop desktop = Desktop.getDesktop();
-        if(file.exists()) try {
-            desktop.open(file);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
-        }
-
-        // Open
-        if(file.exists()) try {
-            desktop.open(file);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
-
-        }
+        
+        openReferenceUsingDesktop("ReferencePath01");
+//        String strReference01;
+//        strReference01 = PropertyHandler.getInstance().getValue("ReferencePath01");
+//
+//        if(jToggleOfflineMode.isSelected()){
+//            strReference01 =  PropertyHandler.getInstance().getValue("ReferenceFolderOffline") + strReference01;
+//            System.out.println("Using Offline: " + strReference01);
+//        }
+//        else{
+//            strReference01 =  PropertyHandler.getInstance().getValue("ReferenceFolderOnline") + strReference01;
+//        }
+//
+//        //text file, should be opening in default text editor
+//        File file = new File(strReference01);
+//
+//        //first check if Desktop is supported by Platform or not
+//        if(!Desktop.isDesktopSupported()){
+//            System.out.println("Desktop is not supported");
+//            return;
+//        }
+//
+//        Desktop desktop = Desktop.getDesktop();
+//        if(file.exists()) try {
+//            desktop.open(file);
+//        } catch (IOException ex) {
+//            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+//            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
+//        }
+//
+//        // Open
+//        if(file.exists()) try {
+//            desktop.open(file);
+//        } catch (IOException ex) {
+//            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+//            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
+//
+//        }
     }//GEN-LAST:event_jButtonReferenceCustom01ActionPerformed
 
-    private void jButtonReferenceCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom06ActionPerformed
+    private void jToggleOnlineOfflineModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleOnlineOfflineModeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonReferenceCustom06ActionPerformed
-
-    private void jToggleOfflineModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleOfflineModeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleOfflineModeActionPerformed
+    }//GEN-LAST:event_jToggleOnlineOfflineModeActionPerformed
 
     private void jButtonScriptSyncStandalones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptSyncStandalones1ActionPerformed
         // TODO add your handling code here:
@@ -3916,65 +4110,65 @@ final JFXPanel fxPanel = new JFXPanel();
         }
     }//GEN-LAST:event_jButtonScriptSyncStandalonesActionPerformed
 
-    private void jButtonCustomScript28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript28ActionPerformed
+    private void jButtonScriptCustom28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom28ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript28ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom28ActionPerformed
 
-    private void jButtonCustomScript26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript26ActionPerformed
+    private void jButtonScriptCustom29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom29ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript26ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom29ActionPerformed
 
-    private void jButtonCustomScript25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript25ActionPerformed
+    private void jButtonScriptCustom25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom25ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript25ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom25ActionPerformed
 
-    private void jButtonCustomScript23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript23ActionPerformed
+    private void jButtonScriptCustom26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom26ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript23ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom26ActionPerformed
 
-    private void jButtonCustomScript22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript22ActionPerformed
+    private void jButtonScriptCustom23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom23ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript22ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom23ActionPerformed
 
-    private void jButtonCustomScript21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript21ActionPerformed
+    private void jButtonScriptCustom22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom22ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript21ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom22ActionPerformed
 
-    private void jButtonCustomScript19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript19ActionPerformed
+    private void jButtonScriptCustom19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom19ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript19ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom19ActionPerformed
 
-    private void jButtonCustomScript17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript17ActionPerformed
+    private void jButtonScriptCustom20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom20ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript17ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom20ActionPerformed
 
-    private void jButtonCustomScript16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript16ActionPerformed
+    private void jButtonScriptCustom17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom17ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript16ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom17ActionPerformed
 
-    private void jButtonCustomScript15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript15ActionPerformed
+    private void jButtonScriptCustom16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom16ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript15ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom16ActionPerformed
 
-    private void jButtonCustomScript13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript13ActionPerformed
+    private void jButtonScriptCustom14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom14ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript13ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom14ActionPerformed
 
-    private void jButtonCustomScript12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript12ActionPerformed
+    private void jButtonScriptCustom13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom13ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript12ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom13ActionPerformed
 
-    private void jButtonCustomScript2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript2ActionPerformed
+    private void jButtonScriptCustom10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom10ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript2ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom10ActionPerformed
 
-    private void jButtonCustomScript3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript3ActionPerformed
+    private void jButtonScriptCustom11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom11ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript3ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom11ActionPerformed
 
-    private void jButtonCustomScript4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript4ActionPerformed
+    private void jButtonScriptCustom12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom12ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript4ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom12ActionPerformed
 
     private void jButtonScriptCustom07ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom07ActionPerformed
         // TODO add your handling code here:
@@ -4018,112 +4212,139 @@ final JFXPanel fxPanel = new JFXPanel();
         }
     }//GEN-LAST:event_jButtonScriptCustom01ActionPerformed
 
-    private void jButtonAppCustom29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom29ActionPerformed
+    private void jButtonLinkCustom30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom30ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom29ActionPerformed
+        linkCustom("LinkCustom30");
+    }//GEN-LAST:event_jButtonLinkCustom30ActionPerformed
 
-    private void jButtonAppCustom28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom28ActionPerformed
+    private void jButtonLinkCustom29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom29ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom28ActionPerformed
+        linkCustom("LinkCustom29");
+    }//GEN-LAST:event_jButtonLinkCustom29ActionPerformed
 
-    private void jButtonAppCustom27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom27ActionPerformed
+    private void jButtonLinkCustom28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom28ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom27ActionPerformed
+        linkCustom("LinkCustom28");
+    }//GEN-LAST:event_jButtonLinkCustom28ActionPerformed
 
-    private void jButtonAppCustom25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom25ActionPerformed
+    private void jButtonLinkCustom27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom27ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom25ActionPerformed
+        linkCustom("LinkCustom27");
+    }//GEN-LAST:event_jButtonLinkCustom27ActionPerformed
 
-    private void jButtonAppCustom24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom24ActionPerformed
+    private void jButtonLinkCustom26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom26ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom24ActionPerformed
+        linkCustom("LinkCustom26");
+    }//GEN-LAST:event_jButtonLinkCustom26ActionPerformed
 
-    private void jButtonAppCustom23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom23ActionPerformed
+    private void jButtonLinkCustom25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom25ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom23ActionPerformed
+        linkCustom("LinkCustom25");
+    }//GEN-LAST:event_jButtonLinkCustom25ActionPerformed
 
-    private void jButtonAppCustom22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom22ActionPerformed
+    private void jButtonLinkCustom24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom24ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom22ActionPerformed
+        linkCustom("LinkCustom24");
+    }//GEN-LAST:event_jButtonLinkCustom24ActionPerformed
 
-    private void jButtonAppCustom21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom21ActionPerformed
+    private void jButtonLinkCustom23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom23ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom21ActionPerformed
+        linkCustom("LinkCustom23");
+    }//GEN-LAST:event_jButtonLinkCustom23ActionPerformed
 
-    private void jButtonAppCustom20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom20ActionPerformed
+    private void jButtonLinkCustom22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom22ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom20ActionPerformed
+        linkCustom("LinkCustom22");
+    }//GEN-LAST:event_jButtonLinkCustom22ActionPerformed
 
-    private void jButtonAppCustom19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom19ActionPerformed
+    private void jButtonLinkCustom21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom21ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom19ActionPerformed
+        linkCustom("LinkCustom21");
+    }//GEN-LAST:event_jButtonLinkCustom21ActionPerformed
 
-    private void jButtonAppCustom18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom18ActionPerformed
+    private void jButtonLinkCustom20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom20ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom18ActionPerformed
+        linkCustom("LinkCustom20");
+    }//GEN-LAST:event_jButtonLinkCustom20ActionPerformed
 
-    private void jButtonAppCustom17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom17ActionPerformed
+    private void jButtonLinkCustom19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom19ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom17ActionPerformed
+        linkCustom("LinkCustom19");
+    }//GEN-LAST:event_jButtonLinkCustom19ActionPerformed
 
-    private void jButtonAppCustom16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom16ActionPerformed
+    private void jButtonLinkCustom18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom18ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom16ActionPerformed
+        linkCustom("LinkCustom18");
+    }//GEN-LAST:event_jButtonLinkCustom18ActionPerformed
 
-    private void jButtonAppCustom15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom15ActionPerformed
+    private void jButtonLinkCustom17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom17ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom15ActionPerformed
+        linkCustom("LinkCustom17");
+    }//GEN-LAST:event_jButtonLinkCustom17ActionPerformed
 
-    private void jButtonAppCustom14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom14ActionPerformed
+    private void jButtonLinkCustom16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom16ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom14ActionPerformed
+        linkCustom("LinkCustom16");
+    }//GEN-LAST:event_jButtonLinkCustom16ActionPerformed
 
-    private void jButtonAppCustom7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom7ActionPerformed
+    private void jButtonLinkCustom15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom15ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom7ActionPerformed
+        linkCustom("LinkCustom15");
+    }//GEN-LAST:event_jButtonLinkCustom15ActionPerformed
 
-    private void jButtonAppCustom6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom6ActionPerformed
+    private void jButtonLinkCustom14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom14ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom6ActionPerformed
+        linkCustom("LinkCustom14");
+    }//GEN-LAST:event_jButtonLinkCustom14ActionPerformed
 
-    private void jButtonAppCustom5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom5ActionPerformed
+    private void jButtonLinkCustom13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom13ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom5ActionPerformed
+        linkCustom("LinkCustom13");
+    }//GEN-LAST:event_jButtonLinkCustom13ActionPerformed
 
-    private void jButtonAppCustom4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom4ActionPerformed
+    private void jButtonLinkCustom12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom12ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom4ActionPerformed
+        linkCustom("LinkCustom12");
+    }//GEN-LAST:event_jButtonLinkCustom12ActionPerformed
 
-    private void jButtonAppCustom2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom2ActionPerformed
+    private void jButtonLinkCustom10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom10ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom2ActionPerformed
+        linkCustom("LinkCustom10");
+    }//GEN-LAST:event_jButtonLinkCustom10ActionPerformed
 
-    private void jButtonAppCustom3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom3ActionPerformed
+    private void jButtonLinkCustom11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom11ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom3ActionPerformed
+        linkCustom("LinkCustom11");
+    }//GEN-LAST:event_jButtonLinkCustom11ActionPerformed
 
     private void jButtonLinkCustom09ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom09ActionPerformed
         // TODO add your handling code here:
+        linkCustom("LinkCustom09");  
     }//GEN-LAST:event_jButtonLinkCustom09ActionPerformed
 
     private void jButtonLinkCustom08ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom08ActionPerformed
         // TODO add your handling code here:
+        linkCustom("LinkCustom08");
     }//GEN-LAST:event_jButtonLinkCustom08ActionPerformed
 
     private void jButtonLinkCustom07ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom07ActionPerformed
         // TODO add your handling code here:
+        linkCustom("LinkCustom07");
     }//GEN-LAST:event_jButtonLinkCustom07ActionPerformed
 
     private void jButtonLinkCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom06ActionPerformed
         // TODO add your handling code here:
+        linkCustom("LinkCustom06");
     }//GEN-LAST:event_jButtonLinkCustom06ActionPerformed
 
     private void jButtonLinkCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom05ActionPerformed
         // TODO add your handling code here:
+        linkCustom("LinkCustom05");
     }//GEN-LAST:event_jButtonLinkCustom05ActionPerformed
 
     private void jButtonLinkCustom04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom04ActionPerformed
         // TODO add your handling code here:
+        linkCustom("LinkCustom04");
     }//GEN-LAST:event_jButtonLinkCustom04ActionPerformed
 
     private void jButtonLinkCustom03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom03ActionPerformed
@@ -4754,53 +4975,178 @@ final JFXPanel fxPanel = new JFXPanel();
 
     private void jButtonSubnetCalculatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubnetCalculatorActionPerformed
         // TODO add your handling code here:
-                runFromDesktop("html/subnetcalculator/subnetcalculator.html", ".html");
+                openTempFileUsingDesktop("html/subnetcalculator/subnetcalculator.html", ".html");
     }//GEN-LAST:event_jButtonSubnetCalculatorActionPerformed
 
     private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
         // TODO add your handling code here:
-        runFromDesktop("apps/Puppeteer.jar", ".jar");
+        openTempFileUsingDesktop("apps/Puppeteer.jar", ".jar");
     }//GEN-LAST:event_jButton41ActionPerformed
 
-    private void jButtonAppCustom30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom30ActionPerformed
+    private void jButtonLinkCustom31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom31ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom30ActionPerformed
+    }//GEN-LAST:event_jButtonLinkCustom31ActionPerformed
 
-    private void jButtonAppCustom31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom31ActionPerformed
+    private void jButtonLinkCustom32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom32ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom31ActionPerformed
+    }//GEN-LAST:event_jButtonLinkCustom32ActionPerformed
 
-    private void jButtonAppCustom32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom32ActionPerformed
+    private void jButtonLinkCustom33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom33ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom32ActionPerformed
+    }//GEN-LAST:event_jButtonLinkCustom33ActionPerformed
 
-    private void jButtonAppCustom33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom33ActionPerformed
+    private void jButtonLinkCustom34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom34ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom33ActionPerformed
+    }//GEN-LAST:event_jButtonLinkCustom34ActionPerformed
 
-    private void jButtonAppCustom34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom34ActionPerformed
+    private void jButtonLinkCustom35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom35ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom34ActionPerformed
+    }//GEN-LAST:event_jButtonLinkCustom35ActionPerformed
 
-    private void jButtonAppCustom35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAppCustom35ActionPerformed
+    private void jButtonLinkCustom36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom36ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAppCustom35ActionPerformed
+    }//GEN-LAST:event_jButtonLinkCustom36ActionPerformed
 
-    private void jButtonCustomScript29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript29ActionPerformed
+    private void jButtonScriptCustom32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom32ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript29ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom32ActionPerformed
 
-    private void jButtonCustomScript31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript31ActionPerformed
+    private void jButtonScriptCustom31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom31ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript31ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom31ActionPerformed
 
-    private void jButtonCustomScript32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript32ActionPerformed
+    private void jButtonScriptCustom34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom34ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript32ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom34ActionPerformed
 
-    private void jButtonCustomScript33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCustomScript33ActionPerformed
+    private void jButtonScriptCustom35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom35ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCustomScript33ActionPerformed
+    }//GEN-LAST:event_jButtonScriptCustom35ActionPerformed
+
+    private void jButtonReferenceCustom04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom04ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom04ActionPerformed
+
+    private void jButtonReferenceCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom05ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom05ActionPerformed
+
+    private void jButtonReferenceCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom06ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom06ActionPerformed
+
+    private void jButtonReferenceCustom07ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom07ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom07ActionPerformed
+
+    private void jButtonReferenceCustom08ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom08ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom08ActionPerformed
+
+    private void jButtonReferenceCustom09ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom09ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom09ActionPerformed
+
+    private void jButtonReferenceCustom10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom10ActionPerformed
+
+    private void jButtonReferenceCustom11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom11ActionPerformed
+
+    private void jButtonReferenceCustom12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom12ActionPerformed
+
+    private void jButtonReferenceCustom13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom13ActionPerformed
+
+    private void jButtonReferenceCustom14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom14ActionPerformed
+
+    private void jButtonReferenceCustom15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom15ActionPerformed
+
+    private void jButtonReferenceCustom16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom16ActionPerformed
+
+    private void jButtonReferenceCustom17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom17ActionPerformed
+
+    private void jButtonReferenceCustom18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom18ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom18ActionPerformed
+
+    private void jButtonReferenceCustom19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom19ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom19ActionPerformed
+
+    private void jButtonReferenceCustom20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom20ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom20ActionPerformed
+
+    private void jButtonReferenceCustom21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom21ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom21ActionPerformed
+
+    private void jButtonReferenceCustom22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom22ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom22ActionPerformed
+
+    private void jButtonReferenceCustom23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom23ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom23ActionPerformed
+
+    private void jButtonReferenceCustom24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom24ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom24ActionPerformed
+
+    private void jButtonReferenceCustom25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom25ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom25ActionPerformed
+
+    private void jButtonReferenceCustom26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom26ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom26ActionPerformed
+
+    private void jButtonReferenceCustom27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom27ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom27ActionPerformed
+
+    private void jButtonReferenceCustom28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom28ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom28ActionPerformed
+
+    private void jButtonReferenceCustom29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom29ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom29ActionPerformed
+
+    private void jButtonReferenceCustom30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom30ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom30ActionPerformed
+
+    private void jButtonReferenceCustom31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom31ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom31ActionPerformed
+
+    private void jButtonReferenceCustom32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom32ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom32ActionPerformed
+
+    private void jButtonReferenceCustom33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom33ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReferenceCustom33ActionPerformed
+
+    private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        // TODO add your handling code here:
+        openFileUsingDesktop(strPathLaunchPadFolder);
+    }//GEN-LAST:event_jButton28ActionPerformed
 
     
     /**
@@ -4934,10 +5280,8 @@ final JFXPanel fxPanel = new JFXPanel();
     
   /**
    * List directory contents for a resource folder. Not recursive.
-   * This is basically a brute-force implementation.
    * Works for regular files and also JARs.
    * 
-   * @author Greg Briggs
    * @param clazz Any java class that lives in the same place as the resources you want.
    * @param path Should end with "/", but not start with one.
    * @return Just the name of each member item, not the full paths.
@@ -4999,7 +5343,21 @@ final JFXPanel fxPanel = new JFXPanel();
         }
     }
     
-    public void runFromDesktop(String strFullFilePath,String strExtension) {
+    public void openFileUsingDesktop(String strFullFilePath) {
+    
+        File userManual = new File (strFullFilePath);
+        if (userManual.exists())
+        {
+            try {
+                Desktop.getDesktop().open(userManual);
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }
+    
+    public void openTempFileUsingDesktop(String strFullFilePath,String strExtension) {
     
             String inputPdf = strFullFilePath;
         InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
@@ -5030,7 +5388,62 @@ final JFXPanel fxPanel = new JFXPanel();
         
     }
     
+
+    public void openReferenceUsingDesktop(String strReferenceToOpen) {
     
+        String strReference;
+        //strReference = PropertyHandler.getInstance().getValue(strReferenceToOpen);
+
+        if(jToggleOnlineOfflineMode.isSelected()){
+            strReference =  PropertyHandler.getInstance().getValue(strReferenceToOpen + "Offline");
+            System.out.println("Using Offline: " + strReference);
+        }
+        else{
+            strReference =  PropertyHandler.getInstance().getValue(strReferenceToOpen + "Online");
+            System.out.println("Using Online: " + strReference);        
+        }
+
+        //text file, should be opening in default text editor
+        File file = new File(strReference);
+
+        //first check if Desktop is supported by Platform or not
+        if(!Desktop.isDesktopSupported()){
+            System.out.println("Desktop is not supported");
+            return;
+        }
+
+        Desktop desktop = Desktop.getDesktop();
+
+
+        if(isValidURL(strReferenceToOpen))
+
+        if(file.exists()) try {
+            desktop.open(file);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
+        }
+
+        // Open
+        if(file.exists()) try {
+            desktop.open(file);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
+
+        }
+    
+    }
+
+    static public boolean isValidURL(String urlStr) {
+        try {
+          URI uri = new URI(urlStr);
+          return uri.getScheme().equals("http") || uri.getScheme().equals("https");
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }   
     
     class MyMouseListener extends MouseAdapter {
         @Override
@@ -5063,8 +5476,6 @@ final JFXPanel fxPanel = new JFXPanel();
       }
   
   
-
-  
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -5090,6 +5501,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton27;
+    private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton29;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton31;
@@ -5106,62 +5518,8 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JButton jButtonAppCustom14;
-    private javax.swing.JButton jButtonAppCustom15;
-    private javax.swing.JButton jButtonAppCustom16;
-    private javax.swing.JButton jButtonAppCustom17;
-    private javax.swing.JButton jButtonAppCustom18;
-    private javax.swing.JButton jButtonAppCustom19;
-    private javax.swing.JButton jButtonAppCustom2;
-    private javax.swing.JButton jButtonAppCustom20;
-    private javax.swing.JButton jButtonAppCustom21;
-    private javax.swing.JButton jButtonAppCustom22;
-    private javax.swing.JButton jButtonAppCustom23;
-    private javax.swing.JButton jButtonAppCustom24;
-    private javax.swing.JButton jButtonAppCustom25;
-    private javax.swing.JButton jButtonAppCustom27;
-    private javax.swing.JButton jButtonAppCustom28;
-    private javax.swing.JButton jButtonAppCustom29;
-    private javax.swing.JButton jButtonAppCustom3;
-    private javax.swing.JButton jButtonAppCustom30;
-    private javax.swing.JButton jButtonAppCustom31;
-    private javax.swing.JButton jButtonAppCustom32;
-    private javax.swing.JButton jButtonAppCustom33;
-    private javax.swing.JButton jButtonAppCustom34;
-    private javax.swing.JButton jButtonAppCustom35;
-    private javax.swing.JButton jButtonAppCustom4;
-    private javax.swing.JButton jButtonAppCustom5;
-    private javax.swing.JButton jButtonAppCustom6;
-    private javax.swing.JButton jButtonAppCustom7;
     private javax.swing.JButton jButtonConfigBuilder1;
     private javax.swing.JButton jButtonConsole;
-    private javax.swing.JButton jButtonCustomScript11;
-    private javax.swing.JButton jButtonCustomScript12;
-    private javax.swing.JButton jButtonCustomScript13;
-    private javax.swing.JButton jButtonCustomScript14;
-    private javax.swing.JButton jButtonCustomScript15;
-    private javax.swing.JButton jButtonCustomScript16;
-    private javax.swing.JButton jButtonCustomScript17;
-    private javax.swing.JButton jButtonCustomScript18;
-    private javax.swing.JButton jButtonCustomScript19;
-    private javax.swing.JButton jButtonCustomScript2;
-    private javax.swing.JButton jButtonCustomScript20;
-    private javax.swing.JButton jButtonCustomScript21;
-    private javax.swing.JButton jButtonCustomScript22;
-    private javax.swing.JButton jButtonCustomScript23;
-    private javax.swing.JButton jButtonCustomScript24;
-    private javax.swing.JButton jButtonCustomScript25;
-    private javax.swing.JButton jButtonCustomScript26;
-    private javax.swing.JButton jButtonCustomScript27;
-    private javax.swing.JButton jButtonCustomScript28;
-    private javax.swing.JButton jButtonCustomScript29;
-    private javax.swing.JButton jButtonCustomScript3;
-    private javax.swing.JButton jButtonCustomScript30;
-    private javax.swing.JButton jButtonCustomScript31;
-    private javax.swing.JButton jButtonCustomScript32;
-    private javax.swing.JButton jButtonCustomScript33;
-    private javax.swing.JButton jButtonCustomScript34;
-    private javax.swing.JButton jButtonCustomScript4;
     private javax.swing.JButton jButtonExecuteFunction1;
     private javax.swing.JButton jButtonExecuteFunction2;
     private javax.swing.JButton jButtonExecuteFunction3;
@@ -5177,6 +5535,33 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonLinkCustom07;
     private javax.swing.JButton jButtonLinkCustom08;
     private javax.swing.JButton jButtonLinkCustom09;
+    private javax.swing.JButton jButtonLinkCustom10;
+    private javax.swing.JButton jButtonLinkCustom11;
+    private javax.swing.JButton jButtonLinkCustom12;
+    private javax.swing.JButton jButtonLinkCustom13;
+    private javax.swing.JButton jButtonLinkCustom14;
+    private javax.swing.JButton jButtonLinkCustom15;
+    private javax.swing.JButton jButtonLinkCustom16;
+    private javax.swing.JButton jButtonLinkCustom17;
+    private javax.swing.JButton jButtonLinkCustom18;
+    private javax.swing.JButton jButtonLinkCustom19;
+    private javax.swing.JButton jButtonLinkCustom20;
+    private javax.swing.JButton jButtonLinkCustom21;
+    private javax.swing.JButton jButtonLinkCustom22;
+    private javax.swing.JButton jButtonLinkCustom23;
+    private javax.swing.JButton jButtonLinkCustom24;
+    private javax.swing.JButton jButtonLinkCustom25;
+    private javax.swing.JButton jButtonLinkCustom26;
+    private javax.swing.JButton jButtonLinkCustom27;
+    private javax.swing.JButton jButtonLinkCustom28;
+    private javax.swing.JButton jButtonLinkCustom29;
+    private javax.swing.JButton jButtonLinkCustom30;
+    private javax.swing.JButton jButtonLinkCustom31;
+    private javax.swing.JButton jButtonLinkCustom32;
+    private javax.swing.JButton jButtonLinkCustom33;
+    private javax.swing.JButton jButtonLinkCustom34;
+    private javax.swing.JButton jButtonLinkCustom35;
+    private javax.swing.JButton jButtonLinkCustom36;
     private javax.swing.JButton jButtonPing;
     private javax.swing.JButton jButtonReferenceCustom01;
     private javax.swing.JButton jButtonReferenceCustom02;
@@ -5184,12 +5569,33 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonReferenceCustom04;
     private javax.swing.JButton jButtonReferenceCustom05;
     private javax.swing.JButton jButtonReferenceCustom06;
-    private javax.swing.JButton jButtonReferenceCustom2;
-    private javax.swing.JButton jButtonReferenceCustom3;
-    private javax.swing.JButton jButtonReferenceCustom4;
-    private javax.swing.JButton jButtonReferenceCustom5;
-    private javax.swing.JButton jButtonReferenceCustom6;
-    private javax.swing.JButton jButtonReferenceCustom7;
+    private javax.swing.JButton jButtonReferenceCustom07;
+    private javax.swing.JButton jButtonReferenceCustom08;
+    private javax.swing.JButton jButtonReferenceCustom09;
+    private javax.swing.JButton jButtonReferenceCustom10;
+    private javax.swing.JButton jButtonReferenceCustom11;
+    private javax.swing.JButton jButtonReferenceCustom12;
+    private javax.swing.JButton jButtonReferenceCustom13;
+    private javax.swing.JButton jButtonReferenceCustom14;
+    private javax.swing.JButton jButtonReferenceCustom15;
+    private javax.swing.JButton jButtonReferenceCustom16;
+    private javax.swing.JButton jButtonReferenceCustom17;
+    private javax.swing.JButton jButtonReferenceCustom18;
+    private javax.swing.JButton jButtonReferenceCustom19;
+    private javax.swing.JButton jButtonReferenceCustom20;
+    private javax.swing.JButton jButtonReferenceCustom21;
+    private javax.swing.JButton jButtonReferenceCustom22;
+    private javax.swing.JButton jButtonReferenceCustom23;
+    private javax.swing.JButton jButtonReferenceCustom24;
+    private javax.swing.JButton jButtonReferenceCustom25;
+    private javax.swing.JButton jButtonReferenceCustom26;
+    private javax.swing.JButton jButtonReferenceCustom27;
+    private javax.swing.JButton jButtonReferenceCustom28;
+    private javax.swing.JButton jButtonReferenceCustom29;
+    private javax.swing.JButton jButtonReferenceCustom30;
+    private javax.swing.JButton jButtonReferenceCustom31;
+    private javax.swing.JButton jButtonReferenceCustom32;
+    private javax.swing.JButton jButtonReferenceCustom33;
     private javax.swing.JButton jButtonReportIssue;
     private javax.swing.JButton jButtonScriptBackupShares;
     private javax.swing.JButton jButtonScriptCustom01;
@@ -5201,6 +5607,33 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonScriptCustom07;
     private javax.swing.JButton jButtonScriptCustom08;
     private javax.swing.JButton jButtonScriptCustom09;
+    private javax.swing.JButton jButtonScriptCustom10;
+    private javax.swing.JButton jButtonScriptCustom11;
+    private javax.swing.JButton jButtonScriptCustom12;
+    private javax.swing.JButton jButtonScriptCustom13;
+    private javax.swing.JButton jButtonScriptCustom14;
+    private javax.swing.JButton jButtonScriptCustom15;
+    private javax.swing.JButton jButtonScriptCustom16;
+    private javax.swing.JButton jButtonScriptCustom17;
+    private javax.swing.JButton jButtonScriptCustom18;
+    private javax.swing.JButton jButtonScriptCustom19;
+    private javax.swing.JButton jButtonScriptCustom20;
+    private javax.swing.JButton jButtonScriptCustom21;
+    private javax.swing.JButton jButtonScriptCustom22;
+    private javax.swing.JButton jButtonScriptCustom23;
+    private javax.swing.JButton jButtonScriptCustom24;
+    private javax.swing.JButton jButtonScriptCustom25;
+    private javax.swing.JButton jButtonScriptCustom26;
+    private javax.swing.JButton jButtonScriptCustom27;
+    private javax.swing.JButton jButtonScriptCustom28;
+    private javax.swing.JButton jButtonScriptCustom29;
+    private javax.swing.JButton jButtonScriptCustom30;
+    private javax.swing.JButton jButtonScriptCustom31;
+    private javax.swing.JButton jButtonScriptCustom32;
+    private javax.swing.JButton jButtonScriptCustom33;
+    private javax.swing.JButton jButtonScriptCustom34;
+    private javax.swing.JButton jButtonScriptCustom35;
+    private javax.swing.JButton jButtonScriptCustom36;
     private javax.swing.JButton jButtonScriptSyncStandalones;
     private javax.swing.JButton jButtonScriptSyncStandalones1;
     private javax.swing.JButton jButtonScriptUpdateLaunchPad;
@@ -5303,7 +5736,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JTextField jTextFieldZipFilename;
     private javax.swing.JTextField jTextFieldZipSourceFile;
     private javax.swing.JTextField jTextFieldZipSourceFolder;
-    private javax.swing.JToggleButton jToggleOfflineMode;
+    private javax.swing.JToggleButton jToggleOnlineOfflineMode;
     // End of variables declaration//GEN-END:variables
 
 

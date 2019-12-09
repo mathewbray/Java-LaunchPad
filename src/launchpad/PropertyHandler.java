@@ -25,14 +25,17 @@ import java.util.logging.Logger;
 public class PropertyHandler{
 
    private static PropertyHandler instance = null;
-   private File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
-   private Properties prop = new Properties();
+    private String pathUserProfile = System.getenv("USERPROFILE");
+    private File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
+    private String strPathLaunchPadFolder = pathUserProfile + "\\.launchpad";   
+    private String strPathLaunchPadPropertiesFile = strPathLaunchPadFolder + "\\launchpad.properties";   
+    private Properties prop = new Properties();
     private InputStream input = null;
 
    private PropertyHandler() {
        try {
-           // Here you could read the file into props object
-           input = new FileInputStream(pathDesktop + "\\LaunchPad\\launchpad.properties");
+           // Here you could read the file into props object 
+           input = new FileInputStream(strPathLaunchPadPropertiesFile);
        } catch (FileNotFoundException ex) {
            Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
        }
@@ -82,7 +85,7 @@ public class PropertyHandler{
     public String setValue(String propKey, String propValue) {
         // Get the current properties
         try {
-            input = new FileInputStream(pathDesktop + "\\LaunchPad\\launchpad.properties");
+            input = new FileInputStream(strPathLaunchPadPropertiesFile);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -97,7 +100,7 @@ public class PropertyHandler{
         // Set Output file
         FileOutputStream out = null;
         try {
-            out = new FileOutputStream(pathDesktop + "\\LaunchPad\\launchpad.properties");
+            out = new FileOutputStream(strPathLaunchPadPropertiesFile);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
         }        
@@ -110,7 +113,7 @@ public class PropertyHandler{
         
         // Get the current properties
         try {
-            input = new FileInputStream(pathDesktop + "\\LaunchPad\\launchpad.properties");
+            input = new FileInputStream(strPathLaunchPadPropertiesFile);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -125,7 +128,7 @@ public class PropertyHandler{
         // Set Output file
         out = null;
         try {
-            out = new FileOutputStream(pathDesktop + "\\LaunchPad\\launchpad.properties");
+            out = new FileOutputStream(strPathLaunchPadPropertiesFile);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PropertyHandler.class.getName()).log(Level.SEVERE, null, ex);
         }  

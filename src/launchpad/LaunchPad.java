@@ -32,35 +32,26 @@ public class LaunchPad {
      * @throws java.net.URISyntaxException
      * @throws java.awt.AWTException
      * @throws java.lang.InterruptedException
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.lang.InstantiationException
+     * @throws java.lang.IllegalAccessException
+     * @throws javax.swing.UnsupportedLookAndFeelException
      */
     public static void main(String[] args) throws IOException, FileNotFoundException, URISyntaxException, AWTException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-        // TODO code application logic here
         //--- Shared Items
         String pathUserProfile = System.getenv("USERPROFILE");
         File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
-        String pathLaunchPadFolder = pathDesktop + "\\LaunchPad\\";
-        String strLocalUserFolder = pathUserProfile + "\\.launchpad\\";
-       
-        //--- Check for Folders
-        new File(pathLaunchPadFolder).mkdirs();
-        new File(strLocalUserFolder).mkdirs();
-        
-//        File directory = new File(pathLaunchPadFolder);
-//        if (!directory.exists()){
-//            System.out.println("creating directory: " + directory.getName());
-//            try {
-//                directory.mkdir();       
-//            }
-//            catch(SecurityException se) {
-//                
-//            }
-//
-//            // If you require it to make the entire directory path including parents,
-//            // use directory.mkdirs(); here instead.
-//        }
+        String strPathLaunchPadFolder = pathUserProfile + "\\.launchpad";
+        String strSessionListFavoritesFolder = strPathLaunchPadFolder + "\\Favorites";
+        String strPathPropertiesFile = strPathLaunchPadFolder + "\\launchpad.properties";
+
+      
+        //--- Create folders
+        new File(strPathLaunchPadFolder).mkdirs();
+        new File(strSessionListFavoritesFolder).mkdirs();
 
         //--- Check for properties file
-        File filePropertiesFile = new File(pathDesktop + "\\LaunchPad\\launchpad.properties");
+        File filePropertiesFile = new File(strPathPropertiesFile);
         if (!filePropertiesFile.exists()) {
             System.out.println("Properties file not found.");
             //JOptionPane.showMessageDialog(null, "Properties file not found.", "RIP!", JOptionPane.INFORMATION_MESSAGE);
@@ -138,7 +129,7 @@ public class LaunchPad {
         } 
         
         //--- Check for local user properties file
-        File fileLocalUserPropertiesFile = new File(pathDesktop + "\\LaunchPad\\launchpad.properties");
+        File fileLocalUserPropertiesFile = new File(strPathPropertiesFile);
         if (!fileLocalUserPropertiesFile.exists()) {
             System.out.println("Local User Properties file not found.");
             //JOptionPane.showMessageDialog(null, "Properties file not found.", "RIP!", JOptionPane.INFORMATION_MESSAGE);
