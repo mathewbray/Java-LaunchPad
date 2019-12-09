@@ -532,6 +532,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton8.setBorder(emptyBorder);
         jButton9.setBorder(emptyBorder);
         jButton10.setBorder(emptyBorder);
+        jButton11.setBorder(emptyBorder);
         jButton12.setBorder(emptyBorder);
         jButton13.setBorder(emptyBorder);
         jButton14.setBorder(emptyBorder);
