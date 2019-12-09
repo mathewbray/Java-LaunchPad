@@ -2,20 +2,22 @@
 
 One place to launch any connection, link, script, reference, or application.
 
-## Getting Started
+## Prerequisites
 
-### Prerequisites
-
-Microsoft Windows
+Microsoft Windows  
 Java Runtime Environment
 
-### Installing
+## Installing
 
-Run "LaunchPad.jar" from any location you prefer.  Optionally create a shortcut like so:
+Run "LaunchPad.jar" from any location you prefer.  Optionally create a shortcut like so:  
 "C:\Program Files (x86)\Common Files\Oracle\Java\javapath\javaw.exe" -jar "%USERPROFILE%\Desktop\LaunchPad.jar"
 
 
-### Configuring
+## Configuring
 
-Configuration file is located here:
-"%USERPROFILE%\.launchpad\launchpad.properties
+The properties file is located here:  
+"%USERPROFILE%\.launchpad\launchpad.properties  
+  
+Within the properties file, are all the resources to customize LaunchPad.
+
+### 
