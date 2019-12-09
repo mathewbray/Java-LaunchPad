@@ -504,7 +504,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton1.getX(); int y = jButton1.getY(); jButton1.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton1.getX(); int y = jButton1.getY(); jButton1.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton1.getX(); int y = jButton1.getY(); jButton1.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton1.getX(); int y = jButton1.getY(); jButton1.setLocation(x - 1, y - 1); } });
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton2.getX(); int y = jButton2.getY(); jButton2.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton2.getX(); int y = jButton2.getY(); jButton2.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton2.getX(); int y = jButton2.getY(); jButton2.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton2.getX(); int y = jButton2.getY(); jButton2.setLocation(x - 1, y - 1); } });
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton3.getX(); int y = jButton3.getY(); jButton3.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton3.getX(); int y = jButton3.getY(); jButton3.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton3.getX(); int y = jButton3.getY(); jButton3.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton3.getX(); int y = jButton3.getY(); jButton3.setLocation(x - 1, y - 1); } });
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton4.getX(); int y = jButton4.getY(); jButton4.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton5.getX(); int y = jButton5.getY(); jButton5.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton5.getX(); int y = jButton5.getY(); jButton5.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton5.getX(); int y = jButton5.getY(); jButton5.setLocation(x - 1, y - 1); } });
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton4.getX(); int y = jButton4.getY(); jButton4.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton4.getX(); int y = jButton4.getY(); jButton4.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton4.getX(); int y = jButton4.getY(); jButton4.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton4.getX(); int y = jButton4.getY(); jButton4.setLocation(x - 1, y - 1); } });
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton5.getX(); int y = jButton5.getY(); jButton5.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton5.getX(); int y = jButton5.getY(); jButton5.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton5.getX(); int y = jButton5.getY(); jButton5.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton5.getX(); int y = jButton5.getY(); jButton5.setLocation(x - 1, y - 1); } });
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton6.getX(); int y = jButton6.getY(); jButton6.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton6.getX(); int y = jButton6.getY(); jButton6.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton6.getX(); int y = jButton6.getY(); jButton6.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton6.getX(); int y = jButton6.getY(); jButton6.setLocation(x - 1, y - 1); } });
         jButton7.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton7.getX(); int y = jButton7.getY(); jButton7.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton7.getX(); int y = jButton7.getY(); jButton7.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton7.getX(); int y = jButton7.getY(); jButton7.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton7.getX(); int y = jButton7.getY(); jButton7.setLocation(x - 1, y - 1); } });
         jButton8.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton8.getX(); int y = jButton8.getY(); jButton8.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton8.getX(); int y = jButton8.getY(); jButton8.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton8.getX(); int y = jButton8.getY(); jButton8.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton8.getX(); int y = jButton8.getY(); jButton8.setLocation(x - 1, y - 1); } });
@@ -518,6 +519,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton16.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton16.getX(); int y = jButton16.getY(); jButton16.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton16.getX(); int y = jButton16.getY(); jButton16.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton16.getX(); int y = jButton16.getY(); jButton16.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton16.getX(); int y = jButton16.getY(); jButton16.setLocation(x - 1, y - 1); } });
         jButton17.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton17.getX(); int y = jButton17.getY(); jButton17.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton17.getX(); int y = jButton17.getY(); jButton17.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton17.getX(); int y = jButton17.getY(); jButton17.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton17.getX(); int y = jButton17.getY(); jButton17.setLocation(x - 1, y - 1); } });
         jButton18.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton18.getX(); int y = jButton18.getY(); jButton18.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton18.getX(); int y = jButton18.getY(); jButton18.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton19.getX(); int y = jButton19.getY(); jButton19.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton19.getX(); int y = jButton19.getY(); jButton19.setLocation(x - 1, y - 1); } });
+        jButton19.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton19.getX(); int y = jButton19.getY(); jButton19.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton19.getX(); int y = jButton19.getY(); jButton19.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton19.getX(); int y = jButton19.getY(); jButton19.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton19.getX(); int y = jButton19.getY(); jButton19.setLocation(x - 1, y - 1); } });
         jButton20.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton20.getX(); int y = jButton20.getY(); jButton20.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton20.getX(); int y = jButton20.getY(); jButton20.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton20.getX(); int y = jButton20.getY(); jButton20.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton20.getX(); int y = jButton20.getY(); jButton20.setLocation(x - 1, y - 1); } });
         
         //- Remove the button borders
@@ -4027,45 +4029,11 @@ final JFXPanel fxPanel = new JFXPanel();
     }//GEN-LAST:event_jButtonReferenceCustom02ActionPerformed
 
     private void jButtonReferenceCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom01ActionPerformed
-        // TODO add your handling code here:
-        
-        openReferenceUsingDesktop("ReferencePath01");
-//        String strReference01;
-//        strReference01 = PropertyHandler.getInstance().getValue("ReferencePath01");
-//
-//        if(jToggleOfflineMode.isSelected()){
-//            strReference01 =  PropertyHandler.getInstance().getValue("ReferenceFolderOffline") + strReference01;
-//            System.out.println("Using Offline: " + strReference01);
-//        }
-//        else{
-//            strReference01 =  PropertyHandler.getInstance().getValue("ReferenceFolderOnline") + strReference01;
-//        }
-//
-//        //text file, should be opening in default text editor
-//        File file = new File(strReference01);
-//
-//        //first check if Desktop is supported by Platform or not
-//        if(!Desktop.isDesktopSupported()){
-//            System.out.println("Desktop is not supported");
-//            return;
-//        }
-//
-//        Desktop desktop = Desktop.getDesktop();
-//        if(file.exists()) try {
-//            desktop.open(file);
-//        } catch (IOException ex) {
-//            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-//            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
-//        }
-//
-//        // Open
-//        if(file.exists()) try {
-//            desktop.open(file);
-//        } catch (IOException ex) {
-//            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-//            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
-//
-//        }
+        try {
+            openReferenceUsingRuntimeExec("ReferencePath01");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom01ActionPerformed
 
     private void jToggleOnlineOfflineModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleOnlineOfflineModeActionPerformed
@@ -5332,11 +5300,16 @@ final JFXPanel fxPanel = new JFXPanel();
   
 
     public void linkCustom(String strLinkText) {
-        String myValue = PropertyHandler.getInstance().getValue(strLinkText).replace("%USERPROFILE%", pathUserProfile);
+        String myValue = PropertyHandler.getInstance().getValue(strLinkText);
         System.out.println(myValue);
         try {
-            String[] args = new String[] {"cmd.exe", "/c", myValue};
-            Process proc = new ProcessBuilder(args).start();
+            //- Using ProcessBuilder
+            //String[] args = new String[] {"cmd.exe", "/c", "start", myValue};
+            //Process proc = new ProcessBuilder(args).start();
+
+            //- Using Runtime
+            System.out.println("Opening: " + myValue);            
+            Runtime.getRuntime().exec("cmd.exe /c start " + myValue);
         }
         catch (IOException e) {
             System.out.println("Something is Wrong!");
@@ -5390,61 +5363,50 @@ final JFXPanel fxPanel = new JFXPanel();
     }
     
 
-    public void openReferenceUsingDesktop(String strReferenceToOpen) {
+    public void openReferenceUsingRuntimeExec(String strReferenceToOpen) throws IOException {
     
-        String strReference;
+        String strReferenceFromPropertiesFile;
         //strReference = PropertyHandler.getInstance().getValue(strReferenceToOpen);
 
         if(jToggleOnlineOfflineMode.isSelected()){
-            strReference =  PropertyHandler.getInstance().getValue(strReferenceToOpen + "Offline");
-            System.out.println("Using Offline: " + strReference);
+            strReferenceFromPropertiesFile =  PropertyHandler.getInstance().getValue(strReferenceToOpen + "Offline");
+            System.out.println("Using Offline: " + strReferenceFromPropertiesFile);
         }
         else{
-            strReference =  PropertyHandler.getInstance().getValue(strReferenceToOpen + "Online");
-            System.out.println("Using Online: " + strReference);        
+            strReferenceFromPropertiesFile =  PropertyHandler.getInstance().getValue(strReferenceToOpen + "Online");
+            System.out.println("Using Online: " + strReferenceFromPropertiesFile);        
         }
 
-        //text file, should be opening in default text editor
-        File file = new File(strReference);
 
-        //first check if Desktop is supported by Platform or not
-        if(!Desktop.isDesktopSupported()){
-            System.out.println("Desktop is not supported");
-            return;
+
+        try {
+            //- Using ProcessBuilder
+            //String[] args = new String[] {"cmd.exe", "/c", "start", strReferenceFromPropertiesFile};
+            //Process proc = new ProcessBuilder(args).start();
+            
+            //- Using Runtime
+            System.out.println("Opening: " + strReferenceFromPropertiesFile);           
+            Runtime.getRuntime().exec("cmd.exe /c start " + strReferenceFromPropertiesFile);
         }
-
-        Desktop desktop = Desktop.getDesktop();
-
-
-        if(isValidURL(strReferenceToOpen))
-
-        if(file.exists()) try {
-            desktop.open(file);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
+        catch (IOException e) {
+            System.out.println("Something is Wrong!");
+            JOptionPane.showMessageDialog(null, "Something is wrong!");
         }
-
-        // Open
-        if(file.exists()) try {
-            desktop.open(file);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
-
-        }
-    
     }
 
-    static public boolean isValidURL(String urlStr) {
-        try {
-          URI uri = new URI(urlStr);
-          return uri.getScheme().equals("http") || uri.getScheme().equals("https");
-        }
-        catch (Exception e) {
-            return false;
-        }
-    }   
+    
+    
+
+
+//    static public boolean isValidURL(String urlStr) {
+//        try {
+//          URI uri = new URI(urlStr);
+//          return uri.getScheme().equals("http") || uri.getScheme().equals("https");
+//        }
+//        catch (Exception e) {
+//            return false;
+//        }
+//    }   
     
     class MyMouseListener extends MouseAdapter {
         @Override
