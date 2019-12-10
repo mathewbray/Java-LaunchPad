@@ -554,29 +554,116 @@ final JFXPanel fxPanel = new JFXPanel();
         jTextFieldZipFilename.setText(strPathDesktop + "\\Backup_" + dateTime + ".zip");
         
         //--- Load Links button text
-        jButtonLinkCustom01.setText(PropertyHandler.getInstance().getValue("CustomLink01Text"));
-        jButtonLinkCustom02.setText(PropertyHandler.getInstance().getValue("CustomLink02Text"));
-        jButtonLinkCustom03.setText(PropertyHandler.getInstance().getValue("CustomLink03Text"));
-        jButtonLinkCustom04.setText(PropertyHandler.getInstance().getValue("CustomLink04Text"));
-        jButtonLinkCustom05.setText(PropertyHandler.getInstance().getValue("CustomLink05Text"));
-        jButtonLinkCustom06.setText(PropertyHandler.getInstance().getValue("CustomLink06Text"));        
+        jButtonLinkCustom01.setText(PropertyHandler.getInstance().getValue("CustomLink01Description"));
+        jButtonLinkCustom02.setText(PropertyHandler.getInstance().getValue("CustomLink02Description"));
+        jButtonLinkCustom03.setText(PropertyHandler.getInstance().getValue("CustomLink03Description"));
+        jButtonLinkCustom04.setText(PropertyHandler.getInstance().getValue("CustomLink04Description"));
+        jButtonLinkCustom05.setText(PropertyHandler.getInstance().getValue("CustomLink05Description"));
+        jButtonLinkCustom06.setText(PropertyHandler.getInstance().getValue("CustomLink06Description"));        
+        jButtonLinkCustom07.setText(PropertyHandler.getInstance().getValue("CustomLink07Description"));        
+        jButtonLinkCustom08.setText(PropertyHandler.getInstance().getValue("CustomLink08Description"));        
+        jButtonLinkCustom09.setText(PropertyHandler.getInstance().getValue("CustomLink09Description"));        
+        jButtonLinkCustom10.setText(PropertyHandler.getInstance().getValue("CustomLink10Description"));                
+        jButtonLinkCustom11.setText(PropertyHandler.getInstance().getValue("CustomLink11Description"));                
+        jButtonLinkCustom12.setText(PropertyHandler.getInstance().getValue("CustomLink12Description"));                
+        jButtonLinkCustom13.setText(PropertyHandler.getInstance().getValue("CustomLink13Description"));                
+        jButtonLinkCustom14.setText(PropertyHandler.getInstance().getValue("CustomLink14Description"));                
+        jButtonLinkCustom15.setText(PropertyHandler.getInstance().getValue("CustomLink15Description"));                
+        jButtonLinkCustom16.setText(PropertyHandler.getInstance().getValue("CustomLink16Description"));                
+        jButtonLinkCustom17.setText(PropertyHandler.getInstance().getValue("CustomLink17Description"));                
+        jButtonLinkCustom18.setText(PropertyHandler.getInstance().getValue("CustomLink18Description"));                
+        jButtonLinkCustom19.setText(PropertyHandler.getInstance().getValue("CustomLink19Description"));                
+        jButtonLinkCustom20.setText(PropertyHandler.getInstance().getValue("CustomLink20Description"));                
+        jButtonLinkCustom21.setText(PropertyHandler.getInstance().getValue("CustomLink21Description"));                
+        jButtonLinkCustom22.setText(PropertyHandler.getInstance().getValue("CustomLink22Description"));                
+        jButtonLinkCustom23.setText(PropertyHandler.getInstance().getValue("CustomLink23Description"));                
+        jButtonLinkCustom24.setText(PropertyHandler.getInstance().getValue("CustomLink24Description"));                
+        jButtonLinkCustom25.setText(PropertyHandler.getInstance().getValue("CustomLink25Description"));                
+        jButtonLinkCustom26.setText(PropertyHandler.getInstance().getValue("CustomLink26Description"));                
+        jButtonLinkCustom27.setText(PropertyHandler.getInstance().getValue("CustomLink27Description"));                
+        jButtonLinkCustom28.setText(PropertyHandler.getInstance().getValue("CustomLink28Description"));                
+        jButtonLinkCustom29.setText(PropertyHandler.getInstance().getValue("CustomLink29Description"));                
+        jButtonLinkCustom30.setText(PropertyHandler.getInstance().getValue("CustomLink30Description"));                
+        jButtonLinkCustom31.setText(PropertyHandler.getInstance().getValue("CustomLink31Description"));                
+        jButtonLinkCustom32.setText(PropertyHandler.getInstance().getValue("CustomLink32Description"));                
+        jButtonLinkCustom33.setText(PropertyHandler.getInstance().getValue("CustomLink33Description"));                
+        jButtonLinkCustom33.setText(PropertyHandler.getInstance().getValue("CustomLink34Description"));                
+        jButtonLinkCustom33.setText(PropertyHandler.getInstance().getValue("CustomLink35Description"));                
+        jButtonLinkCustom33.setText(PropertyHandler.getInstance().getValue("CustomLink36Description"));                
         
         
         //--- Load Reference button text
-        jButtonReferenceCustom01.setText(PropertyHandler.getInstance().getValue("CustomReference01Text"));
-        jButtonReferenceCustom02.setText(PropertyHandler.getInstance().getValue("CustomReference02Text"));
-        jButtonReferenceCustom03.setText(PropertyHandler.getInstance().getValue("CustomReference03Text"));
-        jButtonReferenceCustom04.setText(PropertyHandler.getInstance().getValue("CustomReference04Text"));
-        jButtonReferenceCustom05.setText(PropertyHandler.getInstance().getValue("CustomReference05Text"));
-        jButtonReferenceCustom06.setText(PropertyHandler.getInstance().getValue("CustomReference06Text"));
+        jButtonReferenceCustom01.setText(PropertyHandler.getInstance().getValue("CustomReference01Description"));
+        jButtonReferenceCustom02.setText(PropertyHandler.getInstance().getValue("CustomReference02Description"));
+        jButtonReferenceCustom03.setText(PropertyHandler.getInstance().getValue("CustomReference03Description"));
+        jButtonReferenceCustom04.setText(PropertyHandler.getInstance().getValue("CustomReference04Description"));
+        jButtonReferenceCustom05.setText(PropertyHandler.getInstance().getValue("CustomReference05Description"));
+        jButtonReferenceCustom06.setText(PropertyHandler.getInstance().getValue("CustomReference06Description"));
+        jButtonReferenceCustom07.setText(PropertyHandler.getInstance().getValue("CustomReference07Description"));
+        jButtonReferenceCustom08.setText(PropertyHandler.getInstance().getValue("CustomReference08Description"));
+        jButtonReferenceCustom09.setText(PropertyHandler.getInstance().getValue("CustomReference09Description"));
+        jButtonReferenceCustom10.setText(PropertyHandler.getInstance().getValue("CustomReference10Description"));
+        jButtonReferenceCustom11.setText(PropertyHandler.getInstance().getValue("CustomReference11Description"));
+        jButtonReferenceCustom12.setText(PropertyHandler.getInstance().getValue("CustomReference12Description"));
+        jButtonReferenceCustom13.setText(PropertyHandler.getInstance().getValue("CustomReference13Description"));
+        jButtonReferenceCustom14.setText(PropertyHandler.getInstance().getValue("CustomReference14Description"));
+        jButtonReferenceCustom15.setText(PropertyHandler.getInstance().getValue("CustomReference15Description"));
+        jButtonReferenceCustom16.setText(PropertyHandler.getInstance().getValue("CustomReference16Description"));
+        jButtonReferenceCustom17.setText(PropertyHandler.getInstance().getValue("CustomReference17Description"));
+        jButtonReferenceCustom18.setText(PropertyHandler.getInstance().getValue("CustomReference18Description"));
+        jButtonReferenceCustom19.setText(PropertyHandler.getInstance().getValue("CustomReference19Description"));
+        jButtonReferenceCustom20.setText(PropertyHandler.getInstance().getValue("CustomReference20Description"));
+        jButtonReferenceCustom21.setText(PropertyHandler.getInstance().getValue("CustomReference21Description"));
+        jButtonReferenceCustom22.setText(PropertyHandler.getInstance().getValue("CustomReference22Description"));
+        jButtonReferenceCustom23.setText(PropertyHandler.getInstance().getValue("CustomReference23Description"));
+        jButtonReferenceCustom24.setText(PropertyHandler.getInstance().getValue("CustomReference24Description"));
+        jButtonReferenceCustom25.setText(PropertyHandler.getInstance().getValue("CustomReference25Description"));
+        jButtonReferenceCustom26.setText(PropertyHandler.getInstance().getValue("CustomReference26Description"));
+        jButtonReferenceCustom27.setText(PropertyHandler.getInstance().getValue("CustomReference27Description"));
+        jButtonReferenceCustom28.setText(PropertyHandler.getInstance().getValue("CustomReference28Description"));
+        jButtonReferenceCustom29.setText(PropertyHandler.getInstance().getValue("CustomReference29Description"));
+        jButtonReferenceCustom30.setText(PropertyHandler.getInstance().getValue("CustomReference30Description"));
+        jButtonReferenceCustom31.setText(PropertyHandler.getInstance().getValue("CustomReference31Description"));
+        jButtonReferenceCustom32.setText(PropertyHandler.getInstance().getValue("CustomReference32Description"));
+        jButtonReferenceCustom33.setText(PropertyHandler.getInstance().getValue("CustomReference33Description"));
 
         //--- Load Script button text
-        jButtonScriptCustom01.setText(PropertyHandler.getInstance().getValue("CustomScript01Text"));
-        jButtonScriptCustom02.setText(PropertyHandler.getInstance().getValue("CustomScript02Text"));
-        jButtonScriptCustom03.setText(PropertyHandler.getInstance().getValue("CustomScript03Text"));
-        jButtonScriptCustom01.setText(PropertyHandler.getInstance().getValue("CustomScript04Text"));
-        jButtonScriptCustom02.setText(PropertyHandler.getInstance().getValue("CustomScript05Text"));
-        jButtonScriptCustom03.setText(PropertyHandler.getInstance().getValue("CustomScript06Text"));
+        jButtonScriptCustom01.setText(PropertyHandler.getInstance().getValue("CustomScript01Description"));
+        jButtonScriptCustom02.setText(PropertyHandler.getInstance().getValue("CustomScript02Description"));
+        jButtonScriptCustom03.setText(PropertyHandler.getInstance().getValue("CustomScript03Description"));
+        jButtonScriptCustom04.setText(PropertyHandler.getInstance().getValue("CustomScript04Description"));
+        jButtonScriptCustom05.setText(PropertyHandler.getInstance().getValue("CustomScript05Description"));
+        jButtonScriptCustom06.setText(PropertyHandler.getInstance().getValue("CustomScript06Description"));
+        jButtonScriptCustom07.setText(PropertyHandler.getInstance().getValue("CustomScript07Description"));
+        jButtonScriptCustom08.setText(PropertyHandler.getInstance().getValue("CustomScript08Description"));
+        jButtonScriptCustom09.setText(PropertyHandler.getInstance().getValue("CustomScript09Description"));
+        jButtonScriptCustom10.setText(PropertyHandler.getInstance().getValue("CustomScript10Description"));
+        jButtonScriptCustom11.setText(PropertyHandler.getInstance().getValue("CustomScript11Description"));
+        jButtonScriptCustom12.setText(PropertyHandler.getInstance().getValue("CustomScript12Description"));
+        jButtonScriptCustom13.setText(PropertyHandler.getInstance().getValue("CustomScript13Description"));
+        jButtonScriptCustom14.setText(PropertyHandler.getInstance().getValue("CustomScript14Description"));
+        jButtonScriptCustom15.setText(PropertyHandler.getInstance().getValue("CustomScript15Description"));
+        jButtonScriptCustom16.setText(PropertyHandler.getInstance().getValue("CustomScript16Description"));
+        jButtonScriptCustom17.setText(PropertyHandler.getInstance().getValue("CustomScript17Description"));
+        jButtonScriptCustom18.setText(PropertyHandler.getInstance().getValue("CustomScript18Description"));
+        jButtonScriptCustom19.setText(PropertyHandler.getInstance().getValue("CustomScript19Description"));
+        jButtonScriptCustom20.setText(PropertyHandler.getInstance().getValue("CustomScript20Description"));
+        jButtonScriptCustom21.setText(PropertyHandler.getInstance().getValue("CustomScript21Description"));
+        jButtonScriptCustom22.setText(PropertyHandler.getInstance().getValue("CustomScript22Description"));
+        jButtonScriptCustom23.setText(PropertyHandler.getInstance().getValue("CustomScript23Description"));
+        jButtonScriptCustom24.setText(PropertyHandler.getInstance().getValue("CustomScript24Description"));
+        jButtonScriptCustom25.setText(PropertyHandler.getInstance().getValue("CustomScript25Description"));
+        jButtonScriptCustom26.setText(PropertyHandler.getInstance().getValue("CustomScript26Description"));
+        jButtonScriptCustom27.setText(PropertyHandler.getInstance().getValue("CustomScript27Description"));
+        jButtonScriptCustom28.setText(PropertyHandler.getInstance().getValue("CustomScript28Description"));
+        jButtonScriptCustom29.setText(PropertyHandler.getInstance().getValue("CustomScript29Description"));
+        jButtonScriptCustom30.setText(PropertyHandler.getInstance().getValue("CustomScript30Description"));
+        jButtonScriptCustom31.setText(PropertyHandler.getInstance().getValue("CustomScript31Description"));
+        jButtonScriptCustom32.setText(PropertyHandler.getInstance().getValue("CustomScript32Description"));
+        jButtonScriptCustom33.setText(PropertyHandler.getInstance().getValue("CustomScript33Description"));
+        jButtonScriptCustom34.setText(PropertyHandler.getInstance().getValue("CustomScript34Description"));
+        jButtonScriptCustom35.setText(PropertyHandler.getInstance().getValue("CustomScript35Description"));
+        jButtonScriptCustom36.setText(PropertyHandler.getInstance().getValue("CustomScript36Description"));
 
          //--- Make buttons and stuff look less crappy - this also allows background coloring
         String laf = UIManager.getSystemLookAndFeelClassName();
@@ -2129,6 +2216,11 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.setLayout(null);
 
         jButtonScriptCustom03.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom03.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptCustom03ActionPerformed(evt);
+            }
+        });
         jPanelScripts.add(jButtonScriptCustom03);
         jButtonScriptCustom03.setBounds(380, 10, 170, 30);
 
@@ -2151,6 +2243,11 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonScriptCustom02.setBounds(200, 10, 170, 30);
 
         jButtonScriptCustom06.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom06.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptCustom06ActionPerformed(evt);
+            }
+        });
         jPanelScripts.add(jButtonScriptCustom06);
         jButtonScriptCustom06.setBounds(380, 50, 170, 30);
 
@@ -2182,6 +2279,11 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonScriptCustom08.setBounds(200, 90, 170, 30);
 
         jButtonScriptCustom09.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom09.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptCustom09ActionPerformed(evt);
+            }
+        });
         jPanelScripts.add(jButtonScriptCustom09);
         jButtonScriptCustom09.setBounds(380, 90, 170, 30);
 
@@ -2204,6 +2306,11 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonScriptCustom12.setBounds(380, 130, 170, 30);
 
         jButtonScriptCustom15.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptCustom15ActionPerformed(evt);
+            }
+        });
         jPanelScripts.add(jButtonScriptCustom15);
         jButtonScriptCustom15.setBounds(380, 170, 170, 30);
 
@@ -2244,6 +2351,11 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonScriptCustom14.setBounds(200, 170, 170, 30);
 
         jButtonScriptCustom18.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptCustom18ActionPerformed(evt);
+            }
+        });
         jPanelScripts.add(jButtonScriptCustom18);
         jButtonScriptCustom18.setBounds(380, 210, 170, 30);
 
@@ -2275,6 +2387,11 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonScriptCustom20.setBounds(200, 250, 170, 30);
 
         jButtonScriptCustom21.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptCustom21ActionPerformed(evt);
+            }
+        });
         jPanelScripts.add(jButtonScriptCustom21);
         jButtonScriptCustom21.setBounds(380, 250, 170, 30);
 
@@ -2288,6 +2405,11 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonScriptCustom19.setBounds(20, 250, 170, 30);
 
         jButtonScriptCustom24.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptCustom24ActionPerformed(evt);
+            }
+        });
         jPanelScripts.add(jButtonScriptCustom24);
         jButtonScriptCustom24.setBounds(380, 290, 170, 30);
 
@@ -2319,6 +2441,11 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonScriptCustom26.setBounds(200, 330, 170, 30);
 
         jButtonScriptCustom27.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptCustom27ActionPerformed(evt);
+            }
+        });
         jPanelScripts.add(jButtonScriptCustom27);
         jButtonScriptCustom27.setBounds(380, 330, 170, 30);
 
@@ -2341,6 +2468,11 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonScriptCustom29.setBounds(200, 370, 170, 30);
 
         jButtonScriptCustom30.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptCustom30ActionPerformed(evt);
+            }
+        });
         jPanelScripts.add(jButtonScriptCustom30);
         jButtonScriptCustom30.setBounds(380, 370, 170, 30);
 
@@ -2363,6 +2495,11 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonScriptCustom32.setBounds(200, 410, 170, 30);
 
         jButtonScriptCustom33.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptCustom33ActionPerformed(evt);
+            }
+        });
         jPanelScripts.add(jButtonScriptCustom33);
         jButtonScriptCustom33.setBounds(380, 410, 170, 30);
 
@@ -2394,6 +2531,11 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonScriptCustom35.setBounds(200, 450, 170, 30);
 
         jButtonScriptCustom36.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptCustom36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptCustom36ActionPerformed(evt);
+            }
+        });
         jPanelScripts.add(jButtonScriptCustom36);
         jButtonScriptCustom36.setBounds(380, 450, 170, 30);
 
@@ -4039,11 +4181,19 @@ final JFXPanel fxPanel = new JFXPanel();
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void jButtonReferenceCustom03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom03ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference03");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom03ActionPerformed
 
     private void jButtonReferenceCustom02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom02ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference02");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom02ActionPerformed
 
     private void jButtonReferenceCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom01ActionPerformed
@@ -4098,255 +4248,207 @@ final JFXPanel fxPanel = new JFXPanel();
     }//GEN-LAST:event_jButtonScriptSyncStandalonesActionPerformed
 
     private void jButtonScriptCustom28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom28ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript28Exec");
     }//GEN-LAST:event_jButtonScriptCustom28ActionPerformed
 
     private void jButtonScriptCustom29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom29ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript29Exec");
     }//GEN-LAST:event_jButtonScriptCustom29ActionPerformed
 
     private void jButtonScriptCustom25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom25ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript25Exec");
     }//GEN-LAST:event_jButtonScriptCustom25ActionPerformed
 
     private void jButtonScriptCustom26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom26ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript26Exec");
     }//GEN-LAST:event_jButtonScriptCustom26ActionPerformed
 
     private void jButtonScriptCustom23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom23ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript23Exec");
     }//GEN-LAST:event_jButtonScriptCustom23ActionPerformed
 
     private void jButtonScriptCustom22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom22ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript22Exec");
     }//GEN-LAST:event_jButtonScriptCustom22ActionPerformed
 
     private void jButtonScriptCustom19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom19ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript19Exec");
     }//GEN-LAST:event_jButtonScriptCustom19ActionPerformed
 
     private void jButtonScriptCustom20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom20ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript20Exec");
     }//GEN-LAST:event_jButtonScriptCustom20ActionPerformed
 
     private void jButtonScriptCustom17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom17ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript17Exec");
     }//GEN-LAST:event_jButtonScriptCustom17ActionPerformed
 
     private void jButtonScriptCustom16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom16ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript16Exec");
     }//GEN-LAST:event_jButtonScriptCustom16ActionPerformed
 
     private void jButtonScriptCustom14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom14ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript14Exec");
     }//GEN-LAST:event_jButtonScriptCustom14ActionPerformed
 
     private void jButtonScriptCustom13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom13ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript13Exec");
     }//GEN-LAST:event_jButtonScriptCustom13ActionPerformed
 
     private void jButtonScriptCustom10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom10ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript10Exec");
     }//GEN-LAST:event_jButtonScriptCustom10ActionPerformed
 
     private void jButtonScriptCustom11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom11ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript11Exec");
     }//GEN-LAST:event_jButtonScriptCustom11ActionPerformed
 
     private void jButtonScriptCustom12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom12ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript12Exec");
     }//GEN-LAST:event_jButtonScriptCustom12ActionPerformed
 
     private void jButtonScriptCustom07ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom07ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript07Exec");
     }//GEN-LAST:event_jButtonScriptCustom07ActionPerformed
 
     private void jButtonScriptCustom08ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom08ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript08Exec");
     }//GEN-LAST:event_jButtonScriptCustom08ActionPerformed
 
     private void jButtonScriptCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom05ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript05Exec");
     }//GEN-LAST:event_jButtonScriptCustom05ActionPerformed
 
     private void jButtonScriptCustom04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom04ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript04Exec");
     }//GEN-LAST:event_jButtonScriptCustom04ActionPerformed
 
     private void jButtonScriptCustom02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom02ActionPerformed
-        // TODO add your handling code here:
-        String myValue = PropertyHandler.getInstance().getValue("CustomScript05").replace("%USERPROFILE%", pathUserProfile);
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
+        openScriptCustom("CustomScript02Exec");
     }//GEN-LAST:event_jButtonScriptCustom02ActionPerformed
 
     private void jButtonScriptCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom01ActionPerformed
-        // TODO add your handling code here:
-        openScriptCustom("CustomScript01");
-//        System.out.println(myValue);
-//        try {
-//            Runtime.getRuntime().exec(myValue);
-//        }
-//        catch (IOException e) {
-//            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-//            JOptionPane.showMessageDialog(null, "Something is wrong!");
-//        }
+        openScriptCustom("CustomScript01Exec");
     }//GEN-LAST:event_jButtonScriptCustom01ActionPerformed
 
     private void jButtonLinkCustom30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom30ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink30");
+        openLinkCustom("CustomLink30Exec");
     }//GEN-LAST:event_jButtonLinkCustom30ActionPerformed
 
     private void jButtonLinkCustom29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom29ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink29");
+        openLinkCustom("CustomLink29Exec");
     }//GEN-LAST:event_jButtonLinkCustom29ActionPerformed
 
     private void jButtonLinkCustom28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom28ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink28");
+        openLinkCustom("CustomLink28Exec");
     }//GEN-LAST:event_jButtonLinkCustom28ActionPerformed
 
     private void jButtonLinkCustom27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom27ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink27");
+        openLinkCustom("CustomLink27Exec");
     }//GEN-LAST:event_jButtonLinkCustom27ActionPerformed
 
     private void jButtonLinkCustom26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom26ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink26");
+        openLinkCustom("CustomLink26Exec");
     }//GEN-LAST:event_jButtonLinkCustom26ActionPerformed
 
     private void jButtonLinkCustom25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom25ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink25");
+        openLinkCustom("CustomLink25Exec");
     }//GEN-LAST:event_jButtonLinkCustom25ActionPerformed
 
     private void jButtonLinkCustom24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom24ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink24");
+        openLinkCustom("CustomLink24Exec");
     }//GEN-LAST:event_jButtonLinkCustom24ActionPerformed
 
     private void jButtonLinkCustom23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom23ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink23");
+        openLinkCustom("CustomLink23Exec");
     }//GEN-LAST:event_jButtonLinkCustom23ActionPerformed
 
     private void jButtonLinkCustom22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom22ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink22");
+        openLinkCustom("CustomLink22Exec");
     }//GEN-LAST:event_jButtonLinkCustom22ActionPerformed
 
     private void jButtonLinkCustom21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom21ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink21");
+        openLinkCustom("CustomLink21Exec");
     }//GEN-LAST:event_jButtonLinkCustom21ActionPerformed
 
     private void jButtonLinkCustom20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom20ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink20");
+        openLinkCustom("CustomLink20Exec");
     }//GEN-LAST:event_jButtonLinkCustom20ActionPerformed
 
     private void jButtonLinkCustom19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom19ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink19");
+        openLinkCustom("CustomLink19Exec");
     }//GEN-LAST:event_jButtonLinkCustom19ActionPerformed
 
     private void jButtonLinkCustom18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom18ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink18");
+        openLinkCustom("CustomLink18Exec");
     }//GEN-LAST:event_jButtonLinkCustom18ActionPerformed
 
     private void jButtonLinkCustom17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom17ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink17");
+        openLinkCustom("CustomLink17Exec");
     }//GEN-LAST:event_jButtonLinkCustom17ActionPerformed
 
     private void jButtonLinkCustom16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom16ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink16");
+        openLinkCustom("CustomLink16Exec");
     }//GEN-LAST:event_jButtonLinkCustom16ActionPerformed
 
     private void jButtonLinkCustom15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom15ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink15");
+        openLinkCustom("CustomLink15Exec");
     }//GEN-LAST:event_jButtonLinkCustom15ActionPerformed
 
     private void jButtonLinkCustom14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom14ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink14");
+        openLinkCustom("CustomLink14Exec");
     }//GEN-LAST:event_jButtonLinkCustom14ActionPerformed
 
     private void jButtonLinkCustom13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom13ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink13");
+        openLinkCustom("CustomLink13Exec");
     }//GEN-LAST:event_jButtonLinkCustom13ActionPerformed
 
     private void jButtonLinkCustom12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom12ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink12");
+        openLinkCustom("CustomLink12Exec");
     }//GEN-LAST:event_jButtonLinkCustom12ActionPerformed
 
     private void jButtonLinkCustom10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom10ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink10");
+        openLinkCustom("CustomLink10Exec");
     }//GEN-LAST:event_jButtonLinkCustom10ActionPerformed
 
     private void jButtonLinkCustom11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom11ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink11");
+        openLinkCustom("CustomLink11Exec");
     }//GEN-LAST:event_jButtonLinkCustom11ActionPerformed
 
     private void jButtonLinkCustom09ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom09ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink09");  
+        openLinkCustom("CustomLink09Exec");  
     }//GEN-LAST:event_jButtonLinkCustom09ActionPerformed
 
     private void jButtonLinkCustom08ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom08ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink08");
+        openLinkCustom("CustomLink08Exec");
     }//GEN-LAST:event_jButtonLinkCustom08ActionPerformed
 
     private void jButtonLinkCustom07ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom07ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink07");
+        openLinkCustom("CustomLink07Exec");
     }//GEN-LAST:event_jButtonLinkCustom07ActionPerformed
 
     private void jButtonLinkCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom06ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink06");
+        openLinkCustom("CustomLink06Exec");
     }//GEN-LAST:event_jButtonLinkCustom06ActionPerformed
 
     private void jButtonLinkCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom05ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink05");
+        openLinkCustom("CustomLink05Exec");
     }//GEN-LAST:event_jButtonLinkCustom05ActionPerformed
 
     private void jButtonLinkCustom04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom04ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink04");
+        openLinkCustom("CustomLink04Exec");
     }//GEN-LAST:event_jButtonLinkCustom04ActionPerformed
 
     private void jButtonLinkCustom03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom03ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink03");
+        openLinkCustom("CustomLink03Exec");
     }//GEN-LAST:event_jButtonLinkCustom03ActionPerformed
 
     private void jButtonLinkCustom02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom02ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink02");
+        openLinkCustom("CustomLink02Exec");
     }//GEN-LAST:event_jButtonLinkCustom02ActionPerformed
 
     private void jButtonLinkCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom01ActionPerformed
-        // TODO add your handling code here:
-        openLinkCustom("CustomLink01");
+        openLinkCustom("CustomLink01Exec");
     }//GEN-LAST:event_jButtonLinkCustom01ActionPerformed
 
     private void jCheckBox1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBox1StateChanged
@@ -4789,181 +4891,299 @@ final JFXPanel fxPanel = new JFXPanel();
     }//GEN-LAST:event_jListSessionsValueChanged
 
     private void jButtonJSDiff2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJSDiff2ActionPerformed
-        // TODO add your handling code here:
+        openTempFileUsingDesktop("html/jsdiff/jsDiff.html", ".html");
     }//GEN-LAST:event_jButtonJSDiff2ActionPerformed
 
     private void jButtonConfigBuilder1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfigBuilder1ActionPerformed
-        // TODO add your handling code here:
+        openTempFileUsingDesktop("html/configbuilder/ConfigBuilder.html", ".html");
     }//GEN-LAST:event_jButtonConfigBuilder1ActionPerformed
 
     private void jButtonSubnetCalculatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubnetCalculatorActionPerformed
-        // TODO add your handling code here:
-                openTempFileUsingDesktop("html/subnetcalculator/subnetcalculator.html", ".html");
+        openTempFileUsingDesktop("html/subnetcalculator/subnetcalculator.html", ".html");
     }//GEN-LAST:event_jButtonSubnetCalculatorActionPerformed
 
     private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
-        // TODO add your handling code here:
         openTempFileUsingDesktop("apps/Puppeteer.jar", ".jar");
     }//GEN-LAST:event_jButton41ActionPerformed
 
     private void jButtonLinkCustom31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom31ActionPerformed
-        // TODO add your handling code here:
+        openLinkCustom("CustomLink31Exec");
     }//GEN-LAST:event_jButtonLinkCustom31ActionPerformed
 
     private void jButtonLinkCustom32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom32ActionPerformed
-        // TODO add your handling code here:
+        openLinkCustom("CustomLink32Exec");
     }//GEN-LAST:event_jButtonLinkCustom32ActionPerformed
 
     private void jButtonLinkCustom33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom33ActionPerformed
-        // TODO add your handling code here:
+        openLinkCustom("CustomLink33Exec");
     }//GEN-LAST:event_jButtonLinkCustom33ActionPerformed
 
     private void jButtonLinkCustom34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom34ActionPerformed
-        // TODO add your handling code here:
+        openLinkCustom("CustomLink34Exec");
     }//GEN-LAST:event_jButtonLinkCustom34ActionPerformed
 
     private void jButtonLinkCustom35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom35ActionPerformed
-        // TODO add your handling code here:
+        openLinkCustom("CustomLink35Exec");
     }//GEN-LAST:event_jButtonLinkCustom35ActionPerformed
 
     private void jButtonLinkCustom36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom36ActionPerformed
-        // TODO add your handling code here:
+        openLinkCustom("CustomLink36Exec");
     }//GEN-LAST:event_jButtonLinkCustom36ActionPerformed
 
     private void jButtonScriptCustom32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom32ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript32Exec");
     }//GEN-LAST:event_jButtonScriptCustom32ActionPerformed
 
     private void jButtonScriptCustom31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom31ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript31Exec");
     }//GEN-LAST:event_jButtonScriptCustom31ActionPerformed
 
     private void jButtonScriptCustom34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom34ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript34Exec");
     }//GEN-LAST:event_jButtonScriptCustom34ActionPerformed
 
     private void jButtonScriptCustom35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom35ActionPerformed
-        // TODO add your handling code here:
+        openScriptCustom("CustomScript35Exec");
     }//GEN-LAST:event_jButtonScriptCustom35ActionPerformed
 
     private void jButtonReferenceCustom04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom04ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference04");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom04ActionPerformed
 
     private void jButtonReferenceCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom05ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference05");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom05ActionPerformed
 
     private void jButtonReferenceCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom06ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference06");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom06ActionPerformed
 
     private void jButtonReferenceCustom07ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom07ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference07");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom07ActionPerformed
 
     private void jButtonReferenceCustom08ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom08ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference08");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom08ActionPerformed
 
     private void jButtonReferenceCustom09ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom09ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference09");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom09ActionPerformed
 
     private void jButtonReferenceCustom10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom10ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference10");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom10ActionPerformed
 
     private void jButtonReferenceCustom11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom11ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference11");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom11ActionPerformed
 
     private void jButtonReferenceCustom12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom12ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference12");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom12ActionPerformed
 
     private void jButtonReferenceCustom13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom13ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference13");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom13ActionPerformed
 
     private void jButtonReferenceCustom14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom14ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference14");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom14ActionPerformed
 
     private void jButtonReferenceCustom15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom15ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference15");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom15ActionPerformed
 
     private void jButtonReferenceCustom16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom16ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference16");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom16ActionPerformed
 
     private void jButtonReferenceCustom17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom17ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference17");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom17ActionPerformed
 
     private void jButtonReferenceCustom18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom18ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference18");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom18ActionPerformed
 
     private void jButtonReferenceCustom19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom19ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference19");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom19ActionPerformed
 
     private void jButtonReferenceCustom20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom20ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference20");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom20ActionPerformed
 
     private void jButtonReferenceCustom21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom21ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference21");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom21ActionPerformed
 
     private void jButtonReferenceCustom22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom22ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference22");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom22ActionPerformed
 
     private void jButtonReferenceCustom23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom23ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference23");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom23ActionPerformed
 
     private void jButtonReferenceCustom24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom24ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference24");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom24ActionPerformed
 
     private void jButtonReferenceCustom25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom25ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference25");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom25ActionPerformed
 
     private void jButtonReferenceCustom26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom26ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference26");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom26ActionPerformed
 
     private void jButtonReferenceCustom27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom27ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference27");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom27ActionPerformed
 
     private void jButtonReferenceCustom28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom28ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference28");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom28ActionPerformed
 
     private void jButtonReferenceCustom29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom29ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference29");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom29ActionPerformed
 
     private void jButtonReferenceCustom30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom30ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference30");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom30ActionPerformed
 
     private void jButtonReferenceCustom31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom31ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference31");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom31ActionPerformed
 
     private void jButtonReferenceCustom32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom32ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference32");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom32ActionPerformed
 
     private void jButtonReferenceCustom33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom33ActionPerformed
-        // TODO add your handling code here:
+        try {
+            openReference("CustomReference33");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonReferenceCustom33ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
@@ -4974,6 +5194,50 @@ final JFXPanel fxPanel = new JFXPanel();
     private void jCheckBoxLOGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxLOGActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxLOGActionPerformed
+
+    private void jButtonScriptCustom03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom03ActionPerformed
+        openScriptCustom("CustomScript03Exec");
+    }//GEN-LAST:event_jButtonScriptCustom03ActionPerformed
+
+    private void jButtonScriptCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom06ActionPerformed
+        openScriptCustom("CustomScript06Exec");
+    }//GEN-LAST:event_jButtonScriptCustom06ActionPerformed
+
+    private void jButtonScriptCustom30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom30ActionPerformed
+        openScriptCustom("CustomScript30Exec");
+    }//GEN-LAST:event_jButtonScriptCustom30ActionPerformed
+
+    private void jButtonScriptCustom36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom36ActionPerformed
+        openScriptCustom("CustomScript36Exec");
+    }//GEN-LAST:event_jButtonScriptCustom36ActionPerformed
+
+    private void jButtonScriptCustom09ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom09ActionPerformed
+        openScriptCustom("CustomScript09Exec");
+    }//GEN-LAST:event_jButtonScriptCustom09ActionPerformed
+
+    private void jButtonScriptCustom15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom15ActionPerformed
+        openScriptCustom("CustomScript15Exec");
+    }//GEN-LAST:event_jButtonScriptCustom15ActionPerformed
+
+    private void jButtonScriptCustom18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom18ActionPerformed
+        openScriptCustom("CustomScript18Exec");
+    }//GEN-LAST:event_jButtonScriptCustom18ActionPerformed
+
+    private void jButtonScriptCustom21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom21ActionPerformed
+        openScriptCustom("CustomScript21Exec");
+    }//GEN-LAST:event_jButtonScriptCustom21ActionPerformed
+
+    private void jButtonScriptCustom24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom24ActionPerformed
+        openScriptCustom("CustomScript24Exec");
+    }//GEN-LAST:event_jButtonScriptCustom24ActionPerformed
+
+    private void jButtonScriptCustom27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom27ActionPerformed
+        openScriptCustom("CustomScript27Exec");
+    }//GEN-LAST:event_jButtonScriptCustom27ActionPerformed
+
+    private void jButtonScriptCustom33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom33ActionPerformed
+        openScriptCustom("CustomScript33Exec");
+    }//GEN-LAST:event_jButtonScriptCustom33ActionPerformed
 
     
     /**
@@ -5166,8 +5430,10 @@ final JFXPanel fxPanel = new JFXPanel();
             //Process proc = new ProcessBuilder(args).start();
 
             //- Using Runtime
-            System.out.println("Opening Link: " + strCommand);            
-            Runtime.getRuntime().exec("cmd.exe /c start " + strCommand);
+            System.out.println("Opening Link: " + strCommand); 
+            if(strCommand != null && !strCommand.isEmpty()) { /* do your stuffs here */             
+                Runtime.getRuntime().exec("cmd.exe /c start " + strCommand);
+            }
         }
         catch (IOException e) {
             System.out.println("Something is Wrong!");
@@ -5184,8 +5450,10 @@ final JFXPanel fxPanel = new JFXPanel();
             //Process proc = new ProcessBuilder(args).start();
 
             //- Using Runtime
-            System.out.println("Opening Script: " + strCommand);            
-            Runtime.getRuntime().exec("cmd.exe /c start " + strCommand);
+            System.out.println("Opening Script: " + strCommand);  
+            if(strCommand != null && !strCommand.isEmpty()) { /* do your stuffs here */ 
+                Runtime.getRuntime().exec("cmd.exe /c start " + strCommand);
+            }
         }
         catch (IOException e) {
             System.out.println("Something is Wrong!");
@@ -5202,8 +5470,10 @@ final JFXPanel fxPanel = new JFXPanel();
             //Process proc = new ProcessBuilder(args).start();
 
             //- Using Runtime
-            System.out.println("Opening Command: " + strCommand);            
-            Runtime.getRuntime().exec("cmd.exe /c start " + strCommand);
+            System.out.println("Opening Command: " + strCommand);     
+            if(strCommand != null && !strCommand.isEmpty()) { /* do your stuffs here */ 
+                Runtime.getRuntime().exec("cmd.exe /c start " + strCommand);
+            }
         }
         catch (IOException e) {
             System.out.println("Something is Wrong!");
@@ -5247,8 +5517,13 @@ final JFXPanel fxPanel = new JFXPanel();
             //Process proc = new ProcessBuilder(args).start();
             
             //- Using Runtime
-            System.out.println("Opening: " + strReferenceFromPropertiesFile);           
-            Runtime.getRuntime().exec("cmd.exe /c start " + strReferenceFromPropertiesFile);
+            System.out.println("Opening: " + strReferenceFromPropertiesFile); 
+            
+            if(strReferenceFromPropertiesFile != null && !strReferenceFromPropertiesFile.isEmpty()) { 
+                Runtime.getRuntime().exec("cmd.exe /c start " + strReferenceFromPropertiesFile);
+            }
+
+            
         }
         catch (IOException e) {
             System.out.println("Something is Wrong!");
