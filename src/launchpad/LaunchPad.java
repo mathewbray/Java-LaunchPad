@@ -197,7 +197,7 @@ public class LaunchPad {
 "CustomLink36Description=",
 "CustomLink36Exec=",
 "CustomReference01Description=Example",
-"CustomReference01Offline=notepad.exe",
+"CustomReference01Offline=wordpad.exe",
 "CustomReference01Online=chrome.exe https://keep.google.com",
 "CustomReference02Description=",
 "CustomReference02Offline=",

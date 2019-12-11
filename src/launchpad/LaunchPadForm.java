@@ -45,6 +45,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.MessageDigest;
+import java.text.Collator;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -732,11 +733,16 @@ final JFXPanel fxPanel = new JFXPanel();
                 Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
             System.out.println("Button List: " + Arrays.toString(arrButtonList));
+            Arrays.sort(arrButtonList, Collator.getInstance());
             imageMap = createImageMap(arrButtonList);
+            
+            
             JList list = new JList(arrButtonList);
+            
             list.setCellRenderer(new ButtonListRenderer());
             
-       
+            
+            
             JScrollPane scroll = new JScrollPane(list);
 
             scroll.setPreferredSize(new Dimension(250, 500));
@@ -3492,7 +3498,7 @@ final JFXPanel fxPanel = new JFXPanel();
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new ButtonList();
+                ButtonList buttonList = new ButtonList();
             }
         });
     }//GEN-LAST:event_jButton33ActionPerformed
@@ -3818,7 +3824,6 @@ final JFXPanel fxPanel = new JFXPanel();
                     }
                     zipFile.extractAll(jTextFieldZipDestinationFolder.getText());
                 } catch (ZipException e) {
-                    e.printStackTrace();
                 }
 
                 // Get progress monitor from ZipFile
