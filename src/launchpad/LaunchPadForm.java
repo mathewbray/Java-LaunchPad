@@ -710,15 +710,6 @@ final JFXPanel fxPanel = new JFXPanel();
 //            listModel.addElement(strButton);
 //        }
 //        jListButtonListing.setModel(listModel);
-
-        
-        
-        
-      
-                
-                
-                
-        
     }
     
     private final class ButtonList {
@@ -1119,9 +1110,14 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton36 = new javax.swing.JButton();
         jButton37 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jButtonScriptSyncStandalones = new javax.swing.JButton();
-        jButtonScriptBackupShares = new javax.swing.JButton();
-        jButtonScriptSyncStandalones1 = new javax.swing.JButton();
+        jButtonScriptCreateDummyFile = new javax.swing.JButton();
+        jButtonScriptPowershellPingSweepRange = new javax.swing.JButton();
+        jButtonScriptiPerfServer = new javax.swing.JButton();
+        jButtonScriptSendMessage = new javax.swing.JButton();
+        jButtonScriptTestUDPTCP = new javax.swing.JButton();
+        jButtonScriptiPerfClient = new javax.swing.JButton();
+        jButtonScriptPingLoggerToFile = new javax.swing.JButton();
+        jButtonScriptGetNTPTimePS = new javax.swing.JButton();
         jPanelSettings = new javax.swing.JPanel();
         jLabelSSHClient = new javax.swing.JLabel();
         jRadioButtonSSHClientSecureCRT = new javax.swing.JRadioButton();
@@ -2980,35 +2976,78 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jPanel4.setLayout(null);
 
-        jButtonScriptSyncStandalones.setText("Sync Standalones");
-        jButtonScriptSyncStandalones.setEnabled(false);
-        jButtonScriptSyncStandalones.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptCreateDummyFile.setText("Create Dummy File");
+        jButtonScriptCreateDummyFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonScriptSyncStandalonesActionPerformed(evt);
+                jButtonScriptCreateDummyFileActionPerformed(evt);
             }
         });
-        jPanel4.add(jButtonScriptSyncStandalones);
-        jButtonScriptSyncStandalones.setBounds(200, 20, 170, 30);
+        jPanel4.add(jButtonScriptCreateDummyFile);
+        jButtonScriptCreateDummyFile.setBounds(380, 20, 170, 30);
 
-        jButtonScriptBackupShares.setText("Backup Shares");
-        jButtonScriptBackupShares.setEnabled(false);
-        jButtonScriptBackupShares.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptPowershellPingSweepRange.setText("Ping Sweep Range");
+        jButtonScriptPowershellPingSweepRange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonScriptBackupSharesActionPerformed(evt);
+                jButtonScriptPowershellPingSweepRangeActionPerformed(evt);
             }
         });
-        jPanel4.add(jButtonScriptBackupShares);
-        jButtonScriptBackupShares.setBounds(20, 20, 170, 30);
+        jPanel4.add(jButtonScriptPowershellPingSweepRange);
+        jButtonScriptPowershellPingSweepRange.setBounds(20, 20, 170, 30);
 
-        jButtonScriptSyncStandalones1.setText("Map Standalone Share");
-        jButtonScriptSyncStandalones1.setEnabled(false);
-        jButtonScriptSyncStandalones1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptiPerfServer.setText("iPerf Server");
+        jButtonScriptiPerfServer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonScriptSyncStandalones1ActionPerformed(evt);
+                jButtonScriptiPerfServerActionPerformed(evt);
             }
         });
-        jPanel4.add(jButtonScriptSyncStandalones1);
-        jButtonScriptSyncStandalones1.setBounds(380, 20, 170, 30);
+        jPanel4.add(jButtonScriptiPerfServer);
+        jButtonScriptiPerfServer.setBounds(200, 60, 170, 30);
+
+        jButtonScriptSendMessage.setText("Send Message");
+        jButtonScriptSendMessage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptSendMessageActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButtonScriptSendMessage);
+        jButtonScriptSendMessage.setBounds(20, 100, 170, 30);
+
+        jButtonScriptTestUDPTCP.setText("<html><center>Test TCP/UDP Port<br />(Experimental)</center.</html>");
+        jButtonScriptTestUDPTCP.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        jButtonScriptTestUDPTCP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptTestUDPTCPActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButtonScriptTestUDPTCP);
+        jButtonScriptTestUDPTCP.setBounds(200, 20, 170, 30);
+
+        jButtonScriptiPerfClient.setText("iPerf Client");
+        jButtonScriptiPerfClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptiPerfClientActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButtonScriptiPerfClient);
+        jButtonScriptiPerfClient.setBounds(380, 60, 170, 30);
+
+        jButtonScriptPingLoggerToFile.setText("Ping a List - Log to CSV");
+        jButtonScriptPingLoggerToFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptPingLoggerToFileActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButtonScriptPingLoggerToFile);
+        jButtonScriptPingLoggerToFile.setBounds(20, 60, 170, 30);
+
+        jButtonScriptGetNTPTimePS.setText("<html><center>Get NTP Time<br />(Experimental)</center></html>");
+        jButtonScriptGetNTPTimePS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptGetNTPTimePSActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButtonScriptGetNTPTimePS);
+        jButtonScriptGetNTPTimePS.setBounds(200, 100, 170, 30);
 
         jTabbedPaneToolBox.addTab("Scripts", jPanel4);
 
@@ -4213,44 +4252,17 @@ final JFXPanel fxPanel = new JFXPanel();
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleOnlineOfflineModeActionPerformed
 
-    private void jButtonScriptSyncStandalones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptSyncStandalones1ActionPerformed
-        // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("ScriptStandaloneMapShare") + "\"";
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-    }//GEN-LAST:event_jButtonScriptSyncStandalones1ActionPerformed
+    private void jButtonScriptiPerfServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptiPerfServerActionPerformed
+        openEmbeddedPowershellScript("scripts/Powershell-iPerfServer.ps1", ".ps1");
+    }//GEN-LAST:event_jButtonScriptiPerfServerActionPerformed
 
-    private void jButtonScriptBackupSharesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptBackupSharesActionPerformed
-        // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("ScriptBackupShare") + "\"";
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-    }//GEN-LAST:event_jButtonScriptBackupSharesActionPerformed
+    private void jButtonScriptPowershellPingSweepRangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptPowershellPingSweepRangeActionPerformed
+        openEmbeddedPowershellScript("scripts/Powershell-PingSweep.ps1", ".ps1");
+    }//GEN-LAST:event_jButtonScriptPowershellPingSweepRangeActionPerformed
 
-    private void jButtonScriptSyncStandalonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptSyncStandalonesActionPerformed
-        // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("ScriptStandaloneSync") + "\"";
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-    }//GEN-LAST:event_jButtonScriptSyncStandalonesActionPerformed
+    private void jButtonScriptCreateDummyFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCreateDummyFileActionPerformed
+        openEmbeddedPowershellScript("scripts/Powershell-CreateDummyFile.ps1", ".ps1");
+    }//GEN-LAST:event_jButtonScriptCreateDummyFileActionPerformed
 
     private void jButtonScriptCustom28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom28ActionPerformed
         openScriptCustom("CustomScript28Exec");
@@ -5244,6 +5256,26 @@ final JFXPanel fxPanel = new JFXPanel();
         openScriptCustom("CustomScript33Exec");
     }//GEN-LAST:event_jButtonScriptCustom33ActionPerformed
 
+    private void jButtonScriptSendMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptSendMessageActionPerformed
+        openEmbeddedPowershellScript("scripts/Powershell-SendMessage.ps1", ".ps1");
+    }//GEN-LAST:event_jButtonScriptSendMessageActionPerformed
+
+    private void jButtonScriptTestUDPTCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptTestUDPTCPActionPerformed
+        openEmbeddedPowershellScript("scripts/Powershell-TestTCPorUDP.ps1", ".ps1");
+    }//GEN-LAST:event_jButtonScriptTestUDPTCPActionPerformed
+
+    private void jButtonScriptiPerfClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptiPerfClientActionPerformed
+        openEmbeddedPowershellScript("scripts/Powershell-iPerfClient.ps1", ".ps1");
+    }//GEN-LAST:event_jButtonScriptiPerfClientActionPerformed
+
+    private void jButtonScriptPingLoggerToFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptPingLoggerToFileActionPerformed
+        openEmbeddedPowershellScript("scripts/Powershell-PingLoggerToCSV.ps1", ".ps1");
+    }//GEN-LAST:event_jButtonScriptPingLoggerToFileActionPerformed
+
+    private void jButtonScriptGetNTPTimePSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptGetNTPTimePSActionPerformed
+        openEmbeddedPowershellScript("scripts/Powershell-GetNTPTime.ps1", ".ps1");
+    }//GEN-LAST:event_jButtonScriptGetNTPTimePSActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -5566,7 +5598,42 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         }
         
-    }    
+    }  
+    
+    
+    public void openEmbeddedPowershellScript(String strFullFilePath,String strExtension) {
+    
+            String inputInternalFile = strFullFilePath;
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputInternalFile);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", strExtension);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File fileInTempLocation = new File (tempOutput.toFile().getPath());
+        if (fileInTempLocation.exists())
+        {
+            try {
+                //Desktop.getDesktop().open(userManual);
+                Runtime.getRuntime().exec("cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + fileInTempLocation + "\"");
+               
+                
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }  
 
 
 //    static public boolean isValidURL(String urlStr) {
@@ -5731,7 +5798,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonReferenceCustom32;
     private javax.swing.JButton jButtonReferenceCustom33;
     private javax.swing.JButton jButtonReportIssue;
-    private javax.swing.JButton jButtonScriptBackupShares;
+    private javax.swing.JButton jButtonScriptCreateDummyFile;
     private javax.swing.JButton jButtonScriptCustom01;
     private javax.swing.JButton jButtonScriptCustom02;
     private javax.swing.JButton jButtonScriptCustom03;
@@ -5768,9 +5835,14 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonScriptCustom34;
     private javax.swing.JButton jButtonScriptCustom35;
     private javax.swing.JButton jButtonScriptCustom36;
-    private javax.swing.JButton jButtonScriptSyncStandalones;
-    private javax.swing.JButton jButtonScriptSyncStandalones1;
+    private javax.swing.JButton jButtonScriptGetNTPTimePS;
+    private javax.swing.JButton jButtonScriptPingLoggerToFile;
+    private javax.swing.JButton jButtonScriptPowershellPingSweepRange;
+    private javax.swing.JButton jButtonScriptSendMessage;
+    private javax.swing.JButton jButtonScriptTestUDPTCP;
     private javax.swing.JButton jButtonScriptUpdateLaunchPad;
+    private javax.swing.JButton jButtonScriptiPerfClient;
+    private javax.swing.JButton jButtonScriptiPerfServer;
     private javax.swing.JButton jButtonShowCOMList;
     private javax.swing.JButton jButtonSubnetCalculator;
     private javax.swing.JButton jButtonTracert;
