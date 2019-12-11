@@ -1,3 +1,4 @@
+clear-host
 function Global:Find-MTU {
 
     [CmdletBinding(SupportsShouldProcess=$True,ConfirmImpact='Low')]

@@ -1118,6 +1118,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonScriptiPerfClient = new javax.swing.JButton();
         jButtonScriptPingLoggerToFile = new javax.swing.JButton();
         jButtonScriptGetNTPTimePS = new javax.swing.JButton();
+        jButtonScriptMTUSweep = new javax.swing.JButton();
+        jButtonScriptHashChecker = new javax.swing.JButton();
         jPanelSettings = new javax.swing.JPanel();
         jLabelSSHClient = new javax.swing.JLabel();
         jRadioButtonSSHClientSecureCRT = new javax.swing.JRadioButton();
@@ -3048,6 +3050,24 @@ final JFXPanel fxPanel = new JFXPanel();
         });
         jPanel4.add(jButtonScriptGetNTPTimePS);
         jButtonScriptGetNTPTimePS.setBounds(200, 100, 170, 30);
+
+        jButtonScriptMTUSweep.setText("MTU Sweep");
+        jButtonScriptMTUSweep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptMTUSweepActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButtonScriptMTUSweep);
+        jButtonScriptMTUSweep.setBounds(380, 100, 170, 30);
+
+        jButtonScriptHashChecker.setText("Hash Checker");
+        jButtonScriptHashChecker.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptHashCheckerActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButtonScriptHashChecker);
+        jButtonScriptHashChecker.setBounds(20, 140, 170, 30);
 
         jTabbedPaneToolBox.addTab("Scripts", jPanel4);
 
@@ -5276,6 +5296,14 @@ final JFXPanel fxPanel = new JFXPanel();
         openEmbeddedPowershellScript("scripts/Powershell-GetNTPTime.ps1", ".ps1");
     }//GEN-LAST:event_jButtonScriptGetNTPTimePSActionPerformed
 
+    private void jButtonScriptMTUSweepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptMTUSweepActionPerformed
+        openEmbeddedPowershellScript("scripts/Powershell-MTUSweep.ps1", ".ps1");
+    }//GEN-LAST:event_jButtonScriptMTUSweepActionPerformed
+
+    private void jButtonScriptHashCheckerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptHashCheckerActionPerformed
+        openEmbeddedPowershellScript("scripts/Powershell-HashChecker.ps1", ".ps1");
+    }//GEN-LAST:event_jButtonScriptHashCheckerActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -5836,6 +5864,8 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonScriptCustom35;
     private javax.swing.JButton jButtonScriptCustom36;
     private javax.swing.JButton jButtonScriptGetNTPTimePS;
+    private javax.swing.JButton jButtonScriptHashChecker;
+    private javax.swing.JButton jButtonScriptMTUSweep;
     private javax.swing.JButton jButtonScriptPingLoggerToFile;
     private javax.swing.JButton jButtonScriptPowershellPingSweepRange;
     private javax.swing.JButton jButtonScriptSendMessage;

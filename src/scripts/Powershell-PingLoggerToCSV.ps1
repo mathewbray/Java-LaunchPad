@@ -1,3 +1,4 @@
+clear-host
 $DesktopPath = [Environment]::GetFolderPath("Desktop")
 $TimeStamp = Get-Date
 $TimeStamp = $TimeStamp.ToString('MM-dd-yyyy_hh-mm-ss')

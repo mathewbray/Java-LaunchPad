@@ -1,3 +1,4 @@
+clear-host
 function Test-Port{  
 <#    
 .SYNOPSIS    

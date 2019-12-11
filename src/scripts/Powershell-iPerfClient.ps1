@@ -1,3 +1,4 @@
+clear-host
 #-- INITIAL PROMPTS
 
     #-- ENTER START IP

@@ -1,3 +1,4 @@
+clear-host
 #.\Create-DummyFiles.ps1 -amount 20000 -size 50kb -folder 'F:\Temp\createfiles'
 
 #param(

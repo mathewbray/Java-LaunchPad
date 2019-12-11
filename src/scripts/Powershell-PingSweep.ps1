@@ -1,3 +1,4 @@
+clear-host
 function Global:Ping-IPRange {
     <#
     .SYNOPSIS

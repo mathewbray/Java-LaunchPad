@@ -1,3 +1,4 @@
+clear-host
 #Requires -Version 3
 
 Set-StrictMode -Version 3

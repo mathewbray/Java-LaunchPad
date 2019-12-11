@@ -1,3 +1,4 @@
+clear-host
 Function Send-NetMessage{
 <#  
     .SYNOPSIS  
