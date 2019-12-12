@@ -105,7 +105,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     File pathLogging = new File(pathDesktop + "\\Logging-Output");
     String strPathLoggingFolder = pathDesktop + "\\Logging-Output";    
     String strPathLaunchPadFolder = pathUserProfile + "\\.launchpad";
-    String strSessionListFavoritesFolder = strPathLaunchPadFolder + "\\Favorites";   
+    String strSessionListFavoritesFolder = strPathLaunchPadFolder + "\\FavoritesSessionList";   
     String strSessionListFavorites = strSessionListFavoritesFolder + "\\SessionList.csv";
     String strSessionListDefault = strPathLaunchPadFolder + "\\SessionList.csv";
     String strPathPropertiesFile = strPathLaunchPadFolder + "\\launchpad.properties";
@@ -1120,6 +1120,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonScriptGetNTPTimePS = new javax.swing.JButton();
         jButtonScriptMTUSweep = new javax.swing.JButton();
         jButtonScriptHashChecker = new javax.swing.JButton();
+        jButtonScriptHashChecker1 = new javax.swing.JButton();
         jPanelSettings = new javax.swing.JPanel();
         jLabelSSHClient = new javax.swing.JLabel();
         jRadioButtonSSHClientSecureCRT = new javax.swing.JRadioButton();
@@ -3068,6 +3069,15 @@ final JFXPanel fxPanel = new JFXPanel();
         });
         jPanel4.add(jButtonScriptHashChecker);
         jButtonScriptHashChecker.setBounds(20, 140, 170, 30);
+
+        jButtonScriptHashChecker1.setText("PS Nmap-Style Scan");
+        jButtonScriptHashChecker1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptHashChecker1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButtonScriptHashChecker1);
+        jButtonScriptHashChecker1.setBounds(200, 140, 170, 30);
 
         jTabbedPaneToolBox.addTab("Scripts", jPanel4);
 
@@ -5304,6 +5314,10 @@ final JFXPanel fxPanel = new JFXPanel();
         openEmbeddedPowershellScript("scripts/Powershell-HashChecker.ps1", ".ps1");
     }//GEN-LAST:event_jButtonScriptHashCheckerActionPerformed
 
+    private void jButtonScriptHashChecker1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptHashChecker1ActionPerformed
+        openEmbeddedPowershellScript("scripts/Powershell-PSnmap.ps1", ".ps1");
+    }//GEN-LAST:event_jButtonScriptHashChecker1ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -5547,13 +5561,15 @@ final JFXPanel fxPanel = new JFXPanel();
     }
     
     public void openFileUsingDesktop(String strFullFilePath) {
-    
+        System.out.println("openFileUsingDesktop: " + strFullFilePath);
+
         File userManual = new File (strFullFilePath);
         if (userManual.exists())
         {
-            try {
+            try {               
                 Desktop.getDesktop().open(userManual);
             } catch (IOException ex) {
+                System.out.println("Something is Wrong! openFileUsingDesktop: " + strFullFilePath);
                 Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -5865,6 +5881,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonScriptCustom36;
     private javax.swing.JButton jButtonScriptGetNTPTimePS;
     private javax.swing.JButton jButtonScriptHashChecker;
+    private javax.swing.JButton jButtonScriptHashChecker1;
     private javax.swing.JButton jButtonScriptMTUSweep;
     private javax.swing.JButton jButtonScriptPingLoggerToFile;
     private javax.swing.JButton jButtonScriptPowershellPingSweepRange;

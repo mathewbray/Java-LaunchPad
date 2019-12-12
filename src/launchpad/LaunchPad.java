@@ -42,7 +42,7 @@ public class LaunchPad {
         String pathUserProfile = System.getenv("USERPROFILE");
         File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
         String strPathLaunchPadFolder = pathUserProfile + "\\.launchpad";
-        String strSessionListFavoritesFolder = strPathLaunchPadFolder + "\\Favorites";
+        String strSessionListFavoritesFolder = strPathLaunchPadFolder + "\\FavoritesSessionList";
         String strPathPropertiesFile = strPathLaunchPadFolder + "\\launchpad.properties";
 
       
@@ -63,18 +63,18 @@ public class LaunchPad {
 "Button01ToolTip=Notebook",
 "Button02Icon=dailyreport",
 "Button02StrExec=explorer.exe \"%USERPROFILE%\\\\Desktop\\\\\"",
-"Button02ToolTip=Daily Report",
+"Button02ToolTip=Daily Report",
 "Button03Icon=kanban",
-"Button03StrExec=chrome.exe https://trello.com",
+"Button03StrExec=chrome.exe https://trello.com",
 "Button03ToolTip=KanBan",
 "Button04Icon=alert",
 "Button04StrExec=",
-"Button04ToolTip=Master Station Log",
+"Button04ToolTip=Master Station Log",
 "Button05Icon=user-yellow-home-icon",
 "Button05StrExec=",
 "Button05ToolTip=",
 "Button06Icon=folder-yellow-visiting-icon",
-"Button06StrExec=explorer.exe ",
+"Button06StrExec=explorer.exe ",
 "Button06ToolTip=",
 "Button07Icon=folder-yellow-development-icon",
 "Button07StrExec=",
@@ -89,7 +89,7 @@ public class LaunchPad {
 "Button10StrExec=",
 "Button10ToolTip=",
 "Button11Icon=windowsblue",
-"Button11StrExec=mstsc /v:SERVERNAME",
+"Button11StrExec=mstsc /v:SERVERNAME",
 "Button11ToolTip=",
 "Button12Icon=coffee",
 "Button12StrExec=",
@@ -372,7 +372,7 @@ public class LaunchPad {
 "FileUpdateScript=%USERPROFILE%\\Desktop\\HelloWorld.ps1",
 "PreloadPing=10.0.",
 "PreloadSSH=10.0.",
-"SecureCRT=C:\\Program Files\\SecureCRT x64\\SecureCRT\\SecureCRT.exe",
+"SecureCRT=C:\\Program Files\\SecureCRT x64\\SecureCRT\\SecureCRT.exe",
 "SettingClassification=",
 "WindowTitle=LaunchPad Pre-Alpha",
 "ZipDefaultDestinationFolder=",
