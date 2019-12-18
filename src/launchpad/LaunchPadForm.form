@@ -304,7 +304,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="10" y="110" width="130" height="20"/>
+                      <AbsoluteConstraints x="10" y="110" width="100" height="20"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -314,6 +314,7 @@
                       <Font name="Arial Unicode MS" size="11" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="DNS"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Resolve DNS"/>
                     <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
                       <Insets value="[0, 0, 0, 0]"/>
                     </Property>
@@ -342,7 +343,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="60" y="130" width="80" height="20"/>
+                      <AbsoluteConstraints x="70" y="130" width="80" height="20"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -355,6 +356,7 @@
                       <Font name="Arial Unicode MS" size="14" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="PING"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Runs a constant ping and logs to the output folder"/>
                     <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
                       <Insets value="[2, 0, 2, 0]"/>
                     </Property>
@@ -364,7 +366,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="10" y="130" width="50" height="20"/>
+                      <AbsoluteConstraints x="10" y="130" width="60" height="20"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -798,6 +800,7 @@
                       <Font name="Arial Unicode MS" size="11" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Alternate Login"/>
+                    <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxAlternateLoginActionPerformed"/>
@@ -830,19 +833,32 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCheckBoxLOG">
+                <Component class="javax.swing.JTextField" name="jTextFieldTCPTestPort">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial Unicode MS" size="11" style="0"/>
+                    <Property name="toolTipText" type="java.lang.String" value="TCP port to test"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="110" y="110" width="40" height="20"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButtonTCP">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="99" red="d0" type="rgb"/>
                     </Property>
-                    <Property name="selected" type="boolean" value="true"/>
-                    <Property name="text" type="java.lang.String" value="LOG"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial Unicode MS" size="14" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="TCP"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Test the TCP port specified"/>
                     <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-                      <Insets value="[0, 0, 0, 0]"/>
+                      <Insets value="[2, 0, 2, 0]"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxLOGActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonTCPActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -857,6 +873,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Unicode MS" size="12" style="0"/>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Type to filter the list. "/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldFilterActionPerformed"/>
@@ -869,7 +886,7 @@
                   <Font name="Arial Unicode MS" size="11" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Favorites"/>
-                <Property name="toolTipText" type="java.lang.String" value="Load an alternate list."/>
+                <Property name="toolTipText" type="java.lang.String" value="Load an alternate list.  To edit the list, open it under the settings tab"/>
               </Properties>
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jCheckBox1ItemStateChanged"/>
@@ -3488,6 +3505,19 @@
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="10" y="230" width="190" height="20"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton30">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Open Logging-Ouput Folder"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton30ActionPerformed"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="10" y="260" width="190" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>

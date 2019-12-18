@@ -921,7 +921,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton17 = new javax.swing.JButton();
         jCheckBoxAlternateLogin = new javax.swing.JCheckBox();
         jButtonExecuteFunction2 = new javax.swing.JButton();
-        jCheckBoxLOG = new javax.swing.JCheckBox();
+        jTextFieldTCPTestPort = new javax.swing.JTextField();
+        jButtonTCP = new javax.swing.JButton();
         jTextFieldFilter = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
         jPanelAppsCustom = new javax.swing.JPanel();
@@ -1139,6 +1140,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonScriptUpdateLaunchPad = new javax.swing.JButton();
         jButtonReportIssue = new javax.swing.JButton();
         jButton28 = new javax.swing.JButton();
+        jButton30 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LaunchPad - Pre-Alpha");
@@ -1251,10 +1253,11 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel1.add(jTextFieldPingHostname);
-        jTextFieldPingHostname.setBounds(10, 110, 130, 20);
+        jTextFieldPingHostname.setBounds(10, 110, 100, 20);
 
         jCheckBoxDNS.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jCheckBoxDNS.setText("DNS");
+        jCheckBoxDNS.setToolTipText("Resolve DNS");
         jCheckBoxDNS.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jPanel1.add(jCheckBoxDNS);
         jCheckBoxDNS.setBounds(150, 110, 50, 20);
@@ -1269,11 +1272,12 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel1.add(jButtonTracert);
-        jButtonTracert.setBounds(60, 130, 80, 20);
+        jButtonTracert.setBounds(70, 130, 80, 20);
 
         jButtonPing.setBackground(new java.awt.Color(208, 153, 255));
         jButtonPing.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jButtonPing.setText("PING");
+        jButtonPing.setToolTipText("Runs a constant ping and logs to the output folder");
         jButtonPing.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButtonPing.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1281,7 +1285,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel1.add(jButtonPing);
-        jButtonPing.setBounds(10, 130, 50, 20);
+        jButtonPing.setBounds(10, 130, 60, 20);
         jPanel1.add(jSeparator5);
         jSeparator5.setBounds(10, 160, 190, 10);
 
@@ -1551,6 +1555,7 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jCheckBoxAlternateLogin.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jCheckBoxAlternateLogin.setText("Alternate Login");
+        jCheckBoxAlternateLogin.setToolTipText("");
         jCheckBoxAlternateLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxAlternateLoginActionPerformed(evt);
@@ -1571,19 +1576,25 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel1.add(jButtonExecuteFunction2);
         jButtonExecuteFunction2.setBounds(140, 40, 60, 23);
 
-        jCheckBoxLOG.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jCheckBoxLOG.setSelected(true);
-        jCheckBoxLOG.setText("LOG");
-        jCheckBoxLOG.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jCheckBoxLOG.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldTCPTestPort.setToolTipText("TCP port to test");
+        jPanel1.add(jTextFieldTCPTestPort);
+        jTextFieldTCPTestPort.setBounds(110, 110, 40, 20);
+
+        jButtonTCP.setBackground(new java.awt.Color(208, 153, 255));
+        jButtonTCP.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
+        jButtonTCP.setText("TCP");
+        jButtonTCP.setToolTipText("Test the TCP port specified");
+        jButtonTCP.setMargin(new java.awt.Insets(2, 0, 2, 0));
+        jButtonTCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxLOGActionPerformed(evt);
+                jButtonTCPActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBoxLOG);
-        jCheckBoxLOG.setBounds(150, 130, 50, 20);
+        jPanel1.add(jButtonTCP);
+        jButtonTCP.setBounds(150, 130, 50, 20);
 
         jTextFieldFilter.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        jTextFieldFilter.setToolTipText("Type to filter the list. ");
         jTextFieldFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldFilterActionPerformed(evt);
@@ -1597,7 +1608,7 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jCheckBox1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jCheckBox1.setText("Favorites");
-        jCheckBox1.setToolTipText("Load an alternate list.");
+        jCheckBox1.setToolTipText("Load an alternate list.  To edit the list, open it under the settings tab");
         jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jCheckBox1ItemStateChanged(evt);
@@ -3232,6 +3243,15 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelSettings.add(jButton28);
         jButton28.setBounds(10, 230, 190, 20);
 
+        jButton30.setText("Open Logging-Ouput Folder");
+        jButton30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton30ActionPerformed(evt);
+            }
+        });
+        jPanelSettings.add(jButton30);
+        jButton30.setBounds(10, 260, 190, 20);
+
         jTabbedMain.addTab("Settings", jPanelSettings);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -4687,9 +4707,10 @@ final JFXPanel fxPanel = new JFXPanel();
             StringPingDNS = "-a";
         }
         
-        if(jCheckBoxLOG.isSelected()) {
+        //- Decided to hard-set logging to the output folder
+        //if(jCheckBoxLOG.isSelected()) {
             StringPingLOG = "| Tee-Object \"" + strPathLoggingFolder + "\\Ping-" + jTextFieldPingHostname.getText() + "-" + dateTime.toString() + ".txt" + "\"";
-        }        
+        //}        
         
         try {
             //- Old CMD Style
@@ -4854,7 +4875,7 @@ final JFXPanel fxPanel = new JFXPanel();
 
         if(result == 0) {
             System.out.println("IE engaged.");
-            String strEXEC = "cmd /c start iexplore.exe " + jTextFieldConnectHostname.getText();
+            String strEXEC = "cmd /c start iexplore.exe https://" + jTextFieldConnectHostname.getText();
             try {
                 Runtime.getRuntime().exec(strEXEC);
             }
@@ -4865,7 +4886,7 @@ final JFXPanel fxPanel = new JFXPanel();
         }
         if(result == 2) {
             System.out.println("FireKitsune engaged.");
-            String strEXEC = "cmd /c start firefox.exe " + jTextFieldConnectHostname.getText();
+            String strEXEC = "cmd /c start firefox.exe https://" + jTextFieldConnectHostname.getText();
             try {
                 Runtime.getRuntime().exec(strEXEC);
             }
@@ -4876,7 +4897,7 @@ final JFXPanel fxPanel = new JFXPanel();
         }
         if(result == 1) {
             System.out.println("Edge engaged.");
-            String strEXEC = "cmd /c start microsoft-edge:" + jTextFieldConnectHostname.getText();
+            String strEXEC = "cmd /c start microsoft-edge:https://" + jTextFieldConnectHostname.getText();
             try {
                 Runtime.getRuntime().exec(strEXEC);
             }
@@ -4887,7 +4908,7 @@ final JFXPanel fxPanel = new JFXPanel();
         }
         if(result == 3) {
             System.out.println("Chrome engaged.");
-            String strEXEC = "cmd /c start chrome.exe " + jTextFieldConnectHostname.getText();
+            String strEXEC = "cmd /c start chrome.exe https://" + jTextFieldConnectHostname.getText();
             try {
                 Runtime.getRuntime().exec(strEXEC);
             }
@@ -5234,13 +5255,8 @@ final JFXPanel fxPanel = new JFXPanel();
     }//GEN-LAST:event_jButtonReferenceCustom33ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        // TODO add your handling code here:
         openFileUsingDesktop(strPathLaunchPadFolder);
     }//GEN-LAST:event_jButton28ActionPerformed
-
-    private void jCheckBoxLOGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxLOGActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxLOGActionPerformed
 
     private void jButtonScriptCustom03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom03ActionPerformed
         openScriptCustom("CustomScript03Exec");
@@ -5318,6 +5334,47 @@ final JFXPanel fxPanel = new JFXPanel();
         openEmbeddedPowershellScript("scripts/Powershell-PSnmap.ps1", ".ps1");
     }//GEN-LAST:event_jButtonScriptHashChecker1ActionPerformed
 
+    private void jButtonTCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTCPActionPerformed
+        String inputInternalFile = "scripts/Powershell-TestTCP.ps1";
+        
+        InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputInternalFile);
+
+        Path tempOutput = null;
+        try {
+            tempOutput = Files.createTempFile("TempFile", ".ps1");
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tempOutput.toFile().deleteOnExit();
+
+        try {
+            Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        File fileInTempLocation = new File (tempOutput.toFile().getPath());
+        if (fileInTempLocation.exists())
+        {
+            try {
+                //Desktop.getDesktop().open(userManual);
+                //String strExec = "cmd /c start powershell.exe -ExecutionPolicy Bypass -noexit -Command \"$host.ui.RawUI.WindowTitle = 'Pinging " + jTextFieldPingHostname.getText() + "' ; ping -t " + StringPingDNS + " " + jTextFieldPingHostname.getText() + " 2>&1 |Foreach{'{0} - {1}' -f (Get-Date -f yyyyMMdd_HHmmss),$_} | select -skip 1 " + StringPingLOG;
+                //Runtime.getRuntime().exec(strExec);
+                
+                Runtime.getRuntime().exec("cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -noexit -File \"" + fileInTempLocation + "\" -computername \"" + jTextFieldPingHostname.getText() + "\" -Port " + jTextFieldTCPTestPort.getText());
+                
+            } catch (IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+      
+    }//GEN-LAST:event_jButtonTCPActionPerformed
+
+    private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
+        openFileUsingDesktop(strPathLoggingFolder);
+    }//GEN-LAST:event_jButton30ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -5388,8 +5445,9 @@ final JFXPanel fxPanel = new JFXPanel();
             archivo.createNewFile();
             List<String> lines = Arrays.asList(
 " ~~~~~~~~ ROUTERS ~~~~~~~~~",
-"C1000-a01-asdf-090-Rm100,10.0.0.14",
-"C1000-a01-asdf-A51-0710-Rm100,10.0.0.15",
+"C2800-a01-asdf-090-Rm100,10.0.0.14",
+"C2600-asdf-A51-0710-Rm100,10.0.0.15",
+"C2600-asdf-A51-0710-Rm100,10.0.0.15",
 "",
 " ~~~~~~~ CORE NODES ~~~~~~~~",
 "C6500-a01-asdf-0700-Rm100,10.0.0.12",
@@ -5400,14 +5458,17 @@ final JFXPanel fxPanel = new JFXPanel();
 "C4500-a01-asdf-0020-2FL-Rm200_C4500,10.0.0.9",
 "",
 " ~~~~~~ ACCESS NODES ~~~~~~ ",
-"C9300-a01-asdf-0001-1FL-Rm100,10.0.0.5",
-"C3850-a01-asdf-0001-2FL-Rm200,10.0.0.6",
+"C3750X-a01-asdf-0001-2FL-Rm200,10.0.0.6",
 "C3750-a01-asdf-0051-BSMT-Rm2,10.0.0.7",
+"C3550-a01-asdf-0051-BSMT-Rm2,10.0.0.7",
 "",
 " ~~~~~~~~ SERVERS ~~~~~~~~~",
-"Cisco ISE,10.0.1.2",
-"Cisco ACS,10.0.1.3",
-"InfoBlox,10.0.1.4");
+"Windows 10,172.16.0.50",
+"VMware ESXi,172.16.0.100",
+"Solarwinds,172.16.0.125",
+"Cisco ISE,172.16.0.150",
+"Cisco PI,172.16.0.200");
+            
             Path file = Paths.get(strSessionList);
             Files.write(file, lines, Charset.forName("UTF-8"));
         }
@@ -5749,6 +5810,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton29;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton30;
     private javax.swing.JButton jButton31;
     private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton33;
@@ -5892,13 +5954,13 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonScriptiPerfServer;
     private javax.swing.JButton jButtonShowCOMList;
     private javax.swing.JButton jButtonSubnetCalculator;
+    private javax.swing.JButton jButtonTCP;
     private javax.swing.JButton jButtonTracert;
     private javax.swing.JButton jButtonZipBrowseDestinationFolder;
     private javax.swing.JButton jButtonZipBrowseSourceZip;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBoxAlternateLogin;
     private javax.swing.JCheckBox jCheckBoxDNS;
-    private javax.swing.JCheckBox jCheckBoxLOG;
     private javax.swing.JComboBox<String> jComboBoxConsoleBaud;
     private javax.swing.JComboBox<String> jComboBoxConsoleCOM;
     private javax.swing.JComboBox<String> jComboBoxZipEncMethod;
@@ -5984,6 +6046,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JTextField jTextFieldNtpServer;
     private javax.swing.JTextField jTextFieldNtpSystemTime;
     private javax.swing.JTextField jTextFieldPingHostname;
+    private javax.swing.JTextField jTextFieldTCPTestPort;
     private javax.swing.JTextField jTextFieldType7Input;
     private javax.swing.JTextField jTextFieldType7Output;
     private javax.swing.JTextField jTextFieldZipDestinationFolder;
