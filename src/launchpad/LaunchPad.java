@@ -42,12 +42,14 @@ public class LaunchPad {
         String pathUserProfile = System.getenv("USERPROFILE");
         File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
         String strPathLaunchPadFolder = pathUserProfile + "\\.launchpad";
-        String strSessionListFavoritesFolder = strPathLaunchPadFolder + "\\FavoritesSessionList";
+        String strPathLaunchPadPersistantUserFolder = pathUserProfile + "\\.launchpad-persistant-user";    
+        String strSessionListFavoritesFolder = strPathLaunchPadPersistantUserFolder + "\\FavoritesSessionList";
         String strPathPropertiesFile = strPathLaunchPadFolder + "\\launchpad.properties";
 
       
         //--- Create folders
         new File(strPathLaunchPadFolder).mkdirs();
+        new File(strPathLaunchPadPersistantUserFolder).mkdirs();        
         new File(strSessionListFavoritesFolder).mkdirs();
 
         //--- Check for properties file

@@ -105,7 +105,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
     File pathLogging = new File(pathDesktop + "\\Logging-Output");
     String strPathLoggingFolder = pathDesktop + "\\Logging-Output";    
     String strPathLaunchPadFolder = pathUserProfile + "\\.launchpad";
-    String strSessionListFavoritesFolder = strPathLaunchPadFolder + "\\FavoritesSessionList";   
+    String strPathLaunchPadPersistantUserFolder = pathUserProfile + "\\.launchpad-persistant-user";    
+    String strSessionListFavoritesFolder = strPathLaunchPadPersistantUserFolder + "\\FavoritesSessionList";   
     String strSessionListFavorites = strSessionListFavoritesFolder + "\\SessionList.csv";
     String strSessionListDefault = strPathLaunchPadFolder + "\\SessionList.csv";
     String strPathPropertiesFile = strPathLaunchPadFolder + "\\launchpad.properties";
@@ -139,12 +140,16 @@ final JFXPanel fxPanel = new JFXPanel();
         try {
         UIManager.setLookAndFeel(
             UIManager.getCrossPlatformLookAndFeelClassName());
+        
         // turn off bold fonts
-        UIManager.put("swing.boldMetal", Boolean.FALSE);
+        //UIManager.put("swing.boldMetal", Boolean.FALSE);
+        //UIManager.put("java.awt.font", "Arial Unicode MS");
+
 
         // re-install the Metal Look and Feel
         UIManager.setLookAndFeel(new MetalLookAndFeel());
-        
+
+       
    
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -669,6 +674,8 @@ final JFXPanel fxPanel = new JFXPanel();
          //--- Make buttons and stuff look less crappy - this also allows background coloring
         String laf = UIManager.getSystemLookAndFeelClassName();
         UIManager.setLookAndFeel(laf);
+        
+
 
         //--- Populate Button Listing
         //Get image list
@@ -1122,6 +1129,12 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonScriptMTUSweep = new javax.swing.JButton();
         jButtonScriptHashChecker = new javax.swing.JButton();
         jButtonScriptHashChecker1 = new javax.swing.JButton();
+        jButtonSyncStandaloneDevices = new javax.swing.JButton();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jButtonSyncProductionDevices = new javax.swing.JButton();
+        jButtonMapSharedFolder = new javax.swing.JButton();
         jPanelSettings = new javax.swing.JPanel();
         jLabelSSHClient = new javax.swing.JLabel();
         jRadioButtonSSHClientSecureCRT = new javax.swing.JRadioButton();
@@ -1141,6 +1154,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonReportIssue = new javax.swing.JButton();
         jButton28 = new javax.swing.JButton();
         jButton30 = new javax.swing.JButton();
+        jButtonEditProductionDevicesList = new javax.swing.JButton();
+        jButtonEditProductionDevicesList1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LaunchPad - Pre-Alpha");
@@ -1659,6 +1674,8 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jPanelAppsCustom.setLayout(null);
 
+        jButtonLinkCustom01.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom01.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom01.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom01ActionPerformed(evt);
@@ -1667,6 +1684,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom01);
         jButtonLinkCustom01.setBounds(20, 10, 170, 30);
 
+        jButtonLinkCustom02.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom02.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom02.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom02ActionPerformed(evt);
@@ -1675,6 +1694,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom02);
         jButtonLinkCustom02.setBounds(200, 10, 170, 30);
 
+        jButtonLinkCustom03.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom03.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom03.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom03ActionPerformed(evt);
@@ -1683,6 +1704,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom03);
         jButtonLinkCustom03.setBounds(380, 10, 170, 30);
 
+        jButtonLinkCustom04.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom04.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom04.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom04ActionPerformed(evt);
@@ -1691,6 +1714,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom04);
         jButtonLinkCustom04.setBounds(20, 50, 170, 30);
 
+        jButtonLinkCustom05.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom05.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom05.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom05ActionPerformed(evt);
@@ -1699,6 +1724,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom05);
         jButtonLinkCustom05.setBounds(200, 50, 170, 30);
 
+        jButtonLinkCustom06.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom06.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom06.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom06ActionPerformed(evt);
@@ -1707,6 +1734,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom06);
         jButtonLinkCustom06.setBounds(380, 50, 170, 30);
 
+        jButtonLinkCustom07.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom07.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom07.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom07ActionPerformed(evt);
@@ -1715,6 +1744,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom07);
         jButtonLinkCustom07.setBounds(20, 90, 170, 30);
 
+        jButtonLinkCustom08.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom08.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom08.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom08ActionPerformed(evt);
@@ -1723,6 +1754,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom08);
         jButtonLinkCustom08.setBounds(200, 90, 170, 30);
 
+        jButtonLinkCustom09.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom09.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom09.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom09ActionPerformed(evt);
@@ -1731,6 +1764,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom09);
         jButtonLinkCustom09.setBounds(380, 90, 170, 30);
 
+        jButtonLinkCustom11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom11.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom11ActionPerformed(evt);
@@ -1739,6 +1774,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom11);
         jButtonLinkCustom11.setBounds(200, 130, 170, 30);
 
+        jButtonLinkCustom10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom10.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom10ActionPerformed(evt);
@@ -1747,6 +1784,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom10);
         jButtonLinkCustom10.setBounds(20, 130, 170, 30);
 
+        jButtonLinkCustom12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom12.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom12ActionPerformed(evt);
@@ -1755,6 +1794,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom12);
         jButtonLinkCustom12.setBounds(380, 130, 170, 30);
 
+        jButtonLinkCustom13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom13.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom13ActionPerformed(evt);
@@ -1763,6 +1804,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom13);
         jButtonLinkCustom13.setBounds(20, 170, 170, 30);
 
+        jButtonLinkCustom14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom14.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom14ActionPerformed(evt);
@@ -1771,6 +1814,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom14);
         jButtonLinkCustom14.setBounds(200, 170, 170, 30);
 
+        jButtonLinkCustom15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom15.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom15ActionPerformed(evt);
@@ -1779,6 +1824,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom15);
         jButtonLinkCustom15.setBounds(380, 170, 170, 30);
 
+        jButtonLinkCustom16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom16.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom16ActionPerformed(evt);
@@ -1787,6 +1834,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom16);
         jButtonLinkCustom16.setBounds(20, 210, 170, 30);
 
+        jButtonLinkCustom17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom17.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom17ActionPerformed(evt);
@@ -1795,6 +1844,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom17);
         jButtonLinkCustom17.setBounds(200, 210, 170, 30);
 
+        jButtonLinkCustom18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom18.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom18ActionPerformed(evt);
@@ -1803,6 +1854,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom18);
         jButtonLinkCustom18.setBounds(380, 210, 170, 30);
 
+        jButtonLinkCustom19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom19.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom19ActionPerformed(evt);
@@ -1811,6 +1864,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom19);
         jButtonLinkCustom19.setBounds(20, 250, 170, 30);
 
+        jButtonLinkCustom20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom20.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom20ActionPerformed(evt);
@@ -1819,6 +1874,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom20);
         jButtonLinkCustom20.setBounds(200, 250, 170, 30);
 
+        jButtonLinkCustom21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom21.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom21ActionPerformed(evt);
@@ -1827,6 +1884,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom21);
         jButtonLinkCustom21.setBounds(380, 250, 170, 30);
 
+        jButtonLinkCustom22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom22.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom22ActionPerformed(evt);
@@ -1835,6 +1894,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom22);
         jButtonLinkCustom22.setBounds(20, 290, 170, 30);
 
+        jButtonLinkCustom23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom23.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom23ActionPerformed(evt);
@@ -1843,6 +1904,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom23);
         jButtonLinkCustom23.setBounds(200, 290, 170, 30);
 
+        jButtonLinkCustom24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom24.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom24ActionPerformed(evt);
@@ -1851,6 +1914,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom24);
         jButtonLinkCustom24.setBounds(380, 290, 170, 30);
 
+        jButtonLinkCustom25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom25.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom25ActionPerformed(evt);
@@ -1859,6 +1924,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom25);
         jButtonLinkCustom25.setBounds(20, 330, 170, 30);
 
+        jButtonLinkCustom26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom26.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom26ActionPerformed(evt);
@@ -1867,6 +1934,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom26);
         jButtonLinkCustom26.setBounds(200, 330, 170, 30);
 
+        jButtonLinkCustom27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom27.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom27ActionPerformed(evt);
@@ -1875,6 +1944,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom27);
         jButtonLinkCustom27.setBounds(380, 330, 170, 30);
 
+        jButtonLinkCustom28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom28.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom28ActionPerformed(evt);
@@ -1883,6 +1954,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom28);
         jButtonLinkCustom28.setBounds(20, 370, 170, 30);
 
+        jButtonLinkCustom29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom29.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom29ActionPerformed(evt);
@@ -1891,6 +1964,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom29);
         jButtonLinkCustom29.setBounds(200, 370, 170, 30);
 
+        jButtonLinkCustom30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom30.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom30ActionPerformed(evt);
@@ -1899,6 +1974,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom30);
         jButtonLinkCustom30.setBounds(380, 370, 170, 30);
 
+        jButtonLinkCustom31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom31.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom31ActionPerformed(evt);
@@ -1907,6 +1984,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom31);
         jButtonLinkCustom31.setBounds(20, 410, 170, 30);
 
+        jButtonLinkCustom32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom32.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom32ActionPerformed(evt);
@@ -1915,6 +1994,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom32);
         jButtonLinkCustom32.setBounds(200, 410, 170, 30);
 
+        jButtonLinkCustom33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom33.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom33ActionPerformed(evt);
@@ -1923,6 +2004,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom33);
         jButtonLinkCustom33.setBounds(380, 410, 170, 30);
 
+        jButtonLinkCustom34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom34.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom34ActionPerformed(evt);
@@ -1931,6 +2014,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom34);
         jButtonLinkCustom34.setBounds(20, 450, 170, 30);
 
+        jButtonLinkCustom35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom35.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom35ActionPerformed(evt);
@@ -1939,6 +2024,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelAppsCustom.add(jButtonLinkCustom35);
         jButtonLinkCustom35.setBounds(200, 450, 170, 30);
 
+        jButtonLinkCustom36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonLinkCustom36.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonLinkCustom36.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLinkCustom36ActionPerformed(evt);
@@ -1963,6 +2050,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jToggleOnlineOfflineMode);
         jToggleOnlineOfflineMode.setBounds(200, 10, 170, 30);
 
+        jButtonReferenceCustom01.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom01.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom01.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom01ActionPerformed(evt);
@@ -1971,6 +2060,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom01);
         jButtonReferenceCustom01.setBounds(20, 50, 170, 30);
 
+        jButtonReferenceCustom02.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom02.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom02.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom02ActionPerformed(evt);
@@ -1979,6 +2070,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom02);
         jButtonReferenceCustom02.setBounds(200, 50, 170, 30);
 
+        jButtonReferenceCustom03.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom03.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom03.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom03ActionPerformed(evt);
@@ -1987,6 +2080,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom03);
         jButtonReferenceCustom03.setBounds(380, 50, 170, 30);
 
+        jButtonReferenceCustom04.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom04.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom04.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom04ActionPerformed(evt);
@@ -1995,6 +2090,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom04);
         jButtonReferenceCustom04.setBounds(20, 90, 170, 30);
 
+        jButtonReferenceCustom05.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom05.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom05.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom05ActionPerformed(evt);
@@ -2003,6 +2100,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom05);
         jButtonReferenceCustom05.setBounds(200, 90, 170, 30);
 
+        jButtonReferenceCustom06.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom06.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom06.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom06ActionPerformed(evt);
@@ -2011,6 +2110,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom06);
         jButtonReferenceCustom06.setBounds(380, 90, 170, 30);
 
+        jButtonReferenceCustom07.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom07.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom07.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom07ActionPerformed(evt);
@@ -2019,6 +2120,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom07);
         jButtonReferenceCustom07.setBounds(20, 130, 170, 30);
 
+        jButtonReferenceCustom08.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom08.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom08.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom08ActionPerformed(evt);
@@ -2027,6 +2130,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom08);
         jButtonReferenceCustom08.setBounds(200, 130, 170, 30);
 
+        jButtonReferenceCustom09.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom09.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom09.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom09ActionPerformed(evt);
@@ -2035,6 +2140,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom09);
         jButtonReferenceCustom09.setBounds(380, 130, 170, 30);
 
+        jButtonReferenceCustom10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom10.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom10ActionPerformed(evt);
@@ -2043,6 +2150,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom10);
         jButtonReferenceCustom10.setBounds(20, 170, 170, 30);
 
+        jButtonReferenceCustom11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom11.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom11ActionPerformed(evt);
@@ -2051,6 +2160,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom11);
         jButtonReferenceCustom11.setBounds(200, 170, 170, 30);
 
+        jButtonReferenceCustom12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom12.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom12ActionPerformed(evt);
@@ -2059,6 +2170,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom12);
         jButtonReferenceCustom12.setBounds(380, 170, 170, 30);
 
+        jButtonReferenceCustom13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom13.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom13ActionPerformed(evt);
@@ -2067,6 +2180,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom13);
         jButtonReferenceCustom13.setBounds(20, 210, 170, 30);
 
+        jButtonReferenceCustom14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom14.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom14ActionPerformed(evt);
@@ -2075,6 +2190,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom14);
         jButtonReferenceCustom14.setBounds(200, 210, 170, 30);
 
+        jButtonReferenceCustom15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom15.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom15ActionPerformed(evt);
@@ -2083,6 +2200,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom15);
         jButtonReferenceCustom15.setBounds(380, 210, 170, 30);
 
+        jButtonReferenceCustom16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom16.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom16ActionPerformed(evt);
@@ -2091,6 +2210,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom16);
         jButtonReferenceCustom16.setBounds(20, 250, 170, 30);
 
+        jButtonReferenceCustom17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom17.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom17ActionPerformed(evt);
@@ -2099,6 +2220,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom17);
         jButtonReferenceCustom17.setBounds(200, 250, 170, 30);
 
+        jButtonReferenceCustom18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom18.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom18ActionPerformed(evt);
@@ -2107,6 +2230,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom18);
         jButtonReferenceCustom18.setBounds(380, 250, 170, 30);
 
+        jButtonReferenceCustom19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom19.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom19ActionPerformed(evt);
@@ -2115,6 +2240,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom19);
         jButtonReferenceCustom19.setBounds(20, 290, 170, 30);
 
+        jButtonReferenceCustom20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom20.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom20ActionPerformed(evt);
@@ -2123,6 +2250,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom20);
         jButtonReferenceCustom20.setBounds(200, 290, 170, 30);
 
+        jButtonReferenceCustom21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom21.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom21ActionPerformed(evt);
@@ -2131,6 +2260,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom21);
         jButtonReferenceCustom21.setBounds(380, 290, 170, 30);
 
+        jButtonReferenceCustom22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom22.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom22ActionPerformed(evt);
@@ -2139,6 +2270,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom22);
         jButtonReferenceCustom22.setBounds(20, 330, 170, 30);
 
+        jButtonReferenceCustom23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom23.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom23ActionPerformed(evt);
@@ -2147,6 +2280,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom23);
         jButtonReferenceCustom23.setBounds(200, 330, 170, 30);
 
+        jButtonReferenceCustom24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom24.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom24ActionPerformed(evt);
@@ -2155,6 +2290,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom24);
         jButtonReferenceCustom24.setBounds(380, 330, 170, 30);
 
+        jButtonReferenceCustom25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom25.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom25ActionPerformed(evt);
@@ -2163,6 +2300,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom25);
         jButtonReferenceCustom25.setBounds(20, 370, 170, 30);
 
+        jButtonReferenceCustom26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom26.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom26ActionPerformed(evt);
@@ -2171,6 +2310,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom26);
         jButtonReferenceCustom26.setBounds(200, 370, 170, 30);
 
+        jButtonReferenceCustom27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom27.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom27ActionPerformed(evt);
@@ -2179,6 +2320,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom27);
         jButtonReferenceCustom27.setBounds(380, 370, 170, 30);
 
+        jButtonReferenceCustom28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom28.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom28ActionPerformed(evt);
@@ -2187,6 +2330,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom28);
         jButtonReferenceCustom28.setBounds(20, 410, 170, 30);
 
+        jButtonReferenceCustom29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom29.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom29ActionPerformed(evt);
@@ -2195,6 +2340,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom29);
         jButtonReferenceCustom29.setBounds(200, 410, 170, 30);
 
+        jButtonReferenceCustom30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom30.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom30ActionPerformed(evt);
@@ -2203,6 +2350,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom30);
         jButtonReferenceCustom30.setBounds(380, 410, 170, 30);
 
+        jButtonReferenceCustom31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom31.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom31ActionPerformed(evt);
@@ -2211,6 +2360,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom31);
         jButtonReferenceCustom31.setBounds(20, 450, 170, 30);
 
+        jButtonReferenceCustom32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom32.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom32ActionPerformed(evt);
@@ -2219,6 +2370,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelReference.add(jButtonReferenceCustom32);
         jButtonReferenceCustom32.setBounds(200, 450, 170, 30);
 
+        jButtonReferenceCustom33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReferenceCustom33.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReferenceCustom33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReferenceCustom33ActionPerformed(evt);
@@ -2231,6 +2384,7 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jPanelScripts.setLayout(null);
 
+        jButtonScriptCustom03.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom03.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom03.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2240,6 +2394,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom03);
         jButtonScriptCustom03.setBounds(380, 10, 170, 30);
 
+        jButtonScriptCustom01.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom01.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom01.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2249,6 +2404,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom01);
         jButtonScriptCustom01.setBounds(20, 10, 170, 30);
 
+        jButtonScriptCustom02.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom02.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom02.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2258,6 +2414,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom02);
         jButtonScriptCustom02.setBounds(200, 10, 170, 30);
 
+        jButtonScriptCustom06.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom06.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom06.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2267,6 +2424,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom06);
         jButtonScriptCustom06.setBounds(380, 50, 170, 30);
 
+        jButtonScriptCustom04.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom04.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom04.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2276,6 +2434,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom04);
         jButtonScriptCustom04.setBounds(20, 50, 170, 30);
 
+        jButtonScriptCustom05.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom05.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom05.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2285,6 +2444,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom05);
         jButtonScriptCustom05.setBounds(200, 50, 170, 30);
 
+        jButtonScriptCustom08.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom08.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom08.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2294,6 +2454,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom08);
         jButtonScriptCustom08.setBounds(200, 90, 170, 30);
 
+        jButtonScriptCustom09.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom09.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom09.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2303,6 +2464,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom09);
         jButtonScriptCustom09.setBounds(380, 90, 170, 30);
 
+        jButtonScriptCustom07.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom07.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom07.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2312,6 +2474,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom07);
         jButtonScriptCustom07.setBounds(20, 90, 170, 30);
 
+        jButtonScriptCustom12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom12.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2321,6 +2484,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom12);
         jButtonScriptCustom12.setBounds(380, 130, 170, 30);
 
+        jButtonScriptCustom15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom15.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2330,6 +2494,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom15);
         jButtonScriptCustom15.setBounds(380, 170, 170, 30);
 
+        jButtonScriptCustom11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom11.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2339,6 +2504,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom11);
         jButtonScriptCustom11.setBounds(200, 130, 170, 30);
 
+        jButtonScriptCustom10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom10.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2348,6 +2514,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom10);
         jButtonScriptCustom10.setBounds(20, 130, 170, 30);
 
+        jButtonScriptCustom13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom13.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2357,6 +2524,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom13);
         jButtonScriptCustom13.setBounds(20, 170, 170, 30);
 
+        jButtonScriptCustom14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom14.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2366,6 +2534,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom14);
         jButtonScriptCustom14.setBounds(200, 170, 170, 30);
 
+        jButtonScriptCustom18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom18.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2375,6 +2544,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom18);
         jButtonScriptCustom18.setBounds(380, 210, 170, 30);
 
+        jButtonScriptCustom16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom16.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2384,6 +2554,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom16);
         jButtonScriptCustom16.setBounds(20, 210, 170, 30);
 
+        jButtonScriptCustom17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom17.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2393,6 +2564,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom17);
         jButtonScriptCustom17.setBounds(200, 210, 170, 30);
 
+        jButtonScriptCustom20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom20.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2402,6 +2574,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom20);
         jButtonScriptCustom20.setBounds(200, 250, 170, 30);
 
+        jButtonScriptCustom21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom21.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2411,6 +2584,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom21);
         jButtonScriptCustom21.setBounds(380, 250, 170, 30);
 
+        jButtonScriptCustom19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom19.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2420,6 +2594,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom19);
         jButtonScriptCustom19.setBounds(20, 250, 170, 30);
 
+        jButtonScriptCustom24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom24.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2429,6 +2604,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom24);
         jButtonScriptCustom24.setBounds(380, 290, 170, 30);
 
+        jButtonScriptCustom22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom22.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2438,6 +2614,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom22);
         jButtonScriptCustom22.setBounds(20, 290, 170, 30);
 
+        jButtonScriptCustom23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom23.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2447,6 +2624,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom23);
         jButtonScriptCustom23.setBounds(200, 290, 170, 30);
 
+        jButtonScriptCustom26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom26.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2456,6 +2634,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom26);
         jButtonScriptCustom26.setBounds(200, 330, 170, 30);
 
+        jButtonScriptCustom27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom27.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2465,6 +2644,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom27);
         jButtonScriptCustom27.setBounds(380, 330, 170, 30);
 
+        jButtonScriptCustom25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom25.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2474,6 +2654,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom25);
         jButtonScriptCustom25.setBounds(20, 330, 170, 30);
 
+        jButtonScriptCustom29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom29.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2483,6 +2664,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom29);
         jButtonScriptCustom29.setBounds(200, 370, 170, 30);
 
+        jButtonScriptCustom30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom30.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2492,6 +2674,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom30);
         jButtonScriptCustom30.setBounds(380, 370, 170, 30);
 
+        jButtonScriptCustom28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom28.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2501,6 +2684,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom28);
         jButtonScriptCustom28.setBounds(20, 370, 170, 30);
 
+        jButtonScriptCustom32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom32.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2510,6 +2694,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom32);
         jButtonScriptCustom32.setBounds(200, 410, 170, 30);
 
+        jButtonScriptCustom33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom33.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2519,6 +2704,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom33);
         jButtonScriptCustom33.setBounds(380, 410, 170, 30);
 
+        jButtonScriptCustom31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom31.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2528,6 +2714,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom31);
         jButtonScriptCustom31.setBounds(20, 410, 170, 30);
 
+        jButtonScriptCustom34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom34.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2537,6 +2724,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom34);
         jButtonScriptCustom34.setBounds(20, 450, 170, 30);
 
+        jButtonScriptCustom35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom35.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2546,6 +2734,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelScripts.add(jButtonScriptCustom35);
         jButtonScriptCustom35.setBounds(200, 450, 170, 30);
 
+        jButtonScriptCustom36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom36.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptCustom36.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2557,9 +2746,12 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jTabbedMain.addTab("Scripts", jPanelScripts);
 
+        jTabbedPaneToolBox.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+
+        jPanel7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanel7.setLayout(null);
 
-        jButtonFolderToZip.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButtonFolderToZip.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonFolderToZip.setText("Add Folder to Zip!");
         jButtonFolderToZip.setToolTipText("");
         jButtonFolderToZip.addActionListener(new java.awt.event.ActionListener() {
@@ -2569,11 +2761,16 @@ final JFXPanel fxPanel = new JFXPanel();
         });
         jPanel7.add(jButtonFolderToZip);
         jButtonFolderToZip.setBounds(310, 140, 170, 20);
+
+        jTextFieldZipSourceFolder.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanel7.add(jTextFieldZipSourceFolder);
         jTextFieldZipSourceFolder.setBounds(130, 50, 340, 20);
+
+        jTextFieldZipFilename.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanel7.add(jTextFieldZipFilename);
         jTextFieldZipFilename.setBounds(130, 80, 350, 20);
 
+        jButton25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton25.setText("Browse");
         jButton25.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton25.addActionListener(new java.awt.event.ActionListener() {
@@ -2584,11 +2781,13 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel7.add(jButton25);
         jButton25.setBounds(480, 50, 70, 20);
 
+        jLabel16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel16.setText("Confirm Password: ");
         jPanel7.add(jLabel16);
         jLabel16.setBounds(0, 140, 130, 20);
 
+        jPasswordFieldZip.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPasswordFieldZip.setToolTipText("");
         jPasswordFieldZip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2596,12 +2795,15 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel7.add(jPasswordFieldZip);
-        jPasswordFieldZip.setBounds(130, 110, 170, 20);
+        jPasswordFieldZip.setBounds(130, 110, 170, 21);
 
+        jLabel18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel18.setText("Destination Zip: ");
         jPanel7.add(jLabel18);
         jLabel18.setBounds(10, 80, 120, 20);
+
+        jProgressBarZip.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanel7.add(jProgressBarZip);
         jProgressBarZip.setBounds(20, 170, 520, 20);
 
@@ -2609,8 +2811,9 @@ final JFXPanel fxPanel = new JFXPanel();
         jLabelFolderToZip4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFolderToZip4.setText("Extract Archive to Folder");
         jPanel7.add(jLabelFolderToZip4);
-        jLabelFolderToZip4.setBounds(20, 230, 530, 20);
+        jLabelFolderToZip4.setBounds(20, 220, 530, 40);
 
+        jLabel20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel20.setText("Source Folder: ");
         jPanel7.add(jLabel20);
@@ -2618,7 +2821,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel7.add(jSeparator9);
         jSeparator9.setBounds(10, 210, 540, 10);
 
-        jComboBoxZipEncMethod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard Encryption", "AES-256 Encryption" }));
+        jComboBoxZipEncMethod.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxZipEncMethod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AES-256 Encryption", "Standard Encryption" }));
         jComboBoxZipEncMethod.setToolTipText("Encryption Method");
         jPanel7.add(jComboBoxZipEncMethod);
         jComboBoxZipEncMethod.setBounds(310, 110, 170, 20);
@@ -2627,13 +2831,15 @@ final JFXPanel fxPanel = new JFXPanel();
         jLabelFolderToZip7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFolderToZip7.setText("Add Folder to Encrypted Archive");
         jPanel7.add(jLabelFolderToZip7);
-        jLabelFolderToZip7.setBounds(20, 20, 530, 20);
+        jLabelFolderToZip7.setBounds(20, 10, 530, 40);
 
+        jLabel33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel33.setText("Source Zip: ");
         jPanel7.add(jLabel33);
         jLabel33.setBounds(10, 260, 120, 20);
 
+        jTextFieldZipSourceFile.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldZipSourceFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldZipSourceFileActionPerformed(evt);
@@ -2642,6 +2848,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel7.add(jTextFieldZipSourceFile);
         jTextFieldZipSourceFile.setBounds(130, 260, 340, 20);
 
+        jButtonZipBrowseSourceZip.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonZipBrowseSourceZip.setText("Browse");
         jButtonZipBrowseSourceZip.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonZipBrowseSourceZip.addActionListener(new java.awt.event.ActionListener() {
@@ -2652,13 +2859,17 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel7.add(jButtonZipBrowseSourceZip);
         jButtonZipBrowseSourceZip.setBounds(480, 260, 70, 20);
 
+        jLabel34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel34.setText("Destination Folder: ");
         jPanel7.add(jLabel34);
         jLabel34.setBounds(0, 290, 130, 20);
+
+        jTextFieldZipDestinationFolder.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanel7.add(jTextFieldZipDestinationFolder);
         jTextFieldZipDestinationFolder.setBounds(130, 290, 340, 20);
 
+        jButtonZipBrowseDestinationFolder.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonZipBrowseDestinationFolder.setText("Browse");
         jButtonZipBrowseDestinationFolder.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonZipBrowseDestinationFolder.addActionListener(new java.awt.event.ActionListener() {
@@ -2669,7 +2880,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel7.add(jButtonZipBrowseDestinationFolder);
         jButtonZipBrowseDestinationFolder.setBounds(480, 290, 70, 20);
 
-        jButton39.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton39.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton39.setText("Extract to Folder!");
         jButton39.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2678,14 +2889,18 @@ final JFXPanel fxPanel = new JFXPanel();
         });
         jPanel7.add(jButton39);
         jButton39.setBounds(330, 320, 200, 20);
+
+        jProgressBarZipExtract.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanel7.add(jProgressBarZipExtract);
         jProgressBarZipExtract.setBounds(20, 350, 530, 20);
 
+        jLabel17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel17.setText("Password: ");
         jPanel7.add(jLabel17);
         jLabel17.setBounds(40, 320, 90, 20);
 
+        jPasswordFieldZipConfirm.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPasswordFieldZipConfirm.setToolTipText("");
         jPasswordFieldZipConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2693,13 +2908,15 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel7.add(jPasswordFieldZipConfirm);
-        jPasswordFieldZipConfirm.setBounds(130, 140, 170, 20);
+        jPasswordFieldZipConfirm.setBounds(130, 140, 170, 21);
 
+        jLabel35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel35.setText("Password: ");
         jPanel7.add(jLabel35);
         jLabel35.setBounds(40, 110, 90, 20);
 
+        jPasswordFieldZipExtract.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPasswordFieldZipExtract.setToolTipText("");
         jPasswordFieldZipExtract.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2707,7 +2924,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel7.add(jPasswordFieldZipExtract);
-        jPasswordFieldZipExtract.setBounds(130, 320, 170, 20);
+        jPasswordFieldZipExtract.setBounds(130, 320, 170, 21);
 
         jTabbedPaneToolBox.addTab("Zip & Encrypt", jPanel7);
 
@@ -2715,11 +2932,12 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel8.add(jSeparator8);
         jSeparator8.setBounds(10, 150, 550, 10);
 
+        jTextFieldType7Input.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldType7Input.setText("05240E0715444F1D0A321F131F211D1A2A373B243A3017301710");
         jPanel8.add(jTextFieldType7Input);
         jTextFieldType7Input.setBounds(20, 50, 530, 20);
 
-        jButton21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton21.setText("Decrypt");
         jButton21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2729,7 +2947,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel8.add(jButton21);
         jButton21.setBounds(190, 80, 79, 20);
 
-        jButton22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton22.setText("Encrypt");
         jButton22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2740,15 +2958,17 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton22.setBounds(320, 80, 80, 20);
 
         jTextFieldType7Output.setEditable(false);
+        jTextFieldType7Output.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanel8.add(jTextFieldType7Output);
-        jTextFieldType7Output.setBounds(20, 110, 450, 20);
+        jTextFieldType7Output.setBounds(20, 110, 450, 21);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Type 7 Decrypt/Encrypt");
         jPanel8.add(jLabel14);
-        jLabel14.setBounds(120, 20, 350, 20);
+        jLabel14.setBounds(120, 10, 350, 40);
 
+        jButton23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton23.setText("Copy");
         jButton23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2762,11 +2982,12 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jPanel12.setLayout(null);
 
+        jLabel19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel19.setText("SHA512:");
         jPanel12.add(jLabel19);
         jLabel19.setBounds(10, 170, 90, 20);
 
-        jButtonGenerateHash.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButtonGenerateHash.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonGenerateHash.setText("Generate!");
         jButtonGenerateHash.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2775,9 +2996,12 @@ final JFXPanel fxPanel = new JFXPanel();
         });
         jPanel12.add(jButtonGenerateHash);
         jButtonGenerateHash.setBounds(240, 80, 90, 23);
+
+        jTextFieldFileHashGenerate.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanel12.add(jTextFieldFileHashGenerate);
         jTextFieldFileHashGenerate.setBounds(50, 50, 400, 20);
 
+        jButton27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton27.setText("Browse");
         jButton27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2788,29 +3012,36 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton27.setBounds(460, 50, 90, 20);
 
         jTextFieldHashSHA512.setEditable(false);
+        jTextFieldHashSHA512.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanel12.add(jTextFieldHashSHA512);
         jTextFieldHashSHA512.setBounds(70, 170, 480, 20);
 
         jTextFieldHashMD5.setEditable(false);
+        jTextFieldHashMD5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanel12.add(jTextFieldHashMD5);
         jTextFieldHashMD5.setBounds(70, 110, 480, 20);
 
         jTextFieldHashSHA1.setEditable(false);
+        jTextFieldHashSHA1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanel12.add(jTextFieldHashSHA1);
         jTextFieldHashSHA1.setBounds(70, 130, 480, 20);
 
         jTextFieldHashSHA256.setEditable(false);
+        jTextFieldHashSHA256.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanel12.add(jTextFieldHashSHA256);
         jTextFieldHashSHA256.setBounds(70, 150, 480, 20);
 
+        jLabel22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel22.setText("MD5:");
         jPanel12.add(jLabel22);
         jLabel22.setBounds(10, 110, 90, 20);
 
+        jLabel23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel23.setText("SHA1:");
         jPanel12.add(jLabel23);
         jLabel23.setBounds(10, 130, 90, 20);
 
+        jLabel24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel24.setText("SHA256:");
         jPanel12.add(jLabel24);
         jLabel24.setBounds(10, 150, 90, 20);
@@ -2819,8 +3050,9 @@ final JFXPanel fxPanel = new JFXPanel();
         jLabelFolderToZip5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFolderToZip5.setText("Hash Generator");
         jPanel12.add(jLabelFolderToZip5);
-        jLabelFolderToZip5.setBounds(110, 20, 350, 20);
+        jLabelFolderToZip5.setBounds(110, 10, 350, 40);
 
+        jLabel25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel25.setText("File:");
         jPanel12.add(jLabel25);
         jLabel25.setBounds(10, 50, 90, 20);
@@ -2833,13 +3065,14 @@ final JFXPanel fxPanel = new JFXPanel();
         jLabelFolderToZip3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFolderToZip3.setText("Get NTP Time (NtpMessage.java Method)");
         jPanel9.add(jLabelFolderToZip3);
-        jLabelFolderToZip3.setBounds(110, 130, 350, 20);
+        jLabelFolderToZip3.setBounds(110, 120, 350, 40);
 
+        jLabel21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel21.setText("Atomic Time:");
         jPanel9.add(jLabel21);
         jLabel21.setBounds(20, 90, 90, 20);
 
-        jButton26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton26.setText("Get Time!");
         jButton26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2849,27 +3082,32 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel9.add(jButton26);
         jButton26.setBounds(439, 37, 100, 23);
 
+        jTextFieldNtpServer.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldNtpServer.setText("pool.ntp.org");
         jPanel9.add(jTextFieldNtpServer);
         jTextFieldNtpServer.setBounds(140, 40, 290, 20);
 
         jTextFieldNtpAtomicTime.setEditable(false);
+        jTextFieldNtpAtomicTime.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanel9.add(jTextFieldNtpAtomicTime);
-        jTextFieldNtpAtomicTime.setBounds(110, 90, 430, 20);
+        jTextFieldNtpAtomicTime.setBounds(110, 90, 430, 21);
 
         jTextFieldNtpSystemTime.setEditable(false);
+        jTextFieldNtpSystemTime.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanel9.add(jTextFieldNtpSystemTime);
-        jTextFieldNtpSystemTime.setBounds(110, 70, 430, 20);
+        jTextFieldNtpSystemTime.setBounds(110, 70, 430, 21);
 
+        jLabel26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel26.setText("Server:");
         jPanel9.add(jLabel26);
         jLabel26.setBounds(80, 40, 90, 20);
 
+        jLabel27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel27.setText("System Time:");
         jPanel9.add(jLabel27);
         jLabel27.setBounds(20, 70, 90, 20);
 
-        jButton29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton29.setText("Get Time!");
         jButton29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2883,7 +3121,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jLabelFolderToZip6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFolderToZip6.setText("Get NTP Time (NTPUDPClient Method)");
         jPanel9.add(jLabelFolderToZip6);
-        jLabelFolderToZip6.setBounds(110, 10, 350, 20);
+        jLabelFolderToZip6.setBounds(110, 0, 350, 40);
         jPanel9.add(jSeparator7);
         jSeparator7.setBounds(10, 120, 550, 10);
 
@@ -2904,8 +3142,9 @@ final JFXPanel fxPanel = new JFXPanel();
         jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel31.setText("Web Apps");
         jPanel11.add(jLabel31);
-        jLabel31.setBounds(110, 10, 350, 20);
+        jLabel31.setBounds(110, 0, 350, 40);
 
+        jButtonJSDiff2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonJSDiff2.setText("jsDiff (Compare Files)");
         jButtonJSDiff2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2915,7 +3154,9 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel11.add(jButtonJSDiff2);
         jButtonJSDiff2.setBounds(200, 40, 170, 30);
 
+        jButtonConfigBuilder1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonConfigBuilder1.setText("Config Builder (For Lab Use)");
+        jButtonConfigBuilder1.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButtonConfigBuilder1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonConfigBuilder1ActionPerformed(evt);
@@ -2924,6 +3165,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel11.add(jButtonConfigBuilder1);
         jButtonConfigBuilder1.setBounds(380, 40, 170, 30);
 
+        jButtonSubnetCalculator.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonSubnetCalculator.setText("IPv4/v6 Subnet Calculator");
         jButtonSubnetCalculator.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2933,6 +3175,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel11.add(jButtonSubnetCalculator);
         jButtonSubnetCalculator.setBounds(20, 40, 170, 30);
 
+        jButton41.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton41.setText("Puppeteer");
         jButton41.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2946,7 +3189,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel38.setText("Java Apps");
         jPanel11.add(jLabel38);
-        jLabel38.setBounds(110, 100, 350, 20);
+        jLabel38.setBounds(110, 90, 350, 40);
         jPanel11.add(jSeparator12);
         jSeparator12.setBounds(10, 90, 550, 10);
         jPanel11.add(jSeparator13);
@@ -2956,8 +3199,9 @@ final JFXPanel fxPanel = new JFXPanel();
         jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel39.setText("Documents");
         jPanel11.add(jLabel39);
-        jLabel39.setBounds(110, 190, 350, 20);
+        jLabel39.setBounds(110, 180, 350, 40);
 
+        jButton24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton24.setText("IPv4 Subnet Chart");
         jButton24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2967,6 +3211,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel11.add(jButton24);
         jButton24.setBounds(20, 220, 170, 30);
 
+        jButton36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton36.setText("IPv4 Subnet Cheat Sheet");
         jButton36.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton36.addActionListener(new java.awt.event.ActionListener() {
@@ -2977,6 +3222,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanel11.add(jButton36);
         jButton36.setBounds(200, 220, 170, 30);
 
+        jButton37.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton37.setText("Stretch's Cheat Sheets");
         jButton37.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2990,6 +3236,7 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jPanel4.setLayout(null);
 
+        jButtonScriptCreateDummyFile.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCreateDummyFile.setText("Create Dummy File");
         jButtonScriptCreateDummyFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2997,8 +3244,9 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel4.add(jButtonScriptCreateDummyFile);
-        jButtonScriptCreateDummyFile.setBounds(380, 20, 170, 30);
+        jButtonScriptCreateDummyFile.setBounds(380, 280, 170, 30);
 
+        jButtonScriptPowershellPingSweepRange.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptPowershellPingSweepRange.setText("Ping Sweep Range");
         jButtonScriptPowershellPingSweepRange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3006,8 +3254,9 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel4.add(jButtonScriptPowershellPingSweepRange);
-        jButtonScriptPowershellPingSweepRange.setBounds(20, 20, 170, 30);
+        jButtonScriptPowershellPingSweepRange.setBounds(20, 40, 170, 30);
 
+        jButtonScriptiPerfServer.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptiPerfServer.setText("iPerf Server");
         jButtonScriptiPerfServer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3015,8 +3264,9 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel4.add(jButtonScriptiPerfServer);
-        jButtonScriptiPerfServer.setBounds(200, 60, 170, 30);
+        jButtonScriptiPerfServer.setBounds(200, 240, 170, 30);
 
+        jButtonScriptSendMessage.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptSendMessage.setText("Send Message");
         jButtonScriptSendMessage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3024,8 +3274,9 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel4.add(jButtonScriptSendMessage);
-        jButtonScriptSendMessage.setBounds(20, 100, 170, 30);
+        jButtonScriptSendMessage.setBounds(20, 280, 170, 30);
 
+        jButtonScriptTestUDPTCP.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptTestUDPTCP.setText("<html><center>Test TCP/UDP Port<br />(Experimental)</center.</html>");
         jButtonScriptTestUDPTCP.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButtonScriptTestUDPTCP.addActionListener(new java.awt.event.ActionListener() {
@@ -3034,8 +3285,9 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel4.add(jButtonScriptTestUDPTCP);
-        jButtonScriptTestUDPTCP.setBounds(200, 20, 170, 30);
+        jButtonScriptTestUDPTCP.setBounds(200, 40, 170, 30);
 
+        jButtonScriptiPerfClient.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptiPerfClient.setText("iPerf Client");
         jButtonScriptiPerfClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3043,8 +3295,9 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel4.add(jButtonScriptiPerfClient);
-        jButtonScriptiPerfClient.setBounds(380, 60, 170, 30);
+        jButtonScriptiPerfClient.setBounds(380, 240, 170, 30);
 
+        jButtonScriptPingLoggerToFile.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptPingLoggerToFile.setText("Ping a List - Log to CSV");
         jButtonScriptPingLoggerToFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3052,8 +3305,9 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel4.add(jButtonScriptPingLoggerToFile);
-        jButtonScriptPingLoggerToFile.setBounds(20, 60, 170, 30);
+        jButtonScriptPingLoggerToFile.setBounds(20, 80, 170, 30);
 
+        jButtonScriptGetNTPTimePS.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptGetNTPTimePS.setText("<html><center>Get NTP Time<br />(Experimental)</center></html>");
         jButtonScriptGetNTPTimePS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3061,8 +3315,9 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel4.add(jButtonScriptGetNTPTimePS);
-        jButtonScriptGetNTPTimePS.setBounds(200, 100, 170, 30);
+        jButtonScriptGetNTPTimePS.setBounds(200, 280, 170, 30);
 
+        jButtonScriptMTUSweep.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptMTUSweep.setText("MTU Sweep");
         jButtonScriptMTUSweep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3070,8 +3325,9 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel4.add(jButtonScriptMTUSweep);
-        jButtonScriptMTUSweep.setBounds(380, 100, 170, 30);
+        jButtonScriptMTUSweep.setBounds(380, 40, 170, 30);
 
+        jButtonScriptHashChecker.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptHashChecker.setText("Hash Checker");
         jButtonScriptHashChecker.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3079,8 +3335,9 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel4.add(jButtonScriptHashChecker);
-        jButtonScriptHashChecker.setBounds(20, 140, 170, 30);
+        jButtonScriptHashChecker.setBounds(20, 240, 170, 30);
 
+        jButtonScriptHashChecker1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptHashChecker1.setText("PS Nmap-Style Scan");
         jButtonScriptHashChecker1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3088,7 +3345,59 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel4.add(jButtonScriptHashChecker1);
-        jButtonScriptHashChecker1.setBounds(200, 140, 170, 30);
+        jButtonScriptHashChecker1.setBounds(200, 80, 170, 30);
+
+        jButtonSyncStandaloneDevices.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonSyncStandaloneDevices.setText("<html><center>Sync <b>Standalone</b> Devices</center></html>");
+        jButtonSyncStandaloneDevices.setEnabled(false);
+        jButtonSyncStandaloneDevices.setMargin(new java.awt.Insets(2, 0, 2, 0));
+        jButtonSyncStandaloneDevices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSyncStandaloneDevicesActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButtonSyncStandaloneDevices);
+        jButtonSyncStandaloneDevices.setBounds(200, 160, 170, 30);
+
+        jLabel32.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel32.setText("Misc");
+        jPanel4.add(jLabel32);
+        jLabel32.setBounds(110, 200, 350, 40);
+
+        jLabel36.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel36.setText("Scanning");
+        jPanel4.add(jLabel36);
+        jLabel36.setBounds(110, 0, 350, 40);
+
+        jLabel37.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel37.setText("Syncing");
+        jPanel4.add(jLabel37);
+        jLabel37.setBounds(110, 120, 350, 40);
+
+        jButtonSyncProductionDevices.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonSyncProductionDevices.setText("<html><center>Sync <b>Production</b> Devices</center></html>");
+        jButtonSyncProductionDevices.setEnabled(false);
+        jButtonSyncProductionDevices.setMargin(new java.awt.Insets(2, 0, 2, 0));
+        jButtonSyncProductionDevices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSyncProductionDevicesActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButtonSyncProductionDevices);
+        jButtonSyncProductionDevices.setBounds(20, 160, 170, 30);
+
+        jButtonMapSharedFolder.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonMapSharedFolder.setText("Map Shared Folder");
+        jButtonMapSharedFolder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMapSharedFolderActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButtonMapSharedFolder);
+        jButtonMapSharedFolder.setBounds(380, 160, 170, 30);
 
         jTabbedPaneToolBox.addTab("Scripts", jPanel4);
 
@@ -3096,17 +3405,20 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jPanelSettings.setLayout(null);
 
+        jLabelSSHClient.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelSSHClient.setText("SSH Client:");
         jPanelSettings.add(jLabelSSHClient);
         jLabelSSHClient.setBounds(10, 10, 90, 30);
 
         buttonGroupSSHClient.add(jRadioButtonSSHClientSecureCRT);
+        jRadioButtonSSHClientSecureCRT.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jRadioButtonSSHClientSecureCRT.setSelected(true);
         jRadioButtonSSHClientSecureCRT.setText("SecureCRT");
         jPanelSettings.add(jRadioButtonSSHClientSecureCRT);
         jRadioButtonSSHClientSecureCRT.setBounds(170, 10, 90, 30);
 
         buttonGroupSSHClient.add(jRadioButtonSSHClientPuTTY);
+        jRadioButtonSSHClientPuTTY.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jRadioButtonSSHClientPuTTY.setText("PuTTY");
         jRadioButtonSSHClientPuTTY.setEnabled(false);
         jRadioButtonSSHClientPuTTY.addActionListener(new java.awt.event.ActionListener() {
@@ -3124,6 +3436,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jLabelListTextSizePreview.setBounds(240, 70, 200, 30);
 
         buttonGroupConsoleClient.add(jRadioButtonConsolePutty);
+        jRadioButtonConsolePutty.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jRadioButtonConsolePutty.setText("PuTTY");
         jRadioButtonConsolePutty.setEnabled(false);
         jRadioButtonConsolePutty.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -3140,6 +3453,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jRadioButtonConsolePutty.setBounds(100, 40, 70, 30);
 
         buttonGroupConsoleClient.add(jRadioButtonConsoleSecureCRT);
+        jRadioButtonConsoleSecureCRT.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jRadioButtonConsoleSecureCRT.setSelected(true);
         jRadioButtonConsoleSecureCRT.setText("SecureCRT");
         jPanelSettings.add(jRadioButtonConsoleSecureCRT);
@@ -3157,14 +3471,17 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelSettings.add(jSliderListTextSize);
         jSliderListTextSize.setBounds(100, 70, 140, 30);
 
+        jLabelConsoleClient.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelConsoleClient.setText("Console Client:");
         jPanelSettings.add(jLabelConsoleClient);
         jLabelConsoleClient.setBounds(10, 40, 90, 30);
 
+        jLabelListTextSize1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelListTextSize1.setText("List Text Size:");
         jPanelSettings.add(jLabelListTextSize1);
         jLabelListTextSize1.setBounds(10, 70, 90, 30);
 
+        jButton31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton31.setText("Reset SecureCRT Settings");
         jButton31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3174,6 +3491,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelSettings.add(jButton31);
         jButton31.setBounds(10, 110, 190, 20);
 
+        jButton32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton32.setText("Edit Favorites List");
         jButton32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3183,6 +3501,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelSettings.add(jButton32);
         jButton32.setBounds(10, 140, 190, 20);
 
+        jButton33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton33.setText("Show Button List");
         jButton33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3192,6 +3511,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelSettings.add(jButton33);
         jButton33.setBounds(10, 170, 190, 20);
 
+        jButton34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton34.setText("View Settings File");
         jButton34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3202,6 +3522,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton34.setBounds(10, 200, 190, 20);
 
         jTextField2.setBackground(new java.awt.Color(51, 51, 51));
+        jTextField2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(255, 204, 153));
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3216,6 +3537,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelSettings.add(jTextField2);
         jTextField2.setBounds(370, 460, 190, 20);
 
+        jButtonScriptUpdateLaunchPad.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptUpdateLaunchPad.setText("Update LaunchPad");
         jButtonScriptUpdateLaunchPad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3225,6 +3547,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelSettings.add(jButtonScriptUpdateLaunchPad);
         jButtonScriptUpdateLaunchPad.setBounds(390, 20, 160, 30);
 
+        jButtonReportIssue.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReportIssue.setText("Report an Issue");
         jButtonReportIssue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3234,6 +3557,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelSettings.add(jButtonReportIssue);
         jButtonReportIssue.setBounds(10, 460, 160, 23);
 
+        jButton28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton28.setText("Open \".launchpad\" Folder");
         jButton28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3243,6 +3567,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jPanelSettings.add(jButton28);
         jButton28.setBounds(10, 230, 190, 20);
 
+        jButton30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton30.setText("Open Logging-Ouput Folder");
         jButton30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3251,6 +3576,28 @@ final JFXPanel fxPanel = new JFXPanel();
         });
         jPanelSettings.add(jButton30);
         jButton30.setBounds(10, 260, 190, 20);
+
+        jButtonEditProductionDevicesList.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonEditProductionDevicesList.setText("<html><center>Edit <b>Standalone</b> Devices List</center></html>");
+        jButtonEditProductionDevicesList.setMargin(new java.awt.Insets(2, 0, 2, 0));
+        jButtonEditProductionDevicesList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditProductionDevicesListActionPerformed(evt);
+            }
+        });
+        jPanelSettings.add(jButtonEditProductionDevicesList);
+        jButtonEditProductionDevicesList.setBounds(10, 320, 190, 20);
+
+        jButtonEditProductionDevicesList1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonEditProductionDevicesList1.setText("<html><center>Edit <b>Production</b> Devices List</center></html>");
+        jButtonEditProductionDevicesList1.setMargin(new java.awt.Insets(2, 0, 2, 0));
+        jButtonEditProductionDevicesList1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditProductionDevicesList1ActionPerformed(evt);
+            }
+        });
+        jPanelSettings.add(jButtonEditProductionDevicesList1);
+        jButtonEditProductionDevicesList1.setBounds(10, 290, 190, 20);
 
         jTabbedMain.addTab("Settings", jPanelSettings);
 
@@ -5375,6 +5722,26 @@ final JFXPanel fxPanel = new JFXPanel();
         openFileUsingDesktop(strPathLoggingFolder);
     }//GEN-LAST:event_jButton30ActionPerformed
 
+    private void jButtonSyncStandaloneDevicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSyncStandaloneDevicesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSyncStandaloneDevicesActionPerformed
+
+    private void jButtonSyncProductionDevicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSyncProductionDevicesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSyncProductionDevicesActionPerformed
+
+    private void jButtonMapSharedFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMapSharedFolderActionPerformed
+        openEmbeddedPowershellScript("scripts/Powershell-MapSharedFolder.ps1", ".ps1");
+    }//GEN-LAST:event_jButtonMapSharedFolderActionPerformed
+
+    private void jButtonEditProductionDevicesListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditProductionDevicesListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEditProductionDevicesListActionPerformed
+
+    private void jButtonEditProductionDevicesList1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditProductionDevicesList1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEditProductionDevicesList1ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -5444,23 +5811,15 @@ final JFXPanel fxPanel = new JFXPanel();
         {  
             archivo.createNewFile();
             List<String> lines = Arrays.asList(
-" ~~~~~~~~ ROUTERS ~~~~~~~~~",
-"C2800-a01-asdf-090-Rm100,10.0.0.14",
-"C2600-asdf-A51-0710-Rm100,10.0.0.15",
-"C2600-asdf-A51-0710-Rm100,10.0.0.15",
-"",
-" ~~~~~~~ CORE NODES ~~~~~~~~",
-"C6500-a01-asdf-0700-Rm100,10.0.0.12",
-"C6500-a01-asdf-0700-Rm100,10.0.0.13",
-"",
-" ~~~~ DISTRIBUTION NODES ~~~~",
-"C4500-a01-asdf-0020-1FL-Rm100,10.0.0.8",
-"C4500-a01-asdf-0020-2FL-Rm200_C4500,10.0.0.9",
-"",
-" ~~~~~~ ACCESS NODES ~~~~~~ ",
-"C3750X-a01-asdf-0001-2FL-Rm200,10.0.0.6",
-"C3750-a01-asdf-0051-BSMT-Rm2,10.0.0.7",
-"C3550-a01-asdf-0051-BSMT-Rm2,10.0.0.7",
+" ~~~~~~~~ Network Nodes ~~~~~~~~~",
+"R1-C800,1.1.1.1",
+"R2-C1700,2.2.2.2",
+"R2-C2600,3.3.3.3",
+"R2-C2800,4.4.4.4",
+"DSW1-C3750X,192.168.1.129",
+"DSW2,C3750,192.168.1.130",
+"ASW1-C3560,192.168.1.131",
+"ASW2-C3550,192.168.1.132",
 "",
 " ~~~~~~~~ SERVERS ~~~~~~~~~",
 "Windows 10,172.16.0.50",
@@ -5827,6 +6186,8 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButton9;
     private javax.swing.JButton jButtonConfigBuilder1;
     private javax.swing.JButton jButtonConsole;
+    private javax.swing.JButton jButtonEditProductionDevicesList;
+    private javax.swing.JButton jButtonEditProductionDevicesList1;
     private javax.swing.JButton jButtonExecuteFunction1;
     private javax.swing.JButton jButtonExecuteFunction2;
     private javax.swing.JButton jButtonExecuteFunction3;
@@ -5869,6 +6230,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonLinkCustom34;
     private javax.swing.JButton jButtonLinkCustom35;
     private javax.swing.JButton jButtonLinkCustom36;
+    private javax.swing.JButton jButtonMapSharedFolder;
     private javax.swing.JButton jButtonPing;
     private javax.swing.JButton jButtonReferenceCustom01;
     private javax.swing.JButton jButtonReferenceCustom02;
@@ -5954,6 +6316,8 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonScriptiPerfServer;
     private javax.swing.JButton jButtonShowCOMList;
     private javax.swing.JButton jButtonSubnetCalculator;
+    private javax.swing.JButton jButtonSyncProductionDevices;
+    private javax.swing.JButton jButtonSyncStandaloneDevices;
     private javax.swing.JButton jButtonTCP;
     private javax.swing.JButton jButtonTracert;
     private javax.swing.JButton jButtonZipBrowseDestinationFolder;
@@ -5978,9 +6342,12 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabelConsoleClient;

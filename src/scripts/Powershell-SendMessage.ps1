@@ -84,6 +84,8 @@ End
 while($true)
 {
 
+clear-host
+
 #-- INITIAL PROMPTS
 
     #-- ENTER START IP
