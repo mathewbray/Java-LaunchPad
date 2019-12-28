@@ -460,8 +460,9 @@ final JFXPanel fxPanel = new JFXPanel();
 
         //--- Load preloaded Zip Items
         jTextFieldZipSourceFolder.setText(PropertyHandler.getInstance().getValue("ZipDefaultSourceFolder").replace("%USERPROFILE%", pathUserProfile));
+        jTextFieldZipFilename.setText(pathDesktop + "\\Backup_" + dateTime + ".zip");
+        jTextFieldZipSourceFile.setText(pathDesktop + "\\Backup_" + dateTime + ".zip");
         jTextFieldZipDestinationFolder.setText(PropertyHandler.getInstance().getValue("ZipDefaultDestinationFolder").replace("%USERPROFILE%", pathUserProfile));
- 
         
         //--- Load tooltips
         jButton1.setToolTipText(PropertyHandler.getInstance().getValue("Button01ToolTip"));
@@ -554,10 +555,6 @@ final JFXPanel fxPanel = new JFXPanel();
        
         //--- Create directories if not exist
         new File(strPathLoggingFolder).mkdirs();
-        
-        //--- Set Zip Text
-        String strPathDesktop = pathDesktop.toString();
-        jTextFieldZipFilename.setText(strPathDesktop + "\\Backup_" + dateTime + ".zip");
         
         //--- Load Links button text
         jButtonLinkCustom01.setText(PropertyHandler.getInstance().getValue("CustomLink01Description"));
@@ -1117,6 +1114,8 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton24 = new javax.swing.JButton();
         jButton36 = new javax.swing.JButton();
         jButton37 = new javax.swing.JButton();
+        jButtonSubnetCalculator1 = new javax.swing.JButton();
+        jButtonIPv4SubnetCalculator = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jButtonScriptCreateDummyFile = new javax.swing.JButton();
         jButtonScriptPowershellPingSweepRange = new javax.swing.JButton();
@@ -2763,6 +2762,11 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonFolderToZip.setBounds(310, 140, 170, 20);
 
         jTextFieldZipSourceFolder.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldZipSourceFolder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldZipSourceFolderActionPerformed(evt);
+            }
+        });
         jPanel7.add(jTextFieldZipSourceFolder);
         jTextFieldZipSourceFolder.setBounds(130, 50, 340, 20);
 
@@ -3152,7 +3156,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel11.add(jButtonJSDiff2);
-        jButtonJSDiff2.setBounds(200, 40, 170, 30);
+        jButtonJSDiff2.setBounds(110, 80, 170, 30);
 
         jButtonConfigBuilder1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonConfigBuilder1.setText("Config Builder (For Lab Use)");
@@ -3163,17 +3167,18 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel11.add(jButtonConfigBuilder1);
-        jButtonConfigBuilder1.setBounds(380, 40, 170, 30);
+        jButtonConfigBuilder1.setBounds(290, 80, 170, 30);
 
         jButtonSubnetCalculator.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonSubnetCalculator.setText("IPv4/v6 Subnet Calculator");
+        jButtonSubnetCalculator.setToolTipText("Just another style with both v4 and v6");
         jButtonSubnetCalculator.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSubnetCalculatorActionPerformed(evt);
             }
         });
         jPanel11.add(jButtonSubnetCalculator);
-        jButtonSubnetCalculator.setBounds(20, 40, 170, 30);
+        jButtonSubnetCalculator.setBounds(380, 40, 170, 30);
 
         jButton41.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton41.setText("Puppeteer");
@@ -3183,23 +3188,23 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel11.add(jButton41);
-        jButton41.setBounds(200, 130, 170, 30);
+        jButton41.setBounds(200, 170, 170, 30);
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel38.setText("Java Apps");
         jPanel11.add(jLabel38);
-        jLabel38.setBounds(110, 90, 350, 40);
+        jLabel38.setBounds(110, 130, 350, 40);
         jPanel11.add(jSeparator12);
-        jSeparator12.setBounds(10, 90, 550, 10);
+        jSeparator12.setBounds(10, 130, 550, 10);
         jPanel11.add(jSeparator13);
-        jSeparator13.setBounds(10, 180, 550, 10);
+        jSeparator13.setBounds(10, 220, 550, 10);
 
         jLabel39.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel39.setText("Documents");
         jPanel11.add(jLabel39);
-        jLabel39.setBounds(110, 180, 350, 40);
+        jLabel39.setBounds(110, 220, 350, 40);
 
         jButton24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton24.setText("IPv4 Subnet Chart");
@@ -3209,7 +3214,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel11.add(jButton24);
-        jButton24.setBounds(20, 220, 170, 30);
+        jButton24.setBounds(20, 260, 170, 30);
 
         jButton36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton36.setText("IPv4 Subnet Cheat Sheet");
@@ -3220,7 +3225,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel11.add(jButton36);
-        jButton36.setBounds(200, 220, 170, 30);
+        jButton36.setBounds(200, 260, 170, 30);
 
         jButton37.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton37.setText("Stretch's Cheat Sheets");
@@ -3230,7 +3235,27 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel11.add(jButton37);
-        jButton37.setBounds(380, 220, 170, 30);
+        jButton37.setBounds(380, 260, 170, 30);
+
+        jButtonSubnetCalculator1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonSubnetCalculator1.setText("IPv6 Subnet Calculator");
+        jButtonSubnetCalculator1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSubnetCalculator1ActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButtonSubnetCalculator1);
+        jButtonSubnetCalculator1.setBounds(200, 40, 170, 30);
+
+        jButtonIPv4SubnetCalculator.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonIPv4SubnetCalculator.setText("IPv4 Subnet Calculator");
+        jButtonIPv4SubnetCalculator.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIPv4SubnetCalculatorActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButtonIPv4SubnetCalculator);
+        jButtonIPv4SubnetCalculator.setBounds(20, 40, 170, 30);
 
         jTabbedPaneToolBox.addTab("Web/Java/Docs", jPanel11);
 
@@ -3415,11 +3440,11 @@ final JFXPanel fxPanel = new JFXPanel();
         jRadioButtonSSHClientSecureCRT.setSelected(true);
         jRadioButtonSSHClientSecureCRT.setText("SecureCRT");
         jPanelSettings.add(jRadioButtonSSHClientSecureCRT);
-        jRadioButtonSSHClientSecureCRT.setBounds(170, 10, 90, 30);
+        jRadioButtonSSHClientSecureCRT.setBounds(200, 10, 90, 30);
 
         buttonGroupSSHClient.add(jRadioButtonSSHClientPuTTY);
         jRadioButtonSSHClientPuTTY.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jRadioButtonSSHClientPuTTY.setText("PuTTY");
+        jRadioButtonSSHClientPuTTY.setText("SuperPuTTY");
         jRadioButtonSSHClientPuTTY.setEnabled(false);
         jRadioButtonSSHClientPuTTY.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3427,7 +3452,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelSettings.add(jRadioButtonSSHClientPuTTY);
-        jRadioButtonSSHClientPuTTY.setBounds(100, 10, 70, 30);
+        jRadioButtonSSHClientPuTTY.setBounds(100, 10, 100, 30);
 
         jLabelListTextSizePreview.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
         jLabelListTextSizePreview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -3437,7 +3462,7 @@ final JFXPanel fxPanel = new JFXPanel();
 
         buttonGroupConsoleClient.add(jRadioButtonConsolePutty);
         jRadioButtonConsolePutty.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jRadioButtonConsolePutty.setText("PuTTY");
+        jRadioButtonConsolePutty.setText("SuperPuTTY");
         jRadioButtonConsolePutty.setEnabled(false);
         jRadioButtonConsolePutty.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -3450,14 +3475,14 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelSettings.add(jRadioButtonConsolePutty);
-        jRadioButtonConsolePutty.setBounds(100, 40, 70, 30);
+        jRadioButtonConsolePutty.setBounds(100, 40, 90, 30);
 
         buttonGroupConsoleClient.add(jRadioButtonConsoleSecureCRT);
         jRadioButtonConsoleSecureCRT.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jRadioButtonConsoleSecureCRT.setSelected(true);
         jRadioButtonConsoleSecureCRT.setText("SecureCRT");
         jPanelSettings.add(jRadioButtonConsoleSecureCRT);
-        jRadioButtonConsoleSecureCRT.setBounds(170, 40, 100, 30);
+        jRadioButtonConsoleSecureCRT.setBounds(200, 40, 100, 30);
 
         jSliderListTextSize.setMaximum(6);
         jSliderListTextSize.setPaintLabels(true);
@@ -5314,7 +5339,7 @@ final JFXPanel fxPanel = new JFXPanel();
     }//GEN-LAST:event_jButtonConfigBuilder1ActionPerformed
 
     private void jButtonSubnetCalculatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubnetCalculatorActionPerformed
-        openTempFileUsingDesktop("html/subnetcalculator/subnetcalculator.html", ".html");
+        openTempFileUsingDesktop("html/subnetcalculator/SubnetCalculator.html", ".html");
     }//GEN-LAST:event_jButtonSubnetCalculatorActionPerformed
 
     private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
@@ -5723,11 +5748,11 @@ final JFXPanel fxPanel = new JFXPanel();
     }//GEN-LAST:event_jButton30ActionPerformed
 
     private void jButtonSyncStandaloneDevicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSyncStandaloneDevicesActionPerformed
-        // TODO add your handling code here:
+        openEmbeddedPowershellScript("scripts/Powershell-SyncStandaloneDevices.ps1", ".ps1");
     }//GEN-LAST:event_jButtonSyncStandaloneDevicesActionPerformed
 
     private void jButtonSyncProductionDevicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSyncProductionDevicesActionPerformed
-        // TODO add your handling code here:
+        openEmbeddedPowershellScript("scripts/Powershell-SyncProductionDevices.ps1", ".ps1");
     }//GEN-LAST:event_jButtonSyncProductionDevicesActionPerformed
 
     private void jButtonMapSharedFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMapSharedFolderActionPerformed
@@ -5741,6 +5766,18 @@ final JFXPanel fxPanel = new JFXPanel();
     private void jButtonEditProductionDevicesList1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditProductionDevicesList1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonEditProductionDevicesList1ActionPerformed
+
+    private void jTextFieldZipSourceFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldZipSourceFolderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldZipSourceFolderActionPerformed
+
+    private void jButtonSubnetCalculator1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubnetCalculator1ActionPerformed
+        openTempFileUsingDesktop("html/subnetcalculator/IPv6SubnetCalculator", ".html");
+    }//GEN-LAST:event_jButtonSubnetCalculator1ActionPerformed
+
+    private void jButtonIPv4SubnetCalculatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIPv4SubnetCalculatorActionPerformed
+        openTempFileUsingDesktop("html/subnetcalculator/IPv4SubnetCalculator", ".html");
+    }//GEN-LAST:event_jButtonIPv4SubnetCalculatorActionPerformed
 
     
     /**
@@ -6193,6 +6230,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonExecuteFunction3;
     private javax.swing.JButton jButtonFolderToZip;
     private javax.swing.JButton jButtonGenerateHash;
+    private javax.swing.JButton jButtonIPv4SubnetCalculator;
     private javax.swing.JButton jButtonJSDiff2;
     private javax.swing.JButton jButtonLinkCustom01;
     private javax.swing.JButton jButtonLinkCustom02;
@@ -6316,6 +6354,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonScriptiPerfServer;
     private javax.swing.JButton jButtonShowCOMList;
     private javax.swing.JButton jButtonSubnetCalculator;
+    private javax.swing.JButton jButtonSubnetCalculator1;
     private javax.swing.JButton jButtonSyncProductionDevices;
     private javax.swing.JButton jButtonSyncStandaloneDevices;
     private javax.swing.JButton jButtonTCP;

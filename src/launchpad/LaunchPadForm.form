@@ -2907,6 +2907,9 @@
                       <Font name="Arial Unicode MS" size="11" style="0"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldZipSourceFolderActionPerformed"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="130" y="50" width="340" height="20"/>
@@ -3777,7 +3780,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="200" y="40" width="170" height="30"/>
+                      <AbsoluteConstraints x="110" y="80" width="170" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -3796,7 +3799,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="380" y="40" width="170" height="30"/>
+                      <AbsoluteConstraints x="290" y="80" width="170" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -3806,13 +3809,14 @@
                       <Font name="Arial Unicode MS" size="11" style="0"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="IPv4/v6 Subnet Calculator"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Just another style with both v4 and v6"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSubnetCalculatorActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="20" y="40" width="170" height="30"/>
+                      <AbsoluteConstraints x="380" y="40" width="170" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -3828,7 +3832,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="200" y="130" width="170" height="30"/>
+                      <AbsoluteConstraints x="200" y="170" width="170" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -3842,21 +3846,21 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="110" y="90" width="350" height="40"/>
+                      <AbsoluteConstraints x="110" y="130" width="350" height="40"/>
                     </Constraint>
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JSeparator" name="jSeparator12">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="10" y="90" width="550" height="10"/>
+                      <AbsoluteConstraints x="10" y="130" width="550" height="10"/>
                     </Constraint>
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JSeparator" name="jSeparator13">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="10" y="180" width="550" height="10"/>
+                      <AbsoluteConstraints x="10" y="220" width="550" height="10"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -3870,7 +3874,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="110" y="180" width="350" height="40"/>
+                      <AbsoluteConstraints x="110" y="220" width="350" height="40"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -3886,7 +3890,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="20" y="220" width="170" height="30"/>
+                      <AbsoluteConstraints x="20" y="260" width="170" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -3905,7 +3909,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="200" y="220" width="170" height="30"/>
+                      <AbsoluteConstraints x="200" y="260" width="170" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -3921,7 +3925,39 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="380" y="220" width="170" height="30"/>
+                      <AbsoluteConstraints x="380" y="260" width="170" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButtonSubnetCalculator1">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial Unicode MS" size="11" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="IPv6 Subnet Calculator"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSubnetCalculator1ActionPerformed"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="200" y="40" width="170" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButtonIPv4SubnetCalculator">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial Unicode MS" size="11" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="IPv4 Subnet Calculator"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonIPv4SubnetCalculatorActionPerformed"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="20" y="40" width="170" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -4260,7 +4296,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="170" y="10" width="90" height="30"/>
+                  <AbsoluteConstraints x="200" y="10" width="90" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -4272,7 +4308,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Unicode MS" size="11" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="PuTTY"/>
+                <Property name="text" type="java.lang.String" value="SuperPuTTY"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
@@ -4280,7 +4316,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="100" y="10" width="70" height="30"/>
+                  <AbsoluteConstraints x="100" y="10" width="100" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -4306,7 +4342,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Unicode MS" size="11" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="PuTTY"/>
+                <Property name="text" type="java.lang.String" value="SuperPuTTY"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
@@ -4315,7 +4351,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="100" y="40" width="70" height="30"/>
+                  <AbsoluteConstraints x="100" y="40" width="90" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -4332,7 +4368,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="170" y="40" width="100" height="30"/>
+                  <AbsoluteConstraints x="200" y="40" width="100" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>

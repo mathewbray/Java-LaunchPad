@@ -369,16 +369,16 @@ public class LaunchPad {
 "CustomScript35Exec=",
 "CustomScript36Description=",
 "CustomScript36Exec=",
-"FileLaunchPadLocal=%USERPROFILE%\\Desktop\\LaunchPad\\LaunchPad.jar",
-"FileLaunchPadRemote=%USERPROFILE%\\Desktop\\new.txt",
-"FileUpdateScript=%USERPROFILE%\\Desktop\\HelloWorld.ps1",
+"FileLaunchPadLocal=%USERPROFILE%\\\\Desktop\\\\LaunchPad\\\\LaunchPad.jar",
+"FileLaunchPadRemote=%USERPROFILE%\\\\Desktop\\\\new.txt",
+"FileUpdateScript=%USERPROFILE%\\\\Desktop\\\\HelloWorld.ps1",
 "PreloadPing=10.0.",
 "PreloadSSH=10.0.",
-"SecureCRT=C:\\Program Files\\SecureCRT x64\\SecureCRT\\SecureCRT.exe",
+"SecureCRT=C:\\\\Program Files\\\\SecureCRT x64\\\\SecureCRT\\\\SecureCRT.exe",
 "SettingClassification=",
 "WindowTitle=LaunchPad Pre-Alpha",
-"ZipDefaultDestinationFolder=",
-"ZipDefaultSourceFolder=%USERPROFILE%\\Desktop");
+"ZipDefaultDestinationFolder=%USERPROFILE%\\\\Desktop",
+"ZipDefaultSourceFolder=%USERPROFILE%\\\\Desktop");
             Path file = Paths.get(filePropertiesFile.getPath());
             Files.write(file, lines, Charset.forName("UTF-8"));
 
