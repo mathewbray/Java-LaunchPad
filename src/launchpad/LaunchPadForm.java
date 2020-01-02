@@ -104,13 +104,13 @@ public class LaunchPadForm extends javax.swing.JFrame {
     String pathUserProfile = System.getenv("USERPROFILE");
     File pathLogging = new File(pathDesktop + "\\Logging-Output");
     String strPathLoggingFolder = pathDesktop + "\\Logging-Output";    
-    String strPathLaunchPadFolder = pathUserProfile + "\\.launchpad";
-    String strPathLaunchPadPersistantUserFolder = pathUserProfile + "\\.launchpad-persistant-user";    
-    String strSessionListFavoritesFolder = strPathLaunchPadPersistantUserFolder + "\\FavoritesSessionList";   
-    String strSessionListFavorites = strSessionListFavoritesFolder + "\\SessionList.csv";
+    String strPathLaunchPadFolder = pathUserProfile + "\\AppData\\Local\\LaunchPad_Java";
     String strSessionListDefault = strPathLaunchPadFolder + "\\SessionList.csv";
     String strPathPropertiesFile = strPathLaunchPadFolder + "\\launchpad.properties";
-
+    String strPathLaunchPadPersistantUserFolder = pathUserProfile + "\\AppData\\Local\\LaunchPad_Java_Persistant_User";    
+    String strSessionListFavoritesFolder = strPathLaunchPadPersistantUserFolder + "\\FavoritesSessionList";   
+    String strSessionListFavorites = strSessionListFavoritesFolder + "\\SessionList.csv";
+    
     //--- Get Date and time for things
     SimpleDateFormat simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
     String dateTime = simpleDateFormat.format(new Date());
@@ -3583,7 +3583,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonReportIssue.setBounds(10, 460, 160, 23);
 
         jButton28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton28.setText("Open \".launchpad\" Folder");
+        jButton28.setText("Open LaunchPad App Folder");
         jButton28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton28ActionPerformed(evt);
@@ -5858,12 +5858,25 @@ final JFXPanel fxPanel = new JFXPanel();
 "ASW1-C3560,192.168.1.131",
 "ASW2-C3550,192.168.1.132",
 "",
-" ~~~~~~~~ SERVERS ~~~~~~~~~",
+" ~~~~~~~~ Servers ~~~~~~~~~",
 "Windows 10,172.16.0.50",
-"VMware ESXi,172.16.0.100",
-"Solarwinds,172.16.0.125",
-"Cisco ISE,172.16.0.150",
-"Cisco PI,172.16.0.200");
+"VMware ESXi,10.2.1.100",
+"Windows Server 2016 CA,10.1.101",
+"Windows Server 2016 DC,10.1.102",
+"Infoblox vNIOS,10.2.1.105",
+"Cisco PI,10.2.1.110",
+"Cisco PI-LW,10.2.1.111",
+"Cisco PI-LW-HA,10.2.1.112",
+"Cisco APIC-EM,10.2.1.115",
+"EVE-NG ESXi,10.2.1.119",
+"EVE-NG XPS,10.2.1.120",
+"Cisco CSR1000v,10.2.1.121",
+"Pi Terminal Server (TELNET),10.2.1.250",
+"",
+" ~~~~~~~~ Testing ~~~~~~~~~",
+"ASW1-CLEAN,10.2.1.5",
+"DSW2-DIRTY,10.2.1.6",
+"HSRP DSW1/DSW2,10.2.1.254");
             
             Path file = Paths.get(strSessionList);
             Files.write(file, lines, Charset.forName("UTF-8"));

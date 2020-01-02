@@ -41,8 +41,8 @@ public class LaunchPad {
         //--- Shared Items
         String pathUserProfile = System.getenv("USERPROFILE");
         File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
-        String strPathLaunchPadFolder = pathUserProfile + "\\.launchpad";
-        String strPathLaunchPadPersistantUserFolder = pathUserProfile + "\\.launchpad-persistant-user";    
+        String strPathLaunchPadFolder = pathUserProfile + "\\AppData\\Local\\LaunchPad_Java";
+        String strPathLaunchPadPersistantUserFolder = pathUserProfile + "\\AppData\\Local\\LaunchPad_Java_Persistant_User";    
         String strSessionListFavoritesFolder = strPathLaunchPadPersistantUserFolder + "\\FavoritesSessionList";
         String strPathPropertiesFile = strPathLaunchPadFolder + "\\launchpad.properties";
 
@@ -374,7 +374,7 @@ public class LaunchPad {
 "FileUpdateScript=%USERPROFILE%\\\\Desktop\\\\HelloWorld.ps1",
 "PreloadPing=10.0.",
 "PreloadSSH=10.0.",
-"SecureCRT=C:\\\\Program Files\\\\SecureCRT x64\\\\SecureCRT\\\\SecureCRT.exe",
+"SecureCRTexe=%USERPROFILE%\\\\AppData\\\\Local\\\\VanDyke Software\\\\SecureCRT\\\\SecureCRT.exe",
 "SettingClassification=",
 "WindowTitle=LaunchPad Pre-Alpha",
 "ZipDefaultDestinationFolder=%USERPROFILE%\\\\Desktop",
