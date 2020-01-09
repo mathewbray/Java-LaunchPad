@@ -3578,7 +3578,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelSettings.add(jButton31);
-        jButton31.setBounds(210, 370, 170, 30);
+        jButton31.setBounds(210, 380, 170, 30);
 
         jButton32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton32.setText("Edit Favorites List");
@@ -3588,7 +3588,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelSettings.add(jButton32);
-        jButton32.setBounds(110, 230, 170, 30);
+        jButton32.setBounds(110, 240, 170, 30);
 
         jButton33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton33.setText("View Button List");
@@ -3598,7 +3598,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelSettings.add(jButton33);
-        jButton33.setBounds(290, 120, 170, 30);
+        jButton33.setBounds(290, 130, 170, 30);
 
         jButton34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton34.setText("View Properties File");
@@ -3608,7 +3608,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelSettings.add(jButton34);
-        jButton34.setBounds(110, 120, 170, 30);
+        jButton34.setBounds(110, 130, 170, 30);
 
         jTextField2.setBackground(new java.awt.Color(51, 51, 51));
         jTextField2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3655,7 +3655,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelSettings.add(jButton28);
-        jButton28.setBounds(110, 160, 170, 30);
+        jButton28.setBounds(110, 170, 170, 30);
 
         jButton30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton30.setText("Open Logging-Ouput Folder");
@@ -3665,7 +3665,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelSettings.add(jButton30);
-        jButton30.setBounds(290, 160, 170, 30);
+        jButton30.setBounds(290, 170, 170, 30);
 
         jButtonEditProductionDevicesList.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonEditProductionDevicesList.setText("<html><center>Edit <b>Standalone</b> Devices List</center></html>");
@@ -3677,7 +3677,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelSettings.add(jButtonEditProductionDevicesList);
-        jButtonEditProductionDevicesList.setBounds(290, 300, 170, 30);
+        jButtonEditProductionDevicesList.setBounds(290, 310, 170, 30);
 
         jButtonEditProductionDevicesList1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonEditProductionDevicesList1.setText("<html><center>Edit <b>Production</b> Devices List</center></html>");
@@ -3689,7 +3689,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelSettings.add(jButtonEditProductionDevicesList1);
-        jButtonEditProductionDevicesList1.setBounds(110, 300, 170, 30);
+        jButtonEditProductionDevicesList1.setBounds(110, 310, 170, 30);
 
         jButton35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton35.setText("Edit Properties File");
@@ -3699,7 +3699,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelSettings.add(jButton35);
-        jButton35.setBounds(290, 230, 170, 30);
+        jButton35.setBounds(290, 240, 170, 30);
 
         jTabbedMain.addTab("Settings", jPanelSettings);
 
