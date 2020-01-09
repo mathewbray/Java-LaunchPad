@@ -41,7 +41,8 @@ public class LaunchPad {
         //--- Shared Items
         String pathUserProfile = System.getenv("USERPROFILE");
         File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
-        String strPathLaunchPadFolder = pathUserProfile + "\\AppData\\Local\\LaunchPad_Java";
+        //String strPathLaunchPadFolder = pathUserProfile + "\\AppData\\Local\\LaunchPad_Java";
+        String strPathLaunchPadFolder = System.getenv("SYSTEMDRIVE") + "\\LaunchPad";
         String strPathLaunchPadPersistantUserFolder = pathUserProfile + "\\AppData\\Local\\LaunchPad_Java_Persistant_User";    
         String strSessionListFavoritesFolder = strPathLaunchPadPersistantUserFolder + "\\FavoritesSessionList";
         String strPathPropertiesFile = strPathLaunchPadFolder + "\\launchpad.properties";

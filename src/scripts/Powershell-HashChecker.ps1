@@ -1,9 +1,8 @@
-
-clear-host
 do {
+        Clear-Host
         write-host ""
         write-host ""
-        write-host "                  Hash Checker! " -ForegroundColor Green
+        write-host "                  File Validator! " -ForegroundColor Green
         write-host ""
         write-host ""
         write-host "      Drag file to this window and press enter! " 
@@ -12,16 +11,9 @@ do {
         Clear-Host
         write-host ""        
         $checkFile = $checkFile.Replace('"','')
-        Write-Host $checkFile
-
-        #--- Powershell v3
-        #$md5 = New-Object -TypeName System.Security.Cryptography.MD5CryptoServiceProvider
-        #$hash = [System.BitConverter]::ToString($md5.ComputeHash([System.IO.File]::ReadAllBytes($checkFile)))
-        #Write-Host $hash
-        #Write-Host ""
-        #pause
-
-    $Info = "Do you want Response Time (for graphing) or simple UP/DOWN output???"
+        Write-Host "Checking: $checkFile"
+         write-host ""    
+    $Info = "Choose Hash:"
     $options = [System.Management.Automation.Host.ChoiceDescription[]] @("&MD5", "SHA&1", "SHA&256", "SHA&384", "SHA&512", "3&DES")
     [int]$defaultchoice = 1
     $opt =  $host.UI.PromptForChoice($Title , $Info , $Options,$defaultchoice)
@@ -37,5 +29,5 @@ do {
 
     }
 
-
-} until ( $checkFile -match "exit" )
+    pause
+} until ( $checkFile -match "exit" ) 

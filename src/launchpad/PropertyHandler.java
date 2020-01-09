@@ -27,7 +27,8 @@ public class PropertyHandler{
    private static PropertyHandler instance = null;
     private String pathUserProfile = System.getenv("USERPROFILE");
     private File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
-    private String strPathLaunchPadFolder = pathUserProfile + "\\AppData\\Local\\LaunchPad_Java";
+    //private String strPathLaunchPadFolder = pathUserProfile + "\\AppData\\Local\\LaunchPad_Java";
+    String strPathLaunchPadFolder = System.getenv("SYSTEMDRIVE") + "\\LaunchPad";
     private String strPathLaunchPadPropertiesFile = strPathLaunchPadFolder + "\\launchpad.properties";   
     private Properties prop = new Properties();
     private InputStream input = null;

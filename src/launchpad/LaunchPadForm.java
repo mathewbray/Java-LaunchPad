@@ -104,7 +104,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
     String pathUserProfile = System.getenv("USERPROFILE");
     File pathLogging = new File(pathDesktop + "\\Logging-Output");
     String strPathLoggingFolder = pathDesktop + "\\Logging-Output";    
-    String strPathLaunchPadFolder = pathUserProfile + "\\AppData\\Local\\LaunchPad_Java";
+    //String strPathLaunchPadFolder = pathUserProfile + "\\AppData\\Local\\LaunchPad_Java";
+    String strPathLaunchPadFolder = System.getenv("SYSTEMDRIVE") + "\\LaunchPad";
     String strSessionListDefault = strPathLaunchPadFolder + "\\SessionList.csv";
     String strPathPropertiesFile = strPathLaunchPadFolder + "\\launchpad.properties";
     String strPathLaunchPadPersistantUserFolder = pathUserProfile + "\\AppData\\Local\\LaunchPad_Java_Persistant_User";    
@@ -1066,7 +1067,6 @@ final JFXPanel fxPanel = new JFXPanel();
         jLabel35 = new javax.swing.JLabel();
         jPasswordFieldZipExtract = new javax.swing.JPasswordField();
         jPanel8 = new javax.swing.JPanel();
-        jSeparator8 = new javax.swing.JSeparator();
         jTextFieldType7Input = new javax.swing.JTextField();
         jButton21 = new javax.swing.JButton();
         jButton22 = new javax.swing.JButton();
@@ -1087,6 +1087,12 @@ final JFXPanel fxPanel = new JFXPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabelFolderToZip5 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextAreaHash = new javax.swing.JTextArea();
+        jButtonHashCopyMD5 = new javax.swing.JButton();
+        jButtonHashCopySHA512 = new javax.swing.JButton();
+        jButtonHashCopySHA1 = new javax.swing.JButton();
+        jButtonHashCopySHA256 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabelFolderToZip3 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -1155,6 +1161,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton30 = new javax.swing.JButton();
         jButtonEditProductionDevicesList = new javax.swing.JButton();
         jButtonEditProductionDevicesList1 = new javax.swing.JButton();
+        jButton35 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LaunchPad - Pre-Alpha");
@@ -2933,8 +2940,6 @@ final JFXPanel fxPanel = new JFXPanel();
         jTabbedPaneToolBox.addTab("Zip & Encrypt", jPanel7);
 
         jPanel8.setLayout(null);
-        jPanel8.add(jSeparator8);
-        jSeparator8.setBounds(10, 150, 550, 10);
 
         jTextFieldType7Input.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldType7Input.setText("05240E0715444F1D0A321F131F211D1A2A373B243A3017301710");
@@ -2942,7 +2947,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jTextFieldType7Input.setBounds(20, 50, 530, 20);
 
         jButton21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton21.setText("Decrypt");
+        jButton21.setText("Plain");
         jButton21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton21ActionPerformed(evt);
@@ -2952,14 +2957,14 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton21.setBounds(190, 80, 79, 20);
 
         jButton22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton22.setText("Encrypt");
+        jButton22.setText("Cipher");
         jButton22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton22ActionPerformed(evt);
             }
         });
         jPanel8.add(jButton22);
-        jButton22.setBounds(320, 80, 80, 20);
+        jButton22.setBounds(300, 80, 80, 20);
 
         jTextFieldType7Output.setEditable(false);
         jTextFieldType7Output.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -2968,9 +2973,9 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Type 7 Decrypt/Encrypt");
+        jLabel14.setText("Cisco Type 7");
         jPanel8.add(jLabel14);
-        jLabel14.setBounds(120, 10, 350, 40);
+        jLabel14.setBounds(110, 10, 350, 40);
 
         jButton23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton23.setText("Copy");
@@ -2993,6 +2998,11 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jButtonGenerateHash.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonGenerateHash.setText("Generate!");
+        jButtonGenerateHash.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButtonGenerateHashMousePressed(evt);
+            }
+        });
         jButtonGenerateHash.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGenerateHashActionPerformed(evt);
@@ -3018,22 +3028,22 @@ final JFXPanel fxPanel = new JFXPanel();
         jTextFieldHashSHA512.setEditable(false);
         jTextFieldHashSHA512.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanel12.add(jTextFieldHashSHA512);
-        jTextFieldHashSHA512.setBounds(70, 170, 480, 20);
+        jTextFieldHashSHA512.setBounds(70, 170, 430, 20);
 
         jTextFieldHashMD5.setEditable(false);
         jTextFieldHashMD5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanel12.add(jTextFieldHashMD5);
-        jTextFieldHashMD5.setBounds(70, 110, 480, 20);
+        jTextFieldHashMD5.setBounds(70, 110, 430, 20);
 
         jTextFieldHashSHA1.setEditable(false);
         jTextFieldHashSHA1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanel12.add(jTextFieldHashSHA1);
-        jTextFieldHashSHA1.setBounds(70, 130, 480, 20);
+        jTextFieldHashSHA1.setBounds(70, 130, 430, 20);
 
         jTextFieldHashSHA256.setEditable(false);
         jTextFieldHashSHA256.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanel12.add(jTextFieldHashSHA256);
-        jTextFieldHashSHA256.setBounds(70, 150, 480, 20);
+        jTextFieldHashSHA256.setBounds(70, 150, 430, 20);
 
         jLabel22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel22.setText("MD5:");
@@ -3060,6 +3070,60 @@ final JFXPanel fxPanel = new JFXPanel();
         jLabel25.setText("File:");
         jPanel12.add(jLabel25);
         jLabel25.setBounds(10, 50, 90, 20);
+
+        jTextAreaHash.setBackground(new java.awt.Color(240, 240, 240));
+        jTextAreaHash.setColumns(20);
+        jTextAreaHash.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        jTextAreaHash.setLineWrap(true);
+        jTextAreaHash.setRows(5);
+        jScrollPane2.setViewportView(jTextAreaHash);
+
+        jPanel12.add(jScrollPane2);
+        jScrollPane2.setBounds(10, 200, 540, 250);
+
+        jButtonHashCopyMD5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonHashCopyMD5.setText("Copy");
+        jButtonHashCopyMD5.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonHashCopyMD5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHashCopyMD5ActionPerformed(evt);
+            }
+        });
+        jPanel12.add(jButtonHashCopyMD5);
+        jButtonHashCopyMD5.setBounds(500, 110, 50, 20);
+
+        jButtonHashCopySHA512.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonHashCopySHA512.setText("Copy");
+        jButtonHashCopySHA512.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonHashCopySHA512.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHashCopySHA512ActionPerformed(evt);
+            }
+        });
+        jPanel12.add(jButtonHashCopySHA512);
+        jButtonHashCopySHA512.setBounds(500, 170, 50, 20);
+
+        jButtonHashCopySHA1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonHashCopySHA1.setText("Copy");
+        jButtonHashCopySHA1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonHashCopySHA1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHashCopySHA1ActionPerformed(evt);
+            }
+        });
+        jPanel12.add(jButtonHashCopySHA1);
+        jButtonHashCopySHA1.setBounds(500, 130, 50, 20);
+
+        jButtonHashCopySHA256.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonHashCopySHA256.setText("Copy");
+        jButtonHashCopySHA256.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonHashCopySHA256.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHashCopySHA256ActionPerformed(evt);
+            }
+        });
+        jPanel12.add(jButtonHashCopySHA256);
+        jButtonHashCopySHA256.setBounds(500, 150, 50, 20);
 
         jTabbedPaneToolBox.addTab("Hash Generate", jPanel12);
 
@@ -3514,7 +3578,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelSettings.add(jButton31);
-        jButton31.setBounds(10, 110, 190, 20);
+        jButton31.setBounds(210, 370, 170, 30);
 
         jButton32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton32.setText("Edit Favorites List");
@@ -3524,27 +3588,27 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelSettings.add(jButton32);
-        jButton32.setBounds(10, 140, 190, 20);
+        jButton32.setBounds(110, 230, 170, 30);
 
         jButton33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton33.setText("Show Button List");
+        jButton33.setText("View Button List");
         jButton33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton33ActionPerformed(evt);
             }
         });
         jPanelSettings.add(jButton33);
-        jButton33.setBounds(10, 170, 190, 20);
+        jButton33.setBounds(290, 120, 170, 30);
 
         jButton34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton34.setText("View Settings File");
+        jButton34.setText("View Properties File");
         jButton34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton34ActionPerformed(evt);
             }
         });
         jPanelSettings.add(jButton34);
-        jButton34.setBounds(10, 200, 190, 20);
+        jButton34.setBounds(110, 120, 170, 30);
 
         jTextField2.setBackground(new java.awt.Color(51, 51, 51));
         jTextField2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3564,13 +3628,14 @@ final JFXPanel fxPanel = new JFXPanel();
 
         jButtonScriptUpdateLaunchPad.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptUpdateLaunchPad.setText("Update LaunchPad");
+        jButtonScriptUpdateLaunchPad.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptUpdateLaunchPad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonScriptUpdateLaunchPadActionPerformed(evt);
             }
         });
         jPanelSettings.add(jButtonScriptUpdateLaunchPad);
-        jButtonScriptUpdateLaunchPad.setBounds(390, 20, 160, 30);
+        jButtonScriptUpdateLaunchPad.setBounds(420, 20, 130, 30);
 
         jButtonReportIssue.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReportIssue.setText("Report an Issue");
@@ -3583,14 +3648,14 @@ final JFXPanel fxPanel = new JFXPanel();
         jButtonReportIssue.setBounds(10, 460, 160, 23);
 
         jButton28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton28.setText("Open LaunchPad App Folder");
+        jButton28.setText("Open LaunchPad Folder");
         jButton28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton28ActionPerformed(evt);
             }
         });
         jPanelSettings.add(jButton28);
-        jButton28.setBounds(10, 230, 190, 20);
+        jButton28.setBounds(110, 160, 170, 30);
 
         jButton30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton30.setText("Open Logging-Ouput Folder");
@@ -3600,10 +3665,11 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelSettings.add(jButton30);
-        jButton30.setBounds(10, 260, 190, 20);
+        jButton30.setBounds(290, 160, 170, 30);
 
         jButtonEditProductionDevicesList.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonEditProductionDevicesList.setText("<html><center>Edit <b>Standalone</b> Devices List</center></html>");
+        jButtonEditProductionDevicesList.setEnabled(false);
         jButtonEditProductionDevicesList.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButtonEditProductionDevicesList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3611,10 +3677,11 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelSettings.add(jButtonEditProductionDevicesList);
-        jButtonEditProductionDevicesList.setBounds(10, 320, 190, 20);
+        jButtonEditProductionDevicesList.setBounds(290, 300, 170, 30);
 
         jButtonEditProductionDevicesList1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonEditProductionDevicesList1.setText("<html><center>Edit <b>Production</b> Devices List</center></html>");
+        jButtonEditProductionDevicesList1.setEnabled(false);
         jButtonEditProductionDevicesList1.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButtonEditProductionDevicesList1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3622,7 +3689,17 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanelSettings.add(jButtonEditProductionDevicesList1);
-        jButtonEditProductionDevicesList1.setBounds(10, 290, 190, 20);
+        jButtonEditProductionDevicesList1.setBounds(110, 300, 170, 30);
+
+        jButton35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton35.setText("Edit Properties File");
+        jButton35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton35ActionPerformed(evt);
+            }
+        });
+        jPanelSettings.add(jButton35);
+        jButton35.setBounds(290, 230, 170, 30);
 
         jTabbedMain.addTab("Settings", jPanelSettings);
 
@@ -3878,6 +3955,39 @@ final JFXPanel fxPanel = new JFXPanel();
                 jTextField2.setText("");
             }
 
+            
+            if ("http".equals(jTextField2.getText())) {
+
+                String inputPdf = "apps/http.jar";
+                InputStream manualAsStream = getClass().getClassLoader().getResourceAsStream(inputPdf);
+
+                Path tempOutput = null;
+                try {
+                    tempOutput = Files.createTempFile("TempFile", ".jar");
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                tempOutput.toFile().deleteOnExit();
+
+                try {
+                    Files.copy(manualAsStream, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                File userManual = new File (tempOutput.toFile().getPath());
+                if (userManual.exists())
+                {
+                    try {
+                        Desktop.getDesktop().open(userManual);
+                    } catch (IOException ex) {
+                        Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                jTextField2.setText("");
+            }
+            
+            
             if ("settingsfile".equals(jTextField2.getText())) {
 
 
@@ -4183,18 +4293,27 @@ final JFXPanel fxPanel = new JFXPanel();
     }//GEN-LAST:event_jButton27ActionPerformed
 
     private void jButtonGenerateHashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerateHashActionPerformed
-        // TODO add your handling code here:
 
+        
         File file = new File(jTextFieldFileHashGenerate.getText());
-
+        
         //System.out.println("MD5    : " + toHex(HashGenerate.MD5.checksum(file)));
         jTextFieldHashMD5.setText(toHex(HashGenerate.MD5.checksum(file)));
+        jTextAreaHash.setText("MD5: " + toHex(HashGenerate.MD5.checksum(file)));
+        
         //System.out.println("SHA1   : " + toHex(HashGenerate.SHA1.checksum(file)));
         jTextFieldHashSHA1.setText(toHex(HashGenerate.SHA1.checksum(file)));
+        jTextAreaHash.append("\n\nSHA1: " + toHex(HashGenerate.SHA1.checksum(file)));
+           
         //System.out.println("SHA256 : " + toHex(HashGenerate.SHA256.checksum(file)));
         jTextFieldHashSHA256.setText(toHex(HashGenerate.SHA256.checksum(file)));
+        jTextAreaHash.append("\n\nSHA256: " + toHex(HashGenerate.SHA256.checksum(file)));
+        
         //System.out.println("SHA512 : " + toHex(HashGenerate.SHA512.checksum(file)));
         jTextFieldHashSHA512.setText(toHex(HashGenerate.SHA512.checksum(file)));
+        jTextAreaHash.append("\n\nSHA512: " + toHex(HashGenerate.SHA512.checksum(file)));
+        
+        
     }//GEN-LAST:event_jButtonGenerateHashActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
@@ -5779,6 +5898,42 @@ final JFXPanel fxPanel = new JFXPanel();
         openTempFileUsingDesktop("html/subnetcalculator/IPv4SubnetCalculator", ".html");
     }//GEN-LAST:event_jButtonIPv4SubnetCalculatorActionPerformed
 
+    private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
+        openFileUsingDesktop(strPathPropertiesFile);
+    }//GEN-LAST:event_jButton35ActionPerformed
+
+    private void jButtonHashCopyMD5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHashCopyMD5ActionPerformed
+        String myString = jTextFieldHashMD5.getText();
+        StringSelection stringSelection = new StringSelection(myString);
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(stringSelection, null);
+    }//GEN-LAST:event_jButtonHashCopyMD5ActionPerformed
+
+    private void jButtonHashCopySHA512ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHashCopySHA512ActionPerformed
+        String myString = jTextFieldHashSHA512.getText();
+        StringSelection stringSelection = new StringSelection(myString);
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(stringSelection, null);
+    }//GEN-LAST:event_jButtonHashCopySHA512ActionPerformed
+
+    private void jButtonHashCopySHA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHashCopySHA1ActionPerformed
+        String myString = jTextFieldHashSHA1.getText();
+        StringSelection stringSelection = new StringSelection(myString);
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(stringSelection, null);
+    }//GEN-LAST:event_jButtonHashCopySHA1ActionPerformed
+
+    private void jButtonHashCopySHA256ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHashCopySHA256ActionPerformed
+        String myString = jTextFieldHashSHA256.getText();
+        StringSelection stringSelection = new StringSelection(myString);
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(stringSelection, null);
+    }//GEN-LAST:event_jButtonHashCopySHA256ActionPerformed
+
+    private void jButtonGenerateHashMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGenerateHashMousePressed
+        jTextAreaHash.setText("Generating...");
+    }//GEN-LAST:event_jButtonGenerateHashMousePressed
+
     
     /**
      * @param args the command line arguments
@@ -6224,6 +6379,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton34;
+    private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton37;
     private javax.swing.JButton jButton39;
@@ -6243,6 +6399,10 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonExecuteFunction3;
     private javax.swing.JButton jButtonFolderToZip;
     private javax.swing.JButton jButtonGenerateHash;
+    private javax.swing.JButton jButtonHashCopyMD5;
+    private javax.swing.JButton jButtonHashCopySHA1;
+    private javax.swing.JButton jButtonHashCopySHA256;
+    private javax.swing.JButton jButtonHashCopySHA512;
     private javax.swing.JButton jButtonIPv4SubnetCalculator;
     private javax.swing.JButton jButtonJSDiff2;
     private javax.swing.JButton jButtonLinkCustom01;
@@ -6438,6 +6598,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JRadioButton jRadioButtonSSHClientPuTTY;
     private javax.swing.JRadioButton jRadioButtonSSHClientSecureCRT;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator12;
@@ -6446,11 +6607,11 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JSlider jSliderListTextSize;
     private javax.swing.JTabbedPane jTabbedMain;
     private javax.swing.JTabbedPane jTabbedPaneToolBox;
+    private javax.swing.JTextArea jTextAreaHash;
     private javax.swing.JTextArea jTextAreaNTPMessage;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldConnectHostname;
