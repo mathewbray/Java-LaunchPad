@@ -1122,6 +1122,7 @@ final JFXPanel fxPanel = new JFXPanel();
         jButton37 = new javax.swing.JButton();
         jButtonSubnetCalculator1 = new javax.swing.JButton();
         jButtonIPv4SubnetCalculator = new javax.swing.JButton();
+        jButtonRomajiToHiraKata = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jButtonScriptCreateDummyFile = new javax.swing.JButton();
         jButtonScriptPowershellPingSweepRange = new javax.swing.JButton();
@@ -3220,7 +3221,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel11.add(jButtonJSDiff2);
-        jButtonJSDiff2.setBounds(110, 80, 170, 30);
+        jButtonJSDiff2.setBounds(20, 80, 170, 30);
 
         jButtonConfigBuilder1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonConfigBuilder1.setText("Config Builder (For Lab Use)");
@@ -3231,7 +3232,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel11.add(jButtonConfigBuilder1);
-        jButtonConfigBuilder1.setBounds(290, 80, 170, 30);
+        jButtonConfigBuilder1.setBounds(200, 80, 170, 30);
 
         jButtonSubnetCalculator.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonSubnetCalculator.setText("IPv4/v6 Subnet Calculator");
@@ -3252,23 +3253,23 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel11.add(jButton41);
-        jButton41.setBounds(200, 170, 170, 30);
+        jButton41.setBounds(200, 230, 170, 30);
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel38.setText("Java Apps");
         jPanel11.add(jLabel38);
-        jLabel38.setBounds(110, 130, 350, 40);
+        jLabel38.setBounds(110, 190, 350, 40);
         jPanel11.add(jSeparator12);
-        jSeparator12.setBounds(10, 130, 550, 10);
+        jSeparator12.setBounds(10, 190, 550, 10);
         jPanel11.add(jSeparator13);
-        jSeparator13.setBounds(10, 220, 550, 10);
+        jSeparator13.setBounds(10, 280, 550, 10);
 
         jLabel39.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel39.setText("Documents");
         jPanel11.add(jLabel39);
-        jLabel39.setBounds(110, 220, 350, 40);
+        jLabel39.setBounds(110, 280, 350, 40);
 
         jButton24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton24.setText("IPv4 Subnet Chart");
@@ -3278,7 +3279,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel11.add(jButton24);
-        jButton24.setBounds(20, 260, 170, 30);
+        jButton24.setBounds(20, 320, 170, 30);
 
         jButton36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton36.setText("IPv4 Subnet Cheat Sheet");
@@ -3289,7 +3290,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel11.add(jButton36);
-        jButton36.setBounds(200, 260, 170, 30);
+        jButton36.setBounds(200, 320, 170, 30);
 
         jButton37.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton37.setText("Stretch's Cheat Sheets");
@@ -3299,7 +3300,7 @@ final JFXPanel fxPanel = new JFXPanel();
             }
         });
         jPanel11.add(jButton37);
-        jButton37.setBounds(380, 260, 170, 30);
+        jButton37.setBounds(380, 320, 170, 30);
 
         jButtonSubnetCalculator1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonSubnetCalculator1.setText("IPv6 Subnet Calculator");
@@ -3320,6 +3321,17 @@ final JFXPanel fxPanel = new JFXPanel();
         });
         jPanel11.add(jButtonIPv4SubnetCalculator);
         jButtonIPv4SubnetCalculator.setBounds(20, 40, 170, 30);
+
+        jButtonRomajiToHiraKata.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonRomajiToHiraKata.setText("Romaji to Hiragana/Katakana");
+        jButtonRomajiToHiraKata.setMargin(new java.awt.Insets(2, 0, 2, 0));
+        jButtonRomajiToHiraKata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRomajiToHiraKataActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jButtonRomajiToHiraKata);
+        jButtonRomajiToHiraKata.setBounds(380, 80, 170, 30);
 
         jTabbedPaneToolBox.addTab("Web/Java/Docs", jPanel11);
 
@@ -5934,6 +5946,10 @@ final JFXPanel fxPanel = new JFXPanel();
         jTextAreaHash.setText("Generating...");
     }//GEN-LAST:event_jButtonGenerateHashMousePressed
 
+    private void jButtonRomajiToHiraKataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRomajiToHiraKataActionPerformed
+        openTempFileUsingDesktop("html/romajitohiraganakatakana/RomajiToHiraganaKatakana.html", ".html");
+    }//GEN-LAST:event_jButtonRomajiToHiraKataActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -6477,6 +6493,7 @@ final JFXPanel fxPanel = new JFXPanel();
     private javax.swing.JButton jButtonReferenceCustom32;
     private javax.swing.JButton jButtonReferenceCustom33;
     private javax.swing.JButton jButtonReportIssue;
+    private javax.swing.JButton jButtonRomajiToHiraKata;
     private javax.swing.JButton jButtonScriptCreateDummyFile;
     private javax.swing.JButton jButtonScriptCustom01;
     private javax.swing.JButton jButtonScriptCustom02;
