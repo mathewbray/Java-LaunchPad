@@ -4064,7 +4064,7 @@ final JFXPanel fxPanel = new JFXPanel();
 
             JFrame frame = new JFrame();
             frame.add(scroll);
-            frame.setTitle("Settings File");
+            frame.setTitle("Properties File");
             //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.pack();
             frame.setLocationRelativeTo(null);
@@ -6042,12 +6042,13 @@ final JFXPanel fxPanel = new JFXPanel();
 "EVE-NG ESXi,10.2.1.119",
 "EVE-NG XPS,10.2.1.120",
 "Cisco CSR1000v,10.2.1.121",
-"Pi Terminal Server (TELNET),10.2.1.250",
+"Pi Terminal Server (TELNET/VNC),10.2.1.250",
 "",
 " ~~~~~~~~ Testing ~~~~~~~~~",
 "ASW1-CLEAN,10.2.1.5",
 "DSW2-DIRTY,10.2.1.6",
-"HSRP DSW1/DSW2,10.2.1.254");
+"HSRP DSW1/DSW2,10.2.1.254",
+"CSR1000v,10.2.1.121");
             
             Path file = Paths.get(strSessionList);
             Files.write(file, lines, Charset.forName("UTF-8"));
