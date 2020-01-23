@@ -105,7 +105,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
     String pathUserProfile = System.getenv("USERPROFILE");
     File pathLogging = new File(pathDesktop + "\\Logging-Output");
     String strPathLoggingFolder = pathDesktop + "\\Logging-Output";    
-    //String strPathLaunchPadFolder = pathUserProfile + "\\AppData\\Local\\LaunchPad_Java";
     String strPathLaunchPadFolder = System.getenv("SYSTEMDRIVE") + "\\LaunchPad";
     String strSessionListDefault = strPathLaunchPadFolder + "\\SessionList.csv";
     String strPathPropertiesFile = strPathLaunchPadFolder + "\\launchpad.properties";
@@ -136,24 +135,14 @@ public class LaunchPadForm extends javax.swing.JFrame {
         initComponents();
         final JFXPanel fxPanel = new JFXPanel();
         setTitle(PropertyHandler.getInstance().getValue("WindowTitle"));
-        //importSessionList();
         getSessionList();
-
-        //updateSessionList();       
+      
+        //- Set the look and feel
         try {
-        UIManager.setLookAndFeel(
+            UIManager.setLookAndFeel(
             UIManager.getCrossPlatformLookAndFeelClassName());
-        
-        // turn off bold fonts
-        //UIManager.put("swing.boldMetal", Boolean.FALSE);
-        //UIManager.put("java.awt.font", "Arial Unicode MS");
-
-
-        // re-install the Metal Look and Feel
-        UIManager.setLookAndFeel(new MetalLookAndFeel());
-
-       
-   
+            // re-install the Metal Look and Feel
+            UIManager.setLookAndFeel(new MetalLookAndFeel());
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -163,20 +152,57 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jLabelLocalHostname.setToolTipText(getSystemName());
         jLabelLocalIP.setText(getIPAddress());
         jLabelLocalMAC.setText(getMAC());
-
         System.out.println("Host Name : "+getSystemName());
         System.out.println("Host IP   : "+getIPAddress());
         System.out.println("Host Address : "+getMAC());    
-
         
+        //- Set Personal Text Setting 
+        try {
+            String myValue = PropertyHandlerPersonal.getInstance().getValue("TextSize");
+            if("".equals(myValue)) {
+                PropertyHandlerPersonal.getInstance().setValue("TextSize", "1");
+            }
+            int myValueInt = Integer.parseInt(PropertyHandlerPersonal.getInstance().getValue("TextSize"));
+            jSliderListTextSize.setValue(myValueInt);
 
+        } catch (NullPointerException e) {System.out.println("TextSize Goofed");
+        }
 
-        //--- Apply button icons and set size
-        Integer buttonHeightWidth = 40;
-        ImageIcon icon;
-        Image img;
-        Image newimg;
-        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        //- Set Personal Language Setting 
+        try {
+            if("Japanese".equals(PropertyHandlerPersonal.getInstance().getValue("Language"))) {
+                jRadioButtonJapanese.setSelected(Boolean.TRUE);
+                jTabbedMain.setTitleAt(0,"メイン");
+                jTabbedMain.setTitleAt(1,"リンク");
+                jTabbedMain.setTitleAt(2,"レファレンス");
+                jTabbedMain.setTitleAt(3,"スクリプト");
+                jTabbedMain.setTitleAt(4,"ツールボックス");
+                jTabbedMain.setTitleAt(5,"セッティング");
+                jCheckBox1.setText("お気に入り");
+                jCheckBoxAlternateLogin.setText("代替ログイン");
+                jButtonPing.setText("ピング");
+                jButtonTracert.setText("トレースルート");
+                jButtonTracert.setFont(jButtonTracert.getFont().deriveFont(10.0f));           
+                jButtonConsole.setText("シリアルポートに接続します");
+                jToggleOnlineOfflineMode.setText("オンライン");
+                jTabbedMain.setTitleAt(0,"メイン");
+                jTabbedPaneToolBox.setTitleAt(0, "ファイルアーカイブ");
+                jTabbedPaneToolBox.setTitleAt(1, "タイプ");
+                jTabbedPaneToolBox.setTitleAt(2, "ハッシュ");
+                jTabbedPaneToolBox.setTitleAt(3, "ハッシュ");
+                jTabbedPaneToolBox.setTitleAt(4, "ハッシュ");
+                jTabbedPaneToolBox.setTitleAt(5, "スクリプト");
+
+            }
+        } catch (NullPointerException e) {System.out.println("Language Goofed");
+        }
+        try {
+            if("English".equals(PropertyHandlerPersonal.getInstance().getValue("Language"))) {
+                jRadioButtonEnglish.setSelected(Boolean.TRUE);
+            }
+        } catch (NullPointerException e) {System.out.println("Language Goofed");
+        }        
+        //- Set classification
         String strClassification = PropertyHandler.getInstance().getValue("SettingClassification");
         System.out.println("Classification: " + strClassification);
         Color strClassificationColor = new Color(4,159,168);
@@ -203,7 +229,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
         }         
         getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, strClassificationColor));
 
-
+        //- Don't close the window immediately, prompt to ask
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
             //--- Listen for window close
@@ -223,10 +250,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         
-
-        
         //--- Listen for credential checkbox
-
         jCheckBoxAlternateLogin.addItemListener(new ItemListener(){
                 public void itemStateChanged(ItemEvent e) {
                     if(e.getStateChange() == ItemEvent.SELECTED){
@@ -243,40 +267,31 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 }
             });
         
-//        //- Swap LAF for toggle so the background will actually color
-//        jToggleOnlineOfflineMode.setUI(new MetalToggleButtonUI() {
-//            @Override
-//            protected Color getSelectColor() {
-//                return Color.GREEN;
-//            }
-//        });
-//        //- Click it twitce to enable color
-//        jToggleOnlineOfflineMode.doClick();
-//        jToggleOnlineOfflineMode.doClick();
-        
         //--- Listen for online/offline reference button
         jToggleOnlineOfflineMode.addItemListener((ItemEvent ev) -> {
             if(ev.getStateChange()==ItemEvent.SELECTED){
                 System.out.println("Offline is selected");
                 jToggleOnlineOfflineMode.setText("Offline");
                 jToggleOnlineOfflineMode.setBackground(Color.GRAY);
-//                jToggleOnlineOfflineMode.setUI(new MetalToggleButtonUI() {
-//                    @Override
-//                    protected Color getSelectColor() {
-//                        return Color.GRAY;
-//                    }
-//                });                
+                //- Japanese
+                try {
+                    if("Japanese".equals(PropertyHandlerPersonal.getInstance().getValue("Language"))) {
+                        jToggleOnlineOfflineMode.setText("オフライン");
+                    }
+                } catch (NullPointerException e) {System.out.println("Language Goofed");
+                }             
             } else if(ev.getStateChange()==ItemEvent.DESELECTED){
                 System.out.println("Offline is not selected");
                 jToggleOnlineOfflineMode.setText("Online");
                 //- Had to 
                 jToggleOnlineOfflineMode.setBackground(Color.GREEN);
-//                jToggleOnlineOfflineMode.setUI(new MetalToggleButtonUI() {
-//                    @Override
-//                    protected Color getSelectColor() {
-//                        return Color.GREEN;
-//                    }
-//                });
+                //- Japanese
+                try {
+                    if("Japanese".equals(PropertyHandlerPersonal.getInstance().getValue("Language"))) {
+                        jToggleOnlineOfflineMode.setText("オンライン");
+                    }
+                } catch (NullPointerException e) {System.out.println("Language Goofed");
+                }
             }
         });
         
@@ -312,6 +327,10 @@ public class LaunchPadForm extends javax.swing.JFrame {
         }        
 
         //--- Apply images to buttons
+        Integer buttonHeightWidth = 40;
+        ImageIcon icon;
+        Image img;
+        Image newimg;
         try {
             //Button01
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button01Icon") + ".png"));
@@ -690,50 +709,9 @@ public class LaunchPadForm extends javax.swing.JFrame {
         String laf = UIManager.getSystemLookAndFeelClassName();
         UIManager.setLookAndFeel(laf);
         
-
-
-        //--- Populate Button Listing
-        //Get image list
-//        String[] arrButtonList = null;
-//        try {
-//            arrButtonList = this.getResourceListing(launchpad.LaunchPad.class , "launchpad/images/buttons/");
-//        } catch (URISyntaxException | IOException ex) {
-//            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        System.out.println(Arrays.toString(arrButtonList));
-        //Add to list
-//        DefaultListModel listModel = new DefaultListModel();
-//        Map<String, ImageIcon> imageMap;
-//        //imageMap = createimagemap(arrButtonList);
-//        for (String strButton : arrButtonList) {
-//            System.out.println(strButton);
-//            listModel.addElement(strButton);
-//        }
-//        jListButtonListing.setModel(listModel);
-        
-        
-        
-        //--- Populate Button Listing
-        //Get image list
-//        String[] arrButtonList = null;
-//        try {
-//            arrButtonList = this.getResourceListing(launchpad.LaunchPad.class , "launchpad/images/buttons/");
-//        } catch (URISyntaxException | IOException ex) {
-//            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        System.out.println(Arrays.toString(arrButtonList));
-        
-        //Add to list
-//        DefaultListModel listModel = new DefaultListModel();
-//        Map<String, ImageIcon> imageMap;
-//        //imageMap = createimagemap(arrButtonList);                        
-//        for (String strButton : arrButtonList) {
-//            System.out.println(strButton);
-//            listModel.addElement(strButton);
-//        }
-//        jListButtonListing.setModel(listModel);
     }
     
+    //- Display all the buttons in a list
     private final class ButtonList {
         
         private Map<String, ImageIcon> imageMap;
@@ -874,14 +852,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         public static String toHex(byte[] bytes) {
             return DatatypeConverter.printHexBinary(bytes);
         }
-        
-
-    
-    
     }
-
-
-    
 
 
 
@@ -899,6 +870,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         buttonGroupConsoleClient = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroupLanguage = new javax.swing.ButtonGroup();
         jTabbedMain = new javax.swing.JTabbedPane();
         jPanelMain = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -1186,6 +1158,9 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButtonEditProductionDevicesList1 = new javax.swing.JButton();
         jButton35 = new javax.swing.JButton();
         jButton38 = new javax.swing.JButton();
+        jLabelConsoleClient1 = new javax.swing.JLabel();
+        jRadioButtonJapanese = new javax.swing.JRadioButton();
+        jRadioButtonEnglish = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LaunchPad - Pre-Alpha");
@@ -1235,7 +1210,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextFieldConnectHostname);
-        jTextFieldConnectHostname.setBounds(10, 80, 120, 23);
+        jTextFieldConnectHostname.setBounds(10, 80, 120, 20);
 
         jButtonExecuteFunction1.setBackground(new java.awt.Color(255, 208, 153));
         jButtonExecuteFunction1.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
@@ -1281,7 +1256,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jPasswordFieldConnectPassword);
-        jPasswordFieldConnectPassword.setBounds(10, 140, 120, 23);
+        jPasswordFieldConnectPassword.setBounds(10, 140, 120, 20);
         jPanel1.add(jSeparator3);
         jSeparator3.setBounds(10, 170, 190, 10);
 
@@ -1305,7 +1280,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jCheckBoxDNS.setToolTipText("Resolve DNS");
         jCheckBoxDNS.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jPanel1.add(jCheckBoxDNS);
-        jCheckBoxDNS.setBounds(150, 180, 50, 20);
+        jCheckBoxDNS.setBounds(155, 180, 45, 20);
 
         jButtonTracert.setBackground(new java.awt.Color(208, 153, 255));
         jButtonTracert.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
@@ -2106,7 +2081,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanelReference.setLayout(null);
 
         jToggleOnlineOfflineMode.setBackground(new java.awt.Color(0, 204, 51));
-        jToggleOnlineOfflineMode.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jToggleOnlineOfflineMode.setFont(new java.awt.Font("Arial Unicode MS", 0, 18)); // NOI18N
         jToggleOnlineOfflineMode.setText("Online");
         jToggleOnlineOfflineMode.setToolTipText("Alternate between using network and local files.");
         jToggleOnlineOfflineMode.addActionListener(new java.awt.event.ActionListener() {
@@ -3567,9 +3542,10 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanelSettings.setLayout(null);
 
         jLabelSSHClient.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelSSHClient.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelSSHClient.setText("SSH Client:");
         jPanelSettings.add(jLabelSSHClient);
-        jLabelSSHClient.setBounds(10, 10, 90, 30);
+        jLabelSSHClient.setBounds(10, 10, 80, 30);
 
         buttonGroupSSHClient.add(jRadioButtonSSHClientSecureCRT);
         jRadioButtonSSHClientSecureCRT.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3594,7 +3570,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jLabelListTextSizePreview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelListTextSizePreview.setText("c9300-a01-abcde-1234");
         jPanelSettings.add(jLabelListTextSizePreview);
-        jLabelListTextSizePreview.setBounds(240, 70, 200, 30);
+        jLabelListTextSizePreview.setBounds(240, 70, 300, 30);
 
         buttonGroupConsoleClient.add(jRadioButtonConsolePutty);
         jRadioButtonConsolePutty.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3615,7 +3591,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
         buttonGroupConsoleClient.add(jRadioButtonConsoleSecureCRT);
         jRadioButtonConsoleSecureCRT.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jRadioButtonConsoleSecureCRT.setSelected(true);
         jRadioButtonConsoleSecureCRT.setText("SecureCRT");
         jPanelSettings.add(jRadioButtonConsoleSecureCRT);
         jRadioButtonConsoleSecureCRT.setBounds(200, 40, 100, 30);
@@ -3633,14 +3608,16 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jSliderListTextSize.setBounds(100, 70, 140, 30);
 
         jLabelConsoleClient.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelConsoleClient.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelConsoleClient.setText("Console Client:");
         jPanelSettings.add(jLabelConsoleClient);
-        jLabelConsoleClient.setBounds(10, 40, 90, 30);
+        jLabelConsoleClient.setBounds(10, 40, 80, 30);
 
         jLabelListTextSize1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelListTextSize1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelListTextSize1.setText("List Text Size:");
         jPanelSettings.add(jLabelListTextSize1);
-        jLabelListTextSize1.setBounds(10, 70, 90, 30);
+        jLabelListTextSize1.setBounds(10, 70, 80, 30);
 
         jButton31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton31.setText("Reset SecureCRT Settings");
@@ -3650,7 +3627,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettings.add(jButton31);
-        jButton31.setBounds(210, 410, 170, 30);
+        jButton31.setBounds(210, 470, 170, 30);
 
         jButton32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton32.setText("Edit Favorites List");
@@ -3660,7 +3637,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettings.add(jButton32);
-        jButton32.setBounds(110, 240, 170, 30);
+        jButton32.setBounds(130, 340, 170, 30);
 
         jButton33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton33.setText("View Button List");
@@ -3670,7 +3647,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettings.add(jButton33);
-        jButton33.setBounds(290, 130, 170, 30);
+        jButton33.setBounds(210, 250, 170, 30);
 
         jButton34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton34.setText("View Properties File");
@@ -3680,7 +3657,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettings.add(jButton34);
-        jButton34.setBounds(110, 130, 170, 30);
+        jButton34.setBounds(30, 250, 170, 30);
 
         jTextField2.setBackground(new java.awt.Color(51, 51, 51));
         jTextField2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3727,7 +3704,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettings.add(jButton28);
-        jButton28.setBounds(110, 170, 170, 30);
+        jButton28.setBounds(390, 250, 170, 30);
 
         jButton30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton30.setText("Open Logging-Ouput Folder");
@@ -3737,7 +3714,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettings.add(jButton30);
-        jButton30.setBounds(290, 170, 170, 30);
+        jButton30.setBounds(210, 290, 170, 30);
 
         jButtonEditProductionDevicesList.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonEditProductionDevicesList.setText("<html><center>Edit <b>Standalone</b> Devices List</center></html>");
@@ -3749,7 +3726,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettings.add(jButtonEditProductionDevicesList);
-        jButtonEditProductionDevicesList.setBounds(290, 340, 170, 30);
+        jButtonEditProductionDevicesList.setBounds(310, 430, 170, 30);
 
         jButtonEditProductionDevicesList1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonEditProductionDevicesList1.setText("<html><center>Edit <b>Production</b> Devices List</center></html>");
@@ -3761,7 +3738,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettings.add(jButtonEditProductionDevicesList1);
-        jButtonEditProductionDevicesList1.setBounds(110, 340, 170, 30);
+        jButtonEditProductionDevicesList1.setBounds(130, 430, 170, 30);
 
         jButton35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton35.setText("Edit Shared Properties File");
@@ -3771,7 +3748,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettings.add(jButton35);
-        jButton35.setBounds(200, 280, 170, 30);
+        jButton35.setBounds(220, 380, 170, 30);
 
         jButton38.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton38.setText("Edit Personal Properties File");
@@ -3782,7 +3759,37 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettings.add(jButton38);
-        jButton38.setBounds(290, 240, 170, 30);
+        jButton38.setBounds(310, 340, 170, 30);
+
+        jLabelConsoleClient1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelConsoleClient1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelConsoleClient1.setText("Language:");
+        jPanelSettings.add(jLabelConsoleClient1);
+        jLabelConsoleClient1.setBounds(10, 100, 80, 30);
+
+        buttonGroupLanguage.add(jRadioButtonJapanese);
+        jRadioButtonJapanese.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        jRadioButtonJapanese.setText("日本語");
+        jRadioButtonJapanese.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButtonJapanese.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonJapaneseActionPerformed(evt);
+            }
+        });
+        jPanelSettings.add(jRadioButtonJapanese);
+        jRadioButtonJapanese.setBounds(180, 100, 80, 30);
+
+        buttonGroupLanguage.add(jRadioButtonEnglish);
+        jRadioButtonEnglish.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        jRadioButtonEnglish.setText("English");
+        jRadioButtonEnglish.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButtonEnglish.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonEnglishActionPerformed(evt);
+            }
+        });
+        jPanelSettings.add(jRadioButtonEnglish);
+        jRadioButtonEnglish.setBounds(110, 100, 70, 30);
 
         jTabbedMain.addTab("Settings", jPanelSettings);
 
@@ -4070,38 +4077,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jTextField2.setText("");
             }
             
-            
-            if ("settingsfile".equals(jTextField2.getText())) {
-
-
-                //text file, should be opening in default text editor
-                File file = new File(strPathPropertiesFile);
-
-                //first check if Desktop is supported by Platform or not
-                if(!Desktop.isDesktopSupported()){
-                    System.out.println("Desktop is not supported");
-                    return;
-                }
-
-                Desktop desktop = Desktop.getDesktop();
-                if(file.exists()) try {
-                    desktop.open(file);
-                } catch (IOException ex) {
-                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                    System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
-                }
-
-                // Open
-                if(file.exists()) try {
-                    desktop.open(file);
-                } catch (IOException ex) {
-                    Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-                    System.out.println("launchpad.LaunchPadForm.jButtonReferenceCustom01ActionPerformed()");
-
-                }
-
-                jTextField2.setText("");
-            }
 
         }
     }//GEN-LAST:event_jTextField2KeyTyped
@@ -4238,31 +4213,38 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
         if (strSliderValue.equals("0")){
             jListSessions.setFont(jListSessions.getFont().deriveFont(10.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(10.0f));           
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(10.0f)); 
+            PropertyHandlerPersonal.getInstance().setValue("TextSize", "0");
         }
         if (strSliderValue.equals("1")){
             jListSessions.setFont(jListSessions.getFont().deriveFont(12.0f));
             jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(12.0f));
+            PropertyHandlerPersonal.getInstance().setValue("TextSize", "1");            
         }
         if (strSliderValue.equals("2")){
             jListSessions.setFont(jListSessions.getFont().deriveFont(14.0f));
             jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(14.0f));
+            PropertyHandlerPersonal.getInstance().setValue("TextSize", "2");            
         }
         if (strSliderValue.equals("3")){
             jListSessions.setFont(jListSessions.getFont().deriveFont(16.0f));
             jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(16.0f));
+            PropertyHandlerPersonal.getInstance().setValue("TextSize", "3");            
         }
         if (strSliderValue.equals("4")){
             jListSessions.setFont(jListSessions.getFont().deriveFont(18.0f));
             jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(18.0f));
+            PropertyHandlerPersonal.getInstance().setValue("TextSize", "4");            
         }
         if (strSliderValue.equals("5")){
             jListSessions.setFont(jListSessions.getFont().deriveFont(20.0f));
             jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(20.0f));
+            PropertyHandlerPersonal.getInstance().setValue("TextSize", "5");            
         }
         if (strSliderValue.equals("6")){
             jListSessions.setFont(jListSessions.getFont().deriveFont(22.0f));
             jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(22.0f));
+            PropertyHandlerPersonal.getInstance().setValue("TextSize", "6");            
         }
     }//GEN-LAST:event_jSliderListTextSizeStateChanged
 
@@ -6040,6 +6022,14 @@ public class LaunchPadForm extends javax.swing.JFrame {
         openFileUsingDesktop(strPathLaunchPadPersistantPropertiesFile);
     }//GEN-LAST:event_jButton38ActionPerformed
 
+    private void jRadioButtonJapaneseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonJapaneseActionPerformed
+    PropertyHandlerPersonal.getInstance().setValue("Language", "Japanese");
+    }//GEN-LAST:event_jRadioButtonJapaneseActionPerformed
+
+    private void jRadioButtonEnglishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEnglishActionPerformed
+    PropertyHandlerPersonal.getInstance().setValue("Language", "English");
+    }//GEN-LAST:event_jRadioButtonEnglishActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -6469,6 +6459,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
      * @return Host IP Address
      */
     private static String getIPAddress(){
+        
          try{
             InetAddress inetaddress=InetAddress.getLocalHost();  //Get LocalHost refrence
             String ip = inetaddress.getHostAddress();  // Get Host IP Address
@@ -6513,6 +6504,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroupConsoleClient;
+    private javax.swing.ButtonGroup buttonGroupLanguage;
     private javax.swing.ButtonGroup buttonGroupSSHClient;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -6729,6 +6721,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabelConsoleClient;
+    private javax.swing.JLabel jLabelConsoleClient1;
     private javax.swing.JLabel jLabelFolderToZip3;
     private javax.swing.JLabel jLabelFolderToZip4;
     private javax.swing.JLabel jLabelFolderToZip5;
@@ -6764,6 +6757,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JProgressBar jProgressBarZipExtract;
     private javax.swing.JRadioButton jRadioButtonConsolePutty;
     private javax.swing.JRadioButton jRadioButtonConsoleSecureCRT;
+    private javax.swing.JRadioButton jRadioButtonEnglish;
+    private javax.swing.JRadioButton jRadioButtonJapanese;
     private javax.swing.JRadioButton jRadioButtonSSHClientPuTTY;
     private javax.swing.JRadioButton jRadioButtonSSHClientSecureCRT;
     private javax.swing.JScrollPane jScrollPane1;
