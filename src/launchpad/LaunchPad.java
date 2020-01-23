@@ -44,6 +44,7 @@ public class LaunchPad {
         //String strPathLaunchPadFolder = pathUserProfile + "\\AppData\\Local\\LaunchPad_Java";
         String strPathLaunchPadFolder = System.getenv("SYSTEMDRIVE") + "\\LaunchPad";
         String strPathLaunchPadPersistantUserFolder = pathUserProfile + "\\AppData\\Local\\LaunchPad_Java_Persistant_User";    
+        String strPathLaunchPadPersistantPropertiesFile = strPathLaunchPadPersistantUserFolder + "\\launchpad.properties";
         String strSessionListFavoritesFolder = strPathLaunchPadPersistantUserFolder + "\\FavoritesSessionList";
         String strPathPropertiesFile = strPathLaunchPadFolder + "\\launchpad.properties";
 
@@ -386,15 +387,15 @@ public class LaunchPad {
         } 
         
         //--- Check for local user properties file
-        File fileLocalUserPropertiesFile = new File(strPathPropertiesFile);
+        File fileLocalUserPropertiesFile = new File(strPathLaunchPadPersistantPropertiesFile);
         if (!fileLocalUserPropertiesFile.exists()) {
             System.out.println("Local User Properties file not found.");
             //JOptionPane.showMessageDialog(null, "Properties file not found.", "RIP!", JOptionPane.INFORMATION_MESSAGE);
             //System.exit( 0 );
             fileLocalUserPropertiesFile.createNewFile();
             List<String> lines = Arrays.asList(
-"TextSize=3",                                
-"ChatNickname=");
+"Language=English",                                
+"TextSize=2");
             Path file = Paths.get(fileLocalUserPropertiesFile.getPath());
             Files.write(file, lines, Charset.forName("UTF-8"));
 

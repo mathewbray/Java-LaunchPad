@@ -109,7 +109,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
     String strPathLaunchPadFolder = System.getenv("SYSTEMDRIVE") + "\\LaunchPad";
     String strSessionListDefault = strPathLaunchPadFolder + "\\SessionList.csv";
     String strPathPropertiesFile = strPathLaunchPadFolder + "\\launchpad.properties";
-    String strPathLaunchPadPersistantUserFolder = pathUserProfile + "\\AppData\\Local\\LaunchPad_Java_Persistant_User";    
+    String strPathLaunchPadPersistantUserFolder = pathUserProfile + "\\AppData\\Local\\LaunchPad_Java_Persistant_User";   
+    String strPathLaunchPadPersistantPropertiesFile = strPathLaunchPadPersistantUserFolder + "\\launchpad.properties";
     String strSessionListFavoritesFolder = strPathLaunchPadPersistantUserFolder + "\\FavoritesSessionList";   
     String strSessionListFavorites = strSessionListFavoritesFolder + "\\SessionList.csv";
     
@@ -1184,6 +1185,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButtonEditProductionDevicesList = new javax.swing.JButton();
         jButtonEditProductionDevicesList1 = new javax.swing.JButton();
         jButton35 = new javax.swing.JButton();
+        jButton38 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LaunchPad - Pre-Alpha");
@@ -1638,13 +1640,13 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
         jLabelLocalMAC.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jLabelLocalMAC.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLocalMAC.setText("Local IP");
+        jLabelLocalMAC.setText("Local MAC");
         jPanel1.add(jLabelLocalMAC);
         jLabelLocalMAC.setBounds(10, 40, 190, 20);
 
         jLabelLocalHostname.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jLabelLocalHostname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLocalHostname.setText("Local IP");
+        jLabelLocalHostname.setText("Local Hostname");
         jPanel1.add(jLabelLocalHostname);
         jLabelLocalHostname.setBounds(10, 0, 190, 20);
 
@@ -3588,7 +3590,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanelSettings.add(jRadioButtonSSHClientPuTTY);
         jRadioButtonSSHClientPuTTY.setBounds(100, 10, 100, 30);
 
-        jLabelListTextSizePreview.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
+        jLabelListTextSizePreview.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jLabelListTextSizePreview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelListTextSizePreview.setText("c9300-a01-abcde-1234");
         jPanelSettings.add(jLabelListTextSizePreview);
@@ -3621,7 +3623,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jSliderListTextSize.setMaximum(6);
         jSliderListTextSize.setPaintLabels(true);
         jSliderListTextSize.setSnapToTicks(true);
-        jSliderListTextSize.setValue(2);
+        jSliderListTextSize.setValue(1);
         jSliderListTextSize.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSliderListTextSizeStateChanged(evt);
@@ -3648,7 +3650,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettings.add(jButton31);
-        jButton31.setBounds(210, 380, 170, 30);
+        jButton31.setBounds(210, 410, 170, 30);
 
         jButton32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton32.setText("Edit Favorites List");
@@ -3694,7 +3696,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettings.add(jTextField2);
-        jTextField2.setBounds(370, 460, 190, 20);
+        jTextField2.setBounds(370, 520, 190, 20);
 
         jButtonScriptUpdateLaunchPad.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptUpdateLaunchPad.setText("Update LaunchPad");
@@ -3715,7 +3717,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettings.add(jButtonReportIssue);
-        jButtonReportIssue.setBounds(10, 460, 160, 23);
+        jButtonReportIssue.setBounds(10, 520, 160, 23);
 
         jButton28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton28.setText("Open LaunchPad Folder");
@@ -3747,7 +3749,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettings.add(jButtonEditProductionDevicesList);
-        jButtonEditProductionDevicesList.setBounds(290, 310, 170, 30);
+        jButtonEditProductionDevicesList.setBounds(290, 340, 170, 30);
 
         jButtonEditProductionDevicesList1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonEditProductionDevicesList1.setText("<html><center>Edit <b>Production</b> Devices List</center></html>");
@@ -3759,17 +3761,28 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettings.add(jButtonEditProductionDevicesList1);
-        jButtonEditProductionDevicesList1.setBounds(110, 310, 170, 30);
+        jButtonEditProductionDevicesList1.setBounds(110, 340, 170, 30);
 
         jButton35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton35.setText("Edit Properties File");
+        jButton35.setText("Edit Shared Properties File");
         jButton35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton35ActionPerformed(evt);
             }
         });
         jPanelSettings.add(jButton35);
-        jButton35.setBounds(290, 240, 170, 30);
+        jButton35.setBounds(200, 280, 170, 30);
+
+        jButton38.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton38.setText("Edit Personal Properties File");
+        jButton38.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton38.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton38ActionPerformed(evt);
+            }
+        });
+        jPanelSettings.add(jButton38);
+        jButton38.setBounds(290, 240, 170, 30);
 
         jTabbedMain.addTab("Settings", jPanelSettings);
 
@@ -4225,31 +4238,31 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
         if (strSliderValue.equals("0")){
             jListSessions.setFont(jListSessions.getFont().deriveFont(10.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(10.0f));
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(10.0f));           
         }
         if (strSliderValue.equals("1")){
-            jListSessions.setFont(jListSessions.getFont().deriveFont(11.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(11.0f));
-        }
-        if (strSliderValue.equals("2")){
             jListSessions.setFont(jListSessions.getFont().deriveFont(12.0f));
             jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(12.0f));
         }
-        if (strSliderValue.equals("3")){
-            jListSessions.setFont(jListSessions.getFont().deriveFont(13.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(13.0f));
-        }
-        if (strSliderValue.equals("4")){
+        if (strSliderValue.equals("2")){
             jListSessions.setFont(jListSessions.getFont().deriveFont(14.0f));
             jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(14.0f));
         }
-        if (strSliderValue.equals("5")){
-            jListSessions.setFont(jListSessions.getFont().deriveFont(15.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(15.0f));
-        }
-        if (strSliderValue.equals("6")){
+        if (strSliderValue.equals("3")){
             jListSessions.setFont(jListSessions.getFont().deriveFont(16.0f));
             jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(16.0f));
+        }
+        if (strSliderValue.equals("4")){
+            jListSessions.setFont(jListSessions.getFont().deriveFont(18.0f));
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(18.0f));
+        }
+        if (strSliderValue.equals("5")){
+            jListSessions.setFont(jListSessions.getFont().deriveFont(20.0f));
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(20.0f));
+        }
+        if (strSliderValue.equals("6")){
+            jListSessions.setFont(jListSessions.getFont().deriveFont(22.0f));
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(22.0f));
         }
     }//GEN-LAST:event_jSliderListTextSizeStateChanged
 
@@ -6020,8 +6033,12 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jLabelLocalHostname.setText("Refreshing");
         jLabelLocalHostname.setToolTipText("Refreshing");
         jLabelLocalIP.setText("Refreshing");
-        jLabelLocalMAC.setText("Refreshing"); 
+        jLabelLocalMAC.setText("Refreshing");
     }//GEN-LAST:event_jButtonRefreshHostnameIPMACMousePressed
+
+    private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
+        openFileUsingDesktop(strPathLaunchPadPersistantPropertiesFile);
+    }//GEN-LAST:event_jButton38ActionPerformed
 
     
     /**
@@ -6528,6 +6545,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton37;
+    private javax.swing.JButton jButton38;
     private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton41;
