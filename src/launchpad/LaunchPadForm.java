@@ -172,27 +172,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         try {
             if("Japanese".equals(PropertyHandlerPersonal.getInstance().getValue("Language"))) {
                 jRadioButtonJapanese.setSelected(Boolean.TRUE);
-                jTabbedMain.setTitleAt(0,"メイン");
-                jTabbedMain.setTitleAt(1,"リンク");
-                jTabbedMain.setTitleAt(2,"レファレンス");
-                jTabbedMain.setTitleAt(3,"スクリプト");
-                jTabbedMain.setTitleAt(4,"ツールボックス");
-                jTabbedMain.setTitleAt(5,"セッティング");
-                jCheckBox1.setText("お気に入り");
-                jCheckBoxAlternateLogin.setText("代替ログイン");
-                jButtonPing.setText("ピング");
-                jButtonTracert.setText("トレースルート");
-                jButtonTracert.setFont(jButtonTracert.getFont().deriveFont(10.0f));           
-                jButtonConsole.setText("シリアルポートに接続します");
-                jToggleOnlineOfflineMode.setText("オンライン");
-                jTabbedMain.setTitleAt(0,"メイン");
-                jTabbedPaneToolBox.setTitleAt(0, "ファイルアーカイブ");
-                jTabbedPaneToolBox.setTitleAt(1, "タイプ");
-                jTabbedPaneToolBox.setTitleAt(2, "ハッシュ");
-                jTabbedPaneToolBox.setTitleAt(3, "ハッシュ");
-                jTabbedPaneToolBox.setTitleAt(4, "ハッシュ");
-                jTabbedPaneToolBox.setTitleAt(5, "スクリプト");
-
+                SetLanguageJapanese();
             }
         } catch (NullPointerException e) {System.out.println("Language Goofed");
         }
@@ -3843,7 +3823,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonScriptUpdateLaunchPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptUpdateLaunchPadActionPerformed
         // TODO add your handling code here:
-        String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("FileUpdateScript") + "\"";
+        String myValue = "cmd.exe /c start powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("FileUpdateScript") + "\"";
         System.out.println(myValue);
         try {
             Runtime.getRuntime().exec(myValue);
@@ -6024,10 +6004,23 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
     private void jRadioButtonJapaneseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonJapaneseActionPerformed
     PropertyHandlerPersonal.getInstance().setValue("Language", "Japanese");
+    SetLanguageJapanese();
     }//GEN-LAST:event_jRadioButtonJapaneseActionPerformed
 
     private void jRadioButtonEnglishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEnglishActionPerformed
     PropertyHandlerPersonal.getInstance().setValue("Language", "English");
+    String ObjButtons[] = {"Yes","No"};
+    int PromptResult = JOptionPane.showOptionDialog(null,"Reload in English?","You sure??",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
+    if(PromptResult==JOptionPane.YES_OPTION)
+    {
+        try {
+            restartApplication();
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     }//GEN-LAST:event_jRadioButtonEnglishActionPerformed
 
     
@@ -6498,7 +6491,50 @@ public class LaunchPadForm extends javax.swing.JFrame {
             return null;
         } 
     }
-  
+    
+    public void SetLanguageJapanese() {
+        jTabbedMain.setTitleAt(0,"メイン");
+        jTabbedMain.setTitleAt(1,"リンク");
+        jTabbedMain.setTitleAt(2,"レファレンス");
+        jTabbedMain.setTitleAt(3,"スクリプト");
+        jTabbedMain.setTitleAt(4,"ツールボックス");
+        jTabbedMain.setTitleAt(5,"セッティング");
+        jCheckBox1.setText("お気に入り");
+        jCheckBoxAlternateLogin.setText("代替ログイン");
+        jButtonPing.setText("ピング");
+        jButtonTracert.setText("トレースルート");
+        jButtonTracert.setFont(jButtonTracert.getFont().deriveFont(10.0f));           
+        jButtonConsole.setText("シリアルポートに接続します");
+        jToggleOnlineOfflineMode.setText("オンライン");
+        jTabbedMain.setTitleAt(0,"メイン");
+        jTabbedPaneToolBox.setTitleAt(0, "ファイルアーカイブ");
+        jTabbedPaneToolBox.setTitleAt(1, "タイプ");
+        jTabbedPaneToolBox.setTitleAt(2, "ハッシュ");
+        jTabbedPaneToolBox.setTitleAt(3, "ハッシュ");
+        jTabbedPaneToolBox.setTitleAt(4, "ハッシュ");
+        jTabbedPaneToolBox.setTitleAt(5, "スクリプト");
+    }
+    
+    
+    public void restartApplication() throws URISyntaxException, IOException
+        {
+            final String javaBin = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
+            final File currentJar = new File(LaunchPad.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+
+            /* is it a jar file? */
+            if(!currentJar.getName().endsWith(".jar"))
+              return;
+
+            /* Build command: java -jar application.jar */
+            final ArrayList<String> command = new ArrayList<String>();
+            command.add(javaBin);
+            command.add("-jar");
+            command.add(currentJar.getPath());
+
+            final ProcessBuilder builder = new ProcessBuilder(command);
+            builder.start();
+            System.exit(0);
+        }
   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
