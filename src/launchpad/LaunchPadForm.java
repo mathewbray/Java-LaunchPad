@@ -904,6 +904,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButtonRefreshHostnameIPMAC = new javax.swing.JButton();
         jTextFieldFilter = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jButton40 = new javax.swing.JButton();
         jPanelAppsCustom = new javax.swing.JPanel();
         jButtonLinkCustom01 = new javax.swing.JButton();
         jButtonLinkCustom02 = new javax.swing.JButton();
@@ -1661,15 +1662,27 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jButton40.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton40.setText("X");
+        jButton40.setToolTipText("Clear filter");
+        jButton40.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton40.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton40ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelMainLayout = new javax.swing.GroupLayout(jPanelMain);
         jPanelMain.setLayout(jPanelMainLayout);
         jPanelMainLayout.setHorizontalGroup(
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMainLayout.createSequentialGroup()
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addComponent(jTextFieldFilter)
+                        .addComponent(jTextFieldFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton40, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCheckBox1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
@@ -1689,7 +1702,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
                         .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton40))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -6098,6 +6112,18 @@ public class LaunchPadForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextFieldScriptsFilterKeyReleased
 
+    private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
+        jTextFieldFilter.setText("");
+        jTextFieldFilter.requestFocus();
+        try {
+            Robot robot = new Robot();
+            robot.keyRelease(KeyEvent.VK_BACK_SPACE);
+        } catch (AWTException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton40ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -6766,6 +6792,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton38;
     private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton41;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
