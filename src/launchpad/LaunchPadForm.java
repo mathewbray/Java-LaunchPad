@@ -217,7 +217,19 @@ public class LaunchPadForm extends javax.swing.JFrame {
             public void windowClosing(WindowEvent we)
             { 
                 String ObjButtons[] = {"Yes","No"};
-                int PromptResult = JOptionPane.showOptionDialog(null,"Are you sure you want to exit LaunchPad?","You sure??",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
+                String strExitTitle = "You Sure??";
+                String strExitMessage = "Are you sure you want to exit LaunchPad?";
+                try {
+                    if("Japanese".equals(PropertyHandlerPersonal.getInstance().getValue("Language"))) {
+                        ObjButtons[0] = "はい";
+                        ObjButtons[1] = "いいえ";
+                        strExitTitle = "本気ですか？";
+                        strExitMessage = "LaunchPadを終了してもよろしいですか？";
+                    }
+                } catch (NullPointerException e) {
+                    System.out.println("Language Goofed");
+                }
+                int PromptResult = JOptionPane.showOptionDialog(null,strExitMessage,strExitTitle,JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
                 if(PromptResult==JOptionPane.YES_OPTION)
                 {
                     System.exit(0);
@@ -6072,7 +6084,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
     private void jRadioButtonEnglishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEnglishActionPerformed
     PropertyHandlerPersonal.getInstance().setValue("Language", "English");
-    String ObjButtons[] = {"Yes","No"};
+    String ObjButtons[] = {"Yes はい","No いいえ"};
     int PromptResult = JOptionPane.showOptionDialog(null,"Reload in English?\r\n英語でリロードしますか？","",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
     if(PromptResult==JOptionPane.YES_OPTION)
     {
