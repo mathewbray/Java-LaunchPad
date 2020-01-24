@@ -941,6 +941,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButtonLinkCustom34 = new javax.swing.JButton();
         jButtonLinkCustom35 = new javax.swing.JButton();
         jButtonLinkCustom36 = new javax.swing.JButton();
+        jTextFieldLinksFilter = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jPanelReference = new javax.swing.JPanel();
         jToggleOnlineOfflineMode = new javax.swing.JToggleButton();
         jButtonReferenceCustom01 = new javax.swing.JButton();
@@ -976,6 +978,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButtonReferenceCustom31 = new javax.swing.JButton();
         jButtonReferenceCustom32 = new javax.swing.JButton();
         jButtonReferenceCustom33 = new javax.swing.JButton();
+        jTextFieldReferenceFilter = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jPanelScripts = new javax.swing.JPanel();
         jButtonScriptCustom03 = new javax.swing.JButton();
         jButtonScriptCustom01 = new javax.swing.JButton();
@@ -1013,6 +1017,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButtonScriptCustom34 = new javax.swing.JButton();
         jButtonScriptCustom35 = new javax.swing.JButton();
         jButtonScriptCustom36 = new javax.swing.JButton();
+        jTextFieldScriptsFilter = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         jTabbedPaneToolBox = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jButtonFolderToZip = new javax.swing.JButton();
@@ -1702,7 +1708,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom01);
-        jButtonLinkCustom01.setBounds(20, 40, 170, 30);
+        jButtonLinkCustom01.setBounds(20, 50, 170, 30);
 
         jButtonLinkCustom02.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom02.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1712,7 +1718,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom02);
-        jButtonLinkCustom02.setBounds(200, 40, 170, 30);
+        jButtonLinkCustom02.setBounds(200, 50, 170, 30);
 
         jButtonLinkCustom03.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom03.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1722,7 +1728,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom03);
-        jButtonLinkCustom03.setBounds(380, 40, 170, 30);
+        jButtonLinkCustom03.setBounds(380, 50, 170, 30);
 
         jButtonLinkCustom04.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom04.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1732,7 +1738,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom04);
-        jButtonLinkCustom04.setBounds(20, 80, 170, 30);
+        jButtonLinkCustom04.setBounds(20, 90, 170, 30);
 
         jButtonLinkCustom05.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom05.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1742,7 +1748,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom05);
-        jButtonLinkCustom05.setBounds(200, 80, 170, 30);
+        jButtonLinkCustom05.setBounds(200, 90, 170, 30);
 
         jButtonLinkCustom06.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom06.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1752,7 +1758,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom06);
-        jButtonLinkCustom06.setBounds(380, 80, 170, 30);
+        jButtonLinkCustom06.setBounds(380, 90, 170, 30);
 
         jButtonLinkCustom07.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom07.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1762,7 +1768,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom07);
-        jButtonLinkCustom07.setBounds(20, 120, 170, 30);
+        jButtonLinkCustom07.setBounds(20, 130, 170, 30);
 
         jButtonLinkCustom08.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom08.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1772,7 +1778,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom08);
-        jButtonLinkCustom08.setBounds(200, 120, 170, 30);
+        jButtonLinkCustom08.setBounds(200, 130, 170, 30);
 
         jButtonLinkCustom09.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom09.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1782,7 +1788,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom09);
-        jButtonLinkCustom09.setBounds(380, 120, 170, 30);
+        jButtonLinkCustom09.setBounds(380, 130, 170, 30);
 
         jButtonLinkCustom11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom11.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1792,7 +1798,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom11);
-        jButtonLinkCustom11.setBounds(200, 160, 170, 30);
+        jButtonLinkCustom11.setBounds(200, 170, 170, 30);
 
         jButtonLinkCustom10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom10.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1802,7 +1808,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom10);
-        jButtonLinkCustom10.setBounds(20, 160, 170, 30);
+        jButtonLinkCustom10.setBounds(20, 170, 170, 30);
 
         jButtonLinkCustom12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom12.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1812,7 +1818,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom12);
-        jButtonLinkCustom12.setBounds(380, 160, 170, 30);
+        jButtonLinkCustom12.setBounds(380, 170, 170, 30);
 
         jButtonLinkCustom13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom13.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1822,7 +1828,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom13);
-        jButtonLinkCustom13.setBounds(20, 200, 170, 30);
+        jButtonLinkCustom13.setBounds(20, 210, 170, 30);
 
         jButtonLinkCustom14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom14.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1832,7 +1838,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom14);
-        jButtonLinkCustom14.setBounds(200, 200, 170, 30);
+        jButtonLinkCustom14.setBounds(200, 210, 170, 30);
 
         jButtonLinkCustom15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom15.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1842,7 +1848,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom15);
-        jButtonLinkCustom15.setBounds(380, 200, 170, 30);
+        jButtonLinkCustom15.setBounds(380, 210, 170, 30);
 
         jButtonLinkCustom16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom16.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1852,7 +1858,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom16);
-        jButtonLinkCustom16.setBounds(20, 240, 170, 30);
+        jButtonLinkCustom16.setBounds(20, 250, 170, 30);
 
         jButtonLinkCustom17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom17.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1862,7 +1868,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom17);
-        jButtonLinkCustom17.setBounds(200, 240, 170, 30);
+        jButtonLinkCustom17.setBounds(200, 250, 170, 30);
 
         jButtonLinkCustom18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom18.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1872,7 +1878,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom18);
-        jButtonLinkCustom18.setBounds(380, 240, 170, 30);
+        jButtonLinkCustom18.setBounds(380, 250, 170, 30);
 
         jButtonLinkCustom19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom19.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1882,7 +1888,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom19);
-        jButtonLinkCustom19.setBounds(20, 280, 170, 30);
+        jButtonLinkCustom19.setBounds(20, 290, 170, 30);
 
         jButtonLinkCustom20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom20.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1892,7 +1898,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom20);
-        jButtonLinkCustom20.setBounds(200, 280, 170, 30);
+        jButtonLinkCustom20.setBounds(200, 290, 170, 30);
 
         jButtonLinkCustom21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom21.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1902,7 +1908,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom21);
-        jButtonLinkCustom21.setBounds(380, 280, 170, 30);
+        jButtonLinkCustom21.setBounds(380, 290, 170, 30);
 
         jButtonLinkCustom22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom22.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1912,7 +1918,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom22);
-        jButtonLinkCustom22.setBounds(20, 320, 170, 30);
+        jButtonLinkCustom22.setBounds(20, 330, 170, 30);
 
         jButtonLinkCustom23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom23.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1922,7 +1928,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom23);
-        jButtonLinkCustom23.setBounds(200, 320, 170, 30);
+        jButtonLinkCustom23.setBounds(200, 330, 170, 30);
 
         jButtonLinkCustom24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom24.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1932,7 +1938,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom24);
-        jButtonLinkCustom24.setBounds(380, 320, 170, 30);
+        jButtonLinkCustom24.setBounds(380, 330, 170, 30);
 
         jButtonLinkCustom25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom25.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1942,7 +1948,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom25);
-        jButtonLinkCustom25.setBounds(20, 360, 170, 30);
+        jButtonLinkCustom25.setBounds(20, 370, 170, 30);
 
         jButtonLinkCustom26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom26.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1952,7 +1958,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom26);
-        jButtonLinkCustom26.setBounds(200, 360, 170, 30);
+        jButtonLinkCustom26.setBounds(200, 370, 170, 30);
 
         jButtonLinkCustom27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom27.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1962,7 +1968,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom27);
-        jButtonLinkCustom27.setBounds(380, 360, 170, 30);
+        jButtonLinkCustom27.setBounds(380, 370, 170, 30);
 
         jButtonLinkCustom28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom28.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1972,7 +1978,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom28);
-        jButtonLinkCustom28.setBounds(20, 400, 170, 30);
+        jButtonLinkCustom28.setBounds(20, 410, 170, 30);
 
         jButtonLinkCustom29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom29.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1982,7 +1988,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom29);
-        jButtonLinkCustom29.setBounds(200, 400, 170, 30);
+        jButtonLinkCustom29.setBounds(200, 410, 170, 30);
 
         jButtonLinkCustom30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom30.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -1992,7 +1998,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom30);
-        jButtonLinkCustom30.setBounds(380, 400, 170, 30);
+        jButtonLinkCustom30.setBounds(380, 410, 170, 30);
 
         jButtonLinkCustom31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom31.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2002,7 +2008,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom31);
-        jButtonLinkCustom31.setBounds(20, 440, 170, 30);
+        jButtonLinkCustom31.setBounds(20, 450, 170, 30);
 
         jButtonLinkCustom32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom32.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2012,7 +2018,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom32);
-        jButtonLinkCustom32.setBounds(200, 440, 170, 30);
+        jButtonLinkCustom32.setBounds(200, 450, 170, 30);
 
         jButtonLinkCustom33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom33.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2022,7 +2028,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom33);
-        jButtonLinkCustom33.setBounds(380, 440, 170, 30);
+        jButtonLinkCustom33.setBounds(380, 450, 170, 30);
 
         jButtonLinkCustom34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom34.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2032,7 +2038,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom34);
-        jButtonLinkCustom34.setBounds(20, 480, 170, 30);
+        jButtonLinkCustom34.setBounds(20, 490, 170, 30);
 
         jButtonLinkCustom35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom35.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2042,7 +2048,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom35);
-        jButtonLinkCustom35.setBounds(200, 480, 170, 30);
+        jButtonLinkCustom35.setBounds(200, 490, 170, 30);
 
         jButtonLinkCustom36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonLinkCustom36.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2052,7 +2058,25 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelAppsCustom.add(jButtonLinkCustom36);
-        jButtonLinkCustom36.setBounds(380, 480, 170, 30);
+        jButtonLinkCustom36.setBounds(380, 490, 170, 30);
+
+        jTextFieldLinksFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldLinksFilterActionPerformed(evt);
+            }
+        });
+        jTextFieldLinksFilter.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinksFilterKeyReleased(evt);
+            }
+        });
+        jPanelAppsCustom.add(jTextFieldLinksFilter);
+        jTextFieldLinksFilter.setBounds(200, 20, 170, 20);
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText("Filter:");
+        jPanelAppsCustom.add(jLabel1);
+        jLabel1.setBounds(140, 20, 50, 20);
 
         jTabbedMain.addTab("Links", jPanelAppsCustom);
 
@@ -2068,7 +2092,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jToggleOnlineOfflineMode);
-        jToggleOnlineOfflineMode.setBounds(200, 40, 170, 30);
+        jToggleOnlineOfflineMode.setBounds(200, 50, 170, 30);
 
         jButtonReferenceCustom01.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom01.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2078,7 +2102,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom01);
-        jButtonReferenceCustom01.setBounds(20, 80, 170, 30);
+        jButtonReferenceCustom01.setBounds(20, 90, 170, 30);
 
         jButtonReferenceCustom02.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom02.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2088,7 +2112,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom02);
-        jButtonReferenceCustom02.setBounds(200, 80, 170, 30);
+        jButtonReferenceCustom02.setBounds(200, 90, 170, 30);
 
         jButtonReferenceCustom03.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom03.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2098,7 +2122,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom03);
-        jButtonReferenceCustom03.setBounds(380, 80, 170, 30);
+        jButtonReferenceCustom03.setBounds(380, 90, 170, 30);
 
         jButtonReferenceCustom04.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom04.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2108,7 +2132,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom04);
-        jButtonReferenceCustom04.setBounds(20, 120, 170, 30);
+        jButtonReferenceCustom04.setBounds(20, 130, 170, 30);
 
         jButtonReferenceCustom05.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom05.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2118,7 +2142,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom05);
-        jButtonReferenceCustom05.setBounds(200, 120, 170, 30);
+        jButtonReferenceCustom05.setBounds(200, 130, 170, 30);
 
         jButtonReferenceCustom06.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom06.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2128,7 +2152,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom06);
-        jButtonReferenceCustom06.setBounds(380, 120, 170, 30);
+        jButtonReferenceCustom06.setBounds(380, 130, 170, 30);
 
         jButtonReferenceCustom07.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom07.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2138,7 +2162,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom07);
-        jButtonReferenceCustom07.setBounds(20, 160, 170, 30);
+        jButtonReferenceCustom07.setBounds(20, 170, 170, 30);
 
         jButtonReferenceCustom08.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom08.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2148,7 +2172,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom08);
-        jButtonReferenceCustom08.setBounds(200, 160, 170, 30);
+        jButtonReferenceCustom08.setBounds(200, 170, 170, 30);
 
         jButtonReferenceCustom09.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom09.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2158,7 +2182,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom09);
-        jButtonReferenceCustom09.setBounds(380, 160, 170, 30);
+        jButtonReferenceCustom09.setBounds(380, 170, 170, 30);
 
         jButtonReferenceCustom10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom10.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2168,7 +2192,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom10);
-        jButtonReferenceCustom10.setBounds(20, 200, 170, 30);
+        jButtonReferenceCustom10.setBounds(20, 210, 170, 30);
 
         jButtonReferenceCustom11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom11.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2178,7 +2202,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom11);
-        jButtonReferenceCustom11.setBounds(200, 200, 170, 30);
+        jButtonReferenceCustom11.setBounds(200, 210, 170, 30);
 
         jButtonReferenceCustom12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom12.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2188,7 +2212,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom12);
-        jButtonReferenceCustom12.setBounds(380, 200, 170, 30);
+        jButtonReferenceCustom12.setBounds(380, 210, 170, 30);
 
         jButtonReferenceCustom13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom13.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2198,7 +2222,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom13);
-        jButtonReferenceCustom13.setBounds(20, 240, 170, 30);
+        jButtonReferenceCustom13.setBounds(20, 250, 170, 30);
 
         jButtonReferenceCustom14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom14.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2208,7 +2232,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom14);
-        jButtonReferenceCustom14.setBounds(200, 240, 170, 30);
+        jButtonReferenceCustom14.setBounds(200, 250, 170, 30);
 
         jButtonReferenceCustom15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom15.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2218,7 +2242,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom15);
-        jButtonReferenceCustom15.setBounds(380, 240, 170, 30);
+        jButtonReferenceCustom15.setBounds(380, 250, 170, 30);
 
         jButtonReferenceCustom16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom16.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2228,7 +2252,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom16);
-        jButtonReferenceCustom16.setBounds(20, 280, 170, 30);
+        jButtonReferenceCustom16.setBounds(20, 290, 170, 30);
 
         jButtonReferenceCustom17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom17.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2238,7 +2262,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom17);
-        jButtonReferenceCustom17.setBounds(200, 280, 170, 30);
+        jButtonReferenceCustom17.setBounds(200, 290, 170, 30);
 
         jButtonReferenceCustom18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom18.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2248,7 +2272,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom18);
-        jButtonReferenceCustom18.setBounds(380, 280, 170, 30);
+        jButtonReferenceCustom18.setBounds(380, 290, 170, 30);
 
         jButtonReferenceCustom19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom19.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2258,7 +2282,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom19);
-        jButtonReferenceCustom19.setBounds(20, 320, 170, 30);
+        jButtonReferenceCustom19.setBounds(20, 330, 170, 30);
 
         jButtonReferenceCustom20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom20.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2268,7 +2292,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom20);
-        jButtonReferenceCustom20.setBounds(200, 320, 170, 30);
+        jButtonReferenceCustom20.setBounds(200, 330, 170, 30);
 
         jButtonReferenceCustom21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom21.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2278,7 +2302,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom21);
-        jButtonReferenceCustom21.setBounds(380, 320, 170, 30);
+        jButtonReferenceCustom21.setBounds(380, 330, 170, 30);
 
         jButtonReferenceCustom22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom22.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2288,7 +2312,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom22);
-        jButtonReferenceCustom22.setBounds(20, 360, 170, 30);
+        jButtonReferenceCustom22.setBounds(20, 370, 170, 30);
 
         jButtonReferenceCustom23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom23.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2298,7 +2322,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom23);
-        jButtonReferenceCustom23.setBounds(200, 360, 170, 30);
+        jButtonReferenceCustom23.setBounds(200, 370, 170, 30);
 
         jButtonReferenceCustom24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom24.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2308,7 +2332,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom24);
-        jButtonReferenceCustom24.setBounds(380, 360, 170, 30);
+        jButtonReferenceCustom24.setBounds(380, 370, 170, 30);
 
         jButtonReferenceCustom25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom25.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2318,7 +2342,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom25);
-        jButtonReferenceCustom25.setBounds(20, 400, 170, 30);
+        jButtonReferenceCustom25.setBounds(20, 410, 170, 30);
 
         jButtonReferenceCustom26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom26.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2328,7 +2352,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom26);
-        jButtonReferenceCustom26.setBounds(200, 400, 170, 30);
+        jButtonReferenceCustom26.setBounds(200, 410, 170, 30);
 
         jButtonReferenceCustom27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom27.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2338,7 +2362,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom27);
-        jButtonReferenceCustom27.setBounds(380, 400, 170, 30);
+        jButtonReferenceCustom27.setBounds(380, 410, 170, 30);
 
         jButtonReferenceCustom28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom28.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2348,7 +2372,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom28);
-        jButtonReferenceCustom28.setBounds(20, 440, 170, 30);
+        jButtonReferenceCustom28.setBounds(20, 450, 170, 30);
 
         jButtonReferenceCustom29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom29.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2358,7 +2382,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom29);
-        jButtonReferenceCustom29.setBounds(200, 440, 170, 30);
+        jButtonReferenceCustom29.setBounds(200, 450, 170, 30);
 
         jButtonReferenceCustom30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom30.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2368,7 +2392,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom30);
-        jButtonReferenceCustom30.setBounds(380, 440, 170, 30);
+        jButtonReferenceCustom30.setBounds(380, 450, 170, 30);
 
         jButtonReferenceCustom31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom31.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2378,7 +2402,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom31);
-        jButtonReferenceCustom31.setBounds(20, 480, 170, 30);
+        jButtonReferenceCustom31.setBounds(20, 490, 170, 30);
 
         jButtonReferenceCustom32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom32.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2388,7 +2412,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom32);
-        jButtonReferenceCustom32.setBounds(200, 480, 170, 30);
+        jButtonReferenceCustom32.setBounds(200, 490, 170, 30);
 
         jButtonReferenceCustom33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReferenceCustom33.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2398,7 +2422,20 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelReference.add(jButtonReferenceCustom33);
-        jButtonReferenceCustom33.setBounds(380, 480, 170, 30);
+        jButtonReferenceCustom33.setBounds(380, 490, 170, 30);
+
+        jTextFieldReferenceFilter.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldReferenceFilterKeyReleased(evt);
+            }
+        });
+        jPanelReference.add(jTextFieldReferenceFilter);
+        jTextFieldReferenceFilter.setBounds(200, 20, 170, 20);
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Filter:");
+        jPanelReference.add(jLabel2);
+        jLabel2.setBounds(140, 20, 50, 20);
 
         jTabbedMain.addTab("Reference", jPanelReference);
 
@@ -2412,7 +2449,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom03);
-        jButtonScriptCustom03.setBounds(380, 40, 170, 30);
+        jButtonScriptCustom03.setBounds(380, 50, 170, 30);
 
         jButtonScriptCustom01.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom01.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2422,7 +2459,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom01);
-        jButtonScriptCustom01.setBounds(20, 40, 170, 30);
+        jButtonScriptCustom01.setBounds(20, 50, 170, 30);
 
         jButtonScriptCustom02.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom02.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2432,7 +2469,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom02);
-        jButtonScriptCustom02.setBounds(200, 40, 170, 30);
+        jButtonScriptCustom02.setBounds(200, 50, 170, 30);
 
         jButtonScriptCustom06.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom06.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2442,7 +2479,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom06);
-        jButtonScriptCustom06.setBounds(380, 80, 170, 30);
+        jButtonScriptCustom06.setBounds(380, 90, 170, 30);
 
         jButtonScriptCustom04.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom04.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2452,7 +2489,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom04);
-        jButtonScriptCustom04.setBounds(20, 80, 170, 30);
+        jButtonScriptCustom04.setBounds(20, 90, 170, 30);
 
         jButtonScriptCustom05.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom05.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2462,7 +2499,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom05);
-        jButtonScriptCustom05.setBounds(200, 80, 170, 30);
+        jButtonScriptCustom05.setBounds(200, 90, 170, 30);
 
         jButtonScriptCustom08.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom08.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2472,7 +2509,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom08);
-        jButtonScriptCustom08.setBounds(200, 120, 170, 30);
+        jButtonScriptCustom08.setBounds(200, 130, 170, 30);
 
         jButtonScriptCustom09.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom09.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2482,7 +2519,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom09);
-        jButtonScriptCustom09.setBounds(380, 120, 170, 30);
+        jButtonScriptCustom09.setBounds(380, 130, 170, 30);
 
         jButtonScriptCustom07.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom07.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2492,7 +2529,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom07);
-        jButtonScriptCustom07.setBounds(20, 120, 170, 30);
+        jButtonScriptCustom07.setBounds(20, 130, 170, 30);
 
         jButtonScriptCustom12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom12.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2502,7 +2539,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom12);
-        jButtonScriptCustom12.setBounds(380, 160, 170, 30);
+        jButtonScriptCustom12.setBounds(380, 170, 170, 30);
 
         jButtonScriptCustom15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom15.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2512,7 +2549,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom15);
-        jButtonScriptCustom15.setBounds(380, 200, 170, 30);
+        jButtonScriptCustom15.setBounds(380, 210, 170, 30);
 
         jButtonScriptCustom11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom11.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2522,7 +2559,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom11);
-        jButtonScriptCustom11.setBounds(200, 160, 170, 30);
+        jButtonScriptCustom11.setBounds(200, 170, 170, 30);
 
         jButtonScriptCustom10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom10.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2532,7 +2569,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom10);
-        jButtonScriptCustom10.setBounds(20, 160, 170, 30);
+        jButtonScriptCustom10.setBounds(20, 170, 170, 30);
 
         jButtonScriptCustom13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom13.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2542,7 +2579,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom13);
-        jButtonScriptCustom13.setBounds(20, 200, 170, 30);
+        jButtonScriptCustom13.setBounds(20, 210, 170, 30);
 
         jButtonScriptCustom14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom14.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2552,7 +2589,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom14);
-        jButtonScriptCustom14.setBounds(200, 200, 170, 30);
+        jButtonScriptCustom14.setBounds(200, 210, 170, 30);
 
         jButtonScriptCustom18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom18.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2562,7 +2599,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom18);
-        jButtonScriptCustom18.setBounds(380, 240, 170, 30);
+        jButtonScriptCustom18.setBounds(380, 250, 170, 30);
 
         jButtonScriptCustom16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom16.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2572,7 +2609,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom16);
-        jButtonScriptCustom16.setBounds(20, 240, 170, 30);
+        jButtonScriptCustom16.setBounds(20, 250, 170, 30);
 
         jButtonScriptCustom17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom17.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2582,7 +2619,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom17);
-        jButtonScriptCustom17.setBounds(200, 240, 170, 30);
+        jButtonScriptCustom17.setBounds(200, 250, 170, 30);
 
         jButtonScriptCustom20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom20.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2592,7 +2629,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom20);
-        jButtonScriptCustom20.setBounds(200, 280, 170, 30);
+        jButtonScriptCustom20.setBounds(200, 290, 170, 30);
 
         jButtonScriptCustom21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom21.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2602,7 +2639,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom21);
-        jButtonScriptCustom21.setBounds(380, 280, 170, 30);
+        jButtonScriptCustom21.setBounds(380, 290, 170, 30);
 
         jButtonScriptCustom19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom19.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2612,7 +2649,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom19);
-        jButtonScriptCustom19.setBounds(20, 280, 170, 30);
+        jButtonScriptCustom19.setBounds(20, 290, 170, 30);
 
         jButtonScriptCustom24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom24.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2622,7 +2659,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom24);
-        jButtonScriptCustom24.setBounds(380, 320, 170, 30);
+        jButtonScriptCustom24.setBounds(380, 330, 170, 30);
 
         jButtonScriptCustom22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom22.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2632,7 +2669,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom22);
-        jButtonScriptCustom22.setBounds(20, 320, 170, 30);
+        jButtonScriptCustom22.setBounds(20, 330, 170, 30);
 
         jButtonScriptCustom23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom23.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2642,7 +2679,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom23);
-        jButtonScriptCustom23.setBounds(200, 320, 170, 30);
+        jButtonScriptCustom23.setBounds(200, 330, 170, 30);
 
         jButtonScriptCustom26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom26.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2652,7 +2689,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom26);
-        jButtonScriptCustom26.setBounds(200, 360, 170, 30);
+        jButtonScriptCustom26.setBounds(200, 370, 170, 30);
 
         jButtonScriptCustom27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom27.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2662,7 +2699,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom27);
-        jButtonScriptCustom27.setBounds(380, 360, 170, 30);
+        jButtonScriptCustom27.setBounds(380, 370, 170, 30);
 
         jButtonScriptCustom25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom25.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2672,7 +2709,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom25);
-        jButtonScriptCustom25.setBounds(20, 360, 170, 30);
+        jButtonScriptCustom25.setBounds(20, 370, 170, 30);
 
         jButtonScriptCustom29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom29.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2682,7 +2719,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom29);
-        jButtonScriptCustom29.setBounds(200, 400, 170, 30);
+        jButtonScriptCustom29.setBounds(200, 410, 170, 30);
 
         jButtonScriptCustom30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom30.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2692,7 +2729,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom30);
-        jButtonScriptCustom30.setBounds(380, 400, 170, 30);
+        jButtonScriptCustom30.setBounds(380, 410, 170, 30);
 
         jButtonScriptCustom28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom28.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2702,7 +2739,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom28);
-        jButtonScriptCustom28.setBounds(20, 400, 170, 30);
+        jButtonScriptCustom28.setBounds(20, 410, 170, 30);
 
         jButtonScriptCustom32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom32.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2712,7 +2749,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom32);
-        jButtonScriptCustom32.setBounds(200, 440, 170, 30);
+        jButtonScriptCustom32.setBounds(200, 450, 170, 30);
 
         jButtonScriptCustom33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom33.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2722,7 +2759,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom33);
-        jButtonScriptCustom33.setBounds(380, 440, 170, 30);
+        jButtonScriptCustom33.setBounds(380, 450, 170, 30);
 
         jButtonScriptCustom31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom31.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2732,7 +2769,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom31);
-        jButtonScriptCustom31.setBounds(20, 440, 170, 30);
+        jButtonScriptCustom31.setBounds(20, 450, 170, 30);
 
         jButtonScriptCustom34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom34.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2742,7 +2779,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom34);
-        jButtonScriptCustom34.setBounds(20, 480, 170, 30);
+        jButtonScriptCustom34.setBounds(20, 490, 170, 30);
 
         jButtonScriptCustom35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom35.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2752,7 +2789,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom35);
-        jButtonScriptCustom35.setBounds(200, 480, 170, 30);
+        jButtonScriptCustom35.setBounds(200, 490, 170, 30);
 
         jButtonScriptCustom36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptCustom36.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2762,7 +2799,20 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelScripts.add(jButtonScriptCustom36);
-        jButtonScriptCustom36.setBounds(380, 480, 170, 30);
+        jButtonScriptCustom36.setBounds(380, 490, 170, 30);
+
+        jTextFieldScriptsFilter.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptsFilterKeyReleased(evt);
+            }
+        });
+        jPanelScripts.add(jTextFieldScriptsFilter);
+        jTextFieldScriptsFilter.setBounds(200, 20, 170, 20);
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Filter:");
+        jPanelScripts.add(jLabel3);
+        jLabel3.setBounds(140, 20, 50, 20);
 
         jTabbedMain.addTab("Scripts", jPanelScripts);
 
@@ -3643,13 +3693,14 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
         jButtonReportIssue.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReportIssue.setText("Report an Issue");
+        jButtonReportIssue.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReportIssue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonReportIssueActionPerformed(evt);
             }
         });
         jPanelSettings.add(jButtonReportIssue);
-        jButtonReportIssue.setBounds(10, 523, 110, 20);
+        jButtonReportIssue.setBounds(10, 520, 110, 20);
 
         jButton28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton28.setText("Open LaunchPad Folder");
@@ -5482,10 +5533,13 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private void jListSessionsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListSessionsValueChanged
         // TODO add your handling code here:
         String strSelectedValue = jListSessions.getSelectedValue();
-        if(strSelectedValue.contains(",")) {
-            String[] arrSelectedValue = strSelectedValue.split(",");
-            jTextFieldConnectHostname.setText(arrSelectedValue[1]);
-            jTextFieldPingHostname.setText(arrSelectedValue[1]);
+        try {
+                if(strSelectedValue.contains(",")) {
+                String[] arrSelectedValue = strSelectedValue.split(",");
+                jTextFieldConnectHostname.setText(arrSelectedValue[1]);
+                jTextFieldPingHostname.setText(arrSelectedValue[1]);
+            }
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_jListSessionsValueChanged
 
@@ -6005,18 +6059,44 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private void jRadioButtonEnglishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEnglishActionPerformed
     PropertyHandlerPersonal.getInstance().setValue("Language", "English");
     String ObjButtons[] = {"Yes","No"};
-    int PromptResult = JOptionPane.showOptionDialog(null,"Reload in English?","You sure??",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
+    int PromptResult = JOptionPane.showOptionDialog(null,"Reload in English?\r\n英語でリロードしますか？","",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
     if(PromptResult==JOptionPane.YES_OPTION)
     {
         try {
             restartApplication();
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        } catch (URISyntaxException | IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     }//GEN-LAST:event_jRadioButtonEnglishActionPerformed
+
+    private void jTextFieldLinksFilterKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinksFilterKeyReleased
+        try {
+            searchFilterLinks(jTextFieldLinksFilter.getText());
+        } catch (IOException | URISyntaxException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextFieldLinksFilterKeyReleased
+
+    private void jTextFieldLinksFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLinksFilterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinksFilterActionPerformed
+
+    private void jTextFieldReferenceFilterKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceFilterKeyReleased
+        try {
+            searchFilterReference(jTextFieldReferenceFilter.getText());
+        } catch (IOException | URISyntaxException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextFieldReferenceFilterKeyReleased
+
+    private void jTextFieldScriptsFilterKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptsFilterKeyReleased
+        try {
+            searchFilterScripts(jTextFieldScriptsFilter.getText());
+        } catch (IOException | URISyntaxException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTextFieldScriptsFilterKeyReleased
 
     
     /**
@@ -6156,7 +6236,122 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
     }
     
+    private void searchFilterLinks(String searchTerm) throws IOException, FileNotFoundException, URISyntaxException
+    {
+        if (jButtonLinkCustom01.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom01.setVisible(Boolean.TRUE);}else{jButtonLinkCustom01.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom02.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom02.setVisible(Boolean.TRUE);}else{jButtonLinkCustom02.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom03.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom03.setVisible(Boolean.TRUE);}else{jButtonLinkCustom03.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom04.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom04.setVisible(Boolean.TRUE);}else{jButtonLinkCustom04.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom05.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom05.setVisible(Boolean.TRUE);}else{jButtonLinkCustom05.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom06.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom06.setVisible(Boolean.TRUE);}else{jButtonLinkCustom06.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom07.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom07.setVisible(Boolean.TRUE);}else{jButtonLinkCustom07.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom08.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom08.setVisible(Boolean.TRUE);}else{jButtonLinkCustom08.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom09.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom09.setVisible(Boolean.TRUE);}else{jButtonLinkCustom09.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom10.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom10.setVisible(Boolean.TRUE);}else{jButtonLinkCustom10.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom11.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom11.setVisible(Boolean.TRUE);}else{jButtonLinkCustom11.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom12.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom12.setVisible(Boolean.TRUE);}else{jButtonLinkCustom12.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom13.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom13.setVisible(Boolean.TRUE);}else{jButtonLinkCustom13.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom14.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom14.setVisible(Boolean.TRUE);}else{jButtonLinkCustom14.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom15.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom15.setVisible(Boolean.TRUE);}else{jButtonLinkCustom15.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom16.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom16.setVisible(Boolean.TRUE);}else{jButtonLinkCustom16.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom17.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom17.setVisible(Boolean.TRUE);}else{jButtonLinkCustom17.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom18.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom18.setVisible(Boolean.TRUE);}else{jButtonLinkCustom18.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom19.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom19.setVisible(Boolean.TRUE);}else{jButtonLinkCustom19.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom20.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom20.setVisible(Boolean.TRUE);}else{jButtonLinkCustom20.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom21.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom21.setVisible(Boolean.TRUE);}else{jButtonLinkCustom21.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom22.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom22.setVisible(Boolean.TRUE);}else{jButtonLinkCustom22.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom23.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom23.setVisible(Boolean.TRUE);}else{jButtonLinkCustom23.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom24.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom24.setVisible(Boolean.TRUE);}else{jButtonLinkCustom24.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom25.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom25.setVisible(Boolean.TRUE);}else{jButtonLinkCustom25.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom26.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom26.setVisible(Boolean.TRUE);}else{jButtonLinkCustom26.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom27.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom27.setVisible(Boolean.TRUE);}else{jButtonLinkCustom27.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom28.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom28.setVisible(Boolean.TRUE);}else{jButtonLinkCustom28.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom29.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom29.setVisible(Boolean.TRUE);}else{jButtonLinkCustom29.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom30.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom30.setVisible(Boolean.TRUE);}else{jButtonLinkCustom30.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom31.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom31.setVisible(Boolean.TRUE);}else{jButtonLinkCustom31.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom32.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom32.setVisible(Boolean.TRUE);}else{jButtonLinkCustom32.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom33.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom33.setVisible(Boolean.TRUE);}else{jButtonLinkCustom33.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom34.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom34.setVisible(Boolean.TRUE);}else{jButtonLinkCustom34.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom35.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom35.setVisible(Boolean.TRUE);}else{jButtonLinkCustom35.setVisible(Boolean.FALSE);}
+        if (jButtonLinkCustom36.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonLinkCustom36.setVisible(Boolean.TRUE);}else{jButtonLinkCustom36.setVisible(Boolean.FALSE);}
+    }
     
+    private void searchFilterReference(String searchTerm) throws IOException, FileNotFoundException, URISyntaxException
+    {
+        if (jButtonReferenceCustom01.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom01.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom01.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom02.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom02.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom02.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom03.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom03.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom03.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom04.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom04.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom04.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom05.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom05.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom05.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom06.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom06.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom06.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom07.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom07.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom07.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom08.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom08.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom08.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom09.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom09.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom09.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom10.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom10.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom10.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom11.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom11.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom11.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom12.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom12.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom12.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom13.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom13.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom13.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom14.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom14.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom14.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom15.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom15.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom15.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom16.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom16.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom16.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom17.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom17.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom17.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom18.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom18.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom18.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom19.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom19.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom19.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom20.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom20.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom20.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom21.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom21.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom21.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom22.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom22.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom22.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom23.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom23.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom23.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom24.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom24.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom24.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom25.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom25.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom25.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom26.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom26.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom26.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom27.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom27.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom27.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom28.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom28.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom28.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom29.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom29.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom29.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom30.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom30.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom30.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom31.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom31.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom31.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom32.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom32.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom32.setVisible(Boolean.FALSE);}
+        if (jButtonReferenceCustom33.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonReferenceCustom33.setVisible(Boolean.TRUE);}else{jButtonReferenceCustom33.setVisible(Boolean.FALSE);}
+    }  
+    
+    private void searchFilterScripts(String searchTerm) throws IOException, FileNotFoundException, URISyntaxException
+    {
+        if (jButtonScriptCustom01.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom01.setVisible(Boolean.TRUE);}else{jButtonScriptCustom01.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom02.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom02.setVisible(Boolean.TRUE);}else{jButtonScriptCustom02.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom03.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom03.setVisible(Boolean.TRUE);}else{jButtonScriptCustom03.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom04.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom04.setVisible(Boolean.TRUE);}else{jButtonScriptCustom04.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom05.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom05.setVisible(Boolean.TRUE);}else{jButtonScriptCustom05.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom06.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom06.setVisible(Boolean.TRUE);}else{jButtonScriptCustom06.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom07.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom07.setVisible(Boolean.TRUE);}else{jButtonScriptCustom07.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom08.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom08.setVisible(Boolean.TRUE);}else{jButtonScriptCustom08.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom09.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom09.setVisible(Boolean.TRUE);}else{jButtonScriptCustom09.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom10.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom10.setVisible(Boolean.TRUE);}else{jButtonScriptCustom10.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom11.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom11.setVisible(Boolean.TRUE);}else{jButtonScriptCustom11.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom12.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom12.setVisible(Boolean.TRUE);}else{jButtonScriptCustom12.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom13.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom13.setVisible(Boolean.TRUE);}else{jButtonScriptCustom13.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom14.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom14.setVisible(Boolean.TRUE);}else{jButtonScriptCustom14.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom15.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom15.setVisible(Boolean.TRUE);}else{jButtonScriptCustom15.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom16.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom16.setVisible(Boolean.TRUE);}else{jButtonScriptCustom16.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom17.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom17.setVisible(Boolean.TRUE);}else{jButtonScriptCustom17.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom18.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom18.setVisible(Boolean.TRUE);}else{jButtonScriptCustom18.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom19.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom19.setVisible(Boolean.TRUE);}else{jButtonScriptCustom19.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom20.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom20.setVisible(Boolean.TRUE);}else{jButtonScriptCustom20.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom21.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom21.setVisible(Boolean.TRUE);}else{jButtonScriptCustom21.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom22.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom22.setVisible(Boolean.TRUE);}else{jButtonScriptCustom22.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom23.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom23.setVisible(Boolean.TRUE);}else{jButtonScriptCustom23.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom24.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom24.setVisible(Boolean.TRUE);}else{jButtonScriptCustom24.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom25.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom25.setVisible(Boolean.TRUE);}else{jButtonScriptCustom25.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom26.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom26.setVisible(Boolean.TRUE);}else{jButtonScriptCustom26.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom27.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom27.setVisible(Boolean.TRUE);}else{jButtonScriptCustom27.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom28.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom28.setVisible(Boolean.TRUE);}else{jButtonScriptCustom28.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom29.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom29.setVisible(Boolean.TRUE);}else{jButtonScriptCustom29.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom30.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom30.setVisible(Boolean.TRUE);}else{jButtonScriptCustom30.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom31.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom31.setVisible(Boolean.TRUE);}else{jButtonScriptCustom31.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom32.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom32.setVisible(Boolean.TRUE);}else{jButtonScriptCustom32.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom33.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom33.setVisible(Boolean.TRUE);}else{jButtonScriptCustom33.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom34.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom34.setVisible(Boolean.TRUE);}else{jButtonScriptCustom34.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom35.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom35.setVisible(Boolean.TRUE);}else{jButtonScriptCustom35.setVisible(Boolean.FALSE);}
+        if (jButtonScriptCustom36.getText().toLowerCase().contains(searchTerm.toLowerCase())) {jButtonScriptCustom36.setVisible(Boolean.TRUE);}else{jButtonScriptCustom36.setVisible(Boolean.FALSE);}
+    }
     
   /**
    * List directory contents for a resource folder. Not recursive.
@@ -6729,11 +6924,13 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxConsoleBaud;
     private javax.swing.JComboBox<String> jComboBoxConsoleCOM;
     private javax.swing.JComboBox<String> jComboBoxZipEncMethod;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -6742,6 +6939,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
@@ -6816,10 +7014,13 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldHashSHA1;
     private javax.swing.JTextField jTextFieldHashSHA256;
     private javax.swing.JTextField jTextFieldHashSHA512;
+    private javax.swing.JTextField jTextFieldLinksFilter;
     private javax.swing.JTextField jTextFieldNtpAtomicTime;
     private javax.swing.JTextField jTextFieldNtpServer;
     private javax.swing.JTextField jTextFieldNtpSystemTime;
     private javax.swing.JTextField jTextFieldPingHostname;
+    private javax.swing.JTextField jTextFieldReferenceFilter;
+    private javax.swing.JTextField jTextFieldScriptsFilter;
     private javax.swing.JTextField jTextFieldTCPTestPort;
     private javax.swing.JTextField jTextFieldType7Input;
     private javax.swing.JTextField jTextFieldType7Output;
