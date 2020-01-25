@@ -63,6 +63,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.embed.swing.JFXPanel;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
@@ -96,7 +97,7 @@ import org.apache.commons.net.ntp.TimeStamp;
  *
  * @author Mathew
  */
-public class LaunchPadForm extends javax.swing.JFrame {
+public final class LaunchPadForm extends javax.swing.JFrame {
     
     //Shared and public items
     DefaultListModel defaultListModelFilteredItems = new DefaultListModel();
@@ -130,13 +131,16 @@ public class LaunchPadForm extends javax.swing.JFrame {
      * @throws java.lang.ClassNotFoundException
      * @throws java.lang.InstantiationException
      * @throws java.lang.IllegalAccessException
+     * @throws javax.swing.UnsupportedLookAndFeelException
      */
     public LaunchPadForm() throws IOException, FileNotFoundException, URISyntaxException, AWTException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         initComponents();
         final JFXPanel fxPanel = new JFXPanel();
         setTitle(PropertyHandler.getInstance().getValue("WindowTitle"));
         getSessionList();
-      
+        SettingsLoadCustomLinksData();
+        SettingsLoadButtonList();
+        SettingsLoadButtonsData();
         //- Set the look and feel
         try {
             UIManager.setLookAndFeel(
@@ -325,121 +329,121 @@ public class LaunchPadForm extends javax.swing.JFrame {
         Image newimg;
         try {
             //Button01
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button01Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button01Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton1.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button2
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button02Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button02Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton2.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button3
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button03Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button03Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton3.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button4
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button04Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button04Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton4.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button5
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button05Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button05Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton5.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button6
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button06Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button06Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton6.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button7
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button07Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button07Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton7.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button8
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button08Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button08Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton8.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button9
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button09Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button09Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton9.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button10
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button10Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button10Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton10.setIcon(new ImageIcon(newimg));
          } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
            //Button11
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button11Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button11Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton11.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button12
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button12Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button12Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton12.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button13
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button13Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button13Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton13.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button14
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button14Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button14Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton14.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button15
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button15Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button15Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton15.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button16
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button16Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button16Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton16.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button17
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button17Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button17Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton17.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button18
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button18Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button18Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton18.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button19
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button19Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button19Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton19.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button20
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button20Icon") + ".png"));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button20Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton20.setIcon(new ImageIcon(newimg));
 
 
@@ -460,26 +464,26 @@ public class LaunchPadForm extends javax.swing.JFrame {
         
         
 
-//        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button01Icon") + ".png")));
-//        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button02Icon") + ".png")));
-//        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button03Icon") + ".png")));
-//        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button04Icon") + ".png")));
-//        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button05Icon") + ".png")));
-//        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button06Icon") + ".png")));
-//        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button07Icon") + ".png")));
-//        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button08Icon") + ".png")));
-//        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button09Icon") + ".png")));
-//        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button10Icon") + ".png")));
-//        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button11Icon") + ".png")));
-//        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button12Icon") + ".png")));
-//        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button13Icon") + ".png")));
-//        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button14Icon") + ".png")));
-//        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button15Icon") + ".png")));
-//        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button16Icon") + ".png")));
-//        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button17Icon") + ".png")));
-//        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button18Icon") + ".png")));
-//        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button19Icon") + ".png")));
-//        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button20Icon") + ".png")));
+//        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button01Icon"))));
+//        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button02Icon"))));
+//        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button03Icon"))));
+//        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button04Icon"))));
+//        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button05Icon"))));
+//        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button06Icon"))));
+//        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button07Icon"))));
+//        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button08Icon"))));
+//        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button09Icon"))));
+//        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button10Icon"))));
+//        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button11Icon"))));
+//        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button12Icon"))));
+//        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button13Icon"))));
+//        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button14Icon"))));
+//        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button15Icon"))));
+//        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button16Icon"))));
+//        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button17Icon"))));
+//        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button18Icon"))));
+//        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button19Icon"))));
+//        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button20Icon"))));
 
     
 
@@ -696,6 +700,10 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButtonScriptCustom34.setText(PropertyHandler.getInstance().getValue("CustomScript34Description"));
         jButtonScriptCustom35.setText(PropertyHandler.getInstance().getValue("CustomScript35Description"));
         jButtonScriptCustom36.setText(PropertyHandler.getInstance().getValue("CustomScript36Description"));
+        
+
+        
+
 
          //--- Make buttons and stuff look less crappy - this also allows background coloring
         String laf = UIManager.getSystemLookAndFeelClassName();
@@ -703,10 +711,12 @@ public class LaunchPadForm extends javax.swing.JFrame {
         
     }
     
+
+    
     //- Display all the buttons in a list
     private final class ButtonList {
         
-        private Map<String, ImageIcon> imageMap;
+        private final Map<String, ImageIcon> imageMap;
 
         public ButtonList() {
             String[] arrButtonList = null;
@@ -719,17 +729,14 @@ public class LaunchPadForm extends javax.swing.JFrame {
             Arrays.sort(arrButtonList, Collator.getInstance());
             imageMap = createImageMap(arrButtonList);
             
-            
+            //- Remove .png
+//            for (int index =0; index < arrButtonList.length; index++){
+//                arrButtonList[index] = arrButtonList[index].replace(".png", "");
+//            }    
             JList list = new JList(arrButtonList);
-            
             list.setCellRenderer(new ButtonListRenderer());
-            
-            
-            
             JScrollPane scroll = new JScrollPane(list);
-
             scroll.setPreferredSize(new Dimension(250, 500));
-
             JFrame frame = new JFrame();
             frame.add(scroll);
             frame.setTitle("Button Listing");
@@ -752,7 +759,6 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 label.setHorizontalTextPosition(JLabel.RIGHT);
                 //label.setFont(font);
                 (imageMap.get((String) value)).setImageObserver(label);
-
                 return label;
             }
         }
@@ -865,10 +871,9 @@ public class LaunchPadForm extends javax.swing.JFrame {
         buttonGroupLanguage = new javax.swing.ButtonGroup();
         jTabbedMain = new javax.swing.JTabbedPane();
         jPanelMain = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPaneSessionList = new javax.swing.JScrollPane();
         jListSessions = new javax.swing.JList<>();
-        jPanel1 = new javax.swing.JPanel();
+        jPanelMainRightSide = new javax.swing.JPanel();
         jTextFieldConnectHostname = new javax.swing.JTextField();
         jButtonExecuteFunction1 = new javax.swing.JButton();
         jButtonExecuteFunction3 = new javax.swing.JButton();
@@ -915,8 +920,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         jButtonRefreshHostnameIPMAC = new javax.swing.JButton();
         jTextFieldFilter = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jButton40 = new javax.swing.JButton();
+        jCheckBoxFavorites = new javax.swing.JCheckBox();
+        jButtonClearFilter = new javax.swing.JButton();
         jPanelAppsCustom = new javax.swing.JPanel();
         jButtonLinkCustom01 = new javax.swing.JButton();
         jButtonLinkCustom02 = new javax.swing.JButton();
@@ -1033,7 +1038,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldScriptsFilter = new javax.swing.JTextField();
         jLabelScriptsFilter = new javax.swing.JLabel();
         jTabbedPaneToolBox = new javax.swing.JTabbedPane();
-        jPanel7 = new javax.swing.JPanel();
+        jPanelZipEncrypt = new javax.swing.JPanel();
         jButtonFolderToZip = new javax.swing.JButton();
         jTextFieldZipSourceFolder = new javax.swing.JTextField();
         jTextFieldZipFilename = new javax.swing.JTextField();
@@ -1059,14 +1064,14 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPasswordFieldZipConfirm = new javax.swing.JPasswordField();
         jLabel35 = new javax.swing.JLabel();
         jPasswordFieldZipExtract = new javax.swing.JPasswordField();
-        jPanel8 = new javax.swing.JPanel();
+        jPanelType7 = new javax.swing.JPanel();
         jTextFieldType7Input = new javax.swing.JTextField();
         jButton21 = new javax.swing.JButton();
         jButton22 = new javax.swing.JButton();
         jTextFieldType7Output = new javax.swing.JTextField();
         jLabelType7reverse = new javax.swing.JLabel();
         jButton23 = new javax.swing.JButton();
-        jPanel12 = new javax.swing.JPanel();
+        jPanelHashGen = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jButtonGenerateHash = new javax.swing.JButton();
         jTextFieldFileHashGenerate = new javax.swing.JTextField();
@@ -1086,7 +1091,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButtonHashCopySHA512 = new javax.swing.JButton();
         jButtonHashCopySHA1 = new javax.swing.JButton();
         jButtonHashCopySHA256 = new javax.swing.JButton();
-        jPanel9 = new javax.swing.JPanel();
+        jPanelNTPTime = new javax.swing.JPanel();
         jLabelGetNTP2 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jButton26 = new javax.swing.JButton();
@@ -1100,7 +1105,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jSeparator7 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextAreaNTPMessage = new javax.swing.JTextArea();
-        jPanel11 = new javax.swing.JPanel();
+        jPanelWebJavaDocs = new javax.swing.JPanel();
         jPanelDocuments = new javax.swing.JPanel();
         jButton24 = new javax.swing.JButton();
         jButton36 = new javax.swing.JButton();
@@ -1114,7 +1119,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButtonSubnetCalculator1 = new javax.swing.JButton();
         jButtonIPv4SubnetCalculator = new javax.swing.JButton();
         jButtonRomajiToHiraKata = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        jPanelToolboxScripts = new javax.swing.JPanel();
         jPanelScanning = new javax.swing.JPanel();
         jButtonScriptPowershellPingSweepRange = new javax.swing.JButton();
         jButtonScriptTestUDPTCP = new javax.swing.JButton();
@@ -1132,32 +1137,105 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jButtonScriptiPerfClient = new javax.swing.JButton();
         jButtonScriptGetNTPTimePS = new javax.swing.JButton();
         jButtonScriptHashChecker = new javax.swing.JButton();
-        jPanelSettings = new javax.swing.JPanel();
+        jTabbedPaneSettings = new javax.swing.JTabbedPane();
+        jPanelSettingsMain = new javax.swing.JPanel();
         jLabelSSHClient = new javax.swing.JLabel();
         jRadioButtonSSHClientSecureCRT = new javax.swing.JRadioButton();
         jRadioButtonSSHClientPuTTY = new javax.swing.JRadioButton();
-        jLabelListTextSizePreview = new javax.swing.JLabel();
         jRadioButtonConsolePutty = new javax.swing.JRadioButton();
         jRadioButtonConsoleSecureCRT = new javax.swing.JRadioButton();
-        jSliderListTextSize = new javax.swing.JSlider();
         jLabelConsoleClient = new javax.swing.JLabel();
-        jLabelListTextSize1 = new javax.swing.JLabel();
-        jButton33 = new javax.swing.JButton();
-        jButton34 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jButtonScriptUpdateLaunchPad = new javax.swing.JButton();
-        jButtonReportIssue = new javax.swing.JButton();
-        jButton28 = new javax.swing.JButton();
-        jButton30 = new javax.swing.JButton();
-        jButtonEditProductionDevicesList = new javax.swing.JButton();
-        jButtonEditProductionDevicesList1 = new javax.swing.JButton();
-        jButton35 = new javax.swing.JButton();
         jLabelConsoleClient1 = new javax.swing.JLabel();
         jRadioButtonJapanese = new javax.swing.JRadioButton();
         jRadioButtonEnglish = new javax.swing.JRadioButton();
+        jButton34 = new javax.swing.JButton();
+        jButton28 = new javax.swing.JButton();
+        jButton30 = new javax.swing.JButton();
+        jButton35 = new javax.swing.JButton();
         jButton38 = new javax.swing.JButton();
         jButton32 = new javax.swing.JButton();
+        jLabelListTextSizePreview = new javax.swing.JLabel();
+        jSliderListTextSize = new javax.swing.JSlider();
+        jLabelListTextSize1 = new javax.swing.JLabel();
+        jButtonScriptUpdateLaunchPad = new javax.swing.JButton();
+        jButtonReportIssue = new javax.swing.JButton();
+        jButtonEditProductionDevicesList = new javax.swing.JButton();
+        jButtonEditProductionDevicesList1 = new javax.swing.JButton();
         jButton31 = new javax.swing.JButton();
+        jTextField2 = new javax.swing.JTextField();
+        jPanelSettingsButtons = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jTextFieldLinkCustom01 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
+        jButton33 = new javax.swing.JButton();
+        jTextFieldButtonExecute1 = new javax.swing.JTextField();
+        jLabelButtonToolTip1 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip1 = new javax.swing.JTextField();
+        jLabelButtonIcon1 = new javax.swing.JLabel();
+        jLabelButtonExecute1 = new javax.swing.JLabel();
+        jComboBoxButtonIcon1 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute2 = new javax.swing.JTextField();
+        jLabelButtonToolTip2 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip2 = new javax.swing.JTextField();
+        jLabelButtonIcon2 = new javax.swing.JLabel();
+        jLabelButtonExecute2 = new javax.swing.JLabel();
+        jComboBoxButtonIcon2 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute3 = new javax.swing.JTextField();
+        jLabelButtonToolTip3 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip3 = new javax.swing.JTextField();
+        jLabelButtonIcon3 = new javax.swing.JLabel();
+        jLabelButtonExecute3 = new javax.swing.JLabel();
+        jComboBoxButtonIcon3 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute4 = new javax.swing.JTextField();
+        jLabelButtonToolTip4 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip4 = new javax.swing.JTextField();
+        jLabelButtonIcon4 = new javax.swing.JLabel();
+        jLabelButtonExecute4 = new javax.swing.JLabel();
+        jComboBoxButtonIcon4 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute5 = new javax.swing.JTextField();
+        jLabelButtonToolTip5 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip5 = new javax.swing.JTextField();
+        jLabelButtonIcon5 = new javax.swing.JLabel();
+        jLabelButtonExecute5 = new javax.swing.JLabel();
+        jComboBoxButtonIcon5 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute6 = new javax.swing.JTextField();
+        jLabelButtonToolTip6 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip6 = new javax.swing.JTextField();
+        jLabelButtonIcon6 = new javax.swing.JLabel();
+        jLabelButtonExecute6 = new javax.swing.JLabel();
+        jComboBoxButtonIcon6 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute7 = new javax.swing.JTextField();
+        jLabelButtonToolTip7 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip7 = new javax.swing.JTextField();
+        jLabelButtonIcon7 = new javax.swing.JLabel();
+        jLabelButtonExecute7 = new javax.swing.JLabel();
+        jComboBoxButtonIcon7 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute8 = new javax.swing.JTextField();
+        jLabelButtonToolTip8 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip8 = new javax.swing.JTextField();
+        jLabelButtonIcon8 = new javax.swing.JLabel();
+        jLabelButtonExecute8 = new javax.swing.JLabel();
+        jComboBoxButtonIcon8 = new javax.swing.JComboBox<>();
+        jLabelButtonExecute9 = new javax.swing.JLabel();
+        jComboBoxButtonIcon9 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute9 = new javax.swing.JTextField();
+        jLabelButtonToolTip9 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip9 = new javax.swing.JTextField();
+        jLabelButtonIcon9 = new javax.swing.JLabel();
+        jLabelButtonExecute10 = new javax.swing.JLabel();
+        jComboBoxButtonIcon10 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute10 = new javax.swing.JTextField();
+        jLabelButtonToolTip10 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip10 = new javax.swing.JTextField();
+        jLabelButtonIcon10 = new javax.swing.JLabel();
+        jLabelButtonExecute11 = new javax.swing.JLabel();
+        jComboBoxButtonIcon11 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute11 = new javax.swing.JTextField();
+        jLabelButtonToolTip11 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip11 = new javax.swing.JTextField();
+        jLabelButtonIcon11 = new javax.swing.JLabel();
+        jButton40 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LaunchPad - Pre-Alpha");
@@ -1169,13 +1247,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jTabbedMain.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTabbedMain.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jTabbedMain.setPreferredSize(new java.awt.Dimension(577, 580));
 
         jPanelMain.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanelMain.setPreferredSize(new java.awt.Dimension(500, 503));
-
-        jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.LINE_AXIS));
 
         jListSessions.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jListSessions.setModel(new javax.swing.AbstractListModel<String>() {
@@ -1188,10 +1264,10 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jListSessionsValueChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(jListSessions);
+        jScrollPaneSessionList.setViewportView(jListSessions);
         jListSessions.addMouseListener(new MyMouseListener());
 
-        jPanel1.setLayout(null);
+        jPanelMainRightSide.setLayout(null);
 
         jTextFieldConnectHostname.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jTextFieldConnectHostname.setToolTipText("IP or DNS Hostname");
@@ -1206,7 +1282,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jTextFieldConnectHostnameKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextFieldConnectHostname);
+        jPanelMainRightSide.add(jTextFieldConnectHostname);
         jTextFieldConnectHostname.setBounds(10, 80, 120, 20);
 
         jButtonExecuteFunction1.setBackground(new java.awt.Color(255, 208, 153));
@@ -1218,7 +1294,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonExecuteFunction1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonExecuteFunction1);
+        jPanelMainRightSide.add(jButtonExecuteFunction1);
         jButtonExecuteFunction1.setBounds(140, 80, 60, 23);
 
         jButtonExecuteFunction3.setBackground(new java.awt.Color(200, 255, 153));
@@ -1230,7 +1306,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonExecuteFunction3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonExecuteFunction3);
+        jPanelMainRightSide.add(jButtonExecuteFunction3);
         jButtonExecuteFunction3.setBounds(140, 140, 60, 20);
 
         jTextFieldConnectUsername.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
@@ -1241,7 +1317,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jTextFieldConnectUsernameKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextFieldConnectUsername);
+        jPanelMainRightSide.add(jTextFieldConnectUsername);
         jTextFieldConnectUsername.setBounds(10, 120, 120, 20);
 
         jPasswordFieldConnectPassword.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
@@ -1252,9 +1328,9 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jPasswordFieldConnectPasswordKeyTyped(evt);
             }
         });
-        jPanel1.add(jPasswordFieldConnectPassword);
+        jPanelMainRightSide.add(jPasswordFieldConnectPassword);
         jPasswordFieldConnectPassword.setBounds(10, 140, 120, 20);
-        jPanel1.add(jSeparator3);
+        jPanelMainRightSide.add(jSeparator3);
         jSeparator3.setBounds(10, 170, 190, 10);
 
         jTextFieldPingHostname.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
@@ -1269,14 +1345,14 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jTextFieldPingHostnameKeyTyped(evt);
             }
         });
-        jPanel1.add(jTextFieldPingHostname);
+        jPanelMainRightSide.add(jTextFieldPingHostname);
         jTextFieldPingHostname.setBounds(10, 180, 100, 20);
 
         jCheckBoxDNS.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jCheckBoxDNS.setText("DNS");
         jCheckBoxDNS.setToolTipText("Resolve DNS");
         jCheckBoxDNS.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanel1.add(jCheckBoxDNS);
+        jPanelMainRightSide.add(jCheckBoxDNS);
         jCheckBoxDNS.setBounds(155, 180, 45, 20);
 
         jButtonTracert.setBackground(new java.awt.Color(208, 153, 255));
@@ -1288,7 +1364,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonTracertActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonTracert);
+        jPanelMainRightSide.add(jButtonTracert);
         jButtonTracert.setBounds(70, 200, 80, 20);
 
         jButtonPing.setBackground(new java.awt.Color(208, 153, 255));
@@ -1301,9 +1377,9 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonPingActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonPing);
+        jPanelMainRightSide.add(jButtonPing);
         jButtonPing.setBounds(10, 200, 60, 20);
-        jPanel1.add(jSeparator5);
+        jPanelMainRightSide.add(jSeparator5);
         jSeparator5.setBounds(10, 70, 190, 10);
 
         jComboBoxConsoleCOM.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
@@ -1314,7 +1390,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jComboBoxConsoleCOMActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBoxConsoleCOM);
+        jPanelMainRightSide.add(jComboBoxConsoleCOM);
         jComboBoxConsoleCOM.setBounds(10, 240, 70, 20);
 
         jButtonShowCOMList.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
@@ -1326,13 +1402,13 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonShowCOMListActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonShowCOMList);
+        jPanelMainRightSide.add(jButtonShowCOMList);
         jButtonShowCOMList.setBounds(90, 240, 30, 20);
 
         jComboBoxConsoleBaud.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jComboBoxConsoleBaud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "9600", "115200" }));
         jComboBoxConsoleBaud.setToolTipText("Baud Rate");
-        jPanel1.add(jComboBoxConsoleBaud);
+        jPanelMainRightSide.add(jComboBoxConsoleBaud);
         jComboBoxConsoleBaud.setBounds(130, 240, 70, 20);
 
         jButtonConsole.setBackground(new java.awt.Color(153, 200, 255));
@@ -1344,9 +1420,9 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonConsoleActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonConsole);
+        jPanelMainRightSide.add(jButtonConsole);
         jButtonConsole.setBounds(10, 260, 190, 20);
-        jPanel1.add(jSeparator4);
+        jPanelMainRightSide.add(jSeparator4);
         jSeparator4.setBounds(10, 290, 190, 10);
 
         jButton1.setContentAreaFilled(false);
@@ -1357,7 +1433,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
+        jPanelMainRightSide.add(jButton1);
         jButton1.setBounds(10, 300, 40, 40);
 
         jButton2.setContentAreaFilled(false);
@@ -1368,7 +1444,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2);
+        jPanelMainRightSide.add(jButton2);
         jButton2.setBounds(60, 300, 40, 40);
 
         jButton3.setContentAreaFilled(false);
@@ -1379,7 +1455,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3);
+        jPanelMainRightSide.add(jButton3);
         jButton3.setBounds(110, 300, 40, 40);
 
         jButton4.setContentAreaFilled(false);
@@ -1391,7 +1467,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4);
+        jPanelMainRightSide.add(jButton4);
         jButton4.setBounds(160, 300, 40, 40);
 
         jButton8.setContentAreaFilled(false);
@@ -1402,7 +1478,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton8);
+        jPanelMainRightSide.add(jButton8);
         jButton8.setBounds(160, 350, 40, 40);
 
         jButton12.setContentAreaFilled(false);
@@ -1413,7 +1489,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton12ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton12);
+        jPanelMainRightSide.add(jButton12);
         jButton12.setBounds(160, 400, 40, 40);
 
         jButton7.setContentAreaFilled(false);
@@ -1424,7 +1500,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton7);
+        jPanelMainRightSide.add(jButton7);
         jButton7.setBounds(110, 350, 40, 40);
 
         jButton11.setContentAreaFilled(false);
@@ -1435,7 +1511,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton11ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton11);
+        jPanelMainRightSide.add(jButton11);
         jButton11.setBounds(110, 400, 40, 40);
 
         jButton6.setContentAreaFilled(false);
@@ -1446,7 +1522,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6);
+        jPanelMainRightSide.add(jButton6);
         jButton6.setBounds(60, 350, 40, 40);
 
         jButton10.setContentAreaFilled(false);
@@ -1457,7 +1533,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton10ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton10);
+        jPanelMainRightSide.add(jButton10);
         jButton10.setBounds(60, 400, 40, 40);
 
         jButton5.setContentAreaFilled(false);
@@ -1468,7 +1544,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton5);
+        jPanelMainRightSide.add(jButton5);
         jButton5.setBounds(10, 350, 40, 40);
 
         jButton9.setContentAreaFilled(false);
@@ -1479,7 +1555,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton9ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton9);
+        jPanelMainRightSide.add(jButton9);
         jButton9.setBounds(10, 400, 40, 40);
 
         jButton13.setContentAreaFilled(false);
@@ -1490,7 +1566,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton13ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton13);
+        jPanelMainRightSide.add(jButton13);
         jButton13.setBounds(10, 450, 40, 40);
 
         jButton14.setContentAreaFilled(false);
@@ -1501,7 +1577,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton14ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton14);
+        jPanelMainRightSide.add(jButton14);
         jButton14.setBounds(60, 450, 40, 40);
 
         jButton15.setContentAreaFilled(false);
@@ -1512,7 +1588,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton15ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton15);
+        jPanelMainRightSide.add(jButton15);
         jButton15.setBounds(110, 450, 40, 40);
 
         jButton16.setContentAreaFilled(false);
@@ -1523,7 +1599,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton16ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton16);
+        jPanelMainRightSide.add(jButton16);
         jButton16.setBounds(160, 450, 40, 40);
 
         jButton20.setContentAreaFilled(false);
@@ -1534,7 +1610,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton20ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton20);
+        jPanelMainRightSide.add(jButton20);
         jButton20.setBounds(160, 500, 40, 40);
 
         jButton19.setContentAreaFilled(false);
@@ -1545,7 +1621,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton19ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton19);
+        jPanelMainRightSide.add(jButton19);
         jButton19.setBounds(110, 500, 40, 40);
 
         jButton18.setContentAreaFilled(false);
@@ -1556,7 +1632,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton18ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton18);
+        jPanelMainRightSide.add(jButton18);
         jButton18.setBounds(60, 500, 40, 40);
 
         jButton17.setContentAreaFilled(false);
@@ -1567,7 +1643,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton17ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton17);
+        jPanelMainRightSide.add(jButton17);
         jButton17.setBounds(10, 500, 40, 40);
 
         jCheckBoxAlternateLogin.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -1578,7 +1654,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jCheckBoxAlternateLoginActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBoxAlternateLogin);
+        jPanelMainRightSide.add(jCheckBoxAlternateLogin);
         jCheckBoxAlternateLogin.setBounds(10, 100, 120, 20);
 
         jButtonExecuteFunction2.setBackground(new java.awt.Color(251, 255, 153));
@@ -1590,11 +1666,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonExecuteFunction2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonExecuteFunction2);
+        jPanelMainRightSide.add(jButtonExecuteFunction2);
         jButtonExecuteFunction2.setBounds(140, 110, 60, 23);
 
         jTextFieldTCPTestPort.setToolTipText("TCP port to test");
-        jPanel1.add(jTextFieldTCPTestPort);
+        jPanelMainRightSide.add(jTextFieldTCPTestPort);
         jTextFieldTCPTestPort.setBounds(110, 180, 40, 20);
 
         jButtonTCP.setBackground(new java.awt.Color(208, 153, 255));
@@ -1607,27 +1683,27 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonTCPActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonTCP);
+        jPanelMainRightSide.add(jButtonTCP);
         jButtonTCP.setBounds(150, 200, 50, 20);
 
         jLabelLocalMAC.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jLabelLocalMAC.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelLocalMAC.setText("Local MAC");
-        jPanel1.add(jLabelLocalMAC);
+        jPanelMainRightSide.add(jLabelLocalMAC);
         jLabelLocalMAC.setBounds(10, 40, 190, 20);
 
         jLabelLocalHostname.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jLabelLocalHostname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelLocalHostname.setText("Local Hostname");
-        jPanel1.add(jLabelLocalHostname);
+        jPanelMainRightSide.add(jLabelLocalHostname);
         jLabelLocalHostname.setBounds(10, 0, 190, 20);
 
         jLabelLocalIP.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jLabelLocalIP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelLocalIP.setText("Local IP");
-        jPanel1.add(jLabelLocalIP);
+        jPanelMainRightSide.add(jLabelLocalIP);
         jLabelLocalIP.setBounds(30, 20, 150, 20);
-        jPanel1.add(jSeparator6);
+        jPanelMainRightSide.add(jSeparator6);
         jSeparator6.setBounds(10, 230, 190, 10);
 
         jButtonRefreshHostnameIPMAC.setFont(new java.awt.Font("Arial Unicode MS", 0, 18)); // NOI18N
@@ -1644,7 +1720,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonRefreshHostnameIPMACActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonRefreshHostnameIPMAC);
+        jPanelMainRightSide.add(jButtonRefreshHostnameIPMAC);
         jButtonRefreshHostnameIPMAC.setBounds(180, 23, 20, 20);
 
         jTextFieldFilter.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
@@ -1660,27 +1736,27 @@ public class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jCheckBox1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jCheckBox1.setText("Favorites");
-        jCheckBox1.setToolTipText("Load an alternate list.  To edit the list, open it under the settings tab");
-        jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
+        jCheckBoxFavorites.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jCheckBoxFavorites.setText("Favorites");
+        jCheckBoxFavorites.setToolTipText("Load an alternate list.  To edit the list, open it under the settings tab");
+        jCheckBoxFavorites.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCheckBox1ItemStateChanged(evt);
+                jCheckBoxFavoritesItemStateChanged(evt);
             }
         });
-        jCheckBox1.addChangeListener(new javax.swing.event.ChangeListener() {
+        jCheckBoxFavorites.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jCheckBox1StateChanged(evt);
+                jCheckBoxFavoritesStateChanged(evt);
             }
         });
 
-        jButton40.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton40.setText("X");
-        jButton40.setToolTipText("Clear filter");
-        jButton40.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton40.addActionListener(new java.awt.event.ActionListener() {
+        jButtonClearFilter.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonClearFilter.setText("X");
+        jButtonClearFilter.setToolTipText("Clear filter");
+        jButtonClearFilter.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonClearFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton40ActionPerformed(evt);
+                jButtonClearFilterActionPerformed(evt);
             }
         });
 
@@ -1690,21 +1766,16 @@ public class LaunchPadForm extends javax.swing.JFrame {
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMainLayout.createSequentialGroup()
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPaneSessionList)
                     .addGroup(jPanelMainLayout.createSequentialGroup()
                         .addComponent(jTextFieldFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton40, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonClearFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(211, 211, 211))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMainLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jCheckBoxFavorites, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelMainRightSide, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanelMainLayout.setVerticalGroup(
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1712,13 +1783,12 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMainLayout.createSequentialGroup()
                         .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton40))
+                            .addComponent(jCheckBoxFavorites, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonClearFilter))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPaneSessionList, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE))
+                    .addComponent(jPanelMainRightSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
 
@@ -2842,10 +2912,10 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
         jTabbedMain.addTab("Scripts", jPanelScripts);
 
-        jTabbedPaneToolBox.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTabbedPaneToolBox.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
 
-        jPanel7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jPanel7.setLayout(null);
+        jPanelZipEncrypt.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jPanelZipEncrypt.setLayout(null);
 
         jButtonFolderToZip.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonFolderToZip.setText("Add Folder to Zip!");
@@ -2855,7 +2925,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonFolderToZipActionPerformed(evt);
             }
         });
-        jPanel7.add(jButtonFolderToZip);
+        jPanelZipEncrypt.add(jButtonFolderToZip);
         jButtonFolderToZip.setBounds(310, 140, 170, 20);
 
         jTextFieldZipSourceFolder.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -2864,11 +2934,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jTextFieldZipSourceFolderActionPerformed(evt);
             }
         });
-        jPanel7.add(jTextFieldZipSourceFolder);
+        jPanelZipEncrypt.add(jTextFieldZipSourceFolder);
         jTextFieldZipSourceFolder.setBounds(130, 50, 340, 20);
 
         jTextFieldZipFilename.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jPanel7.add(jTextFieldZipFilename);
+        jPanelZipEncrypt.add(jTextFieldZipFilename);
         jTextFieldZipFilename.setBounds(130, 80, 350, 20);
 
         jButton25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -2879,13 +2949,13 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton25ActionPerformed(evt);
             }
         });
-        jPanel7.add(jButton25);
+        jPanelZipEncrypt.add(jButton25);
         jButton25.setBounds(480, 50, 70, 20);
 
         jLabel16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel16.setText("Confirm Password: ");
-        jPanel7.add(jLabel16);
+        jPanelZipEncrypt.add(jLabel16);
         jLabel16.setBounds(0, 140, 130, 20);
 
         jPasswordFieldZip.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -2895,49 +2965,49 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jPasswordFieldZipActionPerformed(evt);
             }
         });
-        jPanel7.add(jPasswordFieldZip);
+        jPanelZipEncrypt.add(jPasswordFieldZip);
         jPasswordFieldZip.setBounds(130, 110, 170, 21);
 
         jLabel18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel18.setText("Destination Zip: ");
-        jPanel7.add(jLabel18);
+        jPanelZipEncrypt.add(jLabel18);
         jLabel18.setBounds(10, 80, 120, 20);
 
         jProgressBarZip.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jPanel7.add(jProgressBarZip);
+        jPanelZipEncrypt.add(jProgressBarZip);
         jProgressBarZip.setBounds(20, 170, 520, 20);
 
         jLabelFolderToZip4.setFont(new java.awt.Font("Arial Unicode MS", 0, 20)); // NOI18N
         jLabelFolderToZip4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFolderToZip4.setText("Extract Archive to Folder");
-        jPanel7.add(jLabelFolderToZip4);
+        jPanelZipEncrypt.add(jLabelFolderToZip4);
         jLabelFolderToZip4.setBounds(20, 220, 530, 40);
 
         jLabel20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel20.setText("Source Folder: ");
-        jPanel7.add(jLabel20);
+        jPanelZipEncrypt.add(jLabel20);
         jLabel20.setBounds(40, 50, 90, 20);
-        jPanel7.add(jSeparator9);
+        jPanelZipEncrypt.add(jSeparator9);
         jSeparator9.setBounds(10, 210, 540, 10);
 
         jComboBoxZipEncMethod.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxZipEncMethod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AES-256 Encryption", "Standard Encryption" }));
         jComboBoxZipEncMethod.setToolTipText("Encryption Method");
-        jPanel7.add(jComboBoxZipEncMethod);
+        jPanelZipEncrypt.add(jComboBoxZipEncMethod);
         jComboBoxZipEncMethod.setBounds(310, 110, 170, 20);
 
         jLabelFolderToZip7.setFont(new java.awt.Font("Arial Unicode MS", 0, 20)); // NOI18N
         jLabelFolderToZip7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelFolderToZip7.setText("Add Folder to Encrypted Archive");
-        jPanel7.add(jLabelFolderToZip7);
+        jPanelZipEncrypt.add(jLabelFolderToZip7);
         jLabelFolderToZip7.setBounds(20, 10, 530, 40);
 
         jLabel33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel33.setText("Source Zip: ");
-        jPanel7.add(jLabel33);
+        jPanelZipEncrypt.add(jLabel33);
         jLabel33.setBounds(10, 260, 120, 20);
 
         jTextFieldZipSourceFile.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -2946,7 +3016,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jTextFieldZipSourceFileActionPerformed(evt);
             }
         });
-        jPanel7.add(jTextFieldZipSourceFile);
+        jPanelZipEncrypt.add(jTextFieldZipSourceFile);
         jTextFieldZipSourceFile.setBounds(130, 260, 340, 20);
 
         jButtonZipBrowseSourceZip.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -2957,17 +3027,17 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonZipBrowseSourceZipActionPerformed(evt);
             }
         });
-        jPanel7.add(jButtonZipBrowseSourceZip);
+        jPanelZipEncrypt.add(jButtonZipBrowseSourceZip);
         jButtonZipBrowseSourceZip.setBounds(480, 260, 70, 20);
 
         jLabel34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel34.setText("Destination Folder: ");
-        jPanel7.add(jLabel34);
+        jPanelZipEncrypt.add(jLabel34);
         jLabel34.setBounds(0, 290, 130, 20);
 
         jTextFieldZipDestinationFolder.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jPanel7.add(jTextFieldZipDestinationFolder);
+        jPanelZipEncrypt.add(jTextFieldZipDestinationFolder);
         jTextFieldZipDestinationFolder.setBounds(130, 290, 340, 20);
 
         jButtonZipBrowseDestinationFolder.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -2978,7 +3048,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonZipBrowseDestinationFolderActionPerformed(evt);
             }
         });
-        jPanel7.add(jButtonZipBrowseDestinationFolder);
+        jPanelZipEncrypt.add(jButtonZipBrowseDestinationFolder);
         jButtonZipBrowseDestinationFolder.setBounds(480, 290, 70, 20);
 
         jButton39.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -2988,17 +3058,17 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton39ActionPerformed(evt);
             }
         });
-        jPanel7.add(jButton39);
+        jPanelZipEncrypt.add(jButton39);
         jButton39.setBounds(330, 320, 200, 20);
 
         jProgressBarZipExtract.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jPanel7.add(jProgressBarZipExtract);
+        jPanelZipEncrypt.add(jProgressBarZipExtract);
         jProgressBarZipExtract.setBounds(20, 350, 530, 20);
 
         jLabel17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel17.setText("Password: ");
-        jPanel7.add(jLabel17);
+        jPanelZipEncrypt.add(jLabel17);
         jLabel17.setBounds(40, 320, 90, 20);
 
         jPasswordFieldZipConfirm.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3008,13 +3078,13 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jPasswordFieldZipConfirmActionPerformed(evt);
             }
         });
-        jPanel7.add(jPasswordFieldZipConfirm);
+        jPanelZipEncrypt.add(jPasswordFieldZipConfirm);
         jPasswordFieldZipConfirm.setBounds(130, 140, 170, 21);
 
         jLabel35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel35.setText("Password: ");
-        jPanel7.add(jLabel35);
+        jPanelZipEncrypt.add(jLabel35);
         jLabel35.setBounds(40, 110, 90, 20);
 
         jPasswordFieldZipExtract.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3024,16 +3094,16 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jPasswordFieldZipExtractActionPerformed(evt);
             }
         });
-        jPanel7.add(jPasswordFieldZipExtract);
+        jPanelZipEncrypt.add(jPasswordFieldZipExtract);
         jPasswordFieldZipExtract.setBounds(130, 320, 170, 21);
 
-        jTabbedPaneToolBox.addTab("Zip & Encrypt", jPanel7);
+        jTabbedPaneToolBox.addTab("Zip & Encrypt", jPanelZipEncrypt);
 
-        jPanel8.setLayout(null);
+        jPanelType7.setLayout(null);
 
         jTextFieldType7Input.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldType7Input.setText("05240E0715444F1D0A321F131F211D1A2A373B243A3017301710");
-        jPanel8.add(jTextFieldType7Input);
+        jPanelType7.add(jTextFieldType7Input);
         jTextFieldType7Input.setBounds(20, 50, 530, 20);
 
         jButton21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3043,7 +3113,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton21ActionPerformed(evt);
             }
         });
-        jPanel8.add(jButton21);
+        jPanelType7.add(jButton21);
         jButton21.setBounds(190, 80, 79, 20);
 
         jButton22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3053,18 +3123,18 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton22ActionPerformed(evt);
             }
         });
-        jPanel8.add(jButton22);
+        jPanelType7.add(jButton22);
         jButton22.setBounds(300, 80, 80, 20);
 
         jTextFieldType7Output.setEditable(false);
         jTextFieldType7Output.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jPanel8.add(jTextFieldType7Output);
+        jPanelType7.add(jTextFieldType7Output);
         jTextFieldType7Output.setBounds(20, 110, 450, 21);
 
         jLabelType7reverse.setFont(new java.awt.Font("Arial Unicode MS", 0, 20)); // NOI18N
         jLabelType7reverse.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelType7reverse.setText("Type 7 Reverse");
-        jPanel8.add(jLabelType7reverse);
+        jPanelType7.add(jLabelType7reverse);
         jLabelType7reverse.setBounds(110, 10, 350, 40);
 
         jButton23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3074,16 +3144,16 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton23ActionPerformed(evt);
             }
         });
-        jPanel8.add(jButton23);
+        jPanelType7.add(jButton23);
         jButton23.setBounds(480, 110, 70, 20);
 
-        jTabbedPaneToolBox.addTab("Type 7", jPanel8);
+        jTabbedPaneToolBox.addTab("Type 7", jPanelType7);
 
-        jPanel12.setLayout(null);
+        jPanelHashGen.setLayout(null);
 
         jLabel19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel19.setText("SHA512:");
-        jPanel12.add(jLabel19);
+        jPanelHashGen.add(jLabel19);
         jLabel19.setBounds(10, 170, 90, 20);
 
         jButtonGenerateHash.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3098,11 +3168,11 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonGenerateHashActionPerformed(evt);
             }
         });
-        jPanel12.add(jButtonGenerateHash);
+        jPanelHashGen.add(jButtonGenerateHash);
         jButtonGenerateHash.setBounds(240, 80, 90, 23);
 
         jTextFieldFileHashGenerate.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jPanel12.add(jTextFieldFileHashGenerate);
+        jPanelHashGen.add(jTextFieldFileHashGenerate);
         jTextFieldFileHashGenerate.setBounds(50, 50, 400, 20);
 
         jButton27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3112,53 +3182,53 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton27ActionPerformed(evt);
             }
         });
-        jPanel12.add(jButton27);
+        jPanelHashGen.add(jButton27);
         jButton27.setBounds(460, 50, 90, 20);
 
         jTextFieldHashSHA512.setEditable(false);
         jTextFieldHashSHA512.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jPanel12.add(jTextFieldHashSHA512);
+        jPanelHashGen.add(jTextFieldHashSHA512);
         jTextFieldHashSHA512.setBounds(70, 170, 430, 20);
 
         jTextFieldHashMD5.setEditable(false);
         jTextFieldHashMD5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jPanel12.add(jTextFieldHashMD5);
+        jPanelHashGen.add(jTextFieldHashMD5);
         jTextFieldHashMD5.setBounds(70, 110, 430, 20);
 
         jTextFieldHashSHA1.setEditable(false);
         jTextFieldHashSHA1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jPanel12.add(jTextFieldHashSHA1);
+        jPanelHashGen.add(jTextFieldHashSHA1);
         jTextFieldHashSHA1.setBounds(70, 130, 430, 20);
 
         jTextFieldHashSHA256.setEditable(false);
         jTextFieldHashSHA256.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jPanel12.add(jTextFieldHashSHA256);
+        jPanelHashGen.add(jTextFieldHashSHA256);
         jTextFieldHashSHA256.setBounds(70, 150, 430, 20);
 
         jLabel22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel22.setText("MD5:");
-        jPanel12.add(jLabel22);
+        jPanelHashGen.add(jLabel22);
         jLabel22.setBounds(10, 110, 90, 20);
 
         jLabel23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel23.setText("SHA1:");
-        jPanel12.add(jLabel23);
+        jPanelHashGen.add(jLabel23);
         jLabel23.setBounds(10, 130, 90, 20);
 
         jLabel24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel24.setText("SHA256:");
-        jPanel12.add(jLabel24);
+        jPanelHashGen.add(jLabel24);
         jLabel24.setBounds(10, 150, 90, 20);
 
         jLabelHashGenerator.setFont(new java.awt.Font("Arial Unicode MS", 0, 20)); // NOI18N
         jLabelHashGenerator.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelHashGenerator.setText("Hash Generator");
-        jPanel12.add(jLabelHashGenerator);
+        jPanelHashGen.add(jLabelHashGenerator);
         jLabelHashGenerator.setBounds(110, 10, 350, 40);
 
         jLabel25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel25.setText("File:");
-        jPanel12.add(jLabel25);
+        jPanelHashGen.add(jLabel25);
         jLabel25.setBounds(10, 50, 90, 20);
 
         jTextAreaHash.setBackground(new java.awt.Color(240, 240, 240));
@@ -3168,7 +3238,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jTextAreaHash.setRows(5);
         jScrollPane2.setViewportView(jTextAreaHash);
 
-        jPanel12.add(jScrollPane2);
+        jPanelHashGen.add(jScrollPane2);
         jScrollPane2.setBounds(10, 200, 540, 250);
 
         jButtonHashCopyMD5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3179,7 +3249,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonHashCopyMD5ActionPerformed(evt);
             }
         });
-        jPanel12.add(jButtonHashCopyMD5);
+        jPanelHashGen.add(jButtonHashCopyMD5);
         jButtonHashCopyMD5.setBounds(500, 110, 50, 20);
 
         jButtonHashCopySHA512.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3190,7 +3260,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonHashCopySHA512ActionPerformed(evt);
             }
         });
-        jPanel12.add(jButtonHashCopySHA512);
+        jPanelHashGen.add(jButtonHashCopySHA512);
         jButtonHashCopySHA512.setBounds(500, 170, 50, 20);
 
         jButtonHashCopySHA1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3201,7 +3271,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonHashCopySHA1ActionPerformed(evt);
             }
         });
-        jPanel12.add(jButtonHashCopySHA1);
+        jPanelHashGen.add(jButtonHashCopySHA1);
         jButtonHashCopySHA1.setBounds(500, 130, 50, 20);
 
         jButtonHashCopySHA256.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3212,22 +3282,22 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButtonHashCopySHA256ActionPerformed(evt);
             }
         });
-        jPanel12.add(jButtonHashCopySHA256);
+        jPanelHashGen.add(jButtonHashCopySHA256);
         jButtonHashCopySHA256.setBounds(500, 150, 50, 20);
 
-        jTabbedPaneToolBox.addTab("Hash Generate", jPanel12);
+        jTabbedPaneToolBox.addTab("Hash Generate", jPanelHashGen);
 
-        jPanel9.setLayout(null);
+        jPanelNTPTime.setLayout(null);
 
         jLabelGetNTP2.setFont(new java.awt.Font("Arial Unicode MS", 0, 20)); // NOI18N
         jLabelGetNTP2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelGetNTP2.setText("Get NTP Time (NtpMessage.java Method)");
-        jPanel9.add(jLabelGetNTP2);
+        jPanelNTPTime.add(jLabelGetNTP2);
         jLabelGetNTP2.setBounds(10, 120, 550, 40);
 
         jLabel21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel21.setText("Atomic Time:");
-        jPanel9.add(jLabel21);
+        jPanelNTPTime.add(jLabel21);
         jLabel21.setBounds(20, 90, 90, 20);
 
         jButton26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3237,32 +3307,32 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton26ActionPerformed(evt);
             }
         });
-        jPanel9.add(jButton26);
+        jPanelNTPTime.add(jButton26);
         jButton26.setBounds(439, 37, 100, 23);
 
         jTextFieldNtpServer.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldNtpServer.setText("pool.ntp.org");
-        jPanel9.add(jTextFieldNtpServer);
+        jPanelNTPTime.add(jTextFieldNtpServer);
         jTextFieldNtpServer.setBounds(140, 40, 290, 20);
 
         jTextFieldNtpAtomicTime.setEditable(false);
         jTextFieldNtpAtomicTime.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jPanel9.add(jTextFieldNtpAtomicTime);
+        jPanelNTPTime.add(jTextFieldNtpAtomicTime);
         jTextFieldNtpAtomicTime.setBounds(110, 90, 430, 21);
 
         jTextFieldNtpSystemTime.setEditable(false);
         jTextFieldNtpSystemTime.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jPanel9.add(jTextFieldNtpSystemTime);
+        jPanelNTPTime.add(jTextFieldNtpSystemTime);
         jTextFieldNtpSystemTime.setBounds(110, 70, 430, 21);
 
         jLabel26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel26.setText("Server:");
-        jPanel9.add(jLabel26);
+        jPanelNTPTime.add(jLabel26);
         jLabel26.setBounds(80, 40, 90, 20);
 
         jLabel27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel27.setText("System Time:");
-        jPanel9.add(jLabel27);
+        jPanelNTPTime.add(jLabel27);
         jLabel27.setBounds(20, 70, 90, 20);
 
         jButton29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3272,15 +3342,15 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jButton29ActionPerformed(evt);
             }
         });
-        jPanel9.add(jButton29);
+        jPanelNTPTime.add(jButton29);
         jButton29.setBounds(230, 160, 100, 20);
 
         jLabelGetNTP1.setFont(new java.awt.Font("Arial Unicode MS", 0, 20)); // NOI18N
         jLabelGetNTP1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelGetNTP1.setText("Get NTP Time (NTPUDPClient Method)");
-        jPanel9.add(jLabelGetNTP1);
+        jPanelNTPTime.add(jLabelGetNTP1);
         jLabelGetNTP1.setBounds(10, 0, 550, 40);
-        jPanel9.add(jSeparator7);
+        jPanelNTPTime.add(jSeparator7);
         jSeparator7.setBounds(10, 120, 550, 10);
 
         jTextAreaNTPMessage.setEditable(false);
@@ -3289,12 +3359,12 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jTextAreaNTPMessage.setRows(5);
         jScrollPane4.setViewportView(jTextAreaNTPMessage);
 
-        jPanel9.add(jScrollPane4);
+        jPanelNTPTime.add(jScrollPane4);
         jScrollPane4.setBounds(20, 190, 530, 220);
 
-        jTabbedPaneToolBox.addTab("NTP", jPanel9);
+        jTabbedPaneToolBox.addTab("NTP", jPanelNTPTime);
 
-        jPanel11.setLayout(null);
+        jPanelWebJavaDocs.setLayout(null);
 
         jPanelDocuments.setBorder(javax.swing.BorderFactory.createTitledBorder("Documents"));
         jPanelDocuments.setLayout(null);
@@ -3330,7 +3400,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanelDocuments.add(jButton37);
         jButton37.setBounds(370, 20, 170, 30);
 
-        jPanel11.add(jPanelDocuments);
+        jPanelWebJavaDocs.add(jPanelDocuments);
         jPanelDocuments.setBounds(10, 210, 550, 70);
 
         jPanelJavaApps.setBorder(javax.swing.BorderFactory.createTitledBorder("Java Apps"));
@@ -3346,7 +3416,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanelJavaApps.add(jButton41);
         jButton41.setBounds(10, 20, 170, 30);
 
-        jPanel11.add(jPanelJavaApps);
+        jPanelWebJavaDocs.add(jPanelJavaApps);
         jPanelJavaApps.setBounds(10, 120, 550, 70);
 
         jPanelWebApps.setBorder(javax.swing.BorderFactory.createTitledBorder("Web Apps"));
@@ -3415,12 +3485,12 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanelWebApps.add(jButtonRomajiToHiraKata);
         jButtonRomajiToHiraKata.setBounds(370, 60, 170, 30);
 
-        jPanel11.add(jPanelWebApps);
+        jPanelWebJavaDocs.add(jPanelWebApps);
         jPanelWebApps.setBounds(10, 10, 550, 100);
 
-        jTabbedPaneToolBox.addTab("Web/Java/Docs", jPanel11);
+        jTabbedPaneToolBox.addTab("Web/Java/Docs", jPanelWebJavaDocs);
 
-        jPanel4.setLayout(null);
+        jPanelToolboxScripts.setLayout(null);
 
         jPanelScanning.setBorder(javax.swing.BorderFactory.createTitledBorder("Scanning"));
         jPanelScanning.setLayout(null);
@@ -3476,7 +3546,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanelScanning.add(jButtonScriptHashChecker1);
         jButtonScriptHashChecker1.setBounds(190, 60, 170, 30);
 
-        jPanel4.add(jPanelScanning);
+        jPanelToolboxScripts.add(jPanelScanning);
         jPanelScanning.setBounds(10, 10, 550, 100);
 
         jPanelSyncing.setBorder(javax.swing.BorderFactory.createTitledBorder("Syncing"));
@@ -3516,7 +3586,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanelSyncing.add(jButtonMapSharedFolder);
         jButtonMapSharedFolder.setBounds(370, 20, 170, 30);
 
-        jPanel4.add(jPanelSyncing);
+        jPanelToolboxScripts.add(jPanelSyncing);
         jPanelSyncing.setBounds(10, 120, 550, 60);
 
         jPanelMiscellaneous.setBorder(javax.swing.BorderFactory.createTitledBorder("Miscellaneous"));
@@ -3582,26 +3652,28 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jPanelMiscellaneous.add(jButtonScriptHashChecker);
         jButtonScriptHashChecker.setBounds(10, 20, 170, 30);
 
-        jPanel4.add(jPanelMiscellaneous);
+        jPanelToolboxScripts.add(jPanelMiscellaneous);
         jPanelMiscellaneous.setBounds(10, 190, 550, 100);
 
-        jTabbedPaneToolBox.addTab("Scripts", jPanel4);
+        jTabbedPaneToolBox.addTab("Scripts", jPanelToolboxScripts);
 
         jTabbedMain.addTab("ToolBox", jTabbedPaneToolBox);
 
-        jPanelSettings.setLayout(null);
+        jTabbedPaneSettings.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+
+        jPanelSettingsMain.setLayout(null);
 
         jLabelSSHClient.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelSSHClient.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelSSHClient.setText("SSH Client:");
-        jPanelSettings.add(jLabelSSHClient);
+        jPanelSettingsMain.add(jLabelSSHClient);
         jLabelSSHClient.setBounds(10, 10, 80, 30);
 
         buttonGroupSSHClient.add(jRadioButtonSSHClientSecureCRT);
         jRadioButtonSSHClientSecureCRT.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jRadioButtonSSHClientSecureCRT.setSelected(true);
         jRadioButtonSSHClientSecureCRT.setText("SecureCRT");
-        jPanelSettings.add(jRadioButtonSSHClientSecureCRT);
+        jPanelSettingsMain.add(jRadioButtonSSHClientSecureCRT);
         jRadioButtonSSHClientSecureCRT.setBounds(200, 10, 90, 30);
 
         buttonGroupSSHClient.add(jRadioButtonSSHClientPuTTY);
@@ -3613,14 +3685,8 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jRadioButtonSSHClientPuTTYActionPerformed(evt);
             }
         });
-        jPanelSettings.add(jRadioButtonSSHClientPuTTY);
+        jPanelSettingsMain.add(jRadioButtonSSHClientPuTTY);
         jRadioButtonSSHClientPuTTY.setBounds(100, 10, 100, 30);
-
-        jLabelListTextSizePreview.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
-        jLabelListTextSizePreview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelListTextSizePreview.setText("c9300-a01-abcde-1234");
-        jPanelSettings.add(jLabelListTextSizePreview);
-        jLabelListTextSizePreview.setBounds(240, 70, 300, 30);
 
         buttonGroupConsoleClient.add(jRadioButtonConsolePutty);
         jRadioButtonConsolePutty.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3636,15 +3702,118 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jRadioButtonConsolePuttyActionPerformed(evt);
             }
         });
-        jPanelSettings.add(jRadioButtonConsolePutty);
+        jPanelSettingsMain.add(jRadioButtonConsolePutty);
         jRadioButtonConsolePutty.setBounds(100, 40, 90, 30);
 
         buttonGroupConsoleClient.add(jRadioButtonConsoleSecureCRT);
         jRadioButtonConsoleSecureCRT.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jRadioButtonConsoleSecureCRT.setSelected(true);
         jRadioButtonConsoleSecureCRT.setText("SecureCRT");
-        jPanelSettings.add(jRadioButtonConsoleSecureCRT);
+        jPanelSettingsMain.add(jRadioButtonConsoleSecureCRT);
         jRadioButtonConsoleSecureCRT.setBounds(200, 40, 100, 30);
+
+        jLabelConsoleClient.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelConsoleClient.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelConsoleClient.setText("Console Client:");
+        jPanelSettingsMain.add(jLabelConsoleClient);
+        jLabelConsoleClient.setBounds(10, 40, 80, 30);
+
+        jLabelConsoleClient1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelConsoleClient1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelConsoleClient1.setText("Language:");
+        jPanelSettingsMain.add(jLabelConsoleClient1);
+        jLabelConsoleClient1.setBounds(10, 100, 80, 30);
+
+        buttonGroupLanguage.add(jRadioButtonJapanese);
+        jRadioButtonJapanese.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        jRadioButtonJapanese.setText("日本語");
+        jRadioButtonJapanese.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButtonJapanese.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonJapaneseActionPerformed(evt);
+            }
+        });
+        jPanelSettingsMain.add(jRadioButtonJapanese);
+        jRadioButtonJapanese.setBounds(180, 100, 80, 30);
+
+        buttonGroupLanguage.add(jRadioButtonEnglish);
+        jRadioButtonEnglish.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        jRadioButtonEnglish.setText("English");
+        jRadioButtonEnglish.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButtonEnglish.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonEnglishActionPerformed(evt);
+            }
+        });
+        jPanelSettingsMain.add(jRadioButtonEnglish);
+        jRadioButtonEnglish.setBounds(110, 100, 70, 30);
+
+        jButton34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton34.setText("View Properties File");
+        jButton34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton34ActionPerformed(evt);
+            }
+        });
+        jPanelSettingsMain.add(jButton34);
+        jButton34.setBounds(20, 170, 170, 20);
+
+        jButton28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton28.setText("Open LaunchPad Folder");
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
+        jPanelSettingsMain.add(jButton28);
+        jButton28.setBounds(20, 210, 170, 20);
+
+        jButton30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton30.setText("Open Logging-Ouput Folder");
+        jButton30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton30ActionPerformed(evt);
+            }
+        });
+        jPanelSettingsMain.add(jButton30);
+        jButton30.setBounds(20, 240, 170, 20);
+
+        jButton35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton35.setText("Edit Shared Properties File");
+        jButton35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton35ActionPerformed(evt);
+            }
+        });
+        jPanelSettingsMain.add(jButton35);
+        jButton35.setBounds(20, 350, 170, 20);
+
+        jButton38.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton38.setText("Edit Personal Properties File");
+        jButton38.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton38.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton38ActionPerformed(evt);
+            }
+        });
+        jPanelSettingsMain.add(jButton38);
+        jButton38.setBounds(20, 280, 170, 20);
+
+        jButton32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton32.setText("Edit Personal Favorites List");
+        jButton32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton32ActionPerformed(evt);
+            }
+        });
+        jPanelSettingsMain.add(jButton32);
+        jButton32.setBounds(20, 310, 170, 20);
+
+        jLabelListTextSizePreview.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        jLabelListTextSizePreview.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabelListTextSizePreview.setText("c9300-a01-abcde-1234");
+        jPanelSettingsMain.add(jLabelListTextSizePreview);
+        jLabelListTextSizePreview.setBounds(250, 70, 280, 30);
 
         jSliderListTextSize.setMaximum(6);
         jSliderListTextSize.setPaintLabels(true);
@@ -3655,40 +3824,70 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jSliderListTextSizeStateChanged(evt);
             }
         });
-        jPanelSettings.add(jSliderListTextSize);
+        jPanelSettingsMain.add(jSliderListTextSize);
         jSliderListTextSize.setBounds(100, 70, 140, 30);
-
-        jLabelConsoleClient.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelConsoleClient.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelConsoleClient.setText("Console Client:");
-        jPanelSettings.add(jLabelConsoleClient);
-        jLabelConsoleClient.setBounds(10, 40, 80, 30);
 
         jLabelListTextSize1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelListTextSize1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelListTextSize1.setText("List Text Size:");
-        jPanelSettings.add(jLabelListTextSize1);
+        jPanelSettingsMain.add(jLabelListTextSize1);
         jLabelListTextSize1.setBounds(10, 70, 80, 30);
 
-        jButton33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton33.setText("View Button List");
-        jButton33.addActionListener(new java.awt.event.ActionListener() {
+        jButtonScriptUpdateLaunchPad.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonScriptUpdateLaunchPad.setText("Update LaunchPad");
+        jButtonScriptUpdateLaunchPad.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptUpdateLaunchPad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton33ActionPerformed(evt);
+                jButtonScriptUpdateLaunchPadActionPerformed(evt);
             }
         });
-        jPanelSettings.add(jButton33);
-        jButton33.setBounds(20, 140, 170, 20);
+        jPanelSettingsMain.add(jButtonScriptUpdateLaunchPad);
+        jButtonScriptUpdateLaunchPad.setBounds(430, 10, 130, 30);
 
-        jButton34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton34.setText("View Properties File");
-        jButton34.addActionListener(new java.awt.event.ActionListener() {
+        jButtonReportIssue.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonReportIssue.setText("Report an Issue");
+        jButtonReportIssue.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonReportIssue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton34ActionPerformed(evt);
+                jButtonReportIssueActionPerformed(evt);
             }
         });
-        jPanelSettings.add(jButton34);
-        jButton34.setBounds(20, 170, 170, 20);
+        jPanelSettingsMain.add(jButtonReportIssue);
+        jButtonReportIssue.setBounds(10, 490, 110, 20);
+
+        jButtonEditProductionDevicesList.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonEditProductionDevicesList.setText("<html><center>Edit <b>Standalone</b> Devices List</center></html>");
+        jButtonEditProductionDevicesList.setEnabled(false);
+        jButtonEditProductionDevicesList.setMargin(new java.awt.Insets(2, 0, 2, 0));
+        jButtonEditProductionDevicesList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditProductionDevicesListActionPerformed(evt);
+            }
+        });
+        jPanelSettingsMain.add(jButtonEditProductionDevicesList);
+        jButtonEditProductionDevicesList.setBounds(20, 420, 170, 20);
+
+        jButtonEditProductionDevicesList1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonEditProductionDevicesList1.setText("<html><center>Edit <b>Production</b> Devices List</center></html>");
+        jButtonEditProductionDevicesList1.setEnabled(false);
+        jButtonEditProductionDevicesList1.setMargin(new java.awt.Insets(2, 0, 2, 0));
+        jButtonEditProductionDevicesList1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditProductionDevicesList1ActionPerformed(evt);
+            }
+        });
+        jPanelSettingsMain.add(jButtonEditProductionDevicesList1);
+        jButtonEditProductionDevicesList1.setBounds(20, 390, 170, 20);
+
+        jButton31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton31.setText("Reset SecureCRT Settings");
+        jButton31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton31ActionPerformed(evt);
+            }
+        });
+        jPanelSettingsMain.add(jButton31);
+        jButton31.setBounds(20, 460, 170, 20);
 
         jTextField2.setBackground(new java.awt.Color(51, 51, 51));
         jTextField2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3703,147 +3902,739 @@ public class LaunchPadForm extends javax.swing.JFrame {
                 jTextField2KeyTyped(evt);
             }
         });
-        jPanelSettings.add(jTextField2);
-        jTextField2.setBounds(370, 520, 190, 20);
+        jPanelSettingsMain.add(jTextField2);
+        jTextField2.setBounds(370, 490, 190, 20);
 
-        jButtonScriptUpdateLaunchPad.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButtonScriptUpdateLaunchPad.setText("Update LaunchPad");
-        jButtonScriptUpdateLaunchPad.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonScriptUpdateLaunchPad.addActionListener(new java.awt.event.ActionListener() {
+        jTabbedPaneSettings.addTab("Main", jPanelSettingsMain);
+
+        javax.swing.GroupLayout jPanelSettingsButtonsLayout = new javax.swing.GroupLayout(jPanelSettingsButtons);
+        jPanelSettingsButtons.setLayout(jPanelSettingsButtonsLayout);
+        jPanelSettingsButtonsLayout.setHorizontalGroup(
+            jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 576, Short.MAX_VALUE)
+        );
+        jPanelSettingsButtonsLayout.setVerticalGroup(
+            jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 518, Short.MAX_VALUE)
+        );
+
+        jTabbedPaneSettings.addTab("Buttons", jPanelSettingsButtons);
+
+        jTextFieldLinkCustom01.setText("jTextField1");
+        jTextFieldLinkCustom01.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonScriptUpdateLaunchPadActionPerformed(evt);
+                jTextFieldLinkCustom01ActionPerformed(evt);
             }
         });
-        jPanelSettings.add(jButtonScriptUpdateLaunchPad);
-        jButtonScriptUpdateLaunchPad.setBounds(430, 10, 130, 30);
-
-        jButtonReportIssue.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButtonReportIssue.setText("Report an Issue");
-        jButtonReportIssue.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonReportIssue.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonReportIssueActionPerformed(evt);
+        jTextFieldLinkCustom01.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkCustom01KeyReleased(evt);
             }
         });
-        jPanelSettings.add(jButtonReportIssue);
-        jButtonReportIssue.setBounds(10, 520, 110, 20);
 
-        jButton28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton28.setText("Open LaunchPad Folder");
-        jButton28.addActionListener(new java.awt.event.ActionListener() {
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jTextFieldLinkCustom01, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(306, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jTextFieldLinkCustom01, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(474, Short.MAX_VALUE))
+        );
+
+        jTabbedPaneSettings.addTab("Links", jPanel1);
+
+        jPanel3.setPreferredSize(new java.awt.Dimension(555, 1438));
+
+        jButton33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton33.setText("View All Available Icons");
+        jButton33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton28ActionPerformed(evt);
+                jButton33ActionPerformed(evt);
             }
         });
-        jPanelSettings.add(jButton28);
-        jButton28.setBounds(20, 220, 170, 20);
 
-        jButton30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton30.setText("Open Logging-Ouput Folder");
-        jButton30.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton30ActionPerformed(evt);
+        jTextFieldButtonExecute1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute1KeyReleased(evt);
             }
         });
-        jPanelSettings.add(jButton30);
-        jButton30.setBounds(20, 250, 170, 20);
 
-        jButtonEditProductionDevicesList.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButtonEditProductionDevicesList.setText("<html><center>Edit <b>Standalone</b> Devices List</center></html>");
-        jButtonEditProductionDevicesList.setEnabled(false);
-        jButtonEditProductionDevicesList.setMargin(new java.awt.Insets(2, 0, 2, 0));
-        jButtonEditProductionDevicesList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditProductionDevicesListActionPerformed(evt);
+        jLabelButtonToolTip1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip1.setText("Button 1:");
+
+        jTextFieldButtonToolTip1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip1KeyReleased(evt);
             }
         });
-        jPanelSettings.add(jButtonEditProductionDevicesList);
-        jButtonEditProductionDevicesList.setBounds(20, 440, 170, 20);
 
-        jButtonEditProductionDevicesList1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButtonEditProductionDevicesList1.setText("<html><center>Edit <b>Production</b> Devices List</center></html>");
-        jButtonEditProductionDevicesList1.setEnabled(false);
-        jButtonEditProductionDevicesList1.setMargin(new java.awt.Insets(2, 0, 2, 0));
-        jButtonEditProductionDevicesList1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditProductionDevicesList1ActionPerformed(evt);
+        jLabelButtonIcon1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon1.setText("Icon:");
+
+        jLabelButtonExecute1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute1.setText("Execute:");
+
+        jComboBoxButtonIcon1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon1ItemStateChanged(evt);
             }
         });
-        jPanelSettings.add(jButtonEditProductionDevicesList1);
-        jButtonEditProductionDevicesList1.setBounds(20, 410, 170, 20);
 
-        jButton35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton35.setText("Edit Shared Properties File");
-        jButton35.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton35ActionPerformed(evt);
+        jTextFieldButtonExecute2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute2KeyReleased(evt);
             }
         });
-        jPanelSettings.add(jButton35);
-        jButton35.setBounds(20, 360, 170, 20);
 
-        jLabelConsoleClient1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelConsoleClient1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelConsoleClient1.setText("Language:");
-        jPanelSettings.add(jLabelConsoleClient1);
-        jLabelConsoleClient1.setBounds(10, 100, 80, 30);
+        jLabelButtonToolTip2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip2.setText("Button 2:");
 
-        buttonGroupLanguage.add(jRadioButtonJapanese);
-        jRadioButtonJapanese.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
-        jRadioButtonJapanese.setText("日本語");
-        jRadioButtonJapanese.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jRadioButtonJapanese.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonJapaneseActionPerformed(evt);
+        jTextFieldButtonToolTip2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip2KeyReleased(evt);
             }
         });
-        jPanelSettings.add(jRadioButtonJapanese);
-        jRadioButtonJapanese.setBounds(180, 100, 80, 30);
 
-        buttonGroupLanguage.add(jRadioButtonEnglish);
-        jRadioButtonEnglish.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
-        jRadioButtonEnglish.setText("English");
-        jRadioButtonEnglish.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jRadioButtonEnglish.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonEnglishActionPerformed(evt);
+        jLabelButtonIcon2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon2.setText("Icon:");
+
+        jLabelButtonExecute2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute2.setText("Execute:");
+
+        jComboBoxButtonIcon2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon2ItemStateChanged(evt);
             }
         });
-        jPanelSettings.add(jRadioButtonEnglish);
-        jRadioButtonEnglish.setBounds(110, 100, 70, 30);
 
-        jButton38.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton38.setText("Edit Personal Properties File");
-        jButton38.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton38.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton38ActionPerformed(evt);
+        jTextFieldButtonExecute3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute3KeyReleased(evt);
             }
         });
-        jPanelSettings.add(jButton38);
-        jButton38.setBounds(20, 300, 170, 20);
 
-        jButton32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton32.setText("Edit Favorites List");
-        jButton32.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton32ActionPerformed(evt);
+        jLabelButtonToolTip3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip3.setText("Button 3:");
+
+        jTextFieldButtonToolTip3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip3KeyReleased(evt);
             }
         });
-        jPanelSettings.add(jButton32);
-        jButton32.setBounds(20, 330, 170, 20);
 
-        jButton31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton31.setText("Reset SecureCRT Settings");
-        jButton31.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton31ActionPerformed(evt);
+        jLabelButtonIcon3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon3.setText("Icon:");
+
+        jLabelButtonExecute3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute3.setText("Execute:");
+
+        jComboBoxButtonIcon3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon3.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon3ItemStateChanged(evt);
             }
         });
-        jPanelSettings.add(jButton31);
-        jButton31.setBounds(20, 490, 170, 20);
 
-        jTabbedMain.addTab("Settings", jPanelSettings);
+        jTextFieldButtonExecute4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute4KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip4.setText("Button 4:");
+
+        jTextFieldButtonToolTip4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip4KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon4.setText("Icon:");
+
+        jLabelButtonExecute4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute4.setText("Execute:");
+
+        jComboBoxButtonIcon4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon4.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon4ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute5KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip5.setText("Button 5:");
+
+        jTextFieldButtonToolTip5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip5KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon5.setText("Icon:");
+
+        jLabelButtonExecute5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute5.setText("Execute:");
+
+        jComboBoxButtonIcon5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon5.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon5ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute6KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip6.setText("Button 6:");
+
+        jTextFieldButtonToolTip6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip6KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon6.setText("Icon:");
+
+        jLabelButtonExecute6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute6.setText("Execute:");
+
+        jComboBoxButtonIcon6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon6.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon6ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute7KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip7.setText("Button 7:");
+
+        jTextFieldButtonToolTip7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip7KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon7.setText("Icon:");
+
+        jLabelButtonExecute7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute7.setText("Execute:");
+
+        jComboBoxButtonIcon7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon7.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon7ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute8KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip8.setText("Button 8:");
+
+        jTextFieldButtonToolTip8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip8KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon8.setText("Icon:");
+
+        jLabelButtonExecute8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute8.setText("Execute:");
+
+        jComboBoxButtonIcon8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon8.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon8ItemStateChanged(evt);
+            }
+        });
+
+        jLabelButtonExecute9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute9.setText("Execute:");
+
+        jComboBoxButtonIcon9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon9.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon9ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute9KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip9.setText("Button 9:");
+
+        jTextFieldButtonToolTip9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip9KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon9.setText("Icon:");
+
+        jLabelButtonExecute10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute10.setText("Execute:");
+
+        jComboBoxButtonIcon10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon10.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon10ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute10KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip10.setText("Button 10:");
+
+        jTextFieldButtonToolTip10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip10KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon10.setText("Icon:");
+
+        jLabelButtonExecute11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute11.setText("Execute:");
+
+        jComboBoxButtonIcon11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon11.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon11ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute11KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip11.setText("Button 11:");
+
+        jTextFieldButtonToolTip11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip11KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon11.setText("Icon:");
+
+        jButton40.setText("jButton40");
+        jButton40.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton40ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip1))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute1)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButton33)
+                        .addGap(61, 61, 61)
+                        .addComponent(jButton40)
+                        .addGap(0, 250, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip2))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute2)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip3))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute3)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip4))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute4)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip5))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute5)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip6))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute6)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip7))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute7)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip8))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon8, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute8)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip9))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon9, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute9)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip10))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon10, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute10)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip11))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon11, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute11))))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip1)
+                    .addComponent(jLabelButtonToolTip1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon1)
+                    .addComponent(jLabelButtonIcon1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip2)
+                    .addComponent(jLabelButtonToolTip2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon2)
+                    .addComponent(jLabelButtonIcon2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip3)
+                    .addComponent(jLabelButtonToolTip3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon3)
+                    .addComponent(jLabelButtonIcon3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip4)
+                    .addComponent(jLabelButtonToolTip4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon4)
+                    .addComponent(jLabelButtonIcon4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip5)
+                    .addComponent(jLabelButtonToolTip5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon5)
+                    .addComponent(jLabelButtonIcon5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip6)
+                    .addComponent(jLabelButtonToolTip6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon6)
+                    .addComponent(jLabelButtonIcon6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip7)
+                    .addComponent(jLabelButtonToolTip7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon7)
+                    .addComponent(jLabelButtonIcon7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip8)
+                    .addComponent(jLabelButtonToolTip8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon8)
+                    .addComponent(jLabelButtonIcon8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip9)
+                    .addComponent(jLabelButtonToolTip9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon9)
+                    .addComponent(jLabelButtonIcon9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip10)
+                    .addComponent(jLabelButtonToolTip10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon10)
+                    .addComponent(jLabelButtonIcon10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip11)
+                    .addComponent(jLabelButtonToolTip11, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon11)
+                    .addComponent(jLabelButtonIcon11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(393, Short.MAX_VALUE))
+        );
+
+        jScrollPane1.setViewportView(jPanel3);
+
+        jTabbedPaneSettings.addTab("tab4", jScrollPane1);
+
+        jTabbedMain.addTab("Settings", jTabbedPaneSettings);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -5126,18 +5917,18 @@ public class LaunchPadForm extends javax.swing.JFrame {
         openLinkCustom("CustomLink01Exec");
     }//GEN-LAST:event_jButtonLinkCustom01ActionPerformed
 
-    private void jCheckBox1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBox1StateChanged
+    private void jCheckBoxFavoritesStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBoxFavoritesStateChanged
 
-    }//GEN-LAST:event_jCheckBox1StateChanged
+    }//GEN-LAST:event_jCheckBoxFavoritesStateChanged
 
-    private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox1ItemStateChanged
+    private void jCheckBoxFavoritesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBoxFavoritesItemStateChanged
         // TODO add your handling code here:
         try {
             getSessionList();
         } catch (IOException | URISyntaxException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jCheckBox1ItemStateChanged
+    }//GEN-LAST:event_jCheckBoxFavoritesItemStateChanged
 
     private void jTextFieldFilterKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldFilterKeyReleased
         // TODO add your handling code here:
@@ -6124,7 +6915,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextFieldScriptsFilterKeyReleased
 
-    private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
+    private void jButtonClearFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearFilterActionPerformed
         jTextFieldFilter.setText("");
         jTextFieldFilter.requestFocus();
         try {
@@ -6134,6 +6925,150 @@ public class LaunchPadForm extends javax.swing.JFrame {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }//GEN-LAST:event_jButtonClearFilterActionPerformed
+
+    private void jTextFieldLinkCustom01KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkCustom01KeyReleased
+        PropertyHandler.getInstance().setValue("CustomLink01Exec",jTextFieldLinkCustom01.getText());
+    }//GEN-LAST:event_jTextFieldLinkCustom01KeyReleased
+
+    private void jTextFieldLinkCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLinkCustom01ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkCustom01ActionPerformed
+
+    private void jTextFieldButtonToolTip1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip1KeyReleased
+        PropertyHandler.getInstance().setValue("Button01ToolTip",jTextFieldButtonToolTip1.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip1KeyReleased
+
+    private void jTextFieldButtonExecute1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute1KeyReleased
+        PropertyHandler.getInstance().setValue("Button01StrExec",jTextFieldButtonExecute1.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute1KeyReleased
+
+    private void jComboBoxButtonIcon1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon1ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button01Icon",((String)jComboBoxButtonIcon1.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon1ItemStateChanged
+
+    private void jTextFieldButtonExecute2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute2KeyReleased
+        PropertyHandler.getInstance().setValue("Button02StrExec",jTextFieldButtonExecute2.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute2KeyReleased
+
+    private void jTextFieldButtonToolTip2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip2KeyReleased
+        PropertyHandler.getInstance().setValue("Button02ToolTip",jTextFieldButtonToolTip2.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip2KeyReleased
+
+    private void jComboBoxButtonIcon2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon2ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button02Icon",((String)jComboBoxButtonIcon2.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon2ItemStateChanged
+
+    private void jTextFieldButtonExecute3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute3KeyReleased
+        PropertyHandler.getInstance().setValue("Button03StrExec",jTextFieldButtonExecute3.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute3KeyReleased
+
+    private void jTextFieldButtonToolTip3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip3KeyReleased
+        PropertyHandler.getInstance().setValue("Button03ToolTip",jTextFieldButtonToolTip3.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip3KeyReleased
+
+    private void jComboBoxButtonIcon3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon3ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button03Icon",((String)jComboBoxButtonIcon3.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon3ItemStateChanged
+
+    private void jTextFieldButtonExecute4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute4KeyReleased
+        PropertyHandler.getInstance().setValue("Button04StrExec",jTextFieldButtonExecute4.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute4KeyReleased
+
+    private void jTextFieldButtonToolTip4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip4KeyReleased
+        PropertyHandler.getInstance().setValue("Button04ToolTip",jTextFieldButtonToolTip4.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip4KeyReleased
+
+    private void jComboBoxButtonIcon4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon4ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button04Icon",((String)jComboBoxButtonIcon4.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon4ItemStateChanged
+
+    private void jTextFieldButtonExecute5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute5KeyReleased
+        PropertyHandler.getInstance().setValue("Button05StrExec",jTextFieldButtonExecute5.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute5KeyReleased
+
+    private void jTextFieldButtonToolTip5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip5KeyReleased
+        PropertyHandler.getInstance().setValue("Button05ToolTip",jTextFieldButtonToolTip5.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip5KeyReleased
+
+    private void jComboBoxButtonIcon5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon5ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button05Icon",((String)jComboBoxButtonIcon5.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon5ItemStateChanged
+
+    private void jTextFieldButtonExecute6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute6KeyReleased
+        PropertyHandler.getInstance().setValue("Button06StrExec",jTextFieldButtonExecute6.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute6KeyReleased
+
+    private void jTextFieldButtonToolTip6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip6KeyReleased
+        PropertyHandler.getInstance().setValue("Button06ToolTip",jTextFieldButtonToolTip6.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip6KeyReleased
+
+    private void jComboBoxButtonIcon6ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon6ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button06Icon",((String)jComboBoxButtonIcon6.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon6ItemStateChanged
+
+    private void jTextFieldButtonExecute7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute7KeyReleased
+        PropertyHandler.getInstance().setValue("Button07StrExec",jTextFieldButtonExecute7.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute7KeyReleased
+
+    private void jTextFieldButtonToolTip7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip7KeyReleased
+        PropertyHandler.getInstance().setValue("Button07ToolTip",jTextFieldButtonToolTip7.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip7KeyReleased
+
+    private void jComboBoxButtonIcon7ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon7ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button07Icon",((String)jComboBoxButtonIcon7.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon7ItemStateChanged
+
+    private void jTextFieldButtonExecute8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute8KeyReleased
+        PropertyHandler.getInstance().setValue("Button08StrExec",jTextFieldButtonExecute8.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute8KeyReleased
+
+    private void jTextFieldButtonToolTip8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip8KeyReleased
+        PropertyHandler.getInstance().setValue("Button08ToolTip",jTextFieldButtonToolTip8.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip8KeyReleased
+
+    private void jComboBoxButtonIcon8ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon8ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button08Icon",((String)jComboBoxButtonIcon8.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon8ItemStateChanged
+
+    private void jComboBoxButtonIcon9ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon9ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button09Icon",((String)jComboBoxButtonIcon9.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon9ItemStateChanged
+
+    private void jTextFieldButtonExecute9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute9KeyReleased
+        PropertyHandler.getInstance().setValue("Button09StrExec",jTextFieldButtonExecute9.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute9KeyReleased
+
+    private void jTextFieldButtonToolTip9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip9KeyReleased
+        PropertyHandler.getInstance().setValue("Button09ToolTip",jTextFieldButtonToolTip9.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip9KeyReleased
+
+    private void jComboBoxButtonIcon10ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon10ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button10Icon",((String)jComboBoxButtonIcon10.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon10ItemStateChanged
+
+    private void jTextFieldButtonExecute10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute10KeyReleased
+        PropertyHandler.getInstance().setValue("Button10StrExec",jTextFieldButtonExecute10.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute10KeyReleased
+
+    private void jTextFieldButtonToolTip10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip10KeyReleased
+        PropertyHandler.getInstance().setValue("Button10ToolTip",jTextFieldButtonToolTip10.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip10KeyReleased
+
+    private void jComboBoxButtonIcon11ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon11ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button11Icon",((String)jComboBoxButtonIcon11.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon11ItemStateChanged
+
+    private void jTextFieldButtonExecute11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute11KeyReleased
+        PropertyHandler.getInstance().setValue("Button11StrExec",jTextFieldButtonExecute11.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute11KeyReleased
+
+    private void jTextFieldButtonToolTip11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip11KeyReleased
+        PropertyHandler.getInstance().setValue("Button11ToolTip",jTextFieldButtonToolTip11.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip11KeyReleased
+
+    private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
+        jTextFieldButtonToolTip1.setText(PropertyHandler.getInstance().getValue("Button01ToolTip"));
     }//GEN-LAST:event_jButton40ActionPerformed
 
     
@@ -6193,7 +7128,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         DefaultListModel listModel = new DefaultListModel();
         ArrayList arrSessionList = new ArrayList();
         //File pathWorkingDirectory = new File(System.getProperty("user.dir"));
-        if(jCheckBox1.isSelected()){
+        if(jCheckBoxFavorites.isSelected()){
             strSessionList = strSessionListFavorites;
         }
         else {
@@ -6726,7 +7661,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
         jTabbedMain.setTitleAt(3,"スクリプト");
         jTabbedMain.setTitleAt(4,"ツールボックス");
         jTabbedMain.setTitleAt(5,"セッティング");
-        jCheckBox1.setText("お気に入り");
+        jCheckBoxFavorites.setText("お気に入り");
         jCheckBoxAlternateLogin.setText("代替ログイン");
         jButtonPing.setText("ピング");
         jButtonTracert.setText("トレースルート");
@@ -6758,6 +7693,160 @@ public class LaunchPadForm extends javax.swing.JFrame {
 
     }
     
+    public void SettingsLoadButtonsData() {
+        //- ToolTips
+        jTextFieldButtonToolTip1.setText(PropertyHandler.getInstance().getValue("Button01ToolTip"));
+        jTextFieldButtonToolTip2.setText(PropertyHandler.getInstance().getValue("Button02ToolTip"));
+        jTextFieldButtonToolTip3.setText(PropertyHandler.getInstance().getValue("Button03ToolTip"));
+        jTextFieldButtonToolTip4.setText(PropertyHandler.getInstance().getValue("Button04ToolTip"));
+        jTextFieldButtonToolTip5.setText(PropertyHandler.getInstance().getValue("Button05oolTip"));
+        jTextFieldButtonToolTip6.setText(PropertyHandler.getInstance().getValue("Button06ToolTip"));
+        jTextFieldButtonToolTip7.setText(PropertyHandler.getInstance().getValue("Button07ToolTip"));
+        jTextFieldButtonToolTip8.setText(PropertyHandler.getInstance().getValue("Button08ToolTip"));
+        jTextFieldButtonToolTip9.setText(PropertyHandler.getInstance().getValue("Button09ToolTip"));
+        jTextFieldButtonToolTip10.setText(PropertyHandler.getInstance().getValue("Button10ToolTip"));
+        
+        //- Icons
+        jComboBoxButtonIcon1.setSelectedItem(PropertyHandler.getInstance().getValue("Button01Icon"));
+        jComboBoxButtonIcon2.setSelectedItem(PropertyHandler.getInstance().getValue("Button02Icon"));
+        jComboBoxButtonIcon3.setSelectedItem(PropertyHandler.getInstance().getValue("Button03Icon"));
+        jComboBoxButtonIcon4.setSelectedItem(PropertyHandler.getInstance().getValue("Button04Icon"));
+        jComboBoxButtonIcon5.setSelectedItem(PropertyHandler.getInstance().getValue("Button05Icon"));
+        jComboBoxButtonIcon6.setSelectedItem(PropertyHandler.getInstance().getValue("Button06Icon"));
+        jComboBoxButtonIcon7.setSelectedItem(PropertyHandler.getInstance().getValue("Button07Icon"));
+        jComboBoxButtonIcon8.setSelectedItem(PropertyHandler.getInstance().getValue("Button08Icon"));
+        jComboBoxButtonIcon9.setSelectedItem(PropertyHandler.getInstance().getValue("Button09Icon"));
+        jComboBoxButtonIcon10.setSelectedItem(PropertyHandler.getInstance().getValue("Button10Icon"));
+
+        
+        //- Executions
+        jTextFieldButtonExecute1.setText(PropertyHandler.getInstance().getValue("Button01StrExec"));
+        jTextFieldButtonExecute2.setText(PropertyHandler.getInstance().getValue("Button02StrExec"));
+        jTextFieldButtonExecute3.setText(PropertyHandler.getInstance().getValue("Button03StrExec"));
+        jTextFieldButtonExecute4.setText(PropertyHandler.getInstance().getValue("Button04StrExec"));
+        jTextFieldButtonExecute5.setText(PropertyHandler.getInstance().getValue("Button05StrExec"));
+        jTextFieldButtonExecute6.setText(PropertyHandler.getInstance().getValue("Button06StrExec"));
+        jTextFieldButtonExecute7.setText(PropertyHandler.getInstance().getValue("Button07StrExec"));
+        jTextFieldButtonExecute8.setText(PropertyHandler.getInstance().getValue("Button08StrExec"));
+        jTextFieldButtonExecute9.setText(PropertyHandler.getInstance().getValue("Button09StrExec"));
+        jTextFieldButtonExecute10.setText(PropertyHandler.getInstance().getValue("Button10StrExec"));
+    }
+    
+    public void SettingsLoadCustomLinksData() {
+        jTextFieldLinkCustom01.setText(PropertyHandler.getInstance().getValue("Button02StrExec"));
+    }
+    
+    public void SettingsSetCustomLinks(String strPropertyName,String strPropertyValue) {
+        
+                    PropertyHandlerPersonal.getInstance().setValue(strPropertyName,strPropertyValue);
+    }
+    
+    //- Display all the buttons in a list
+   // public final class SettingsLoadButtonList {
+        
+        private Map<String, ImageIcon> imageMap;
+
+        public void SettingsLoadButtonList() {
+            String[] arrButtonList = null;
+            try {
+                arrButtonList = this.getResourceListing(launchpad.LaunchPad.class , "launchpad/images/buttons/");
+            } catch (URISyntaxException | IOException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println("Button List: " + Arrays.toString(arrButtonList));
+            Arrays.sort(arrButtonList, Collator.getInstance());
+
+            imageMap = createImageMap(arrButtonList);
+            //- Remove .png
+//            for (int index =0; index < arrButtonList.length; index++){
+//                arrButtonList[index] = arrButtonList[index].replace(".png", "");
+//            }            
+
+            jComboBoxButtonIcon1.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon2.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon3.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon4.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon5.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon6.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon7.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon8.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon9.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon10.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon11.setModel(new DefaultComboBoxModel(arrButtonList));
+
+         
+        }
+
+        public class ButtonListRenderer extends DefaultListCellRenderer {
+
+
+            @Override
+            public Component getListCellRendererComponent( JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                label.setIcon(imageMap.get((String) value));
+                label.setHorizontalTextPosition(JLabel.RIGHT);
+                //label.setFont(font);
+                (imageMap.get((String) value)).setImageObserver(label);
+
+                return label;
+            }
+        }
+
+        private Map<String, ImageIcon> createImageMap(String[] list) {
+            Map<String, ImageIcon> map = new HashMap<>();
+            for (String s : list) {
+                ImageIcon imageIconPreResize = new ImageIcon( getClass().getResource("/launchpad/images/buttons/" + s));
+                Image image = imageIconPreResize.getImage(); // transform it 
+                Image newimg = image.getScaledInstance(40, 40,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+                ImageIcon imageIconPostResize= new ImageIcon(newimg);                
+                
+                
+                map.put(s, imageIconPostResize );
+            }
+            return map;
+        }
+
+        
+//      String[] getResourceListing(Class clazz, String path) throws URISyntaxException, IOException {
+//      URL dirURL = clazz.getClassLoader().getResource(path);
+//      if (dirURL != null && dirURL.getProtocol().equals("file")) {
+//        /* A file path: easy enough */
+//        return new File(dirURL.toURI()).list();
+//      } 
+//
+//      if (dirURL == null) {
+//        /* 
+//         * In case of a jar file, we can't actually find a directory.
+//         * Have to assume the same jar as clazz.
+//         */
+//        String me = clazz.getName().replace(".", "/")+".class";
+//        dirURL = clazz.getClassLoader().getResource(me);
+//      }
+//      
+//      if (dirURL.getProtocol().equals("jar")) {
+//        /* A JAR path */
+//        String jarPath = dirURL.getPath().substring(5, dirURL.getPath().indexOf("!")); //strip out only the JAR file
+//        JarFile jar = new JarFile(URLDecoder.decode(jarPath, "UTF-8"));
+//        Enumeration<JarEntry> entries = jar.entries(); //gives ALL entries in jar
+//        Set<String> result = new HashSet<>(); //avoid duplicates in case it is a subdirectory
+//        while(entries.hasMoreElements()) {
+//          String name = entries.nextElement().getName();
+//          if (name.startsWith(path)) { //filter according to the path
+//            String entry = name.substring(path.length());
+//            int checkSubdir = entry.indexOf("/");
+//            if (checkSubdir >= 0) {
+//              // if it is a subdirectory, we just return the directory name
+//              entry = entry.substring(0, checkSubdir);
+//            }
+//            result.add(entry);
+//          }
+//        }
+//        return result.toArray(new String[result.size()]);
+//      } 
+//        
+//      throw new UnsupportedOperationException("Cannot list files for URL "+dirURL);
+//  }
+    //}
     
     public void restartApplication() throws URISyntaxException, IOException
         {
@@ -6826,6 +7915,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButtonClearFilter;
     private javax.swing.JButton jButtonConfigBuilder1;
     private javax.swing.JButton jButtonConsole;
     private javax.swing.JButton jButtonEditProductionDevicesList;
@@ -6972,9 +8062,20 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonTracert;
     private javax.swing.JButton jButtonZipBrowseDestinationFolder;
     private javax.swing.JButton jButtonZipBrowseSourceZip;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBoxAlternateLogin;
     private javax.swing.JCheckBox jCheckBoxDNS;
+    private javax.swing.JCheckBox jCheckBoxFavorites;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon1;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon10;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon11;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon2;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon3;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon4;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon5;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon6;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon7;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon8;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon9;
     private javax.swing.JComboBox<String> jComboBoxConsoleBaud;
     private javax.swing.JComboBox<String> jComboBoxConsoleCOM;
     private javax.swing.JComboBox<String> jComboBoxZipEncMethod;
@@ -6993,6 +8094,39 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabelButtonExecute1;
+    private javax.swing.JLabel jLabelButtonExecute10;
+    private javax.swing.JLabel jLabelButtonExecute11;
+    private javax.swing.JLabel jLabelButtonExecute2;
+    private javax.swing.JLabel jLabelButtonExecute3;
+    private javax.swing.JLabel jLabelButtonExecute4;
+    private javax.swing.JLabel jLabelButtonExecute5;
+    private javax.swing.JLabel jLabelButtonExecute6;
+    private javax.swing.JLabel jLabelButtonExecute7;
+    private javax.swing.JLabel jLabelButtonExecute8;
+    private javax.swing.JLabel jLabelButtonExecute9;
+    private javax.swing.JLabel jLabelButtonIcon1;
+    private javax.swing.JLabel jLabelButtonIcon10;
+    private javax.swing.JLabel jLabelButtonIcon11;
+    private javax.swing.JLabel jLabelButtonIcon2;
+    private javax.swing.JLabel jLabelButtonIcon3;
+    private javax.swing.JLabel jLabelButtonIcon4;
+    private javax.swing.JLabel jLabelButtonIcon5;
+    private javax.swing.JLabel jLabelButtonIcon6;
+    private javax.swing.JLabel jLabelButtonIcon7;
+    private javax.swing.JLabel jLabelButtonIcon8;
+    private javax.swing.JLabel jLabelButtonIcon9;
+    private javax.swing.JLabel jLabelButtonToolTip1;
+    private javax.swing.JLabel jLabelButtonToolTip10;
+    private javax.swing.JLabel jLabelButtonToolTip11;
+    private javax.swing.JLabel jLabelButtonToolTip2;
+    private javax.swing.JLabel jLabelButtonToolTip3;
+    private javax.swing.JLabel jLabelButtonToolTip4;
+    private javax.swing.JLabel jLabelButtonToolTip5;
+    private javax.swing.JLabel jLabelButtonToolTip6;
+    private javax.swing.JLabel jLabelButtonToolTip7;
+    private javax.swing.JLabel jLabelButtonToolTip8;
+    private javax.swing.JLabel jLabelButtonToolTip9;
     private javax.swing.JLabel jLabelConsoleClient;
     private javax.swing.JLabel jLabelConsoleClient1;
     private javax.swing.JLabel jLabelFolderToZip4;
@@ -7013,25 +8147,27 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JList<String> jListSessions;
 
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelAppsCustom;
     private javax.swing.JPanel jPanelDocuments;
+    private javax.swing.JPanel jPanelHashGen;
     private javax.swing.JPanel jPanelJavaApps;
     private javax.swing.JPanel jPanelMain;
+    private javax.swing.JPanel jPanelMainRightSide;
     private javax.swing.JPanel jPanelMiscellaneous;
+    private javax.swing.JPanel jPanelNTPTime;
     private javax.swing.JPanel jPanelReference;
     private javax.swing.JPanel jPanelScanning;
     private javax.swing.JPanel jPanelScripts;
-    private javax.swing.JPanel jPanelSettings;
+    private javax.swing.JPanel jPanelSettingsButtons;
+    private javax.swing.JPanel jPanelSettingsMain;
     private javax.swing.JPanel jPanelSyncing;
+    private javax.swing.JPanel jPanelToolboxScripts;
+    private javax.swing.JPanel jPanelType7;
     private javax.swing.JPanel jPanelWebApps;
+    private javax.swing.JPanel jPanelWebJavaDocs;
+    private javax.swing.JPanel jPanelZipEncrypt;
     private javax.swing.JPasswordField jPasswordFieldConnectPassword;
     private javax.swing.JPasswordField jPasswordFieldZip;
     private javax.swing.JPasswordField jPasswordFieldZipConfirm;
@@ -7047,6 +8183,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPaneSessionList;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -7056,10 +8193,33 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JSlider jSliderListTextSize;
     private javax.swing.JTabbedPane jTabbedMain;
+    private javax.swing.JTabbedPane jTabbedPaneSettings;
     private javax.swing.JTabbedPane jTabbedPaneToolBox;
     private javax.swing.JTextArea jTextAreaHash;
     private javax.swing.JTextArea jTextAreaNTPMessage;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextFieldButtonExecute1;
+    private javax.swing.JTextField jTextFieldButtonExecute10;
+    private javax.swing.JTextField jTextFieldButtonExecute11;
+    private javax.swing.JTextField jTextFieldButtonExecute2;
+    private javax.swing.JTextField jTextFieldButtonExecute3;
+    private javax.swing.JTextField jTextFieldButtonExecute4;
+    private javax.swing.JTextField jTextFieldButtonExecute5;
+    private javax.swing.JTextField jTextFieldButtonExecute6;
+    private javax.swing.JTextField jTextFieldButtonExecute7;
+    private javax.swing.JTextField jTextFieldButtonExecute8;
+    private javax.swing.JTextField jTextFieldButtonExecute9;
+    private javax.swing.JTextField jTextFieldButtonToolTip1;
+    private javax.swing.JTextField jTextFieldButtonToolTip10;
+    private javax.swing.JTextField jTextFieldButtonToolTip11;
+    private javax.swing.JTextField jTextFieldButtonToolTip2;
+    private javax.swing.JTextField jTextFieldButtonToolTip3;
+    private javax.swing.JTextField jTextFieldButtonToolTip4;
+    private javax.swing.JTextField jTextFieldButtonToolTip5;
+    private javax.swing.JTextField jTextFieldButtonToolTip6;
+    private javax.swing.JTextField jTextFieldButtonToolTip7;
+    private javax.swing.JTextField jTextFieldButtonToolTip8;
+    private javax.swing.JTextField jTextFieldButtonToolTip9;
     private javax.swing.JTextField jTextFieldConnectHostname;
     private javax.swing.JTextField jTextFieldConnectUsername;
     private javax.swing.JTextField jTextFieldFileHashGenerate;
@@ -7068,6 +8228,7 @@ public class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldHashSHA1;
     private javax.swing.JTextField jTextFieldHashSHA256;
     private javax.swing.JTextField jTextFieldHashSHA512;
+    private javax.swing.JTextField jTextFieldLinkCustom01;
     private javax.swing.JTextField jTextFieldLinksFilter;
     private javax.swing.JTextField jTextFieldNtpAtomicTime;
     private javax.swing.JTextField jTextFieldNtpServer;
