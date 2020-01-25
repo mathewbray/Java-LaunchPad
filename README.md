@@ -24,4 +24,4 @@ Within the properties file, are all the resources to customize LaunchPad.
 
 ## Notes
 
-Button, Link, Reference, and Script paths use "cmd.exe /c start" to execute
+Consider using "cmd.exe /c start" (or similar) to execute items within Button, Link, Reference, and Script sections.  

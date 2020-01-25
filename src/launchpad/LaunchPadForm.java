@@ -138,7 +138,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         final JFXPanel fxPanel = new JFXPanel();
         setTitle(PropertyHandler.getInstance().getValue("WindowTitle"));
         getSessionList();
-        SettingsLoadCustomLinksData();
+        //SettingsLoadCustomLinksData();
         SettingsLoadButtonList();
         SettingsLoadButtonsData();
         //- Set the look and feel
@@ -1163,11 +1163,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonEditProductionDevicesList1 = new javax.swing.JButton();
         jButton31 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
+        jScrollPaneSettingsButtons = new javax.swing.JScrollPane();
         jPanelSettingsButtons = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jTextFieldLinkCustom01 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel3 = new javax.swing.JPanel();
         jButton33 = new javax.swing.JButton();
         jTextFieldButtonExecute1 = new javax.swing.JTextField();
         jLabelButtonToolTip1 = new javax.swing.JLabel();
@@ -1235,7 +1232,60 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelButtonToolTip11 = new javax.swing.JLabel();
         jTextFieldButtonToolTip11 = new javax.swing.JTextField();
         jLabelButtonIcon11 = new javax.swing.JLabel();
-        jButton40 = new javax.swing.JButton();
+        jLabelButtonExecute12 = new javax.swing.JLabel();
+        jComboBoxButtonIcon12 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute12 = new javax.swing.JTextField();
+        jLabelButtonToolTip12 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip12 = new javax.swing.JTextField();
+        jLabelButtonIcon12 = new javax.swing.JLabel();
+        jLabelButtonExecute13 = new javax.swing.JLabel();
+        jComboBoxButtonIcon13 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute13 = new javax.swing.JTextField();
+        jLabelButtonToolTip13 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip13 = new javax.swing.JTextField();
+        jLabelButtonIcon13 = new javax.swing.JLabel();
+        jLabelButtonExecute14 = new javax.swing.JLabel();
+        jComboBoxButtonIcon14 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute14 = new javax.swing.JTextField();
+        jLabelButtonToolTip14 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip14 = new javax.swing.JTextField();
+        jLabelButtonIcon14 = new javax.swing.JLabel();
+        jLabelButtonExecute15 = new javax.swing.JLabel();
+        jComboBoxButtonIcon15 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute15 = new javax.swing.JTextField();
+        jLabelButtonToolTip15 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip15 = new javax.swing.JTextField();
+        jLabelButtonIcon15 = new javax.swing.JLabel();
+        jLabelButtonExecute16 = new javax.swing.JLabel();
+        jComboBoxButtonIcon16 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute16 = new javax.swing.JTextField();
+        jLabelButtonToolTip16 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip16 = new javax.swing.JTextField();
+        jLabelButtonIcon16 = new javax.swing.JLabel();
+        jLabelButtonExecute17 = new javax.swing.JLabel();
+        jComboBoxButtonIcon17 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute17 = new javax.swing.JTextField();
+        jLabelButtonToolTip17 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip17 = new javax.swing.JTextField();
+        jLabelButtonIcon17 = new javax.swing.JLabel();
+        jLabelButtonExecute18 = new javax.swing.JLabel();
+        jComboBoxButtonIcon18 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute18 = new javax.swing.JTextField();
+        jLabelButtonToolTip18 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip18 = new javax.swing.JTextField();
+        jLabelButtonIcon18 = new javax.swing.JLabel();
+        jLabelButtonExecute19 = new javax.swing.JLabel();
+        jComboBoxButtonIcon19 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute19 = new javax.swing.JTextField();
+        jLabelButtonToolTip19 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip19 = new javax.swing.JTextField();
+        jLabelButtonIcon19 = new javax.swing.JLabel();
+        jLabelButtonExecute20 = new javax.swing.JLabel();
+        jComboBoxButtonIcon20 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute20 = new javax.swing.JTextField();
+        jLabelButtonToolTip20 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip20 = new javax.swing.JTextField();
+        jLabelButtonIcon20 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LaunchPad - Pre-Alpha");
@@ -3907,51 +3957,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jTabbedPaneSettings.addTab("Main", jPanelSettingsMain);
 
-        javax.swing.GroupLayout jPanelSettingsButtonsLayout = new javax.swing.GroupLayout(jPanelSettingsButtons);
-        jPanelSettingsButtons.setLayout(jPanelSettingsButtonsLayout);
-        jPanelSettingsButtonsLayout.setHorizontalGroup(
-            jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 576, Short.MAX_VALUE)
-        );
-        jPanelSettingsButtonsLayout.setVerticalGroup(
-            jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 518, Short.MAX_VALUE)
-        );
-
-        jTabbedPaneSettings.addTab("Buttons", jPanelSettingsButtons);
-
-        jTextFieldLinkCustom01.setText("jTextField1");
-        jTextFieldLinkCustom01.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldLinkCustom01ActionPerformed(evt);
-            }
-        });
-        jTextFieldLinkCustom01.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldLinkCustom01KeyReleased(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jTextFieldLinkCustom01, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(306, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jTextFieldLinkCustom01, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(474, Short.MAX_VALUE))
-        );
-
-        jTabbedPaneSettings.addTab("Links", jPanel1);
-
-        jPanel3.setPreferredSize(new java.awt.Dimension(555, 1438));
+        jPanelSettingsButtons.setPreferredSize(new java.awt.Dimension(555, 1916));
 
         jButton33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton33.setText("View All Available Icons");
@@ -4335,304 +4341,815 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelButtonIcon11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonIcon11.setText("Icon:");
 
-        jButton40.setText("jButton40");
-        jButton40.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton40ActionPerformed(evt);
+        jLabelButtonExecute12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute12.setText("Execute:");
+
+        jComboBoxButtonIcon12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon12.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon12ItemStateChanged(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        jTextFieldButtonExecute12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute12KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip12.setText("Button 12:");
+
+        jTextFieldButtonToolTip12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip12KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon12.setText("Icon:");
+
+        jLabelButtonExecute13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute13.setText("Execute:");
+
+        jComboBoxButtonIcon13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon13.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon13ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute13.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute13KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip13.setText("Button 13:");
+
+        jTextFieldButtonToolTip13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip13.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip13KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon13.setText("Icon:");
+
+        jLabelButtonExecute14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute14.setText("Execute:");
+
+        jComboBoxButtonIcon14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon14.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon14ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute14.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute14KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip14.setText("Button 14:");
+
+        jTextFieldButtonToolTip14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip14.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip14KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon14.setText("Icon:");
+
+        jLabelButtonExecute15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute15.setText("Execute:");
+
+        jComboBoxButtonIcon15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon15.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon15.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon15ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute15.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute15KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip15.setText("Button 15:");
+
+        jTextFieldButtonToolTip15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip15.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip15KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon15.setText("Icon:");
+
+        jLabelButtonExecute16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute16.setText("Execute:");
+
+        jComboBoxButtonIcon16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon16.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon16.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon16ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute16.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute16KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip16.setText("Button 16:");
+
+        jTextFieldButtonToolTip16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip16.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip16KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon16.setText("Icon:");
+
+        jLabelButtonExecute17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute17.setText("Execute:");
+
+        jComboBoxButtonIcon17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon17.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon17.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon17ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute17.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute17KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip17.setText("Button 17:");
+
+        jTextFieldButtonToolTip17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip17.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip17KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon17.setText("Icon:");
+
+        jLabelButtonExecute18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute18.setText("Execute:");
+
+        jComboBoxButtonIcon18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon18.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon18.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon18ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute18.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute18KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip18.setText("Button 18:");
+
+        jTextFieldButtonToolTip18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip18.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip18KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon18.setText("Icon:");
+
+        jLabelButtonExecute19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute19.setText("Execute:");
+
+        jComboBoxButtonIcon19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon19.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon19.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon19ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute19.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute19KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip19.setText("Button 19:");
+
+        jTextFieldButtonToolTip19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip19.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip19KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon19.setText("Icon:");
+
+        jLabelButtonExecute20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute20.setText("Execute:");
+
+        jComboBoxButtonIcon20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon20.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon20.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon20ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute20.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute20KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip20.setText("Button 20:");
+
+        jTextFieldButtonToolTip20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip20.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip20KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon20.setText("Icon:");
+
+        javax.swing.GroupLayout jPanelSettingsButtonsLayout = new javax.swing.GroupLayout(jPanelSettingsButtons);
+        jPanelSettingsButtons.setLayout(jPanelSettingsButtonsLayout);
+        jPanelSettingsButtonsLayout.setHorizontalGroup(
+            jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jLabelButtonToolTip1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldButtonToolTip1))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelButtonExecute1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelButtonIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxButtonIcon1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldButtonExecute1)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jButton33)
-                        .addGap(61, 61, 61)
-                        .addComponent(jButton40)
-                        .addGap(0, 250, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 392, Short.MAX_VALUE))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jLabelButtonToolTip2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldButtonToolTip2))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelButtonExecute2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelButtonIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxButtonIcon2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldButtonExecute2)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jLabelButtonToolTip3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldButtonToolTip3))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelButtonExecute3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelButtonIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxButtonIcon3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldButtonExecute3)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jLabelButtonToolTip4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldButtonToolTip4))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelButtonExecute4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelButtonIcon4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxButtonIcon4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldButtonExecute4)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jLabelButtonToolTip5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldButtonToolTip5))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelButtonExecute5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelButtonIcon5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxButtonIcon5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldButtonExecute5)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jLabelButtonToolTip6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldButtonToolTip6))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelButtonExecute6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelButtonIcon6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxButtonIcon6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldButtonExecute6)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jLabelButtonToolTip7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldButtonToolTip7))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelButtonExecute7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelButtonIcon7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxButtonIcon7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldButtonExecute7)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jLabelButtonToolTip8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldButtonToolTip8))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelButtonExecute8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelButtonIcon8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxButtonIcon8, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldButtonExecute8)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jLabelButtonToolTip9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldButtonToolTip9))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelButtonExecute9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelButtonIcon9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxButtonIcon9, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldButtonExecute9)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jLabelButtonToolTip10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldButtonToolTip10))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelButtonExecute10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelButtonIcon10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxButtonIcon10, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldButtonExecute10)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jLabelButtonToolTip11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldButtonToolTip11))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelButtonExecute11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelButtonIcon11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxButtonIcon11, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldButtonExecute11))))
+                            .addComponent(jTextFieldButtonExecute11)))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip12))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon12, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute12)))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip13, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip13))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute13, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon13, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon13, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute13)))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip14, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip14))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute14, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon14, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon14, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute14)))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip15, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip15))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute15, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon15, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon15, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute15)))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip16, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip16))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute16, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon16, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon16, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute16)))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip17, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip17))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute17, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon17, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon17, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute17)))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip18, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip18))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute18, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon18, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon18, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute18)))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip19, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip19))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute19, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon19, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon19, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute19)))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip20, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip20))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute20, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon20, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon20, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute20))))
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        jPanelSettingsButtonsLayout.setVerticalGroup(
+            jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton33)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldButtonToolTip1)
                     .addComponent(jLabelButtonToolTip1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBoxButtonIcon1)
                     .addComponent(jLabelButtonIcon1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelButtonExecute1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldButtonExecute1))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldButtonToolTip2)
                     .addComponent(jLabelButtonToolTip2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBoxButtonIcon2)
                     .addComponent(jLabelButtonIcon2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelButtonExecute2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldButtonExecute2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldButtonToolTip3)
                     .addComponent(jLabelButtonToolTip3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBoxButtonIcon3)
                     .addComponent(jLabelButtonIcon3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelButtonExecute3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldButtonExecute3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldButtonToolTip4)
                     .addComponent(jLabelButtonToolTip4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBoxButtonIcon4)
                     .addComponent(jLabelButtonIcon4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelButtonExecute4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldButtonExecute4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldButtonToolTip5)
                     .addComponent(jLabelButtonToolTip5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBoxButtonIcon5)
                     .addComponent(jLabelButtonIcon5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelButtonExecute5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldButtonExecute5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldButtonToolTip6)
                     .addComponent(jLabelButtonToolTip6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBoxButtonIcon6)
                     .addComponent(jLabelButtonIcon6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelButtonExecute6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldButtonExecute6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldButtonToolTip7)
                     .addComponent(jLabelButtonToolTip7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBoxButtonIcon7)
                     .addComponent(jLabelButtonIcon7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelButtonExecute7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldButtonExecute7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldButtonToolTip8)
                     .addComponent(jLabelButtonToolTip8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBoxButtonIcon8)
                     .addComponent(jLabelButtonIcon8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelButtonExecute8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldButtonExecute8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldButtonToolTip9)
                     .addComponent(jLabelButtonToolTip9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBoxButtonIcon9)
                     .addComponent(jLabelButtonIcon9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelButtonExecute9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldButtonExecute9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldButtonToolTip10)
                     .addComponent(jLabelButtonToolTip10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBoxButtonIcon10)
                     .addComponent(jLabelButtonIcon10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelButtonExecute10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldButtonExecute10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldButtonToolTip11)
                     .addComponent(jLabelButtonToolTip11, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBoxButtonIcon11)
                     .addComponent(jLabelButtonIcon11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelButtonExecute11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldButtonExecute11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(393, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip12)
+                    .addComponent(jLabelButtonToolTip12, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon12)
+                    .addComponent(jLabelButtonIcon12, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip13)
+                    .addComponent(jLabelButtonToolTip13, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon13)
+                    .addComponent(jLabelButtonIcon13, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip14)
+                    .addComponent(jLabelButtonToolTip14, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon14)
+                    .addComponent(jLabelButtonIcon14, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip15)
+                    .addComponent(jLabelButtonToolTip15, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon15)
+                    .addComponent(jLabelButtonIcon15, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip16)
+                    .addComponent(jLabelButtonToolTip16, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon16)
+                    .addComponent(jLabelButtonIcon16, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip17)
+                    .addComponent(jLabelButtonToolTip17, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon17)
+                    .addComponent(jLabelButtonIcon17, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip18)
+                    .addComponent(jLabelButtonToolTip18, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon18)
+                    .addComponent(jLabelButtonIcon18, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip19)
+                    .addComponent(jLabelButtonToolTip19, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon19)
+                    .addComponent(jLabelButtonIcon19, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip20)
+                    .addComponent(jLabelButtonToolTip20, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon20)
+                    .addComponent(jLabelButtonIcon20, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane1.setViewportView(jPanel3);
+        jScrollPaneSettingsButtons.setViewportView(jPanelSettingsButtons);
 
-        jTabbedPaneSettings.addTab("tab4", jScrollPane1);
+        jTabbedPaneSettings.addTab("Buttons", jScrollPaneSettingsButtons);
 
         jTabbedMain.addTab("Settings", jTabbedPaneSettings);
 
@@ -6927,14 +7444,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonClearFilterActionPerformed
 
-    private void jTextFieldLinkCustom01KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkCustom01KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink01Exec",jTextFieldLinkCustom01.getText());
-    }//GEN-LAST:event_jTextFieldLinkCustom01KeyReleased
-
-    private void jTextFieldLinkCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLinkCustom01ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldLinkCustom01ActionPerformed
-
     private void jTextFieldButtonToolTip1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip1KeyReleased
         PropertyHandler.getInstance().setValue("Button01ToolTip",jTextFieldButtonToolTip1.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip1KeyReleased
@@ -7067,9 +7576,113 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         PropertyHandler.getInstance().setValue("Button11ToolTip",jTextFieldButtonToolTip11.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip11KeyReleased
 
-    private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
-        jTextFieldButtonToolTip1.setText(PropertyHandler.getInstance().getValue("Button01ToolTip"));
-    }//GEN-LAST:event_jButton40ActionPerformed
+    private void jComboBoxButtonIcon12ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon12ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button12Icon",((String)jComboBoxButtonIcon12.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon12ItemStateChanged
+
+    private void jTextFieldButtonExecute12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute12KeyReleased
+        PropertyHandler.getInstance().setValue("Button12StrExec",jTextFieldButtonExecute12.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute12KeyReleased
+
+    private void jTextFieldButtonToolTip12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip12KeyReleased
+        PropertyHandler.getInstance().setValue("Button12ToolTip",jTextFieldButtonToolTip12.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip12KeyReleased
+
+    private void jComboBoxButtonIcon13ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon13ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button13Icon",((String)jComboBoxButtonIcon13.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon13ItemStateChanged
+
+    private void jTextFieldButtonExecute13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute13KeyReleased
+        PropertyHandler.getInstance().setValue("Button13StrExec",jTextFieldButtonExecute13.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute13KeyReleased
+
+    private void jTextFieldButtonToolTip13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip13KeyReleased
+        PropertyHandler.getInstance().setValue("Button13ToolTip",jTextFieldButtonToolTip13.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip13KeyReleased
+
+    private void jComboBoxButtonIcon14ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon14ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button14Icon",((String)jComboBoxButtonIcon14.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon14ItemStateChanged
+
+    private void jTextFieldButtonExecute14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute14KeyReleased
+        PropertyHandler.getInstance().setValue("Button14StrExec",jTextFieldButtonExecute14.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute14KeyReleased
+
+    private void jTextFieldButtonToolTip14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip14KeyReleased
+        PropertyHandler.getInstance().setValue("Button14ToolTip",jTextFieldButtonToolTip14.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip14KeyReleased
+
+    private void jComboBoxButtonIcon15ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon15ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button15Icon",((String)jComboBoxButtonIcon15.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon15ItemStateChanged
+
+    private void jTextFieldButtonExecute15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute15KeyReleased
+        PropertyHandler.getInstance().setValue("Button15StrExec",jTextFieldButtonExecute15.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute15KeyReleased
+
+    private void jTextFieldButtonToolTip15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip15KeyReleased
+        PropertyHandler.getInstance().setValue("Button15ToolTip",jTextFieldButtonToolTip15.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip15KeyReleased
+
+    private void jComboBoxButtonIcon16ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon16ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button16Icon",((String)jComboBoxButtonIcon16.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon16ItemStateChanged
+
+    private void jTextFieldButtonExecute16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute16KeyReleased
+        PropertyHandler.getInstance().setValue("Button16StrExec",jTextFieldButtonExecute16.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute16KeyReleased
+
+    private void jTextFieldButtonToolTip16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip16KeyReleased
+        PropertyHandler.getInstance().setValue("Button16ToolTip",jTextFieldButtonToolTip16.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip16KeyReleased
+
+    private void jComboBoxButtonIcon17ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon17ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button17Icon",((String)jComboBoxButtonIcon17.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon17ItemStateChanged
+
+    private void jTextFieldButtonExecute17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute17KeyReleased
+        PropertyHandler.getInstance().setValue("Button17StrExec",jTextFieldButtonExecute17.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute17KeyReleased
+
+    private void jTextFieldButtonToolTip17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip17KeyReleased
+        PropertyHandler.getInstance().setValue("Button17ToolTip",jTextFieldButtonToolTip17.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip17KeyReleased
+
+    private void jComboBoxButtonIcon18ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon18ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button18Icon",((String)jComboBoxButtonIcon18.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon18ItemStateChanged
+
+    private void jTextFieldButtonExecute18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute18KeyReleased
+        PropertyHandler.getInstance().setValue("Button18StrExec",jTextFieldButtonExecute18.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute18KeyReleased
+
+    private void jTextFieldButtonToolTip18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip18KeyReleased
+        PropertyHandler.getInstance().setValue("Button18ToolTip",jTextFieldButtonToolTip18.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip18KeyReleased
+
+    private void jComboBoxButtonIcon19ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon19ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button19Icon",((String)jComboBoxButtonIcon19.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon19ItemStateChanged
+
+    private void jTextFieldButtonExecute19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute19KeyReleased
+        PropertyHandler.getInstance().setValue("Button19StrExec",jTextFieldButtonExecute19.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute19KeyReleased
+
+    private void jTextFieldButtonToolTip19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip19KeyReleased
+        PropertyHandler.getInstance().setValue("Button19ToolTip",jTextFieldButtonToolTip19.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip19KeyReleased
+
+    private void jComboBoxButtonIcon20ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon20ItemStateChanged
+        PropertyHandler.getInstance().setValue("Button20Icon",((String)jComboBoxButtonIcon20.getSelectedItem()));
+    }//GEN-LAST:event_jComboBoxButtonIcon20ItemStateChanged
+
+    private void jTextFieldButtonExecute20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute20KeyReleased
+        PropertyHandler.getInstance().setValue("Button20StrExec",jTextFieldButtonExecute20.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute20KeyReleased
+
+    private void jTextFieldButtonToolTip20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip20KeyReleased
+        PropertyHandler.getInstance().setValue("Button20ToolTip",jTextFieldButtonToolTip20.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip20KeyReleased
 
     
     /**
@@ -7429,7 +8042,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             //- Using Runtime
             System.out.println("Opening Command: " + strCommand);     
             if(strCommand != null && !strCommand.isEmpty()) { /* do your stuffs here */ 
-                Runtime.getRuntime().exec("cmd.exe /c start " + strCommand);
+                //Runtime.getRuntime().exec("cmd.exe /c start " + strCommand);
+                Runtime.getRuntime().exec("" + strCommand);
             }
         }
         catch (IOException e) {
@@ -7705,6 +8319,16 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldButtonToolTip8.setText(PropertyHandler.getInstance().getValue("Button08ToolTip"));
         jTextFieldButtonToolTip9.setText(PropertyHandler.getInstance().getValue("Button09ToolTip"));
         jTextFieldButtonToolTip10.setText(PropertyHandler.getInstance().getValue("Button10ToolTip"));
+        jTextFieldButtonToolTip11.setText(PropertyHandler.getInstance().getValue("Button11ToolTip"));
+        jTextFieldButtonToolTip12.setText(PropertyHandler.getInstance().getValue("Button12ToolTip"));
+        jTextFieldButtonToolTip13.setText(PropertyHandler.getInstance().getValue("Button13ToolTip"));
+        jTextFieldButtonToolTip14.setText(PropertyHandler.getInstance().getValue("Button14ToolTip"));
+        jTextFieldButtonToolTip15.setText(PropertyHandler.getInstance().getValue("Button15ToolTip"));
+        jTextFieldButtonToolTip16.setText(PropertyHandler.getInstance().getValue("Button16ToolTip"));
+        jTextFieldButtonToolTip17.setText(PropertyHandler.getInstance().getValue("Button17ToolTip"));
+        jTextFieldButtonToolTip18.setText(PropertyHandler.getInstance().getValue("Button18ToolTip"));
+        jTextFieldButtonToolTip19.setText(PropertyHandler.getInstance().getValue("Button19ToolTip"));
+        jTextFieldButtonToolTip20.setText(PropertyHandler.getInstance().getValue("Button20ToolTip"));
         
         //- Icons
         jComboBoxButtonIcon1.setSelectedItem(PropertyHandler.getInstance().getValue("Button01Icon"));
@@ -7717,6 +8341,16 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon8.setSelectedItem(PropertyHandler.getInstance().getValue("Button08Icon"));
         jComboBoxButtonIcon9.setSelectedItem(PropertyHandler.getInstance().getValue("Button09Icon"));
         jComboBoxButtonIcon10.setSelectedItem(PropertyHandler.getInstance().getValue("Button10Icon"));
+        jComboBoxButtonIcon11.setSelectedItem(PropertyHandler.getInstance().getValue("Button11Icon"));
+        jComboBoxButtonIcon12.setSelectedItem(PropertyHandler.getInstance().getValue("Button12Icon"));
+        jComboBoxButtonIcon13.setSelectedItem(PropertyHandler.getInstance().getValue("Button13Icon"));
+        jComboBoxButtonIcon14.setSelectedItem(PropertyHandler.getInstance().getValue("Button14Icon"));
+        jComboBoxButtonIcon15.setSelectedItem(PropertyHandler.getInstance().getValue("Button15Icon"));
+        jComboBoxButtonIcon16.setSelectedItem(PropertyHandler.getInstance().getValue("Button16Icon"));
+        jComboBoxButtonIcon17.setSelectedItem(PropertyHandler.getInstance().getValue("Button17Icon"));
+        jComboBoxButtonIcon18.setSelectedItem(PropertyHandler.getInstance().getValue("Button18Icon"));
+        jComboBoxButtonIcon19.setSelectedItem(PropertyHandler.getInstance().getValue("Button19Icon"));
+        jComboBoxButtonIcon20.setSelectedItem(PropertyHandler.getInstance().getValue("Button20Icon"));
 
         
         //- Executions
@@ -7730,11 +8364,21 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldButtonExecute8.setText(PropertyHandler.getInstance().getValue("Button08StrExec"));
         jTextFieldButtonExecute9.setText(PropertyHandler.getInstance().getValue("Button09StrExec"));
         jTextFieldButtonExecute10.setText(PropertyHandler.getInstance().getValue("Button10StrExec"));
+        jTextFieldButtonExecute11.setText(PropertyHandler.getInstance().getValue("Button11StrExec"));
+        jTextFieldButtonExecute12.setText(PropertyHandler.getInstance().getValue("Button12StrExec"));
+        jTextFieldButtonExecute13.setText(PropertyHandler.getInstance().getValue("Button13StrExec"));
+        jTextFieldButtonExecute14.setText(PropertyHandler.getInstance().getValue("Button14StrExec"));
+        jTextFieldButtonExecute15.setText(PropertyHandler.getInstance().getValue("Button15StrExec"));
+        jTextFieldButtonExecute16.setText(PropertyHandler.getInstance().getValue("Button16StrExec"));
+        jTextFieldButtonExecute17.setText(PropertyHandler.getInstance().getValue("Button17StrExec"));
+        jTextFieldButtonExecute18.setText(PropertyHandler.getInstance().getValue("Button18StrExec"));
+        jTextFieldButtonExecute19.setText(PropertyHandler.getInstance().getValue("Button19StrExec"));
+        jTextFieldButtonExecute20.setText(PropertyHandler.getInstance().getValue("Button20StrExec"));
     }
     
-    public void SettingsLoadCustomLinksData() {
-        jTextFieldLinkCustom01.setText(PropertyHandler.getInstance().getValue("Button02StrExec"));
-    }
+//    public void SettingsLoadCustomLinksData() {
+//        jTextFieldLinkCustom01.setText(PropertyHandler.getInstance().getValue("Button02StrExec"));
+//    }
     
     public void SettingsSetCustomLinks(String strPropertyName,String strPropertyValue) {
         
@@ -7773,6 +8417,15 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             jComboBoxButtonIcon9.setModel(new DefaultComboBoxModel(arrButtonList));
             jComboBoxButtonIcon10.setModel(new DefaultComboBoxModel(arrButtonList));
             jComboBoxButtonIcon11.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon12.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon13.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon14.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon15.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon16.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon17.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon18.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon19.setModel(new DefaultComboBoxModel(arrButtonList));
+            jComboBoxButtonIcon20.setModel(new DefaultComboBoxModel(arrButtonList));
 
          
         }
@@ -7908,7 +8561,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton38;
     private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton41;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -8068,7 +8720,16 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxButtonIcon1;
     private javax.swing.JComboBox<String> jComboBoxButtonIcon10;
     private javax.swing.JComboBox<String> jComboBoxButtonIcon11;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon12;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon13;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon14;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon15;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon16;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon17;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon18;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon19;
     private javax.swing.JComboBox<String> jComboBoxButtonIcon2;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon20;
     private javax.swing.JComboBox<String> jComboBoxButtonIcon3;
     private javax.swing.JComboBox<String> jComboBoxButtonIcon4;
     private javax.swing.JComboBox<String> jComboBoxButtonIcon5;
@@ -8097,7 +8758,16 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelButtonExecute1;
     private javax.swing.JLabel jLabelButtonExecute10;
     private javax.swing.JLabel jLabelButtonExecute11;
+    private javax.swing.JLabel jLabelButtonExecute12;
+    private javax.swing.JLabel jLabelButtonExecute13;
+    private javax.swing.JLabel jLabelButtonExecute14;
+    private javax.swing.JLabel jLabelButtonExecute15;
+    private javax.swing.JLabel jLabelButtonExecute16;
+    private javax.swing.JLabel jLabelButtonExecute17;
+    private javax.swing.JLabel jLabelButtonExecute18;
+    private javax.swing.JLabel jLabelButtonExecute19;
     private javax.swing.JLabel jLabelButtonExecute2;
+    private javax.swing.JLabel jLabelButtonExecute20;
     private javax.swing.JLabel jLabelButtonExecute3;
     private javax.swing.JLabel jLabelButtonExecute4;
     private javax.swing.JLabel jLabelButtonExecute5;
@@ -8108,7 +8778,16 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelButtonIcon1;
     private javax.swing.JLabel jLabelButtonIcon10;
     private javax.swing.JLabel jLabelButtonIcon11;
+    private javax.swing.JLabel jLabelButtonIcon12;
+    private javax.swing.JLabel jLabelButtonIcon13;
+    private javax.swing.JLabel jLabelButtonIcon14;
+    private javax.swing.JLabel jLabelButtonIcon15;
+    private javax.swing.JLabel jLabelButtonIcon16;
+    private javax.swing.JLabel jLabelButtonIcon17;
+    private javax.swing.JLabel jLabelButtonIcon18;
+    private javax.swing.JLabel jLabelButtonIcon19;
     private javax.swing.JLabel jLabelButtonIcon2;
+    private javax.swing.JLabel jLabelButtonIcon20;
     private javax.swing.JLabel jLabelButtonIcon3;
     private javax.swing.JLabel jLabelButtonIcon4;
     private javax.swing.JLabel jLabelButtonIcon5;
@@ -8119,7 +8798,16 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelButtonToolTip1;
     private javax.swing.JLabel jLabelButtonToolTip10;
     private javax.swing.JLabel jLabelButtonToolTip11;
+    private javax.swing.JLabel jLabelButtonToolTip12;
+    private javax.swing.JLabel jLabelButtonToolTip13;
+    private javax.swing.JLabel jLabelButtonToolTip14;
+    private javax.swing.JLabel jLabelButtonToolTip15;
+    private javax.swing.JLabel jLabelButtonToolTip16;
+    private javax.swing.JLabel jLabelButtonToolTip17;
+    private javax.swing.JLabel jLabelButtonToolTip18;
+    private javax.swing.JLabel jLabelButtonToolTip19;
     private javax.swing.JLabel jLabelButtonToolTip2;
+    private javax.swing.JLabel jLabelButtonToolTip20;
     private javax.swing.JLabel jLabelButtonToolTip3;
     private javax.swing.JLabel jLabelButtonToolTip4;
     private javax.swing.JLabel jLabelButtonToolTip5;
@@ -8146,9 +8834,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelType7reverse;
     private javax.swing.JList<String> jListSessions;
 
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelAppsCustom;
     private javax.swing.JPanel jPanelDocuments;
     private javax.swing.JPanel jPanelHashGen;
@@ -8180,10 +8866,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButtonJapanese;
     private javax.swing.JRadioButton jRadioButtonSSHClientPuTTY;
     private javax.swing.JRadioButton jRadioButtonSSHClientSecureCRT;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPaneSessionList;
+    private javax.swing.JScrollPane jScrollPaneSettingsButtons;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -8201,7 +8887,16 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldButtonExecute1;
     private javax.swing.JTextField jTextFieldButtonExecute10;
     private javax.swing.JTextField jTextFieldButtonExecute11;
+    private javax.swing.JTextField jTextFieldButtonExecute12;
+    private javax.swing.JTextField jTextFieldButtonExecute13;
+    private javax.swing.JTextField jTextFieldButtonExecute14;
+    private javax.swing.JTextField jTextFieldButtonExecute15;
+    private javax.swing.JTextField jTextFieldButtonExecute16;
+    private javax.swing.JTextField jTextFieldButtonExecute17;
+    private javax.swing.JTextField jTextFieldButtonExecute18;
+    private javax.swing.JTextField jTextFieldButtonExecute19;
     private javax.swing.JTextField jTextFieldButtonExecute2;
+    private javax.swing.JTextField jTextFieldButtonExecute20;
     private javax.swing.JTextField jTextFieldButtonExecute3;
     private javax.swing.JTextField jTextFieldButtonExecute4;
     private javax.swing.JTextField jTextFieldButtonExecute5;
@@ -8212,7 +8907,16 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldButtonToolTip1;
     private javax.swing.JTextField jTextFieldButtonToolTip10;
     private javax.swing.JTextField jTextFieldButtonToolTip11;
+    private javax.swing.JTextField jTextFieldButtonToolTip12;
+    private javax.swing.JTextField jTextFieldButtonToolTip13;
+    private javax.swing.JTextField jTextFieldButtonToolTip14;
+    private javax.swing.JTextField jTextFieldButtonToolTip15;
+    private javax.swing.JTextField jTextFieldButtonToolTip16;
+    private javax.swing.JTextField jTextFieldButtonToolTip17;
+    private javax.swing.JTextField jTextFieldButtonToolTip18;
+    private javax.swing.JTextField jTextFieldButtonToolTip19;
     private javax.swing.JTextField jTextFieldButtonToolTip2;
+    private javax.swing.JTextField jTextFieldButtonToolTip20;
     private javax.swing.JTextField jTextFieldButtonToolTip3;
     private javax.swing.JTextField jTextFieldButtonToolTip4;
     private javax.swing.JTextField jTextFieldButtonToolTip5;
@@ -8228,7 +8932,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldHashSHA1;
     private javax.swing.JTextField jTextFieldHashSHA256;
     private javax.swing.JTextField jTextFieldHashSHA512;
-    private javax.swing.JTextField jTextFieldLinkCustom01;
     private javax.swing.JTextField jTextFieldLinksFilter;
     private javax.swing.JTextField jTextFieldNtpAtomicTime;
     private javax.swing.JTextField jTextFieldNtpServer;
