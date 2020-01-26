@@ -1110,6 +1110,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButton24 = new javax.swing.JButton();
         jButton36 = new javax.swing.JButton();
         jButton37 = new javax.swing.JButton();
+        jButton42 = new javax.swing.JButton();
         jPanelJavaApps = new javax.swing.JPanel();
         jButton41 = new javax.swing.JButton();
         jPanelWebApps = new javax.swing.JPanel();
@@ -1286,6 +1287,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelButtonToolTip20 = new javax.swing.JLabel();
         jTextFieldButtonToolTip20 = new javax.swing.JTextField();
         jLabelButtonIcon20 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton40 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LaunchPad - Pre-Alpha");
@@ -3450,8 +3453,18 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelDocuments.add(jButton37);
         jButton37.setBounds(370, 20, 170, 30);
 
+        jButton42.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton42.setText("Stretch's Cheat Sheets");
+        jButton42.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton42ActionPerformed(evt);
+            }
+        });
+        jPanelDocuments.add(jButton42);
+        jButton42.setBounds(10, 60, 170, 30);
+
         jPanelWebJavaDocs.add(jPanelDocuments);
-        jPanelDocuments.setBounds(10, 210, 550, 70);
+        jPanelDocuments.setBounds(10, 210, 550, 120);
 
         jPanelJavaApps.setBorder(javax.swing.BorderFactory.createTitledBorder("Java Apps"));
         jPanelJavaApps.setLayout(null);
@@ -4647,6 +4660,17 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelButtonIcon20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonIcon20.setText("Icon:");
 
+        jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText("*** Restart for changes to take effect *** ➨");
+
+        jButton40.setText("Restart");
+        jButton40.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton40ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelSettingsButtonsLayout = new javax.swing.GroupLayout(jPanelSettingsButtons);
         jPanelSettingsButtons.setLayout(jPanelSettingsButtonsLayout);
         jPanelSettingsButtonsLayout.setHorizontalGroup(
@@ -4668,7 +4692,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                             .addComponent(jTextFieldButtonExecute1)))
                     .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jButton33)
-                        .addGap(0, 392, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton40))
                     .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jLabelButtonToolTip2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -4903,7 +4930,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton33)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton33)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton40))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldButtonToolTip1)
@@ -6186,7 +6216,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton36ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        // TODO add your handling code here:
         openTempFileUsingDesktop("files/Subnets.pdf", ".pdf");
     }//GEN-LAST:event_jButton24ActionPerformed
 
@@ -7684,6 +7713,18 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         PropertyHandler.getInstance().setValue("Button20ToolTip",jTextFieldButtonToolTip20.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip20KeyReleased
 
+    private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
+        try {
+            restartApplication();
+        } catch (URISyntaxException | IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton40ActionPerformed
+
+    private void jButton42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton42ActionPerformed
+        openTempFileUsingDesktop("files/ToolBox.xlsm", ".xlsm");
+    }//GEN-LAST:event_jButton42ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -8561,7 +8602,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton38;
     private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton41;
+    private javax.swing.JButton jButton42;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -8740,6 +8783,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxConsoleBaud;
     private javax.swing.JComboBox<String> jComboBoxConsoleCOM;
     private javax.swing.JComboBox<String> jComboBoxZipEncMethod;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
