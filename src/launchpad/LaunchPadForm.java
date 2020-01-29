@@ -143,8 +143,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             UIManager.put("Button.disabledText", new Color(150,150,150));
-            // re-install the Metal Look and Feel
-            //UIManager.setLookAndFeel(new NimbusLookAndFeel());
+            
+        
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
