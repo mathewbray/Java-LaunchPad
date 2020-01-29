@@ -60,7 +60,6 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.embed.swing.JFXPanel;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
@@ -74,7 +73,6 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
-import static javax.swing.SwingUtilities.updateComponentTreeUI;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.Border;
@@ -140,6 +138,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         //SettingsLoadCustomLinksData();
         SettingsLoadButtonList();
         SettingsLoadButtonsData();
+        SettingsLoadLinkData();
         //- Set the look and feel
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -1510,7 +1509,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMainRightSide.add(jButtonExecuteFunction1);
-        jButtonExecuteFunction1.setBounds(140, 140, 60, 23);
+        jButtonExecuteFunction1.setBounds(140, 140, 60, 20);
 
         jButtonExecuteFunctionSSH.setBackground(new java.awt.Color(200, 255, 153));
         jButtonExecuteFunctionSSH.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
@@ -1882,7 +1881,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMainRightSide.add(jButtonExecuteFunction2);
-        jButtonExecuteFunction2.setBounds(140, 120, 60, 23);
+        jButtonExecuteFunction2.setBounds(140, 120, 60, 20);
 
         jTextFieldTCPTestPort.setToolTipText("TCP port to test");
         jPanelMainRightSide.add(jTextFieldTCPTestPort);
@@ -4906,7 +4905,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jButton33)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 292, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
                         .addComponent(jButton40, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jLabelButtonToolTip2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5412,6 +5411,11 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkText1.setText("Link 1:");
 
         jTextFieldLinkText1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldLinkText1ActionPerformed(evt);
+            }
+        });
         jTextFieldLinkText1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextFieldLinkText1KeyReleased(evt);
@@ -6219,7 +6223,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldLinkText1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSettingsLinksLayout.createSequentialGroup()
-                        .addGap(0, 432, Short.MAX_VALUE)
+                        .addGap(0, 439, Short.MAX_VALUE)
                         .addComponent(jButton44, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
                         .addComponent(jLabelLinkExecute1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -6511,7 +6515,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton44, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton44, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldLinkText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -6800,7 +6804,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextFieldLinkExecute36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelLinkExecute36, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jScrollPaneSettingsLinks.setViewportView(jPanelSettingsLinks);
@@ -6842,7 +6846,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             && (desktop = Desktop.getDesktop()).isSupported(Desktop.Action.MAIL)) {
             URI mailto = null;
             try {
-                mailto = new URI("mailto:mathew.bray@gmail.com?subject=LaunchPad%20Issue");
+                mailto = new URI("mailto:" + PropertyHandler.getInstance().getValue("SettingEmailContactIssues") + "?subject=LaunchPad%20Issue");
             } catch (URISyntaxException ex) {
                 Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -6853,7 +6857,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         } else {
             // TODO fallback to some Runtime.exec(..) voodoo?
-            throw new RuntimeException("desktop doesn't support mailto; mail is dead anyway ;)");
+            throw new RuntimeException("desktop doesn't support mailto");
         }
     }//GEN-LAST:event_jButtonReportIssueActionPerformed
 
@@ -9446,11 +9450,11 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton43ActionPerformed
 
     private void jTextFieldLinkText1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText1KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink01Description",jTextFieldLinkText1.getText());
     }//GEN-LAST:event_jTextFieldLinkText1KeyReleased
 
     private void jTextFieldLinkExecute1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute1KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink01Exec",jTextFieldLinkExecute1.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute1KeyReleased
 
     private void jButton44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton44ActionPerformed
@@ -9458,7 +9462,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton44ActionPerformed
 
     private void jTextFieldLinkText2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText2KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink02Description",jTextFieldLinkText2.getText());
     }//GEN-LAST:event_jTextFieldLinkText2KeyReleased
 
     private void jTextFieldLinkExecute2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute2KeyReleased
@@ -9466,11 +9470,11 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldLinkExecute2KeyReleased
 
     private void jTextFieldLinkExecute3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute3KeyReleased
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jTextFieldLinkExecute3KeyReleased
 
     private void jTextFieldLinkText3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText3KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink03Description",jTextFieldLinkText3.getText());
     }//GEN-LAST:event_jTextFieldLinkText3KeyReleased
 
     private void jTextFieldLinkExecute4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute4KeyReleased
@@ -9478,7 +9482,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldLinkExecute4KeyReleased
 
     private void jTextFieldLinkText4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText4KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink04Description",jTextFieldLinkText4.getText());
     }//GEN-LAST:event_jTextFieldLinkText4KeyReleased
 
     private void jTextFieldLinkExecute5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute5KeyReleased
@@ -9486,7 +9490,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldLinkExecute5KeyReleased
 
     private void jTextFieldLinkText5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText5KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink05Description",jTextFieldLinkText5.getText());
     }//GEN-LAST:event_jTextFieldLinkText5KeyReleased
 
     private void jTextFieldLinkExecute6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute6KeyReleased
@@ -9494,7 +9498,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldLinkExecute6KeyReleased
 
     private void jTextFieldLinkText6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText6KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink06Description",jTextFieldLinkText6.getText());
     }//GEN-LAST:event_jTextFieldLinkText6KeyReleased
 
     private void jTextFieldLinkExecute7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute7KeyReleased
@@ -9502,7 +9506,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldLinkExecute7KeyReleased
 
     private void jTextFieldLinkText7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText7KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink07Description",jTextFieldLinkText7.getText());
     }//GEN-LAST:event_jTextFieldLinkText7KeyReleased
 
     private void jTextFieldLinkExecute8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute8KeyReleased
@@ -9736,6 +9740,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private void jTextFieldLinkText36KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText36KeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldLinkText36KeyReleased
+
+    private void jTextFieldLinkText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLinkText1ActionPerformed
+    }//GEN-LAST:event_jTextFieldLinkText1ActionPerformed
 
     
     /**
@@ -10393,14 +10400,21 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldButtonExecute20.setText(PropertyHandler.getInstance().getValue("Button20StrExec"));
     }
     
+    public void SettingsLoadLinkData() {
+        //- Text
+        jTextFieldLinkText1.setText(PropertyHandler.getInstance().getValue("CustomLink01Description"));
+        //- Executions
+        jTextFieldLinkExecute1.setText(PropertyHandler.getInstance().getValue("CustomLink01Exec"));
+    }
+    
 //    public void SettingsLoadCustomLinksData() {
 //        jTextFieldLinkCustom01.setText(PropertyHandler.getInstance().getValue("Button02StrExec"));
 //    }
     
-    public void SettingsSetCustomLinks(String strPropertyName,String strPropertyValue) {
-        
-                    PropertyHandlerPersonal.getInstance().setValue(strPropertyName,strPropertyValue);
-    }
+//    public void SettingsSetCustomLinks(String strPropertyName,String strPropertyValue) {
+//        
+//                    PropertyHandlerPersonal.getInstance().setValue(strPropertyName,strPropertyValue);
+//    }
     
     //- Display all the buttons in a list
    // public final class SettingsLoadButtonList {

@@ -212,7 +212,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="140" y="140" width="60" height="-1"/>
+                      <AbsoluteConstraints x="140" y="140" width="60" height="20"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -821,7 +821,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="140" y="120" width="60" height="-1"/>
+                      <AbsoluteConstraints x="140" y="120" width="60" height="20"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -5177,7 +5177,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="jButton33" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="292" max="32767" attributes="0"/>
+                                      <EmptySpace pref="294" max="32767" attributes="0"/>
                                       <Component id="jButton40" min="-2" pref="98" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -7237,7 +7237,7 @@
                                       <Component id="jTextFieldLinkText1" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="0" pref="432" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="439" max="32767" attributes="0"/>
                                       <Component id="jButton44" min="-2" pref="98" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -7604,7 +7604,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton44" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="jButton44" min="-2" pref="24" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jTextFieldLinkText1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -7965,7 +7965,7 @@
                                   <Component id="jTextFieldLinkExecute36" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelLinkExecute36" alignment="1" min="-2" pref="21" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="35" max="32767" attributes="0"/>
+                              <EmptySpace pref="31" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -7987,6 +7987,7 @@
                         </Property>
                       </Properties>
                       <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldLinkText1ActionPerformed"/>
                         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldLinkText1KeyReleased"/>
                       </Events>
                     </Component>
