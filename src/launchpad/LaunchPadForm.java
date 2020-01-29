@@ -74,6 +74,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
+import static javax.swing.SwingUtilities.updateComponentTreeUI;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.Border;
@@ -133,7 +134,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
      */
     public LaunchPadForm() throws IOException, FileNotFoundException, URISyntaxException, AWTException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         initComponents();
-        final JFXPanel fxPanel = new JFXPanel();
+        //final JFXPanel fxPanel = new JFXPanel();
         setTitle(PropertyHandler.getInstance().getValue("WindowTitle"));
         getSessionList();
         //SettingsLoadCustomLinksData();
@@ -143,8 +144,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             UIManager.put("Button.disabledText", new Color(150,150,150));
-            
-        
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1304,8 +1303,154 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelButtonToolTip20 = new javax.swing.JLabel();
         jTextFieldButtonToolTip20 = new javax.swing.JTextField();
         jLabelButtonIcon20 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jButton40 = new javax.swing.JButton();
+        jScrollPaneSettingsLinks = new javax.swing.JScrollPane();
+        jPanelSettingsLinks = new javax.swing.JPanel();
+        jLabelLinkText1 = new javax.swing.JLabel();
+        jTextFieldLinkText1 = new javax.swing.JTextField();
+        jLabelLinkExecute1 = new javax.swing.JLabel();
+        jTextFieldLinkExecute1 = new javax.swing.JTextField();
+        jButton44 = new javax.swing.JButton();
+        jTextFieldLinkText2 = new javax.swing.JTextField();
+        jLabelLinkText2 = new javax.swing.JLabel();
+        jTextFieldLinkExecute2 = new javax.swing.JTextField();
+        jLabelLinkExecute2 = new javax.swing.JLabel();
+        jLabelLinkExecute3 = new javax.swing.JLabel();
+        jTextFieldLinkExecute3 = new javax.swing.JTextField();
+        jLabelLinkText3 = new javax.swing.JLabel();
+        jTextFieldLinkText3 = new javax.swing.JTextField();
+        jLabelLinkExecute4 = new javax.swing.JLabel();
+        jTextFieldLinkExecute4 = new javax.swing.JTextField();
+        jLabelLinkText4 = new javax.swing.JLabel();
+        jTextFieldLinkText4 = new javax.swing.JTextField();
+        jLabelLinkExecute5 = new javax.swing.JLabel();
+        jTextFieldLinkExecute5 = new javax.swing.JTextField();
+        jLabelLinkText5 = new javax.swing.JLabel();
+        jTextFieldLinkText5 = new javax.swing.JTextField();
+        jLabelLinkExecute6 = new javax.swing.JLabel();
+        jTextFieldLinkExecute6 = new javax.swing.JTextField();
+        jLabelLinkText6 = new javax.swing.JLabel();
+        jTextFieldLinkText6 = new javax.swing.JTextField();
+        jLabelLinkExecute7 = new javax.swing.JLabel();
+        jTextFieldLinkExecute7 = new javax.swing.JTextField();
+        jLabelLinkText7 = new javax.swing.JLabel();
+        jTextFieldLinkText7 = new javax.swing.JTextField();
+        jLabelLinkExecute8 = new javax.swing.JLabel();
+        jTextFieldLinkExecute8 = new javax.swing.JTextField();
+        jLabelLinkText8 = new javax.swing.JLabel();
+        jTextFieldLinkText8 = new javax.swing.JTextField();
+        jLabelLinkExecute9 = new javax.swing.JLabel();
+        jTextFieldLinkExecute9 = new javax.swing.JTextField();
+        jLabelLinkText9 = new javax.swing.JLabel();
+        jTextFieldLinkText9 = new javax.swing.JTextField();
+        jLabelLinkExecute10 = new javax.swing.JLabel();
+        jTextFieldLinkExecute10 = new javax.swing.JTextField();
+        jLabelLinkText10 = new javax.swing.JLabel();
+        jTextFieldLinkText10 = new javax.swing.JTextField();
+        jLabelLinkExecute11 = new javax.swing.JLabel();
+        jTextFieldLinkExecute11 = new javax.swing.JTextField();
+        jLabelLinkText11 = new javax.swing.JLabel();
+        jTextFieldLinkText11 = new javax.swing.JTextField();
+        jLabelLinkExecute12 = new javax.swing.JLabel();
+        jTextFieldLinkExecute12 = new javax.swing.JTextField();
+        jLabelLinkText12 = new javax.swing.JLabel();
+        jTextFieldLinkText12 = new javax.swing.JTextField();
+        jLabelLinkExecute13 = new javax.swing.JLabel();
+        jTextFieldLinkExecute13 = new javax.swing.JTextField();
+        jLabelLinkText13 = new javax.swing.JLabel();
+        jTextFieldLinkText13 = new javax.swing.JTextField();
+        jLabelLinkExecute14 = new javax.swing.JLabel();
+        jTextFieldLinkExecute14 = new javax.swing.JTextField();
+        jLabelLinkText14 = new javax.swing.JLabel();
+        jTextFieldLinkText14 = new javax.swing.JTextField();
+        jLabelLinkExecute15 = new javax.swing.JLabel();
+        jTextFieldLinkExecute15 = new javax.swing.JTextField();
+        jLabelLinkText15 = new javax.swing.JLabel();
+        jTextFieldLinkText15 = new javax.swing.JTextField();
+        jLabelLinkExecute16 = new javax.swing.JLabel();
+        jTextFieldLinkExecute16 = new javax.swing.JTextField();
+        jLabelLinkText16 = new javax.swing.JLabel();
+        jTextFieldLinkText16 = new javax.swing.JTextField();
+        jLabelLinkExecute17 = new javax.swing.JLabel();
+        jTextFieldLinkExecute17 = new javax.swing.JTextField();
+        jLabelLinkText17 = new javax.swing.JLabel();
+        jTextFieldLinkText17 = new javax.swing.JTextField();
+        jLabelLinkExecute18 = new javax.swing.JLabel();
+        jTextFieldLinkExecute18 = new javax.swing.JTextField();
+        jLabelLinkText18 = new javax.swing.JLabel();
+        jTextFieldLinkText18 = new javax.swing.JTextField();
+        jLabelLinkExecute19 = new javax.swing.JLabel();
+        jTextFieldLinkExecute19 = new javax.swing.JTextField();
+        jLabelLinkText19 = new javax.swing.JLabel();
+        jTextFieldLinkText19 = new javax.swing.JTextField();
+        jLabelLinkExecute20 = new javax.swing.JLabel();
+        jTextFieldLinkExecute20 = new javax.swing.JTextField();
+        jLabelLinkText20 = new javax.swing.JLabel();
+        jTextFieldLinkText20 = new javax.swing.JTextField();
+        jLabelLinkExecute21 = new javax.swing.JLabel();
+        jTextFieldLinkExecute21 = new javax.swing.JTextField();
+        jLabelLinkText21 = new javax.swing.JLabel();
+        jTextFieldLinkText21 = new javax.swing.JTextField();
+        jLabelLinkExecute22 = new javax.swing.JLabel();
+        jTextFieldLinkExecute22 = new javax.swing.JTextField();
+        jLabelLinkText22 = new javax.swing.JLabel();
+        jTextFieldLinkText22 = new javax.swing.JTextField();
+        jLabelLinkExecute23 = new javax.swing.JLabel();
+        jTextFieldLinkExecute23 = new javax.swing.JTextField();
+        jLabelLinkText23 = new javax.swing.JLabel();
+        jTextFieldLinkText23 = new javax.swing.JTextField();
+        jLabelLinkExecute24 = new javax.swing.JLabel();
+        jTextFieldLinkExecute24 = new javax.swing.JTextField();
+        jLabelLinkText24 = new javax.swing.JLabel();
+        jTextFieldLinkText24 = new javax.swing.JTextField();
+        jLabelLinkExecute25 = new javax.swing.JLabel();
+        jTextFieldLinkExecute25 = new javax.swing.JTextField();
+        jLabelLinkText25 = new javax.swing.JLabel();
+        jTextFieldLinkText25 = new javax.swing.JTextField();
+        jLabelLinkExecute26 = new javax.swing.JLabel();
+        jTextFieldLinkExecute26 = new javax.swing.JTextField();
+        jLabelLinkText26 = new javax.swing.JLabel();
+        jTextFieldLinkText26 = new javax.swing.JTextField();
+        jLabelLinkExecute27 = new javax.swing.JLabel();
+        jTextFieldLinkExecute27 = new javax.swing.JTextField();
+        jLabelLinkText27 = new javax.swing.JLabel();
+        jTextFieldLinkText27 = new javax.swing.JTextField();
+        jLabelLinkExecute28 = new javax.swing.JLabel();
+        jTextFieldLinkExecute28 = new javax.swing.JTextField();
+        jLabelLinkText28 = new javax.swing.JLabel();
+        jTextFieldLinkText28 = new javax.swing.JTextField();
+        jLabelLinkExecute29 = new javax.swing.JLabel();
+        jTextFieldLinkExecute29 = new javax.swing.JTextField();
+        jLabelLinkText29 = new javax.swing.JLabel();
+        jTextFieldLinkText29 = new javax.swing.JTextField();
+        jLabelLinkExecute30 = new javax.swing.JLabel();
+        jTextFieldLinkExecute30 = new javax.swing.JTextField();
+        jLabelLinkText30 = new javax.swing.JLabel();
+        jTextFieldLinkText30 = new javax.swing.JTextField();
+        jLabelLinkExecute31 = new javax.swing.JLabel();
+        jTextFieldLinkExecute31 = new javax.swing.JTextField();
+        jLabelLinkText31 = new javax.swing.JLabel();
+        jTextFieldLinkText31 = new javax.swing.JTextField();
+        jLabelLinkExecute32 = new javax.swing.JLabel();
+        jTextFieldLinkExecute32 = new javax.swing.JTextField();
+        jLabelLinkText32 = new javax.swing.JLabel();
+        jTextFieldLinkText32 = new javax.swing.JTextField();
+        jLabelLinkExecute33 = new javax.swing.JLabel();
+        jTextFieldLinkExecute33 = new javax.swing.JTextField();
+        jLabelLinkText33 = new javax.swing.JLabel();
+        jTextFieldLinkText33 = new javax.swing.JTextField();
+        jLabelLinkExecute34 = new javax.swing.JLabel();
+        jTextFieldLinkExecute34 = new javax.swing.JTextField();
+        jLabelLinkText34 = new javax.swing.JLabel();
+        jTextFieldLinkText34 = new javax.swing.JTextField();
+        jLabelLinkExecute35 = new javax.swing.JLabel();
+        jTextFieldLinkExecute35 = new javax.swing.JTextField();
+        jLabelLinkText35 = new javax.swing.JLabel();
+        jTextFieldLinkText35 = new javax.swing.JTextField();
+        jLabelLinkExecute36 = new javax.swing.JLabel();
+        jTextFieldLinkExecute36 = new javax.swing.JTextField();
+        jLabelLinkText36 = new javax.swing.JLabel();
+        jTextFieldLinkText36 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LaunchPad - Pre-Alpha");
@@ -3484,7 +3629,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jButton42.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton42.setText("Excel ToolBox");
-        jButton42.setActionCommand("Excel ToolBox");
         jButton42.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton42ActionPerformed(evt);
@@ -3800,13 +3944,15 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jRadioButtonSSHClientSecureCRT.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jRadioButtonSSHClientSecureCRT.setSelected(true);
         jRadioButtonSSHClientSecureCRT.setText("SecureCRT");
+        jRadioButtonSSHClientSecureCRT.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jPanelSettingsMain.add(jRadioButtonSSHClientSecureCRT);
-        jRadioButtonSSHClientSecureCRT.setBounds(200, 10, 90, 30);
+        jRadioButtonSSHClientSecureCRT.setBounds(180, 10, 90, 30);
 
         buttonGroupSSHClient.add(jRadioButtonSSHClientPuTTY);
         jRadioButtonSSHClientPuTTY.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jRadioButtonSSHClientPuTTY.setText("SuperPuTTY");
+        jRadioButtonSSHClientPuTTY.setText("PuTTY");
         jRadioButtonSSHClientPuTTY.setEnabled(false);
+        jRadioButtonSSHClientPuTTY.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jRadioButtonSSHClientPuTTY.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonSSHClientPuTTYActionPerformed(evt);
@@ -3817,8 +3963,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         buttonGroupConsoleClient.add(jRadioButtonConsolePutty);
         jRadioButtonConsolePutty.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jRadioButtonConsolePutty.setText("SuperPuTTY");
+        jRadioButtonConsolePutty.setSelected(true);
+        jRadioButtonConsolePutty.setText("PuTTY");
         jRadioButtonConsolePutty.setEnabled(false);
+        jRadioButtonConsolePutty.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jRadioButtonConsolePutty.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jRadioButtonConsolePuttyMouseClicked(evt);
@@ -3830,14 +3978,14 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettingsMain.add(jRadioButtonConsolePutty);
-        jRadioButtonConsolePutty.setBounds(100, 40, 90, 30);
+        jRadioButtonConsolePutty.setBounds(100, 40, 70, 30);
 
         buttonGroupConsoleClient.add(jRadioButtonConsoleSecureCRT);
         jRadioButtonConsoleSecureCRT.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jRadioButtonConsoleSecureCRT.setSelected(true);
         jRadioButtonConsoleSecureCRT.setText("SecureCRT");
+        jRadioButtonConsoleSecureCRT.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jPanelSettingsMain.add(jRadioButtonConsoleSecureCRT);
-        jRadioButtonConsoleSecureCRT.setBounds(200, 40, 100, 30);
+        jRadioButtonConsoleSecureCRT.setBounds(180, 40, 100, 30);
 
         jLabelConsoleClient.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelConsoleClient.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -3873,7 +4021,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettingsMain.add(jRadioButtonEnglish);
-        jRadioButtonEnglish.setBounds(110, 100, 70, 30);
+        jRadioButtonEnglish.setBounds(100, 100, 70, 30);
 
         jLabelListTextSizePreview.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jLabelListTextSizePreview.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -3953,7 +4101,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettingsMain.add(jRadioButtonPWauthEnabled);
-        jRadioButtonPWauthEnabled.setBounds(110, 130, 70, 30);
+        jRadioButtonPWauthEnabled.setBounds(100, 130, 70, 30);
 
         buttonGroupPWauthEnableDisable.add(jRadioButtonPWauthDisabled);
         jRadioButtonPWauthDisabled.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -4069,7 +4217,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip1.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip1.setText("Button 1:");
 
@@ -4103,7 +4251,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip2.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip2.setText("Button 2:");
 
@@ -4137,7 +4285,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip3.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip3.setText("Button 3:");
 
@@ -4171,7 +4319,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip4.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip4.setText("Button 4:");
 
@@ -4205,7 +4353,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip5.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip5.setText("Button 5:");
 
@@ -4239,7 +4387,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip6.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip6.setText("Button 6:");
 
@@ -4273,7 +4421,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip7.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip7.setText("Button 7:");
 
@@ -4307,7 +4455,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip8.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip8.setText("Button 8:");
 
@@ -4353,7 +4501,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip9.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip9.setText("Button 9:");
 
@@ -4387,7 +4535,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip10.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip10.setText("Button 10:");
 
@@ -4421,7 +4569,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip11.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip11.setText("Button 11:");
 
@@ -4455,7 +4603,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip12.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip12.setText("Button 12:");
 
@@ -4489,7 +4637,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip13.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip13.setText("Button 13:");
 
@@ -4523,7 +4671,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip14.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip14.setText("Button 14:");
 
@@ -4557,7 +4705,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip15.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip15.setText("Button 15:");
 
@@ -4591,7 +4739,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip16.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip16.setText("Button 16:");
 
@@ -4625,7 +4773,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip17.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip17.setText("Button 17:");
 
@@ -4659,7 +4807,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip18.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip18.setText("Button 18:");
 
@@ -4693,7 +4841,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip19.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip19.setText("Button 19:");
 
@@ -4727,7 +4875,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jLabelButtonToolTip20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonToolTip20.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
         jLabelButtonToolTip20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonToolTip20.setText("Button 20:");
 
@@ -4741,10 +4889,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelButtonIcon20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelButtonIcon20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonIcon20.setText("Icon:");
-
-        jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("*** Restart for changes to take effect *** ➨");
 
         jButton40.setText("Restart");
         jButton40.addActionListener(new java.awt.event.ActionListener() {
@@ -4761,23 +4905,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
-                        .addComponent(jLabelButtonToolTip1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldButtonToolTip1))
-                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
-                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelButtonExecute1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelButtonIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxButtonIcon1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldButtonExecute1)))
-                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jButton33)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton40))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 292, Short.MAX_VALUE)
+                        .addComponent(jButton40, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jLabelButtonToolTip2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -5005,17 +5135,26 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxButtonIcon20, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldButtonExecute20))))
+                            .addComponent(jTextFieldButtonExecute20)))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabelButtonToolTip1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelButtonExecute1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                            .addComponent(jLabelButtonIcon1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute1)
+                            .addComponent(jTextFieldButtonToolTip1))))
                 .addContainerGap())
         );
         jPanelSettingsButtonsLayout.setVerticalGroup(
             jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton33)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton40))
+                    .addComponent(jButton40, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldButtonToolTip1)
@@ -5256,12 +5395,1417 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelButtonExecute20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldButtonExecute20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jScrollPaneSettingsButtons.setViewportView(jPanelSettingsButtons);
 
         jTabbedPaneSettings.addTab("Buttons", jScrollPaneSettingsButtons);
+
+        jScrollPaneSettingsLinks.setPreferredSize(new java.awt.Dimension(557, 2000));
+
+        jPanelSettingsLinks.setMinimumSize(new java.awt.Dimension(0, 0));
+        jPanelSettingsLinks.setPreferredSize(new java.awt.Dimension(550, 2430));
+
+        jLabelLinkText1.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText1.setText("Link 1:");
+
+        jTextFieldLinkText1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText1KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute1.setText("Execute:");
+
+        jTextFieldLinkExecute1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute1KeyReleased(evt);
+            }
+        });
+
+        jButton44.setText("Restart");
+        jButton44.setMargin(null);
+        jButton44.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton44ActionPerformed(evt);
+            }
+        });
+
+        jTextFieldLinkText2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText2KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText2.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText2.setText("Link 2:");
+
+        jTextFieldLinkExecute2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute2KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute2.setText("Execute:");
+
+        jLabelLinkExecute3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute3.setText("Execute:");
+
+        jTextFieldLinkExecute3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute3KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText3.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText3.setText("Link 3:");
+
+        jTextFieldLinkText3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText3KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute4.setText("Execute:");
+
+        jTextFieldLinkExecute4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute4KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText4.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText4.setText("Link 4:");
+
+        jTextFieldLinkText4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText4KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute5.setText("Execute:");
+
+        jTextFieldLinkExecute5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute5KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText5.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText5.setText("Link 5:");
+
+        jTextFieldLinkText5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText5KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute6.setText("Execute:");
+
+        jTextFieldLinkExecute6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute6KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText6.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText6.setText("Link 6:");
+
+        jTextFieldLinkText6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText6KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute7.setText("Execute:");
+
+        jTextFieldLinkExecute7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute7KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText7.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText7.setText("Link 7:");
+
+        jTextFieldLinkText7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText7KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute8.setText("Execute:");
+
+        jTextFieldLinkExecute8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute8KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText8.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText8.setText("Link 8:");
+
+        jTextFieldLinkText8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText8KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute9.setText("Execute:");
+
+        jTextFieldLinkExecute9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute9KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText9.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText9.setText("Link 9:");
+
+        jTextFieldLinkText9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText9KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute10.setText("Execute:");
+
+        jTextFieldLinkExecute10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute10KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText10.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText10.setText("Link 10:");
+
+        jTextFieldLinkText10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText10KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute11.setText("Execute:");
+
+        jTextFieldLinkExecute11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute11KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText11.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText11.setText("Link 11:");
+
+        jTextFieldLinkText11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText11KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute12.setText("Execute:");
+
+        jTextFieldLinkExecute12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute12KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText12.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText12.setText("Link 12:");
+
+        jTextFieldLinkText12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText12KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute13.setText("Execute:");
+
+        jTextFieldLinkExecute13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute13.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute13KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText13.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText13.setText("Link 13:");
+
+        jTextFieldLinkText13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText13.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText13KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute14.setText("Execute:");
+
+        jTextFieldLinkExecute14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute14.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute14KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText14.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText14.setText("Link 14:");
+
+        jTextFieldLinkText14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText14.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText14KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute15.setText("Execute:");
+
+        jTextFieldLinkExecute15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute15.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute15KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText15.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText15.setText("Link 15:");
+
+        jTextFieldLinkText15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText15.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText15KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute16.setText("Execute:");
+
+        jTextFieldLinkExecute16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute16.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute16KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText16.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText16.setText("Link 16:");
+
+        jTextFieldLinkText16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText16.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText16KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute17.setText("Execute:");
+
+        jTextFieldLinkExecute17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute17.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute17KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText17.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText17.setText("Link 17:");
+
+        jTextFieldLinkText17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText17.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText17KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute18.setText("Execute:");
+
+        jTextFieldLinkExecute18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute18.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute18KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText18.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText18.setText("Link 18:");
+
+        jTextFieldLinkText18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText18.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText18KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute19.setText("Execute:");
+
+        jTextFieldLinkExecute19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute19.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute19KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText19.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText19.setText("Link 19:");
+
+        jTextFieldLinkText19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText19.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText19KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute20.setText("Execute:");
+
+        jTextFieldLinkExecute20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute20.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute20KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText20.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText20.setText("Link 20:");
+
+        jTextFieldLinkText20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText20.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText20KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute21.setText("Execute:");
+
+        jTextFieldLinkExecute21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute21.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute21KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText21.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText21.setText("Link 21:");
+
+        jTextFieldLinkText21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText21.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText21KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute22.setText("Execute:");
+
+        jTextFieldLinkExecute22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute22.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute22KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText22.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText22.setText("Link 22:");
+
+        jTextFieldLinkText22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText22.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText22KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute23.setText("Execute:");
+
+        jTextFieldLinkExecute23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute23.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute23KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText23.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText23.setText("Link 23:");
+
+        jTextFieldLinkText23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText23.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText23KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute24.setText("Execute:");
+
+        jTextFieldLinkExecute24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute24.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute24KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText24.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText24.setText("Link 24:");
+
+        jTextFieldLinkText24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText24.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText24KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute25.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute25.setText("Execute:");
+
+        jTextFieldLinkExecute25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute25.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute25KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText25.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText25.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText25.setText("Link 25:");
+
+        jTextFieldLinkText25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText25.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText25KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute26.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute26.setText("Execute:");
+
+        jTextFieldLinkExecute26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute26.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute26KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText26.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText26.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText26.setText("Link 26:");
+
+        jTextFieldLinkText26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText26.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText26KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute27.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute27.setText("Execute:");
+
+        jTextFieldLinkExecute27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute27.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute27KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText27.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText27.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText27.setText("Link 27:");
+
+        jTextFieldLinkText27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText27.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText27KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute28.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute28.setText("Execute:");
+
+        jTextFieldLinkExecute28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute28.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute28KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText28.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText28.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText28.setText("Link 28:");
+
+        jTextFieldLinkText28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText28.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText28KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute29.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute29.setText("Execute:");
+
+        jTextFieldLinkExecute29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute29.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute29KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText29.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText29.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText29.setText("Link 29:");
+
+        jTextFieldLinkText29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText29.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText29KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute30.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute30.setText("Execute:");
+
+        jTextFieldLinkExecute30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute30.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute30KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText30.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText30.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText30.setText("Link 30:");
+
+        jTextFieldLinkText30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText30.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText30KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute31.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute31.setText("Execute:");
+
+        jTextFieldLinkExecute31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute31.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute31KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText31.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText31.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText31.setText("Link 31:");
+
+        jTextFieldLinkText31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText31.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText31KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute32.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute32.setText("Execute:");
+
+        jTextFieldLinkExecute32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute32.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute32KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText32.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText32.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText32.setText("Link 32:");
+
+        jTextFieldLinkText32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText32.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText32KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute33.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute33.setText("Execute:");
+
+        jTextFieldLinkExecute33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute33.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute33KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText33.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText33.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText33.setText("Link 33:");
+
+        jTextFieldLinkText33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText33.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText33KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute34.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute34.setText("Execute:");
+
+        jTextFieldLinkExecute34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute34.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute34KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText34.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText34.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText34.setText("Link 34:");
+
+        jTextFieldLinkText34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText34.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText34KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute35.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute35.setText("Execute:");
+
+        jTextFieldLinkExecute35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute35.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute35KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText35.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText35.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText35.setText("Link 35:");
+
+        jTextFieldLinkText35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText35.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText35KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkExecute36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLinkExecute36.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkExecute36.setText("Execute:");
+
+        jTextFieldLinkExecute36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkExecute36.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkExecute36KeyReleased(evt);
+            }
+        });
+
+        jLabelLinkText36.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelLinkText36.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLinkText36.setText("Link 36:");
+
+        jTextFieldLinkText36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldLinkText36.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldLinkText36KeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelSettingsLinksLayout = new javax.swing.GroupLayout(jPanelSettingsLinks);
+        jPanelSettingsLinks.setLayout(jPanelSettingsLinksLayout);
+        jPanelSettingsLinksLayout.setHorizontalGroup(
+            jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addGap(0, 432, Short.MAX_VALUE)
+                        .addComponent(jButton44, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute1))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText2))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute2))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText3))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute3))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText4))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute4))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText5))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute5))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText6))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute6))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText7))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute7))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText8))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute8))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText9))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute9))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText10))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute10))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText11))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute11))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText12))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute12))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText13, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText13))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute13, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute13))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText14, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText14))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute14, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute14))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText15, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText15))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute15, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute15))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText16, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText16))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute16, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute16))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText17, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText17))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute17, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute17))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText18, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText18))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute18, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute18))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText19, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText19))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute19, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute19))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText20, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText20))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute20, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute20))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText21, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText21))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute21, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute21))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText22, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText22))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute22, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute22))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText23, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText23))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute23, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute23))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText24, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText24))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute24, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute24))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText25, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText25))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute25, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute25))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText26, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText26))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute26, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute26))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText27, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText27))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute27, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute27))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText28, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText28))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute28, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute28))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText29, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText29))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute29, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute29))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText30, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText30))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute30, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute30))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText31, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText31))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute31, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute31))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText32, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText32))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute32, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute32))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText33, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText33))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute33, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute33))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText34, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText34))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute34, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute34))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText35, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText35))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute35, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute35))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkText36, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkText36))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute36, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute36)))
+                .addContainerGap())
+        );
+        jPanelSettingsLinksLayout.setVerticalGroup(
+            jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton44, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText11, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute11, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText12, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute12, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText13, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute13, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText14, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute14, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText15, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute15, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText16, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute16, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText17, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute17, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText18, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute18, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText19, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute19, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText20, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute20, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText21, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute21, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText22, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute22, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText23, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute23, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText24, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute24, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText25, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute25, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText26, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute26, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText27, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute27, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText28, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute28, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText29, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute29, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText30, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute30, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText31, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute31, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText32, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute32, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText33, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute33, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText34, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute34, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText35, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute35, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLinkText36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkText36, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldLinkExecute36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLinkExecute36, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+
+        jScrollPaneSettingsLinks.setViewportView(jPanelSettingsLinks);
+
+        jTabbedPaneSettings.addTab("Links", jScrollPaneSettingsLinks);
 
         jTabbedMain.addTab("Settings", jTabbedPaneSettings);
 
@@ -7901,6 +9445,298 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         openFileUsingDesktop(strPathLaunchPadPersistantUserFolder);
     }//GEN-LAST:event_jButton43ActionPerformed
 
+    private void jTextFieldLinkText1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText1KeyReleased
+
+    private void jTextFieldLinkExecute1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute1KeyReleased
+
+    private void jButton44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton44ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton44ActionPerformed
+
+    private void jTextFieldLinkText2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText2KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText2KeyReleased
+
+    private void jTextFieldLinkExecute2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute2KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute2KeyReleased
+
+    private void jTextFieldLinkExecute3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute3KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute3KeyReleased
+
+    private void jTextFieldLinkText3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText3KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText3KeyReleased
+
+    private void jTextFieldLinkExecute4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute4KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute4KeyReleased
+
+    private void jTextFieldLinkText4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText4KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText4KeyReleased
+
+    private void jTextFieldLinkExecute5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute5KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute5KeyReleased
+
+    private void jTextFieldLinkText5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText5KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText5KeyReleased
+
+    private void jTextFieldLinkExecute6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute6KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute6KeyReleased
+
+    private void jTextFieldLinkText6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText6KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText6KeyReleased
+
+    private void jTextFieldLinkExecute7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute7KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute7KeyReleased
+
+    private void jTextFieldLinkText7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText7KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText7KeyReleased
+
+    private void jTextFieldLinkExecute8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute8KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute8KeyReleased
+
+    private void jTextFieldLinkText8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText8KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText8KeyReleased
+
+    private void jTextFieldLinkExecute9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute9KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute9KeyReleased
+
+    private void jTextFieldLinkText9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText9KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText9KeyReleased
+
+    private void jTextFieldLinkExecute10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute10KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute10KeyReleased
+
+    private void jTextFieldLinkText10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText10KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText10KeyReleased
+
+    private void jTextFieldLinkExecute11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute11KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute11KeyReleased
+
+    private void jTextFieldLinkText11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText11KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText11KeyReleased
+
+    private void jTextFieldLinkExecute12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute12KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute12KeyReleased
+
+    private void jTextFieldLinkText12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText12KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText12KeyReleased
+
+    private void jTextFieldLinkExecute13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute13KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute13KeyReleased
+
+    private void jTextFieldLinkText13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText13KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText13KeyReleased
+
+    private void jTextFieldLinkExecute14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute14KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute14KeyReleased
+
+    private void jTextFieldLinkText14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText14KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText14KeyReleased
+
+    private void jTextFieldLinkExecute15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute15KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute15KeyReleased
+
+    private void jTextFieldLinkText15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText15KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText15KeyReleased
+
+    private void jTextFieldLinkExecute16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute16KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute16KeyReleased
+
+    private void jTextFieldLinkText16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText16KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText16KeyReleased
+
+    private void jTextFieldLinkExecute17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute17KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute17KeyReleased
+
+    private void jTextFieldLinkText17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText17KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText17KeyReleased
+
+    private void jTextFieldLinkExecute18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute18KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute18KeyReleased
+
+    private void jTextFieldLinkText18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText18KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText18KeyReleased
+
+    private void jTextFieldLinkExecute19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute19KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute19KeyReleased
+
+    private void jTextFieldLinkText19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText19KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText19KeyReleased
+
+    private void jTextFieldLinkExecute20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute20KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute20KeyReleased
+
+    private void jTextFieldLinkText20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText20KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText20KeyReleased
+
+    private void jTextFieldLinkExecute21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute21KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute21KeyReleased
+
+    private void jTextFieldLinkText21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText21KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText21KeyReleased
+
+    private void jTextFieldLinkExecute22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute22KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute22KeyReleased
+
+    private void jTextFieldLinkText22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText22KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText22KeyReleased
+
+    private void jTextFieldLinkExecute23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute23KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute23KeyReleased
+
+    private void jTextFieldLinkText23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText23KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText23KeyReleased
+
+    private void jTextFieldLinkExecute24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute24KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute24KeyReleased
+
+    private void jTextFieldLinkText24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText24KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText24KeyReleased
+
+    private void jTextFieldLinkExecute25KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute25KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute25KeyReleased
+
+    private void jTextFieldLinkText25KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText25KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText25KeyReleased
+
+    private void jTextFieldLinkExecute26KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute26KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute26KeyReleased
+
+    private void jTextFieldLinkText26KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText26KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText26KeyReleased
+
+    private void jTextFieldLinkExecute27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute27KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute27KeyReleased
+
+    private void jTextFieldLinkText27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText27KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText27KeyReleased
+
+    private void jTextFieldLinkExecute28KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute28KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute28KeyReleased
+
+    private void jTextFieldLinkText28KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText28KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText28KeyReleased
+
+    private void jTextFieldLinkExecute29KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute29KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute29KeyReleased
+
+    private void jTextFieldLinkText29KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText29KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText29KeyReleased
+
+    private void jTextFieldLinkExecute30KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute30KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute30KeyReleased
+
+    private void jTextFieldLinkText30KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText30KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText30KeyReleased
+
+    private void jTextFieldLinkExecute31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute31KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute31KeyReleased
+
+    private void jTextFieldLinkText31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText31KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText31KeyReleased
+
+    private void jTextFieldLinkExecute32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute32KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute32KeyReleased
+
+    private void jTextFieldLinkText32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText32KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText32KeyReleased
+
+    private void jTextFieldLinkExecute33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute33KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute33KeyReleased
+
+    private void jTextFieldLinkText33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText33KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText33KeyReleased
+
+    private void jTextFieldLinkExecute34KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute34KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute34KeyReleased
+
+    private void jTextFieldLinkText34KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText34KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText34KeyReleased
+
+    private void jTextFieldLinkExecute35KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute35KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute35KeyReleased
+
+    private void jTextFieldLinkText35KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText35KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText35KeyReleased
+
+    private void jTextFieldLinkExecute36KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute36KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkExecute36KeyReleased
+
+    private void jTextFieldLinkText36KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText36KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLinkText36KeyReleased
+
     
     /**
      * @param args the command line arguments
@@ -8746,6 +10582,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton41;
     private javax.swing.JButton jButton42;
     private javax.swing.JButton jButton43;
+    private javax.swing.JButton jButton44;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -8925,7 +10762,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxConsoleBaud;
     private javax.swing.JComboBox<String> jComboBoxConsoleCOM;
     private javax.swing.JComboBox<String> jComboBoxZipEncMethod;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -9009,6 +10845,78 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelGetNTP2;
     private javax.swing.JLabel jLabelHashGenerator;
     private javax.swing.JLabel jLabelLanguageSelect;
+    private javax.swing.JLabel jLabelLinkExecute1;
+    private javax.swing.JLabel jLabelLinkExecute10;
+    private javax.swing.JLabel jLabelLinkExecute11;
+    private javax.swing.JLabel jLabelLinkExecute12;
+    private javax.swing.JLabel jLabelLinkExecute13;
+    private javax.swing.JLabel jLabelLinkExecute14;
+    private javax.swing.JLabel jLabelLinkExecute15;
+    private javax.swing.JLabel jLabelLinkExecute16;
+    private javax.swing.JLabel jLabelLinkExecute17;
+    private javax.swing.JLabel jLabelLinkExecute18;
+    private javax.swing.JLabel jLabelLinkExecute19;
+    private javax.swing.JLabel jLabelLinkExecute2;
+    private javax.swing.JLabel jLabelLinkExecute20;
+    private javax.swing.JLabel jLabelLinkExecute21;
+    private javax.swing.JLabel jLabelLinkExecute22;
+    private javax.swing.JLabel jLabelLinkExecute23;
+    private javax.swing.JLabel jLabelLinkExecute24;
+    private javax.swing.JLabel jLabelLinkExecute25;
+    private javax.swing.JLabel jLabelLinkExecute26;
+    private javax.swing.JLabel jLabelLinkExecute27;
+    private javax.swing.JLabel jLabelLinkExecute28;
+    private javax.swing.JLabel jLabelLinkExecute29;
+    private javax.swing.JLabel jLabelLinkExecute3;
+    private javax.swing.JLabel jLabelLinkExecute30;
+    private javax.swing.JLabel jLabelLinkExecute31;
+    private javax.swing.JLabel jLabelLinkExecute32;
+    private javax.swing.JLabel jLabelLinkExecute33;
+    private javax.swing.JLabel jLabelLinkExecute34;
+    private javax.swing.JLabel jLabelLinkExecute35;
+    private javax.swing.JLabel jLabelLinkExecute36;
+    private javax.swing.JLabel jLabelLinkExecute4;
+    private javax.swing.JLabel jLabelLinkExecute5;
+    private javax.swing.JLabel jLabelLinkExecute6;
+    private javax.swing.JLabel jLabelLinkExecute7;
+    private javax.swing.JLabel jLabelLinkExecute8;
+    private javax.swing.JLabel jLabelLinkExecute9;
+    private javax.swing.JLabel jLabelLinkText1;
+    private javax.swing.JLabel jLabelLinkText10;
+    private javax.swing.JLabel jLabelLinkText11;
+    private javax.swing.JLabel jLabelLinkText12;
+    private javax.swing.JLabel jLabelLinkText13;
+    private javax.swing.JLabel jLabelLinkText14;
+    private javax.swing.JLabel jLabelLinkText15;
+    private javax.swing.JLabel jLabelLinkText16;
+    private javax.swing.JLabel jLabelLinkText17;
+    private javax.swing.JLabel jLabelLinkText18;
+    private javax.swing.JLabel jLabelLinkText19;
+    private javax.swing.JLabel jLabelLinkText2;
+    private javax.swing.JLabel jLabelLinkText20;
+    private javax.swing.JLabel jLabelLinkText21;
+    private javax.swing.JLabel jLabelLinkText22;
+    private javax.swing.JLabel jLabelLinkText23;
+    private javax.swing.JLabel jLabelLinkText24;
+    private javax.swing.JLabel jLabelLinkText25;
+    private javax.swing.JLabel jLabelLinkText26;
+    private javax.swing.JLabel jLabelLinkText27;
+    private javax.swing.JLabel jLabelLinkText28;
+    private javax.swing.JLabel jLabelLinkText29;
+    private javax.swing.JLabel jLabelLinkText3;
+    private javax.swing.JLabel jLabelLinkText30;
+    private javax.swing.JLabel jLabelLinkText31;
+    private javax.swing.JLabel jLabelLinkText32;
+    private javax.swing.JLabel jLabelLinkText33;
+    private javax.swing.JLabel jLabelLinkText34;
+    private javax.swing.JLabel jLabelLinkText35;
+    private javax.swing.JLabel jLabelLinkText36;
+    private javax.swing.JLabel jLabelLinkText4;
+    private javax.swing.JLabel jLabelLinkText5;
+    private javax.swing.JLabel jLabelLinkText6;
+    private javax.swing.JLabel jLabelLinkText7;
+    private javax.swing.JLabel jLabelLinkText8;
+    private javax.swing.JLabel jLabelLinkText9;
     private javax.swing.JLabel jLabelLinksFilter;
     private javax.swing.JLabel jLabelListTextSize1;
     private javax.swing.JLabel jLabelListTextSizePreview;
@@ -9036,6 +10944,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelScanning;
     private javax.swing.JPanel jPanelScripts;
     private javax.swing.JPanel jPanelSettingsButtons;
+    private javax.swing.JPanel jPanelSettingsLinks;
     private javax.swing.JPanel jPanelSettingsMain;
     private javax.swing.JPanel jPanelSyncing;
     private javax.swing.JPanel jPanelToolboxScripts;
@@ -9061,6 +10970,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPaneSessionList;
     private javax.swing.JScrollPane jScrollPaneSettingsButtons;
+    private javax.swing.JScrollPane jScrollPaneSettingsLinks;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -9123,6 +11033,78 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldHashSHA1;
     private javax.swing.JTextField jTextFieldHashSHA256;
     private javax.swing.JTextField jTextFieldHashSHA512;
+    private javax.swing.JTextField jTextFieldLinkExecute1;
+    private javax.swing.JTextField jTextFieldLinkExecute10;
+    private javax.swing.JTextField jTextFieldLinkExecute11;
+    private javax.swing.JTextField jTextFieldLinkExecute12;
+    private javax.swing.JTextField jTextFieldLinkExecute13;
+    private javax.swing.JTextField jTextFieldLinkExecute14;
+    private javax.swing.JTextField jTextFieldLinkExecute15;
+    private javax.swing.JTextField jTextFieldLinkExecute16;
+    private javax.swing.JTextField jTextFieldLinkExecute17;
+    private javax.swing.JTextField jTextFieldLinkExecute18;
+    private javax.swing.JTextField jTextFieldLinkExecute19;
+    private javax.swing.JTextField jTextFieldLinkExecute2;
+    private javax.swing.JTextField jTextFieldLinkExecute20;
+    private javax.swing.JTextField jTextFieldLinkExecute21;
+    private javax.swing.JTextField jTextFieldLinkExecute22;
+    private javax.swing.JTextField jTextFieldLinkExecute23;
+    private javax.swing.JTextField jTextFieldLinkExecute24;
+    private javax.swing.JTextField jTextFieldLinkExecute25;
+    private javax.swing.JTextField jTextFieldLinkExecute26;
+    private javax.swing.JTextField jTextFieldLinkExecute27;
+    private javax.swing.JTextField jTextFieldLinkExecute28;
+    private javax.swing.JTextField jTextFieldLinkExecute29;
+    private javax.swing.JTextField jTextFieldLinkExecute3;
+    private javax.swing.JTextField jTextFieldLinkExecute30;
+    private javax.swing.JTextField jTextFieldLinkExecute31;
+    private javax.swing.JTextField jTextFieldLinkExecute32;
+    private javax.swing.JTextField jTextFieldLinkExecute33;
+    private javax.swing.JTextField jTextFieldLinkExecute34;
+    private javax.swing.JTextField jTextFieldLinkExecute35;
+    private javax.swing.JTextField jTextFieldLinkExecute36;
+    private javax.swing.JTextField jTextFieldLinkExecute4;
+    private javax.swing.JTextField jTextFieldLinkExecute5;
+    private javax.swing.JTextField jTextFieldLinkExecute6;
+    private javax.swing.JTextField jTextFieldLinkExecute7;
+    private javax.swing.JTextField jTextFieldLinkExecute8;
+    private javax.swing.JTextField jTextFieldLinkExecute9;
+    private javax.swing.JTextField jTextFieldLinkText1;
+    private javax.swing.JTextField jTextFieldLinkText10;
+    private javax.swing.JTextField jTextFieldLinkText11;
+    private javax.swing.JTextField jTextFieldLinkText12;
+    private javax.swing.JTextField jTextFieldLinkText13;
+    private javax.swing.JTextField jTextFieldLinkText14;
+    private javax.swing.JTextField jTextFieldLinkText15;
+    private javax.swing.JTextField jTextFieldLinkText16;
+    private javax.swing.JTextField jTextFieldLinkText17;
+    private javax.swing.JTextField jTextFieldLinkText18;
+    private javax.swing.JTextField jTextFieldLinkText19;
+    private javax.swing.JTextField jTextFieldLinkText2;
+    private javax.swing.JTextField jTextFieldLinkText20;
+    private javax.swing.JTextField jTextFieldLinkText21;
+    private javax.swing.JTextField jTextFieldLinkText22;
+    private javax.swing.JTextField jTextFieldLinkText23;
+    private javax.swing.JTextField jTextFieldLinkText24;
+    private javax.swing.JTextField jTextFieldLinkText25;
+    private javax.swing.JTextField jTextFieldLinkText26;
+    private javax.swing.JTextField jTextFieldLinkText27;
+    private javax.swing.JTextField jTextFieldLinkText28;
+    private javax.swing.JTextField jTextFieldLinkText29;
+    private javax.swing.JTextField jTextFieldLinkText3;
+    private javax.swing.JTextField jTextFieldLinkText30;
+    private javax.swing.JTextField jTextFieldLinkText31;
+    private javax.swing.JTextField jTextFieldLinkText32;
+    private javax.swing.JTextField jTextFieldLinkText33;
+    private javax.swing.JTextField jTextFieldLinkText34;
+    private javax.swing.JTextField jTextFieldLinkText35;
+    private javax.swing.JTextField jTextFieldLinkText36;
+    private javax.swing.JTextField jTextFieldLinkText4;
+    private javax.swing.JTextField jTextFieldLinkText5;
+    private javax.swing.JTextField jTextFieldLinkText6;
+    private javax.swing.JTextField jTextFieldLinkText7;
+    private javax.swing.JTextField jTextFieldLinkText8;
+    private javax.swing.JTextField jTextFieldLinkText9;
     private javax.swing.JTextField jTextFieldLinksFilter;
     private javax.swing.JTextField jTextFieldNtpAtomicTime;
     private javax.swing.JTextField jTextFieldNtpServer;
