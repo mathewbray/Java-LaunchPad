@@ -156,6 +156,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         System.out.println("Host IP   : "+getIPAddress());
         System.out.println("Host Address : "+getMAC());    
         
+
+
+        
         //- Set Personal Text Setting 
         try {
             String myValue = PropertyHandlerPersonal.getInstance().getValue("SettingTextSize");
@@ -304,37 +307,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 }
             }
         });
-        
-        //--- Set function buttons
-        try {
-            //button 1
-            String myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunction1");
-            if("".equals(myValue)) {
-                PropertyHandler.getInstance().setValue("ButtonExecuteFunction1", "HTTPS");
-            }
-            jButtonExecuteFunction1.setText(PropertyHandler.getInstance().getValue("ButtonExecuteFunction1"));
-
-        } catch (NullPointerException e) {System.out.println("Button1 Goofed");
-        }
-        try {
-            //button 2
-            String myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunction2");
-            if("".equals(myValue)) {
-                PropertyHandler.getInstance().setValue("ButtonExecuteFunction2", "RDP");
-            }         
-            jButtonExecuteFunction2.setText(PropertyHandler.getInstance().getValue("ButtonExecuteFunction2"));
-
-        } catch (NullPointerException e) {System.out.println("Button2 Goofed");
-        }
-        try {
-            //button 3
-            String myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunction3");
-            if("".equals(myValue)) {
-                PropertyHandler.getInstance().setValue("ButtonExecuteFunction3", "SSH");
-            }        
-            jButtonExecuteFunctionSSH.setText(PropertyHandler.getInstance().getValue("ButtonExecuteFunction3"));            
-        } catch (NullPointerException e) {System.out.println("Button3 Goofed");
-        }        
+            
 
         //--- Apply images to buttons
         Integer buttonHeightWidth = 40;
@@ -835,7 +808,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         SHA1("SHA1"),
         SHA256("SHA-256"),
         SHA512("SHA-512");
-        private String name;
+        private final String name;
         HashGenerate(String name) {
             this.name = name;
         }
@@ -3962,7 +3935,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         buttonGroupConsoleClient.add(jRadioButtonConsolePutty);
         jRadioButtonConsolePutty.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jRadioButtonConsolePutty.setSelected(true);
         jRadioButtonConsolePutty.setText("PuTTY");
         jRadioButtonConsolePutty.setEnabled(false);
         jRadioButtonConsolePutty.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -3981,6 +3953,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         buttonGroupConsoleClient.add(jRadioButtonConsoleSecureCRT);
         jRadioButtonConsoleSecureCRT.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jRadioButtonConsoleSecureCRT.setSelected(true);
         jRadioButtonConsoleSecureCRT.setText("SecureCRT");
         jRadioButtonConsoleSecureCRT.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jPanelSettingsMain.add(jRadioButtonConsoleSecureCRT);
@@ -4058,7 +4031,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonScriptUpdateLaunchPad.setBounds(430, 10, 130, 30);
 
         jButtonReportIssue.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButtonReportIssue.setText("Report an Issue");
+        jButtonReportIssue.setText("Submit a change request");
         jButtonReportIssue.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonReportIssue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4066,7 +4039,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettingsMain.add(jButtonReportIssue);
-        jButtonReportIssue.setBounds(10, 490, 110, 20);
+        jButtonReportIssue.setBounds(10, 490, 170, 20);
 
         jTextField2.setBackground(new java.awt.Color(51, 51, 51));
         jTextField2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -6226,25 +6199,13 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                         .addGap(0, 439, Short.MAX_VALUE)
                         .addComponent(jButton44, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
-                        .addComponent(jLabelLinkExecute1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldLinkExecute1))
-                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
                         .addComponent(jLabelLinkText2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldLinkText2))
                     .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
-                        .addComponent(jLabelLinkExecute2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldLinkExecute2))
-                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
                         .addComponent(jLabelLinkText3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldLinkText3))
-                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
-                        .addComponent(jLabelLinkExecute3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldLinkExecute3))
                     .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
                         .addComponent(jLabelLinkText4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -6508,7 +6469,19 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                     .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
                         .addComponent(jLabelLinkExecute36, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldLinkExecute36)))
+                        .addComponent(jTextFieldLinkExecute36))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute1))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute3))
+                    .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabelLinkExecute2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldLinkExecute2)))
                 .addContainerGap())
         );
         jPanelSettingsLinksLayout.setVerticalGroup(
@@ -8284,7 +8257,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         
         //- Decided to hard-set logging to the output folder
         //if(jCheckBoxLOG.isSelected()) {
-            StringPingLOG = "| Tee-Object \"" + strPathLoggingFolder + "\\Ping-" + jTextFieldPingHostname.getText() + "-" + dateTime.toString() + ".txt" + "\"";
+            StringPingLOG = "| Tee-Object \"" + strPathLoggingFolder + "\\Ping-" + jTextFieldPingHostname.getText() + "-" + dateTime + ".txt" + "\"";
         //}        
         
         try {
@@ -9466,11 +9439,11 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldLinkText2KeyReleased
 
     private void jTextFieldLinkExecute2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute2KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink02Exec",jTextFieldLinkExecute2.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute2KeyReleased
 
     private void jTextFieldLinkExecute3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute3KeyReleased
-
+        PropertyHandler.getInstance().setValue("CustomLink03Exec",jTextFieldLinkExecute3.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute3KeyReleased
 
     private void jTextFieldLinkText3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText3KeyReleased
@@ -9478,7 +9451,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldLinkText3KeyReleased
 
     private void jTextFieldLinkExecute4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute4KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink04Exec",jTextFieldLinkExecute4.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute4KeyReleased
 
     private void jTextFieldLinkText4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText4KeyReleased
@@ -9486,7 +9459,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldLinkText4KeyReleased
 
     private void jTextFieldLinkExecute5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute5KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink05Exec",jTextFieldLinkExecute5.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute5KeyReleased
 
     private void jTextFieldLinkText5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText5KeyReleased
@@ -9494,7 +9467,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldLinkText5KeyReleased
 
     private void jTextFieldLinkExecute6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute6KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink06Exec",jTextFieldLinkExecute6.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute6KeyReleased
 
     private void jTextFieldLinkText6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText6KeyReleased
@@ -9502,7 +9475,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldLinkText6KeyReleased
 
     private void jTextFieldLinkExecute7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute7KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink07Exec",jTextFieldLinkExecute7.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute7KeyReleased
 
     private void jTextFieldLinkText7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText7KeyReleased
@@ -9510,235 +9483,235 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldLinkText7KeyReleased
 
     private void jTextFieldLinkExecute8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute8KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink08Exec",jTextFieldLinkExecute8.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute8KeyReleased
 
     private void jTextFieldLinkText8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText8KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink08Description",jTextFieldLinkText8.getText());
     }//GEN-LAST:event_jTextFieldLinkText8KeyReleased
 
     private void jTextFieldLinkExecute9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute9KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink09Exec",jTextFieldLinkExecute9.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute9KeyReleased
 
     private void jTextFieldLinkText9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText9KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink09Description",jTextFieldLinkText9.getText());
     }//GEN-LAST:event_jTextFieldLinkText9KeyReleased
 
     private void jTextFieldLinkExecute10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute10KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink10Exec",jTextFieldLinkExecute10.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute10KeyReleased
 
     private void jTextFieldLinkText10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText10KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink10Description",jTextFieldLinkText10.getText());
     }//GEN-LAST:event_jTextFieldLinkText10KeyReleased
 
     private void jTextFieldLinkExecute11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute11KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink11Exec",jTextFieldLinkExecute11.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute11KeyReleased
 
     private void jTextFieldLinkText11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText11KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink11Description",jTextFieldLinkText11.getText());
     }//GEN-LAST:event_jTextFieldLinkText11KeyReleased
 
     private void jTextFieldLinkExecute12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute12KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink12Exec", jTextFieldLinkExecute12.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute12KeyReleased
 
     private void jTextFieldLinkText12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText12KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink12Description",jTextFieldLinkText12.getText());
     }//GEN-LAST:event_jTextFieldLinkText12KeyReleased
 
     private void jTextFieldLinkExecute13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute13KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink13Exec",jTextFieldLinkExecute13.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute13KeyReleased
 
     private void jTextFieldLinkText13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText13KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink13Description",jTextFieldLinkText13.getText());
     }//GEN-LAST:event_jTextFieldLinkText13KeyReleased
 
     private void jTextFieldLinkExecute14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute14KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink14Exec",jTextFieldLinkExecute14.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute14KeyReleased
 
     private void jTextFieldLinkText14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText14KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink14Description",jTextFieldLinkText14.getText());
     }//GEN-LAST:event_jTextFieldLinkText14KeyReleased
 
     private void jTextFieldLinkExecute15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute15KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink15Exec",jTextFieldLinkExecute15.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute15KeyReleased
 
     private void jTextFieldLinkText15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText15KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink15Description",jTextFieldLinkText15.getText());
     }//GEN-LAST:event_jTextFieldLinkText15KeyReleased
 
     private void jTextFieldLinkExecute16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute16KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink16Exec",jTextFieldLinkExecute16.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute16KeyReleased
 
     private void jTextFieldLinkText16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText16KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink16Description",jTextFieldLinkText16.getText());
     }//GEN-LAST:event_jTextFieldLinkText16KeyReleased
 
     private void jTextFieldLinkExecute17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute17KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink17Exec",jTextFieldLinkExecute17.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute17KeyReleased
 
     private void jTextFieldLinkText17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText17KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink17Description",jTextFieldLinkText17.getText());
     }//GEN-LAST:event_jTextFieldLinkText17KeyReleased
 
     private void jTextFieldLinkExecute18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute18KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink18Exec",jTextFieldLinkExecute18.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute18KeyReleased
 
     private void jTextFieldLinkText18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText18KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink18Description",jTextFieldLinkText18.getText());
     }//GEN-LAST:event_jTextFieldLinkText18KeyReleased
 
     private void jTextFieldLinkExecute19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute19KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink19Exec",jTextFieldLinkExecute19.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute19KeyReleased
 
     private void jTextFieldLinkText19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText19KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink19Description",jTextFieldLinkText19.getText());
     }//GEN-LAST:event_jTextFieldLinkText19KeyReleased
 
     private void jTextFieldLinkExecute20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute20KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink20Exec",jTextFieldLinkExecute20.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute20KeyReleased
 
     private void jTextFieldLinkText20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText20KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink20Description",jTextFieldLinkText20.getText());
     }//GEN-LAST:event_jTextFieldLinkText20KeyReleased
 
     private void jTextFieldLinkExecute21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute21KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink21Exec",jTextFieldLinkExecute21.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute21KeyReleased
 
     private void jTextFieldLinkText21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText21KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink21Description",jTextFieldLinkText21.getText());
     }//GEN-LAST:event_jTextFieldLinkText21KeyReleased
 
     private void jTextFieldLinkExecute22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute22KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink22Exec",jTextFieldLinkExecute22.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute22KeyReleased
 
     private void jTextFieldLinkText22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText22KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink22Description",jTextFieldLinkText22.getText());
     }//GEN-LAST:event_jTextFieldLinkText22KeyReleased
 
     private void jTextFieldLinkExecute23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute23KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink23Exec",jTextFieldLinkExecute23.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute23KeyReleased
 
     private void jTextFieldLinkText23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText23KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink23Description",jTextFieldLinkText23.getText());
     }//GEN-LAST:event_jTextFieldLinkText23KeyReleased
 
     private void jTextFieldLinkExecute24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute24KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink24Exec",jTextFieldLinkExecute24.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute24KeyReleased
 
     private void jTextFieldLinkText24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText24KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink24Description",jTextFieldLinkText24.getText());
     }//GEN-LAST:event_jTextFieldLinkText24KeyReleased
 
     private void jTextFieldLinkExecute25KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute25KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink25Exec",jTextFieldLinkExecute25.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute25KeyReleased
 
     private void jTextFieldLinkText25KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText25KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink25Description",jTextFieldLinkText25.getText());
     }//GEN-LAST:event_jTextFieldLinkText25KeyReleased
 
     private void jTextFieldLinkExecute26KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute26KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink26Exec",jTextFieldLinkExecute26.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute26KeyReleased
 
     private void jTextFieldLinkText26KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText26KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink26Description",jTextFieldLinkText26.getText());
     }//GEN-LAST:event_jTextFieldLinkText26KeyReleased
 
     private void jTextFieldLinkExecute27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute27KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink27Exec",jTextFieldLinkExecute27.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute27KeyReleased
 
     private void jTextFieldLinkText27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText27KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink27Description",jTextFieldLinkText27.getText());
     }//GEN-LAST:event_jTextFieldLinkText27KeyReleased
 
     private void jTextFieldLinkExecute28KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute28KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink28Exec",jTextFieldLinkExecute28.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute28KeyReleased
 
     private void jTextFieldLinkText28KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText28KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink28Description",jTextFieldLinkText28.getText());
     }//GEN-LAST:event_jTextFieldLinkText28KeyReleased
 
     private void jTextFieldLinkExecute29KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute29KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink29Exec",jTextFieldLinkExecute29.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute29KeyReleased
 
     private void jTextFieldLinkText29KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText29KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink29Description",jTextFieldLinkText29.getText());
     }//GEN-LAST:event_jTextFieldLinkText29KeyReleased
 
     private void jTextFieldLinkExecute30KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute30KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink30Exec",jTextFieldLinkExecute30.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute30KeyReleased
 
     private void jTextFieldLinkText30KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText30KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink30Description",jTextFieldLinkText30.getText());
     }//GEN-LAST:event_jTextFieldLinkText30KeyReleased
 
     private void jTextFieldLinkExecute31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute31KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink31Exec",jTextFieldLinkExecute31.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute31KeyReleased
 
     private void jTextFieldLinkText31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText31KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink31Description",jTextFieldLinkText31.getText());
     }//GEN-LAST:event_jTextFieldLinkText31KeyReleased
 
     private void jTextFieldLinkExecute32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute32KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink32Exec",jTextFieldLinkExecute32.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute32KeyReleased
 
     private void jTextFieldLinkText32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText32KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink32Description",jTextFieldLinkText32.getText());
     }//GEN-LAST:event_jTextFieldLinkText32KeyReleased
 
     private void jTextFieldLinkExecute33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute33KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink33Exec",jTextFieldLinkExecute33.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute33KeyReleased
 
     private void jTextFieldLinkText33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText33KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink33Description",jTextFieldLinkText33.getText());
     }//GEN-LAST:event_jTextFieldLinkText33KeyReleased
 
     private void jTextFieldLinkExecute34KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute34KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink34Exec",jTextFieldLinkExecute34.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute34KeyReleased
 
     private void jTextFieldLinkText34KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText34KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink34Description",jTextFieldLinkText34.getText());
     }//GEN-LAST:event_jTextFieldLinkText34KeyReleased
 
     private void jTextFieldLinkExecute35KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute35KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink35Exec",jTextFieldLinkExecute35.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute35KeyReleased
 
     private void jTextFieldLinkText35KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText35KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink35Description",jTextFieldLinkText35.getText());
     }//GEN-LAST:event_jTextFieldLinkText35KeyReleased
 
     private void jTextFieldLinkExecute36KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute36KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink36Exec",jTextFieldLinkExecute36.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute36KeyReleased
 
     private void jTextFieldLinkText36KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText36KeyReleased
-        // TODO add your handling code here:
+        PropertyHandler.getInstance().setValue("CustomLink36Description",jTextFieldLinkText36.getText());
     }//GEN-LAST:event_jTextFieldLinkText36KeyReleased
 
     private void jTextFieldLinkText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLinkText1ActionPerformed
@@ -10026,7 +9999,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             //- Using Runtime
             System.out.println("Opening Link: " + strCommand); 
             if(strCommand != null && !strCommand.isEmpty()) { /* do your stuffs here */             
-                Runtime.getRuntime().exec("cmd.exe /c start " + strCommand);
+                //Runtime.getRuntime().exec("cmd.exe /c start " + strCommand);
+                Runtime.getRuntime().exec(strCommand);
             }
         }
         catch (IOException e) {
@@ -10046,7 +10020,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             //- Using Runtime
             System.out.println("Opening Script: " + strCommand);  
             if(strCommand != null && !strCommand.isEmpty()) { /* do your stuffs here */ 
-                Runtime.getRuntime().exec("cmd.exe /c start " + strCommand);
+                //Runtime.getRuntime().exec("cmd.exe /c start " + strCommand);
+                Runtime.getRuntime().exec(strCommand);
             }
         }
         catch (IOException e) {
@@ -10403,8 +10378,78 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     public void SettingsLoadLinkData() {
         //- Text
         jTextFieldLinkText1.setText(PropertyHandler.getInstance().getValue("CustomLink01Description"));
+        jTextFieldLinkText2.setText(PropertyHandler.getInstance().getValue("CustomLink02Description"));
+        jTextFieldLinkText3.setText(PropertyHandler.getInstance().getValue("CustomLink03Description"));
+        jTextFieldLinkText4.setText(PropertyHandler.getInstance().getValue("CustomLink04Description"));
+        jTextFieldLinkText5.setText(PropertyHandler.getInstance().getValue("CustomLink05Description"));
+        jTextFieldLinkText6.setText(PropertyHandler.getInstance().getValue("CustomLink06Description"));
+        jTextFieldLinkText7.setText(PropertyHandler.getInstance().getValue("CustomLink07Description"));
+        jTextFieldLinkText8.setText(PropertyHandler.getInstance().getValue("CustomLink08Description"));
+        jTextFieldLinkText9.setText(PropertyHandler.getInstance().getValue("CustomLink09Description"));
+        jTextFieldLinkText10.setText(PropertyHandler.getInstance().getValue("CustomLink10Description"));
+        jTextFieldLinkText11.setText(PropertyHandler.getInstance().getValue("CustomLink11Description"));
+        jTextFieldLinkText12.setText(PropertyHandler.getInstance().getValue("CustomLink12Description"));
+        jTextFieldLinkText13.setText(PropertyHandler.getInstance().getValue("CustomLink13Description"));
+        jTextFieldLinkText14.setText(PropertyHandler.getInstance().getValue("CustomLink14Description"));
+        jTextFieldLinkText15.setText(PropertyHandler.getInstance().getValue("CustomLink15Description"));
+        jTextFieldLinkText16.setText(PropertyHandler.getInstance().getValue("CustomLink16Description"));
+        jTextFieldLinkText17.setText(PropertyHandler.getInstance().getValue("CustomLink17Description"));
+        jTextFieldLinkText18.setText(PropertyHandler.getInstance().getValue("CustomLink18Description"));
+        jTextFieldLinkText19.setText(PropertyHandler.getInstance().getValue("CustomLink19Description"));
+        jTextFieldLinkText20.setText(PropertyHandler.getInstance().getValue("CustomLink20Description"));
+        jTextFieldLinkText21.setText(PropertyHandler.getInstance().getValue("CustomLink21Description"));
+        jTextFieldLinkText22.setText(PropertyHandler.getInstance().getValue("CustomLink22Description"));
+        jTextFieldLinkText23.setText(PropertyHandler.getInstance().getValue("CustomLink23Description"));
+        jTextFieldLinkText24.setText(PropertyHandler.getInstance().getValue("CustomLink24Description"));
+        jTextFieldLinkText25.setText(PropertyHandler.getInstance().getValue("CustomLink25Description"));
+        jTextFieldLinkText26.setText(PropertyHandler.getInstance().getValue("CustomLink26Description"));
+        jTextFieldLinkText27.setText(PropertyHandler.getInstance().getValue("CustomLink27Description"));
+        jTextFieldLinkText28.setText(PropertyHandler.getInstance().getValue("CustomLink28Description"));
+        jTextFieldLinkText29.setText(PropertyHandler.getInstance().getValue("CustomLink29Description"));
+        jTextFieldLinkText30.setText(PropertyHandler.getInstance().getValue("CustomLink30Description"));
+        jTextFieldLinkText31.setText(PropertyHandler.getInstance().getValue("CustomLink31Description"));
+        jTextFieldLinkText32.setText(PropertyHandler.getInstance().getValue("CustomLink32Description"));
+        jTextFieldLinkText33.setText(PropertyHandler.getInstance().getValue("CustomLink33Description"));
+        jTextFieldLinkText34.setText(PropertyHandler.getInstance().getValue("CustomLink34Description"));
+        jTextFieldLinkText35.setText(PropertyHandler.getInstance().getValue("CustomLink35Description"));
+        jTextFieldLinkText36.setText(PropertyHandler.getInstance().getValue("CustomLink36Description"));
         //- Executions
         jTextFieldLinkExecute1.setText(PropertyHandler.getInstance().getValue("CustomLink01Exec"));
+        jTextFieldLinkExecute2.setText(PropertyHandler.getInstance().getValue("CustomLink02Exec"));
+        jTextFieldLinkExecute3.setText(PropertyHandler.getInstance().getValue("CustomLink03Exec"));
+        jTextFieldLinkExecute4.setText(PropertyHandler.getInstance().getValue("CustomLink04Exec"));
+        jTextFieldLinkExecute5.setText(PropertyHandler.getInstance().getValue("CustomLink05Exec"));
+        jTextFieldLinkExecute6.setText(PropertyHandler.getInstance().getValue("CustomLink06Exec"));
+        jTextFieldLinkExecute7.setText(PropertyHandler.getInstance().getValue("CustomLink07Exec"));
+        jTextFieldLinkExecute8.setText(PropertyHandler.getInstance().getValue("CustomLink08Exec"));
+        jTextFieldLinkExecute9.setText(PropertyHandler.getInstance().getValue("CustomLink09Exec"));
+        jTextFieldLinkExecute10.setText(PropertyHandler.getInstance().getValue("CustomLink10Exec"));
+        jTextFieldLinkExecute11.setText(PropertyHandler.getInstance().getValue("CustomLink11Exec"));
+        jTextFieldLinkExecute12.setText(PropertyHandler.getInstance().getValue("CustomLink12Exec"));
+        jTextFieldLinkExecute13.setText(PropertyHandler.getInstance().getValue("CustomLink13Exec"));
+        jTextFieldLinkExecute14.setText(PropertyHandler.getInstance().getValue("CustomLink14Exec"));
+        jTextFieldLinkExecute15.setText(PropertyHandler.getInstance().getValue("CustomLink15Exec"));
+        jTextFieldLinkExecute16.setText(PropertyHandler.getInstance().getValue("CustomLink16Exec"));
+        jTextFieldLinkExecute17.setText(PropertyHandler.getInstance().getValue("CustomLink17Exec"));
+        jTextFieldLinkExecute18.setText(PropertyHandler.getInstance().getValue("CustomLink18Exec"));
+        jTextFieldLinkExecute19.setText(PropertyHandler.getInstance().getValue("CustomLink19Exec"));
+        jTextFieldLinkExecute20.setText(PropertyHandler.getInstance().getValue("CustomLink20Exec"));
+        jTextFieldLinkExecute21.setText(PropertyHandler.getInstance().getValue("CustomLink21Exec"));
+        jTextFieldLinkExecute22.setText(PropertyHandler.getInstance().getValue("CustomLink22Exec"));
+        jTextFieldLinkExecute23.setText(PropertyHandler.getInstance().getValue("CustomLink23Exec"));
+        jTextFieldLinkExecute24.setText(PropertyHandler.getInstance().getValue("CustomLink24Exec"));
+        jTextFieldLinkExecute25.setText(PropertyHandler.getInstance().getValue("CustomLink25Exec"));
+        jTextFieldLinkExecute26.setText(PropertyHandler.getInstance().getValue("CustomLink26Exec"));
+        jTextFieldLinkExecute27.setText(PropertyHandler.getInstance().getValue("CustomLink27Exec"));
+        jTextFieldLinkExecute28.setText(PropertyHandler.getInstance().getValue("CustomLink28Exec"));
+        jTextFieldLinkExecute29.setText(PropertyHandler.getInstance().getValue("CustomLink29Exec"));
+        jTextFieldLinkExecute30.setText(PropertyHandler.getInstance().getValue("CustomLink30Exec"));
+        jTextFieldLinkExecute31.setText(PropertyHandler.getInstance().getValue("CustomLink31Exec"));
+        jTextFieldLinkExecute32.setText(PropertyHandler.getInstance().getValue("CustomLink32Exec"));
+        jTextFieldLinkExecute33.setText(PropertyHandler.getInstance().getValue("CustomLink33Exec"));
+        jTextFieldLinkExecute34.setText(PropertyHandler.getInstance().getValue("CustomLink34Exec"));
+        jTextFieldLinkExecute35.setText(PropertyHandler.getInstance().getValue("CustomLink35Exec"));
+        jTextFieldLinkExecute36.setText(PropertyHandler.getInstance().getValue("CustomLink36Exec"));
     }
     
 //    public void SettingsLoadCustomLinksData() {
