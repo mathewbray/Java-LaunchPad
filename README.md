@@ -4,7 +4,7 @@ One place to launch any connection, link, script, reference, or application.
 
 ## Prerequisites
 
-Microsoft Windows
+Microsoft Windows  
 Java Runtime Environment
 
 ## Installing
