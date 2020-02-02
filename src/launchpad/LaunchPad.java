@@ -375,7 +375,7 @@ public class LaunchPad {
 "PreloadPing=10.0.",
 "PreloadSSH=10.0.",
 "SecureCRTexe=%USERPROFILE%\\\\AppData\\\\Local\\\\VanDyke Software\\\\SecureCRT\\\\SecureCRT.exe",
-"SettingClassification=",
+"SettingClassification=None",
 "SettingLanguage=English",
 "SettingEmailContactIssues=admin@domain.com",
 "SettingPasswordBasedSSHauthDisable=0",

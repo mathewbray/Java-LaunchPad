@@ -1038,33 +1038,35 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButton31 = new javax.swing.JButton();
         jTabbedPaneSettings = new javax.swing.JTabbedPane();
         jPanelSettingsMain = new javax.swing.JPanel();
+        jButtonReportIssue = new javax.swing.JButton();
+        jTextField2 = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jButton38 = new javax.swing.JButton();
+        jButton32 = new javax.swing.JButton();
+        jButton30 = new javax.swing.JButton();
+        jButton43 = new javax.swing.JButton();
+        jLabelListTextSizePreview = new javax.swing.JLabel();
+        jSliderListTextSize = new javax.swing.JSlider();
+        jLabelListTextSize1 = new javax.swing.JLabel();
+        jRadioButtonJapanese = new javax.swing.JRadioButton();
+        jRadioButtonEnglish = new javax.swing.JRadioButton();
+        jLabelLanguageSelect = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabelEnablePWauth = new javax.swing.JLabel();
+        jRadioButtonPWauthEnabled = new javax.swing.JRadioButton();
+        jRadioButtonPWauthDisabled = new javax.swing.JRadioButton();
+        jComboBoxClassification = new javax.swing.JComboBox<>();
+        jLabelEnablePWauth1 = new javax.swing.JLabel();
         jLabelSSHClient = new javax.swing.JLabel();
         jRadioButtonSSHClientSecureCRT = new javax.swing.JRadioButton();
         jRadioButtonSSHClientPuTTY = new javax.swing.JRadioButton();
         jRadioButtonConsolePutty = new javax.swing.JRadioButton();
         jRadioButtonConsoleSecureCRT = new javax.swing.JRadioButton();
         jLabelConsoleClient = new javax.swing.JLabel();
-        jLabelEnablePWauth = new javax.swing.JLabel();
-        jRadioButtonJapanese = new javax.swing.JRadioButton();
-        jRadioButtonEnglish = new javax.swing.JRadioButton();
-        jLabelListTextSizePreview = new javax.swing.JLabel();
-        jSliderListTextSize = new javax.swing.JSlider();
-        jLabelListTextSize1 = new javax.swing.JLabel();
-        jButtonScriptUpdateLaunchPad = new javax.swing.JButton();
-        jButtonReportIssue = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jLabelLanguageSelect = new javax.swing.JLabel();
-        jRadioButtonPWauthEnabled = new javax.swing.JRadioButton();
-        jRadioButtonPWauthDisabled = new javax.swing.JRadioButton();
-        jPanel1 = new javax.swing.JPanel();
-        jButton34 = new javax.swing.JButton();
         jButton28 = new javax.swing.JButton();
+        jButton34 = new javax.swing.JButton();
+        jButtonScriptUpdateLaunchPad = new javax.swing.JButton();
         jButton35 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jButton38 = new javax.swing.JButton();
-        jButton32 = new javax.swing.JButton();
-        jButton30 = new javax.swing.JButton();
-        jButton43 = new javax.swing.JButton();
         jScrollPaneSettingsButtons = new javax.swing.JScrollPane();
         jPanelSettingsButtons = new javax.swing.JPanel();
         jButton33 = new javax.swing.JButton();
@@ -3975,130 +3977,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jPanelSettingsMain.setLayout(null);
 
-        jLabelSSHClient.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelSSHClient.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelSSHClient.setText("SSH Client:");
-        jPanelSettingsMain.add(jLabelSSHClient);
-        jLabelSSHClient.setBounds(10, 10, 80, 30);
-
-        buttonGroupSSHClient.add(jRadioButtonSSHClientSecureCRT);
-        jRadioButtonSSHClientSecureCRT.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jRadioButtonSSHClientSecureCRT.setSelected(true);
-        jRadioButtonSSHClientSecureCRT.setText("SecureCRT");
-        jRadioButtonSSHClientSecureCRT.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanelSettingsMain.add(jRadioButtonSSHClientSecureCRT);
-        jRadioButtonSSHClientSecureCRT.setBounds(180, 10, 90, 30);
-
-        buttonGroupSSHClient.add(jRadioButtonSSHClientPuTTY);
-        jRadioButtonSSHClientPuTTY.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jRadioButtonSSHClientPuTTY.setText("PuTTY");
-        jRadioButtonSSHClientPuTTY.setEnabled(false);
-        jRadioButtonSSHClientPuTTY.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jRadioButtonSSHClientPuTTY.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonSSHClientPuTTYActionPerformed(evt);
-            }
-        });
-        jPanelSettingsMain.add(jRadioButtonSSHClientPuTTY);
-        jRadioButtonSSHClientPuTTY.setBounds(100, 10, 100, 30);
-
-        buttonGroupConsoleClient.add(jRadioButtonConsolePutty);
-        jRadioButtonConsolePutty.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jRadioButtonConsolePutty.setText("PuTTY");
-        jRadioButtonConsolePutty.setEnabled(false);
-        jRadioButtonConsolePutty.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jRadioButtonConsolePutty.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jRadioButtonConsolePuttyMouseClicked(evt);
-            }
-        });
-        jRadioButtonConsolePutty.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonConsolePuttyActionPerformed(evt);
-            }
-        });
-        jPanelSettingsMain.add(jRadioButtonConsolePutty);
-        jRadioButtonConsolePutty.setBounds(100, 40, 70, 30);
-
-        buttonGroupConsoleClient.add(jRadioButtonConsoleSecureCRT);
-        jRadioButtonConsoleSecureCRT.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jRadioButtonConsoleSecureCRT.setSelected(true);
-        jRadioButtonConsoleSecureCRT.setText("SecureCRT");
-        jRadioButtonConsoleSecureCRT.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jPanelSettingsMain.add(jRadioButtonConsoleSecureCRT);
-        jRadioButtonConsoleSecureCRT.setBounds(180, 40, 100, 30);
-
-        jLabelConsoleClient.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelConsoleClient.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelConsoleClient.setText("Console Client:");
-        jPanelSettingsMain.add(jLabelConsoleClient);
-        jLabelConsoleClient.setBounds(10, 40, 80, 30);
-
-        jLabelEnablePWauth.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelEnablePWauth.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelEnablePWauth.setText("PW Auth SSH:");
-        jPanelSettingsMain.add(jLabelEnablePWauth);
-        jLabelEnablePWauth.setBounds(10, 130, 80, 30);
-
-        buttonGroupLanguage.add(jRadioButtonJapanese);
-        jRadioButtonJapanese.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
-        jRadioButtonJapanese.setText("日本語");
-        jRadioButtonJapanese.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jRadioButtonJapanese.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonJapaneseActionPerformed(evt);
-            }
-        });
-        jPanelSettingsMain.add(jRadioButtonJapanese);
-        jRadioButtonJapanese.setBounds(180, 100, 80, 30);
-
-        buttonGroupLanguage.add(jRadioButtonEnglish);
-        jRadioButtonEnglish.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jRadioButtonEnglish.setText("English");
-        jRadioButtonEnglish.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jRadioButtonEnglish.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonEnglishActionPerformed(evt);
-            }
-        });
-        jPanelSettingsMain.add(jRadioButtonEnglish);
-        jRadioButtonEnglish.setBounds(100, 100, 70, 30);
-
-        jLabelListTextSizePreview.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
-        jLabelListTextSizePreview.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabelListTextSizePreview.setText("c9300-a01-abcde-1234");
-        jPanelSettingsMain.add(jLabelListTextSizePreview);
-        jLabelListTextSizePreview.setBounds(250, 70, 280, 30);
-
-        jSliderListTextSize.setMaximum(6);
-        jSliderListTextSize.setPaintLabels(true);
-        jSliderListTextSize.setSnapToTicks(true);
-        jSliderListTextSize.setValue(1);
-        jSliderListTextSize.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSliderListTextSizeStateChanged(evt);
-            }
-        });
-        jPanelSettingsMain.add(jSliderListTextSize);
-        jSliderListTextSize.setBounds(100, 70, 140, 30);
-
-        jLabelListTextSize1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelListTextSize1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelListTextSize1.setText("List Text Size:");
-        jPanelSettingsMain.add(jLabelListTextSize1);
-        jLabelListTextSize1.setBounds(10, 70, 80, 30);
-
-        jButtonScriptUpdateLaunchPad.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButtonScriptUpdateLaunchPad.setText("Update LaunchPad");
-        jButtonScriptUpdateLaunchPad.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonScriptUpdateLaunchPad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonScriptUpdateLaunchPadActionPerformed(evt);
-            }
-        });
-        jPanelSettingsMain.add(jButtonScriptUpdateLaunchPad);
-        jButtonScriptUpdateLaunchPad.setBounds(430, 10, 130, 30);
-
         jButtonReportIssue.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReportIssue.setText("Submit a change request");
         jButtonReportIssue.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -4126,73 +4004,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelSettingsMain.add(jTextField2);
         jTextField2.setBounds(370, 490, 190, 20);
 
-        jLabelLanguageSelect.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelLanguageSelect.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelLanguageSelect.setText("Language:");
-        jPanelSettingsMain.add(jLabelLanguageSelect);
-        jLabelLanguageSelect.setBounds(10, 100, 80, 30);
-
-        buttonGroupPWauthEnableDisable.add(jRadioButtonPWauthEnabled);
-        jRadioButtonPWauthEnabled.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jRadioButtonPWauthEnabled.setText("Enabled");
-        jRadioButtonPWauthEnabled.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jRadioButtonPWauthEnabled.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonPWauthEnabledActionPerformed(evt);
-            }
-        });
-        jPanelSettingsMain.add(jRadioButtonPWauthEnabled);
-        jRadioButtonPWauthEnabled.setBounds(100, 130, 70, 30);
-
-        buttonGroupPWauthEnableDisable.add(jRadioButtonPWauthDisabled);
-        jRadioButtonPWauthDisabled.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jRadioButtonPWauthDisabled.setText("Disabled");
-        jRadioButtonPWauthDisabled.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jRadioButtonPWauthDisabled.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonPWauthDisabledActionPerformed(evt);
-            }
-        });
-        jPanelSettingsMain.add(jRadioButtonPWauthDisabled);
-        jRadioButtonPWauthDisabled.setBounds(180, 130, 63, 30);
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Shared Items"));
-        jPanel1.setLayout(null);
-
-        jButton34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton34.setText("View Shared Properties File");
-        jButton34.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton34ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton34);
-        jButton34.setBounds(190, 20, 170, 20);
-
-        jButton28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton28.setText("Open LaunchPad Folder");
-        jButton28.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton28ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton28);
-        jButton28.setBounds(10, 20, 170, 20);
-
-        jButton35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton35.setText("Edit Shared Properties File");
-        jButton35.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton35ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton35);
-        jButton35.setBounds(370, 20, 170, 20);
-
-        jPanelSettingsMain.add(jPanel1);
-        jPanel1.setBounds(10, 170, 550, 50);
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Personal Items"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Personal Items (Never overwritten)"));
         jPanel3.setLayout(null);
 
         jButton38.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -4204,7 +4016,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton38);
-        jButton38.setBounds(10, 20, 170, 20);
+        jButton38.setBounds(190, 90, 170, 20);
 
         jButton32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton32.setText("Edit Personal Favorites List");
@@ -4214,7 +4026,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton32);
-        jButton32.setBounds(190, 20, 170, 20);
+        jButton32.setBounds(370, 90, 170, 20);
 
         jButton30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton30.setText("Open Logging-Ouput Folder");
@@ -4224,20 +4036,226 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton30);
-        jButton30.setBounds(370, 20, 170, 20);
+        jButton30.setBounds(10, 120, 170, 20);
 
         jButton43.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton43.setText("Open Logging-Ouput Folder");
+        jButton43.setText("Open Personal Folder");
         jButton43.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton43ActionPerformed(evt);
             }
         });
         jPanel3.add(jButton43);
-        jButton43.setBounds(10, 50, 170, 20);
+        jButton43.setBounds(10, 90, 170, 20);
+
+        jLabelListTextSizePreview.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        jLabelListTextSizePreview.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabelListTextSizePreview.setText("c9300-a01-abcde-1234");
+        jPanel3.add(jLabelListTextSizePreview);
+        jLabelListTextSizePreview.setBounds(250, 40, 280, 40);
+
+        jSliderListTextSize.setMaximum(6);
+        jSliderListTextSize.setPaintLabels(true);
+        jSliderListTextSize.setSnapToTicks(true);
+        jSliderListTextSize.setValue(1);
+        jSliderListTextSize.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSliderListTextSizeStateChanged(evt);
+            }
+        });
+        jPanel3.add(jSliderListTextSize);
+        jSliderListTextSize.setBounds(100, 50, 140, 20);
+
+        jLabelListTextSize1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelListTextSize1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelListTextSize1.setText("List Text Size:");
+        jPanel3.add(jLabelListTextSize1);
+        jLabelListTextSize1.setBounds(10, 50, 80, 20);
+
+        buttonGroupLanguage.add(jRadioButtonJapanese);
+        jRadioButtonJapanese.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        jRadioButtonJapanese.setText("日本語");
+        jRadioButtonJapanese.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButtonJapanese.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonJapaneseActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jRadioButtonJapanese);
+        jRadioButtonJapanese.setBounds(180, 20, 80, 20);
+
+        buttonGroupLanguage.add(jRadioButtonEnglish);
+        jRadioButtonEnglish.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jRadioButtonEnglish.setText("English");
+        jRadioButtonEnglish.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButtonEnglish.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonEnglishActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jRadioButtonEnglish);
+        jRadioButtonEnglish.setBounds(100, 20, 70, 20);
+
+        jLabelLanguageSelect.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelLanguageSelect.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLanguageSelect.setText("Language:");
+        jPanel3.add(jLabelLanguageSelect);
+        jLabelLanguageSelect.setBounds(10, 20, 80, 20);
 
         jPanelSettingsMain.add(jPanel3);
-        jPanel3.setBounds(10, 230, 550, 80);
+        jPanel3.setBounds(10, 190, 550, 150);
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Shared Items (May be overwritten per policy)"));
+        jPanel4.setLayout(null);
+
+        jLabelEnablePWauth.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelEnablePWauth.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelEnablePWauth.setText("Classification:");
+        jPanel4.add(jLabelEnablePWauth);
+        jLabelEnablePWauth.setBounds(10, 110, 80, 20);
+
+        buttonGroupPWauthEnableDisable.add(jRadioButtonPWauthEnabled);
+        jRadioButtonPWauthEnabled.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jRadioButtonPWauthEnabled.setText("Enabled");
+        jRadioButtonPWauthEnabled.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButtonPWauthEnabled.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonPWauthEnabledActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButtonPWauthEnabled);
+        jRadioButtonPWauthEnabled.setBounds(100, 80, 70, 20);
+
+        buttonGroupPWauthEnableDisable.add(jRadioButtonPWauthDisabled);
+        jRadioButtonPWauthDisabled.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jRadioButtonPWauthDisabled.setText("Disabled");
+        jRadioButtonPWauthDisabled.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButtonPWauthDisabled.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonPWauthDisabledActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButtonPWauthDisabled);
+        jRadioButtonPWauthDisabled.setBounds(180, 80, 63, 20);
+
+        jComboBoxClassification.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxClassification.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Unclassified", "Confidential", "Secret", "Top Secret", "SCI", "Coalition" }));
+        jComboBoxClassification.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxClassificationItemStateChanged(evt);
+            }
+        });
+        jPanel4.add(jComboBoxClassification);
+        jComboBoxClassification.setBounds(100, 110, 150, 20);
+
+        jLabelEnablePWauth1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelEnablePWauth1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelEnablePWauth1.setText("PW Auth SSH:");
+        jPanel4.add(jLabelEnablePWauth1);
+        jLabelEnablePWauth1.setBounds(10, 80, 80, 20);
+
+        jLabelSSHClient.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelSSHClient.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelSSHClient.setText("SSH Client:");
+        jPanel4.add(jLabelSSHClient);
+        jLabelSSHClient.setBounds(10, 20, 80, 20);
+
+        buttonGroupSSHClient.add(jRadioButtonSSHClientSecureCRT);
+        jRadioButtonSSHClientSecureCRT.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jRadioButtonSSHClientSecureCRT.setSelected(true);
+        jRadioButtonSSHClientSecureCRT.setText("SecureCRT");
+        jRadioButtonSSHClientSecureCRT.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel4.add(jRadioButtonSSHClientSecureCRT);
+        jRadioButtonSSHClientSecureCRT.setBounds(180, 20, 90, 20);
+
+        buttonGroupSSHClient.add(jRadioButtonSSHClientPuTTY);
+        jRadioButtonSSHClientPuTTY.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jRadioButtonSSHClientPuTTY.setText("PuTTY");
+        jRadioButtonSSHClientPuTTY.setEnabled(false);
+        jRadioButtonSSHClientPuTTY.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButtonSSHClientPuTTY.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonSSHClientPuTTYActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButtonSSHClientPuTTY);
+        jRadioButtonSSHClientPuTTY.setBounds(100, 20, 100, 20);
+
+        buttonGroupConsoleClient.add(jRadioButtonConsolePutty);
+        jRadioButtonConsolePutty.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jRadioButtonConsolePutty.setText("PuTTY");
+        jRadioButtonConsolePutty.setEnabled(false);
+        jRadioButtonConsolePutty.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButtonConsolePutty.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRadioButtonConsolePuttyMouseClicked(evt);
+            }
+        });
+        jRadioButtonConsolePutty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonConsolePuttyActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jRadioButtonConsolePutty);
+        jRadioButtonConsolePutty.setBounds(100, 50, 70, 20);
+
+        buttonGroupConsoleClient.add(jRadioButtonConsoleSecureCRT);
+        jRadioButtonConsoleSecureCRT.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jRadioButtonConsoleSecureCRT.setSelected(true);
+        jRadioButtonConsoleSecureCRT.setText("SecureCRT");
+        jRadioButtonConsoleSecureCRT.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jPanel4.add(jRadioButtonConsoleSecureCRT);
+        jRadioButtonConsoleSecureCRT.setBounds(180, 50, 100, 20);
+
+        jLabelConsoleClient.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelConsoleClient.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelConsoleClient.setText("Console Client:");
+        jPanel4.add(jLabelConsoleClient);
+        jLabelConsoleClient.setBounds(10, 50, 80, 20);
+
+        jButton28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton28.setText("Open LaunchPad Folder");
+        jButton28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton28ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton28);
+        jButton28.setBounds(10, 140, 170, 20);
+
+        jButton34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton34.setText("View Shared Properties File");
+        jButton34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton34ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton34);
+        jButton34.setBounds(190, 140, 170, 20);
+
+        jButtonScriptUpdateLaunchPad.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonScriptUpdateLaunchPad.setText("Force Update");
+        jButtonScriptUpdateLaunchPad.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonScriptUpdateLaunchPad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptUpdateLaunchPadActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButtonScriptUpdateLaunchPad);
+        jButtonScriptUpdateLaunchPad.setBounds(410, 20, 120, 20);
+
+        jButton35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton35.setText("Edit Shared Properties File");
+        jButton35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton35ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton35);
+        jButton35.setBounds(370, 140, 170, 20);
+
+        jPanelSettingsMain.add(jPanel4);
+        jPanel4.setBounds(10, 10, 550, 170);
 
         jTabbedPaneSettings.addTab("Main", jPanelSettingsMain);
 
@@ -4251,6 +4269,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute1.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4285,6 +4304,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute2.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4319,6 +4339,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute3.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4353,6 +4374,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute4.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4387,6 +4409,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute5.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4421,6 +4444,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute6.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4455,6 +4479,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute7.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4489,6 +4514,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute8.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4535,6 +4561,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute9.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute9.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4569,6 +4596,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute10.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute10.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4603,6 +4631,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute11.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute11.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4637,6 +4666,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute12.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute12.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4671,6 +4701,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute13.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute13.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4705,6 +4736,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute14.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute14.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4739,6 +4771,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute15.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute15.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4773,6 +4806,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute16.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute16.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4807,6 +4841,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute17.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute17.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4841,6 +4876,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute18.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute18.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4875,6 +4911,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute19.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute19.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4909,6 +4946,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldButtonExecute20.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldButtonExecute20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldButtonExecute20.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -11487,6 +11525,11 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLocalMAC.setText(getMAC());
     }//GEN-LAST:event_jButtonRefreshHostnameIPMACMouseReleased
 
+    private void jComboBoxClassificationItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxClassificationItemStateChanged
+        PropertyHandler.getInstance().setValue("SettingClassification",((String)jComboBoxClassification.getSelectedItem()));
+        loadClassification();
+    }//GEN-LAST:event_jComboBoxClassificationItemStateChanged
+
     
     /**
      * @param args the command line arguments
@@ -12056,25 +12099,25 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         String strClassification = PropertyHandler.getInstance().getValue("SettingClassification");
         System.out.println("Classification: " + strClassification);
         Color strClassificationColor = new Color(4,159,168);
-        if("unclassified".equalsIgnoreCase(strClassification)) {
+        if("Unclassified".equalsIgnoreCase(strClassification)) {
             strClassificationColor = new Color(0,122,61);
         }
-        if("confidential".equalsIgnoreCase(strClassification)) {
+        if("Confidential".equalsIgnoreCase(strClassification)) {
             strClassificationColor = new Color(0,56,168);
         }
-        if("secret".equalsIgnoreCase(strClassification)) {
+        if("Secret".equalsIgnoreCase(strClassification)) {
             strClassificationColor = new Color(206,17,38);
         }
-        if("top secret".equalsIgnoreCase(strClassification)) {
+        if("Top Secret".equalsIgnoreCase(strClassification)) {
             strClassificationColor = new Color(249,99,2);
         }
-        if("sci".equalsIgnoreCase(strClassification)) {
+        if("SCI".equalsIgnoreCase(strClassification)) {
             strClassificationColor = new Color(240,240,0);
         }        
-        if("coalition".equalsIgnoreCase(strClassification)) {
+        if("Coalition".equalsIgnoreCase(strClassification)) {
             strClassificationColor = new Color(127,127,255);
         }
-        if("none".equalsIgnoreCase(strClassification)) {
+        if("None".equalsIgnoreCase(strClassification)) {
             strClassificationColor = new Color(0,0,0);
         }         
         getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, strClassificationColor));       
@@ -12699,6 +12742,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxButtonIcon7;
     private javax.swing.JComboBox<String> jComboBoxButtonIcon8;
     private javax.swing.JComboBox<String> jComboBoxButtonIcon9;
+    private javax.swing.JComboBox<String> jComboBoxClassification;
     private javax.swing.JComboBox<String> jComboBoxConsoleBaud;
     private javax.swing.JComboBox<String> jComboBoxConsoleCOM;
     private javax.swing.JComboBox<String> jComboBoxZipEncMethod;
@@ -12779,6 +12823,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelButtonToolTip9;
     private javax.swing.JLabel jLabelConsoleClient;
     private javax.swing.JLabel jLabelEnablePWauth;
+    private javax.swing.JLabel jLabelEnablePWauth1;
     private javax.swing.JLabel jLabelFolderToZip4;
     private javax.swing.JLabel jLabelFolderToZip7;
     private javax.swing.JLabel jLabelGetNTP1;
@@ -12941,9 +12986,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelType7reverse;
     private javax.swing.JList<String> jListSessions;
 
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanelAppsCustom;
     private javax.swing.JPanel jPanelDocuments;
     private javax.swing.JPanel jPanelHashGen;
