@@ -96,7 +96,6 @@ import org.apache.commons.net.ntp.TimeStamp;
  */
 public final class LaunchPadForm extends javax.swing.JFrame {
     
-    //Shared and public items
     DefaultListModel defaultListModelFilteredItems = new DefaultListModel();
     File pathWorkingDirectory = new File(System.getProperty("user.dir"));
     File pathDesktop = new File(System.getProperty("user.home"), "Desktop");
@@ -111,7 +110,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     String strSessionListFavoritesFolder = strPathLaunchPadPersistantUserFolder + "\\FavoritesSessionList";   
     String strSessionListFavorites = strSessionListFavoritesFolder + "\\SessionList.csv";
     
-    //--- Get Date and time for things
+    //--- Get date and time
     SimpleDateFormat simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
     String dateTime = simpleDateFormat.format(new Date());
 
@@ -9595,9 +9594,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             searchFilter(jTextFieldFilter.getText());
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (URISyntaxException ex) {
+        } catch (IOException | URISyntaxException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jTextFieldFilterKeyReleased

@@ -2,6 +2,8 @@
 
 One place to launch any connection, link, script, reference, or application.
 
+![Main](https://github.com/mathewbray/Java-LaunchPad/raw/master/Main.png)
+
 ## Prerequisites
 
 Microsoft Windows  
