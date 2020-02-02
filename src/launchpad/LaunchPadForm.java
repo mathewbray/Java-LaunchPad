@@ -132,13 +132,20 @@ public final class LaunchPadForm extends javax.swing.JFrame {
      */
     public LaunchPadForm() throws IOException, FileNotFoundException, URISyntaxException, AWTException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         initComponents();
+        initAddSettingsReferences();
         //final JFXPanel fxPanel = new JFXPanel();
         setTitle(PropertyHandler.getInstance().getValue("WindowTitle"));
         getSessionList();
         //SettingsLoadCustomLinksData();
-        SettingsLoadButtonList();
-        SettingsLoadButtonsData();
-        SettingsLoadLinkData();
+        loadMainButtonStyles();        
+        loadSettingsMainButtonList();
+        loadSettingsMainButtonsData();
+        loadSettingsLinkData();
+        loadSettingsScriptData();
+        loadPersonalSettings();
+        loadClassification();
+        loadHostIPMAC();
+
         //- Set the look and feel
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -147,89 +154,14 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        //- Get Hostname IP and MAC
-        jLabelLocalHostname.setText(getSystemName());
-        jLabelLocalHostname.setToolTipText(getSystemName());
-        jLabelLocalIP.setText(getIPAddress());
-        jLabelLocalMAC.setText(getMAC());
-        System.out.println("Host Name : "+getSystemName());
-        System.out.println("Host IP   : "+getIPAddress());
-        System.out.println("Host Address : "+getMAC());    
+
         
 
 
         
-        //- Set Personal Text Setting 
-        try {
-            String myValue = PropertyHandlerPersonal.getInstance().getValue("SettingTextSize");
-            if("".equals(myValue)) {
-                PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "1");
-            }
-            int myValueInt = Integer.parseInt(PropertyHandlerPersonal.getInstance().getValue("SettingTextSize"));
-            jSliderListTextSize.setValue(myValueInt);
 
-        } catch (NullPointerException e) {System.out.println("TextSize Goofed");
-        }
+        
 
-        //- Set Personal Language Setting 
-        try {
-            if("Japanese".equals(PropertyHandlerPersonal.getInstance().getValue("SettingLanguage"))) {
-                jRadioButtonJapanese.setSelected(Boolean.TRUE);
-                SetLanguageJapanese();
-            }
-        } catch (NullPointerException e) {System.out.println("SettingLanguage Goofed");
-        }
-        try {
-            if("English".equals(PropertyHandlerPersonal.getInstance().getValue("SettingLanguage"))) {
-                jRadioButtonEnglish.setSelected(Boolean.TRUE);
-            }
-        } catch (NullPointerException e) {System.out.println("SettingLanguage Goofed");
-        }    
-        
-        //- Set PW SSH Auth Default ENABLE or DISABLE
-        try {
-            if("1".equals(PropertyHandler.getInstance().getValue("SettingPasswordBasedSSHauthDisable"))) {
-                jRadioButtonPWauthDisabled.setSelected(Boolean.TRUE);
-                jButtonExecuteFunctionSSH.setBackground(new javax.swing.JButton().getBackground());
-                jButtonExecuteFunctionSSH.setEnabled(false);
-            }
-        } catch (NullPointerException e) {System.out.println("SettingPasswordBasedSSHauthDisable Goofed");
-        }
-        try {
-            if("0".equals(PropertyHandler.getInstance().getValue("SettingPasswordBasedSSHauthDisable"))) {
-                jRadioButtonPWauthEnabled.setSelected(Boolean.TRUE);
-                jButtonExecuteFunctionSSH.setBackground(new Color(200,255,153));
-                jButtonExecuteFunctionSSH.setEnabled(Boolean.TRUE);
-            }
-        } catch (NullPointerException e) {System.out.println("SettingPasswordBasedSSHauthDisable Goofed");
-        }
-        
-        //- Set classification
-        String strClassification = PropertyHandler.getInstance().getValue("SettingClassification");
-        System.out.println("Classification: " + strClassification);
-        Color strClassificationColor = new Color(4,159,168);
-        if("unclassified".equalsIgnoreCase(strClassification)) {
-                    strClassificationColor = new Color(0,122,61);
-        }
-        if("confidential".equalsIgnoreCase(strClassification)) {
-                    strClassificationColor = new Color(0,56,168);
-        }
-        if("secret".equalsIgnoreCase(strClassification)) {
-                    strClassificationColor = new Color(206,17,38);
-        }
-        if("top secret".equalsIgnoreCase(strClassification)) {
-                    strClassificationColor = new Color(249,99,2);
-        }
-        if("sci".equalsIgnoreCase(strClassification)) {
-                    strClassificationColor = new Color(240,240,0);
-        }        
-        if("coalition".equalsIgnoreCase(strClassification)) {
-                    strClassificationColor = new Color(127,127,255);
-        } 
-        if("none".equalsIgnoreCase(strClassification)) {
-                    strClassificationColor = new Color(0,0,0);
-        }         
-        getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, strClassificationColor));
 
         //- Don't close the window immediately, prompt to ask
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -285,7 +217,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             if(ev.getStateChange()==ItemEvent.SELECTED){
                 System.out.println("Offline is selected");
                 jToggleOnlineOfflineMode.setText("Offline");
-                jToggleOnlineOfflineMode.setBackground(Color.GRAY);
+                //jToggleOnlineOfflineMode.setBackground(new java.awt.Color(236, 180, 180));
                 //- Japanese
                 try {
                     if("Japanese".equals(PropertyHandlerPersonal.getInstance().getValue("SettingLanguage"))) {
@@ -297,7 +229,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 System.out.println("Offline is not selected");
                 jToggleOnlineOfflineMode.setText("Online");
                 //- Had to 
-                jToggleOnlineOfflineMode.setBackground(Color.GREEN);
+                jToggleOnlineOfflineMode.setBackground(new java.awt.Color(180, 236, 180));
                 //- Japanese
                 try {
                     if("Japanese".equals(PropertyHandlerPersonal.getInstance().getValue("SettingLanguage"))) {
@@ -307,6 +239,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 }
             }
         });
+            
+        
+
+            
             
 
         //--- Apply images to buttons
@@ -484,27 +420,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldZipSourceFile.setText(pathDesktop + "\\Backup_" + dateTime + ".zip");
         jTextFieldZipDestinationFolder.setText(PropertyHandler.getInstance().getValue("ZipDefaultDestinationFolder").replace("%USERPROFILE%", pathUserProfile));
         
-        //--- Load tooltips
-        jButton1.setToolTipText(PropertyHandler.getInstance().getValue("Button01ToolTip"));
-        jButton2.setToolTipText(PropertyHandler.getInstance().getValue("Button02ToolTip"));
-        jButton3.setToolTipText(PropertyHandler.getInstance().getValue("Button03ToolTip"));
-        jButton4.setToolTipText(PropertyHandler.getInstance().getValue("Button04ToolTip"));
-        jButton5.setToolTipText(PropertyHandler.getInstance().getValue("Button05ToolTip"));
-        jButton6.setToolTipText(PropertyHandler.getInstance().getValue("Button06ToolTip"));
-        jButton7.setToolTipText(PropertyHandler.getInstance().getValue("Button07ToolTip"));
-        jButton8.setToolTipText(PropertyHandler.getInstance().getValue("Button08ToolTip"));
-        jButton9.setToolTipText(PropertyHandler.getInstance().getValue("Button09ToolTip"));
-        jButton10.setToolTipText(PropertyHandler.getInstance().getValue("Button10ToolTip"));
-        jButton11.setToolTipText(PropertyHandler.getInstance().getValue("Button11ToolTip"));
-        jButton12.setToolTipText(PropertyHandler.getInstance().getValue("Button12ToolTip"));
-        jButton13.setToolTipText(PropertyHandler.getInstance().getValue("Button13ToolTip"));
-        jButton14.setToolTipText(PropertyHandler.getInstance().getValue("Button14ToolTip"));
-        jButton15.setToolTipText(PropertyHandler.getInstance().getValue("Button15ToolTip"));
-        jButton16.setToolTipText(PropertyHandler.getInstance().getValue("Button16ToolTip"));
-        jButton17.setToolTipText(PropertyHandler.getInstance().getValue("Button17ToolTip"));
-        jButton18.setToolTipText(PropertyHandler.getInstance().getValue("Button18ToolTip"));
-        jButton19.setToolTipText(PropertyHandler.getInstance().getValue("Button19ToolTip"));
-        jButton20.setToolTipText(PropertyHandler.getInstance().getValue("Button20ToolTip"));
         
         //-- Set to use the pointy finger cursor
         jButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -610,9 +525,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonLinkCustom31.setText(PropertyHandler.getInstance().getValue("CustomLink31Description"));                
         jButtonLinkCustom32.setText(PropertyHandler.getInstance().getValue("CustomLink32Description"));                
         jButtonLinkCustom33.setText(PropertyHandler.getInstance().getValue("CustomLink33Description"));                
-        jButtonLinkCustom33.setText(PropertyHandler.getInstance().getValue("CustomLink34Description"));                
-        jButtonLinkCustom33.setText(PropertyHandler.getInstance().getValue("CustomLink35Description"));                
-        jButtonLinkCustom33.setText(PropertyHandler.getInstance().getValue("CustomLink36Description"));                
+        jButtonLinkCustom34.setText(PropertyHandler.getInstance().getValue("CustomLink34Description"));                
+        jButtonLinkCustom35.setText(PropertyHandler.getInstance().getValue("CustomLink35Description"));                
+        jButtonLinkCustom36.setText(PropertyHandler.getInstance().getValue("CustomLink36Description"));                
         
         
         //--- Load Reference button text
@@ -686,11 +601,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonScriptCustom33.setText(PropertyHandler.getInstance().getValue("CustomScript33Description"));
         jButtonScriptCustom34.setText(PropertyHandler.getInstance().getValue("CustomScript34Description"));
         jButtonScriptCustom35.setText(PropertyHandler.getInstance().getValue("CustomScript35Description"));
-        jButtonScriptCustom36.setText(PropertyHandler.getInstance().getValue("CustomScript36Description"));
-        
-
-        
+        jButtonScriptCustom36.setText(PropertyHandler.getInstance().getValue("CustomScript36Description")); 
     }
+    
     
 
     
@@ -1423,9 +1336,157 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldLinkExecute36 = new javax.swing.JTextField();
         jLabelLinkText36 = new javax.swing.JLabel();
         jTextFieldLinkText36 = new javax.swing.JTextField();
+        jScrollPaneSettingsScripts = new javax.swing.JScrollPane();
+        jPanelSettingsScripts = new javax.swing.JPanel();
+        jLabelScriptText1 = new javax.swing.JLabel();
+        jTextFieldScriptText1 = new javax.swing.JTextField();
+        jLabelScriptExecute1 = new javax.swing.JLabel();
+        jTextFieldScriptExecute1 = new javax.swing.JTextField();
+        jButton45 = new javax.swing.JButton();
+        jLabelScriptText2 = new javax.swing.JLabel();
+        jTextFieldScriptText2 = new javax.swing.JTextField();
+        jLabelScriptExecute2 = new javax.swing.JLabel();
+        jTextFieldScriptExecute2 = new javax.swing.JTextField();
+        jLabelScriptText3 = new javax.swing.JLabel();
+        jTextFieldScriptText3 = new javax.swing.JTextField();
+        jLabelScriptExecute3 = new javax.swing.JLabel();
+        jTextFieldScriptExecute3 = new javax.swing.JTextField();
+        jLabelScriptText4 = new javax.swing.JLabel();
+        jTextFieldScriptText4 = new javax.swing.JTextField();
+        jLabelScriptExecute4 = new javax.swing.JLabel();
+        jTextFieldScriptExecute4 = new javax.swing.JTextField();
+        jLabelScriptText5 = new javax.swing.JLabel();
+        jTextFieldScriptText5 = new javax.swing.JTextField();
+        jLabelScriptExecute5 = new javax.swing.JLabel();
+        jTextFieldScriptExecute5 = new javax.swing.JTextField();
+        jLabelScriptText6 = new javax.swing.JLabel();
+        jTextFieldScriptText6 = new javax.swing.JTextField();
+        jLabelScriptExecute6 = new javax.swing.JLabel();
+        jTextFieldScriptExecute6 = new javax.swing.JTextField();
+        jLabelScriptText7 = new javax.swing.JLabel();
+        jTextFieldScriptText7 = new javax.swing.JTextField();
+        jLabelScriptExecute7 = new javax.swing.JLabel();
+        jTextFieldScriptExecute7 = new javax.swing.JTextField();
+        jLabelScriptText8 = new javax.swing.JLabel();
+        jTextFieldScriptText8 = new javax.swing.JTextField();
+        jLabelScriptExecute8 = new javax.swing.JLabel();
+        jTextFieldScriptExecute8 = new javax.swing.JTextField();
+        jLabelScriptText9 = new javax.swing.JLabel();
+        jTextFieldScriptText9 = new javax.swing.JTextField();
+        jLabelScriptExecute9 = new javax.swing.JLabel();
+        jTextFieldScriptExecute9 = new javax.swing.JTextField();
+        jLabelScriptText10 = new javax.swing.JLabel();
+        jTextFieldScriptText10 = new javax.swing.JTextField();
+        jLabelScriptExecute10 = new javax.swing.JLabel();
+        jTextFieldScriptExecute10 = new javax.swing.JTextField();
+        jLabelScriptText11 = new javax.swing.JLabel();
+        jTextFieldScriptText11 = new javax.swing.JTextField();
+        jLabelScriptExecute11 = new javax.swing.JLabel();
+        jTextFieldScriptExecute11 = new javax.swing.JTextField();
+        jLabelScriptText12 = new javax.swing.JLabel();
+        jTextFieldScriptText12 = new javax.swing.JTextField();
+        jLabelScriptExecute12 = new javax.swing.JLabel();
+        jTextFieldScriptExecute12 = new javax.swing.JTextField();
+        jLabelScriptText13 = new javax.swing.JLabel();
+        jTextFieldScriptText13 = new javax.swing.JTextField();
+        jLabelScriptExecute13 = new javax.swing.JLabel();
+        jTextFieldScriptExecute13 = new javax.swing.JTextField();
+        jLabelScriptText14 = new javax.swing.JLabel();
+        jTextFieldScriptText14 = new javax.swing.JTextField();
+        jLabelScriptExecute14 = new javax.swing.JLabel();
+        jTextFieldScriptExecute14 = new javax.swing.JTextField();
+        jLabelScriptText15 = new javax.swing.JLabel();
+        jTextFieldScriptText15 = new javax.swing.JTextField();
+        jLabelScriptExecute15 = new javax.swing.JLabel();
+        jTextFieldScriptExecute15 = new javax.swing.JTextField();
+        jLabelScriptText16 = new javax.swing.JLabel();
+        jTextFieldScriptText16 = new javax.swing.JTextField();
+        jLabelScriptExecute16 = new javax.swing.JLabel();
+        jTextFieldScriptExecute16 = new javax.swing.JTextField();
+        jLabelScriptText17 = new javax.swing.JLabel();
+        jTextFieldScriptText17 = new javax.swing.JTextField();
+        jLabelScriptExecute17 = new javax.swing.JLabel();
+        jTextFieldScriptExecute17 = new javax.swing.JTextField();
+        jLabelScriptText18 = new javax.swing.JLabel();
+        jTextFieldScriptText18 = new javax.swing.JTextField();
+        jLabelScriptExecute18 = new javax.swing.JLabel();
+        jTextFieldScriptExecute18 = new javax.swing.JTextField();
+        jLabelScriptText19 = new javax.swing.JLabel();
+        jTextFieldScriptText19 = new javax.swing.JTextField();
+        jLabelScriptExecute19 = new javax.swing.JLabel();
+        jTextFieldScriptExecute19 = new javax.swing.JTextField();
+        jLabelScriptText20 = new javax.swing.JLabel();
+        jTextFieldScriptText20 = new javax.swing.JTextField();
+        jLabelScriptExecute20 = new javax.swing.JLabel();
+        jTextFieldScriptExecute20 = new javax.swing.JTextField();
+        jLabelScriptText21 = new javax.swing.JLabel();
+        jTextFieldScriptText21 = new javax.swing.JTextField();
+        jLabelScriptExecute21 = new javax.swing.JLabel();
+        jTextFieldScriptExecute21 = new javax.swing.JTextField();
+        jLabelScriptText22 = new javax.swing.JLabel();
+        jTextFieldScriptText22 = new javax.swing.JTextField();
+        jLabelScriptExecute22 = new javax.swing.JLabel();
+        jTextFieldScriptExecute22 = new javax.swing.JTextField();
+        jLabelScriptText23 = new javax.swing.JLabel();
+        jTextFieldScriptText23 = new javax.swing.JTextField();
+        jLabelScriptExecute23 = new javax.swing.JLabel();
+        jTextFieldScriptExecute23 = new javax.swing.JTextField();
+        jLabelScriptText24 = new javax.swing.JLabel();
+        jTextFieldScriptText24 = new javax.swing.JTextField();
+        jLabelScriptExecute24 = new javax.swing.JLabel();
+        jTextFieldScriptExecute24 = new javax.swing.JTextField();
+        jLabelScriptText25 = new javax.swing.JLabel();
+        jTextFieldScriptText25 = new javax.swing.JTextField();
+        jLabelScriptExecute25 = new javax.swing.JLabel();
+        jTextFieldScriptExecute25 = new javax.swing.JTextField();
+        jLabelScriptText26 = new javax.swing.JLabel();
+        jTextFieldScriptText26 = new javax.swing.JTextField();
+        jLabelScriptExecute26 = new javax.swing.JLabel();
+        jTextFieldScriptExecute26 = new javax.swing.JTextField();
+        jLabelScriptText27 = new javax.swing.JLabel();
+        jTextFieldScriptText27 = new javax.swing.JTextField();
+        jLabelScriptExecute27 = new javax.swing.JLabel();
+        jTextFieldScriptExecute27 = new javax.swing.JTextField();
+        jLabelScriptText28 = new javax.swing.JLabel();
+        jTextFieldScriptText28 = new javax.swing.JTextField();
+        jLabelScriptExecute28 = new javax.swing.JLabel();
+        jTextFieldScriptExecute28 = new javax.swing.JTextField();
+        jLabelScriptText29 = new javax.swing.JLabel();
+        jTextFieldScriptText29 = new javax.swing.JTextField();
+        jLabelScriptExecute29 = new javax.swing.JLabel();
+        jTextFieldScriptExecute29 = new javax.swing.JTextField();
+        jLabelScriptText30 = new javax.swing.JLabel();
+        jTextFieldScriptText30 = new javax.swing.JTextField();
+        jLabelScriptExecute30 = new javax.swing.JLabel();
+        jTextFieldScriptExecute30 = new javax.swing.JTextField();
+        jLabelScriptText31 = new javax.swing.JLabel();
+        jTextFieldScriptText31 = new javax.swing.JTextField();
+        jLabelScriptExecute31 = new javax.swing.JLabel();
+        jTextFieldScriptExecute31 = new javax.swing.JTextField();
+        jLabelScriptText32 = new javax.swing.JLabel();
+        jTextFieldScriptText32 = new javax.swing.JTextField();
+        jLabelScriptExecute32 = new javax.swing.JLabel();
+        jTextFieldScriptExecute32 = new javax.swing.JTextField();
+        jLabelScriptText33 = new javax.swing.JLabel();
+        jTextFieldScriptText33 = new javax.swing.JTextField();
+        jLabelScriptExecute33 = new javax.swing.JLabel();
+        jTextFieldScriptExecute33 = new javax.swing.JTextField();
+        jLabelScriptText34 = new javax.swing.JLabel();
+        jTextFieldScriptText34 = new javax.swing.JTextField();
+        jLabelScriptExecute34 = new javax.swing.JLabel();
+        jTextFieldScriptExecute34 = new javax.swing.JTextField();
+        jLabelScriptText35 = new javax.swing.JLabel();
+        jTextFieldScriptText35 = new javax.swing.JTextField();
+        jLabelScriptExecute35 = new javax.swing.JLabel();
+        jTextFieldScriptExecute35 = new javax.swing.JTextField();
+        jLabelScriptText36 = new javax.swing.JLabel();
+        jTextFieldScriptText36 = new javax.swing.JTextField();
+        jLabelScriptExecute36 = new javax.swing.JLabel();
+        jTextFieldScriptExecute36 = new javax.swing.JTextField();
+        jScrollPaneSettingsReferences = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("LaunchPad - Pre-Alpha");
+        setTitle("LaunchPad");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setSize(new java.awt.Dimension(550, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -1520,6 +1581,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelMainRightSide.add(jSeparator3);
         jSeparator3.setBounds(10, 170, 190, 10);
 
+        jTextFieldPingHostname.setBackground(new java.awt.Color(244, 230, 255));
         jTextFieldPingHostname.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jTextFieldPingHostname.setToolTipText("IP or DNS Hostname");
         jTextFieldPingHostname.addActionListener(new java.awt.event.ActionListener() {
@@ -1569,6 +1631,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelMainRightSide.add(jSeparator5);
         jSeparator5.setBounds(10, 70, 190, 10);
 
+        jComboBoxConsoleCOM.setBackground(new java.awt.Color(230, 241, 255));
         jComboBoxConsoleCOM.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jComboBoxConsoleCOM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COM1", "COM2", "COM3", "COM4", "COM5", "COM6", "COM7", "COM8", "COM9", "COM10", "COM11", "COM12", "COM13", "COM14", "COM15", "COM16", "COM17", "COM18", "COM19", "COM20" }));
         jComboBoxConsoleCOM.setToolTipText("Serial COM port");
@@ -1580,6 +1643,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelMainRightSide.add(jComboBoxConsoleCOM);
         jComboBoxConsoleCOM.setBounds(10, 240, 70, 20);
 
+        jButtonShowCOMList.setBackground(new java.awt.Color(230, 241, 255));
         jButtonShowCOMList.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jButtonShowCOMList.setText("?");
         jButtonShowCOMList.setToolTipText("List your Serial COM ports");
@@ -1592,6 +1656,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelMainRightSide.add(jButtonShowCOMList);
         jButtonShowCOMList.setBounds(90, 240, 30, 20);
 
+        jComboBoxConsoleBaud.setBackground(new java.awt.Color(230, 241, 255));
         jComboBoxConsoleBaud.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jComboBoxConsoleBaud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "9600", "115200" }));
         jComboBoxConsoleBaud.setToolTipText("Baud Rate");
@@ -1856,6 +1921,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelMainRightSide.add(jButtonExecuteFunction2);
         jButtonExecuteFunction2.setBounds(140, 120, 60, 20);
 
+        jTextFieldTCPTestPort.setBackground(new java.awt.Color(244, 230, 255));
         jTextFieldTCPTestPort.setToolTipText("TCP port to test");
         jPanelMainRightSide.add(jTextFieldTCPTestPort);
         jTextFieldTCPTestPort.setBounds(110, 180, 40, 20);
@@ -1900,6 +1966,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonRefreshHostnameIPMAC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jButtonRefreshHostnameIPMACMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButtonRefreshHostnameIPMACMouseReleased(evt);
             }
         });
         jButtonRefreshHostnameIPMAC.addActionListener(new java.awt.event.ActionListener() {
@@ -2377,7 +2446,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jPanelReference.setLayout(null);
 
-        jToggleOnlineOfflineMode.setBackground(new java.awt.Color(0, 204, 51));
+        jToggleOnlineOfflineMode.setBackground(new java.awt.Color(180, 236, 180));
         jToggleOnlineOfflineMode.setFont(new java.awt.Font("Arial Unicode MS", 0, 18)); // NOI18N
         jToggleOnlineOfflineMode.setText("Online");
         jToggleOnlineOfflineMode.setToolTipText("Alternate between using network and local files.");
@@ -6196,7 +6265,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldLinkText1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSettingsLinksLayout.createSequentialGroup()
-                        .addGap(0, 439, Short.MAX_VALUE)
+                        .addGap(0, 432, Short.MAX_VALUE)
                         .addComponent(jButton44, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
                         .addComponent(jLabelLinkText2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -6783,6 +6852,1411 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jScrollPaneSettingsLinks.setViewportView(jPanelSettingsLinks);
 
         jTabbedPaneSettings.addTab("Links", jScrollPaneSettingsLinks);
+
+        jScrollPaneSettingsScripts.setPreferredSize(new java.awt.Dimension(557, 2000));
+
+        jPanelSettingsScripts.setPreferredSize(new java.awt.Dimension(550, 2430));
+
+        jLabelScriptText1.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText1.setText("Script 1:");
+
+        jTextFieldScriptText1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText1KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute1.setText("Execute:");
+
+        jTextFieldScriptExecute1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute1KeyReleased(evt);
+            }
+        });
+
+        jButton45.setText("Restart");
+        jButton45.setMargin(null);
+        jButton45.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton45ActionPerformed(evt);
+            }
+        });
+
+        jLabelScriptText2.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText2.setText("Script 2:");
+
+        jTextFieldScriptText2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText2KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute2.setText("Execute:");
+
+        jTextFieldScriptExecute2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute2KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText3.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText3.setText("Script 3:");
+
+        jTextFieldScriptText3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText3KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute3.setText("Execute:");
+
+        jTextFieldScriptExecute3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute3KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText4.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText4.setText("Script 4:");
+
+        jTextFieldScriptText4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText4KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute4.setText("Execute:");
+
+        jTextFieldScriptExecute4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute4KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText5.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText5.setText("Script 5:");
+
+        jTextFieldScriptText5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText5KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute5.setText("Execute:");
+
+        jTextFieldScriptExecute5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute5KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText6.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText6.setText("Script 6:");
+
+        jTextFieldScriptText6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText6KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute6.setText("Execute:");
+
+        jTextFieldScriptExecute6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute6KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText7.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText7.setText("Script 7:");
+
+        jTextFieldScriptText7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText7KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute7.setText("Execute:");
+
+        jTextFieldScriptExecute7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute7KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText8.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText8.setText("Script 8:");
+
+        jTextFieldScriptText8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText8KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute8.setText("Execute:");
+
+        jTextFieldScriptExecute8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute8.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute8KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText9.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText9.setText("Script 9:");
+
+        jTextFieldScriptText9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText9KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute9.setText("Execute:");
+
+        jTextFieldScriptExecute9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute9KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText10.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText10.setText("Script 10:");
+
+        jTextFieldScriptText10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText10KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute10.setText("Execute:");
+
+        jTextFieldScriptExecute10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute10.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute10KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText11.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText11.setText("Script 11:");
+
+        jTextFieldScriptText11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText11KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute11.setText("Execute:");
+
+        jTextFieldScriptExecute11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute11KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText12.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText12.setText("Script 12:");
+
+        jTextFieldScriptText12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText12KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute12.setText("Execute:");
+
+        jTextFieldScriptExecute12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute12.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute12KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText13.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText13.setText("Script 13:");
+
+        jTextFieldScriptText13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText13.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText13KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute13.setText("Execute:");
+
+        jTextFieldScriptExecute13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute13.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute13KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText14.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText14.setText("Script 14:");
+
+        jTextFieldScriptText14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText14.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText14KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute14.setText("Execute:");
+
+        jTextFieldScriptExecute14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute14.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute14KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText15.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText15.setText("Script 15:");
+
+        jTextFieldScriptText15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText15.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText15KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute15.setText("Execute:");
+
+        jTextFieldScriptExecute15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute15.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute15KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText16.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText16.setText("Script 16:");
+
+        jTextFieldScriptText16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText16.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText16KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute16.setText("Execute:");
+
+        jTextFieldScriptExecute16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute16.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute16KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText17.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText17.setText("Script 17:");
+
+        jTextFieldScriptText17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText17.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText17KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute17.setText("Execute:");
+
+        jTextFieldScriptExecute17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute17.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute17KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText18.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText18.setText("Script 18:");
+
+        jTextFieldScriptText18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText18.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText18KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute18.setText("Execute:");
+
+        jTextFieldScriptExecute18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute18.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute18KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText19.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText19.setText("Script 19:");
+
+        jTextFieldScriptText19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText19.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText19KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute19.setText("Execute:");
+
+        jTextFieldScriptExecute19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute19.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute19KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText20.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText20.setText("Script 20:");
+
+        jTextFieldScriptText20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText20.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText20KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute20.setText("Execute:");
+
+        jTextFieldScriptExecute20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute20.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute20KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText21.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText21.setText("Script 21:");
+
+        jTextFieldScriptText21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText21.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText21KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute21.setText("Execute:");
+
+        jTextFieldScriptExecute21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute21.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute21KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText22.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText22.setText("Script 22:");
+
+        jTextFieldScriptText22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText22.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText22KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute22.setText("Execute:");
+
+        jTextFieldScriptExecute22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute22.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute22KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText23.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText23.setText("Script 23:");
+
+        jTextFieldScriptText23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText23.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText23KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute23.setText("Execute:");
+
+        jTextFieldScriptExecute23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute23.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute23KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText24.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText24.setText("Script 24:");
+
+        jTextFieldScriptText24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText24.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText24KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute24.setText("Execute:");
+
+        jTextFieldScriptExecute24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute24.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute24KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText25.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText25.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText25.setText("Script 25:");
+
+        jTextFieldScriptText25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText25.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText25KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute25.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute25.setText("Execute:");
+
+        jTextFieldScriptExecute25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute25.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute25KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText26.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText26.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText26.setText("Script 26:");
+
+        jTextFieldScriptText26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText26.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText26KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute26.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute26.setText("Execute:");
+
+        jTextFieldScriptExecute26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute26.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute26KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText27.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText27.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText27.setText("Script 27:");
+
+        jTextFieldScriptText27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText27.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText27KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute27.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute27.setText("Execute:");
+
+        jTextFieldScriptExecute27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute27.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute27KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText28.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText28.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText28.setText("Script 28:");
+
+        jTextFieldScriptText28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText28.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText28KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute28.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute28.setText("Execute:");
+
+        jTextFieldScriptExecute28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute28.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute28KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText29.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText29.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText29.setText("Script 29:");
+
+        jTextFieldScriptText29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText29.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText29KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute29.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute29.setText("Execute:");
+
+        jTextFieldScriptExecute29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute29.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute29KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText30.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText30.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText30.setText("Script 30:");
+
+        jTextFieldScriptText30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText30.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText30KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute30.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute30.setText("Execute:");
+
+        jTextFieldScriptExecute30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute30.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute30KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText31.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText31.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText31.setText("Script 31:");
+
+        jTextFieldScriptText31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText31.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText31KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute31.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute31.setText("Execute:");
+
+        jTextFieldScriptExecute31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute31.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute31KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText32.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText32.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText32.setText("Script 32:");
+
+        jTextFieldScriptText32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText32.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText32KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute32.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute32.setText("Execute:");
+
+        jTextFieldScriptExecute32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute32.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute32KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText33.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText33.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText33.setText("Script 33:");
+
+        jTextFieldScriptText33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText33.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText33KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute33.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute33.setText("Execute:");
+
+        jTextFieldScriptExecute33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute33.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute33KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText34.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText34.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText34.setText("Script 34:");
+
+        jTextFieldScriptText34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText34.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText34KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute34.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute34.setText("Execute:");
+
+        jTextFieldScriptExecute34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute34.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute34KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText35.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText35.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText35.setText("Script 35:");
+
+        jTextFieldScriptText35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText35.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText35KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute35.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute35.setText("Execute:");
+
+        jTextFieldScriptExecute35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute35.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute35KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptText36.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelScriptText36.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptText36.setText("Script 36:");
+
+        jTextFieldScriptText36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptText36.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptText36KeyReleased(evt);
+            }
+        });
+
+        jLabelScriptExecute36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelScriptExecute36.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelScriptExecute36.setText("Execute:");
+
+        jTextFieldScriptExecute36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldScriptExecute36.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldScriptExecute36KeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelSettingsScriptsLayout = new javax.swing.GroupLayout(jPanelSettingsScripts);
+        jPanelSettingsScripts.setLayout(jPanelSettingsScriptsLayout);
+        jPanelSettingsScriptsLayout.setHorizontalGroup(
+            jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addGap(0, 432, Short.MAX_VALUE)
+                        .addComponent(jButton45, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute1))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText2))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute2))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText3))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute3))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText4))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute4))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText5))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute5))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText6))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute6))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText7))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute7))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText8))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute8))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText9))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute9))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText10))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute10))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText11))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute11))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText12))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute12))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText13, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText13))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute13, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute13))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText14, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText14))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute14, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute14))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText15, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText15))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute15, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute15))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText16, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText16))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute16, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute16))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText17, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText17))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute17, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute17))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText18, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText18))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute18, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute18))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText19, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText19))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute19, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute19))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText20, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText20))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute20, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute20))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText21, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText21))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute21, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute21))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText22, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText22))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute22, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute22))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText23, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText23))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute23, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute23))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText24, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText24))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute24, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute24))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText25, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText25))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute25, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute25))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText26, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText26))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute26, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute26))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText27, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText27))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute27, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute27))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText28, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText28))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute28, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute28))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText29, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText29))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute29, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute29))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText30, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText30))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute30, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute30))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText31, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText31))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute31, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute31))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText32, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText32))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute32, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute32))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText33, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText33))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute33, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute33))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText34, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText34))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute34, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute34))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText35, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText35))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute35, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute35))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptText36, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptText36))
+                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                        .addComponent(jLabelScriptExecute36, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldScriptExecute36)))
+                .addContainerGap())
+        );
+        jPanelSettingsScriptsLayout.setVerticalGroup(
+            jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton45, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText11, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute11, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText12, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute12, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText13, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute13, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText14, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute14, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText15, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute15, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText16, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute16, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText17, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute17, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText18, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute18, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText19, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute19, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText20, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute20, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText21, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute21, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText22, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute22, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText23, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute23, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText24, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute24, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText25, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute25, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText26, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute26, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText27, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute27, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText28, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute28, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText29, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute29, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText30, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute30, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText31, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute31, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText32, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute32, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText33, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute33, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText34, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute34, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText35, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute35, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldScriptText36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptText36, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldScriptExecute36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelScriptExecute36, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        jScrollPaneSettingsScripts.setViewportView(jPanelSettingsScripts);
+
+        jTabbedPaneSettings.addTab("Scripts", jScrollPaneSettingsScripts);
+        jTabbedPaneSettings.addTab("References", jScrollPaneSettingsReferences);
 
         jTabbedMain.addTab("Settings", jTabbedPaneSettings);
 
@@ -9006,11 +10480,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRomajiToHiraKataActionPerformed
 
     private void jButtonRefreshHostnameIPMACActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRefreshHostnameIPMACActionPerformed
-        //- Get Hostname IP and MAC
-        jLabelLocalHostname.setText(getSystemName());
-        jLabelLocalHostname.setToolTipText(getSystemName());
-        jLabelLocalIP.setText(getIPAddress());
-        jLabelLocalMAC.setText(getMAC());
+
     }//GEN-LAST:event_jButtonRefreshHostnameIPMACActionPerformed
 
     private void jButtonRefreshHostnameIPMACMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRefreshHostnameIPMACMousePressed
@@ -9717,6 +11187,306 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private void jTextFieldLinkText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLinkText1ActionPerformed
     }//GEN-LAST:event_jTextFieldLinkText1ActionPerformed
 
+    private void jTextFieldScriptText1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText1KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript01Description",jTextFieldScriptText1.getText());
+    }//GEN-LAST:event_jTextFieldScriptText1KeyReleased
+
+    private void jTextFieldScriptExecute1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute1KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript01Exec",jTextFieldScriptExecute1.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute1KeyReleased
+
+    private void jButton45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton45ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton45ActionPerformed
+
+    private void jTextFieldScriptText2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText2KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript02Description",jTextFieldScriptText2.getText());
+    }//GEN-LAST:event_jTextFieldScriptText2KeyReleased
+
+    private void jTextFieldScriptExecute2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute2KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript02Exec",jTextFieldScriptExecute2.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute2KeyReleased
+
+    private void jTextFieldScriptText3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText3KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript03Description",jTextFieldScriptText3.getText());
+    }//GEN-LAST:event_jTextFieldScriptText3KeyReleased
+
+    private void jTextFieldScriptExecute3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute3KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript03Exec",jTextFieldScriptExecute3.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute3KeyReleased
+
+    private void jTextFieldScriptText4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText4KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript04Description",jTextFieldScriptText4.getText());
+    }//GEN-LAST:event_jTextFieldScriptText4KeyReleased
+
+    private void jTextFieldScriptExecute4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute4KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript04Exec",jTextFieldScriptExecute4.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute4KeyReleased
+
+    private void jTextFieldScriptText5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText5KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript05Description",jTextFieldScriptText5.getText());
+    }//GEN-LAST:event_jTextFieldScriptText5KeyReleased
+
+    private void jTextFieldScriptExecute5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute5KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript05Exec",jTextFieldScriptExecute5.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute5KeyReleased
+
+    private void jTextFieldScriptText6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText6KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript06Description",jTextFieldScriptText6.getText());
+    }//GEN-LAST:event_jTextFieldScriptText6KeyReleased
+
+    private void jTextFieldScriptExecute6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute6KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript06Exec",jTextFieldScriptExecute6.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute6KeyReleased
+
+    private void jTextFieldScriptText7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText7KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript07Description",jTextFieldScriptText7.getText());
+    }//GEN-LAST:event_jTextFieldScriptText7KeyReleased
+
+    private void jTextFieldScriptExecute7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute7KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript07Exec",jTextFieldScriptExecute7.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute7KeyReleased
+
+    private void jTextFieldScriptText8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText8KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript08Description",jTextFieldScriptText8.getText());
+    }//GEN-LAST:event_jTextFieldScriptText8KeyReleased
+
+    private void jTextFieldScriptExecute8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute8KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript08Exec",jTextFieldScriptExecute8.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute8KeyReleased
+
+    private void jTextFieldScriptText9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText9KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript09Description",jTextFieldScriptText9.getText());
+    }//GEN-LAST:event_jTextFieldScriptText9KeyReleased
+
+    private void jTextFieldScriptExecute9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute9KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript09Exec",jTextFieldScriptExecute9.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute9KeyReleased
+
+    private void jTextFieldScriptText10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText10KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript10Description",jTextFieldScriptText10.getText());
+    }//GEN-LAST:event_jTextFieldScriptText10KeyReleased
+
+    private void jTextFieldScriptExecute10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute10KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript10Exec",jTextFieldScriptExecute10.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute10KeyReleased
+
+    private void jTextFieldScriptText11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText11KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript11Description",jTextFieldScriptText11.getText());
+    }//GEN-LAST:event_jTextFieldScriptText11KeyReleased
+
+    private void jTextFieldScriptExecute11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute11KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript11Exec",jTextFieldScriptExecute11.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute11KeyReleased
+
+    private void jTextFieldScriptText12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText12KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript12Description",jTextFieldScriptText12.getText());
+    }//GEN-LAST:event_jTextFieldScriptText12KeyReleased
+
+    private void jTextFieldScriptExecute12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute12KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript12Exec",jTextFieldScriptExecute12.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute12KeyReleased
+
+    private void jTextFieldScriptText13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText13KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript13Description",jTextFieldScriptText13.getText());
+    }//GEN-LAST:event_jTextFieldScriptText13KeyReleased
+
+    private void jTextFieldScriptExecute13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute13KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript13Exec",jTextFieldScriptExecute13.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute13KeyReleased
+
+    private void jTextFieldScriptText14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText14KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript14Description",jTextFieldScriptText14.getText());
+    }//GEN-LAST:event_jTextFieldScriptText14KeyReleased
+
+    private void jTextFieldScriptExecute14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute14KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript14Exec",jTextFieldScriptExecute14.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute14KeyReleased
+
+    private void jTextFieldScriptText15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText15KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript15Description",jTextFieldScriptText15.getText());
+    }//GEN-LAST:event_jTextFieldScriptText15KeyReleased
+
+    private void jTextFieldScriptExecute15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute15KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript15Exec",jTextFieldScriptExecute15.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute15KeyReleased
+
+    private void jTextFieldScriptText16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText16KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript16Description",jTextFieldScriptText16.getText());
+    }//GEN-LAST:event_jTextFieldScriptText16KeyReleased
+
+    private void jTextFieldScriptExecute16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute16KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript16Exec",jTextFieldScriptExecute16.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute16KeyReleased
+
+    private void jTextFieldScriptText17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText17KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript17Description",jTextFieldScriptText17.getText());
+    }//GEN-LAST:event_jTextFieldScriptText17KeyReleased
+
+    private void jTextFieldScriptExecute17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute17KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript17Exec",jTextFieldScriptExecute17.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute17KeyReleased
+
+    private void jTextFieldScriptText18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText18KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript18Description",jTextFieldScriptText18.getText());
+    }//GEN-LAST:event_jTextFieldScriptText18KeyReleased
+
+    private void jTextFieldScriptExecute18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute18KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript18Exec",jTextFieldScriptExecute18.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute18KeyReleased
+
+    private void jTextFieldScriptText19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText19KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript19Description",jTextFieldScriptText19.getText());
+    }//GEN-LAST:event_jTextFieldScriptText19KeyReleased
+
+    private void jTextFieldScriptExecute19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute19KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript19Exec",jTextFieldScriptExecute19.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute19KeyReleased
+
+    private void jTextFieldScriptText20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText20KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript20Description",jTextFieldScriptText20.getText());
+    }//GEN-LAST:event_jTextFieldScriptText20KeyReleased
+
+    private void jTextFieldScriptExecute20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute20KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript20Exec",jTextFieldScriptExecute20.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute20KeyReleased
+
+    private void jTextFieldScriptText21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText21KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript21Description",jTextFieldScriptText21.getText());
+    }//GEN-LAST:event_jTextFieldScriptText21KeyReleased
+
+    private void jTextFieldScriptExecute21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute21KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript21Exec",jTextFieldScriptExecute21.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute21KeyReleased
+
+    private void jTextFieldScriptText22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText22KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript22Description",jTextFieldScriptText22.getText());
+    }//GEN-LAST:event_jTextFieldScriptText22KeyReleased
+
+    private void jTextFieldScriptExecute22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute22KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript22Exec",jTextFieldScriptExecute22.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute22KeyReleased
+
+    private void jTextFieldScriptText23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText23KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript23Description",jTextFieldScriptText23.getText());
+    }//GEN-LAST:event_jTextFieldScriptText23KeyReleased
+
+    private void jTextFieldScriptExecute23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute23KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript23Exec",jTextFieldScriptExecute23.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute23KeyReleased
+
+    private void jTextFieldScriptText24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText24KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript24Description",jTextFieldScriptText24.getText());
+    }//GEN-LAST:event_jTextFieldScriptText24KeyReleased
+
+    private void jTextFieldScriptExecute24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute24KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript24Exec",jTextFieldScriptExecute24.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute24KeyReleased
+
+    private void jTextFieldScriptText25KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText25KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript25Description",jTextFieldScriptText25.getText());
+    }//GEN-LAST:event_jTextFieldScriptText25KeyReleased
+
+    private void jTextFieldScriptExecute25KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute25KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript25Exec",jTextFieldScriptExecute25.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute25KeyReleased
+
+    private void jTextFieldScriptText26KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText26KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript26Description",jTextFieldScriptText26.getText());
+    }//GEN-LAST:event_jTextFieldScriptText26KeyReleased
+
+    private void jTextFieldScriptExecute26KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute26KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript26Exec",jTextFieldScriptExecute26.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute26KeyReleased
+
+    private void jTextFieldScriptText27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText27KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript27Description",jTextFieldScriptText27.getText());
+    }//GEN-LAST:event_jTextFieldScriptText27KeyReleased
+
+    private void jTextFieldScriptExecute27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute27KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript27Exec",jTextFieldScriptExecute27.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute27KeyReleased
+
+    private void jTextFieldScriptText28KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText28KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript28Description",jTextFieldScriptText28.getText());
+    }//GEN-LAST:event_jTextFieldScriptText28KeyReleased
+
+    private void jTextFieldScriptExecute28KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute28KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript28Exec",jTextFieldScriptExecute28.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute28KeyReleased
+
+    private void jTextFieldScriptText29KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText29KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript29Description",jTextFieldScriptText29.getText());
+    }//GEN-LAST:event_jTextFieldScriptText29KeyReleased
+
+    private void jTextFieldScriptExecute29KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute29KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript29Exec",jTextFieldScriptExecute29.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute29KeyReleased
+
+    private void jTextFieldScriptText30KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText30KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript30Description",jTextFieldScriptText30.getText());
+    }//GEN-LAST:event_jTextFieldScriptText30KeyReleased
+
+    private void jTextFieldScriptExecute30KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute30KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript30Exec",jTextFieldScriptExecute30.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute30KeyReleased
+
+    private void jTextFieldScriptText31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText31KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript31Description",jTextFieldScriptText31.getText());
+    }//GEN-LAST:event_jTextFieldScriptText31KeyReleased
+
+    private void jTextFieldScriptExecute31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute31KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript31Exec",jTextFieldScriptExecute31.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute31KeyReleased
+
+    private void jTextFieldScriptText32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText32KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript32Description",jTextFieldScriptText32.getText());
+    }//GEN-LAST:event_jTextFieldScriptText32KeyReleased
+
+    private void jTextFieldScriptExecute32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute32KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript32Exec",jTextFieldScriptExecute32.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute32KeyReleased
+
+    private void jTextFieldScriptText33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText33KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript33Description",jTextFieldScriptText33.getText());
+    }//GEN-LAST:event_jTextFieldScriptText33KeyReleased
+
+    private void jTextFieldScriptExecute33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute33KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript33Exec",jTextFieldScriptExecute33.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute33KeyReleased
+
+    private void jTextFieldScriptText34KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText34KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript34Description",jTextFieldScriptText34.getText());
+    }//GEN-LAST:event_jTextFieldScriptText34KeyReleased
+
+    private void jTextFieldScriptExecute34KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute34KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript34Exec",jTextFieldScriptExecute34.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute34KeyReleased
+
+    private void jTextFieldScriptText35KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText35KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript35Description",jTextFieldScriptText35.getText());
+    }//GEN-LAST:event_jTextFieldScriptText35KeyReleased
+
+    private void jTextFieldScriptExecute35KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute35KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript35Exec",jTextFieldScriptExecute35.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute35KeyReleased
+
+    private void jTextFieldScriptText36KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText36KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript36Description",jTextFieldScriptText36.getText());
+    }//GEN-LAST:event_jTextFieldScriptText36KeyReleased
+
+    private void jTextFieldScriptExecute36KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute36KeyReleased
+        PropertyHandler.getInstance().setValue("CustomScript36Exec",jTextFieldScriptExecute36.getText());
+    }//GEN-LAST:event_jTextFieldScriptExecute36KeyReleased
+
+    private void jButtonRefreshHostnameIPMACMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRefreshHostnameIPMACMouseReleased
+        //- Get Hostname IP and MAC
+        jLabelLocalHostname.setText(getSystemName());
+        jLabelLocalHostname.setToolTipText(getSystemName());
+        jLabelLocalIP.setText(getIPAddress());
+        jLabelLocalMAC.setText(getMAC());
+    }//GEN-LAST:event_jButtonRefreshHostnameIPMACMouseReleased
+
     
     /**
      * @param args the command line arguments
@@ -9730,7 +11500,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }
     
     
-
+    private void initAddSettingsReferences() {
+        JPanelSettingsReferences jPanelSettingsReferencesClass = new JPanelSettingsReferences();
+        jScrollPaneSettingsReferences.setViewportView(jPanelSettingsReferencesClass);
+    }
    
      private ArrayList getSessionList() throws FileNotFoundException, IOException, URISyntaxException
     {
@@ -9817,6 +11590,30 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         defaultListModelFilteredItems=filteredItems;
         jListSessions.setModel(defaultListModelFilteredItems);
 
+    }
+    
+    public void loadMainButtonStyles() {
+        //--- Load tooltips
+        jButton1.setToolTipText(PropertyHandler.getInstance().getValue("Button01ToolTip"));
+        jButton2.setToolTipText(PropertyHandler.getInstance().getValue("Button02ToolTip"));
+        jButton3.setToolTipText(PropertyHandler.getInstance().getValue("Button03ToolTip"));
+        jButton4.setToolTipText(PropertyHandler.getInstance().getValue("Button04ToolTip"));
+        jButton5.setToolTipText(PropertyHandler.getInstance().getValue("Button05ToolTip"));
+        jButton6.setToolTipText(PropertyHandler.getInstance().getValue("Button06ToolTip"));
+        jButton7.setToolTipText(PropertyHandler.getInstance().getValue("Button07ToolTip"));
+        jButton8.setToolTipText(PropertyHandler.getInstance().getValue("Button08ToolTip"));
+        jButton9.setToolTipText(PropertyHandler.getInstance().getValue("Button09ToolTip"));
+        jButton10.setToolTipText(PropertyHandler.getInstance().getValue("Button10ToolTip"));
+        jButton11.setToolTipText(PropertyHandler.getInstance().getValue("Button11ToolTip"));
+        jButton12.setToolTipText(PropertyHandler.getInstance().getValue("Button12ToolTip"));
+        jButton13.setToolTipText(PropertyHandler.getInstance().getValue("Button13ToolTip"));
+        jButton14.setToolTipText(PropertyHandler.getInstance().getValue("Button14ToolTip"));
+        jButton15.setToolTipText(PropertyHandler.getInstance().getValue("Button15ToolTip"));
+        jButton16.setToolTipText(PropertyHandler.getInstance().getValue("Button16ToolTip"));
+        jButton17.setToolTipText(PropertyHandler.getInstance().getValue("Button17ToolTip"));
+        jButton18.setToolTipText(PropertyHandler.getInstance().getValue("Button18ToolTip"));
+        jButton19.setToolTipText(PropertyHandler.getInstance().getValue("Button19ToolTip"));
+        jButton20.setToolTipText(PropertyHandler.getInstance().getValue("Button20ToolTip"));
     }
     
     private void searchFilterLinks(String searchTerm) throws IOException, FileNotFoundException, URISyntaxException
@@ -10181,39 +11978,40 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 //        }
 //    }   
     
+    //- Double and Triple click functions
     class MyMouseListener extends MouseAdapter {
         @Override
         public void mouseClicked(MouseEvent evt) {
-          if (evt.getClickCount() == 3) {
-            System.out.println("triple-click");
-          } else if (evt.getClickCount() == 2) {
-            System.out.println("double-click");
-            String strSelectedValue = jListSessions.getSelectedValue();
-            if(strSelectedValue.contains(",")) {
-                String[] arrSelectedValue = strSelectedValue.split(",");
-                jTextFieldConnectHostname.setText(arrSelectedValue[1]);
-                jTextFieldPingHostname.setText(arrSelectedValue[1]);
+            if (evt.getClickCount() == 3) {
+                System.out.println("triple-click");
+            } else if (evt.getClickCount() == 2) {
+                System.out.println("double-click");
+                String strSelectedValue = jListSessions.getSelectedValue();
+                if(strSelectedValue.contains(",")) {
+                    String[] arrSelectedValue = strSelectedValue.split(",");
+                    jTextFieldConnectHostname.setText(arrSelectedValue[1]);
+                    jTextFieldPingHostname.setText(arrSelectedValue[1]);
+                }
+                String myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionDoubleClick");
+                if("".equals(myValue)) {
+                    PropertyHandler.getInstance().setValue("ButtonExecuteFunctionDoubleClick", "3");
+                }              
+                myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionDoubleClick");
+                if("1".equals(myValue)) {
+                    jButtonExecuteFunction1.doClick();
+                } else if("2".equals(myValue)) {
+                    jButtonExecuteFunction2.doClick();               
+                } else if("3".equals(myValue)){
+                    jButtonExecuteFunctionSSH.doClick();
+                }
             }
-            String myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionDoubleClick");
-            if("".equals(myValue)) {
-                PropertyHandler.getInstance().setValue("ButtonExecuteFunctionDoubleClick", "3");
-            }              
-            myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionDoubleClick");
-            if("1".equals(myValue)) {
-                jButtonExecuteFunction1.doClick();
-            } else if("2".equals(myValue)) {
-                jButtonExecuteFunction2.doClick();               
-            } else if("3".equals(myValue)){
-                jButtonExecuteFunctionSSH.doClick();
-            }
-            
-          }
         }
-      }
-    
-        private static String getSystemName(){  
+    }
+
+    //- Get local Hostname
+    private static String getSystemName(){  
         try{
-            InetAddress inetaddress=InetAddress.getLocalHost(); //Get LocalHost refrence
+            InetAddress inetaddress=InetAddress.getLocalHost(); //Get LocalHost reference
             String name = inetaddress.getHostName();   //Get Host Name
             return name;   //return Host Name
         }
@@ -10222,12 +12020,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         }
     }
      
-    /**
-     * method to get Host IP
-     * @return Host IP Address
-     */
+    //- Get local IP
     private static String getIPAddress(){
-        
          try{
             InetAddress inetaddress=InetAddress.getLocalHost();  //Get LocalHost refrence
             String ip = inetaddress.getHostAddress();  // Get Host IP Address
@@ -10236,38 +12030,115 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         catch(UnknownHostException e){ 
             return null;
         }
-         
     }
      
-    /**
-     * method to get Host Mac Address
-     * @return  Mac Address
-     */
+    //- Get local MAC
     private static String getMAC(){
          try{
-            InetAddress inetaddress=InetAddress.getLocalHost(); //Get LocalHost refrence
-             
+            InetAddress inetaddress=InetAddress.getLocalHost(); //Get LocalHost refrence            
             //get Network interface Refrence by InetAddress Refrence
             NetworkInterface network = NetworkInterface.getByInetAddress(inetaddress); 
             byte[] macArray = network.getHardwareAddress();  //get Harware address Array
-            StringBuilder str = new StringBuilder();
-             
+            StringBuilder str = new StringBuilder();             
             // Convert Array to String 
             for (int i = 0; i < macArray.length; i++) {
                     str.append(String.format("%02X%s", macArray[i], (i < macArray.length - 1) ? "-" : ""));
             }
-            String macAddress=str.toString();
-         
-            return macAddress; //return MAc Address
+            String macAddress=str.toString();         
+            return macAddress; //return MAC Address
         }
         catch(SocketException | UnknownHostException e){ 
-
             return null;
         } 
     }
     
-    //Change items to Japanese
-    public void SetLanguageJapanese() {
+    private void loadClassification() {  
+        String strClassification = PropertyHandler.getInstance().getValue("SettingClassification");
+        System.out.println("Classification: " + strClassification);
+        Color strClassificationColor = new Color(4,159,168);
+        if("unclassified".equalsIgnoreCase(strClassification)) {
+            strClassificationColor = new Color(0,122,61);
+        }
+        if("confidential".equalsIgnoreCase(strClassification)) {
+            strClassificationColor = new Color(0,56,168);
+        }
+        if("secret".equalsIgnoreCase(strClassification)) {
+            strClassificationColor = new Color(206,17,38);
+        }
+        if("top secret".equalsIgnoreCase(strClassification)) {
+            strClassificationColor = new Color(249,99,2);
+        }
+        if("sci".equalsIgnoreCase(strClassification)) {
+            strClassificationColor = new Color(240,240,0);
+        }        
+        if("coalition".equalsIgnoreCase(strClassification)) {
+            strClassificationColor = new Color(127,127,255);
+        }
+        if("none".equalsIgnoreCase(strClassification)) {
+            strClassificationColor = new Color(0,0,0);
+        }         
+        getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, strClassificationColor));       
+    }
+
+    private void loadHostIPMAC() {
+        //- Get Hostname IP and MAC
+        jLabelLocalHostname.setText(getSystemName());
+        jLabelLocalHostname.setToolTipText(getSystemName());
+        jLabelLocalIP.setText(getIPAddress());
+        jLabelLocalMAC.setText(getMAC());
+        System.out.println("Host Name : "+getSystemName());
+        System.out.println("Host IP   : "+getIPAddress());
+        System.out.println("Host Address : "+getMAC());    
+    }
+    
+    public void loadPersonalSettings() {
+                //- Set Personal Text Setting 
+        try {
+            String myValue = PropertyHandlerPersonal.getInstance().getValue("SettingTextSize");
+            if("".equals(myValue)) {
+                PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "1");
+            }
+            int myValueInt = Integer.parseInt(PropertyHandlerPersonal.getInstance().getValue("SettingTextSize"));
+            jSliderListTextSize.setValue(myValueInt);
+
+        } catch (NullPointerException e) {System.out.println("TextSize Goofed");
+        }
+
+        //- Set Personal Language Setting 
+        try {
+            if("Japanese".equals(PropertyHandlerPersonal.getInstance().getValue("SettingLanguage"))) {
+                jRadioButtonJapanese.setSelected(Boolean.TRUE);
+                SetLanguageJapanese();
+            }
+        } catch (NullPointerException e) {System.out.println("SettingLanguage Goofed");
+        }
+        try {
+            if("English".equals(PropertyHandlerPersonal.getInstance().getValue("SettingLanguage"))) {
+                jRadioButtonEnglish.setSelected(Boolean.TRUE);
+            }
+        } catch (NullPointerException e) {System.out.println("SettingLanguage Goofed");
+        }    
+
+        //- Set PW SSH Auth Default ENABLE or DISABLE
+        try {
+            if("1".equals(PropertyHandler.getInstance().getValue("SettingPasswordBasedSSHauthDisable"))) {
+                jRadioButtonPWauthDisabled.setSelected(Boolean.TRUE);
+                jButtonExecuteFunctionSSH.setBackground(new javax.swing.JButton().getBackground());
+                jButtonExecuteFunctionSSH.setEnabled(false);
+            }
+        } catch (NullPointerException e) {System.out.println("SettingPasswordBasedSSHauthDisable Goofed");
+        }
+        try {
+            if("0".equals(PropertyHandler.getInstance().getValue("SettingPasswordBasedSSHauthDisable"))) {
+                jRadioButtonPWauthEnabled.setSelected(Boolean.TRUE);
+                jButtonExecuteFunctionSSH.setBackground(new Color(200,255,153));
+                jButtonExecuteFunctionSSH.setEnabled(Boolean.TRUE);
+            }
+        } catch (NullPointerException e) {System.out.println("SettingPasswordBasedSSHauthDisable Goofed");
+        }
+    }
+    
+    private void SetLanguageJapanese() {
         jTabbedMain.setTitleAt(0,"メイン");
         jTabbedMain.setTitleAt(1,"リンク");
         jTabbedMain.setTitleAt(2,"レファレンス");
@@ -10306,7 +12177,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     }
     
-    public void SettingsLoadButtonsData() {
+    private void loadSettingsMainButtonsData() {
         //- ToolTips
         jTextFieldButtonToolTip1.setText(PropertyHandler.getInstance().getValue("Button01ToolTip"));
         jTextFieldButtonToolTip2.setText(PropertyHandler.getInstance().getValue("Button02ToolTip"));
@@ -10327,8 +12198,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldButtonToolTip17.setText(PropertyHandler.getInstance().getValue("Button17ToolTip"));
         jTextFieldButtonToolTip18.setText(PropertyHandler.getInstance().getValue("Button18ToolTip"));
         jTextFieldButtonToolTip19.setText(PropertyHandler.getInstance().getValue("Button19ToolTip"));
-        jTextFieldButtonToolTip20.setText(PropertyHandler.getInstance().getValue("Button20ToolTip"));
-        
+        jTextFieldButtonToolTip20.setText(PropertyHandler.getInstance().getValue("Button20ToolTip"));        
         //- Icons
         jComboBoxButtonIcon1.setSelectedItem(PropertyHandler.getInstance().getValue("Button01Icon"));
         jComboBoxButtonIcon2.setSelectedItem(PropertyHandler.getInstance().getValue("Button02Icon"));
@@ -10349,9 +12219,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon17.setSelectedItem(PropertyHandler.getInstance().getValue("Button17Icon"));
         jComboBoxButtonIcon18.setSelectedItem(PropertyHandler.getInstance().getValue("Button18Icon"));
         jComboBoxButtonIcon19.setSelectedItem(PropertyHandler.getInstance().getValue("Button19Icon"));
-        jComboBoxButtonIcon20.setSelectedItem(PropertyHandler.getInstance().getValue("Button20Icon"));
-
-        
+        jComboBoxButtonIcon20.setSelectedItem(PropertyHandler.getInstance().getValue("Button20Icon"));       
         //- Executions
         jTextFieldButtonExecute1.setText(PropertyHandler.getInstance().getValue("Button01StrExec"));
         jTextFieldButtonExecute2.setText(PropertyHandler.getInstance().getValue("Button02StrExec"));
@@ -10375,7 +12243,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldButtonExecute20.setText(PropertyHandler.getInstance().getValue("Button20StrExec"));
     }
     
-    public void SettingsLoadLinkData() {
+    private void loadSettingsLinkData() {
         //- Text
         jTextFieldLinkText1.setText(PropertyHandler.getInstance().getValue("CustomLink01Description"));
         jTextFieldLinkText2.setText(PropertyHandler.getInstance().getValue("CustomLink02Description"));
@@ -10452,150 +12320,162 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldLinkExecute36.setText(PropertyHandler.getInstance().getValue("CustomLink36Exec"));
     }
     
-//    public void SettingsLoadCustomLinksData() {
-//        jTextFieldLinkCustom01.setText(PropertyHandler.getInstance().getValue("Button02StrExec"));
-//    }
+    private void loadSettingsScriptData() {
+        //- Text
+        jTextFieldScriptText1.setText(PropertyHandler.getInstance().getValue("CustomScript01Description"));
+        jTextFieldScriptText2.setText(PropertyHandler.getInstance().getValue("CustomScript02Description"));
+        jTextFieldScriptText3.setText(PropertyHandler.getInstance().getValue("CustomScript03Description"));
+        jTextFieldScriptText4.setText(PropertyHandler.getInstance().getValue("CustomScript04Description"));
+        jTextFieldScriptText5.setText(PropertyHandler.getInstance().getValue("CustomScript05Description"));
+        jTextFieldScriptText6.setText(PropertyHandler.getInstance().getValue("CustomScript06Description"));
+        jTextFieldScriptText7.setText(PropertyHandler.getInstance().getValue("CustomScript07Description"));
+        jTextFieldScriptText8.setText(PropertyHandler.getInstance().getValue("CustomScript08Description"));
+        jTextFieldScriptText9.setText(PropertyHandler.getInstance().getValue("CustomScript09Description"));
+        jTextFieldScriptText10.setText(PropertyHandler.getInstance().getValue("CustomScript10Description"));
+        jTextFieldScriptText11.setText(PropertyHandler.getInstance().getValue("CustomScript11Description"));
+        jTextFieldScriptText12.setText(PropertyHandler.getInstance().getValue("CustomScript12Description"));
+        jTextFieldScriptText13.setText(PropertyHandler.getInstance().getValue("CustomScript13Description"));
+        jTextFieldScriptText14.setText(PropertyHandler.getInstance().getValue("CustomScript14Description"));
+        jTextFieldScriptText15.setText(PropertyHandler.getInstance().getValue("CustomScript15Description"));
+        jTextFieldScriptText16.setText(PropertyHandler.getInstance().getValue("CustomScript16Description"));
+        jTextFieldScriptText17.setText(PropertyHandler.getInstance().getValue("CustomScript17Description"));
+        jTextFieldScriptText18.setText(PropertyHandler.getInstance().getValue("CustomScript18Description"));
+        jTextFieldScriptText19.setText(PropertyHandler.getInstance().getValue("CustomScript19Description"));
+        jTextFieldScriptText20.setText(PropertyHandler.getInstance().getValue("CustomScript20Description"));
+        jTextFieldScriptText21.setText(PropertyHandler.getInstance().getValue("CustomScript21Description"));
+        jTextFieldScriptText22.setText(PropertyHandler.getInstance().getValue("CustomScript22Description"));
+        jTextFieldScriptText23.setText(PropertyHandler.getInstance().getValue("CustomScript23Description"));
+        jTextFieldScriptText24.setText(PropertyHandler.getInstance().getValue("CustomScript24Description"));
+        jTextFieldScriptText25.setText(PropertyHandler.getInstance().getValue("CustomScript25Description"));
+        jTextFieldScriptText26.setText(PropertyHandler.getInstance().getValue("CustomScript26Description"));
+        jTextFieldScriptText27.setText(PropertyHandler.getInstance().getValue("CustomScript27Description"));
+        jTextFieldScriptText28.setText(PropertyHandler.getInstance().getValue("CustomScript28Description"));
+        jTextFieldScriptText29.setText(PropertyHandler.getInstance().getValue("CustomScript29Description"));
+        jTextFieldScriptText30.setText(PropertyHandler.getInstance().getValue("CustomScript30Description"));
+        jTextFieldScriptText31.setText(PropertyHandler.getInstance().getValue("CustomScript31Description"));
+        jTextFieldScriptText32.setText(PropertyHandler.getInstance().getValue("CustomScript32Description"));
+        jTextFieldScriptText33.setText(PropertyHandler.getInstance().getValue("CustomScript33Description"));
+        jTextFieldScriptText34.setText(PropertyHandler.getInstance().getValue("CustomScript34Description"));
+        jTextFieldScriptText35.setText(PropertyHandler.getInstance().getValue("CustomScript35Description"));
+        jTextFieldScriptText36.setText(PropertyHandler.getInstance().getValue("CustomScript36Description"));
+        //- Executions
+        jTextFieldScriptExecute1.setText(PropertyHandler.getInstance().getValue("CustomScript01Exec"));
+        jTextFieldScriptExecute2.setText(PropertyHandler.getInstance().getValue("CustomScript02Exec"));
+        jTextFieldScriptExecute3.setText(PropertyHandler.getInstance().getValue("CustomScript03Exec"));
+        jTextFieldScriptExecute4.setText(PropertyHandler.getInstance().getValue("CustomScript04Exec"));
+        jTextFieldScriptExecute5.setText(PropertyHandler.getInstance().getValue("CustomScript05Exec"));
+        jTextFieldScriptExecute6.setText(PropertyHandler.getInstance().getValue("CustomScript06Exec"));
+        jTextFieldScriptExecute7.setText(PropertyHandler.getInstance().getValue("CustomScript07Exec"));
+        jTextFieldScriptExecute8.setText(PropertyHandler.getInstance().getValue("CustomScript08Exec"));
+        jTextFieldScriptExecute9.setText(PropertyHandler.getInstance().getValue("CustomScript09Exec"));
+        jTextFieldScriptExecute10.setText(PropertyHandler.getInstance().getValue("CustomScript10Exec"));
+        jTextFieldScriptExecute11.setText(PropertyHandler.getInstance().getValue("CustomScript11Exec"));
+        jTextFieldScriptExecute12.setText(PropertyHandler.getInstance().getValue("CustomScript12Exec"));
+        jTextFieldScriptExecute13.setText(PropertyHandler.getInstance().getValue("CustomScript13Exec"));
+        jTextFieldScriptExecute14.setText(PropertyHandler.getInstance().getValue("CustomScript14Exec"));
+        jTextFieldScriptExecute15.setText(PropertyHandler.getInstance().getValue("CustomScript15Exec"));
+        jTextFieldScriptExecute16.setText(PropertyHandler.getInstance().getValue("CustomScript16Exec"));
+        jTextFieldScriptExecute17.setText(PropertyHandler.getInstance().getValue("CustomScript17Exec"));
+        jTextFieldScriptExecute18.setText(PropertyHandler.getInstance().getValue("CustomScript18Exec"));
+        jTextFieldScriptExecute19.setText(PropertyHandler.getInstance().getValue("CustomScript19Exec"));
+        jTextFieldScriptExecute20.setText(PropertyHandler.getInstance().getValue("CustomScript20Exec"));
+        jTextFieldScriptExecute21.setText(PropertyHandler.getInstance().getValue("CustomScript21Exec"));
+        jTextFieldScriptExecute22.setText(PropertyHandler.getInstance().getValue("CustomScript22Exec"));
+        jTextFieldScriptExecute23.setText(PropertyHandler.getInstance().getValue("CustomScript23Exec"));
+        jTextFieldScriptExecute24.setText(PropertyHandler.getInstance().getValue("CustomScript24Exec"));
+        jTextFieldScriptExecute25.setText(PropertyHandler.getInstance().getValue("CustomScript25Exec"));
+        jTextFieldScriptExecute26.setText(PropertyHandler.getInstance().getValue("CustomScript26Exec"));
+        jTextFieldScriptExecute27.setText(PropertyHandler.getInstance().getValue("CustomScript27Exec"));
+        jTextFieldScriptExecute28.setText(PropertyHandler.getInstance().getValue("CustomScript28Exec"));
+        jTextFieldScriptExecute29.setText(PropertyHandler.getInstance().getValue("CustomScript29Exec"));
+        jTextFieldScriptExecute30.setText(PropertyHandler.getInstance().getValue("CustomScript30Exec"));
+        jTextFieldScriptExecute31.setText(PropertyHandler.getInstance().getValue("CustomScript31Exec"));
+        jTextFieldScriptExecute32.setText(PropertyHandler.getInstance().getValue("CustomScript32Exec"));
+        jTextFieldScriptExecute33.setText(PropertyHandler.getInstance().getValue("CustomScript33Exec"));
+        jTextFieldScriptExecute34.setText(PropertyHandler.getInstance().getValue("CustomScript34Exec"));
+        jTextFieldScriptExecute35.setText(PropertyHandler.getInstance().getValue("CustomScript35Exec"));
+        jTextFieldScriptExecute36.setText(PropertyHandler.getInstance().getValue("CustomScript36Exec"));
+    }
     
-//    public void SettingsSetCustomLinks(String strPropertyName,String strPropertyValue) {
-//        
-//                    PropertyHandlerPersonal.getInstance().setValue(strPropertyName,strPropertyValue);
-//    }
-    
-    //- Display all the buttons in a list
-   // public final class SettingsLoadButtonList {
         
-        private Map<String, ImageIcon> imageMap;
+    private Map<String, ImageIcon> imageMap;
 
-        public void SettingsLoadButtonList() {
-            String[] arrButtonList = null;
-            try {
-                arrButtonList = this.getResourceListing(launchpad.LaunchPad.class , "launchpad/images/buttons/");
-            } catch (URISyntaxException | IOException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            System.out.println("Button List: " + Arrays.toString(arrButtonList));
-            Arrays.sort(arrButtonList, Collator.getInstance());
-
-            imageMap = createImageMap(arrButtonList);
-            //- Remove .png
-//            for (int index =0; index < arrButtonList.length; index++){
-//                arrButtonList[index] = arrButtonList[index].replace(".png", "");
-//            }            
-
-            jComboBoxButtonIcon1.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon2.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon3.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon4.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon5.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon6.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon7.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon8.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon9.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon10.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon11.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon12.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon13.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon14.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon15.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon16.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon17.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon18.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon19.setModel(new DefaultComboBoxModel(arrButtonList));
-            jComboBoxButtonIcon20.setModel(new DefaultComboBoxModel(arrButtonList));
-
-         
+    private void loadSettingsMainButtonList() {
+        String[] arrButtonList = null;
+        try {
+            arrButtonList = this.getResourceListing(launchpad.LaunchPad.class , "launchpad/images/buttons/");
+        } catch (URISyntaxException | IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println("Button List: " + Arrays.toString(arrButtonList));
+        Arrays.sort(arrButtonList, Collator.getInstance());
 
-        public class ButtonListRenderer extends DefaultListCellRenderer {
+        imageMap = createImageMap(arrButtonList);
 
+        jComboBoxButtonIcon1.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon2.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon3.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon4.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon5.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon6.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon7.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon8.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon9.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon10.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon11.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon12.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon13.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon14.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon15.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon16.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon17.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon18.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon19.setModel(new DefaultComboBoxModel(arrButtonList));
+        jComboBoxButtonIcon20.setModel(new DefaultComboBoxModel(arrButtonList));
+    }
 
-            @Override
-            public Component getListCellRendererComponent( JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                label.setIcon(imageMap.get((String) value));
-                label.setHorizontalTextPosition(JLabel.RIGHT);
-                //label.setFont(font);
-                (imageMap.get((String) value)).setImageObserver(label);
-
-                return label;
-            }
+    public class ButtonListRenderer extends DefaultListCellRenderer {
+        @Override
+        public Component getListCellRendererComponent( JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+            JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            label.setIcon(imageMap.get((String) value));
+            label.setHorizontalTextPosition(JLabel.RIGHT);
+            //label.setFont(font);
+            (imageMap.get((String) value)).setImageObserver(label);
+            return label;
         }
+    }
 
-        private Map<String, ImageIcon> createImageMap(String[] list) {
-            Map<String, ImageIcon> map = new HashMap<>();
-            for (String s : list) {
-                ImageIcon imageIconPreResize = new ImageIcon( getClass().getResource("/launchpad/images/buttons/" + s));
-                Image image = imageIconPreResize.getImage(); // transform it 
-                Image newimg = image.getScaledInstance(40, 40,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-                ImageIcon imageIconPostResize= new ImageIcon(newimg);                
-                
-                
-                map.put(s, imageIconPostResize );
-            }
-            return map;
+    private Map<String, ImageIcon> createImageMap(String[] list) {
+        Map<String, ImageIcon> map = new HashMap<>();
+        for (String s : list) {
+            ImageIcon imageIconPreResize = new ImageIcon( getClass().getResource("/launchpad/images/buttons/" + s));
+            Image image = imageIconPreResize.getImage(); // transform it 
+            Image newimg = image.getScaledInstance(40, 40,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+            ImageIcon imageIconPostResize= new ImageIcon(newimg);                
+            map.put(s, imageIconPostResize );
         }
-
-        
-//      String[] getResourceListing(Class clazz, String path) throws URISyntaxException, IOException {
-//      URL dirURL = clazz.getClassLoader().getResource(path);
-//      if (dirURL != null && dirURL.getProtocol().equals("file")) {
-//        /* A file path: easy enough */
-//        return new File(dirURL.toURI()).list();
-//      } 
-//
-//      if (dirURL == null) {
-//        /* 
-//         * In case of a jar file, we can't actually find a directory.
-//         * Have to assume the same jar as clazz.
-//         */
-//        String me = clazz.getName().replace(".", "/")+".class";
-//        dirURL = clazz.getClassLoader().getResource(me);
-//      }
-//      
-//      if (dirURL.getProtocol().equals("jar")) {
-//        /* A JAR path */
-//        String jarPath = dirURL.getPath().substring(5, dirURL.getPath().indexOf("!")); //strip out only the JAR file
-//        JarFile jar = new JarFile(URLDecoder.decode(jarPath, "UTF-8"));
-//        Enumeration<JarEntry> entries = jar.entries(); //gives ALL entries in jar
-//        Set<String> result = new HashSet<>(); //avoid duplicates in case it is a subdirectory
-//        while(entries.hasMoreElements()) {
-//          String name = entries.nextElement().getName();
-//          if (name.startsWith(path)) { //filter according to the path
-//            String entry = name.substring(path.length());
-//            int checkSubdir = entry.indexOf("/");
-//            if (checkSubdir >= 0) {
-//              // if it is a subdirectory, we just return the directory name
-//              entry = entry.substring(0, checkSubdir);
-//            }
-//            result.add(entry);
-//          }
-//        }
-//        return result.toArray(new String[result.size()]);
-//      } 
-//        
-//      throw new UnsupportedOperationException("Cannot list files for URL "+dirURL);
-//  }
-    //}
+        return map;
+    }
     
-    public void restartApplication() throws URISyntaxException, IOException
-        {
-            final String javaBin = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
-            final File currentJar = new File(LaunchPad.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+    public void restartApplication() throws URISyntaxException, IOException {
+        final String javaBin = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
+        final File currentJar = new File(LaunchPad.class.getProtectionDomain().getCodeSource().getLocation().toURI());
 
-            /* is it a jar file? */
-            if(!currentJar.getName().endsWith(".jar"))
-              return;
+        /* is it a jar file? */
+        if(!currentJar.getName().endsWith(".jar"))
+          return;
 
-            /* Build command: java -jar application.jar */
-            final ArrayList<String> command = new ArrayList<String>();
-            command.add(javaBin);
-            command.add("-jar");
-            command.add(currentJar.getPath());
+        /* Build command: java -jar application.jar */
+        final ArrayList<String> command = new ArrayList<String>();
+        command.add(javaBin);
+        command.add("-jar");
+        command.add(currentJar.getPath());
 
-            final ProcessBuilder builder = new ProcessBuilder(command);
-            builder.start();
-            System.exit(0);
-        }
+        final ProcessBuilder builder = new ProcessBuilder(command);
+        builder.start();
+        System.exit(0);
+    }
   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -10642,6 +12522,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton42;
     private javax.swing.JButton jButton43;
     private javax.swing.JButton jButton44;
+    private javax.swing.JButton jButton45;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -10702,39 +12583,39 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLinkCustom36;
     private javax.swing.JButton jButtonMapSharedFolder;
     private javax.swing.JButton jButtonPing;
-    private javax.swing.JButton jButtonReferenceCustom01;
-    private javax.swing.JButton jButtonReferenceCustom02;
-    private javax.swing.JButton jButtonReferenceCustom03;
-    private javax.swing.JButton jButtonReferenceCustom04;
-    private javax.swing.JButton jButtonReferenceCustom05;
-    private javax.swing.JButton jButtonReferenceCustom06;
-    private javax.swing.JButton jButtonReferenceCustom07;
-    private javax.swing.JButton jButtonReferenceCustom08;
-    private javax.swing.JButton jButtonReferenceCustom09;
-    private javax.swing.JButton jButtonReferenceCustom10;
-    private javax.swing.JButton jButtonReferenceCustom11;
-    private javax.swing.JButton jButtonReferenceCustom12;
-    private javax.swing.JButton jButtonReferenceCustom13;
-    private javax.swing.JButton jButtonReferenceCustom14;
-    private javax.swing.JButton jButtonReferenceCustom15;
-    private javax.swing.JButton jButtonReferenceCustom16;
-    private javax.swing.JButton jButtonReferenceCustom17;
-    private javax.swing.JButton jButtonReferenceCustom18;
-    private javax.swing.JButton jButtonReferenceCustom19;
-    private javax.swing.JButton jButtonReferenceCustom20;
-    private javax.swing.JButton jButtonReferenceCustom21;
-    private javax.swing.JButton jButtonReferenceCustom22;
-    private javax.swing.JButton jButtonReferenceCustom23;
-    private javax.swing.JButton jButtonReferenceCustom24;
-    private javax.swing.JButton jButtonReferenceCustom25;
-    private javax.swing.JButton jButtonReferenceCustom26;
-    private javax.swing.JButton jButtonReferenceCustom27;
-    private javax.swing.JButton jButtonReferenceCustom28;
-    private javax.swing.JButton jButtonReferenceCustom29;
-    private javax.swing.JButton jButtonReferenceCustom30;
-    private javax.swing.JButton jButtonReferenceCustom31;
-    private javax.swing.JButton jButtonReferenceCustom32;
-    private javax.swing.JButton jButtonReferenceCustom33;
+    public javax.swing.JButton jButtonReferenceCustom01;
+    public javax.swing.JButton jButtonReferenceCustom02;
+    public javax.swing.JButton jButtonReferenceCustom03;
+    public javax.swing.JButton jButtonReferenceCustom04;
+    public javax.swing.JButton jButtonReferenceCustom05;
+    public javax.swing.JButton jButtonReferenceCustom06;
+    public javax.swing.JButton jButtonReferenceCustom07;
+    public javax.swing.JButton jButtonReferenceCustom08;
+    public javax.swing.JButton jButtonReferenceCustom09;
+    public javax.swing.JButton jButtonReferenceCustom10;
+    public javax.swing.JButton jButtonReferenceCustom11;
+    public javax.swing.JButton jButtonReferenceCustom12;
+    public javax.swing.JButton jButtonReferenceCustom13;
+    public javax.swing.JButton jButtonReferenceCustom14;
+    public javax.swing.JButton jButtonReferenceCustom15;
+    public javax.swing.JButton jButtonReferenceCustom16;
+    public javax.swing.JButton jButtonReferenceCustom17;
+    public javax.swing.JButton jButtonReferenceCustom18;
+    public javax.swing.JButton jButtonReferenceCustom19;
+    public javax.swing.JButton jButtonReferenceCustom20;
+    public javax.swing.JButton jButtonReferenceCustom21;
+    public javax.swing.JButton jButtonReferenceCustom22;
+    public javax.swing.JButton jButtonReferenceCustom23;
+    public javax.swing.JButton jButtonReferenceCustom24;
+    public javax.swing.JButton jButtonReferenceCustom25;
+    public javax.swing.JButton jButtonReferenceCustom26;
+    public javax.swing.JButton jButtonReferenceCustom27;
+    public javax.swing.JButton jButtonReferenceCustom28;
+    public javax.swing.JButton jButtonReferenceCustom29;
+    public javax.swing.JButton jButtonReferenceCustom30;
+    public javax.swing.JButton jButtonReferenceCustom31;
+    public javax.swing.JButton jButtonReferenceCustom32;
+    public javax.swing.JButton jButtonReferenceCustom33;
     private javax.swing.JButton jButtonRefreshHostnameIPMAC;
     private javax.swing.JButton jButtonReportIssue;
     private javax.swing.JButton jButtonRomajiToHiraKata;
@@ -10984,6 +12865,78 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelLocalMAC;
     private javax.swing.JLabel jLabelReferenceFilter;
     private javax.swing.JLabel jLabelSSHClient;
+    private javax.swing.JLabel jLabelScriptExecute1;
+    private javax.swing.JLabel jLabelScriptExecute10;
+    private javax.swing.JLabel jLabelScriptExecute11;
+    private javax.swing.JLabel jLabelScriptExecute12;
+    private javax.swing.JLabel jLabelScriptExecute13;
+    private javax.swing.JLabel jLabelScriptExecute14;
+    private javax.swing.JLabel jLabelScriptExecute15;
+    private javax.swing.JLabel jLabelScriptExecute16;
+    private javax.swing.JLabel jLabelScriptExecute17;
+    private javax.swing.JLabel jLabelScriptExecute18;
+    private javax.swing.JLabel jLabelScriptExecute19;
+    private javax.swing.JLabel jLabelScriptExecute2;
+    private javax.swing.JLabel jLabelScriptExecute20;
+    private javax.swing.JLabel jLabelScriptExecute21;
+    private javax.swing.JLabel jLabelScriptExecute22;
+    private javax.swing.JLabel jLabelScriptExecute23;
+    private javax.swing.JLabel jLabelScriptExecute24;
+    private javax.swing.JLabel jLabelScriptExecute25;
+    private javax.swing.JLabel jLabelScriptExecute26;
+    private javax.swing.JLabel jLabelScriptExecute27;
+    private javax.swing.JLabel jLabelScriptExecute28;
+    private javax.swing.JLabel jLabelScriptExecute29;
+    private javax.swing.JLabel jLabelScriptExecute3;
+    private javax.swing.JLabel jLabelScriptExecute30;
+    private javax.swing.JLabel jLabelScriptExecute31;
+    private javax.swing.JLabel jLabelScriptExecute32;
+    private javax.swing.JLabel jLabelScriptExecute33;
+    private javax.swing.JLabel jLabelScriptExecute34;
+    private javax.swing.JLabel jLabelScriptExecute35;
+    private javax.swing.JLabel jLabelScriptExecute36;
+    private javax.swing.JLabel jLabelScriptExecute4;
+    private javax.swing.JLabel jLabelScriptExecute5;
+    private javax.swing.JLabel jLabelScriptExecute6;
+    private javax.swing.JLabel jLabelScriptExecute7;
+    private javax.swing.JLabel jLabelScriptExecute8;
+    private javax.swing.JLabel jLabelScriptExecute9;
+    private javax.swing.JLabel jLabelScriptText1;
+    private javax.swing.JLabel jLabelScriptText10;
+    private javax.swing.JLabel jLabelScriptText11;
+    private javax.swing.JLabel jLabelScriptText12;
+    private javax.swing.JLabel jLabelScriptText13;
+    private javax.swing.JLabel jLabelScriptText14;
+    private javax.swing.JLabel jLabelScriptText15;
+    private javax.swing.JLabel jLabelScriptText16;
+    private javax.swing.JLabel jLabelScriptText17;
+    private javax.swing.JLabel jLabelScriptText18;
+    private javax.swing.JLabel jLabelScriptText19;
+    private javax.swing.JLabel jLabelScriptText2;
+    private javax.swing.JLabel jLabelScriptText20;
+    private javax.swing.JLabel jLabelScriptText21;
+    private javax.swing.JLabel jLabelScriptText22;
+    private javax.swing.JLabel jLabelScriptText23;
+    private javax.swing.JLabel jLabelScriptText24;
+    private javax.swing.JLabel jLabelScriptText25;
+    private javax.swing.JLabel jLabelScriptText26;
+    private javax.swing.JLabel jLabelScriptText27;
+    private javax.swing.JLabel jLabelScriptText28;
+    private javax.swing.JLabel jLabelScriptText29;
+    private javax.swing.JLabel jLabelScriptText3;
+    private javax.swing.JLabel jLabelScriptText30;
+    private javax.swing.JLabel jLabelScriptText31;
+    private javax.swing.JLabel jLabelScriptText32;
+    private javax.swing.JLabel jLabelScriptText33;
+    private javax.swing.JLabel jLabelScriptText34;
+    private javax.swing.JLabel jLabelScriptText35;
+    private javax.swing.JLabel jLabelScriptText36;
+    private javax.swing.JLabel jLabelScriptText4;
+    private javax.swing.JLabel jLabelScriptText5;
+    private javax.swing.JLabel jLabelScriptText6;
+    private javax.swing.JLabel jLabelScriptText7;
+    private javax.swing.JLabel jLabelScriptText8;
+    private javax.swing.JLabel jLabelScriptText9;
     private javax.swing.JLabel jLabelScriptsFilter;
     private javax.swing.JLabel jLabelType7reverse;
     private javax.swing.JList<String> jListSessions;
@@ -11005,6 +12958,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelSettingsButtons;
     private javax.swing.JPanel jPanelSettingsLinks;
     private javax.swing.JPanel jPanelSettingsMain;
+    private javax.swing.JPanel jPanelSettingsScripts;
     private javax.swing.JPanel jPanelSyncing;
     private javax.swing.JPanel jPanelToolboxScripts;
     private javax.swing.JPanel jPanelType7;
@@ -11030,6 +12984,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPaneSessionList;
     private javax.swing.JScrollPane jScrollPaneSettingsButtons;
     private javax.swing.JScrollPane jScrollPaneSettingsLinks;
+    private javax.swing.JScrollPane jScrollPaneSettingsReferences;
+    private javax.swing.JScrollPane jScrollPaneSettingsScripts;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -11170,6 +13126,78 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNtpSystemTime;
     private javax.swing.JTextField jTextFieldPingHostname;
     private javax.swing.JTextField jTextFieldReferenceFilter;
+    private javax.swing.JTextField jTextFieldScriptExecute1;
+    private javax.swing.JTextField jTextFieldScriptExecute10;
+    private javax.swing.JTextField jTextFieldScriptExecute11;
+    private javax.swing.JTextField jTextFieldScriptExecute12;
+    private javax.swing.JTextField jTextFieldScriptExecute13;
+    private javax.swing.JTextField jTextFieldScriptExecute14;
+    private javax.swing.JTextField jTextFieldScriptExecute15;
+    private javax.swing.JTextField jTextFieldScriptExecute16;
+    private javax.swing.JTextField jTextFieldScriptExecute17;
+    private javax.swing.JTextField jTextFieldScriptExecute18;
+    private javax.swing.JTextField jTextFieldScriptExecute19;
+    private javax.swing.JTextField jTextFieldScriptExecute2;
+    private javax.swing.JTextField jTextFieldScriptExecute20;
+    private javax.swing.JTextField jTextFieldScriptExecute21;
+    private javax.swing.JTextField jTextFieldScriptExecute22;
+    private javax.swing.JTextField jTextFieldScriptExecute23;
+    private javax.swing.JTextField jTextFieldScriptExecute24;
+    private javax.swing.JTextField jTextFieldScriptExecute25;
+    private javax.swing.JTextField jTextFieldScriptExecute26;
+    private javax.swing.JTextField jTextFieldScriptExecute27;
+    private javax.swing.JTextField jTextFieldScriptExecute28;
+    private javax.swing.JTextField jTextFieldScriptExecute29;
+    private javax.swing.JTextField jTextFieldScriptExecute3;
+    private javax.swing.JTextField jTextFieldScriptExecute30;
+    private javax.swing.JTextField jTextFieldScriptExecute31;
+    private javax.swing.JTextField jTextFieldScriptExecute32;
+    private javax.swing.JTextField jTextFieldScriptExecute33;
+    private javax.swing.JTextField jTextFieldScriptExecute34;
+    private javax.swing.JTextField jTextFieldScriptExecute35;
+    private javax.swing.JTextField jTextFieldScriptExecute36;
+    private javax.swing.JTextField jTextFieldScriptExecute4;
+    private javax.swing.JTextField jTextFieldScriptExecute5;
+    private javax.swing.JTextField jTextFieldScriptExecute6;
+    private javax.swing.JTextField jTextFieldScriptExecute7;
+    private javax.swing.JTextField jTextFieldScriptExecute8;
+    private javax.swing.JTextField jTextFieldScriptExecute9;
+    private javax.swing.JTextField jTextFieldScriptText1;
+    private javax.swing.JTextField jTextFieldScriptText10;
+    private javax.swing.JTextField jTextFieldScriptText11;
+    private javax.swing.JTextField jTextFieldScriptText12;
+    private javax.swing.JTextField jTextFieldScriptText13;
+    private javax.swing.JTextField jTextFieldScriptText14;
+    private javax.swing.JTextField jTextFieldScriptText15;
+    private javax.swing.JTextField jTextFieldScriptText16;
+    private javax.swing.JTextField jTextFieldScriptText17;
+    private javax.swing.JTextField jTextFieldScriptText18;
+    private javax.swing.JTextField jTextFieldScriptText19;
+    private javax.swing.JTextField jTextFieldScriptText2;
+    private javax.swing.JTextField jTextFieldScriptText20;
+    private javax.swing.JTextField jTextFieldScriptText21;
+    private javax.swing.JTextField jTextFieldScriptText22;
+    private javax.swing.JTextField jTextFieldScriptText23;
+    private javax.swing.JTextField jTextFieldScriptText24;
+    private javax.swing.JTextField jTextFieldScriptText25;
+    private javax.swing.JTextField jTextFieldScriptText26;
+    private javax.swing.JTextField jTextFieldScriptText27;
+    private javax.swing.JTextField jTextFieldScriptText28;
+    private javax.swing.JTextField jTextFieldScriptText29;
+    private javax.swing.JTextField jTextFieldScriptText3;
+    private javax.swing.JTextField jTextFieldScriptText30;
+    private javax.swing.JTextField jTextFieldScriptText31;
+    private javax.swing.JTextField jTextFieldScriptText32;
+    private javax.swing.JTextField jTextFieldScriptText33;
+    private javax.swing.JTextField jTextFieldScriptText34;
+    private javax.swing.JTextField jTextFieldScriptText35;
+    private javax.swing.JTextField jTextFieldScriptText36;
+    private javax.swing.JTextField jTextFieldScriptText4;
+    private javax.swing.JTextField jTextFieldScriptText5;
+    private javax.swing.JTextField jTextFieldScriptText6;
+    private javax.swing.JTextField jTextFieldScriptText7;
+    private javax.swing.JTextField jTextFieldScriptText8;
+    private javax.swing.JTextField jTextFieldScriptText9;
     private javax.swing.JTextField jTextFieldScriptsFilter;
     private javax.swing.JTextField jTextFieldTCPTestPort;
     private javax.swing.JTextField jTextFieldType7Input;
