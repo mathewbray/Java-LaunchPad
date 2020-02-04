@@ -9953,11 +9953,26 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonExecuteFunctionHTTPSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunctionHTTPSActionPerformed
         // TODO add your handling code here:
+        Integer buttonHeightWidth = 40;
+        Image newimg;
         System.out.println("Pressed");
-        Icon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
-        Icon iconEdge = new ImageIcon(getClass().getResource("/launchpad/images/buttons/edge.png"));
-        Icon iconFireFox = new ImageIcon(getClass().getResource("/launchpad/images/buttons/firefox.png"));
-        Icon iconChrome = new ImageIcon(getClass().getResource("/launchpad/images/buttons/chrome.png"));
+        //- Explorer 
+        ImageIcon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
+        newimg = iconExplorer.getImage(); newimg = newimg.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton1.setIcon(new ImageIcon(newimg));
+        iconExplorer = new ImageIcon(newimg);
+        //- Edge
+        ImageIcon iconEdge = new ImageIcon(getClass().getResource("/launchpad/images/buttons/edge.png"));
+        newimg = iconEdge.getImage(); newimg = newimg.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton1.setIcon(new ImageIcon(newimg));
+        iconEdge = new ImageIcon(newimg);        
+        //- FireFox
+        ImageIcon iconFireFox = new ImageIcon(getClass().getResource("/launchpad/images/buttons/firefox.png"));
+        newimg = iconFireFox.getImage(); newimg = newimg.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton1.setIcon(new ImageIcon(newimg));
+        iconFireFox = new ImageIcon(newimg);  
+        //- Chrome
+        ImageIcon iconChrome = new ImageIcon(getClass().getResource("/launchpad/images/buttons/chrome.png"));
+        newimg = iconChrome.getImage(); newimg = newimg.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton1.setIcon(new ImageIcon(newimg));
+        iconChrome = new ImageIcon(newimg);  
+        //- Build Option Pane
         Object[] iconArray = {iconExplorer,
             iconEdge,
             iconFireFox,
