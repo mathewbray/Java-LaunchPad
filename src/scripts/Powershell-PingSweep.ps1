@@ -157,6 +157,7 @@ function Global:Ping-IPRange {
     return $Reply
 }
 
+cd $env:TEMP
 #-- Variables
     $RandomNumber = Get-Random
     $OutputFile = ".\PingSweepOutput-$RandomNumber.csv"

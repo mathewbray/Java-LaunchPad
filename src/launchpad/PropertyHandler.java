@@ -84,6 +84,7 @@ public class PropertyHandler{
 
   
     public String setValue(String propKey, String propValue) {
+        System.out.println("Setting Key:" + propKey + " to " + propValue);
         // Get the current properties
         try {
             input = new FileInputStream(strPathLaunchPadPropertiesFile);

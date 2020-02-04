@@ -110,11 +110,15 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     String strSessionListFavoritesFolder = strPathLaunchPadPersistantUserFolder + "\\FavoritesSessionList";   
     String strSessionListFavorites = strSessionListFavoritesFolder + "\\SessionList.csv";
     
-    //--- Get date and time
+    //- Get date and time
     SimpleDateFormat simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
     String dateTime = simpleDateFormat.format(new Date());
+    
+    //- Icon List
+    public static String[] arrIconList;
+    
 
-               
+
 
     
     /**
@@ -130,20 +134,19 @@ public final class LaunchPadForm extends javax.swing.JFrame {
      * @throws javax.swing.UnsupportedLookAndFeelException
      */
     public LaunchPadForm() throws IOException, FileNotFoundException, URISyntaxException, AWTException, InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+        loadSettingsMainButtonList();
         initComponents();
         initAddSettingsReferences();
-        //final JFXPanel fxPanel = new JFXPanel();
         setTitle(PropertyHandler.getInstance().getValue("WindowTitle"));
         getSessionList();
-        //SettingsLoadCustomLinksData();
         loadMainButtonStyles();        
-        loadSettingsMainButtonList();
         loadSettingsMainButtonsData();
         loadSettingsLinkData();
         loadSettingsScriptData();
-        loadPersonalSettings();
-        loadClassification();
+        loadSettingsPersonal();
         loadHostIPMAC();
+        loadClassification();
+        
 
         //- Set the look and feel
         try {
@@ -152,15 +155,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-
-        
-
-
-        
-
-        
-
 
         //- Don't close the window immediately, prompt to ask
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -768,7 +762,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jListSessions = new javax.swing.JList<>();
         jPanelMainRightSide = new javax.swing.JPanel();
         jTextFieldConnectHostname = new javax.swing.JTextField();
-        jButtonExecuteFunction1 = new javax.swing.JButton();
+        jButtonExecuteFunctionHTTPS = new javax.swing.JButton();
         jButtonExecuteFunctionSSH = new javax.swing.JButton();
         jTextFieldConnectUsername = new javax.swing.JTextField();
         jPasswordFieldConnectPassword = new javax.swing.JPasswordField();
@@ -804,7 +798,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButton18 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         jCheckBoxAlternateLogin = new javax.swing.JCheckBox();
-        jButtonExecuteFunction2 = new javax.swing.JButton();
+        jButtonExecuteFunctionRDP = new javax.swing.JButton();
         jTextFieldTCPTestPort = new javax.swing.JTextField();
         jButtonTCP = new javax.swing.JButton();
         jLabelLocalMAC = new javax.swing.JLabel();
@@ -812,7 +806,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLocalIP = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
         jButtonRefreshHostnameIPMAC = new javax.swing.JButton();
-        jButtonExecuteFunction4 = new javax.swing.JButton();
+        jButtonExecuteFunctionPKI = new javax.swing.JButton();
         jTextFieldFilter = new javax.swing.JTextField();
         jCheckBoxFavorites = new javax.swing.JCheckBox();
         jButtonClearFilter = new javax.swing.JButton();
@@ -1534,17 +1528,17 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelMainRightSide.add(jTextFieldConnectHostname);
         jTextFieldConnectHostname.setBounds(10, 80, 120, 20);
 
-        jButtonExecuteFunction1.setBackground(new java.awt.Color(255, 208, 153));
-        jButtonExecuteFunction1.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
-        jButtonExecuteFunction1.setText("HTTPS");
-        jButtonExecuteFunction1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonExecuteFunction1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonExecuteFunctionHTTPS.setBackground(new java.awt.Color(255, 208, 153));
+        jButtonExecuteFunctionHTTPS.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
+        jButtonExecuteFunctionHTTPS.setText("HTTPS");
+        jButtonExecuteFunctionHTTPS.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonExecuteFunctionHTTPS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExecuteFunction1ActionPerformed(evt);
+                jButtonExecuteFunctionHTTPSActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButtonExecuteFunction1);
-        jButtonExecuteFunction1.setBounds(140, 140, 60, 20);
+        jPanelMainRightSide.add(jButtonExecuteFunctionHTTPS);
+        jButtonExecuteFunctionHTTPS.setBounds(140, 140, 60, 20);
 
         jButtonExecuteFunctionSSH.setBackground(new java.awt.Color(200, 255, 153));
         jButtonExecuteFunctionSSH.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
@@ -1910,17 +1904,17 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelMainRightSide.add(jCheckBoxAlternateLogin);
         jCheckBoxAlternateLogin.setBounds(10, 100, 120, 20);
 
-        jButtonExecuteFunction2.setBackground(new java.awt.Color(251, 255, 153));
-        jButtonExecuteFunction2.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
-        jButtonExecuteFunction2.setText("RDP");
-        jButtonExecuteFunction2.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonExecuteFunction2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonExecuteFunctionRDP.setBackground(new java.awt.Color(251, 255, 153));
+        jButtonExecuteFunctionRDP.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
+        jButtonExecuteFunctionRDP.setText("RDP");
+        jButtonExecuteFunctionRDP.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonExecuteFunctionRDP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExecuteFunction2ActionPerformed(evt);
+                jButtonExecuteFunctionRDPActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButtonExecuteFunction2);
-        jButtonExecuteFunction2.setBounds(140, 120, 60, 20);
+        jPanelMainRightSide.add(jButtonExecuteFunctionRDP);
+        jButtonExecuteFunctionRDP.setBounds(140, 120, 60, 20);
 
         jTextFieldTCPTestPort.setBackground(new java.awt.Color(244, 230, 255));
         jTextFieldTCPTestPort.setToolTipText("TCP port to test");
@@ -1980,17 +1974,18 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelMainRightSide.add(jButtonRefreshHostnameIPMAC);
         jButtonRefreshHostnameIPMAC.setBounds(180, 23, 20, 20);
 
-        jButtonExecuteFunction4.setBackground(new java.awt.Color(200, 255, 153));
-        jButtonExecuteFunction4.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
-        jButtonExecuteFunction4.setText("PKI");
-        jButtonExecuteFunction4.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonExecuteFunction4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonExecuteFunctionPKI.setBackground(new java.awt.Color(200, 255, 153));
+        jButtonExecuteFunctionPKI.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
+        jButtonExecuteFunctionPKI.setText("PKI");
+        jButtonExecuteFunctionPKI.setToolTipText("Public Key or 2FA CAC Auth using x.509");
+        jButtonExecuteFunctionPKI.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonExecuteFunctionPKI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExecuteFunction4ActionPerformed(evt);
+                jButtonExecuteFunctionPKIActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButtonExecuteFunction4);
-        jButtonExecuteFunction4.setBounds(140, 80, 60, 20);
+        jPanelMainRightSide.add(jButtonExecuteFunctionPKI);
+        jButtonExecuteFunctionPKI.setBounds(140, 80, 60, 20);
 
         jTextFieldFilter.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jTextFieldFilter.setToolTipText("Type to filter the list. ");
@@ -4139,6 +4134,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxClassification.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxClassification.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Unclassified", "Confidential", "Secret", "Top Secret", "SCI", "Coalition" }));
+        jComboBoxClassification.setSelectedItem(PropertyHandler.getInstance().getValue("SettingClassification"));
         jComboBoxClassification.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxClassificationItemStateChanged(evt);
@@ -4297,6 +4293,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon1.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon1.setSelectedItem(PropertyHandler.getInstance().getValue("Button01Icon"));
         jComboBoxButtonIcon1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon1ItemStateChanged(evt);
@@ -4332,6 +4330,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon2.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon2.setSelectedItem(PropertyHandler.getInstance().getValue("Button02Icon"));
         jComboBoxButtonIcon2.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon2ItemStateChanged(evt);
@@ -4367,6 +4367,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon3.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon3.setSelectedItem(PropertyHandler.getInstance().getValue("Button03Icon"));
         jComboBoxButtonIcon3.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon3ItemStateChanged(evt);
@@ -4402,6 +4404,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon4.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon4.setSelectedItem(PropertyHandler.getInstance().getValue("Button04Icon"));
         jComboBoxButtonIcon4.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon4ItemStateChanged(evt);
@@ -4437,6 +4441,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon5.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon5.setSelectedItem(PropertyHandler.getInstance().getValue("Button05Icon"));
         jComboBoxButtonIcon5.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon5ItemStateChanged(evt);
@@ -4472,6 +4478,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon6.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon6.setSelectedItem(PropertyHandler.getInstance().getValue("Button06Icon"));
         jComboBoxButtonIcon6.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon6ItemStateChanged(evt);
@@ -4507,6 +4515,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon7.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon7.setSelectedItem(PropertyHandler.getInstance().getValue("Button07Icon"));
         jComboBoxButtonIcon7.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon7ItemStateChanged(evt);
@@ -4542,6 +4552,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon8.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon8.setSelectedItem(PropertyHandler.getInstance().getValue("Button08Icon"));
         jComboBoxButtonIcon8.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon8ItemStateChanged(evt);
@@ -4554,6 +4566,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon9.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon9.setSelectedItem(PropertyHandler.getInstance().getValue("Button09Icon"));
         jComboBoxButtonIcon9.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon9ItemStateChanged(evt);
@@ -4589,6 +4603,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon10.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon10.setSelectedItem(PropertyHandler.getInstance().getValue("Button10Icon"));
         jComboBoxButtonIcon10.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon10ItemStateChanged(evt);
@@ -4624,6 +4640,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon11.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon11.setSelectedItem(PropertyHandler.getInstance().getValue("Button11Icon"));
         jComboBoxButtonIcon11.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon11ItemStateChanged(evt);
@@ -4659,6 +4677,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon12.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon12.setSelectedItem(PropertyHandler.getInstance().getValue("Button12Icon"));
         jComboBoxButtonIcon12.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon12ItemStateChanged(evt);
@@ -4694,6 +4714,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon13.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon13.setSelectedItem(PropertyHandler.getInstance().getValue("Button13Icon"));
         jComboBoxButtonIcon13.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon13ItemStateChanged(evt);
@@ -4729,6 +4751,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon14.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon14.setSelectedItem(PropertyHandler.getInstance().getValue("Button14Icon"));
         jComboBoxButtonIcon14.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon14ItemStateChanged(evt);
@@ -4764,6 +4788,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon15.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon15.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon15.setSelectedItem(PropertyHandler.getInstance().getValue("Button15Icon"));
         jComboBoxButtonIcon15.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon15ItemStateChanged(evt);
@@ -4799,6 +4825,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon16.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon16.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon16.setSelectedItem(PropertyHandler.getInstance().getValue("Button16Icon"));
         jComboBoxButtonIcon16.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon16ItemStateChanged(evt);
@@ -4834,6 +4862,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon17.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon17.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon17.setSelectedItem(PropertyHandler.getInstance().getValue("Button17Icon"));
         jComboBoxButtonIcon17.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon17ItemStateChanged(evt);
@@ -4869,6 +4899,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon18.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon18.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon18.setSelectedItem(PropertyHandler.getInstance().getValue("Button18Icon"));
         jComboBoxButtonIcon18.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon18ItemStateChanged(evt);
@@ -4904,6 +4936,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon19.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon19.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon19.setSelectedItem(PropertyHandler.getInstance().getValue("Button19Icon"));
         jComboBoxButtonIcon19.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon19ItemStateChanged(evt);
@@ -4939,6 +4973,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxButtonIcon20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon20.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon20.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon20.setSelectedItem(PropertyHandler.getInstance().getValue("Button20Icon"));    
         jComboBoxButtonIcon20.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon20ItemStateChanged(evt);
@@ -8316,11 +8352,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
+        //- Icon
         URL iconURL = getClass().getResource("/icon/icon.png");
         ImageIcon img = new ImageIcon(iconURL);
-        this.setIconImage(img.getImage());
-
+        this.setIconImage(img.getImage());     
     }//GEN-LAST:event_formWindowOpened
 
     private void jButtonReportIssueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReportIssueActionPerformed
@@ -8353,7 +8388,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             Runtime.getRuntime().exec(myValue);
         }
         catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            System.out.println("Something is wrong!");
             JOptionPane.showMessageDialog(null, "Something is wrong!");
         }
         System.exit(0);
@@ -8657,7 +8692,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 //                    Runtime.getRuntime().exec(myValue);
 //                }
 //                catch (IOException e) {
-//                    System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+//                    System.out.println("Something is wrong!");
 //                    JOptionPane.showMessageDialog(null, "Something is wrong!");
 //                }
 //
@@ -8685,7 +8720,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 //                Runtime.getRuntime().exec(myValue);
 //            }
 //            catch (IOException e) {
-//                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+//                System.out.println("Something is wrong!");
 //                JOptionPane.showMessageDialog(null, "Something is wrong!");
 //            }
 //        }
@@ -8704,7 +8739,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 Runtime.getRuntime().exec(myValue);
             }
             catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                System.out.println("Something is wrong!");
                 JOptionPane.showMessageDialog(null, "Something is wrong!");
             }
         }
@@ -9603,7 +9638,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldFilterActionPerformed
 
-    private void jButtonExecuteFunction2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunction2ActionPerformed
+    private void jButtonExecuteFunctionRDPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunctionRDPActionPerformed
         // TODO add your handling code here:
         System.out.println("RDP enganged.");
         String strEXEC = "cmd /c start mstsc.exe /v:" + jTextFieldConnectHostname.getText();
@@ -9611,10 +9646,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             Runtime.getRuntime().exec(strEXEC);
         }
         catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            System.out.println("Something is wrong!");
             JOptionPane.showMessageDialog(null, "Something is wrong!");
         }
-    }//GEN-LAST:event_jButtonExecuteFunction2ActionPerformed
+    }//GEN-LAST:event_jButtonExecuteFunctionRDPActionPerformed
 
     private void jCheckBoxAlternateLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxAlternateLoginActionPerformed
         // TODO add your handling code here:
@@ -9720,7 +9755,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 //                Runtime.getRuntime().exec(strEXEC);
 //            }
 //            catch (IOException e) {
-//                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+//                System.out.println("Something is wrong!");
 //                JOptionPane.showMessageDialog(null, "Something is wrong!");
 //            }
         }
@@ -9731,7 +9766,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 Runtime.getRuntime().exec(strEXEC);
             }
             catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                System.out.println("Something is wrong!");
                 JOptionPane.showMessageDialog(null, "Something is wrong!");
             }
         }
@@ -9744,7 +9779,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             Runtime.getRuntime().exec("cmd /c start cmd.exe /c \"change port /query & pause");
         }
         catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            System.out.println("Something is wrong!");
         }
     }//GEN-LAST:event_jButtonShowCOMListActionPerformed
 
@@ -9780,7 +9815,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             Runtime.getRuntime().exec(strExec);
         }
         catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            System.out.println("Something is wrong!");
             JOptionPane.showMessageDialog(null, "Something is wrong!");
         }
     }//GEN-LAST:event_jButtonPingActionPerformed
@@ -9792,7 +9827,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             Runtime.getRuntime().exec("cmd /c start cmd.exe /c \"tracert " + jTextFieldPingHostname.getText() + " & pause\"");
         }
         catch (IOException e) {
-            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+            System.out.println("Something is wrong!");
         }
     }//GEN-LAST:event_jButtonTracertActionPerformed
 
@@ -9859,7 +9894,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 //                            Runtime.getRuntime().exec(strEXEC);
 //                        }
 //                        catch (IOException e) {
-//                            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+//                            System.out.println("Something is wrong!");
 //                            JOptionPane.showMessageDialog(null, "Something is wrong!");
 //                        }
 //                        //}
@@ -9872,7 +9907,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 //                    Runtime.getRuntime().exec(strEXEC);
 //                }
 //                catch (IOException e) {
-//                    System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+//                    System.out.println("Something is wrong!");
 //                    JOptionPane.showMessageDialog(null, "Something is wrong!");
 //                }
 //            }
@@ -9888,7 +9923,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                             Runtime.getRuntime().exec(strEXEC);
                         }
                         catch (IOException e) {
-                            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                            System.out.println("Something is wrong!");
                             JOptionPane.showMessageDialog(null, "Something is wrong!");
                         }
                         //}
@@ -9901,7 +9936,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                     Runtime.getRuntime().exec(strEXEC);
                 }
                 catch (IOException e) {
-                    System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                    System.out.println("Something is wrong!");
                     JOptionPane.showMessageDialog(null, "Something is wrong!");
                 }
             }
@@ -9916,7 +9951,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonExecuteFunctionSSHActionPerformed
 
-    private void jButtonExecuteFunction1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunction1ActionPerformed
+    private void jButtonExecuteFunctionHTTPSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunctionHTTPSActionPerformed
         // TODO add your handling code here:
         System.out.println("Pressed");
         Icon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
@@ -9944,7 +9979,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 Runtime.getRuntime().exec(strEXEC);
             }
             catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                System.out.println("Something is wrong!");
                 JOptionPane.showMessageDialog(null, "Something is wrong!");
             }
         }
@@ -9955,7 +9990,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 Runtime.getRuntime().exec(strEXEC);
             }
             catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                System.out.println("Something is wrong!");
                 JOptionPane.showMessageDialog(null, "Something is wrong!");
             }
         }
@@ -9966,7 +10001,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 Runtime.getRuntime().exec(strEXEC);
             }
             catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                System.out.println("Something is wrong!");
                 JOptionPane.showMessageDialog(null, "Something is wrong!");
             }
         }
@@ -9977,33 +10012,24 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 Runtime.getRuntime().exec(strEXEC);
             }
             catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                System.out.println("Something is wrong!");
                 JOptionPane.showMessageDialog(null, "Something is wrong!");
             }
         }
-    }//GEN-LAST:event_jButtonExecuteFunction1ActionPerformed
+    }//GEN-LAST:event_jButtonExecuteFunctionHTTPSActionPerformed
 
     private void jTextFieldConnectHostnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldConnectHostnameKeyTyped
         // TODO add your handling code here:
+        
         if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
-            Robot r = null;
-            try {
-                r = new Robot();
-            } catch (AWTException ex) {
-                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            String myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionOnEnterPress");
-            if("".equals(myValue)) {
-                PropertyHandler.getInstance().setValue("ButtonExecuteFunctionOnEnterPress", "3");
-            }
-            myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionOnEnterPress");
-            if("1".equals(myValue)) {
-                jButtonExecuteFunction1.doClick();
-            } else if("2".equals(myValue)) {
-                jButtonExecuteFunction2.doClick();
-            } else if("3".equals(myValue)){
-                jButtonExecuteFunctionSSH.doClick();
-            }
+//            Robot r = null;
+//            try {
+//                r = new Robot();
+//            } catch (AWTException ex) {
+//                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            QuickLaunchSessionOnEnter();
+
 
         }
     }//GEN-LAST:event_jTextFieldConnectHostnameKeyTyped
@@ -10597,7 +10623,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonExecute1KeyReleased
 
     private void jComboBoxButtonIcon1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon1ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button01Icon",((String)jComboBoxButtonIcon1.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button01Icon",((String)jComboBoxButtonIcon1.getSelectedItem()));
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon1ItemStateChanged
 
     private void jTextFieldButtonExecute2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute2KeyReleased
@@ -10609,7 +10637,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonToolTip2KeyReleased
 
     private void jComboBoxButtonIcon2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon2ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button02Icon",((String)jComboBoxButtonIcon2.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button02Icon",((String)jComboBoxButtonIcon2.getSelectedItem()));
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon2ItemStateChanged
 
     private void jTextFieldButtonExecute3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute3KeyReleased
@@ -10621,7 +10651,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonToolTip3KeyReleased
 
     private void jComboBoxButtonIcon3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon3ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button03Icon",((String)jComboBoxButtonIcon3.getSelectedItem()));
+       if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button03Icon",((String)jComboBoxButtonIcon3.getSelectedItem()));
+       }
     }//GEN-LAST:event_jComboBoxButtonIcon3ItemStateChanged
 
     private void jTextFieldButtonExecute4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute4KeyReleased
@@ -10633,7 +10665,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonToolTip4KeyReleased
 
     private void jComboBoxButtonIcon4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon4ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button04Icon",((String)jComboBoxButtonIcon4.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button04Icon",((String)jComboBoxButtonIcon4.getSelectedItem()));
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon4ItemStateChanged
 
     private void jTextFieldButtonExecute5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute5KeyReleased
@@ -10645,7 +10679,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonToolTip5KeyReleased
 
     private void jComboBoxButtonIcon5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon5ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button05Icon",((String)jComboBoxButtonIcon5.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button05Icon",((String)jComboBoxButtonIcon5.getSelectedItem()));
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon5ItemStateChanged
 
     private void jTextFieldButtonExecute6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute6KeyReleased
@@ -10657,7 +10693,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonToolTip6KeyReleased
 
     private void jComboBoxButtonIcon6ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon6ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button06Icon",((String)jComboBoxButtonIcon6.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button06Icon",((String)jComboBoxButtonIcon6.getSelectedItem()));
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon6ItemStateChanged
 
     private void jTextFieldButtonExecute7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute7KeyReleased
@@ -10669,7 +10707,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonToolTip7KeyReleased
 
     private void jComboBoxButtonIcon7ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon7ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button07Icon",((String)jComboBoxButtonIcon7.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button07Icon",((String)jComboBoxButtonIcon7.getSelectedItem()));
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon7ItemStateChanged
 
     private void jTextFieldButtonExecute8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute8KeyReleased
@@ -10681,11 +10721,15 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonToolTip8KeyReleased
 
     private void jComboBoxButtonIcon8ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon8ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button08Icon",((String)jComboBoxButtonIcon8.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button08Icon",((String)jComboBoxButtonIcon8.getSelectedItem()));
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon8ItemStateChanged
 
     private void jComboBoxButtonIcon9ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon9ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button09Icon",((String)jComboBoxButtonIcon9.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button09Icon",((String)jComboBoxButtonIcon9.getSelectedItem()));
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon9ItemStateChanged
 
     private void jTextFieldButtonExecute9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute9KeyReleased
@@ -10697,7 +10741,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonToolTip9KeyReleased
 
     private void jComboBoxButtonIcon10ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon10ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button10Icon",((String)jComboBoxButtonIcon10.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button10Icon",((String)jComboBoxButtonIcon10.getSelectedItem()));
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon10ItemStateChanged
 
     private void jTextFieldButtonExecute10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute10KeyReleased
@@ -10709,7 +10755,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonToolTip10KeyReleased
 
     private void jComboBoxButtonIcon11ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon11ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button11Icon",((String)jComboBoxButtonIcon11.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button11Icon",((String)jComboBoxButtonIcon11.getSelectedItem()));
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon11ItemStateChanged
 
     private void jTextFieldButtonExecute11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute11KeyReleased
@@ -10721,7 +10769,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonToolTip11KeyReleased
 
     private void jComboBoxButtonIcon12ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon12ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button12Icon",((String)jComboBoxButtonIcon12.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button12Icon",((String)jComboBoxButtonIcon12.getSelectedItem()));
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon12ItemStateChanged
 
     private void jTextFieldButtonExecute12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute12KeyReleased
@@ -10733,7 +10783,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonToolTip12KeyReleased
 
     private void jComboBoxButtonIcon13ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon13ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button13Icon",((String)jComboBoxButtonIcon13.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button13Icon",((String)jComboBoxButtonIcon13.getSelectedItem()));
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon13ItemStateChanged
 
     private void jTextFieldButtonExecute13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute13KeyReleased
@@ -10745,7 +10797,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonToolTip13KeyReleased
 
     private void jComboBoxButtonIcon14ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon14ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button14Icon",((String)jComboBoxButtonIcon14.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button14Icon",((String)jComboBoxButtonIcon14.getSelectedItem()));
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon14ItemStateChanged
 
     private void jTextFieldButtonExecute14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute14KeyReleased
@@ -10757,7 +10811,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonToolTip14KeyReleased
 
     private void jComboBoxButtonIcon15ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon15ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button15Icon",((String)jComboBoxButtonIcon15.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button15Icon",((String)jComboBoxButtonIcon15.getSelectedItem()));
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon15ItemStateChanged
 
     private void jTextFieldButtonExecute15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute15KeyReleased
@@ -10769,7 +10825,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonToolTip15KeyReleased
 
     private void jComboBoxButtonIcon16ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon16ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button16Icon",((String)jComboBoxButtonIcon16.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button16Icon",((String)jComboBoxButtonIcon16.getSelectedItem()));
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon16ItemStateChanged
 
     private void jTextFieldButtonExecute16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute16KeyReleased
@@ -10781,7 +10839,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonToolTip16KeyReleased
 
     private void jComboBoxButtonIcon17ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon17ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button17Icon",((String)jComboBoxButtonIcon17.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button17Icon",((String)jComboBoxButtonIcon17.getSelectedItem()));
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon17ItemStateChanged
 
     private void jTextFieldButtonExecute17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute17KeyReleased
@@ -10793,7 +10853,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonToolTip17KeyReleased
 
     private void jComboBoxButtonIcon18ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon18ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button18Icon",((String)jComboBoxButtonIcon18.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button18Icon",((String)jComboBoxButtonIcon18.getSelectedItem()));
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon18ItemStateChanged
 
     private void jTextFieldButtonExecute18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute18KeyReleased
@@ -10805,7 +10867,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonToolTip18KeyReleased
 
     private void jComboBoxButtonIcon19ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon19ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button19Icon",((String)jComboBoxButtonIcon19.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button19Icon",((String)jComboBoxButtonIcon19.getSelectedItem()));
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon19ItemStateChanged
 
     private void jTextFieldButtonExecute19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute19KeyReleased
@@ -10817,7 +10881,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldButtonToolTip19KeyReleased
 
     private void jComboBoxButtonIcon20ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon20ItemStateChanged
-        PropertyHandler.getInstance().setValue("Button20Icon",((String)jComboBoxButtonIcon20.getSelectedItem()));
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button20Icon",((String)jComboBoxButtonIcon20.getSelectedItem())); 
+        }
     }//GEN-LAST:event_jComboBoxButtonIcon20ItemStateChanged
 
     private void jTextFieldButtonExecute20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute20KeyReleased
@@ -10840,7 +10906,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         openTempFileUsingDesktop("files/ToolBox.xlsm", ".xlsm");
     }//GEN-LAST:event_jButton42ActionPerformed
 
-    private void jButtonExecuteFunction4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunction4ActionPerformed
+    private void jButtonExecuteFunctionPKIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunctionPKIActionPerformed
         String strSecureCRTexe = PropertyHandler.getInstance().getValue("SecureCRTexe").replace("%USERPROFILE%", pathUserProfile);
 //        String strPuTTYexe = PropertyHandler.getInstance().getValue("PuTTYexe").replace("%USERPROFILE%", pathUserProfile);
         System.out.println("SecureCRT file: " + strSecureCRTexe);
@@ -10860,7 +10926,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 //                            Runtime.getRuntime().exec(strEXEC);
 //                        }
 //                        catch (IOException e) {
-//                            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+//                            System.out.println("Something is wrong!");
 //                            JOptionPane.showMessageDialog(null, "Something is wrong!");
 //                        }
 //                        //}
@@ -10873,7 +10939,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 //                    Runtime.getRuntime().exec(strEXEC);
 //                }
 //                catch (IOException e) {
-//                    System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+//                    System.out.println("Something is wrong!");
 //                    JOptionPane.showMessageDialog(null, "Something is wrong!");
 //                }
 //            }
@@ -10889,7 +10955,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                             Runtime.getRuntime().exec(strEXEC);
                         }
                         catch (IOException e) {
-                            System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                            System.out.println("Something is wrong!");
                             JOptionPane.showMessageDialog(null, "Something is wrong!");
                         }
                         //}
@@ -10902,12 +10968,12 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                     Runtime.getRuntime().exec(strEXEC);
                 }
                 catch (IOException e) {
-                    System.out.println("HEY Buddy ! U r Doing Something Wrong ");
+                    System.out.println("Something is wrong!");
                     JOptionPane.showMessageDialog(null, "Something is wrong!");
                 }
             }
         }
-    }//GEN-LAST:event_jButtonExecuteFunction4ActionPerformed
+    }//GEN-LAST:event_jButtonExecuteFunctionPKIActionPerformed
 
     private void jRadioButtonPWauthDisabledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPWauthDisabledActionPerformed
         PropertyHandler.getInstance().setValue("SettingPasswordBasedSSHauthDisable", "1");
@@ -11516,15 +11582,21 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonRefreshHostnameIPMACMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRefreshHostnameIPMACMouseReleased
         //- Get Hostname IP and MAC
-        jLabelLocalHostname.setText(getSystemName());
-        jLabelLocalHostname.setToolTipText(getSystemName());
-        jLabelLocalIP.setText(getIPAddress());
-        jLabelLocalMAC.setText(getMAC());
+        try {
+            jLabelLocalHostname.setText(getSystemName());
+            jLabelLocalHostname.setToolTipText(getSystemName());
+            jLabelLocalIP.setText(getIPAddress());
+            jLabelLocalMAC.setText(getMAC());
+        } catch (Exception e) {
+        }
+
     }//GEN-LAST:event_jButtonRefreshHostnameIPMACMouseReleased
 
     private void jComboBoxClassificationItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxClassificationItemStateChanged
-        PropertyHandler.getInstance().setValue("SettingClassification",((String)jComboBoxClassification.getSelectedItem()));
-        loadClassification();
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("SettingClassification",((String)jComboBoxClassification.getSelectedItem()));
+            loadClassification();
+        }
     }//GEN-LAST:event_jComboBoxClassificationItemStateChanged
 
     
@@ -11901,7 +11973,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
     }
     
    
@@ -12038,9 +12109,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 }              
                 myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionDoubleClick");
                 if("1".equals(myValue)) {
-                    jButtonExecuteFunction1.doClick();
+                    jButtonExecuteFunctionHTTPS.doClick();
                 } else if("2".equals(myValue)) {
-                    jButtonExecuteFunction2.doClick();               
+                    jButtonExecuteFunctionRDP.doClick();               
                 } else if("3".equals(myValue)){
                     jButtonExecuteFunctionSSH.doClick();
                 }
@@ -12095,43 +12166,44 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private void loadClassification() {  
         String strClassification = PropertyHandler.getInstance().getValue("SettingClassification");
         System.out.println("Classification: " + strClassification);
-        Color strClassificationColor = new Color(4,159,168);
         if("Unclassified".equalsIgnoreCase(strClassification)) {
-            strClassificationColor = new Color(0,122,61);
+            getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, new Color(0,122,61)));           
         }
         if("Confidential".equalsIgnoreCase(strClassification)) {
-            strClassificationColor = new Color(0,56,168);
+            getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, new Color(0,56,168)));           
         }
         if("Secret".equalsIgnoreCase(strClassification)) {
-            strClassificationColor = new Color(206,17,38);
+            getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, new Color(206,17,38)));           
         }
         if("Top Secret".equalsIgnoreCase(strClassification)) {
-            strClassificationColor = new Color(249,99,2);
+            getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, new Color(249,99,2)));           
         }
         if("SCI".equalsIgnoreCase(strClassification)) {
-            strClassificationColor = new Color(240,240,0);
+            getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, new Color(240,240,0)));           
         }        
         if("Coalition".equalsIgnoreCase(strClassification)) {
-            strClassificationColor = new Color(127,127,255);
+            getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, new Color(127,127,255)));           
         }
         if("None".equalsIgnoreCase(strClassification)) {
-            strClassificationColor = new Color(0,0,0);
+            getRootPane().setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0,0,0)));           
         }         
-        getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, strClassificationColor));       
     }
 
     private void loadHostIPMAC() {
         //- Get Hostname IP and MAC
-        jLabelLocalHostname.setText(getSystemName());
-        jLabelLocalHostname.setToolTipText(getSystemName());
-        jLabelLocalIP.setText(getIPAddress());
-        jLabelLocalMAC.setText(getMAC());
-        System.out.println("Host Name : "+getSystemName());
-        System.out.println("Host IP   : "+getIPAddress());
-        System.out.println("Host Address : "+getMAC());    
+        try {
+            jLabelLocalHostname.setText(getSystemName());
+            jLabelLocalHostname.setToolTipText(getSystemName());
+            jLabelLocalIP.setText(getIPAddress());
+            jLabelLocalMAC.setText(getMAC());
+            System.out.println("Host Name : "+getSystemName());
+            System.out.println("Host IP   : "+getIPAddress());
+            System.out.println("Host Address : "+getMAC()); 
+        } catch (Exception e) {
+        }   
     }
     
-    public void loadPersonalSettings() {
+    public void loadSettingsPersonal() {
                 //- Set Personal Text Setting 
         try {
             String myValue = PropertyHandlerPersonal.getInstance().getValue("SettingTextSize");
@@ -12223,7 +12295,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldButtonToolTip2.setText(PropertyHandler.getInstance().getValue("Button02ToolTip"));
         jTextFieldButtonToolTip3.setText(PropertyHandler.getInstance().getValue("Button03ToolTip"));
         jTextFieldButtonToolTip4.setText(PropertyHandler.getInstance().getValue("Button04ToolTip"));
-        jTextFieldButtonToolTip5.setText(PropertyHandler.getInstance().getValue("Button05oolTip"));
+        jTextFieldButtonToolTip5.setText(PropertyHandler.getInstance().getValue("Button05ToolTip"));
         jTextFieldButtonToolTip6.setText(PropertyHandler.getInstance().getValue("Button06ToolTip"));
         jTextFieldButtonToolTip7.setText(PropertyHandler.getInstance().getValue("Button07ToolTip"));
         jTextFieldButtonToolTip8.setText(PropertyHandler.getInstance().getValue("Button08ToolTip"));
@@ -12239,27 +12311,27 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldButtonToolTip18.setText(PropertyHandler.getInstance().getValue("Button18ToolTip"));
         jTextFieldButtonToolTip19.setText(PropertyHandler.getInstance().getValue("Button19ToolTip"));
         jTextFieldButtonToolTip20.setText(PropertyHandler.getInstance().getValue("Button20ToolTip"));        
-        //- Icons
-        jComboBoxButtonIcon1.setSelectedItem(PropertyHandler.getInstance().getValue("Button01Icon"));
-        jComboBoxButtonIcon2.setSelectedItem(PropertyHandler.getInstance().getValue("Button02Icon"));
-        jComboBoxButtonIcon3.setSelectedItem(PropertyHandler.getInstance().getValue("Button03Icon"));
-        jComboBoxButtonIcon4.setSelectedItem(PropertyHandler.getInstance().getValue("Button04Icon"));
-        jComboBoxButtonIcon5.setSelectedItem(PropertyHandler.getInstance().getValue("Button05Icon"));
-        jComboBoxButtonIcon6.setSelectedItem(PropertyHandler.getInstance().getValue("Button06Icon"));
-        jComboBoxButtonIcon7.setSelectedItem(PropertyHandler.getInstance().getValue("Button07Icon"));
-        jComboBoxButtonIcon8.setSelectedItem(PropertyHandler.getInstance().getValue("Button08Icon"));
-        jComboBoxButtonIcon9.setSelectedItem(PropertyHandler.getInstance().getValue("Button09Icon"));
-        jComboBoxButtonIcon10.setSelectedItem(PropertyHandler.getInstance().getValue("Button10Icon"));
-        jComboBoxButtonIcon11.setSelectedItem(PropertyHandler.getInstance().getValue("Button11Icon"));
-        jComboBoxButtonIcon12.setSelectedItem(PropertyHandler.getInstance().getValue("Button12Icon"));
-        jComboBoxButtonIcon13.setSelectedItem(PropertyHandler.getInstance().getValue("Button13Icon"));
-        jComboBoxButtonIcon14.setSelectedItem(PropertyHandler.getInstance().getValue("Button14Icon"));
-        jComboBoxButtonIcon15.setSelectedItem(PropertyHandler.getInstance().getValue("Button15Icon"));
-        jComboBoxButtonIcon16.setSelectedItem(PropertyHandler.getInstance().getValue("Button16Icon"));
-        jComboBoxButtonIcon17.setSelectedItem(PropertyHandler.getInstance().getValue("Button17Icon"));
-        jComboBoxButtonIcon18.setSelectedItem(PropertyHandler.getInstance().getValue("Button18Icon"));
-        jComboBoxButtonIcon19.setSelectedItem(PropertyHandler.getInstance().getValue("Button19Icon"));
-        jComboBoxButtonIcon20.setSelectedItem(PropertyHandler.getInstance().getValue("Button20Icon"));       
+        //- Icons - MOVED TO PRE-ACTION LISTENER
+//        jComboBoxButtonIcon1.setSelectedItem(PropertyHandler.getInstance().getValue("Button01Icon"));
+//        jComboBoxButtonIcon2.setSelectedItem(PropertyHandler.getInstance().getValue("Button02Icon"));
+//        jComboBoxButtonIcon3.setSelectedItem(PropertyHandler.getInstance().getValue("Button03Icon"));
+//        jComboBoxButtonIcon4.setSelectedItem(PropertyHandler.getInstance().getValue("Button04Icon"));
+//        jComboBoxButtonIcon5.setSelectedItem(PropertyHandler.getInstance().getValue("Button05Icon"));
+//        jComboBoxButtonIcon6.setSelectedItem(PropertyHandler.getInstance().getValue("Button06Icon"));
+//        jComboBoxButtonIcon7.setSelectedItem(PropertyHandler.getInstance().getValue("Button07Icon"));
+//        jComboBoxButtonIcon8.setSelectedItem(PropertyHandler.getInstance().getValue("Button08Icon"));
+//        jComboBoxButtonIcon9.setSelectedItem(PropertyHandler.getInstance().getValue("Button09Icon"));
+//        jComboBoxButtonIcon10.setSelectedItem(PropertyHandler.getInstance().getValue("Button10Icon"));
+//        jComboBoxButtonIcon11.setSelectedItem(PropertyHandler.getInstance().getValue("Button11Icon"));
+//        jComboBoxButtonIcon12.setSelectedItem(PropertyHandler.getInstance().getValue("Button12Icon"));
+//        jComboBoxButtonIcon13.setSelectedItem(PropertyHandler.getInstance().getValue("Button13Icon"));
+//        jComboBoxButtonIcon14.setSelectedItem(PropertyHandler.getInstance().getValue("Button14Icon"));
+//        jComboBoxButtonIcon15.setSelectedItem(PropertyHandler.getInstance().getValue("Button15Icon"));
+//        jComboBoxButtonIcon16.setSelectedItem(PropertyHandler.getInstance().getValue("Button16Icon"));
+//        jComboBoxButtonIcon17.setSelectedItem(PropertyHandler.getInstance().getValue("Button17Icon"));
+//        jComboBoxButtonIcon18.setSelectedItem(PropertyHandler.getInstance().getValue("Button18Icon"));
+//        jComboBoxButtonIcon19.setSelectedItem(PropertyHandler.getInstance().getValue("Button19Icon"));
+//        jComboBoxButtonIcon20.setSelectedItem(PropertyHandler.getInstance().getValue("Button20Icon"));       
         //- Executions
         jTextFieldButtonExecute1.setText(PropertyHandler.getInstance().getValue("Button01StrExec"));
         jTextFieldButtonExecute2.setText(PropertyHandler.getInstance().getValue("Button02StrExec"));
@@ -12440,39 +12512,43 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         
     private Map<String, ImageIcon> imageMap;
 
-    private void loadSettingsMainButtonList() {
-        String[] arrButtonList = null;
+    public void loadSettingsMainButtonList() {
+        //String[] arrIconList = null;
         try {
-            arrButtonList = this.getResourceListing(launchpad.LaunchPad.class , "launchpad/images/buttons/");
+            arrIconList = this.getResourceListing(launchpad.LaunchPad.class , "launchpad/images/buttons/");
         } catch (URISyntaxException | IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Button List: " + Arrays.toString(arrButtonList));
-        Arrays.sort(arrButtonList, Collator.getInstance());
+        System.out.println("Button List: " + Arrays.toString(arrIconList));
+        Arrays.sort(arrIconList, Collator.getInstance());
 
-        imageMap = createImageMap(arrButtonList);
-
-        jComboBoxButtonIcon1.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon2.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon3.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon4.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon5.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon6.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon7.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon8.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon9.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon10.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon11.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon12.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon13.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon14.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon15.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon16.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon17.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon18.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon19.setModel(new DefaultComboBoxModel(arrButtonList));
-        jComboBoxButtonIcon20.setModel(new DefaultComboBoxModel(arrButtonList));
+        //imageMap = createImageMap(arrIconList);
+        
+        //return arrIconList;
+//        jComboBoxButtonIcon2.setModel(new DefaultComboBoxModel(arrIconList));
+//        jComboBoxButtonIcon3.setModel(new DefaultComboBoxModel(arrIconList));
+//        jComboBoxButtonIcon4.setModel(new DefaultComboBoxModel(arrIconList));
+//        jComboBoxButtonIcon5.setModel(new DefaultComboBoxModel(arrIconList));
+//        jComboBoxButtonIcon6.setModel(new DefaultComboBoxModel(arrIconList));
+//        jComboBoxButtonIcon7.setModel(new DefaultComboBoxModel(arrIconList));
+//        jComboBoxButtonIcon8.setModel(new DefaultComboBoxModel(arrIconList));
+//        jComboBoxButtonIcon9.setModel(new DefaultComboBoxModel(arrIconList));
+//        jComboBoxButtonIcon10.setModel(new DefaultComboBoxModel(arrIconList));
+//        jComboBoxButtonIcon11.setModel(new DefaultComboBoxModel(arrIconList));
+//        jComboBoxButtonIcon12.setModel(new DefaultComboBoxModel(arrIconList));
+//        jComboBoxButtonIcon13.setModel(new DefaultComboBoxModel(arrIconList));
+//        jComboBoxButtonIcon14.setModel(new DefaultComboBoxModel(arrIconList));
+//        jComboBoxButtonIcon15.setModel(new DefaultComboBoxModel(arrIconList));
+//        jComboBoxButtonIcon16.setModel(new DefaultComboBoxModel(arrIconList));
+//        jComboBoxButtonIcon17.setModel(new DefaultComboBoxModel(arrIconList));
+//        jComboBoxButtonIcon18.setModel(new DefaultComboBoxModel(arrIconList));
+//        jComboBoxButtonIcon19.setModel(new DefaultComboBoxModel(arrIconList));
+//        jComboBoxButtonIcon20.setModel(new DefaultComboBoxModel(arrIconList));
     }
+    
+
+        
+    
 
     public class ButtonListRenderer extends DefaultListCellRenderer {
         @Override
@@ -12515,6 +12591,23 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         final ProcessBuilder builder = new ProcessBuilder(command);
         builder.start();
         System.exit(0);
+    }
+    
+    private void QuickLaunchSessionOnEnter() {
+        String myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionOnEnterPress");
+        if("".equals(myValue)) {
+            PropertyHandler.getInstance().setValue("ButtonExecuteFunctionOnEnterPress", "SSH");
+        }
+        myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionOnEnterPress");
+        if("HTTPS".equals(myValue)) {
+            jButtonExecuteFunctionHTTPS.doClick();
+        } else if("RDP".equals(myValue)) {
+            jButtonExecuteFunctionRDP.doClick();
+        } else if("SSH".equals(myValue)){
+            jButtonExecuteFunctionSSH.doClick();
+        } else if("PKI".equals(myValue)){
+            jButtonExecuteFunctionPKI.doClick();
+        }
     }
   
     
@@ -12573,9 +12666,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonConsole;
     private javax.swing.JButton jButtonEditProductionDevicesList;
     private javax.swing.JButton jButtonEditProductionDevicesList1;
-    private javax.swing.JButton jButtonExecuteFunction1;
-    private javax.swing.JButton jButtonExecuteFunction2;
-    private javax.swing.JButton jButtonExecuteFunction4;
+    private javax.swing.JButton jButtonExecuteFunctionHTTPS;
+    private javax.swing.JButton jButtonExecuteFunctionPKI;
+    private javax.swing.JButton jButtonExecuteFunctionRDP;
     private javax.swing.JButton jButtonExecuteFunctionSSH;
     private javax.swing.JButton jButtonFolderToZip;
     private javax.swing.JButton jButtonGenerateHash;
