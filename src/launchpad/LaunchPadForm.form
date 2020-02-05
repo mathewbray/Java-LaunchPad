@@ -3228,7 +3228,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Unicode MS" size="11" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Add Folder to Zip!"/>
+                    <Property name="text" type="java.lang.String" value="Create!"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                   <Events>
@@ -3348,7 +3348,7 @@
                       <Font name="Arial Unicode MS" size="20" style="0"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Extract Archive to Folder"/>
+                    <Property name="text" type="java.lang.String" value="Extract Encrypted Archive"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -3405,7 +3405,7 @@
                       <Font name="Arial Unicode MS" size="20" style="0"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Add Folder to Encrypted Archive"/>
+                    <Property name="text" type="java.lang.String" value="Create Encrypted Archive"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -3511,7 +3511,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Unicode MS" size="11" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Extract to Folder!"/>
+                    <Property name="text" type="java.lang.String" value="Extract!"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton39ActionPerformed"/>
@@ -3673,7 +3673,7 @@
                       <Font name="Arial Unicode MS" size="20" style="0"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Type 7 Reverse"/>
+                    <Property name="text" type="java.lang.String" value="Type 7 Conversion"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -3867,7 +3867,7 @@
                       <Font name="Arial Unicode MS" size="20" style="0"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Hash Generator"/>
+                    <Property name="text" type="java.lang.String" value="Hash Generation"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -4006,20 +4006,6 @@
                 <Property name="useNullLayout" type="boolean" value="true"/>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabelGetNTP2">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial Unicode MS" size="20" style="0"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Get NTP Time (NtpMessage.java Method)"/>
-                  </Properties>
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="10" y="120" width="550" height="40"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
                 <Component class="javax.swing.JLabel" name="jLabel21">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -4033,7 +4019,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton26">
+                <Component class="javax.swing.JButton" name="jButtonGetNtpTime">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Unicode MS" size="11" style="0"/>
@@ -4041,7 +4027,7 @@
                     <Property name="text" type="java.lang.String" value="Get Time!"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton26ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGetNtpTimeActionPerformed"/>
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -4071,7 +4057,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="110" y="90" width="430" height="-1"/>
+                      <AbsoluteConstraints x="110" y="90" width="440" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -4084,7 +4070,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="110" y="70" width="430" height="-1"/>
+                      <AbsoluteConstraints x="110" y="70" width="440" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -4114,40 +4100,17 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton29">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial Unicode MS" size="11" style="0"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Get Time!"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton29ActionPerformed"/>
-                  </Events>
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="230" y="160" width="100" height="20"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
                 <Component class="javax.swing.JLabel" name="jLabelGetNTP1">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Unicode MS" size="20" style="0"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Get NTP Time (NTPUDPClient Method)"/>
+                    <Property name="text" type="java.lang.String" value="Get NTP Time"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="10" y="0" width="550" height="40"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
-                <Component class="javax.swing.JSeparator" name="jSeparator7">
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="10" y="120" width="550" height="10"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -4157,7 +4120,7 @@
                   </AuxValues>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="20" y="190" width="530" height="220"/>
+                      <AbsoluteConstraints x="20" y="120" width="530" height="220"/>
                     </Constraint>
                   </Constraints>
 
@@ -4896,6 +4859,9 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="jButton38">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="cc" red="cc" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -4915,6 +4881,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton32">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="cc" red="cc" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -4931,6 +4900,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton30">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="a2" green="e9" red="ff" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -4947,6 +4919,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton43">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="a2" green="e9" red="ff" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -5187,6 +5162,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton28">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="a2" green="e9" red="ff" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -5203,6 +5181,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton34">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -5219,6 +5200,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton35">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="cc" red="cc" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -8750,6 +8734,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute1">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -8790,6 +8777,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute2">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -8818,6 +8808,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute3">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -8856,6 +8849,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute4">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -8894,6 +8890,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute5">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -8932,6 +8931,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute6">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -8970,6 +8972,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute7">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9008,6 +9013,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute8">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9046,6 +9054,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute9">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9084,6 +9095,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute10">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9122,6 +9136,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute11">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9160,6 +9177,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute12">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9198,6 +9218,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute13">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9236,6 +9259,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute14">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9274,6 +9300,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute15">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9312,6 +9341,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute16">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9350,6 +9382,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute17">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9388,6 +9423,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute18">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9426,6 +9464,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute19">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9464,6 +9505,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute20">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9502,6 +9546,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute21">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9540,6 +9587,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute22">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9578,6 +9628,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute23">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9616,6 +9669,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute24">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9654,6 +9710,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute25">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9692,6 +9751,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute26">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9730,6 +9792,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute27">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9768,6 +9833,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute28">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9806,6 +9874,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute29">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9844,6 +9915,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute30">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9882,6 +9956,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute31">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9920,6 +9997,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute32">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9958,6 +10038,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute33">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -9996,6 +10079,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute34">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -10034,6 +10120,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute35">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -10072,6 +10161,9 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextFieldLinkExecute36">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="db" red="db" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>

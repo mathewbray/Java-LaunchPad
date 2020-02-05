@@ -1002,17 +1002,14 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonHashCopySHA1 = new javax.swing.JButton();
         jButtonHashCopySHA256 = new javax.swing.JButton();
         jPanelNTPTime = new javax.swing.JPanel();
-        jLabelGetNTP2 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jButton26 = new javax.swing.JButton();
+        jButtonGetNtpTime = new javax.swing.JButton();
         jTextFieldNtpServer = new javax.swing.JTextField();
         jTextFieldNtpAtomicTime = new javax.swing.JTextField();
         jTextFieldNtpSystemTime = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        jButton29 = new javax.swing.JButton();
         jLabelGetNTP1 = new javax.swing.JLabel();
-        jSeparator7 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextAreaNTPMessage = new javax.swing.JTextArea();
         jPanelWebJavaDocs = new javax.swing.JPanel();
@@ -3130,7 +3127,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelZipEncrypt.setLayout(null);
 
         jButtonFolderToZip.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButtonFolderToZip.setText("Add Folder to Zip!");
+        jButtonFolderToZip.setText("Create!");
         jButtonFolderToZip.setToolTipText("");
         jButtonFolderToZip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3192,7 +3189,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jLabelFolderToZip4.setFont(new java.awt.Font("Arial Unicode MS", 0, 20)); // NOI18N
         jLabelFolderToZip4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelFolderToZip4.setText("Extract Archive to Folder");
+        jLabelFolderToZip4.setText("Extract Encrypted Archive");
         jPanelZipEncrypt.add(jLabelFolderToZip4);
         jLabelFolderToZip4.setBounds(20, 220, 530, 40);
 
@@ -3212,7 +3209,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jLabelFolderToZip7.setFont(new java.awt.Font("Arial Unicode MS", 0, 20)); // NOI18N
         jLabelFolderToZip7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelFolderToZip7.setText("Add Folder to Encrypted Archive");
+        jLabelFolderToZip7.setText("Create Encrypted Archive");
         jPanelZipEncrypt.add(jLabelFolderToZip7);
         jLabelFolderToZip7.setBounds(20, 10, 530, 40);
 
@@ -3264,7 +3261,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonZipBrowseDestinationFolder.setBounds(480, 290, 70, 20);
 
         jButton39.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton39.setText("Extract to Folder!");
+        jButton39.setText("Extract!");
         jButton39.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton39ActionPerformed(evt);
@@ -3345,7 +3342,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jLabelType7reverse.setFont(new java.awt.Font("Arial Unicode MS", 0, 20)); // NOI18N
         jLabelType7reverse.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelType7reverse.setText("Type 7 Reverse");
+        jLabelType7reverse.setText("Type 7 Conversion");
         jPanelType7.add(jLabelType7reverse);
         jLabelType7reverse.setBounds(110, 10, 350, 40);
 
@@ -3434,7 +3431,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jLabelHashGenerator.setFont(new java.awt.Font("Arial Unicode MS", 0, 20)); // NOI18N
         jLabelHashGenerator.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelHashGenerator.setText("Hash Generator");
+        jLabelHashGenerator.setText("Hash Generation");
         jPanelHashGen.add(jLabelHashGenerator);
         jLabelHashGenerator.setBounds(110, 10, 350, 40);
 
@@ -3501,26 +3498,20 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jPanelNTPTime.setLayout(null);
 
-        jLabelGetNTP2.setFont(new java.awt.Font("Arial Unicode MS", 0, 20)); // NOI18N
-        jLabelGetNTP2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelGetNTP2.setText("Get NTP Time (NtpMessage.java Method)");
-        jPanelNTPTime.add(jLabelGetNTP2);
-        jLabelGetNTP2.setBounds(10, 120, 550, 40);
-
         jLabel21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel21.setText("Atomic Time:");
         jPanelNTPTime.add(jLabel21);
         jLabel21.setBounds(20, 90, 90, 20);
 
-        jButton26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton26.setText("Get Time!");
-        jButton26.addActionListener(new java.awt.event.ActionListener() {
+        jButtonGetNtpTime.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonGetNtpTime.setText("Get Time!");
+        jButtonGetNtpTime.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton26ActionPerformed(evt);
+                jButtonGetNtpTimeActionPerformed(evt);
             }
         });
-        jPanelNTPTime.add(jButton26);
-        jButton26.setBounds(439, 37, 100, 23);
+        jPanelNTPTime.add(jButtonGetNtpTime);
+        jButtonGetNtpTime.setBounds(439, 37, 100, 23);
 
         jTextFieldNtpServer.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldNtpServer.setText("pool.ntp.org");
@@ -3530,12 +3521,12 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldNtpAtomicTime.setEditable(false);
         jTextFieldNtpAtomicTime.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanelNTPTime.add(jTextFieldNtpAtomicTime);
-        jTextFieldNtpAtomicTime.setBounds(110, 90, 430, 21);
+        jTextFieldNtpAtomicTime.setBounds(110, 90, 440, 21);
 
         jTextFieldNtpSystemTime.setEditable(false);
         jTextFieldNtpSystemTime.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanelNTPTime.add(jTextFieldNtpSystemTime);
-        jTextFieldNtpSystemTime.setBounds(110, 70, 430, 21);
+        jTextFieldNtpSystemTime.setBounds(110, 70, 440, 21);
 
         jLabel26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel26.setText("Server:");
@@ -3547,23 +3538,11 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelNTPTime.add(jLabel27);
         jLabel27.setBounds(20, 70, 90, 20);
 
-        jButton29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton29.setText("Get Time!");
-        jButton29.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton29ActionPerformed(evt);
-            }
-        });
-        jPanelNTPTime.add(jButton29);
-        jButton29.setBounds(230, 160, 100, 20);
-
         jLabelGetNTP1.setFont(new java.awt.Font("Arial Unicode MS", 0, 20)); // NOI18N
         jLabelGetNTP1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelGetNTP1.setText("Get NTP Time (NTPUDPClient Method)");
+        jLabelGetNTP1.setText("Get NTP Time");
         jPanelNTPTime.add(jLabelGetNTP1);
         jLabelGetNTP1.setBounds(10, 0, 550, 40);
-        jPanelNTPTime.add(jSeparator7);
-        jSeparator7.setBounds(10, 120, 550, 10);
 
         jTextAreaNTPMessage.setEditable(false);
         jTextAreaNTPMessage.setBackground(new java.awt.Color(240, 240, 240));
@@ -3572,7 +3551,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jTextAreaNTPMessage);
 
         jPanelNTPTime.add(jScrollPane4);
-        jScrollPane4.setBounds(20, 190, 530, 220);
+        jScrollPane4.setBounds(20, 120, 530, 220);
 
         jTabbedPaneToolBox.addTab("NTP", jPanelNTPTime);
 
@@ -3949,6 +3928,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Personal Items (Never overwritten)"));
         jPanel3.setLayout(null);
 
+        jButton38.setBackground(new java.awt.Color(204, 204, 255));
         jButton38.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton38.setText("Edit Personal Properties File");
         jButton38.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -3960,6 +3940,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanel3.add(jButton38);
         jButton38.setBounds(190, 80, 170, 20);
 
+        jButton32.setBackground(new java.awt.Color(204, 204, 255));
         jButton32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton32.setText("Edit Personal Favorites List");
         jButton32.addActionListener(new java.awt.event.ActionListener() {
@@ -3970,6 +3951,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanel3.add(jButton32);
         jButton32.setBounds(370, 80, 170, 20);
 
+        jButton30.setBackground(new java.awt.Color(255, 233, 162));
         jButton30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton30.setText("Open Logging-Ouput Folder");
         jButton30.addActionListener(new java.awt.event.ActionListener() {
@@ -3980,6 +3962,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanel3.add(jButton30);
         jButton30.setBounds(10, 110, 170, 20);
 
+        jButton43.setBackground(new java.awt.Color(255, 233, 162));
         jButton43.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton43.setText("Open Personal Folder");
         jButton43.addActionListener(new java.awt.event.ActionListener() {
@@ -4097,6 +4080,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanel4.add(jLabelEnablePWauth1);
         jLabelEnablePWauth1.setBounds(20, 110, 100, 20);
 
+        jButton28.setBackground(new java.awt.Color(255, 233, 162));
         jButton28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton28.setText("Open LaunchPad Folder");
         jButton28.addActionListener(new java.awt.event.ActionListener() {
@@ -4107,6 +4091,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanel4.add(jButton28);
         jButton28.setBounds(10, 170, 170, 20);
 
+        jButton34.setBackground(new java.awt.Color(255, 255, 255));
         jButton34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton34.setText("View Shared Properties File");
         jButton34.addActionListener(new java.awt.event.ActionListener() {
@@ -4117,6 +4102,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanel4.add(jButton34);
         jButton34.setBounds(190, 170, 170, 20);
 
+        jButton35.setBackground(new java.awt.Color(204, 204, 255));
         jButton35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton35.setText("Edit Shared Properties File");
         jButton35.addActionListener(new java.awt.event.ActionListener() {
@@ -5745,6 +5731,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute1.setText("Execute:");
 
+        jTextFieldLinkExecute1.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -5771,6 +5758,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkText2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkText2.setText("Link 2:");
 
+        jTextFieldLinkExecute2.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -5786,6 +5774,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute3.setText("Execute:");
 
+        jTextFieldLinkExecute3.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -5808,6 +5797,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute4.setText("Execute:");
 
+        jTextFieldLinkExecute4.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -5830,6 +5820,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute5.setText("Execute:");
 
+        jTextFieldLinkExecute5.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -5852,6 +5843,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute6.setText("Execute:");
 
+        jTextFieldLinkExecute6.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -5874,6 +5866,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute7.setText("Execute:");
 
+        jTextFieldLinkExecute7.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -5896,6 +5889,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute8.setText("Execute:");
 
+        jTextFieldLinkExecute8.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -5918,6 +5912,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute9.setText("Execute:");
 
+        jTextFieldLinkExecute9.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute9.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -5940,6 +5935,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute10.setText("Execute:");
 
+        jTextFieldLinkExecute10.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute10.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -5962,6 +5958,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute11.setText("Execute:");
 
+        jTextFieldLinkExecute11.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute11.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -5984,6 +5981,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute12.setText("Execute:");
 
+        jTextFieldLinkExecute12.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute12.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6006,6 +6004,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute13.setText("Execute:");
 
+        jTextFieldLinkExecute13.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute13.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6028,6 +6027,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute14.setText("Execute:");
 
+        jTextFieldLinkExecute14.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute14.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6050,6 +6050,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute15.setText("Execute:");
 
+        jTextFieldLinkExecute15.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute15.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6072,6 +6073,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute16.setText("Execute:");
 
+        jTextFieldLinkExecute16.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute16.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6094,6 +6096,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute17.setText("Execute:");
 
+        jTextFieldLinkExecute17.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute17.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6116,6 +6119,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute18.setText("Execute:");
 
+        jTextFieldLinkExecute18.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute18.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6138,6 +6142,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute19.setText("Execute:");
 
+        jTextFieldLinkExecute19.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute19.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6160,6 +6165,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute20.setText("Execute:");
 
+        jTextFieldLinkExecute20.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute20.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6182,6 +6188,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute21.setText("Execute:");
 
+        jTextFieldLinkExecute21.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute21.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6204,6 +6211,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute22.setText("Execute:");
 
+        jTextFieldLinkExecute22.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute22.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6226,6 +6234,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute23.setText("Execute:");
 
+        jTextFieldLinkExecute23.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute23.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6248,6 +6257,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute24.setText("Execute:");
 
+        jTextFieldLinkExecute24.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute24.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6270,6 +6280,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute25.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute25.setText("Execute:");
 
+        jTextFieldLinkExecute25.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute25.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6292,6 +6303,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute26.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute26.setText("Execute:");
 
+        jTextFieldLinkExecute26.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute26.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6314,6 +6326,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute27.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute27.setText("Execute:");
 
+        jTextFieldLinkExecute27.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute27.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6336,6 +6349,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute28.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute28.setText("Execute:");
 
+        jTextFieldLinkExecute28.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute28.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6358,6 +6372,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute29.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute29.setText("Execute:");
 
+        jTextFieldLinkExecute29.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute29.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6380,6 +6395,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute30.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute30.setText("Execute:");
 
+        jTextFieldLinkExecute30.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute30.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6402,6 +6418,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute31.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute31.setText("Execute:");
 
+        jTextFieldLinkExecute31.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute31.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6424,6 +6441,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute32.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute32.setText("Execute:");
 
+        jTextFieldLinkExecute32.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute32.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6446,6 +6464,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute33.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute33.setText("Execute:");
 
+        jTextFieldLinkExecute33.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute33.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6468,6 +6487,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute34.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute34.setText("Execute:");
 
+        jTextFieldLinkExecute34.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute34.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6490,6 +6510,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute35.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute35.setText("Execute:");
 
+        jTextFieldLinkExecute35.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute35.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -6512,6 +6533,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkExecute36.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelLinkExecute36.setText("Execute:");
 
+        jTextFieldLinkExecute36.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldLinkExecute36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldLinkExecute36.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -7588,8 +7610,44 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jSliderListTextSizeStateChanged
 
-    private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
-        // TODO add your handling code here:
+    private void jButtonGetNtpTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetNtpTimeActionPerformed
+        //- NTP UDP CLIENT METHOD
+        String SERVER_NAME = jTextFieldNtpServer.getText();
+        //String SERVER_NAME = "pool.ntp.org";
+        NTPUDPClient timeClient = new NTPUDPClient();
+        // We want to timeout if a response takes longer than 10 seconds
+        timeClient.setDefaultTimeout(10000);
+
+        InetAddress inetAddress = null;
+        try {
+            inetAddress = InetAddress.getByName(SERVER_NAME);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Failed - Couldn't find server.");
+            jTextFieldNtpSystemTime.setText("Failed - Couldn't find server: " + SERVER_NAME);
+            jTextFieldNtpAtomicTime.setText("");
+        }
+        TimeInfo timeInfo = null;
+        try {
+            timeInfo = timeClient.getTime(inetAddress);
+        } catch (IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Failed - Found server, but no time received. ");
+            jTextFieldNtpSystemTime.setText("Failed - Found server: " + SERVER_NAME + ", but no time received. ");
+            jTextFieldNtpAtomicTime.setText("");
+
+        }
+        long returnTime = timeInfo.getReturnTime();
+        TimeStamp destNtpTime = TimeStamp.getNtpTime(returnTime);
+        System.out.println("System time:\t" + destNtpTime + "  " + destNtpTime.toDateString());
+        jTextFieldNtpSystemTime.setText("" + destNtpTime + "  " + destNtpTime.toDateString());
+
+        TimeStamp currentNtpTime = TimeStamp.getCurrentTime();
+        System.out.println("Atomic time:\t" + currentNtpTime + "  " + currentNtpTime.toDateString());
+        jTextFieldNtpAtomicTime.setText("" + currentNtpTime + "  " + currentNtpTime.toDateString());
+        
+        
+        // NTPMESSAGE.JAVA METHOD
         // Send message
         DatagramSocket socket = null;
         try {
@@ -7628,44 +7686,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         System.out.println(msg.toString());
         jTextAreaNTPMessage.setText(msg.toString());
-    }//GEN-LAST:event_jButton29ActionPerformed
-
-    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
-        // TODO add your handling code here:
-        String SERVER_NAME = jTextFieldNtpServer.getText();
-        //String SERVER_NAME = "pool.ntp.org";
-        NTPUDPClient timeClient = new NTPUDPClient();
-        // We want to timeout if a response takes longer than 10 seconds
-        timeClient.setDefaultTimeout(10000);
-
-        InetAddress inetAddress = null;
-        try {
-            inetAddress = InetAddress.getByName(SERVER_NAME);
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Failed - Couldn't find server.");
-            jTextFieldNtpSystemTime.setText("Failed - Couldn't find server: " + SERVER_NAME);
-            jTextFieldNtpAtomicTime.setText("");
-        }
-        TimeInfo timeInfo = null;
-        try {
-            timeInfo = timeClient.getTime(inetAddress);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Failed - Found server, but no time received. ");
-            jTextFieldNtpSystemTime.setText("Failed - Found server: " + SERVER_NAME + ", but no time received. ");
-            jTextFieldNtpAtomicTime.setText("");
-
-        }
-        long returnTime = timeInfo.getReturnTime();
-        TimeStamp destNtpTime = TimeStamp.getNtpTime(returnTime);
-        System.out.println("System time:\t" + destNtpTime + "  " + destNtpTime.toDateString());
-        jTextFieldNtpSystemTime.setText("" + destNtpTime + "  " + destNtpTime.toDateString());
-
-        TimeStamp currentNtpTime = TimeStamp.getCurrentTime();
-        System.out.println("Atomic time:\t" + currentNtpTime + "  " + currentNtpTime.toDateString());
-        jTextFieldNtpAtomicTime.setText("" + currentNtpTime + "  " + currentNtpTime.toDateString());
-    }//GEN-LAST:event_jButton26ActionPerformed
+        
+        
+    }//GEN-LAST:event_jButtonGetNtpTimeActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
         // TODO add your handling code here:
@@ -8526,28 +8549,15 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private void jButtonConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsoleActionPerformed
         // TODO add your handling code here:
         String strSecureCRTexe = PropertyHandler.getInstance().getValue("SecureCRTexe").replace("%USERPROFILE%", pathUserProfile);
-        //String strPuTTYexe = PropertyHandler.getInstance().getValue("PuTTYexe").replace("%USERPROFILE%", pathUserProfile);
 
         System.out.println("SecureCRT file: " + strSecureCRTexe);
-        //System.out.println("PuTTY file: " + strPuTTYexe);
 
         SimpleDateFormat simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
         String dateTime = simpleDateFormat.format(new Date());
         String fileLog = pathLogging + "\\Serial-" + dateTime + ".txt";
         System.out.println("Log file: " + fileLog);
 
-//        if (jRadioButtonConsolePutty.isSelected() == true) {
-//            String strEXEC = strPuTTYexe + " -serial " + jComboBoxConsoleCOM.getSelectedItem() + " -sercfg " + jComboBoxConsoleBaud.getSelectedItem() + " ,8,n,1,N  ";
-//            System.out.println(strEXEC);
-//            try {
-//                Runtime.getRuntime().exec(strEXEC);
-//            }
-//            catch (IOException e) {
-//                System.out.println("Something is wrong!");
-//                JOptionPane.showMessageDialog(null, "Something is wrong!");
-//            }
-//        }
-//        if (jRadioButtonConsoleSecureCRT.isSelected() == true) {
+
             String strEXEC = strSecureCRTexe + " /LOG \"" + fileLog + "\" /T /SERIAL " + jComboBoxConsoleCOM.getSelectedItem() + " /BAUD " + jComboBoxConsoleBaud.getSelectedItem();
             System.out.println(strEXEC);
             try {
@@ -8557,7 +8567,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 System.out.println("Something is wrong!");
                 JOptionPane.showMessageDialog(null, "Something is wrong!");
             }
-//        }
     }//GEN-LAST:event_jButtonConsoleActionPerformed
 
     private void jButtonShowCOMListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowCOMListActionPerformed
@@ -8664,47 +8673,14 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonExecuteFunctionSSHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunctionSSHActionPerformed
         String strSecureCRTexe = PropertyHandler.getInstance().getValue("SecureCRTexe").replace("%USERPROFILE%", pathUserProfile);
-//        String strPuTTYexe = PropertyHandler.getInstance().getValue("PuTTYexe").replace("%USERPROFILE%", pathUserProfile);
         System.out.println("SecureCRT file: " + strSecureCRTexe);
-//        System.out.println("PuTTY file: " + strPuTTYexe);
         simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
         dateTime = simpleDateFormat.format(new Date());
         String fileLog = pathDesktop + "\\Logging-Output\\SSH-" + jTextFieldConnectHostname.getText() + " " + dateTime.toString() + ".txt";
         System.out.println("Log file: " + fileLog);
 
-//        if (jRadioButtonSSHClientPuTTY.isSelected() == true) {
-//
-//            if (!jCheckBoxAlternateLogin.isSelected()) {
-//                //if (jTextFieldConnectUsername.getText().equals("")){
-//                    //if (jPasswordFieldConnectPassword.getPassword().length == 0){
-//                        String strEXEC = strPuTTYexe + " -ssh " + jTextFieldConnectHostname.getText() + "  ";
-//                        try {
-//                            Runtime.getRuntime().exec(strEXEC);
-//                        }
-//                        catch (IOException e) {
-//                            System.out.println("Something is wrong!");
-//                            JOptionPane.showMessageDialog(null, "Something is wrong!");
-//                        }
-//                        //}
-//                    //}
-//            }
-//            else {
-//                String passText = new String(jPasswordFieldConnectPassword.getPassword());
-//                String strEXEC = strPuTTYexe + " -ssh " + jTextFieldConnectHostname.getText() + " -l " + jTextFieldConnectUsername.getText() + " -pw \"" + passText + "\"  ";
-//                try {
-//                    Runtime.getRuntime().exec(strEXEC);
-//                }
-//                catch (IOException e) {
-//                    System.out.println("Something is wrong!");
-//                    JOptionPane.showMessageDialog(null, "Something is wrong!");
-//                }
-//            }
-//        }
-//        if (jRadioButtonSSHClientSecureCRT.isSelected() == true) {
 
             if (!jCheckBoxAlternateLogin.isSelected()) {
-                //if (jTextFieldConnectUsername.getText().equals("")){
-                    //if (jPasswordFieldConnectPassword.getPassword().length == 0){
                         String strEXEC = strSecureCRTexe + " /LOG \"" + fileLog + "\" /T /SSH2 /ACCEPTHOSTKEYS /AUTH keyboard-interactive " + jTextFieldConnectHostname.getText();
                         System.out.println(strEXEC);
                         try {
@@ -8714,8 +8690,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                             System.out.println("Something is wrong!");
                             JOptionPane.showMessageDialog(null, "Something is wrong!");
                         }
-                        //}
-                    //}
             }
             else {
                 String passText = new String(jPasswordFieldConnectPassword.getPassword());
@@ -8728,7 +8702,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Something is wrong!");
                 }
             }
-//        }
         try {
             if("1".equals(PropertyHandler.getInstance().getValue("SettingPasswordBasedSSHauthDisableAutoReset"))) {
                 jRadioButtonPWauthDisabled.setSelected(Boolean.TRUE);
@@ -10858,8 +10831,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelFolderToZip4.setText("暗号化されたアーカイブを抽出する");
         jLabelType7reverse.setText("タイプ7リバース");
         jLabelHashGenerator.setText("ハッシュジェネレーター");
-        jLabelGetNTP1.setText("NTP時間の取得（NTPUDPClientメソッド）");
-        jLabelGetNTP2.setText("NTP時間の取得（NtpMessage.javaメソッド）");
+        jLabelGetNTP1.setText("NTP時間の取得");
         jPanelWebApps.setBorder(javax.swing.BorderFactory.createTitledBorder("ウェブアプリ"));
         jPanelJavaApps.setBorder(javax.swing.BorderFactory.createTitledBorder("Javaアプリ"));
         jPanelDocuments.setBorder(javax.swing.BorderFactory.createTitledBorder("ドキュメント"));
@@ -11133,10 +11105,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
-    private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton28;
-    private javax.swing.JButton jButton29;
     private javax.swing.JButton jButton30;
     private javax.swing.JButton jButton31;
     private javax.swing.JButton jButton32;
@@ -11163,6 +11133,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonExecuteFunctionSSH;
     private javax.swing.JButton jButtonFolderToZip;
     private javax.swing.JButton jButtonGenerateHash;
+    private javax.swing.JButton jButtonGetNtpTime;
     private javax.swing.JButton jButtonHashCopyMD5;
     private javax.swing.JButton jButtonHashCopySHA1;
     private javax.swing.JButton jButtonHashCopySHA256;
@@ -11452,7 +11423,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelFolderToZip4;
     private javax.swing.JLabel jLabelFolderToZip7;
     private javax.swing.JLabel jLabelGetNTP1;
-    private javax.swing.JLabel jLabelGetNTP2;
     private javax.swing.JLabel jLabelHashGenerator;
     private javax.swing.JLabel jLabelLanguageSelect;
     private javax.swing.JLabel jLabelLinkExecute1;
@@ -11585,7 +11555,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JSlider jSliderListTextSize;
     private javax.swing.JTabbedPane jTabbedMain;

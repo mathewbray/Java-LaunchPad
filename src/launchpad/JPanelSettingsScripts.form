@@ -794,6 +794,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute1">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -843,6 +846,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute2">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -881,6 +887,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute3">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -919,6 +928,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute4">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -957,6 +969,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute5">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -995,6 +1010,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute6">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1033,6 +1051,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute7">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1071,6 +1092,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute8">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1109,6 +1133,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute9">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1147,6 +1174,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute10">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1185,6 +1215,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute11">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1223,6 +1256,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute12">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1261,6 +1297,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute13">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1299,6 +1338,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute14">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1337,6 +1379,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute15">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1375,6 +1420,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute16">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1413,6 +1461,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute17">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1451,6 +1502,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute18">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1489,6 +1543,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute19">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1527,6 +1584,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute20">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1565,6 +1625,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute21">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1603,6 +1666,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute22">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1641,6 +1707,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute23">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1679,6 +1748,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute24">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1717,6 +1789,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute25">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1755,6 +1830,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute26">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1793,6 +1871,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute27">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1831,6 +1912,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute28">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1869,6 +1953,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute29">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1907,6 +1994,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute30">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1945,6 +2035,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute31">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -1983,6 +2076,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute32">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -2021,6 +2117,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute33">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -2059,6 +2158,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute34">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -2097,6 +2199,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute35">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>
@@ -2135,6 +2240,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldScriptExecute36">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="db" red="db" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="11" style="0"/>
         </Property>

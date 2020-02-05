@@ -191,6 +191,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute1.setText("Execute:");
 
+        jTextFieldScriptExecute1.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -221,6 +222,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute2.setText("Execute:");
 
+        jTextFieldScriptExecute2.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -243,6 +245,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute3.setText("Execute:");
 
+        jTextFieldScriptExecute3.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -265,6 +268,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute4.setText("Execute:");
 
+        jTextFieldScriptExecute4.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -287,6 +291,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute5.setText("Execute:");
 
+        jTextFieldScriptExecute5.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute5.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -309,6 +314,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute6.setText("Execute:");
 
+        jTextFieldScriptExecute6.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute6.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -331,6 +337,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute7.setText("Execute:");
 
+        jTextFieldScriptExecute7.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute7.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -353,6 +360,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute8.setText("Execute:");
 
+        jTextFieldScriptExecute8.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -375,6 +383,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute9.setText("Execute:");
 
+        jTextFieldScriptExecute9.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute9.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -397,6 +406,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute10.setText("Execute:");
 
+        jTextFieldScriptExecute10.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute10.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -419,6 +429,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute11.setText("Execute:");
 
+        jTextFieldScriptExecute11.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute11.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -441,6 +452,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute12.setText("Execute:");
 
+        jTextFieldScriptExecute12.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute12.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -463,6 +475,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute13.setText("Execute:");
 
+        jTextFieldScriptExecute13.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute13.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -485,6 +498,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute14.setText("Execute:");
 
+        jTextFieldScriptExecute14.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute14.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -507,6 +521,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute15.setText("Execute:");
 
+        jTextFieldScriptExecute15.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute15.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -529,6 +544,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute16.setText("Execute:");
 
+        jTextFieldScriptExecute16.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute16.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -551,6 +567,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute17.setText("Execute:");
 
+        jTextFieldScriptExecute17.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute17.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -573,6 +590,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute18.setText("Execute:");
 
+        jTextFieldScriptExecute18.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute18.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -595,6 +613,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute19.setText("Execute:");
 
+        jTextFieldScriptExecute19.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute19.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -617,6 +636,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute20.setText("Execute:");
 
+        jTextFieldScriptExecute20.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute20.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -639,6 +659,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute21.setText("Execute:");
 
+        jTextFieldScriptExecute21.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute21.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -661,6 +682,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute22.setText("Execute:");
 
+        jTextFieldScriptExecute22.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute22.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -683,6 +705,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute23.setText("Execute:");
 
+        jTextFieldScriptExecute23.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute23.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -705,6 +728,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute24.setText("Execute:");
 
+        jTextFieldScriptExecute24.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute24.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -727,6 +751,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute25.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute25.setText("Execute:");
 
+        jTextFieldScriptExecute25.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute25.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -749,6 +774,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute26.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute26.setText("Execute:");
 
+        jTextFieldScriptExecute26.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute26.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -771,6 +797,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute27.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute27.setText("Execute:");
 
+        jTextFieldScriptExecute27.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute27.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -793,6 +820,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute28.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute28.setText("Execute:");
 
+        jTextFieldScriptExecute28.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute28.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -815,6 +843,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute29.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute29.setText("Execute:");
 
+        jTextFieldScriptExecute29.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute29.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -837,6 +866,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute30.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute30.setText("Execute:");
 
+        jTextFieldScriptExecute30.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute30.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -859,6 +889,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute31.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute31.setText("Execute:");
 
+        jTextFieldScriptExecute31.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute31.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -881,6 +912,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute32.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute32.setText("Execute:");
 
+        jTextFieldScriptExecute32.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute32.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -903,6 +935,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute33.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute33.setText("Execute:");
 
+        jTextFieldScriptExecute33.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute33.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -925,6 +958,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute34.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute34.setText("Execute:");
 
+        jTextFieldScriptExecute34.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute34.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -947,6 +981,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute35.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute35.setText("Execute:");
 
+        jTextFieldScriptExecute35.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute35.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -969,6 +1004,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jLabelScriptExecute36.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelScriptExecute36.setText("Execute:");
 
+        jTextFieldScriptExecute36.setBackground(new java.awt.Color(219, 219, 255));
         jTextFieldScriptExecute36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldScriptExecute36.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
