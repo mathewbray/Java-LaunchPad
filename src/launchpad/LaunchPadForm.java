@@ -630,7 +630,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             } catch (URISyntaxException | IOException ex) {
                 Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println("Button List: " + Arrays.toString(arrButtonList));
+            //System.out.println("Button List: " + Arrays.toString(arrButtonList));
             Arrays.sort(arrButtonList, Collator.getInstance());
             imageMap = createImageMap(arrButtonList);
             
@@ -11031,7 +11031,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         } catch (URISyntaxException | IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Button List: " + Arrays.toString(arrIconList));
+//        System.out.println("Button List: " + Arrays.toString(arrIconList));
         Arrays.sort(arrIconList, Collator.getInstance());
 
         //imageMap = createImageMap(arrIconList);
