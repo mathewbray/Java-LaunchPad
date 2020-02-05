@@ -136,12 +136,12 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         loadSettingsMainButtonList();
         initComponents();
         initAddSettingsReferences();
+        initAddSettingsScripts();
         setTitle(PropertyHandler.getInstance().getValue("WindowTitle"));
         getSessionList();
         loadMainButtonStyles();        
         loadSettingsMainButtonsData();
         loadSettingsLinkData();
-        loadSettingsScriptData();
         loadSettingsPersonal();
         loadSettingsShared();
         loadHostIPMAC();
@@ -246,135 +246,141 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         try {
             //Button01
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button01Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton1.setIcon(new ImageIcon(newimg));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton1.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button2
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button02Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton2.setIcon(new ImageIcon(newimg));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton2.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button3
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button03Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton3.setIcon(new ImageIcon(newimg));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton3.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button4
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button04Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton4.setIcon(new ImageIcon(newimg));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton4.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button5
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button05Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton5.setIcon(new ImageIcon(newimg));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton5.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button6
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button06Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton6.setIcon(new ImageIcon(newimg));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton6.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button7
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button07Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton7.setIcon(new ImageIcon(newimg));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton7.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button8
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button08Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton8.setIcon(new ImageIcon(newimg));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton8.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button9
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button09Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton9.setIcon(new ImageIcon(newimg));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton9.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button10
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button10Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton10.setIcon(new ImageIcon(newimg));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton10.setIcon(new ImageIcon(newimg));
          } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
            //Button11
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button11Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton11.setIcon(new ImageIcon(newimg));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton11.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button12
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button12Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton12.setIcon(new ImageIcon(newimg));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton12.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button13
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button13Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton13.setIcon(new ImageIcon(newimg));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton13.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button14
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button14Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton14.setIcon(new ImageIcon(newimg));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton14.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button15
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button15Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton15.setIcon(new ImageIcon(newimg));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton15.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button16
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button16Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton16.setIcon(new ImageIcon(newimg));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton16.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button17
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button17Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton17.setIcon(new ImageIcon(newimg));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton17.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button18
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button18Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton18.setIcon(new ImageIcon(newimg));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton18.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button19
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button19Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton19.setIcon(new ImageIcon(newimg));
-        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
-        }
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton19.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);}
         try {
             //Button20
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button20Icon")));
-            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton20.setIcon(new ImageIcon(newimg));
-
-
-        } catch (NullPointerException e) {
-            System.out.println("Icon Goofed");
-                StringBuilder sb = new StringBuilder(e.toString());
-            for (StackTraceElement ste : e.getStackTrace()) {
-                sb.append("\n\tat ");
-                sb.append(ste);
-
-            }
-            String trace = sb.toString();
-            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
-
-        }
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton20.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed");StringBuilder sb = new StringBuilder(e.toString());for (StackTraceElement ste : e.getStackTrace()) { sb.append("\n\tat "); sb.append(ste); } String trace = sb.toString(); JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);        }
+        try {
+            //Button21
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button21Icon")));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton21.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed");StringBuilder sb = new StringBuilder(e.toString());for (StackTraceElement ste : e.getStackTrace()) { sb.append("\n\tat "); sb.append(ste); } String trace = sb.toString(); JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);        }
+        try {
+            //Button22
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button22Icon")));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton22.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed");StringBuilder sb = new StringBuilder(e.toString());for (StackTraceElement ste : e.getStackTrace()) { sb.append("\n\tat "); sb.append(ste); } String trace = sb.toString(); JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);        }
+        try {
+            //Button23
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button23Icon")));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton23.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed");StringBuilder sb = new StringBuilder(e.toString());for (StackTraceElement ste : e.getStackTrace()) { sb.append("\n\tat "); sb.append(ste); } String trace = sb.toString(); JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);        }
+        try {
+            //Button24
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button24Icon")));
+            img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton24.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed");StringBuilder sb = new StringBuilder(e.toString());for (StackTraceElement ste : e.getStackTrace()) { sb.append("\n\tat "); sb.append(ste); } String trace = sb.toString(); JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);        }
         
         
         
@@ -415,71 +421,83 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         
         
         //-- Set to use the pointy finger cursor
-        jButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton7.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton8.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton9.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton10.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton11.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton12.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton13.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton14.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton15.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton16.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton17.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton18.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton19.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jButton20.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton7.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton8.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton9.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton10.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton11.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton12.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton13.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton14.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton15.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton16.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton17.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton18.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton19.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton20.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton21.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton22.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton23.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonMainButton24.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         
         //- Add the slight buuton movement when hovered over function
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton1.getX(); int y = jButton1.getY(); jButton1.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton1.getX(); int y = jButton1.getY(); jButton1.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton1.getX(); int y = jButton1.getY(); jButton1.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton1.getX(); int y = jButton1.getY(); jButton1.setLocation(x - 1, y - 1); } });
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton2.getX(); int y = jButton2.getY(); jButton2.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton2.getX(); int y = jButton2.getY(); jButton2.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton2.getX(); int y = jButton2.getY(); jButton2.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton2.getX(); int y = jButton2.getY(); jButton2.setLocation(x - 1, y - 1); } });
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton3.getX(); int y = jButton3.getY(); jButton3.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton3.getX(); int y = jButton3.getY(); jButton3.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton3.getX(); int y = jButton3.getY(); jButton3.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton3.getX(); int y = jButton3.getY(); jButton3.setLocation(x - 1, y - 1); } });
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton4.getX(); int y = jButton4.getY(); jButton4.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton4.getX(); int y = jButton4.getY(); jButton4.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton4.getX(); int y = jButton4.getY(); jButton4.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton4.getX(); int y = jButton4.getY(); jButton4.setLocation(x - 1, y - 1); } });
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton5.getX(); int y = jButton5.getY(); jButton5.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton5.getX(); int y = jButton5.getY(); jButton5.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton5.getX(); int y = jButton5.getY(); jButton5.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton5.getX(); int y = jButton5.getY(); jButton5.setLocation(x - 1, y - 1); } });
-        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton6.getX(); int y = jButton6.getY(); jButton6.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton6.getX(); int y = jButton6.getY(); jButton6.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton6.getX(); int y = jButton6.getY(); jButton6.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton6.getX(); int y = jButton6.getY(); jButton6.setLocation(x - 1, y - 1); } });
-        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton7.getX(); int y = jButton7.getY(); jButton7.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton7.getX(); int y = jButton7.getY(); jButton7.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton7.getX(); int y = jButton7.getY(); jButton7.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton7.getX(); int y = jButton7.getY(); jButton7.setLocation(x - 1, y - 1); } });
-        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton8.getX(); int y = jButton8.getY(); jButton8.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton8.getX(); int y = jButton8.getY(); jButton8.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton8.getX(); int y = jButton8.getY(); jButton8.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton8.getX(); int y = jButton8.getY(); jButton8.setLocation(x - 1, y - 1); } });
-        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton9.getX(); int y = jButton9.getY(); jButton9.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton9.getX(); int y = jButton9.getY(); jButton9.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton9.getX(); int y = jButton9.getY(); jButton9.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton9.getX(); int y = jButton9.getY(); jButton9.setLocation(x - 1, y - 1); } });
-        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton10.getX(); int y = jButton10.getY(); jButton10.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton10.getX(); int y = jButton10.getY(); jButton10.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton10.getX(); int y = jButton10.getY(); jButton10.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton10.getX(); int y = jButton10.getY(); jButton10.setLocation(x - 1, y - 1); } });
-        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton11.getX(); int y = jButton11.getY(); jButton11.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton11.getX(); int y = jButton11.getY(); jButton11.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton11.getX(); int y = jButton11.getY(); jButton11.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton11.getX(); int y = jButton11.getY(); jButton11.setLocation(x - 1, y - 1); } });
-        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton12.getX(); int y = jButton12.getY(); jButton12.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton12.getX(); int y = jButton12.getY(); jButton12.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton12.getX(); int y = jButton12.getY(); jButton12.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton12.getX(); int y = jButton12.getY(); jButton12.setLocation(x - 1, y - 1); } });
-        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton13.getX(); int y = jButton13.getY(); jButton13.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton13.getX(); int y = jButton13.getY(); jButton13.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton13.getX(); int y = jButton13.getY(); jButton13.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton13.getX(); int y = jButton13.getY(); jButton13.setLocation(x - 1, y - 1); } });
-        jButton14.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton14.getX(); int y = jButton14.getY(); jButton14.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton14.getX(); int y = jButton14.getY(); jButton14.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton14.getX(); int y = jButton14.getY(); jButton14.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton14.getX(); int y = jButton14.getY(); jButton14.setLocation(x - 1, y - 1); } });
-        jButton15.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton15.getX(); int y = jButton15.getY(); jButton15.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton15.getX(); int y = jButton15.getY(); jButton15.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton15.getX(); int y = jButton15.getY(); jButton15.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton15.getX(); int y = jButton15.getY(); jButton15.setLocation(x - 1, y - 1); } });
-        jButton16.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton16.getX(); int y = jButton16.getY(); jButton16.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton16.getX(); int y = jButton16.getY(); jButton16.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton16.getX(); int y = jButton16.getY(); jButton16.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton16.getX(); int y = jButton16.getY(); jButton16.setLocation(x - 1, y - 1); } });
-        jButton17.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton17.getX(); int y = jButton17.getY(); jButton17.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton17.getX(); int y = jButton17.getY(); jButton17.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton17.getX(); int y = jButton17.getY(); jButton17.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton17.getX(); int y = jButton17.getY(); jButton17.setLocation(x - 1, y - 1); } });
-        jButton18.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton18.getX(); int y = jButton18.getY(); jButton18.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton18.getX(); int y = jButton18.getY(); jButton18.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton18.getX(); int y = jButton18.getY(); jButton18.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton18.getX(); int y = jButton18.getY(); jButton18.setLocation(x - 1, y - 1); } });
-        jButton19.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton19.getX(); int y = jButton19.getY(); jButton19.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton19.getX(); int y = jButton19.getY(); jButton19.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton19.getX(); int y = jButton19.getY(); jButton19.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton19.getX(); int y = jButton19.getY(); jButton19.setLocation(x - 1, y - 1); } });
-        jButton20.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButton20.getX(); int y = jButton20.getY(); jButton20.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButton20.getX(); int y = jButton20.getY(); jButton20.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButton20.getX(); int y = jButton20.getY(); jButton20.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButton20.getX(); int y = jButton20.getY(); jButton20.setLocation(x - 1, y - 1); } });
+        jButtonMainButton1.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton1.getX(); int y = jButtonMainButton1.getY(); jButtonMainButton1.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton1.getX(); int y = jButtonMainButton1.getY(); jButtonMainButton1.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton1.getX(); int y = jButtonMainButton1.getY(); jButtonMainButton1.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton1.getX(); int y = jButtonMainButton1.getY(); jButtonMainButton1.setLocation(x - 1, y - 1); } });
+        jButtonMainButton2.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton2.getX(); int y = jButtonMainButton2.getY(); jButtonMainButton2.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton2.getX(); int y = jButtonMainButton2.getY(); jButtonMainButton2.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton2.getX(); int y = jButtonMainButton2.getY(); jButtonMainButton2.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton2.getX(); int y = jButtonMainButton2.getY(); jButtonMainButton2.setLocation(x - 1, y - 1); } });
+        jButtonMainButton3.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton3.getX(); int y = jButtonMainButton3.getY(); jButtonMainButton3.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton3.getX(); int y = jButtonMainButton3.getY(); jButtonMainButton3.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton3.getX(); int y = jButtonMainButton3.getY(); jButtonMainButton3.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton3.getX(); int y = jButtonMainButton3.getY(); jButtonMainButton3.setLocation(x - 1, y - 1); } });
+        jButtonMainButton4.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton4.getX(); int y = jButtonMainButton4.getY(); jButtonMainButton4.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton4.getX(); int y = jButtonMainButton4.getY(); jButtonMainButton4.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton4.getX(); int y = jButtonMainButton4.getY(); jButtonMainButton4.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton4.getX(); int y = jButtonMainButton4.getY(); jButtonMainButton4.setLocation(x - 1, y - 1); } });
+        jButtonMainButton5.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton5.getX(); int y = jButtonMainButton5.getY(); jButtonMainButton5.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton5.getX(); int y = jButtonMainButton5.getY(); jButtonMainButton5.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton5.getX(); int y = jButtonMainButton5.getY(); jButtonMainButton5.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton5.getX(); int y = jButtonMainButton5.getY(); jButtonMainButton5.setLocation(x - 1, y - 1); } });
+        jButtonMainButton6.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton6.getX(); int y = jButtonMainButton6.getY(); jButtonMainButton6.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton6.getX(); int y = jButtonMainButton6.getY(); jButtonMainButton6.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton6.getX(); int y = jButtonMainButton6.getY(); jButtonMainButton6.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton6.getX(); int y = jButtonMainButton6.getY(); jButtonMainButton6.setLocation(x - 1, y - 1); } });
+        jButtonMainButton7.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton7.getX(); int y = jButtonMainButton7.getY(); jButtonMainButton7.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton7.getX(); int y = jButtonMainButton7.getY(); jButtonMainButton7.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton7.getX(); int y = jButtonMainButton7.getY(); jButtonMainButton7.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton7.getX(); int y = jButtonMainButton7.getY(); jButtonMainButton7.setLocation(x - 1, y - 1); } });
+        jButtonMainButton8.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton8.getX(); int y = jButtonMainButton8.getY(); jButtonMainButton8.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton8.getX(); int y = jButtonMainButton8.getY(); jButtonMainButton8.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton8.getX(); int y = jButtonMainButton8.getY(); jButtonMainButton8.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton8.getX(); int y = jButtonMainButton8.getY(); jButtonMainButton8.setLocation(x - 1, y - 1); } });
+        jButtonMainButton9.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton9.getX(); int y = jButtonMainButton9.getY(); jButtonMainButton9.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton9.getX(); int y = jButtonMainButton9.getY(); jButtonMainButton9.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton9.getX(); int y = jButtonMainButton9.getY(); jButtonMainButton9.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton9.getX(); int y = jButtonMainButton9.getY(); jButtonMainButton9.setLocation(x - 1, y - 1); } });
+        jButtonMainButton10.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton10.getX(); int y = jButtonMainButton10.getY(); jButtonMainButton10.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton10.getX(); int y = jButtonMainButton10.getY(); jButtonMainButton10.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton10.getX(); int y = jButtonMainButton10.getY(); jButtonMainButton10.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton10.getX(); int y = jButtonMainButton10.getY(); jButtonMainButton10.setLocation(x - 1, y - 1); } });
+        jButtonMainButton11.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton11.getX(); int y = jButtonMainButton11.getY(); jButtonMainButton11.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton11.getX(); int y = jButtonMainButton11.getY(); jButtonMainButton11.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton11.getX(); int y = jButtonMainButton11.getY(); jButtonMainButton11.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton11.getX(); int y = jButtonMainButton11.getY(); jButtonMainButton11.setLocation(x - 1, y - 1); } });
+        jButtonMainButton12.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton12.getX(); int y = jButtonMainButton12.getY(); jButtonMainButton12.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton12.getX(); int y = jButtonMainButton12.getY(); jButtonMainButton12.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton12.getX(); int y = jButtonMainButton12.getY(); jButtonMainButton12.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton12.getX(); int y = jButtonMainButton12.getY(); jButtonMainButton12.setLocation(x - 1, y - 1); } });
+        jButtonMainButton13.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton13.getX(); int y = jButtonMainButton13.getY(); jButtonMainButton13.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton13.getX(); int y = jButtonMainButton13.getY(); jButtonMainButton13.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton13.getX(); int y = jButtonMainButton13.getY(); jButtonMainButton13.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton13.getX(); int y = jButtonMainButton13.getY(); jButtonMainButton13.setLocation(x - 1, y - 1); } });
+        jButtonMainButton14.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton14.getX(); int y = jButtonMainButton14.getY(); jButtonMainButton14.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton14.getX(); int y = jButtonMainButton14.getY(); jButtonMainButton14.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton14.getX(); int y = jButtonMainButton14.getY(); jButtonMainButton14.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton14.getX(); int y = jButtonMainButton14.getY(); jButtonMainButton14.setLocation(x - 1, y - 1); } });
+        jButtonMainButton15.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton15.getX(); int y = jButtonMainButton15.getY(); jButtonMainButton15.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton15.getX(); int y = jButtonMainButton15.getY(); jButtonMainButton15.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton15.getX(); int y = jButtonMainButton15.getY(); jButtonMainButton15.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton15.getX(); int y = jButtonMainButton15.getY(); jButtonMainButton15.setLocation(x - 1, y - 1); } });
+        jButtonMainButton16.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton16.getX(); int y = jButtonMainButton16.getY(); jButtonMainButton16.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton16.getX(); int y = jButtonMainButton16.getY(); jButtonMainButton16.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton16.getX(); int y = jButtonMainButton16.getY(); jButtonMainButton16.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton16.getX(); int y = jButtonMainButton16.getY(); jButtonMainButton16.setLocation(x - 1, y - 1); } });
+        jButtonMainButton17.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton17.getX(); int y = jButtonMainButton17.getY(); jButtonMainButton17.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton17.getX(); int y = jButtonMainButton17.getY(); jButtonMainButton17.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton17.getX(); int y = jButtonMainButton17.getY(); jButtonMainButton17.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton17.getX(); int y = jButtonMainButton17.getY(); jButtonMainButton17.setLocation(x - 1, y - 1); } });
+        jButtonMainButton18.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton18.getX(); int y = jButtonMainButton18.getY(); jButtonMainButton18.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton18.getX(); int y = jButtonMainButton18.getY(); jButtonMainButton18.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton18.getX(); int y = jButtonMainButton18.getY(); jButtonMainButton18.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton18.getX(); int y = jButtonMainButton18.getY(); jButtonMainButton18.setLocation(x - 1, y - 1); } });
+        jButtonMainButton19.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton19.getX(); int y = jButtonMainButton19.getY(); jButtonMainButton19.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton19.getX(); int y = jButtonMainButton19.getY(); jButtonMainButton19.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton19.getX(); int y = jButtonMainButton19.getY(); jButtonMainButton19.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton19.getX(); int y = jButtonMainButton19.getY(); jButtonMainButton19.setLocation(x - 1, y - 1); } });
+        jButtonMainButton20.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton20.getX(); int y = jButtonMainButton20.getY(); jButtonMainButton20.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton20.getX(); int y = jButtonMainButton20.getY(); jButtonMainButton20.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton20.getX(); int y = jButtonMainButton20.getY(); jButtonMainButton20.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton20.getX(); int y = jButtonMainButton20.getY(); jButtonMainButton20.setLocation(x - 1, y - 1); } });
+        jButtonMainButton21.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton21.getX(); int y = jButtonMainButton21.getY(); jButtonMainButton21.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton21.getX(); int y = jButtonMainButton21.getY(); jButtonMainButton21.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton21.getX(); int y = jButtonMainButton21.getY(); jButtonMainButton21.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton21.getX(); int y = jButtonMainButton21.getY(); jButtonMainButton21.setLocation(x - 1, y - 1); } });
+        jButtonMainButton22.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton22.getX(); int y = jButtonMainButton22.getY(); jButtonMainButton22.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton22.getX(); int y = jButtonMainButton22.getY(); jButtonMainButton22.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton22.getX(); int y = jButtonMainButton22.getY(); jButtonMainButton22.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton22.getX(); int y = jButtonMainButton22.getY(); jButtonMainButton22.setLocation(x - 1, y - 1); } });
+        jButtonMainButton23.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton23.getX(); int y = jButtonMainButton23.getY(); jButtonMainButton23.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton23.getX(); int y = jButtonMainButton23.getY(); jButtonMainButton23.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton23.getX(); int y = jButtonMainButton23.getY(); jButtonMainButton23.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton23.getX(); int y = jButtonMainButton23.getY(); jButtonMainButton23.setLocation(x - 1, y - 1); } });
+        jButtonMainButton24.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton24.getX(); int y = jButtonMainButton24.getY(); jButtonMainButton24.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton24.getX(); int y = jButtonMainButton24.getY(); jButtonMainButton24.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton24.getX(); int y = jButtonMainButton24.getY(); jButtonMainButton24.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton24.getX(); int y = jButtonMainButton24.getY(); jButtonMainButton24.setLocation(x - 1, y - 1); } });
         
         //- Remove the button borders
         Border emptyBorder = BorderFactory.createEmptyBorder();
-        jButton1.setBorder(emptyBorder);
-        jButton2.setBorder(emptyBorder);
-        jButton3.setBorder(emptyBorder);
-        jButton4.setBorder(emptyBorder);
-        jButton5.setBorder(emptyBorder);
-        jButton6.setBorder(emptyBorder);
-        jButton7.setBorder(emptyBorder);
-        jButton8.setBorder(emptyBorder);
-        jButton9.setBorder(emptyBorder);
-        jButton10.setBorder(emptyBorder);
-        jButton11.setBorder(emptyBorder);
-        jButton12.setBorder(emptyBorder);
-        jButton13.setBorder(emptyBorder);
-        jButton14.setBorder(emptyBorder);
-        jButton15.setBorder(emptyBorder);
-        jButton16.setBorder(emptyBorder);
-        jButton17.setBorder(emptyBorder);
-        jButton18.setBorder(emptyBorder);
-        jButton19.setBorder(emptyBorder);
-        jButton20.setBorder(emptyBorder);
+        jButtonMainButton1.setBorder(emptyBorder);
+        jButtonMainButton2.setBorder(emptyBorder);
+        jButtonMainButton3.setBorder(emptyBorder);
+        jButtonMainButton4.setBorder(emptyBorder);
+        jButtonMainButton5.setBorder(emptyBorder);
+        jButtonMainButton6.setBorder(emptyBorder);
+        jButtonMainButton7.setBorder(emptyBorder);
+        jButtonMainButton8.setBorder(emptyBorder);
+        jButtonMainButton9.setBorder(emptyBorder);
+        jButtonMainButton10.setBorder(emptyBorder);
+        jButtonMainButton11.setBorder(emptyBorder);
+        jButtonMainButton12.setBorder(emptyBorder);
+        jButtonMainButton13.setBorder(emptyBorder);
+        jButtonMainButton14.setBorder(emptyBorder);
+        jButtonMainButton15.setBorder(emptyBorder);
+        jButtonMainButton16.setBorder(emptyBorder);
+        jButtonMainButton17.setBorder(emptyBorder);
+        jButtonMainButton18.setBorder(emptyBorder);
+        jButtonMainButton19.setBorder(emptyBorder);
+        jButtonMainButton20.setBorder(emptyBorder);
+        jButtonMainButton21.setBorder(emptyBorder);
+        jButtonMainButton22.setBorder(emptyBorder);
+        jButtonMainButton23.setBorder(emptyBorder);
+        jButtonMainButton24.setBorder(emptyBorder);
        
         //--- Create directories if not exist
         new File(strPathLoggingFolder).mkdirs();
@@ -777,26 +795,26 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxConsoleBaud = new javax.swing.JComboBox<>();
         jButtonConsole = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
+        jButtonMainButton1 = new javax.swing.JButton();
+        jButtonMainButton2 = new javax.swing.JButton();
+        jButtonMainButton3 = new javax.swing.JButton();
+        jButtonMainButton4 = new javax.swing.JButton();
+        jButtonMainButton8 = new javax.swing.JButton();
+        jButtonMainButton12 = new javax.swing.JButton();
+        jButtonMainButton7 = new javax.swing.JButton();
+        jButtonMainButton11 = new javax.swing.JButton();
+        jButtonMainButton6 = new javax.swing.JButton();
+        jButtonMainButton10 = new javax.swing.JButton();
+        jButtonMainButton5 = new javax.swing.JButton();
+        jButtonMainButton9 = new javax.swing.JButton();
+        jButtonMainButton13 = new javax.swing.JButton();
+        jButtonMainButton14 = new javax.swing.JButton();
+        jButtonMainButton15 = new javax.swing.JButton();
+        jButtonMainButton16 = new javax.swing.JButton();
+        jButtonMainButton20 = new javax.swing.JButton();
+        jButtonMainButton19 = new javax.swing.JButton();
+        jButtonMainButton18 = new javax.swing.JButton();
+        jButtonMainButton17 = new javax.swing.JButton();
         jCheckBoxAlternateLogin = new javax.swing.JCheckBox();
         jButtonExecuteFunctionRDP = new javax.swing.JButton();
         jTextFieldTCPTestPort = new javax.swing.JTextField();
@@ -807,6 +825,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         jButtonRefreshHostnameIPMAC = new javax.swing.JButton();
         jButtonExecuteFunctionPKI = new javax.swing.JButton();
+        jButtonMainButton24 = new javax.swing.JButton();
+        jButtonMainButton23 = new javax.swing.JButton();
+        jButtonMainButton22 = new javax.swing.JButton();
+        jButtonMainButton21 = new javax.swing.JButton();
         jTextFieldFilter = new javax.swing.JTextField();
         jCheckBoxFavorites = new javax.swing.JCheckBox();
         jButtonClearFilter = new javax.swing.JButton();
@@ -1188,6 +1210,30 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldButtonToolTip20 = new javax.swing.JTextField();
         jLabelButtonIcon20 = new javax.swing.JLabel();
         jButton40 = new javax.swing.JButton();
+        jLabelButtonExecute21 = new javax.swing.JLabel();
+        jComboBoxButtonIcon21 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute21 = new javax.swing.JTextField();
+        jLabelButtonToolTip21 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip21 = new javax.swing.JTextField();
+        jLabelButtonIcon21 = new javax.swing.JLabel();
+        jLabelButtonExecute22 = new javax.swing.JLabel();
+        jComboBoxButtonIcon22 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute22 = new javax.swing.JTextField();
+        jLabelButtonToolTip22 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip22 = new javax.swing.JTextField();
+        jLabelButtonIcon22 = new javax.swing.JLabel();
+        jLabelButtonExecute23 = new javax.swing.JLabel();
+        jComboBoxButtonIcon23 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute23 = new javax.swing.JTextField();
+        jLabelButtonToolTip23 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip23 = new javax.swing.JTextField();
+        jLabelButtonIcon23 = new javax.swing.JLabel();
+        jLabelButtonExecute24 = new javax.swing.JLabel();
+        jComboBoxButtonIcon24 = new javax.swing.JComboBox<>();
+        jTextFieldButtonExecute24 = new javax.swing.JTextField();
+        jLabelButtonToolTip24 = new javax.swing.JLabel();
+        jTextFieldButtonToolTip24 = new javax.swing.JTextField();
+        jLabelButtonIcon24 = new javax.swing.JLabel();
         jScrollPaneSettingsLinks = new javax.swing.JScrollPane();
         jPanelSettingsLinks = new javax.swing.JPanel();
         jLabelLinkText1 = new javax.swing.JLabel();
@@ -1336,158 +1382,12 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLinkText36 = new javax.swing.JLabel();
         jTextFieldLinkText36 = new javax.swing.JTextField();
         jScrollPaneSettingsScripts = new javax.swing.JScrollPane();
-        jPanelSettingsScripts = new javax.swing.JPanel();
-        jLabelScriptText1 = new javax.swing.JLabel();
-        jTextFieldScriptText1 = new javax.swing.JTextField();
-        jLabelScriptExecute1 = new javax.swing.JLabel();
-        jTextFieldScriptExecute1 = new javax.swing.JTextField();
-        jButton45 = new javax.swing.JButton();
-        jLabelScriptText2 = new javax.swing.JLabel();
-        jTextFieldScriptText2 = new javax.swing.JTextField();
-        jLabelScriptExecute2 = new javax.swing.JLabel();
-        jTextFieldScriptExecute2 = new javax.swing.JTextField();
-        jLabelScriptText3 = new javax.swing.JLabel();
-        jTextFieldScriptText3 = new javax.swing.JTextField();
-        jLabelScriptExecute3 = new javax.swing.JLabel();
-        jTextFieldScriptExecute3 = new javax.swing.JTextField();
-        jLabelScriptText4 = new javax.swing.JLabel();
-        jTextFieldScriptText4 = new javax.swing.JTextField();
-        jLabelScriptExecute4 = new javax.swing.JLabel();
-        jTextFieldScriptExecute4 = new javax.swing.JTextField();
-        jLabelScriptText5 = new javax.swing.JLabel();
-        jTextFieldScriptText5 = new javax.swing.JTextField();
-        jLabelScriptExecute5 = new javax.swing.JLabel();
-        jTextFieldScriptExecute5 = new javax.swing.JTextField();
-        jLabelScriptText6 = new javax.swing.JLabel();
-        jTextFieldScriptText6 = new javax.swing.JTextField();
-        jLabelScriptExecute6 = new javax.swing.JLabel();
-        jTextFieldScriptExecute6 = new javax.swing.JTextField();
-        jLabelScriptText7 = new javax.swing.JLabel();
-        jTextFieldScriptText7 = new javax.swing.JTextField();
-        jLabelScriptExecute7 = new javax.swing.JLabel();
-        jTextFieldScriptExecute7 = new javax.swing.JTextField();
-        jLabelScriptText8 = new javax.swing.JLabel();
-        jTextFieldScriptText8 = new javax.swing.JTextField();
-        jLabelScriptExecute8 = new javax.swing.JLabel();
-        jTextFieldScriptExecute8 = new javax.swing.JTextField();
-        jLabelScriptText9 = new javax.swing.JLabel();
-        jTextFieldScriptText9 = new javax.swing.JTextField();
-        jLabelScriptExecute9 = new javax.swing.JLabel();
-        jTextFieldScriptExecute9 = new javax.swing.JTextField();
-        jLabelScriptText10 = new javax.swing.JLabel();
-        jTextFieldScriptText10 = new javax.swing.JTextField();
-        jLabelScriptExecute10 = new javax.swing.JLabel();
-        jTextFieldScriptExecute10 = new javax.swing.JTextField();
-        jLabelScriptText11 = new javax.swing.JLabel();
-        jTextFieldScriptText11 = new javax.swing.JTextField();
-        jLabelScriptExecute11 = new javax.swing.JLabel();
-        jTextFieldScriptExecute11 = new javax.swing.JTextField();
-        jLabelScriptText12 = new javax.swing.JLabel();
-        jTextFieldScriptText12 = new javax.swing.JTextField();
-        jLabelScriptExecute12 = new javax.swing.JLabel();
-        jTextFieldScriptExecute12 = new javax.swing.JTextField();
-        jLabelScriptText13 = new javax.swing.JLabel();
-        jTextFieldScriptText13 = new javax.swing.JTextField();
-        jLabelScriptExecute13 = new javax.swing.JLabel();
-        jTextFieldScriptExecute13 = new javax.swing.JTextField();
-        jLabelScriptText14 = new javax.swing.JLabel();
-        jTextFieldScriptText14 = new javax.swing.JTextField();
-        jLabelScriptExecute14 = new javax.swing.JLabel();
-        jTextFieldScriptExecute14 = new javax.swing.JTextField();
-        jLabelScriptText15 = new javax.swing.JLabel();
-        jTextFieldScriptText15 = new javax.swing.JTextField();
-        jLabelScriptExecute15 = new javax.swing.JLabel();
-        jTextFieldScriptExecute15 = new javax.swing.JTextField();
-        jLabelScriptText16 = new javax.swing.JLabel();
-        jTextFieldScriptText16 = new javax.swing.JTextField();
-        jLabelScriptExecute16 = new javax.swing.JLabel();
-        jTextFieldScriptExecute16 = new javax.swing.JTextField();
-        jLabelScriptText17 = new javax.swing.JLabel();
-        jTextFieldScriptText17 = new javax.swing.JTextField();
-        jLabelScriptExecute17 = new javax.swing.JLabel();
-        jTextFieldScriptExecute17 = new javax.swing.JTextField();
-        jLabelScriptText18 = new javax.swing.JLabel();
-        jTextFieldScriptText18 = new javax.swing.JTextField();
-        jLabelScriptExecute18 = new javax.swing.JLabel();
-        jTextFieldScriptExecute18 = new javax.swing.JTextField();
-        jLabelScriptText19 = new javax.swing.JLabel();
-        jTextFieldScriptText19 = new javax.swing.JTextField();
-        jLabelScriptExecute19 = new javax.swing.JLabel();
-        jTextFieldScriptExecute19 = new javax.swing.JTextField();
-        jLabelScriptText20 = new javax.swing.JLabel();
-        jTextFieldScriptText20 = new javax.swing.JTextField();
-        jLabelScriptExecute20 = new javax.swing.JLabel();
-        jTextFieldScriptExecute20 = new javax.swing.JTextField();
-        jLabelScriptText21 = new javax.swing.JLabel();
-        jTextFieldScriptText21 = new javax.swing.JTextField();
-        jLabelScriptExecute21 = new javax.swing.JLabel();
-        jTextFieldScriptExecute21 = new javax.swing.JTextField();
-        jLabelScriptText22 = new javax.swing.JLabel();
-        jTextFieldScriptText22 = new javax.swing.JTextField();
-        jLabelScriptExecute22 = new javax.swing.JLabel();
-        jTextFieldScriptExecute22 = new javax.swing.JTextField();
-        jLabelScriptText23 = new javax.swing.JLabel();
-        jTextFieldScriptText23 = new javax.swing.JTextField();
-        jLabelScriptExecute23 = new javax.swing.JLabel();
-        jTextFieldScriptExecute23 = new javax.swing.JTextField();
-        jLabelScriptText24 = new javax.swing.JLabel();
-        jTextFieldScriptText24 = new javax.swing.JTextField();
-        jLabelScriptExecute24 = new javax.swing.JLabel();
-        jTextFieldScriptExecute24 = new javax.swing.JTextField();
-        jLabelScriptText25 = new javax.swing.JLabel();
-        jTextFieldScriptText25 = new javax.swing.JTextField();
-        jLabelScriptExecute25 = new javax.swing.JLabel();
-        jTextFieldScriptExecute25 = new javax.swing.JTextField();
-        jLabelScriptText26 = new javax.swing.JLabel();
-        jTextFieldScriptText26 = new javax.swing.JTextField();
-        jLabelScriptExecute26 = new javax.swing.JLabel();
-        jTextFieldScriptExecute26 = new javax.swing.JTextField();
-        jLabelScriptText27 = new javax.swing.JLabel();
-        jTextFieldScriptText27 = new javax.swing.JTextField();
-        jLabelScriptExecute27 = new javax.swing.JLabel();
-        jTextFieldScriptExecute27 = new javax.swing.JTextField();
-        jLabelScriptText28 = new javax.swing.JLabel();
-        jTextFieldScriptText28 = new javax.swing.JTextField();
-        jLabelScriptExecute28 = new javax.swing.JLabel();
-        jTextFieldScriptExecute28 = new javax.swing.JTextField();
-        jLabelScriptText29 = new javax.swing.JLabel();
-        jTextFieldScriptText29 = new javax.swing.JTextField();
-        jLabelScriptExecute29 = new javax.swing.JLabel();
-        jTextFieldScriptExecute29 = new javax.swing.JTextField();
-        jLabelScriptText30 = new javax.swing.JLabel();
-        jTextFieldScriptText30 = new javax.swing.JTextField();
-        jLabelScriptExecute30 = new javax.swing.JLabel();
-        jTextFieldScriptExecute30 = new javax.swing.JTextField();
-        jLabelScriptText31 = new javax.swing.JLabel();
-        jTextFieldScriptText31 = new javax.swing.JTextField();
-        jLabelScriptExecute31 = new javax.swing.JLabel();
-        jTextFieldScriptExecute31 = new javax.swing.JTextField();
-        jLabelScriptText32 = new javax.swing.JLabel();
-        jTextFieldScriptText32 = new javax.swing.JTextField();
-        jLabelScriptExecute32 = new javax.swing.JLabel();
-        jTextFieldScriptExecute32 = new javax.swing.JTextField();
-        jLabelScriptText33 = new javax.swing.JLabel();
-        jTextFieldScriptText33 = new javax.swing.JTextField();
-        jLabelScriptExecute33 = new javax.swing.JLabel();
-        jTextFieldScriptExecute33 = new javax.swing.JTextField();
-        jLabelScriptText34 = new javax.swing.JLabel();
-        jTextFieldScriptText34 = new javax.swing.JTextField();
-        jLabelScriptExecute34 = new javax.swing.JLabel();
-        jTextFieldScriptExecute34 = new javax.swing.JTextField();
-        jLabelScriptText35 = new javax.swing.JLabel();
-        jTextFieldScriptText35 = new javax.swing.JTextField();
-        jLabelScriptExecute35 = new javax.swing.JLabel();
-        jTextFieldScriptExecute35 = new javax.swing.JTextField();
-        jLabelScriptText36 = new javax.swing.JLabel();
-        jTextFieldScriptText36 = new javax.swing.JTextField();
-        jLabelScriptExecute36 = new javax.swing.JLabel();
-        jTextFieldScriptExecute36 = new javax.swing.JTextField();
         jScrollPaneSettingsReferences = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LaunchPad");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setSize(new java.awt.Dimension(550, 600));
+        setSize(new java.awt.Dimension(550, 630));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -1495,7 +1395,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         });
 
         jTabbedMain.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
-        jTabbedMain.setPreferredSize(new java.awt.Dimension(577, 580));
+        jTabbedMain.setPreferredSize(new java.awt.Dimension(586, 630));
 
         jPanelMain.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanelMain.setPreferredSize(new java.awt.Dimension(500, 503));
@@ -1676,226 +1576,226 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelMainRightSide.add(jSeparator4);
         jSeparator4.setBounds(10, 290, 190, 10);
 
-        jButton1.setContentAreaFilled(false);
-        jButton1.setFocusPainted(false);
-        jButton1.setFocusable(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton1.setContentAreaFilled(false);
+        jButtonMainButton1.setFocusPainted(false);
+        jButtonMainButton1.setFocusable(false);
+        jButtonMainButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonMainButton1ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton1);
-        jButton1.setBounds(10, 300, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton1);
+        jButtonMainButton1.setBounds(10, 300, 40, 40);
 
-        jButton2.setContentAreaFilled(false);
-        jButton2.setFocusPainted(false);
-        jButton2.setFocusable(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton2.setContentAreaFilled(false);
+        jButtonMainButton2.setFocusPainted(false);
+        jButtonMainButton2.setFocusable(false);
+        jButtonMainButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonMainButton2ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton2);
-        jButton2.setBounds(60, 300, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton2);
+        jButtonMainButton2.setBounds(60, 300, 40, 40);
 
-        jButton3.setContentAreaFilled(false);
-        jButton3.setFocusPainted(false);
-        jButton3.setFocusable(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton3.setContentAreaFilled(false);
+        jButtonMainButton3.setFocusPainted(false);
+        jButtonMainButton3.setFocusable(false);
+        jButtonMainButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonMainButton3ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton3);
-        jButton3.setBounds(110, 300, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton3);
+        jButtonMainButton3.setBounds(110, 300, 40, 40);
 
-        jButton4.setContentAreaFilled(false);
-        jButton4.setFocusPainted(false);
-        jButton4.setFocusable(false);
-        jButton4.setPreferredSize(new java.awt.Dimension(45, 45));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton4.setContentAreaFilled(false);
+        jButtonMainButton4.setFocusPainted(false);
+        jButtonMainButton4.setFocusable(false);
+        jButtonMainButton4.setPreferredSize(new java.awt.Dimension(45, 45));
+        jButtonMainButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonMainButton4ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton4);
-        jButton4.setBounds(160, 300, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton4);
+        jButtonMainButton4.setBounds(160, 300, 40, 40);
 
-        jButton8.setContentAreaFilled(false);
-        jButton8.setFocusPainted(false);
-        jButton8.setFocusable(false);
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton8.setContentAreaFilled(false);
+        jButtonMainButton8.setFocusPainted(false);
+        jButtonMainButton8.setFocusable(false);
+        jButtonMainButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                jButtonMainButton8ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton8);
-        jButton8.setBounds(160, 350, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton8);
+        jButtonMainButton8.setBounds(160, 350, 40, 40);
 
-        jButton12.setContentAreaFilled(false);
-        jButton12.setFocusPainted(false);
-        jButton12.setFocusable(false);
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton12.setContentAreaFilled(false);
+        jButtonMainButton12.setFocusPainted(false);
+        jButtonMainButton12.setFocusable(false);
+        jButtonMainButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                jButtonMainButton12ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton12);
-        jButton12.setBounds(160, 400, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton12);
+        jButtonMainButton12.setBounds(160, 400, 40, 40);
 
-        jButton7.setContentAreaFilled(false);
-        jButton7.setFocusPainted(false);
-        jButton7.setFocusable(false);
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton7.setContentAreaFilled(false);
+        jButtonMainButton7.setFocusPainted(false);
+        jButtonMainButton7.setFocusable(false);
+        jButtonMainButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                jButtonMainButton7ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton7);
-        jButton7.setBounds(110, 350, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton7);
+        jButtonMainButton7.setBounds(110, 350, 40, 40);
 
-        jButton11.setContentAreaFilled(false);
-        jButton11.setFocusPainted(false);
-        jButton11.setFocusable(false);
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton11.setContentAreaFilled(false);
+        jButtonMainButton11.setFocusPainted(false);
+        jButtonMainButton11.setFocusable(false);
+        jButtonMainButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                jButtonMainButton11ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton11);
-        jButton11.setBounds(110, 400, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton11);
+        jButtonMainButton11.setBounds(110, 400, 40, 40);
 
-        jButton6.setContentAreaFilled(false);
-        jButton6.setFocusPainted(false);
-        jButton6.setFocusable(false);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton6.setContentAreaFilled(false);
+        jButtonMainButton6.setFocusPainted(false);
+        jButtonMainButton6.setFocusable(false);
+        jButtonMainButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jButtonMainButton6ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton6);
-        jButton6.setBounds(60, 350, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton6);
+        jButtonMainButton6.setBounds(60, 350, 40, 40);
 
-        jButton10.setContentAreaFilled(false);
-        jButton10.setFocusPainted(false);
-        jButton10.setFocusable(false);
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton10.setContentAreaFilled(false);
+        jButtonMainButton10.setFocusPainted(false);
+        jButtonMainButton10.setFocusable(false);
+        jButtonMainButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                jButtonMainButton10ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton10);
-        jButton10.setBounds(60, 400, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton10);
+        jButtonMainButton10.setBounds(60, 400, 40, 40);
 
-        jButton5.setContentAreaFilled(false);
-        jButton5.setFocusPainted(false);
-        jButton5.setFocusable(false);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton5.setContentAreaFilled(false);
+        jButtonMainButton5.setFocusPainted(false);
+        jButtonMainButton5.setFocusable(false);
+        jButtonMainButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jButtonMainButton5ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton5);
-        jButton5.setBounds(10, 350, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton5);
+        jButtonMainButton5.setBounds(10, 350, 40, 40);
 
-        jButton9.setContentAreaFilled(false);
-        jButton9.setFocusPainted(false);
-        jButton9.setFocusable(false);
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton9.setContentAreaFilled(false);
+        jButtonMainButton9.setFocusPainted(false);
+        jButtonMainButton9.setFocusable(false);
+        jButtonMainButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                jButtonMainButton9ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton9);
-        jButton9.setBounds(10, 400, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton9);
+        jButtonMainButton9.setBounds(10, 400, 40, 40);
 
-        jButton13.setContentAreaFilled(false);
-        jButton13.setFocusPainted(false);
-        jButton13.setFocusable(false);
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton13.setContentAreaFilled(false);
+        jButtonMainButton13.setFocusPainted(false);
+        jButtonMainButton13.setFocusable(false);
+        jButtonMainButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+                jButtonMainButton13ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton13);
-        jButton13.setBounds(10, 450, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton13);
+        jButtonMainButton13.setBounds(10, 450, 40, 40);
 
-        jButton14.setContentAreaFilled(false);
-        jButton14.setFocusPainted(false);
-        jButton14.setFocusable(false);
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton14.setContentAreaFilled(false);
+        jButtonMainButton14.setFocusPainted(false);
+        jButtonMainButton14.setFocusable(false);
+        jButtonMainButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                jButtonMainButton14ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton14);
-        jButton14.setBounds(60, 450, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton14);
+        jButtonMainButton14.setBounds(60, 450, 40, 40);
 
-        jButton15.setContentAreaFilled(false);
-        jButton15.setFocusPainted(false);
-        jButton15.setFocusable(false);
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton15.setContentAreaFilled(false);
+        jButtonMainButton15.setFocusPainted(false);
+        jButtonMainButton15.setFocusable(false);
+        jButtonMainButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
+                jButtonMainButton15ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton15);
-        jButton15.setBounds(110, 450, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton15);
+        jButtonMainButton15.setBounds(110, 450, 40, 40);
 
-        jButton16.setContentAreaFilled(false);
-        jButton16.setFocusPainted(false);
-        jButton16.setFocusable(false);
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton16.setContentAreaFilled(false);
+        jButtonMainButton16.setFocusPainted(false);
+        jButtonMainButton16.setFocusable(false);
+        jButtonMainButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
+                jButtonMainButton16ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton16);
-        jButton16.setBounds(160, 450, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton16);
+        jButtonMainButton16.setBounds(160, 450, 40, 40);
 
-        jButton20.setContentAreaFilled(false);
-        jButton20.setFocusPainted(false);
-        jButton20.setFocusable(false);
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton20.setContentAreaFilled(false);
+        jButtonMainButton20.setFocusPainted(false);
+        jButtonMainButton20.setFocusable(false);
+        jButtonMainButton20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton20ActionPerformed(evt);
+                jButtonMainButton20ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton20);
-        jButton20.setBounds(160, 500, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton20);
+        jButtonMainButton20.setBounds(160, 500, 40, 40);
 
-        jButton19.setContentAreaFilled(false);
-        jButton19.setFocusPainted(false);
-        jButton19.setFocusable(false);
-        jButton19.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton19.setContentAreaFilled(false);
+        jButtonMainButton19.setFocusPainted(false);
+        jButtonMainButton19.setFocusable(false);
+        jButtonMainButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton19ActionPerformed(evt);
+                jButtonMainButton19ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton19);
-        jButton19.setBounds(110, 500, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton19);
+        jButtonMainButton19.setBounds(110, 500, 40, 40);
 
-        jButton18.setContentAreaFilled(false);
-        jButton18.setFocusPainted(false);
-        jButton18.setFocusable(false);
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton18.setContentAreaFilled(false);
+        jButtonMainButton18.setFocusPainted(false);
+        jButtonMainButton18.setFocusable(false);
+        jButtonMainButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
+                jButtonMainButton18ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton18);
-        jButton18.setBounds(60, 500, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton18);
+        jButtonMainButton18.setBounds(60, 500, 40, 40);
 
-        jButton17.setContentAreaFilled(false);
-        jButton17.setFocusPainted(false);
-        jButton17.setFocusable(false);
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMainButton17.setContentAreaFilled(false);
+        jButtonMainButton17.setFocusPainted(false);
+        jButtonMainButton17.setFocusable(false);
+        jButtonMainButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
+                jButtonMainButton17ActionPerformed(evt);
             }
         });
-        jPanelMainRightSide.add(jButton17);
-        jButton17.setBounds(10, 500, 40, 40);
+        jPanelMainRightSide.add(jButtonMainButton17);
+        jButtonMainButton17.setBounds(10, 500, 40, 40);
 
         jCheckBoxAlternateLogin.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jCheckBoxAlternateLogin.setText("Alternate Credentials");
@@ -1991,6 +1891,50 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelMainRightSide.add(jButtonExecuteFunctionPKI);
         jButtonExecuteFunctionPKI.setBounds(140, 80, 60, 20);
 
+        jButtonMainButton24.setContentAreaFilled(false);
+        jButtonMainButton24.setFocusPainted(false);
+        jButtonMainButton24.setFocusable(false);
+        jButtonMainButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMainButton24ActionPerformed(evt);
+            }
+        });
+        jPanelMainRightSide.add(jButtonMainButton24);
+        jButtonMainButton24.setBounds(160, 550, 40, 40);
+
+        jButtonMainButton23.setContentAreaFilled(false);
+        jButtonMainButton23.setFocusPainted(false);
+        jButtonMainButton23.setFocusable(false);
+        jButtonMainButton23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMainButton23ActionPerformed(evt);
+            }
+        });
+        jPanelMainRightSide.add(jButtonMainButton23);
+        jButtonMainButton23.setBounds(110, 550, 40, 40);
+
+        jButtonMainButton22.setContentAreaFilled(false);
+        jButtonMainButton22.setFocusPainted(false);
+        jButtonMainButton22.setFocusable(false);
+        jButtonMainButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMainButton22ActionPerformed(evt);
+            }
+        });
+        jPanelMainRightSide.add(jButtonMainButton22);
+        jButtonMainButton22.setBounds(60, 550, 40, 40);
+
+        jButtonMainButton21.setContentAreaFilled(false);
+        jButtonMainButton21.setFocusPainted(false);
+        jButtonMainButton21.setFocusable(false);
+        jButtonMainButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMainButton21ActionPerformed(evt);
+            }
+        });
+        jPanelMainRightSide.add(jButtonMainButton21);
+        jButtonMainButton21.setBounds(10, 550, 40, 40);
+
         jTextFieldFilter.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jTextFieldFilter.setToolTipText("Type to filter the list. ");
         jTextFieldFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -2055,7 +1999,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                             .addComponent(jCheckBoxFavorites, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonClearFilter))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPaneSessionList, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE))
+                        .addComponent(jScrollPaneSessionList, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE))
                     .addComponent(jPanelMainRightSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
@@ -3984,7 +3928,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettingsMain.add(jButtonReportIssue);
-        jButtonReportIssue.setBounds(10, 490, 170, 20);
+        jButtonReportIssue.setBounds(10, 540, 170, 20);
 
         jTextField2.setBackground(new java.awt.Color(51, 51, 51));
         jTextField2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -4000,7 +3944,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettingsMain.add(jTextField2);
-        jTextField2.setBounds(370, 490, 190, 20);
+        jTextField2.setBounds(370, 540, 190, 20);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Personal Items (Never overwritten)"));
         jPanel3.setLayout(null);
@@ -4266,11 +4210,11 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelSettingsMain.add(jButtonScriptUpdateLaunchPad);
-        jButtonScriptUpdateLaunchPad.setBounds(220, 490, 120, 20);
+        jButtonScriptUpdateLaunchPad.setBounds(220, 540, 120, 20);
 
         jTabbedPaneSettings.addTab("Main", jPanelSettingsMain);
 
-        jPanelSettingsButtons.setPreferredSize(new java.awt.Dimension(555, 1916));
+        jPanelSettingsButtons.setPreferredSize(new java.awt.Dimension(555, 2300));
 
         jButton33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton33.setText("View All Available Icons");
@@ -5027,6 +4971,154 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jLabelButtonExecute21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute21.setText("Execute:");
+
+        jComboBoxButtonIcon21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon21.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon21.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon21.setSelectedItem(PropertyHandler.getInstance().getValue("Button21Icon"));    
+        jComboBoxButtonIcon21.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon21ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute21.setBackground(new java.awt.Color(219, 219, 255));
+        jTextFieldButtonExecute21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute21.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute21KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip21.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelButtonToolTip21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip21.setText("Button 21:");
+
+        jTextFieldButtonToolTip21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip21.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip21KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon21.setText("Icon:");
+
+        jLabelButtonExecute22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute22.setText("Execute:");
+
+        jComboBoxButtonIcon22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon22.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon22.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon22.setSelectedItem(PropertyHandler.getInstance().getValue("Button22Icon"));    
+        jComboBoxButtonIcon22.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon22ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute22.setBackground(new java.awt.Color(219, 219, 255));
+        jTextFieldButtonExecute22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute22.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute22KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip22.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelButtonToolTip22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip22.setText("Button 22:");
+
+        jTextFieldButtonToolTip22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip22.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip22KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon22.setText("Icon:");
+
+        jLabelButtonExecute23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute23.setText("Execute:");
+
+        jComboBoxButtonIcon23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon23.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon23.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon23.setSelectedItem(PropertyHandler.getInstance().getValue("Button23Icon"));    
+        jComboBoxButtonIcon23.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon23ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute23.setBackground(new java.awt.Color(219, 219, 255));
+        jTextFieldButtonExecute23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute23.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute23KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip23.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelButtonToolTip23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip23.setText("Button 23:");
+
+        jTextFieldButtonToolTip23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip23.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip23KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon23.setText("Icon:");
+
+        jLabelButtonExecute24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonExecute24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonExecute24.setText("Execute:");
+
+        jComboBoxButtonIcon24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jComboBoxButtonIcon24.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxButtonIcon24.setModel(new DefaultComboBoxModel(arrIconList));
+        jComboBoxButtonIcon24.setSelectedItem(PropertyHandler.getInstance().getValue("Button24Icon"));    
+        jComboBoxButtonIcon24.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxButtonIcon24ItemStateChanged(evt);
+            }
+        });
+
+        jTextFieldButtonExecute24.setBackground(new java.awt.Color(219, 219, 255));
+        jTextFieldButtonExecute24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonExecute24.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonExecute24KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonToolTip24.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
+        jLabelButtonToolTip24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonToolTip24.setText("Button 24:");
+
+        jTextFieldButtonToolTip24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jTextFieldButtonToolTip24.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldButtonToolTip24KeyReleased(evt);
+            }
+        });
+
+        jLabelButtonIcon24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelButtonIcon24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelButtonIcon24.setText("Icon:");
+
         javax.swing.GroupLayout jPanelSettingsButtonsLayout = new javax.swing.GroupLayout(jPanelSettingsButtons);
         jPanelSettingsButtons.setLayout(jPanelSettingsButtonsLayout);
         jPanelSettingsButtonsLayout.setHorizontalGroup(
@@ -5275,7 +5367,55 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                         .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jComboBoxButtonIcon1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldButtonExecute1)
-                            .addComponent(jTextFieldButtonToolTip1))))
+                            .addComponent(jTextFieldButtonToolTip1)))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip21, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip21))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute21, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon21, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon21, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute21)))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip22, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip22))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute22, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon22, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon22, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute22)))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip23, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip23))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute23, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon23, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon23, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute23)))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addComponent(jLabelButtonToolTip24, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldButtonToolTip24))
+                    .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelButtonExecute24, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelButtonIcon24, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxButtonIcon24, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldButtonExecute24))))
                 .addContainerGap())
         );
         jPanelSettingsButtonsLayout.setVerticalGroup(
@@ -5525,7 +5665,55 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelButtonExecute20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextFieldButtonExecute20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip21)
+                    .addComponent(jLabelButtonToolTip21, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon21)
+                    .addComponent(jLabelButtonIcon21, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip22)
+                    .addComponent(jLabelButtonToolTip22, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon22)
+                    .addComponent(jLabelButtonIcon22, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip23)
+                    .addComponent(jLabelButtonToolTip23, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon23)
+                    .addComponent(jLabelButtonIcon23, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldButtonToolTip24)
+                    .addComponent(jLabelButtonToolTip24, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBoxButtonIcon24)
+                    .addComponent(jLabelButtonIcon24, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelButtonExecute24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldButtonExecute24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         jScrollPaneSettingsButtons.setViewportView(jPanelSettingsButtons);
@@ -6941,1409 +7129,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jScrollPaneSettingsLinks.setViewportView(jPanelSettingsLinks);
 
         jTabbedPaneSettings.addTab("Links", jScrollPaneSettingsLinks);
-
-        jScrollPaneSettingsScripts.setPreferredSize(new java.awt.Dimension(557, 2000));
-
-        jPanelSettingsScripts.setPreferredSize(new java.awt.Dimension(550, 2430));
-
-        jLabelScriptText1.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText1.setText("Script 1:");
-
-        jTextFieldScriptText1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText1KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute1.setText("Execute:");
-
-        jTextFieldScriptExecute1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute1KeyReleased(evt);
-            }
-        });
-
-        jButton45.setText("Restart");
-        jButton45.setMargin(null);
-        jButton45.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton45ActionPerformed(evt);
-            }
-        });
-
-        jLabelScriptText2.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText2.setText("Script 2:");
-
-        jTextFieldScriptText2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText2KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute2.setText("Execute:");
-
-        jTextFieldScriptExecute2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute2KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText3.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText3.setText("Script 3:");
-
-        jTextFieldScriptText3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText3KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute3.setText("Execute:");
-
-        jTextFieldScriptExecute3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute3KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText4.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText4.setText("Script 4:");
-
-        jTextFieldScriptText4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText4KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute4.setText("Execute:");
-
-        jTextFieldScriptExecute4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute4KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText5.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText5.setText("Script 5:");
-
-        jTextFieldScriptText5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText5.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText5KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute5.setText("Execute:");
-
-        jTextFieldScriptExecute5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute5.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute5KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText6.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText6.setText("Script 6:");
-
-        jTextFieldScriptText6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText6.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText6KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute6.setText("Execute:");
-
-        jTextFieldScriptExecute6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute6.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute6KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText7.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText7.setText("Script 7:");
-
-        jTextFieldScriptText7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText7.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText7KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute7.setText("Execute:");
-
-        jTextFieldScriptExecute7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute7.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute7KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText8.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText8.setText("Script 8:");
-
-        jTextFieldScriptText8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText8.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText8KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute8.setText("Execute:");
-
-        jTextFieldScriptExecute8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute8.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute8KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText9.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText9.setText("Script 9:");
-
-        jTextFieldScriptText9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText9.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText9KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute9.setText("Execute:");
-
-        jTextFieldScriptExecute9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute9.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute9KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText10.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText10.setText("Script 10:");
-
-        jTextFieldScriptText10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText10.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText10KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute10.setText("Execute:");
-
-        jTextFieldScriptExecute10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute10.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute10KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText11.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText11.setText("Script 11:");
-
-        jTextFieldScriptText11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText11.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText11KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute11.setText("Execute:");
-
-        jTextFieldScriptExecute11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute11.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute11KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText12.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText12.setText("Script 12:");
-
-        jTextFieldScriptText12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText12.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText12KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute12.setText("Execute:");
-
-        jTextFieldScriptExecute12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute12.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute12KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText13.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText13.setText("Script 13:");
-
-        jTextFieldScriptText13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText13.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText13KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute13.setText("Execute:");
-
-        jTextFieldScriptExecute13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute13.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute13KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText14.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText14.setText("Script 14:");
-
-        jTextFieldScriptText14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText14.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText14KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute14.setText("Execute:");
-
-        jTextFieldScriptExecute14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute14.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute14KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText15.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText15.setText("Script 15:");
-
-        jTextFieldScriptText15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText15.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText15KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute15.setText("Execute:");
-
-        jTextFieldScriptExecute15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute15.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute15KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText16.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText16.setText("Script 16:");
-
-        jTextFieldScriptText16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText16.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText16KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute16.setText("Execute:");
-
-        jTextFieldScriptExecute16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute16.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute16KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText17.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText17.setText("Script 17:");
-
-        jTextFieldScriptText17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText17.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText17KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute17.setText("Execute:");
-
-        jTextFieldScriptExecute17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute17.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute17KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText18.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText18.setText("Script 18:");
-
-        jTextFieldScriptText18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText18.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText18KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute18.setText("Execute:");
-
-        jTextFieldScriptExecute18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute18.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute18KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText19.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText19.setText("Script 19:");
-
-        jTextFieldScriptText19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText19.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText19KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute19.setText("Execute:");
-
-        jTextFieldScriptExecute19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute19.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute19KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText20.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText20.setText("Script 20:");
-
-        jTextFieldScriptText20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText20.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText20KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute20.setText("Execute:");
-
-        jTextFieldScriptExecute20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute20.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute20KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText21.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText21.setText("Script 21:");
-
-        jTextFieldScriptText21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText21.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText21KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute21.setText("Execute:");
-
-        jTextFieldScriptExecute21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute21.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute21KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText22.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText22.setText("Script 22:");
-
-        jTextFieldScriptText22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText22.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText22KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute22.setText("Execute:");
-
-        jTextFieldScriptExecute22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute22.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute22KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText23.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText23.setText("Script 23:");
-
-        jTextFieldScriptText23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText23.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText23KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute23.setText("Execute:");
-
-        jTextFieldScriptExecute23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute23.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute23KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText24.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText24.setText("Script 24:");
-
-        jTextFieldScriptText24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText24.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText24KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute24.setText("Execute:");
-
-        jTextFieldScriptExecute24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute24.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute24KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText25.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText25.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText25.setText("Script 25:");
-
-        jTextFieldScriptText25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText25.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText25KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute25.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute25.setText("Execute:");
-
-        jTextFieldScriptExecute25.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute25.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute25KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText26.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText26.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText26.setText("Script 26:");
-
-        jTextFieldScriptText26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText26.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText26KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute26.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute26.setText("Execute:");
-
-        jTextFieldScriptExecute26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute26.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute26KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText27.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText27.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText27.setText("Script 27:");
-
-        jTextFieldScriptText27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText27.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText27KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute27.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute27.setText("Execute:");
-
-        jTextFieldScriptExecute27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute27.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute27KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText28.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText28.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText28.setText("Script 28:");
-
-        jTextFieldScriptText28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText28.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText28KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute28.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute28.setText("Execute:");
-
-        jTextFieldScriptExecute28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute28.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute28KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText29.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText29.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText29.setText("Script 29:");
-
-        jTextFieldScriptText29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText29.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText29KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute29.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute29.setText("Execute:");
-
-        jTextFieldScriptExecute29.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute29.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute29KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText30.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText30.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText30.setText("Script 30:");
-
-        jTextFieldScriptText30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText30.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText30KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute30.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute30.setText("Execute:");
-
-        jTextFieldScriptExecute30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute30.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute30KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText31.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText31.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText31.setText("Script 31:");
-
-        jTextFieldScriptText31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText31.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText31KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute31.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute31.setText("Execute:");
-
-        jTextFieldScriptExecute31.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute31.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute31KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText32.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText32.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText32.setText("Script 32:");
-
-        jTextFieldScriptText32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText32.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText32KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute32.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute32.setText("Execute:");
-
-        jTextFieldScriptExecute32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute32.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute32KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText33.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText33.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText33.setText("Script 33:");
-
-        jTextFieldScriptText33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText33.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText33KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute33.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute33.setText("Execute:");
-
-        jTextFieldScriptExecute33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute33.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute33KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText34.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText34.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText34.setText("Script 34:");
-
-        jTextFieldScriptText34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText34.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText34KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute34.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute34.setText("Execute:");
-
-        jTextFieldScriptExecute34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute34.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute34KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText35.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText35.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText35.setText("Script 35:");
-
-        jTextFieldScriptText35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText35.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText35KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute35.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute35.setText("Execute:");
-
-        jTextFieldScriptExecute35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute35.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute35KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptText36.setFont(new java.awt.Font("Arial Unicode MS", 1, 11)); // NOI18N
-        jLabelScriptText36.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptText36.setText("Script 36:");
-
-        jTextFieldScriptText36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptText36.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptText36KeyReleased(evt);
-            }
-        });
-
-        jLabelScriptExecute36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabelScriptExecute36.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelScriptExecute36.setText("Execute:");
-
-        jTextFieldScriptExecute36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldScriptExecute36.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldScriptExecute36KeyReleased(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelSettingsScriptsLayout = new javax.swing.GroupLayout(jPanelSettingsScripts);
-        jPanelSettingsScripts.setLayout(jPanelSettingsScriptsLayout);
-        jPanelSettingsScriptsLayout.setHorizontalGroup(
-            jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addGap(0, 432, Short.MAX_VALUE)
-                        .addComponent(jButton45, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute1))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText2))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute2))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText3))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute3))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText4))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute4))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText5))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute5))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText6))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute6))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText7))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute7))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText8))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute8))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText9))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute9))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText10))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute10))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText11))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute11))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText12))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute12))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText13, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText13))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute13, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute13))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText14, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText14))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute14, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute14))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText15, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText15))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute15, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute15))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText16, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText16))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute16, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute16))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText17, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText17))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute17, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute17))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText18, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText18))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute18, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute18))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText19, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText19))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute19, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute19))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText20, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText20))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute20, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute20))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText21, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText21))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute21, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute21))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText22, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText22))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute22, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute22))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText23, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText23))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute23, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute23))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText24, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText24))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute24, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute24))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText25, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText25))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute25, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute25))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText26, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText26))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute26, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute26))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText27, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText27))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute27, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute27))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText28, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText28))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute28, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute28))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText29, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText29))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute29, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute29))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText30, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText30))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute30, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute30))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText31, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText31))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute31, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute31))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText32, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText32))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute32, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute32))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText33, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText33))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute33, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute33))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText34, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText34))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute34, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute34))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText35, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText35))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute35, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute35))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptText36, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText36))
-                    .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                        .addComponent(jLabelScriptExecute36, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute36)))
-                .addContainerGap())
-        );
-        jPanelSettingsScriptsLayout.setVerticalGroup(
-            jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSettingsScriptsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton45, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute8, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute9, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText11, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute11, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText12, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute12, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText13, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute13, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText14, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute14, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText15, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute15, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText16, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute16, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText17, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute17, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText18, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute18, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText19, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute19, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText20, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute20, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText21, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute21, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText22, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute22, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText23, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute23, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText24, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute24, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText25, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute25, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText26, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute26, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText27, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute27, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText28, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute28, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText29, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute29, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText30, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute30, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText31, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute31, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText32, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute32, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText33, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute33, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText34, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute34, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText35, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute35, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldScriptText36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptText36, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelSettingsScriptsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldScriptExecute36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelScriptExecute36, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
-
-        jScrollPaneSettingsScripts.setViewportView(jPanelSettingsScripts);
-
         jTabbedPaneSettings.addTab("Scripts", jScrollPaneSettingsScripts);
         jTabbedPaneSettings.addTab("References", jScrollPaneSettingsReferences);
 
@@ -8353,7 +7138,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedMain, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+            .addComponent(jTabbedMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -9658,85 +8443,85 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBoxAlternateLoginActionPerformed
 
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+    private void jButtonMainButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton17ActionPerformed
         openCommand("Button17StrExec");
-    }//GEN-LAST:event_jButton17ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton17ActionPerformed
 
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+    private void jButtonMainButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton18ActionPerformed
         openCommand("Button18StrExec");
-    }//GEN-LAST:event_jButton18ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton18ActionPerformed
 
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+    private void jButtonMainButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton19ActionPerformed
         openCommand("Button19StrExec");
-    }//GEN-LAST:event_jButton19ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton19ActionPerformed
 
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+    private void jButtonMainButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton20ActionPerformed
         openCommand("Button20StrExec");
-    }//GEN-LAST:event_jButton20ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton20ActionPerformed
 
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+    private void jButtonMainButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton16ActionPerformed
         openCommand("Button16StrExec");
-    }//GEN-LAST:event_jButton16ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton16ActionPerformed
 
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+    private void jButtonMainButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton15ActionPerformed
         openCommand("Button15StrExec");
-    }//GEN-LAST:event_jButton15ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton15ActionPerformed
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+    private void jButtonMainButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton14ActionPerformed
         openCommand("Button14StrExec");
-    }//GEN-LAST:event_jButton14ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton14ActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+    private void jButtonMainButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton13ActionPerformed
         openCommand("Button13StrExec");
-    }//GEN-LAST:event_jButton13ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton13ActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void jButtonMainButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton9ActionPerformed
         openCommand("Button09StrExec");
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton9ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jButtonMainButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton5ActionPerformed
         openCommand("Button05StrExec");
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton5ActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void jButtonMainButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton10ActionPerformed
         openCommand("Button10StrExec");
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton10ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jButtonMainButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton6ActionPerformed
         openCommand("Button06StrExec");
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton6ActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void jButtonMainButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton11ActionPerformed
         openCommand("Button11StrExec");
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton11ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void jButtonMainButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton7ActionPerformed
         openCommand("Button07StrExec");
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton7ActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void jButtonMainButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton12ActionPerformed
         openCommand("Button12StrExec");
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton12ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void jButtonMainButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton8ActionPerformed
         openCommand("Button08StrExec");
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton8ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButtonMainButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton4ActionPerformed
         openCommand("Button04StrExec");
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton4ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButtonMainButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton3ActionPerformed
         openCommand("Button03StrExec");
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonMainButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton2ActionPerformed
         openCommand("Button02StrExec");
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonMainButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton1ActionPerformed
         openCommand("Button01StrExec");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonMainButton1ActionPerformed
 
     private void jButtonConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsoleActionPerformed
         // TODO add your handling code here:
@@ -9961,19 +8746,19 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         System.out.println("Pressed");
         //- Explorer 
         ImageIcon iconExplorer = new ImageIcon(getClass().getResource("/launchpad/images/buttons/iexplore.png"));
-        newimg = iconExplorer.getImage(); newimg = newimg.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton1.setIcon(new ImageIcon(newimg));
+        newimg = iconExplorer.getImage(); newimg = newimg.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton1.setIcon(new ImageIcon(newimg));
         iconExplorer = new ImageIcon(newimg);
         //- Edge
         ImageIcon iconEdge = new ImageIcon(getClass().getResource("/launchpad/images/buttons/edge.png"));
-        newimg = iconEdge.getImage(); newimg = newimg.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton1.setIcon(new ImageIcon(newimg));
+        newimg = iconEdge.getImage(); newimg = newimg.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton1.setIcon(new ImageIcon(newimg));
         iconEdge = new ImageIcon(newimg);        
         //- FireFox
         ImageIcon iconFireFox = new ImageIcon(getClass().getResource("/launchpad/images/buttons/firefox.png"));
-        newimg = iconFireFox.getImage(); newimg = newimg.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton1.setIcon(new ImageIcon(newimg));
+        newimg = iconFireFox.getImage(); newimg = newimg.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton1.setIcon(new ImageIcon(newimg));
         iconFireFox = new ImageIcon(newimg);  
         //- Chrome
         ImageIcon iconChrome = new ImageIcon(getClass().getResource("/launchpad/images/buttons/chrome.png"));
-        newimg = iconChrome.getImage(); newimg = newimg.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButton1.setIcon(new ImageIcon(newimg));
+        newimg = iconChrome.getImage(); newimg = newimg.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton1.setIcon(new ImageIcon(newimg));
         iconChrome = new ImageIcon(newimg);  
         //- Build Option Pane
         Object[] iconArray = {iconExplorer,
@@ -11259,298 +10044,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private void jTextFieldLinkText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLinkText1ActionPerformed
     }//GEN-LAST:event_jTextFieldLinkText1ActionPerformed
 
-    private void jTextFieldScriptText1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText1KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript01Description",jTextFieldScriptText1.getText());
-    }//GEN-LAST:event_jTextFieldScriptText1KeyReleased
-
-    private void jTextFieldScriptExecute1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute1KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript01Exec",jTextFieldScriptExecute1.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute1KeyReleased
-
-    private void jButton45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton45ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton45ActionPerformed
-
-    private void jTextFieldScriptText2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText2KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript02Description",jTextFieldScriptText2.getText());
-    }//GEN-LAST:event_jTextFieldScriptText2KeyReleased
-
-    private void jTextFieldScriptExecute2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute2KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript02Exec",jTextFieldScriptExecute2.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute2KeyReleased
-
-    private void jTextFieldScriptText3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText3KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript03Description",jTextFieldScriptText3.getText());
-    }//GEN-LAST:event_jTextFieldScriptText3KeyReleased
-
-    private void jTextFieldScriptExecute3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute3KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript03Exec",jTextFieldScriptExecute3.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute3KeyReleased
-
-    private void jTextFieldScriptText4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText4KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript04Description",jTextFieldScriptText4.getText());
-    }//GEN-LAST:event_jTextFieldScriptText4KeyReleased
-
-    private void jTextFieldScriptExecute4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute4KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript04Exec",jTextFieldScriptExecute4.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute4KeyReleased
-
-    private void jTextFieldScriptText5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText5KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript05Description",jTextFieldScriptText5.getText());
-    }//GEN-LAST:event_jTextFieldScriptText5KeyReleased
-
-    private void jTextFieldScriptExecute5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute5KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript05Exec",jTextFieldScriptExecute5.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute5KeyReleased
-
-    private void jTextFieldScriptText6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText6KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript06Description",jTextFieldScriptText6.getText());
-    }//GEN-LAST:event_jTextFieldScriptText6KeyReleased
-
-    private void jTextFieldScriptExecute6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute6KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript06Exec",jTextFieldScriptExecute6.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute6KeyReleased
-
-    private void jTextFieldScriptText7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText7KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript07Description",jTextFieldScriptText7.getText());
-    }//GEN-LAST:event_jTextFieldScriptText7KeyReleased
-
-    private void jTextFieldScriptExecute7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute7KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript07Exec",jTextFieldScriptExecute7.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute7KeyReleased
-
-    private void jTextFieldScriptText8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText8KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript08Description",jTextFieldScriptText8.getText());
-    }//GEN-LAST:event_jTextFieldScriptText8KeyReleased
-
-    private void jTextFieldScriptExecute8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute8KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript08Exec",jTextFieldScriptExecute8.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute8KeyReleased
-
-    private void jTextFieldScriptText9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText9KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript09Description",jTextFieldScriptText9.getText());
-    }//GEN-LAST:event_jTextFieldScriptText9KeyReleased
-
-    private void jTextFieldScriptExecute9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute9KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript09Exec",jTextFieldScriptExecute9.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute9KeyReleased
-
-    private void jTextFieldScriptText10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText10KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript10Description",jTextFieldScriptText10.getText());
-    }//GEN-LAST:event_jTextFieldScriptText10KeyReleased
-
-    private void jTextFieldScriptExecute10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute10KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript10Exec",jTextFieldScriptExecute10.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute10KeyReleased
-
-    private void jTextFieldScriptText11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText11KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript11Description",jTextFieldScriptText11.getText());
-    }//GEN-LAST:event_jTextFieldScriptText11KeyReleased
-
-    private void jTextFieldScriptExecute11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute11KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript11Exec",jTextFieldScriptExecute11.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute11KeyReleased
-
-    private void jTextFieldScriptText12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText12KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript12Description",jTextFieldScriptText12.getText());
-    }//GEN-LAST:event_jTextFieldScriptText12KeyReleased
-
-    private void jTextFieldScriptExecute12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute12KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript12Exec",jTextFieldScriptExecute12.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute12KeyReleased
-
-    private void jTextFieldScriptText13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText13KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript13Description",jTextFieldScriptText13.getText());
-    }//GEN-LAST:event_jTextFieldScriptText13KeyReleased
-
-    private void jTextFieldScriptExecute13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute13KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript13Exec",jTextFieldScriptExecute13.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute13KeyReleased
-
-    private void jTextFieldScriptText14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText14KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript14Description",jTextFieldScriptText14.getText());
-    }//GEN-LAST:event_jTextFieldScriptText14KeyReleased
-
-    private void jTextFieldScriptExecute14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute14KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript14Exec",jTextFieldScriptExecute14.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute14KeyReleased
-
-    private void jTextFieldScriptText15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText15KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript15Description",jTextFieldScriptText15.getText());
-    }//GEN-LAST:event_jTextFieldScriptText15KeyReleased
-
-    private void jTextFieldScriptExecute15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute15KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript15Exec",jTextFieldScriptExecute15.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute15KeyReleased
-
-    private void jTextFieldScriptText16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText16KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript16Description",jTextFieldScriptText16.getText());
-    }//GEN-LAST:event_jTextFieldScriptText16KeyReleased
-
-    private void jTextFieldScriptExecute16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute16KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript16Exec",jTextFieldScriptExecute16.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute16KeyReleased
-
-    private void jTextFieldScriptText17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText17KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript17Description",jTextFieldScriptText17.getText());
-    }//GEN-LAST:event_jTextFieldScriptText17KeyReleased
-
-    private void jTextFieldScriptExecute17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute17KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript17Exec",jTextFieldScriptExecute17.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute17KeyReleased
-
-    private void jTextFieldScriptText18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText18KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript18Description",jTextFieldScriptText18.getText());
-    }//GEN-LAST:event_jTextFieldScriptText18KeyReleased
-
-    private void jTextFieldScriptExecute18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute18KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript18Exec",jTextFieldScriptExecute18.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute18KeyReleased
-
-    private void jTextFieldScriptText19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText19KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript19Description",jTextFieldScriptText19.getText());
-    }//GEN-LAST:event_jTextFieldScriptText19KeyReleased
-
-    private void jTextFieldScriptExecute19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute19KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript19Exec",jTextFieldScriptExecute19.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute19KeyReleased
-
-    private void jTextFieldScriptText20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText20KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript20Description",jTextFieldScriptText20.getText());
-    }//GEN-LAST:event_jTextFieldScriptText20KeyReleased
-
-    private void jTextFieldScriptExecute20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute20KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript20Exec",jTextFieldScriptExecute20.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute20KeyReleased
-
-    private void jTextFieldScriptText21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText21KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript21Description",jTextFieldScriptText21.getText());
-    }//GEN-LAST:event_jTextFieldScriptText21KeyReleased
-
-    private void jTextFieldScriptExecute21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute21KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript21Exec",jTextFieldScriptExecute21.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute21KeyReleased
-
-    private void jTextFieldScriptText22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText22KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript22Description",jTextFieldScriptText22.getText());
-    }//GEN-LAST:event_jTextFieldScriptText22KeyReleased
-
-    private void jTextFieldScriptExecute22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute22KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript22Exec",jTextFieldScriptExecute22.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute22KeyReleased
-
-    private void jTextFieldScriptText23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText23KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript23Description",jTextFieldScriptText23.getText());
-    }//GEN-LAST:event_jTextFieldScriptText23KeyReleased
-
-    private void jTextFieldScriptExecute23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute23KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript23Exec",jTextFieldScriptExecute23.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute23KeyReleased
-
-    private void jTextFieldScriptText24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText24KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript24Description",jTextFieldScriptText24.getText());
-    }//GEN-LAST:event_jTextFieldScriptText24KeyReleased
-
-    private void jTextFieldScriptExecute24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute24KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript24Exec",jTextFieldScriptExecute24.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute24KeyReleased
-
-    private void jTextFieldScriptText25KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText25KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript25Description",jTextFieldScriptText25.getText());
-    }//GEN-LAST:event_jTextFieldScriptText25KeyReleased
-
-    private void jTextFieldScriptExecute25KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute25KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript25Exec",jTextFieldScriptExecute25.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute25KeyReleased
-
-    private void jTextFieldScriptText26KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText26KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript26Description",jTextFieldScriptText26.getText());
-    }//GEN-LAST:event_jTextFieldScriptText26KeyReleased
-
-    private void jTextFieldScriptExecute26KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute26KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript26Exec",jTextFieldScriptExecute26.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute26KeyReleased
-
-    private void jTextFieldScriptText27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText27KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript27Description",jTextFieldScriptText27.getText());
-    }//GEN-LAST:event_jTextFieldScriptText27KeyReleased
-
-    private void jTextFieldScriptExecute27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute27KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript27Exec",jTextFieldScriptExecute27.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute27KeyReleased
-
-    private void jTextFieldScriptText28KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText28KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript28Description",jTextFieldScriptText28.getText());
-    }//GEN-LAST:event_jTextFieldScriptText28KeyReleased
-
-    private void jTextFieldScriptExecute28KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute28KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript28Exec",jTextFieldScriptExecute28.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute28KeyReleased
-
-    private void jTextFieldScriptText29KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText29KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript29Description",jTextFieldScriptText29.getText());
-    }//GEN-LAST:event_jTextFieldScriptText29KeyReleased
-
-    private void jTextFieldScriptExecute29KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute29KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript29Exec",jTextFieldScriptExecute29.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute29KeyReleased
-
-    private void jTextFieldScriptText30KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText30KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript30Description",jTextFieldScriptText30.getText());
-    }//GEN-LAST:event_jTextFieldScriptText30KeyReleased
-
-    private void jTextFieldScriptExecute30KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute30KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript30Exec",jTextFieldScriptExecute30.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute30KeyReleased
-
-    private void jTextFieldScriptText31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText31KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript31Description",jTextFieldScriptText31.getText());
-    }//GEN-LAST:event_jTextFieldScriptText31KeyReleased
-
-    private void jTextFieldScriptExecute31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute31KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript31Exec",jTextFieldScriptExecute31.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute31KeyReleased
-
-    private void jTextFieldScriptText32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText32KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript32Description",jTextFieldScriptText32.getText());
-    }//GEN-LAST:event_jTextFieldScriptText32KeyReleased
-
-    private void jTextFieldScriptExecute32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute32KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript32Exec",jTextFieldScriptExecute32.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute32KeyReleased
-
-    private void jTextFieldScriptText33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText33KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript33Description",jTextFieldScriptText33.getText());
-    }//GEN-LAST:event_jTextFieldScriptText33KeyReleased
-
-    private void jTextFieldScriptExecute33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute33KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript33Exec",jTextFieldScriptExecute33.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute33KeyReleased
-
-    private void jTextFieldScriptText34KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText34KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript34Description",jTextFieldScriptText34.getText());
-    }//GEN-LAST:event_jTextFieldScriptText34KeyReleased
-
-    private void jTextFieldScriptExecute34KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute34KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript34Exec",jTextFieldScriptExecute34.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute34KeyReleased
-
-    private void jTextFieldScriptText35KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText35KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript35Description",jTextFieldScriptText35.getText());
-    }//GEN-LAST:event_jTextFieldScriptText35KeyReleased
-
-    private void jTextFieldScriptExecute35KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute35KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript35Exec",jTextFieldScriptExecute35.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute35KeyReleased
-
-    private void jTextFieldScriptText36KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText36KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript36Description",jTextFieldScriptText36.getText());
-    }//GEN-LAST:event_jTextFieldScriptText36KeyReleased
-
-    private void jTextFieldScriptExecute36KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute36KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript36Exec",jTextFieldScriptExecute36.getText());
-    }//GEN-LAST:event_jTextFieldScriptExecute36KeyReleased
-
     private void jButtonRefreshHostnameIPMACMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRefreshHostnameIPMACMouseReleased
         //- Get Hostname IP and MAC
         try {
@@ -11589,6 +10082,78 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBoxSessionDoubleClickItemStateChanged
 
+    private void jButtonMainButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton24ActionPerformed
+        openCommand("Button24StrExec");
+    }//GEN-LAST:event_jButtonMainButton24ActionPerformed
+
+    private void jButtonMainButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton23ActionPerformed
+        openCommand("Button23StrExec");
+    }//GEN-LAST:event_jButtonMainButton23ActionPerformed
+
+    private void jButtonMainButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton22ActionPerformed
+        openCommand("Button22StrExec");
+    }//GEN-LAST:event_jButtonMainButton22ActionPerformed
+
+    private void jButtonMainButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton21ActionPerformed
+        openCommand("Button21StrExec");
+    }//GEN-LAST:event_jButtonMainButton21ActionPerformed
+
+    private void jComboBoxButtonIcon21ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon21ItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button21Icon",((String)jComboBoxButtonIcon21.getSelectedItem())); 
+        }
+    }//GEN-LAST:event_jComboBoxButtonIcon21ItemStateChanged
+
+    private void jTextFieldButtonExecute21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute21KeyReleased
+        PropertyHandler.getInstance().setValue("Button21StrExec",jTextFieldButtonExecute21.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute21KeyReleased
+
+    private void jTextFieldButtonToolTip21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip21KeyReleased
+        PropertyHandler.getInstance().setValue("Button21ToolTip",jTextFieldButtonToolTip21.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip21KeyReleased
+
+    private void jComboBoxButtonIcon22ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon22ItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button22Icon",((String)jComboBoxButtonIcon22.getSelectedItem())); 
+        }
+    }//GEN-LAST:event_jComboBoxButtonIcon22ItemStateChanged
+
+    private void jTextFieldButtonExecute22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute22KeyReleased
+        PropertyHandler.getInstance().setValue("Button22StrExec",jTextFieldButtonExecute22.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute22KeyReleased
+
+    private void jTextFieldButtonToolTip22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip22KeyReleased
+        PropertyHandler.getInstance().setValue("Button22ToolTip",jTextFieldButtonToolTip22.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip22KeyReleased
+
+    private void jComboBoxButtonIcon23ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon23ItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button23Icon",((String)jComboBoxButtonIcon23.getSelectedItem())); 
+        }
+    }//GEN-LAST:event_jComboBoxButtonIcon23ItemStateChanged
+
+    private void jTextFieldButtonExecute23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute23KeyReleased
+        PropertyHandler.getInstance().setValue("Button23StrExec",jTextFieldButtonExecute23.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute23KeyReleased
+
+    private void jTextFieldButtonToolTip23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip23KeyReleased
+        PropertyHandler.getInstance().setValue("Button23ToolTip",jTextFieldButtonToolTip23.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip23KeyReleased
+
+    private void jComboBoxButtonIcon24ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon24ItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            PropertyHandler.getInstance().setValue("Button24Icon",((String)jComboBoxButtonIcon24.getSelectedItem())); 
+        }
+    }//GEN-LAST:event_jComboBoxButtonIcon24ItemStateChanged
+
+    private void jTextFieldButtonExecute24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute24KeyReleased
+        PropertyHandler.getInstance().setValue("Button24StrExec",jTextFieldButtonExecute24.getText() );
+    }//GEN-LAST:event_jTextFieldButtonExecute24KeyReleased
+
+    private void jTextFieldButtonToolTip24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip24KeyReleased
+        PropertyHandler.getInstance().setValue("Button24ToolTip",jTextFieldButtonToolTip24.getText());
+    }//GEN-LAST:event_jTextFieldButtonToolTip24KeyReleased
+
     
     /**
      * @param args the command line arguments
@@ -11606,7 +10171,12 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         JPanelSettingsReferences jPanelSettingsReferencesClass = new JPanelSettingsReferences();
         jScrollPaneSettingsReferences.setViewportView(jPanelSettingsReferencesClass);
     }
-   
+
+    private void initAddSettingsScripts() {
+        JPanelSettingsScripts jPanelSettingsScriptsClass = new JPanelSettingsScripts();
+        jScrollPaneSettingsScripts.setViewportView(jPanelSettingsScriptsClass);
+    }
+    
      private ArrayList getSessionList() throws FileNotFoundException, IOException, URISyntaxException
     {
         String strSessionList;
@@ -11696,26 +10266,30 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     
     public void loadMainButtonStyles() {
         //--- Load tooltips
-        jButton1.setToolTipText(PropertyHandler.getInstance().getValue("Button01ToolTip"));
-        jButton2.setToolTipText(PropertyHandler.getInstance().getValue("Button02ToolTip"));
-        jButton3.setToolTipText(PropertyHandler.getInstance().getValue("Button03ToolTip"));
-        jButton4.setToolTipText(PropertyHandler.getInstance().getValue("Button04ToolTip"));
-        jButton5.setToolTipText(PropertyHandler.getInstance().getValue("Button05ToolTip"));
-        jButton6.setToolTipText(PropertyHandler.getInstance().getValue("Button06ToolTip"));
-        jButton7.setToolTipText(PropertyHandler.getInstance().getValue("Button07ToolTip"));
-        jButton8.setToolTipText(PropertyHandler.getInstance().getValue("Button08ToolTip"));
-        jButton9.setToolTipText(PropertyHandler.getInstance().getValue("Button09ToolTip"));
-        jButton10.setToolTipText(PropertyHandler.getInstance().getValue("Button10ToolTip"));
-        jButton11.setToolTipText(PropertyHandler.getInstance().getValue("Button11ToolTip"));
-        jButton12.setToolTipText(PropertyHandler.getInstance().getValue("Button12ToolTip"));
-        jButton13.setToolTipText(PropertyHandler.getInstance().getValue("Button13ToolTip"));
-        jButton14.setToolTipText(PropertyHandler.getInstance().getValue("Button14ToolTip"));
-        jButton15.setToolTipText(PropertyHandler.getInstance().getValue("Button15ToolTip"));
-        jButton16.setToolTipText(PropertyHandler.getInstance().getValue("Button16ToolTip"));
-        jButton17.setToolTipText(PropertyHandler.getInstance().getValue("Button17ToolTip"));
-        jButton18.setToolTipText(PropertyHandler.getInstance().getValue("Button18ToolTip"));
-        jButton19.setToolTipText(PropertyHandler.getInstance().getValue("Button19ToolTip"));
-        jButton20.setToolTipText(PropertyHandler.getInstance().getValue("Button20ToolTip"));
+        jButtonMainButton1.setToolTipText(PropertyHandler.getInstance().getValue("Button01ToolTip"));
+        jButtonMainButton2.setToolTipText(PropertyHandler.getInstance().getValue("Button02ToolTip"));
+        jButtonMainButton3.setToolTipText(PropertyHandler.getInstance().getValue("Button03ToolTip"));
+        jButtonMainButton4.setToolTipText(PropertyHandler.getInstance().getValue("Button04ToolTip"));
+        jButtonMainButton5.setToolTipText(PropertyHandler.getInstance().getValue("Button05ToolTip"));
+        jButtonMainButton6.setToolTipText(PropertyHandler.getInstance().getValue("Button06ToolTip"));
+        jButtonMainButton7.setToolTipText(PropertyHandler.getInstance().getValue("Button07ToolTip"));
+        jButtonMainButton8.setToolTipText(PropertyHandler.getInstance().getValue("Button08ToolTip"));
+        jButtonMainButton9.setToolTipText(PropertyHandler.getInstance().getValue("Button09ToolTip"));
+        jButtonMainButton10.setToolTipText(PropertyHandler.getInstance().getValue("Button10ToolTip"));
+        jButtonMainButton11.setToolTipText(PropertyHandler.getInstance().getValue("Button11ToolTip"));
+        jButtonMainButton12.setToolTipText(PropertyHandler.getInstance().getValue("Button12ToolTip"));
+        jButtonMainButton13.setToolTipText(PropertyHandler.getInstance().getValue("Button13ToolTip"));
+        jButtonMainButton14.setToolTipText(PropertyHandler.getInstance().getValue("Button14ToolTip"));
+        jButtonMainButton15.setToolTipText(PropertyHandler.getInstance().getValue("Button15ToolTip"));
+        jButtonMainButton16.setToolTipText(PropertyHandler.getInstance().getValue("Button16ToolTip"));
+        jButtonMainButton17.setToolTipText(PropertyHandler.getInstance().getValue("Button17ToolTip"));
+        jButtonMainButton18.setToolTipText(PropertyHandler.getInstance().getValue("Button18ToolTip"));
+        jButtonMainButton19.setToolTipText(PropertyHandler.getInstance().getValue("Button19ToolTip"));
+        jButtonMainButton20.setToolTipText(PropertyHandler.getInstance().getValue("Button20ToolTip"));
+        jButtonMainButton21.setToolTipText(PropertyHandler.getInstance().getValue("Button21ToolTip"));
+        jButtonMainButton22.setToolTipText(PropertyHandler.getInstance().getValue("Button22ToolTip"));
+        jButtonMainButton23.setToolTipText(PropertyHandler.getInstance().getValue("Button23ToolTip"));
+        jButtonMainButton24.setToolTipText(PropertyHandler.getInstance().getValue("Button24ToolTip"));
     }
     
     private void searchFilterLinks(String searchTerm) throws IOException, FileNotFoundException, URISyntaxException
@@ -12317,6 +10891,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldButtonToolTip18.setText(PropertyHandler.getInstance().getValue("Button18ToolTip"));
         jTextFieldButtonToolTip19.setText(PropertyHandler.getInstance().getValue("Button19ToolTip"));
         jTextFieldButtonToolTip20.setText(PropertyHandler.getInstance().getValue("Button20ToolTip"));        
+        jTextFieldButtonToolTip21.setText(PropertyHandler.getInstance().getValue("Button21ToolTip"));        
+        jTextFieldButtonToolTip22.setText(PropertyHandler.getInstance().getValue("Button22ToolTip"));        
+        jTextFieldButtonToolTip23.setText(PropertyHandler.getInstance().getValue("Button23ToolTip"));        
+        jTextFieldButtonToolTip24.setText(PropertyHandler.getInstance().getValue("Button24ToolTip"));        
         //- Icons - MOVED TO PRE-ACTION LISTENER
 //        jComboBoxButtonIcon1.setSelectedItem(PropertyHandler.getInstance().getValue("Button01Icon"));
 //        jComboBoxButtonIcon2.setSelectedItem(PropertyHandler.getInstance().getValue("Button02Icon"));
@@ -12359,6 +10937,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldButtonExecute18.setText(PropertyHandler.getInstance().getValue("Button18StrExec"));
         jTextFieldButtonExecute19.setText(PropertyHandler.getInstance().getValue("Button19StrExec"));
         jTextFieldButtonExecute20.setText(PropertyHandler.getInstance().getValue("Button20StrExec"));
+        jTextFieldButtonExecute21.setText(PropertyHandler.getInstance().getValue("Button21StrExec"));
+        jTextFieldButtonExecute22.setText(PropertyHandler.getInstance().getValue("Button22StrExec"));
+        jTextFieldButtonExecute23.setText(PropertyHandler.getInstance().getValue("Button23StrExec"));
+        jTextFieldButtonExecute24.setText(PropertyHandler.getInstance().getValue("Button24StrExec"));
     }
     
     private void loadSettingsLinkData() {
@@ -12438,83 +11020,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldLinkExecute36.setText(PropertyHandler.getInstance().getValue("CustomLink36Exec"));
     }
     
-    private void loadSettingsScriptData() {
-        //- Text
-        jTextFieldScriptText1.setText(PropertyHandler.getInstance().getValue("CustomScript01Description"));
-        jTextFieldScriptText2.setText(PropertyHandler.getInstance().getValue("CustomScript02Description"));
-        jTextFieldScriptText3.setText(PropertyHandler.getInstance().getValue("CustomScript03Description"));
-        jTextFieldScriptText4.setText(PropertyHandler.getInstance().getValue("CustomScript04Description"));
-        jTextFieldScriptText5.setText(PropertyHandler.getInstance().getValue("CustomScript05Description"));
-        jTextFieldScriptText6.setText(PropertyHandler.getInstance().getValue("CustomScript06Description"));
-        jTextFieldScriptText7.setText(PropertyHandler.getInstance().getValue("CustomScript07Description"));
-        jTextFieldScriptText8.setText(PropertyHandler.getInstance().getValue("CustomScript08Description"));
-        jTextFieldScriptText9.setText(PropertyHandler.getInstance().getValue("CustomScript09Description"));
-        jTextFieldScriptText10.setText(PropertyHandler.getInstance().getValue("CustomScript10Description"));
-        jTextFieldScriptText11.setText(PropertyHandler.getInstance().getValue("CustomScript11Description"));
-        jTextFieldScriptText12.setText(PropertyHandler.getInstance().getValue("CustomScript12Description"));
-        jTextFieldScriptText13.setText(PropertyHandler.getInstance().getValue("CustomScript13Description"));
-        jTextFieldScriptText14.setText(PropertyHandler.getInstance().getValue("CustomScript14Description"));
-        jTextFieldScriptText15.setText(PropertyHandler.getInstance().getValue("CustomScript15Description"));
-        jTextFieldScriptText16.setText(PropertyHandler.getInstance().getValue("CustomScript16Description"));
-        jTextFieldScriptText17.setText(PropertyHandler.getInstance().getValue("CustomScript17Description"));
-        jTextFieldScriptText18.setText(PropertyHandler.getInstance().getValue("CustomScript18Description"));
-        jTextFieldScriptText19.setText(PropertyHandler.getInstance().getValue("CustomScript19Description"));
-        jTextFieldScriptText20.setText(PropertyHandler.getInstance().getValue("CustomScript20Description"));
-        jTextFieldScriptText21.setText(PropertyHandler.getInstance().getValue("CustomScript21Description"));
-        jTextFieldScriptText22.setText(PropertyHandler.getInstance().getValue("CustomScript22Description"));
-        jTextFieldScriptText23.setText(PropertyHandler.getInstance().getValue("CustomScript23Description"));
-        jTextFieldScriptText24.setText(PropertyHandler.getInstance().getValue("CustomScript24Description"));
-        jTextFieldScriptText25.setText(PropertyHandler.getInstance().getValue("CustomScript25Description"));
-        jTextFieldScriptText26.setText(PropertyHandler.getInstance().getValue("CustomScript26Description"));
-        jTextFieldScriptText27.setText(PropertyHandler.getInstance().getValue("CustomScript27Description"));
-        jTextFieldScriptText28.setText(PropertyHandler.getInstance().getValue("CustomScript28Description"));
-        jTextFieldScriptText29.setText(PropertyHandler.getInstance().getValue("CustomScript29Description"));
-        jTextFieldScriptText30.setText(PropertyHandler.getInstance().getValue("CustomScript30Description"));
-        jTextFieldScriptText31.setText(PropertyHandler.getInstance().getValue("CustomScript31Description"));
-        jTextFieldScriptText32.setText(PropertyHandler.getInstance().getValue("CustomScript32Description"));
-        jTextFieldScriptText33.setText(PropertyHandler.getInstance().getValue("CustomScript33Description"));
-        jTextFieldScriptText34.setText(PropertyHandler.getInstance().getValue("CustomScript34Description"));
-        jTextFieldScriptText35.setText(PropertyHandler.getInstance().getValue("CustomScript35Description"));
-        jTextFieldScriptText36.setText(PropertyHandler.getInstance().getValue("CustomScript36Description"));
-        //- Executions
-        jTextFieldScriptExecute1.setText(PropertyHandler.getInstance().getValue("CustomScript01Exec"));
-        jTextFieldScriptExecute2.setText(PropertyHandler.getInstance().getValue("CustomScript02Exec"));
-        jTextFieldScriptExecute3.setText(PropertyHandler.getInstance().getValue("CustomScript03Exec"));
-        jTextFieldScriptExecute4.setText(PropertyHandler.getInstance().getValue("CustomScript04Exec"));
-        jTextFieldScriptExecute5.setText(PropertyHandler.getInstance().getValue("CustomScript05Exec"));
-        jTextFieldScriptExecute6.setText(PropertyHandler.getInstance().getValue("CustomScript06Exec"));
-        jTextFieldScriptExecute7.setText(PropertyHandler.getInstance().getValue("CustomScript07Exec"));
-        jTextFieldScriptExecute8.setText(PropertyHandler.getInstance().getValue("CustomScript08Exec"));
-        jTextFieldScriptExecute9.setText(PropertyHandler.getInstance().getValue("CustomScript09Exec"));
-        jTextFieldScriptExecute10.setText(PropertyHandler.getInstance().getValue("CustomScript10Exec"));
-        jTextFieldScriptExecute11.setText(PropertyHandler.getInstance().getValue("CustomScript11Exec"));
-        jTextFieldScriptExecute12.setText(PropertyHandler.getInstance().getValue("CustomScript12Exec"));
-        jTextFieldScriptExecute13.setText(PropertyHandler.getInstance().getValue("CustomScript13Exec"));
-        jTextFieldScriptExecute14.setText(PropertyHandler.getInstance().getValue("CustomScript14Exec"));
-        jTextFieldScriptExecute15.setText(PropertyHandler.getInstance().getValue("CustomScript15Exec"));
-        jTextFieldScriptExecute16.setText(PropertyHandler.getInstance().getValue("CustomScript16Exec"));
-        jTextFieldScriptExecute17.setText(PropertyHandler.getInstance().getValue("CustomScript17Exec"));
-        jTextFieldScriptExecute18.setText(PropertyHandler.getInstance().getValue("CustomScript18Exec"));
-        jTextFieldScriptExecute19.setText(PropertyHandler.getInstance().getValue("CustomScript19Exec"));
-        jTextFieldScriptExecute20.setText(PropertyHandler.getInstance().getValue("CustomScript20Exec"));
-        jTextFieldScriptExecute21.setText(PropertyHandler.getInstance().getValue("CustomScript21Exec"));
-        jTextFieldScriptExecute22.setText(PropertyHandler.getInstance().getValue("CustomScript22Exec"));
-        jTextFieldScriptExecute23.setText(PropertyHandler.getInstance().getValue("CustomScript23Exec"));
-        jTextFieldScriptExecute24.setText(PropertyHandler.getInstance().getValue("CustomScript24Exec"));
-        jTextFieldScriptExecute25.setText(PropertyHandler.getInstance().getValue("CustomScript25Exec"));
-        jTextFieldScriptExecute26.setText(PropertyHandler.getInstance().getValue("CustomScript26Exec"));
-        jTextFieldScriptExecute27.setText(PropertyHandler.getInstance().getValue("CustomScript27Exec"));
-        jTextFieldScriptExecute28.setText(PropertyHandler.getInstance().getValue("CustomScript28Exec"));
-        jTextFieldScriptExecute29.setText(PropertyHandler.getInstance().getValue("CustomScript29Exec"));
-        jTextFieldScriptExecute30.setText(PropertyHandler.getInstance().getValue("CustomScript30Exec"));
-        jTextFieldScriptExecute31.setText(PropertyHandler.getInstance().getValue("CustomScript31Exec"));
-        jTextFieldScriptExecute32.setText(PropertyHandler.getInstance().getValue("CustomScript32Exec"));
-        jTextFieldScriptExecute33.setText(PropertyHandler.getInstance().getValue("CustomScript33Exec"));
-        jTextFieldScriptExecute34.setText(PropertyHandler.getInstance().getValue("CustomScript34Exec"));
-        jTextFieldScriptExecute35.setText(PropertyHandler.getInstance().getValue("CustomScript35Exec"));
-        jTextFieldScriptExecute36.setText(PropertyHandler.getInstance().getValue("CustomScript36Exec"));
-    }
-    
+
         
     private Map<String, ImageIcon> imageMap;
 
@@ -12622,19 +11128,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroupLanguage;
     private javax.swing.ButtonGroup buttonGroupPWauthEnableDisable;
     private javax.swing.ButtonGroup buttonGroupSSHClient;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
@@ -12644,7 +11137,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton29;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton30;
     private javax.swing.JButton jButton31;
     private javax.swing.JButton jButton32;
@@ -12655,18 +11147,11 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton37;
     private javax.swing.JButton jButton38;
     private javax.swing.JButton jButton39;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton41;
     private javax.swing.JButton jButton42;
     private javax.swing.JButton jButton43;
     private javax.swing.JButton jButton44;
-    private javax.swing.JButton jButton45;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JButton jButtonClearFilter;
     private javax.swing.JButton jButtonConfigBuilder1;
     private javax.swing.JButton jButtonConsole;
@@ -12720,6 +11205,30 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLinkCustom34;
     private javax.swing.JButton jButtonLinkCustom35;
     private javax.swing.JButton jButtonLinkCustom36;
+    private javax.swing.JButton jButtonMainButton1;
+    private javax.swing.JButton jButtonMainButton10;
+    private javax.swing.JButton jButtonMainButton11;
+    private javax.swing.JButton jButtonMainButton12;
+    private javax.swing.JButton jButtonMainButton13;
+    private javax.swing.JButton jButtonMainButton14;
+    private javax.swing.JButton jButtonMainButton15;
+    private javax.swing.JButton jButtonMainButton16;
+    private javax.swing.JButton jButtonMainButton17;
+    private javax.swing.JButton jButtonMainButton18;
+    private javax.swing.JButton jButtonMainButton19;
+    private javax.swing.JButton jButtonMainButton2;
+    private javax.swing.JButton jButtonMainButton20;
+    private javax.swing.JButton jButtonMainButton21;
+    private javax.swing.JButton jButtonMainButton22;
+    private javax.swing.JButton jButtonMainButton23;
+    private javax.swing.JButton jButtonMainButton24;
+    private javax.swing.JButton jButtonMainButton3;
+    private javax.swing.JButton jButtonMainButton4;
+    private javax.swing.JButton jButtonMainButton5;
+    private javax.swing.JButton jButtonMainButton6;
+    private javax.swing.JButton jButtonMainButton7;
+    private javax.swing.JButton jButtonMainButton8;
+    private javax.swing.JButton jButtonMainButton9;
     private javax.swing.JButton jButtonMapSharedFolder;
     private javax.swing.JButton jButtonPing;
     public javax.swing.JButton jButtonReferenceCustom01;
@@ -12831,6 +11340,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxButtonIcon19;
     private javax.swing.JComboBox<String> jComboBoxButtonIcon2;
     private javax.swing.JComboBox<String> jComboBoxButtonIcon20;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon21;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon22;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon23;
+    private javax.swing.JComboBox<String> jComboBoxButtonIcon24;
     private javax.swing.JComboBox<String> jComboBoxButtonIcon3;
     private javax.swing.JComboBox<String> jComboBoxButtonIcon4;
     private javax.swing.JComboBox<String> jComboBoxButtonIcon5;
@@ -12872,6 +11385,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelButtonExecute19;
     private javax.swing.JLabel jLabelButtonExecute2;
     private javax.swing.JLabel jLabelButtonExecute20;
+    private javax.swing.JLabel jLabelButtonExecute21;
+    private javax.swing.JLabel jLabelButtonExecute22;
+    private javax.swing.JLabel jLabelButtonExecute23;
+    private javax.swing.JLabel jLabelButtonExecute24;
     private javax.swing.JLabel jLabelButtonExecute3;
     private javax.swing.JLabel jLabelButtonExecute4;
     private javax.swing.JLabel jLabelButtonExecute5;
@@ -12892,6 +11409,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelButtonIcon19;
     private javax.swing.JLabel jLabelButtonIcon2;
     private javax.swing.JLabel jLabelButtonIcon20;
+    private javax.swing.JLabel jLabelButtonIcon21;
+    private javax.swing.JLabel jLabelButtonIcon22;
+    private javax.swing.JLabel jLabelButtonIcon23;
+    private javax.swing.JLabel jLabelButtonIcon24;
     private javax.swing.JLabel jLabelButtonIcon3;
     private javax.swing.JLabel jLabelButtonIcon4;
     private javax.swing.JLabel jLabelButtonIcon5;
@@ -12912,6 +11433,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelButtonToolTip19;
     private javax.swing.JLabel jLabelButtonToolTip2;
     private javax.swing.JLabel jLabelButtonToolTip20;
+    private javax.swing.JLabel jLabelButtonToolTip21;
+    private javax.swing.JLabel jLabelButtonToolTip22;
+    private javax.swing.JLabel jLabelButtonToolTip23;
+    private javax.swing.JLabel jLabelButtonToolTip24;
     private javax.swing.JLabel jLabelButtonToolTip3;
     private javax.swing.JLabel jLabelButtonToolTip4;
     private javax.swing.JLabel jLabelButtonToolTip5;
@@ -13011,78 +11536,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelLocalIP;
     private javax.swing.JLabel jLabelLocalMAC;
     private javax.swing.JLabel jLabelReferenceFilter;
-    private javax.swing.JLabel jLabelScriptExecute1;
-    private javax.swing.JLabel jLabelScriptExecute10;
-    private javax.swing.JLabel jLabelScriptExecute11;
-    private javax.swing.JLabel jLabelScriptExecute12;
-    private javax.swing.JLabel jLabelScriptExecute13;
-    private javax.swing.JLabel jLabelScriptExecute14;
-    private javax.swing.JLabel jLabelScriptExecute15;
-    private javax.swing.JLabel jLabelScriptExecute16;
-    private javax.swing.JLabel jLabelScriptExecute17;
-    private javax.swing.JLabel jLabelScriptExecute18;
-    private javax.swing.JLabel jLabelScriptExecute19;
-    private javax.swing.JLabel jLabelScriptExecute2;
-    private javax.swing.JLabel jLabelScriptExecute20;
-    private javax.swing.JLabel jLabelScriptExecute21;
-    private javax.swing.JLabel jLabelScriptExecute22;
-    private javax.swing.JLabel jLabelScriptExecute23;
-    private javax.swing.JLabel jLabelScriptExecute24;
-    private javax.swing.JLabel jLabelScriptExecute25;
-    private javax.swing.JLabel jLabelScriptExecute26;
-    private javax.swing.JLabel jLabelScriptExecute27;
-    private javax.swing.JLabel jLabelScriptExecute28;
-    private javax.swing.JLabel jLabelScriptExecute29;
-    private javax.swing.JLabel jLabelScriptExecute3;
-    private javax.swing.JLabel jLabelScriptExecute30;
-    private javax.swing.JLabel jLabelScriptExecute31;
-    private javax.swing.JLabel jLabelScriptExecute32;
-    private javax.swing.JLabel jLabelScriptExecute33;
-    private javax.swing.JLabel jLabelScriptExecute34;
-    private javax.swing.JLabel jLabelScriptExecute35;
-    private javax.swing.JLabel jLabelScriptExecute36;
-    private javax.swing.JLabel jLabelScriptExecute4;
-    private javax.swing.JLabel jLabelScriptExecute5;
-    private javax.swing.JLabel jLabelScriptExecute6;
-    private javax.swing.JLabel jLabelScriptExecute7;
-    private javax.swing.JLabel jLabelScriptExecute8;
-    private javax.swing.JLabel jLabelScriptExecute9;
-    private javax.swing.JLabel jLabelScriptText1;
-    private javax.swing.JLabel jLabelScriptText10;
-    private javax.swing.JLabel jLabelScriptText11;
-    private javax.swing.JLabel jLabelScriptText12;
-    private javax.swing.JLabel jLabelScriptText13;
-    private javax.swing.JLabel jLabelScriptText14;
-    private javax.swing.JLabel jLabelScriptText15;
-    private javax.swing.JLabel jLabelScriptText16;
-    private javax.swing.JLabel jLabelScriptText17;
-    private javax.swing.JLabel jLabelScriptText18;
-    private javax.swing.JLabel jLabelScriptText19;
-    private javax.swing.JLabel jLabelScriptText2;
-    private javax.swing.JLabel jLabelScriptText20;
-    private javax.swing.JLabel jLabelScriptText21;
-    private javax.swing.JLabel jLabelScriptText22;
-    private javax.swing.JLabel jLabelScriptText23;
-    private javax.swing.JLabel jLabelScriptText24;
-    private javax.swing.JLabel jLabelScriptText25;
-    private javax.swing.JLabel jLabelScriptText26;
-    private javax.swing.JLabel jLabelScriptText27;
-    private javax.swing.JLabel jLabelScriptText28;
-    private javax.swing.JLabel jLabelScriptText29;
-    private javax.swing.JLabel jLabelScriptText3;
-    private javax.swing.JLabel jLabelScriptText30;
-    private javax.swing.JLabel jLabelScriptText31;
-    private javax.swing.JLabel jLabelScriptText32;
-    private javax.swing.JLabel jLabelScriptText33;
-    private javax.swing.JLabel jLabelScriptText34;
-    private javax.swing.JLabel jLabelScriptText35;
-    private javax.swing.JLabel jLabelScriptText36;
-    private javax.swing.JLabel jLabelScriptText4;
-    private javax.swing.JLabel jLabelScriptText5;
-    private javax.swing.JLabel jLabelScriptText6;
-    private javax.swing.JLabel jLabelScriptText7;
-    private javax.swing.JLabel jLabelScriptText8;
-    private javax.swing.JLabel jLabelScriptText9;
     private javax.swing.JLabel jLabelScriptsFilter;
     private javax.swing.JLabel jLabelType7reverse;
     private javax.swing.JList<String> jListSessions;
@@ -13104,7 +11557,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelSettingsButtons;
     private javax.swing.JPanel jPanelSettingsLinks;
     private javax.swing.JPanel jPanelSettingsMain;
-    private javax.swing.JPanel jPanelSettingsScripts;
     private javax.swing.JPanel jPanelSyncing;
     private javax.swing.JPanel jPanelToolboxScripts;
     private javax.swing.JPanel jPanelType7;
@@ -13155,6 +11607,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldButtonExecute19;
     private javax.swing.JTextField jTextFieldButtonExecute2;
     private javax.swing.JTextField jTextFieldButtonExecute20;
+    private javax.swing.JTextField jTextFieldButtonExecute21;
+    private javax.swing.JTextField jTextFieldButtonExecute22;
+    private javax.swing.JTextField jTextFieldButtonExecute23;
+    private javax.swing.JTextField jTextFieldButtonExecute24;
     private javax.swing.JTextField jTextFieldButtonExecute3;
     private javax.swing.JTextField jTextFieldButtonExecute4;
     private javax.swing.JTextField jTextFieldButtonExecute5;
@@ -13175,6 +11631,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldButtonToolTip19;
     private javax.swing.JTextField jTextFieldButtonToolTip2;
     private javax.swing.JTextField jTextFieldButtonToolTip20;
+    private javax.swing.JTextField jTextFieldButtonToolTip21;
+    private javax.swing.JTextField jTextFieldButtonToolTip22;
+    private javax.swing.JTextField jTextFieldButtonToolTip23;
+    private javax.swing.JTextField jTextFieldButtonToolTip24;
     private javax.swing.JTextField jTextFieldButtonToolTip3;
     private javax.swing.JTextField jTextFieldButtonToolTip4;
     private javax.swing.JTextField jTextFieldButtonToolTip5;
@@ -13270,78 +11730,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPreloadedIP;
     private javax.swing.JTextField jTextFieldPreloadedPingIP;
     private javax.swing.JTextField jTextFieldReferenceFilter;
-    private javax.swing.JTextField jTextFieldScriptExecute1;
-    private javax.swing.JTextField jTextFieldScriptExecute10;
-    private javax.swing.JTextField jTextFieldScriptExecute11;
-    private javax.swing.JTextField jTextFieldScriptExecute12;
-    private javax.swing.JTextField jTextFieldScriptExecute13;
-    private javax.swing.JTextField jTextFieldScriptExecute14;
-    private javax.swing.JTextField jTextFieldScriptExecute15;
-    private javax.swing.JTextField jTextFieldScriptExecute16;
-    private javax.swing.JTextField jTextFieldScriptExecute17;
-    private javax.swing.JTextField jTextFieldScriptExecute18;
-    private javax.swing.JTextField jTextFieldScriptExecute19;
-    private javax.swing.JTextField jTextFieldScriptExecute2;
-    private javax.swing.JTextField jTextFieldScriptExecute20;
-    private javax.swing.JTextField jTextFieldScriptExecute21;
-    private javax.swing.JTextField jTextFieldScriptExecute22;
-    private javax.swing.JTextField jTextFieldScriptExecute23;
-    private javax.swing.JTextField jTextFieldScriptExecute24;
-    private javax.swing.JTextField jTextFieldScriptExecute25;
-    private javax.swing.JTextField jTextFieldScriptExecute26;
-    private javax.swing.JTextField jTextFieldScriptExecute27;
-    private javax.swing.JTextField jTextFieldScriptExecute28;
-    private javax.swing.JTextField jTextFieldScriptExecute29;
-    private javax.swing.JTextField jTextFieldScriptExecute3;
-    private javax.swing.JTextField jTextFieldScriptExecute30;
-    private javax.swing.JTextField jTextFieldScriptExecute31;
-    private javax.swing.JTextField jTextFieldScriptExecute32;
-    private javax.swing.JTextField jTextFieldScriptExecute33;
-    private javax.swing.JTextField jTextFieldScriptExecute34;
-    private javax.swing.JTextField jTextFieldScriptExecute35;
-    private javax.swing.JTextField jTextFieldScriptExecute36;
-    private javax.swing.JTextField jTextFieldScriptExecute4;
-    private javax.swing.JTextField jTextFieldScriptExecute5;
-    private javax.swing.JTextField jTextFieldScriptExecute6;
-    private javax.swing.JTextField jTextFieldScriptExecute7;
-    private javax.swing.JTextField jTextFieldScriptExecute8;
-    private javax.swing.JTextField jTextFieldScriptExecute9;
-    private javax.swing.JTextField jTextFieldScriptText1;
-    private javax.swing.JTextField jTextFieldScriptText10;
-    private javax.swing.JTextField jTextFieldScriptText11;
-    private javax.swing.JTextField jTextFieldScriptText12;
-    private javax.swing.JTextField jTextFieldScriptText13;
-    private javax.swing.JTextField jTextFieldScriptText14;
-    private javax.swing.JTextField jTextFieldScriptText15;
-    private javax.swing.JTextField jTextFieldScriptText16;
-    private javax.swing.JTextField jTextFieldScriptText17;
-    private javax.swing.JTextField jTextFieldScriptText18;
-    private javax.swing.JTextField jTextFieldScriptText19;
-    private javax.swing.JTextField jTextFieldScriptText2;
-    private javax.swing.JTextField jTextFieldScriptText20;
-    private javax.swing.JTextField jTextFieldScriptText21;
-    private javax.swing.JTextField jTextFieldScriptText22;
-    private javax.swing.JTextField jTextFieldScriptText23;
-    private javax.swing.JTextField jTextFieldScriptText24;
-    private javax.swing.JTextField jTextFieldScriptText25;
-    private javax.swing.JTextField jTextFieldScriptText26;
-    private javax.swing.JTextField jTextFieldScriptText27;
-    private javax.swing.JTextField jTextFieldScriptText28;
-    private javax.swing.JTextField jTextFieldScriptText29;
-    private javax.swing.JTextField jTextFieldScriptText3;
-    private javax.swing.JTextField jTextFieldScriptText30;
-    private javax.swing.JTextField jTextFieldScriptText31;
-    private javax.swing.JTextField jTextFieldScriptText32;
-    private javax.swing.JTextField jTextFieldScriptText33;
-    private javax.swing.JTextField jTextFieldScriptText34;
-    private javax.swing.JTextField jTextFieldScriptText35;
-    private javax.swing.JTextField jTextFieldScriptText36;
-    private javax.swing.JTextField jTextFieldScriptText4;
-    private javax.swing.JTextField jTextFieldScriptText5;
-    private javax.swing.JTextField jTextFieldScriptText6;
-    private javax.swing.JTextField jTextFieldScriptText7;
-    private javax.swing.JTextField jTextFieldScriptText8;
-    private javax.swing.JTextField jTextFieldScriptText9;
     private javax.swing.JTextField jTextFieldScriptsFilter;
     private javax.swing.JTextField jTextFieldSecureCRTPath;
     private javax.swing.JTextField jTextFieldTCPTestPort;
