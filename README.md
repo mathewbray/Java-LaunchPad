@@ -30,6 +30,6 @@ Consider using "cmd.exe /c start" (or similar) to execute items within Button, L
 
 ## Sources
 
-[Cisco Vigenere](https://github.com/plajjan/java-CiscoVigenere)
-[zip4j](https://github.com/srikanth-lingala/zip4j)
-[Apache NTP](https://commons.apache.org/proper/commons-net/javadocs/api-3.6/org/apache/commons/net/ntp/NTPUDPClient.html)
+[Cisco Vigenere](https://github.com/plajjan/java-CiscoVigenere)  
+[zip4j](https://github.com/srikanth-lingala/zip4j)  
+[Apache NTP](https://commons.apache.org/proper/commons-net/javadocs/api-3.6/org/apache/commons/net/ntp/NTPUDPClient.html)  
