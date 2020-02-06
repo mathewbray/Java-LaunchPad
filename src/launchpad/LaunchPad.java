@@ -91,7 +91,7 @@ public class LaunchPad {
 "Button09Icon=infoblox.png",
 "Button09StrExec=",
 "Button09ToolTip=",
-"Button10Icon=cisco.png",
+"Button10Icon=ciscoapicem.png",
 "Button10StrExec=",
 "Button10ToolTip=",
 "Button11Icon=alert.png",

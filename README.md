@@ -2,7 +2,10 @@
 
 One place to launch any connection, link, script, reference, or application.
 
-![Main](https://github.com/mathewbray/Java-LaunchPad/raw/master/Main.png)
+![Main](https://github.com/mathewbray/Java-LaunchPad/raw/master/readme/Main.png =294x331)
+![Settings](https://github.com/mathewbray/Java-LaunchPad/raw/master/readme/Settings.png =294x331)
+
+
 
 ## Prerequisites
 
