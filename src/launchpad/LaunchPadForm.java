@@ -6,6 +6,7 @@
 package launchpad;
 
 import java.awt.AWTException;
+import java.awt.Adjustable;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -16,6 +17,8 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -46,6 +49,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.MessageDigest;
 import java.text.Collator;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,12 +74,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.BadLocationException;
 import javax.xml.bind.DatatypeConverter;
 import static launchpad.LaunchPadForm.HashGenerate.toHex;
 import launchpad.Type7Reverse.CiscoVigenere;
@@ -86,6 +92,8 @@ import net.lingala.zip4j.model.ZipParameters;
 import net.lingala.zip4j.progress.ProgressMonitor;
 import net.lingala.zip4j.util.Zip4jConstants;
 import org.apache.commons.net.ntp.NTPUDPClient;
+import org.apache.commons.net.ntp.NtpUtils;
+import org.apache.commons.net.ntp.NtpV3Packet;
 import org.apache.commons.net.ntp.TimeInfo;
 import org.apache.commons.net.ntp.TimeStamp;
 
@@ -1002,16 +1010,12 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonHashCopySHA1 = new javax.swing.JButton();
         jButtonHashCopySHA256 = new javax.swing.JButton();
         jPanelNTPTime = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
-        jButtonGetNtpTime = new javax.swing.JButton();
         jTextFieldNtpServer = new javax.swing.JTextField();
-        jTextFieldNtpAtomicTime = new javax.swing.JTextField();
-        jTextFieldNtpSystemTime = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
         jLabelGetNTP1 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        jScrollPaneNTPMessage = new javax.swing.JScrollPane();
         jTextAreaNTPMessage = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
         jPanelWebJavaDocs = new javax.swing.JPanel();
         jPanelDocuments = new javax.swing.JPanel();
         jButton24 = new javax.swing.JButton();
@@ -3498,60 +3502,40 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jPanelNTPTime.setLayout(null);
 
-        jLabel21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabel21.setText("Atomic Time:");
-        jPanelNTPTime.add(jLabel21);
-        jLabel21.setBounds(20, 90, 90, 20);
-
-        jButtonGetNtpTime.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButtonGetNtpTime.setText("Get Time!");
-        jButtonGetNtpTime.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGetNtpTimeActionPerformed(evt);
-            }
-        });
-        jPanelNTPTime.add(jButtonGetNtpTime);
-        jButtonGetNtpTime.setBounds(439, 37, 100, 23);
-
         jTextFieldNtpServer.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jTextFieldNtpServer.setText("pool.ntp.org");
         jPanelNTPTime.add(jTextFieldNtpServer);
-        jTextFieldNtpServer.setBounds(140, 40, 290, 20);
-
-        jTextFieldNtpAtomicTime.setEditable(false);
-        jTextFieldNtpAtomicTime.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jPanelNTPTime.add(jTextFieldNtpAtomicTime);
-        jTextFieldNtpAtomicTime.setBounds(110, 90, 440, 21);
-
-        jTextFieldNtpSystemTime.setEditable(false);
-        jTextFieldNtpSystemTime.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jPanelNTPTime.add(jTextFieldNtpSystemTime);
-        jTextFieldNtpSystemTime.setBounds(110, 70, 440, 21);
+        jTextFieldNtpServer.setBounds(140, 50, 290, 20);
 
         jLabel26.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabel26.setText("Server:");
         jPanelNTPTime.add(jLabel26);
-        jLabel26.setBounds(80, 40, 90, 20);
-
-        jLabel27.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jLabel27.setText("System Time:");
-        jPanelNTPTime.add(jLabel27);
-        jLabel27.setBounds(20, 70, 90, 20);
+        jLabel26.setBounds(80, 50, 90, 20);
 
         jLabelGetNTP1.setFont(new java.awt.Font("Arial Unicode MS", 0, 20)); // NOI18N
         jLabelGetNTP1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelGetNTP1.setText("Get NTP Time");
         jPanelNTPTime.add(jLabelGetNTP1);
-        jLabelGetNTP1.setBounds(10, 0, 550, 40);
+        jLabelGetNTP1.setBounds(10, 10, 550, 40);
 
         jTextAreaNTPMessage.setEditable(false);
         jTextAreaNTPMessage.setBackground(new java.awt.Color(240, 240, 240));
         jTextAreaNTPMessage.setColumns(20);
+        jTextAreaNTPMessage.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
         jTextAreaNTPMessage.setRows(5);
-        jScrollPane4.setViewportView(jTextAreaNTPMessage);
+        jScrollPaneNTPMessage.setViewportView(jTextAreaNTPMessage);
 
-        jPanelNTPTime.add(jScrollPane4);
-        jScrollPane4.setBounds(20, 120, 530, 220);
+        jPanelNTPTime.add(jScrollPaneNTPMessage);
+        jScrollPaneNTPMessage.setBounds(20, 90, 530, 260);
+
+        jButton1.setText("Get Time!");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanelNTPTime.add(jButton1);
+        jButton1.setBounds(440, 50, 110, 20);
 
         jTabbedPaneToolBox.addTab("NTP", jPanelNTPTime);
 
@@ -7610,86 +7594,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jSliderListTextSizeStateChanged
 
-    private void jButtonGetNtpTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetNtpTimeActionPerformed
-        //- NTP UDP CLIENT METHOD
-        String SERVER_NAME = jTextFieldNtpServer.getText();
-        //String SERVER_NAME = "pool.ntp.org";
-        NTPUDPClient timeClient = new NTPUDPClient();
-        // We want to timeout if a response takes longer than 10 seconds
-        timeClient.setDefaultTimeout(10000);
-
-        InetAddress inetAddress = null;
-        try {
-            inetAddress = InetAddress.getByName(SERVER_NAME);
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Failed - Couldn't find server.");
-            jTextFieldNtpSystemTime.setText("Failed - Couldn't find server: " + SERVER_NAME);
-            jTextFieldNtpAtomicTime.setText("");
-        }
-        TimeInfo timeInfo = null;
-        try {
-            timeInfo = timeClient.getTime(inetAddress);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Failed - Found server, but no time received. ");
-            jTextFieldNtpSystemTime.setText("Failed - Found server: " + SERVER_NAME + ", but no time received. ");
-            jTextFieldNtpAtomicTime.setText("");
-
-        }
-        long returnTime = timeInfo.getReturnTime();
-        TimeStamp destNtpTime = TimeStamp.getNtpTime(returnTime);
-        System.out.println("System time:\t" + destNtpTime + "  " + destNtpTime.toDateString());
-        jTextFieldNtpSystemTime.setText("" + destNtpTime + "  " + destNtpTime.toDateString());
-
-        TimeStamp currentNtpTime = TimeStamp.getCurrentTime();
-        System.out.println("Atomic time:\t" + currentNtpTime + "  " + currentNtpTime.toDateString());
-        jTextFieldNtpAtomicTime.setText("" + currentNtpTime + "  " + currentNtpTime.toDateString());
-        
-        
-        // NTPMESSAGE.JAVA METHOD
-        // Send message
-        DatagramSocket socket = null;
-        try {
-            socket = new DatagramSocket();
-        } catch (SocketException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            jTextAreaNTPMessage.setText("Socket not opened.");
-
-        }
-        InetAddress address = null;
-        try {
-            address = InetAddress.getByName(jTextFieldNtpServer.getText());
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            jTextAreaNTPMessage.setText("No IP received from DNS.");
-        }
-        byte[] buf = new NtpMessage().toByteArray();
-        DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 123);
-        try {
-            socket.send(packet);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            jTextAreaNTPMessage.setText("Nothing sent.");
-        }
-
-        try {
-            // Get response
-            socket.receive(packet);
-        } catch (IOException ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-            jTextAreaNTPMessage.setText("Nothing received.");
-
-        }
-        NtpMessage msg = new NtpMessage(packet.getData());
-        //double offset = ((msg.receiveTimestamp - msg.originateTimestamp) + (msg.transmitTimestamp - destinationTimestamp)) / 2;
-
-        System.out.println(msg.toString());
-        jTextAreaNTPMessage.setText(msg.toString());
-        
-        
-    }//GEN-LAST:event_jButtonGetNtpTimeActionPerformed
-
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
@@ -9731,7 +9635,11 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldLinkExecute1KeyReleased
 
     private void jButton44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton44ActionPerformed
-        // TODO add your handling code here:
+        try {
+            restartApplication();
+        } catch (URISyntaxException | IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton44ActionPerformed
 
     private void jTextFieldLinkText2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText2KeyReleased
@@ -10126,6 +10034,37 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private void jTextFieldButtonToolTip24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip24KeyReleased
         PropertyHandler.getInstance().setValue("Button24ToolTip",jTextFieldButtonToolTip24.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip24KeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String args = jTextFieldNtpServer.getText();
+
+        if (args.length() == 0) {
+            System.err.println("No server entered.");
+            jTextAreaNTPMessage.setText("No server entered.");
+            return;
+        }
+
+        NTPUDPClient client = new NTPUDPClient();
+        // We want to timeout if a response takes longer than 10 seconds
+        client.setDefaultTimeout(10000);
+        try {
+            client.open();
+//            for (String arg : args)
+//            {
+                System.out.println();
+                try {
+                    InetAddress hostAddr = InetAddress.getByName(args);
+                    System.out.println("> " + hostAddr.getHostName() + "/" + hostAddr.getHostAddress());
+                    jTextAreaNTPMessage.setText("> " + hostAddr.getHostName() + "/" + hostAddr.getHostAddress());
+                    TimeInfo info = client.getTime(hostAddr);
+                    processResponseNTP(info);
+                } catch (IOException ioe) {
+                }
+//            }
+        } catch (SocketException e) {
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
     /**
@@ -10734,7 +10673,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             getRootPane().setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, new Color(0,0,0)));           
         }         
     }
-
+    
     private void loadHostIPMAC() {
         //- Get Hostname IP and MAC
         try {
@@ -11093,6 +11032,136 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             jButtonExecuteFunctionPKI.doClick();
         }
     }
+    
+    private static final NumberFormat NUMBERFORMATNTP = new java.text.DecimalFormat("0.00");
+
+    
+    public void processResponseNTP(TimeInfo info) {
+        NtpV3Packet message = info.getMessage();
+        int stratum = message.getStratum();
+        String refType;
+        if (stratum <= 0) {
+            refType = "(Unspecified or Unavailable)";
+        } else if (stratum == 1) {
+            refType = "(Primary Reference; e.g., GPS)"; // GPS, radio clock, etc.
+        } else {
+            refType = "(Secondary Reference; e.g. via NTP or SNTP)";
+        }
+        // stratum should be 0..15...
+        System.out.println(" Stratum: " + stratum + " " + refType);
+        addToNTPLogWindow(" Stratum: " + stratum + " " + refType);
+        int version = message.getVersion();
+        int li = message.getLeapIndicator();
+        System.out.println(" leap=" + li + ", version=" + version + ", precision=" + message.getPrecision());
+        addToNTPLogWindow(" leap=" + li + ", version=" + version + ", precision=" + message.getPrecision());
+
+        System.out.println(" mode: " + message.getModeName() + " (" + message.getMode() + ")");
+        addToNTPLogWindow(" mode: " + message.getModeName() + " (" + message.getMode() + ")");
+        int poll = message.getPoll();
+        // poll value typically btwn MINPOLL (4) and MAXPOLL (14)
+        System.out.println(" poll: " + (poll <= 0 ? 1 : (int) Math.pow(2, poll)) + " seconds" + " (2 ** " + poll + ")");
+        addToNTPLogWindow(" poll: " + (poll <= 0 ? 1 : (int) Math.pow(2, poll)) + " seconds" + " (2 ** " + poll + ")");        
+        double disp = message.getRootDispersionInMillisDouble();
+        System.out.println(" rootdelay=" + NUMBERFORMATNTP.format(message.getRootDelayInMillisDouble()) + ", rootdispersion(ms): " + NUMBERFORMATNTP.format(disp));
+        addToNTPLogWindow(" rootdelay=" + NUMBERFORMATNTP.format(message.getRootDelayInMillisDouble()) + ", rootdispersion(ms): " + NUMBERFORMATNTP.format(disp));
+        int refId = message.getReferenceId();
+        String refAddr = NtpUtils.getHostAddress(refId);
+        String refName = null;
+        if (refId != 0) {
+            if (refAddr.equals("127.127.1.0")) {
+                refName = "LOCAL"; // This is the ref address for the Local Clock
+            } else if (stratum >= 2) {
+                // If reference id has 127.127 prefix then it uses its own reference clock
+                // defined in the form 127.127.clock-type.unit-num (e.g. 127.127.8.0 mode 5
+                // for GENERIC DCF77 AM; see refclock.htm from the NTP software distribution.
+                if (!refAddr.startsWith("127.127")) {
+                    try {
+                        InetAddress addr = InetAddress.getByName(refAddr);
+                        String name = addr.getHostName();
+                        if (name != null && !name.equals(refAddr)) {
+                            refName = name;
+                        }
+                    } catch (UnknownHostException e) {
+                        // some stratum-2 servers sync to ref clock device but fudge stratum level higher... (e.g. 2)
+                        // ref not valid host maybe it's a reference clock name?
+                        // otherwise just show the ref IP address.
+                        refName = NtpUtils.getReferenceClock(message);
+                    }
+                }
+            } else if (version >= 3 && (stratum == 0 || stratum == 1)) {
+                refName = NtpUtils.getReferenceClock(message);
+                // refname usually have at least 3 characters (e.g. GPS, WWV, LCL, etc.)
+            }
+            // otherwise give up on naming the beast...
+        }
+        if (refName != null && refName.length() > 1) {
+            refAddr += " (" + refName + ")";
+        }
+        System.out.println(" Reference Identifier:\t" + refAddr);
+        addToNTPLogWindow(" Reference Identifier:\t" + refAddr);        
+
+        TimeStamp refNtpTime = message.getReferenceTimeStamp();
+        System.out.println(" Reference Timestamp:\t" + refNtpTime + "  " + refNtpTime.toDateString());
+        addToNTPLogWindow(" Reference Timestamp:\t" + refNtpTime + "  " + refNtpTime.toDateString());        
+
+        // Originate Time is time request sent by client (t1)
+        TimeStamp origNtpTime = message.getOriginateTimeStamp();
+        System.out.println(" Originate Timestamp:\t" + origNtpTime + "  " + origNtpTime.toDateString());
+        addToNTPLogWindow(" Originate Timestamp:\t" + origNtpTime + "  " + origNtpTime.toDateString());        
+
+        long destTime = info.getReturnTime();
+        // Receive Time is time request received by server (t2)
+        TimeStamp rcvNtpTime = message.getReceiveTimeStamp();
+        System.out.println(" Receive Timestamp:\t" + rcvNtpTime + "  " + rcvNtpTime.toDateString());
+        addToNTPLogWindow(" Receive Timestamp:\t" + rcvNtpTime + "  " + rcvNtpTime.toDateString());        
+
+        // Transmit time is time reply sent by server (t3)
+        TimeStamp xmitNtpTime = message.getTransmitTimeStamp();
+        System.out.println(" Transmit Timestamp:\t" + xmitNtpTime + "  " + xmitNtpTime.toDateString());
+        addToNTPLogWindow(" Transmit Timestamp:\t" + xmitNtpTime + "  " + xmitNtpTime.toDateString());        
+
+        // Destination time is time reply received by client (t4)
+        TimeStamp destNtpTime = TimeStamp.getNtpTime(destTime);
+        System.out.println(" Destination Timestamp:\t" + destNtpTime + "  " + destNtpTime.toDateString());
+        addToNTPLogWindow(" Destination Timestamp:\t" + destNtpTime + "  " + destNtpTime.toDateString());        
+
+        info.computeDetails(); // compute offset/delay if not already done
+        Long offsetValue = info.getOffset();
+        Long delayValue = info.getDelay();
+        String delay = (delayValue == null) ? "N/A" : delayValue.toString();
+        String offset = (offsetValue == null) ? "N/A" : offsetValue.toString();
+
+        System.out.println(" Roundtrip delay(ms)=" + delay + ", clock offset(ms)=" + offset); // offset in ms
+        addToNTPLogWindow(" Roundtrip delay(ms)=" + delay + ", clock offset(ms)=" + offset);        
+
+    }
+    
+    private void addToNTPLogWindow(String strLogLine) {
+            try {
+                jTextAreaNTPMessage.getDocument().insertString(jTextAreaNTPMessage.getDocument().getEndPosition().getOffset(),strLogLine + "\n", null);
+            } catch (BadLocationException ex) {
+                Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println(strLogLine);
+            //- Scroll to bottom
+            scrollToBottom(jScrollPaneNTPMessage);
+            //jScrollPaneLog.update(jScrollPaneLog.getGraphics());            
+            jTextAreaNTPMessage.update(jTextAreaNTPMessage.getGraphics());
+            scrollToBottom(jScrollPaneNTPMessage);    
+    }
+    
+    private void scrollToBottom(JScrollPane scrollPane) {
+        JScrollBar verticalBar = scrollPane.getVerticalScrollBar();
+        AdjustmentListener downScroller = new AdjustmentListener() {
+            @Override
+            public void adjustmentValueChanged(AdjustmentEvent e) {
+                Adjustable adjustable = e.getAdjustable();
+                adjustable.setValue(adjustable.getMaximum());
+                verticalBar.removeAdjustmentListener(this);
+            }
+        };
+        verticalBar.addAdjustmentListener(downScroller);
+    }
   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -11100,6 +11169,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroupLanguage;
     private javax.swing.ButtonGroup buttonGroupPWauthEnableDisable;
     private javax.swing.ButtonGroup buttonGroupSSHClient;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
@@ -11133,7 +11203,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonExecuteFunctionSSH;
     private javax.swing.JButton jButtonFolderToZip;
     private javax.swing.JButton jButtonGenerateHash;
-    private javax.swing.JButton jButtonGetNtpTime;
     private javax.swing.JButton jButtonHashCopyMD5;
     private javax.swing.JButton jButtonHashCopySHA1;
     private javax.swing.JButton jButtonHashCopySHA256;
@@ -11333,13 +11402,11 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
@@ -11544,7 +11611,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButtonPWauthDisabled;
     private javax.swing.JRadioButton jRadioButtonPWauthEnabled;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPaneNTPMessage;
     private javax.swing.JScrollPane jScrollPaneSessionList;
     private javax.swing.JScrollPane jScrollPaneSettingsButtons;
     private javax.swing.JScrollPane jScrollPaneSettingsLinks;
@@ -11692,9 +11759,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldLinkText8;
     private javax.swing.JTextField jTextFieldLinkText9;
     private javax.swing.JTextField jTextFieldLinksFilter;
-    private javax.swing.JTextField jTextFieldNtpAtomicTime;
     private javax.swing.JTextField jTextFieldNtpServer;
-    private javax.swing.JTextField jTextFieldNtpSystemTime;
     private javax.swing.JTextField jTextFieldPingHostname;
     private javax.swing.JTextField jTextFieldPreloadedIP;
     private javax.swing.JTextField jTextFieldPreloadedPingIP;

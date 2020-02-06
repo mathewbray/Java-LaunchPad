@@ -27,3 +27,9 @@ Within the properties file, are all the resources to customize LaunchPad.
 ## Notes
 
 Consider using "cmd.exe /c start" (or similar) to execute items within Button, Link, Reference, and Script sections.  
+
+## Sources
+
+[Cisco Vigenere](https://github.com/plajjan/java-CiscoVigenere)
+[zip4j](https://github.com/srikanth-lingala/zip4j)
+[Apache NTP](https://commons.apache.org/proper/commons-net/javadocs/api-3.6/org/apache/commons/net/ntp/NTPUDPClient.html)

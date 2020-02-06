@@ -5,6 +5,13 @@
  */
 package launchpad;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Mathew
@@ -30,6 +37,25 @@ public class JPanelSettingsReferences extends javax.swing.JPanel {
         //jComboBoxSettingsReferenceColor.setRenderer(new MyCellRenderer());
         ////jComboBoxSettingsReferenceColor.revalidate();        
         ////jComboBoxSettingsReferenceColor.repaint();        
+    }
+    
+    public void restartApplication() throws URISyntaxException, IOException {
+        final String javaBin = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
+        final File currentJar = new File(LaunchPad.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+
+        /* is it a jar file? */
+        if(!currentJar.getName().endsWith(".jar"))
+          return;
+
+        /* Build command: java -jar application.jar */
+        final ArrayList<String> command = new ArrayList<String>();
+        command.add(javaBin);
+        command.add("-jar");
+        command.add(currentJar.getPath());
+
+        final ProcessBuilder builder = new ProcessBuilder(command);
+        builder.start();
+        System.exit(0);
     }
 
 
@@ -2163,7 +2189,11 @@ public class JPanelSettingsReferences extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextFieldReferenceOnline1KeyReleased
 
     private void jButton46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton46ActionPerformed
-        // TODO add your handling code here:
+        try {
+            restartApplication();
+        } catch (URISyntaxException | IOException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton46ActionPerformed
 
     private void jTextFieldReferenceOffline1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline1KeyReleased
