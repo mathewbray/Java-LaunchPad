@@ -444,11 +444,11 @@ public class LaunchPad {
                     System.out.println(i);
             }
             else {
-                System.out.println("Property:FileLaunchPadRemote not found");
+                System.out.println("Property FileLaunchPadRemote: not found");
             }
         }
         else {
-            System.out.println("Property:FileLaunchPadLocal not found");
+            System.out.println("Property FileLaunchPadLocal: not found");
         }
         //- If newer then run update, if older just open App
         if (i > 0) {
@@ -471,9 +471,4 @@ public class LaunchPad {
             form.setVisible(true);
         }
     }
-      
-        //                                            if (!form.isFocused()) {
-    //                                                form.setVisible(false);
-    //                                                form.setVisible(true);
-    //                                            }
 }
