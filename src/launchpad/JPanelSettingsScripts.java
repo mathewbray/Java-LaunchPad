@@ -199,6 +199,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jTextFieldScriptText36 = new javax.swing.JTextField();
         jLabelScriptExecute36 = new javax.swing.JLabel();
         jTextFieldScriptExecute36 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(400, 2410));
 
@@ -225,6 +226,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
             }
         });
 
+        jButton45.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton45.setText("Restart");
         jButton45.setMargin(null);
         jButton45.addActionListener(new java.awt.event.ActionListener() {
@@ -1038,6 +1040,9 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        jLabel1.setText("Note: These settings may be overwritten by local policy");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -1048,10 +1053,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelScriptText1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptText1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 292, Short.MAX_VALUE)
-                        .addComponent(jButton45, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldScriptText1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelScriptExecute1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1335,14 +1337,20 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelScriptExecute36, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldScriptExecute36)))
+                        .addComponent(jTextFieldScriptExecute36))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton45)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton45, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton45, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldScriptText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2011,6 +2019,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton45;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelScriptExecute1;
     private javax.swing.JLabel jLabelScriptExecute10;
     private javax.swing.JLabel jLabelScriptExecute11;

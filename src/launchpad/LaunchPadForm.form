@@ -5363,10 +5363,12 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel1" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jButton33" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="294" max="32767" attributes="0"/>
-                                      <Component id="jButton40" min="-2" pref="98" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jButton40" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabelButtonToolTip2" min="-2" pref="60" max="-2" attributes="0"/>
@@ -5380,7 +5382,7 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jComboBoxButtonIcon2" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jComboBoxButtonIcon2" alignment="0" pref="473" max="32767" attributes="0"/>
                                           <Component id="jTextFieldButtonExecute2" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -5758,9 +5760,10 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButton33" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jButton40" min="-2" pref="24" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButton40" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Component id="jButton33" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -6133,7 +6136,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="View All Available Icons"/>
+                        <Property name="text" type="java.lang.String" value="Icon List"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton33ActionPerformed"/>
@@ -7581,6 +7584,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton40">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Arial Unicode MS" size="11" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Restart"/>
                       </Properties>
                       <Events>
@@ -7875,6 +7881,14 @@
                         <Property name="text" type="java.lang.String" value="Icon:"/>
                       </Properties>
                     </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel1">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Arial Unicode MS" size="12" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Note: These settings may be overwritten by local policy"/>
+                      </Properties>
+                    </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>
@@ -7914,11 +7928,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jLabelLinkText1" min="-2" pref="60" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jTextFieldLinkText1" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="0" pref="432" max="32767" attributes="0"/>
-                                      <Component id="jButton44" min="-2" pref="98" max="-2" attributes="0"/>
+                                      <Component id="jTextFieldLinkText1" pref="473" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabelLinkText2" min="-2" pref="60" max="-2" attributes="0"/>
@@ -8275,6 +8285,11 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jTextFieldLinkExecute2" max="32767" attributes="0"/>
                                   </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jLabel2" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jButton44" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -8284,7 +8299,10 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton44" min="-2" pref="24" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButton44" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jTextFieldLinkText1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -8695,6 +8713,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton44">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Arial Unicode MS" size="11" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="Restart"/>
                         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
                           <Insets value="null"/>
@@ -10138,6 +10159,14 @@
                       <Events>
                         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldLinkText36KeyReleased"/>
                       </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel2">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Arial Unicode MS" size="12" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Note: These settings may be overwritten by local policy"/>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>

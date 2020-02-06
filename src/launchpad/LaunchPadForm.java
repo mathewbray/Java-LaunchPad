@@ -1232,6 +1232,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelButtonToolTip24 = new javax.swing.JLabel();
         jTextFieldButtonToolTip24 = new javax.swing.JTextField();
         jLabelButtonIcon24 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPaneSettingsLinks = new javax.swing.JScrollPane();
         jPanelSettingsLinks = new javax.swing.JPanel();
         jLabelLinkText1 = new javax.swing.JLabel();
@@ -1379,6 +1380,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldLinkExecute36 = new javax.swing.JTextField();
         jLabelLinkText36 = new javax.swing.JLabel();
         jTextFieldLinkText36 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPaneSettingsScripts = new javax.swing.JScrollPane();
         jScrollPaneSettingsReferences = new javax.swing.JScrollPane();
 
@@ -4184,7 +4186,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelSettingsButtons.setPreferredSize(new java.awt.Dimension(555, 2300));
 
         jButton33.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton33.setText("View All Available Icons");
+        jButton33.setText("Icon List");
         jButton33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton33ActionPerformed(evt);
@@ -4931,6 +4933,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelButtonIcon20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonIcon20.setText("Icon:");
 
+        jButton40.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton40.setText("Restart");
         jButton40.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -5086,6 +5089,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelButtonIcon24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelButtonIcon24.setText("Icon:");
 
+        jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        jLabel1.setText("Note: These settings may be overwritten by local policy");
+
         javax.swing.GroupLayout jPanelSettingsButtonsLayout = new javax.swing.GroupLayout(jPanelSettingsButtons);
         jPanelSettingsButtons.setLayout(jPanelSettingsButtonsLayout);
         jPanelSettingsButtonsLayout.setHorizontalGroup(
@@ -5094,9 +5100,11 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton33)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
-                        .addComponent(jButton40, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton40))
                     .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jLabelButtonToolTip2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -5107,7 +5115,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                             .addComponent(jLabelButtonIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxButtonIcon2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxButtonIcon2, 0, 473, Short.MAX_VALUE)
                             .addComponent(jTextFieldButtonExecute2)))
                     .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                         .addComponent(jLabelButtonToolTip3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5389,9 +5397,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelSettingsButtonsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton40, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton33)
-                    .addComponent(jButton40, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelSettingsButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldButtonToolTip1)
@@ -5720,6 +5729,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jButton44.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton44.setText("Restart");
         jButton44.setMargin(null);
         jButton44.addActionListener(new java.awt.event.ActionListener() {
@@ -6533,6 +6543,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        jLabel2.setText("Note: These settings may be overwritten by local policy");
+
         javax.swing.GroupLayout jPanelSettingsLinksLayout = new javax.swing.GroupLayout(jPanelSettingsLinks);
         jPanelSettingsLinks.setLayout(jPanelSettingsLinksLayout);
         jPanelSettingsLinksLayout.setHorizontalGroup(
@@ -6543,10 +6556,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                     .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
                         .addComponent(jLabelLinkText1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldLinkText1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSettingsLinksLayout.createSequentialGroup()
-                        .addGap(0, 432, Short.MAX_VALUE)
-                        .addComponent(jButton44, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldLinkText1, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE))
                     .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
                         .addComponent(jLabelLinkText2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -6830,14 +6840,20 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                     .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
                         .addComponent(jLabelLinkExecute2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldLinkExecute2)))
+                        .addComponent(jTextFieldLinkExecute2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSettingsLinksLayout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton44)))
                 .addContainerGap())
         );
         jPanelSettingsLinksLayout.setVerticalGroup(
             jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelSettingsLinksLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton44, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton44, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelSettingsLinksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldLinkText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -11382,10 +11398,12 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxSessionDoubleClick;
     private javax.swing.JComboBox<String> jComboBoxSessionEnterPress;
     private javax.swing.JComboBox<String> jComboBoxZipEncMethod;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;

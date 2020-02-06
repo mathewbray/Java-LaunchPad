@@ -267,6 +267,7 @@ public class JPanelSettingsReferences extends javax.swing.JPanel {
         jLabelReferenceOffline33 = new javax.swing.JLabel();
         jLabelReferenceText33 = new javax.swing.JLabel();
         jTextFieldReferenceText33 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(400, 3120));
 
@@ -293,6 +294,7 @@ public class JPanelSettingsReferences extends javax.swing.JPanel {
             }
         });
 
+        jButton46.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton46.setText("Restart");
         jButton46.setMargin(null);
         jButton46.addActionListener(new java.awt.event.ActionListener() {
@@ -1433,6 +1435,9 @@ public class JPanelSettingsReferences extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        jLabel1.setText("Note: These settings may be overwritten by local policy");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -1440,9 +1445,6 @@ public class JPanelSettingsReferences extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 282, Short.MAX_VALUE)
-                        .addComponent(jButton46, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabelReferenceOffline1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1460,7 +1462,7 @@ public class JPanelSettingsReferences extends javax.swing.JPanel {
                             .addComponent(jLabelReferenceText2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldReferenceOnline2)
+                            .addComponent(jTextFieldReferenceOnline2, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
                             .addComponent(jTextFieldReferenceOffline2)
                             .addComponent(jTextFieldReferenceText2)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -1772,14 +1774,20 @@ public class JPanelSettingsReferences extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldReferenceOnline33)
                             .addComponent(jTextFieldReferenceOffline33)
-                            .addComponent(jTextFieldReferenceText33))))
+                            .addComponent(jTextFieldReferenceText33)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton46)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton46, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton46, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldReferenceText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2176,7 +2184,7 @@ public class JPanelSettingsReferences extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextFieldReferenceOffline33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelReferenceOffline33, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -2691,6 +2699,7 @@ public class JPanelSettingsReferences extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton46;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelReferenceOffline1;
     private javax.swing.JLabel jLabelReferenceOffline10;
     private javax.swing.JLabel jLabelReferenceOffline11;
