@@ -1,6 +1,6 @@
 # LaunchPad 
 
-One place to launch any connection, link, script, reference, or application.
+One place to launch any connection, link, script, reference, or application.  Uses SecureCRT for SSH.
 
 ![Main](https://github.com/mathewbray/Java-LaunchPad/raw/master/readme/Main.png)  
 ![Settings](https://github.com/mathewbray/Java-LaunchPad/raw/master/readme/Settings.png)
