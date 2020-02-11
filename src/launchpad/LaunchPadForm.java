@@ -34,6 +34,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -10781,11 +10782,19 @@ scroll.setPreferredSize(new Dimension(800, 500));
     }
      
     //- Get local IP
-    private static String getIPAddress(){
-         try{
-            InetAddress inetaddress=InetAddress.getLocalHost();  //Get LocalHost refrence
-            String ip = inetaddress.getHostAddress();  // Get Host IP Address
-            return ip;   // return IP Address
+    private static String getIPAddress() throws SocketException {
+        //Old IP Method
+//         try{
+//            InetAddress inetaddress=InetAddress.getLocalHost();  //Get LocalHost refrence
+//            String ip = inetaddress.getHostAddress();  // Get Host IP Address
+//            return ip;   // return IP Address
+//        }
+        //- Get outbound IP
+
+        try(final DatagramSocket socket = new DatagramSocket()){
+            socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
+            String ip = socket.getLocalAddress().getHostAddress();
+            return ip;
         }
         catch(UnknownHostException e){ 
             return null;
