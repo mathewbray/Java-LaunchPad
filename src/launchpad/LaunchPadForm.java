@@ -1105,6 +1105,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxSessionDoubleClick = new javax.swing.JComboBox<>();
         jLabelListTextSize4 = new javax.swing.JLabel();
         jComboBoxSessionEnterPress = new javax.swing.JComboBox<>();
+        jLabelEnablePWauth5 = new javax.swing.JLabel();
+        jTextFieldSettingPreferredIpTertiary = new javax.swing.JTextField();
+        jTextFieldSettingPreferredIpPrimary = new javax.swing.JTextField();
+        jTextFieldSettingPreferredIpSecondary = new javax.swing.JTextField();
         jButtonScriptUpdateLaunchPad = new javax.swing.JButton();
         jButtonViewExampleUpdateScript = new javax.swing.JButton();
         jScrollPaneSettingsButtons = new javax.swing.JScrollPane();
@@ -3525,7 +3529,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelNTPTime.setLayout(null);
 
         jTextFieldNtpServer.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldNtpServer.setText("pool.ntp.org");
+        jTextFieldNtpServer.setText("tick.usno.navy.mil");
         jPanelNTPTime.add(jTextFieldNtpServer);
         jTextFieldNtpServer.setBounds(140, 50, 290, 20);
 
@@ -4107,9 +4111,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jButton28);
-        jButton28.setBounds(10, 170, 170, 20);
+        jButton28.setBounds(10, 210, 170, 20);
 
-        jButton34.setBackground(new java.awt.Color(255, 255, 255));
         jButton34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton34.setText("View Shared Properties File");
         jButton34.addActionListener(new java.awt.event.ActionListener() {
@@ -4118,7 +4121,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jButton34);
-        jButton34.setBounds(190, 170, 170, 20);
+        jButton34.setBounds(190, 210, 170, 20);
 
         jButton35.setBackground(new java.awt.Color(204, 204, 255));
         jButton35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -4129,13 +4132,14 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jButton35);
-        jButton35.setBounds(370, 170, 170, 20);
+        jButton35.setBounds(370, 210, 170, 20);
 
         jLabelEnablePWauth2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelEnablePWauth2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelEnablePWauth2.setText("Classification:");
+        jLabelEnablePWauth2.setText("Preferred IP Prefix:");
+        jLabelEnablePWauth2.setToolTipText("IP prefixes that will be preferred when multiple network interfaces exist.");
         jPanel4.add(jLabelEnablePWauth2);
-        jLabelEnablePWauth2.setBounds(20, 140, 100, 20);
+        jLabelEnablePWauth2.setBounds(20, 170, 100, 20);
 
         jTextFieldSecureCRTPath.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4202,8 +4206,38 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanel4.add(jComboBoxSessionEnterPress);
         jComboBoxSessionEnterPress.setBounds(320, 80, 62, 20);
 
+        jLabelEnablePWauth5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jLabelEnablePWauth5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelEnablePWauth5.setText("Classification:");
+        jPanel4.add(jLabelEnablePWauth5);
+        jLabelEnablePWauth5.setBounds(20, 140, 100, 20);
+
+        jTextFieldSettingPreferredIpTertiary.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldSettingPreferredIpTertiaryKeyReleased(evt);
+            }
+        });
+        jPanel4.add(jTextFieldSettingPreferredIpTertiary);
+        jTextFieldSettingPreferredIpTertiary.setBounds(350, 170, 100, 20);
+
+        jTextFieldSettingPreferredIpPrimary.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldSettingPreferredIpPrimaryKeyReleased(evt);
+            }
+        });
+        jPanel4.add(jTextFieldSettingPreferredIpPrimary);
+        jTextFieldSettingPreferredIpPrimary.setBounds(130, 170, 100, 20);
+
+        jTextFieldSettingPreferredIpSecondary.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldSettingPreferredIpSecondaryKeyReleased(evt);
+            }
+        });
+        jPanel4.add(jTextFieldSettingPreferredIpSecondary);
+        jTextFieldSettingPreferredIpSecondary.setBounds(240, 170, 100, 20);
+
         jPanelSettingsMain.add(jPanel4);
-        jPanel4.setBounds(10, 170, 550, 200);
+        jPanel4.setBounds(10, 170, 550, 280);
 
         jButtonScriptUpdateLaunchPad.setBackground(new java.awt.Color(255, 211, 148));
         jButtonScriptUpdateLaunchPad.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -10132,7 +10166,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                     jTextAreaNTPMessage.setText("> " + hostAddr.getHostName() + "/" + hostAddr.getHostAddress());
                     TimeInfo info = client.getTime(hostAddr);
                     processResponseNTP(info);
-                } catch (IOException ioe) {
+                } catch (IOException e) {
                 }
 //            }
         } catch (SocketException e) {
@@ -10147,6 +10181,18 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private void jButtonCopyShortcutToDesktopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCopyShortcutToDesktopActionPerformed
         copyShortcutToDesktop();
     }//GEN-LAST:event_jButtonCopyShortcutToDesktopActionPerformed
+
+    private void jTextFieldSettingPreferredIpPrimaryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSettingPreferredIpPrimaryKeyReleased
+        PropertyHandler.getInstance().setValue("SettingShowIpPreferredPrimary",jTextFieldSettingPreferredIpPrimary.getText() );
+    }//GEN-LAST:event_jTextFieldSettingPreferredIpPrimaryKeyReleased
+
+    private void jTextFieldSettingPreferredIpSecondaryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSettingPreferredIpSecondaryKeyReleased
+        PropertyHandler.getInstance().setValue("SettingShowIpPreferredSecondary",jTextFieldSettingPreferredIpSecondary.getText() );
+    }//GEN-LAST:event_jTextFieldSettingPreferredIpSecondaryKeyReleased
+
+    private void jTextFieldSettingPreferredIpTertiaryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSettingPreferredIpTertiaryKeyReleased
+        PropertyHandler.getInstance().setValue("SettingShowIpPreferredTertiary",jTextFieldSettingPreferredIpTertiary.getText() );
+    }//GEN-LAST:event_jTextFieldSettingPreferredIpTertiaryKeyReleased
 
     
     /**
@@ -11051,10 +11097,17 @@ scroll.setPreferredSize(new Dimension(800, 500));
     }
     
     public void loadSettingsShared() {
+        //- SecureCRT Path
         jTextFieldSecureCRTPath.setText(PropertyHandler.getInstance().getValue("SecureCRTexe"));
+        //- Preloaded IPs
         jTextFieldPreloadedIP.setText(PropertyHandler.getInstance().getValue("PreloadSSH"));
         jTextFieldPreloadedPingIP.setText(PropertyHandler.getInstance().getValue("PreloadPing"));
-        
+
+        //- Preferred IP Prefixes
+        jTextFieldSettingPreferredIpPrimary.setText(PropertyHandler.getInstance().getValue("SettingShowIpPreferredPrimary"));
+        jTextFieldSettingPreferredIpSecondary.setText(PropertyHandler.getInstance().getValue("SettingShowIpPreferredSecondary"));
+        jTextFieldSettingPreferredIpTertiary.setText(PropertyHandler.getInstance().getValue("SettingShowIpPreferredTertiary"));
+       
         //- Set Local Policy Warnings
         try {
             if("1".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
@@ -11069,6 +11122,8 @@ scroll.setPreferredSize(new Dimension(800, 500));
             }
         } catch (NullPointerException e) {System.out.println("SettingLocalPolicyWarning Goofed");
         }
+        //- NTP
+        jTextFieldNtpServer.setText(PropertyHandler.getInstance().getValue("NtpTestIP"));
     }
 
     
@@ -11821,6 +11876,7 @@ scroll.setPreferredSize(new Dimension(800, 500));
     private javax.swing.JLabel jLabelEnablePWauth2;
     private javax.swing.JLabel jLabelEnablePWauth3;
     private javax.swing.JLabel jLabelEnablePWauth4;
+    private javax.swing.JLabel jLabelEnablePWauth5;
     private javax.swing.JLabel jLabelFolderToZip4;
     private javax.swing.JLabel jLabelFolderToZip7;
     private javax.swing.JLabel jLabelGetNTP1;
@@ -12100,6 +12156,9 @@ scroll.setPreferredSize(new Dimension(800, 500));
     private javax.swing.JTextField jTextFieldReferenceFilter;
     private javax.swing.JTextField jTextFieldScriptsFilter;
     private javax.swing.JTextField jTextFieldSecureCRTPath;
+    private javax.swing.JTextField jTextFieldSettingPreferredIpPrimary;
+    private javax.swing.JTextField jTextFieldSettingPreferredIpSecondary;
+    private javax.swing.JTextField jTextFieldSettingPreferredIpTertiary;
     private javax.swing.JTextField jTextFieldTCPTestPort;
     private javax.swing.JTextField jTextFieldType7Input;
     private javax.swing.JTextField jTextFieldType7Output;

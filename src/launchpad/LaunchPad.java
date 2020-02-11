@@ -386,6 +386,7 @@ public class LaunchPad {
 "FileLaunchPadLocal=C:\\\\LaunchPad\\\\old.txt",
 "FileLaunchPadRemote=%USERPROFILE%\\\\Desktop\\\\new.txt",
 "FileUpdateScript=%USERPROFILE%\\\\Desktop\\\\HelloWorld.ps1",
+"NtpTestIP=tick.usno.navy.mil",
 "PreloadPing=10.0.",
 "PreloadSSH=10.0.",
 "SecureCRTexe=C:\\\\LaunchPad\\\\Apps\\\\SecureCRT\\\\SecureCRT.exe",
