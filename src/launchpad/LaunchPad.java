@@ -55,13 +55,7 @@ public class LaunchPad {
         new File(strPathLaunchPadPersistantUserFolder).mkdirs();        
         new File(strSessionListFavoritesFolder).mkdirs();
         
-        //- Copy .jar to LaunchPad Folder
-//        final File currentJar = new File(LaunchPad.class.getProtectionDomain().getCodeSource().getLocation().toURI());
-//        System.out.println(currentJar);
-//        if(currentJar.getName().endsWith(".jar")) {
-//            Files.copy(currentJar.toPath(),  (new File(strPathLaunchPadFolder + currentJar.getName())).toPath(), StandardCopyOption.REPLACE_EXISTING);
-//            
-//        }
+
         
 
         //--- Check for properties file
@@ -389,13 +383,14 @@ public class LaunchPad {
 "CustomScript35Exec=cmd /c start powershell.exe -Command \"Write-Host Script35 ; pause\"",
 "CustomScript36Description=Script36",
 "CustomScript36Exec=cmd /c start powershell.exe -Command \"Write-Host Script36 ; pause\"",
-"FileLaunchPadLocal=%USERPROFILE%\\\\Desktop\\\\LaunchPad\\\\LaunchPad.jar",
+"FileLaunchPadLocal=C:\\\\LaunchPad\\\\old.txt",
 "FileLaunchPadRemote=%USERPROFILE%\\\\Desktop\\\\new.txt",
 "FileUpdateScript=%USERPROFILE%\\\\Desktop\\\\HelloWorld.ps1",
 "PreloadPing=10.0.",
 "PreloadSSH=10.0.",
 "SecureCRTexe=C:\\\\LaunchPad\\\\Apps\\\\SecureCRT\\\\SecureCRT.exe",
 "SettingClassification=None",
+"SettingForceRunFromLaunchPadFolder=1",
 "SettingLanguage=English",
 "SettingLocalPolicyWarning=0",
 "SettingEmailContactIssues=admin@domain.com",

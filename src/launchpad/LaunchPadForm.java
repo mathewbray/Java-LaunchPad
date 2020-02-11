@@ -164,6 +164,23 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        //- Copy .jar to LaunchPad Folder if not running from there.
+        final File currentJar = new File(LaunchPad.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+
+        if(!currentJar.getName().startsWith("C:\\LaunchPad\\")) {    
+            if ("".equals(PropertyHandler.getInstance().getValue("SettingForceRunFromLaunchPadFolder"))) {
+                PropertyHandler.getInstance().setValue("SettingForceRunFromLaunchPadFolder", "1");            
+            }else if("1".equals(PropertyHandler.getInstance().getValue("SettingForceRunFromLaunchPadFolder"))) {
+                if(currentJar.getName().endsWith(".jar")) {
+                    System.out.println("Copying JAR to : " + strPathLaunchPadFolder);
+                    Files.copy(currentJar.toPath(),  (new File(strPathLaunchPadFolder + "\\" + currentJar.getName())).toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    JOptionPane.showMessageDialog(null, "Copied LaunchPad.jar to: " + strPathLaunchPadFolder + "\r\n\r\n" + "Shortcut has been added to the desktop.","Good to go!",JOptionPane.INFORMATION_MESSAGE);
+                    copyShortcutToDesktop();
+                    System.exit(0);
+                }             
+            }
+        } 
+        
         //- Don't close the window immediately, prompt to ask
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
@@ -10126,15 +10143,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonViewExampleUpdateScriptActionPerformed
 
     private void jButtonCopyShortcutToDesktopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCopyShortcutToDesktopActionPerformed
-        try {
-            new File(strPathLaunchPadFolder + "/Links/LaunchPad/icons").mkdirs();
-            copyInternalFileToSpecifiedDestination("/launchpad/files/launchpad.orig.ico", strPathLaunchPadFolder + "/Links/LaunchPad/icons/launchpad.orig.ico");
-            copyInternalFileToSpecifiedDestination("/launchpad/files/LaunchPad.lnk", strPathUserDesktop + "/LaunchPad.lnk");
-        } catch (Exception ex) {
-            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            JOptionPane.showMessageDialog(null, "Desktop link created!");
-        }
+        copyShortcutToDesktop();
     }//GEN-LAST:event_jButtonCopyShortcutToDesktopActionPerformed
 
     
@@ -10809,10 +10818,10 @@ scroll.setPreferredSize(new Dimension(800, 500));
                 Enumeration<InetAddress> addrs = nic.getInetAddresses();
                 while (addrs.hasMoreElements()) {
                     InetAddress addr = addrs.nextElement();
-                    nicname = nic.getName().toString();
-                    ip = addr.getHostAddress().toString();
+                    nicname = nic.getName();
+                    ip = addr.getHostAddress();
                     nicnameip = nicname + " - " + ip;
-                    System.out.println(nicname + " " + ip);
+                    //System.out.println(nicname + " " + ip);
                     //- Look for Primary, Secondary or Tertiary IP, else just grab one.
                     if (ip.startsWith(primaryProperty) && primaryProperty != null && !primaryProperty.isEmpty()) {
                         System.out.println("Matched Primary Display IP:" + ip);
@@ -10916,8 +10925,8 @@ scroll.setPreferredSize(new Dimension(800, 500));
                 Enumeration<InetAddress> addrs = nic.getInetAddresses();
                 while (addrs.hasMoreElements()) {
                     InetAddress addr = addrs.nextElement();
-                    nicname = nic.getName().toString();
-                    ip = addr.getHostAddress().toString();
+                    nicname = nic.getName();
+                    ip = addr.getHostAddress();
                     nicnameip = nicname + " - " + ip;
                     //- Look for Primary, Secondary or Tertiary IP, else just grab one.
                     if (nicnameip.contains(getIPAddress())) {
@@ -10925,7 +10934,7 @@ scroll.setPreferredSize(new Dimension(800, 500));
                         
                                     //get Network interface Refrence by InetAddress Refrence
             NetworkInterface network = NetworkInterface.getByInetAddress(addr); 
-            byte[] macArray = network.getHardwareAddress();  //get Harware address Array
+            byte[] macArray = network.getHardwareAddress();  //get Hardware address Array
             StringBuilder str = new StringBuilder();             
             // Convert Array to String 
             for (int i = 0; i < macArray.length; i++) {
@@ -11468,6 +11477,18 @@ scroll.setPreferredSize(new Dimension(800, 500));
             }
         };
         verticalBar.addAdjustmentListener(downScroller);
+    }
+    
+    private void copyShortcutToDesktop() {
+        try {
+            new File(strPathLaunchPadFolder + "/Links/LaunchPad/icons").mkdirs();
+            copyInternalFileToSpecifiedDestination("/launchpad/files/launchpad.orig.ico", strPathLaunchPadFolder + "/Links/LaunchPad/icons/launchpad.orig.ico");
+            copyInternalFileToSpecifiedDestination("/launchpad/files/LaunchPad.lnk", strPathUserDesktop + "/LaunchPad.lnk");
+        } catch (Exception ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            JOptionPane.showMessageDialog(null, "Desktop link created!");
+        }
     }
   
     
