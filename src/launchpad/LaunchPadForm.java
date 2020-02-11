@@ -166,8 +166,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         //- Copy .jar to LaunchPad Folder if not running from there.
         final File currentJar = new File(LaunchPad.class.getProtectionDomain().getCodeSource().getLocation().toURI());
-
-        if(!currentJar.getName().startsWith("C:\\LaunchPad\\")) {    
+        System.out.println(currentJar);
+        System.out.println(currentJar.getName());
+        if(!currentJar.toString().startsWith("C:\\LaunchPad\\")) {    
             if ("".equals(PropertyHandler.getInstance().getValue("SettingForceRunFromLaunchPadFolder"))) {
                 PropertyHandler.getInstance().setValue("SettingForceRunFromLaunchPadFolder", "1");            
             }else if("1".equals(PropertyHandler.getInstance().getValue("SettingForceRunFromLaunchPadFolder"))) {
@@ -3336,7 +3337,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelType7.setLayout(null);
 
         jTextFieldType7Input.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jTextFieldType7Input.setText("05240E0715444F1D0A321F131F211D1A2A373B243A3017301710");
+        jTextFieldType7Input.setText("06240320455D0C3D00211B0C090A2F3921");
         jPanelType7.add(jTextFieldType7Input);
         jTextFieldType7Input.setBounds(20, 50, 530, 20);
 
@@ -4204,6 +4205,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelSettingsMain.add(jPanel4);
         jPanel4.setBounds(10, 170, 550, 200);
 
+        jButtonScriptUpdateLaunchPad.setBackground(new java.awt.Color(255, 211, 148));
         jButtonScriptUpdateLaunchPad.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonScriptUpdateLaunchPad.setText("Force Update");
         jButtonScriptUpdateLaunchPad.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -11487,7 +11489,7 @@ scroll.setPreferredSize(new Dimension(800, 500));
         } catch (Exception ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            JOptionPane.showMessageDialog(null, "Desktop link created!");
+            System.out.println("Desktop link: created");
         }
     }
   
