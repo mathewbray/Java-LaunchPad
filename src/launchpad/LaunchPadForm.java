@@ -1864,7 +1864,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelMainRightSide.add(jSeparator6);
         jSeparator6.setBounds(10, 230, 190, 10);
 
-        jButtonRefreshHostnameIPMAC.setFont(new java.awt.Font("Arial Unicode MS", 0, 18)); // NOI18N
+        jButtonRefreshHostnameIPMAC.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jButtonRefreshHostnameIPMAC.setToolTipText("Refresh");
         jButtonRefreshHostnameIPMAC.setLabel("↻");
         jButtonRefreshHostnameIPMAC.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -9068,6 +9068,13 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonReferenceCustom33ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        //- Set Local Policy Warnings
+        try {
+            if("1".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
+                JOptionPane.showMessageDialog(null, "Data in this folder may be overwritten by local policy!","Warning!",JOptionPane.WARNING_MESSAGE);
+            } 
+        } catch (NullPointerException e) {System.out.println("SettingLocalPolicyWarning Goofed");
+        }       
         openFileUsingDesktop(strPathLaunchPadFolder);
     }//GEN-LAST:event_jButton28ActionPerformed
 
@@ -9221,6 +9228,13 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonIPv4SubnetCalculatorActionPerformed
 
     private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
+        //- Set Local Policy Warnings
+        try {
+            if("1".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
+                JOptionPane.showMessageDialog(null, "Data in this folder may be overwritten by local policy!","Warning!",JOptionPane.WARNING_MESSAGE);
+            } 
+        } catch (NullPointerException e) {System.out.println("SettingLocalPolicyWarning Goofed");
+        } 
         openFileUsingDesktop(strPathPropertiesFile);
     }//GEN-LAST:event_jButton35ActionPerformed
 
@@ -10883,12 +10897,29 @@ scroll.setPreferredSize(new Dimension(800, 500));
             }
         } catch (NullPointerException e) {System.out.println("SettingPasswordBasedSSHauthDisable Goofed");
         }
+        
+
     }
     
     public void loadSettingsShared() {
         jTextFieldSecureCRTPath.setText(PropertyHandler.getInstance().getValue("SecureCRTexe"));
         jTextFieldPreloadedIP.setText(PropertyHandler.getInstance().getValue("PreloadSSH"));
         jTextFieldPreloadedPingIP.setText(PropertyHandler.getInstance().getValue("PreloadPing"));
+        
+        //- Set Local Policy Warnings
+        try {
+            if("1".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
+                jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Shared Items (May be overwritten by local policy)"));
+                jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Personal Items (Never overwritten)"));                
+            } 
+            if("0".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
+                jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Shared Items"));
+                jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Personal Items"));                
+                jLabel1.setText("");
+                jLabel2.setText("");
+            }
+        } catch (NullPointerException e) {System.out.println("SettingLocalPolicyWarning Goofed");
+        }
     }
 
     

@@ -24,6 +24,7 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
     public JPanelSettingsScripts() {
         initComponents();
         loadSettingsScriptData();
+        loadSettingsShared();
     }
     
     public void restartApplication() throws URISyntaxException, IOException {
@@ -2015,6 +2016,20 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
         jTextFieldScriptExecute35.setText(PropertyHandler.getInstance().getValue("CustomScript35Exec"));
         jTextFieldScriptExecute36.setText(PropertyHandler.getInstance().getValue("CustomScript36Exec"));
     }
+        
+    public void loadSettingsShared() {
+        
+        //- Set Local Policy Warnings
+        try {
+//            if("1".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
+//                jLabel1.setText("");
+//            } 
+            if("0".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
+                jLabel1.setText("");
+            }
+        } catch (NullPointerException e) {System.out.println("SettingLocalPolicyWarning Goofed");
+        }
+    }        
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -2696,6 +2696,20 @@ public class JPanelSettingsReferences extends javax.swing.JPanel {
         jTextFieldReferenceOffline32.setText(PropertyHandler.getInstance().getValue("CustomReference32Offline"));
         jTextFieldReferenceOffline33.setText(PropertyHandler.getInstance().getValue("CustomReference33Offline"));
     }
+        
+    public void loadSettingsShared() {
+        
+        //- Set Local Policy Warnings
+        try {
+//            if("1".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
+//                jLabel1.setText("");
+//            } 
+            if("0".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
+                jLabel1.setText("");
+            }
+        } catch (NullPointerException e) {System.out.println("SettingLocalPolicyWarning Goofed");
+        }
+    }   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton46;
