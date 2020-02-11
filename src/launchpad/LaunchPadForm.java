@@ -34,7 +34,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -156,7 +155,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         loadSettingsShared();
         loadHostIPMAC();
         loadClassification();
-        
 
         //- Set the look and feel
         try {
@@ -1849,7 +1847,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLocalMAC.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelLocalMAC.setText("Local MAC");
         jPanelMainRightSide.add(jLabelLocalMAC);
-        jLabelLocalMAC.setBounds(10, 40, 190, 20);
+        jLabelLocalMAC.setBounds(30, 40, 150, 20);
 
         jLabelLocalHostname.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jLabelLocalHostname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1861,7 +1859,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLocalIP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelLocalIP.setText("Local IP");
         jPanelMainRightSide.add(jLabelLocalIP);
-        jLabelLocalIP.setBounds(30, 20, 150, 20);
+        jLabelLocalIP.setBounds(10, 20, 190, 20);
         jPanelMainRightSide.add(jSeparator6);
         jSeparator6.setBounds(10, 230, 190, 10);
 
@@ -1883,7 +1881,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMainRightSide.add(jButtonRefreshHostnameIPMAC);
-        jButtonRefreshHostnameIPMAC.setBounds(180, 23, 20, 20);
+        jButtonRefreshHostnameIPMAC.setBounds(180, 40, 20, 20);
 
         jButtonExecuteFunctionPKI.setBackground(new java.awt.Color(200, 255, 153));
         jButtonExecuteFunctionPKI.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
@@ -3888,6 +3886,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jPanelSettingsMain.setLayout(null);
 
+        jButtonReportIssue.setBackground(new java.awt.Color(255, 178, 174));
         jButtonReportIssue.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonReportIssue.setText("Submit a change request");
         jButtonReportIssue.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -9983,8 +9982,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private void jButtonRefreshHostnameIPMACMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRefreshHostnameIPMACMouseReleased
         //- Get Hostname IP and MAC
         try {
-            jLabelLocalHostname.setText(getSystemName());
-            jLabelLocalHostname.setToolTipText(getSystemName());
+            String systemname = getSystemName();
+            jLabelLocalHostname.setText(systemname);
+            jLabelLocalHostname.setToolTipText(systemname);
             jLabelLocalIP.setText(getIPAddress());
             jLabelLocalMAC.setText(getMAC());
         } catch (Exception e) {
@@ -10782,43 +10782,167 @@ scroll.setPreferredSize(new Dimension(800, 500));
     }
      
     //- Get local IP
-    private static String getIPAddress() throws SocketException {
-        //Old IP Method
-//         try{
+    public static String getIPAddress() throws SocketException, UnknownHostException {
+        //- Original method
+//        try{
 //            InetAddress inetaddress=InetAddress.getLocalHost();  //Get LocalHost refrence
 //            String ip = inetaddress.getHostAddress();  // Get Host IP Address
 //            return ip;   // return IP Address
 //        }
-        //- Get outbound IP
+//        catch(Exception E){
+//            E.printStackTrace();  //print Exception StackTrace
+//            return null;
+//        }
+        String primaryProperty = PropertyHandler.getInstance().getValue("SettingShowIpPreferredPrimary");
+        String secondaryProperty = PropertyHandler.getInstance().getValue("SettingShowIpPreferredSecondary");
+        String tertiaryProperty = PropertyHandler.getInstance().getValue("SettingShowIpPreferredTertiary");        
+        String nicname = null;
+        String ip = null;
+        String nicnameip = null;
+        String primary = null;
+        String secondary = null;
+        String tertiary = null;
+        try {
+            Enumeration<NetworkInterface> nics = NetworkInterface.getNetworkInterfaces();
+            while (nics.hasMoreElements()) {
+                NetworkInterface nic = nics.nextElement();
+                Enumeration<InetAddress> addrs = nic.getInetAddresses();
+                while (addrs.hasMoreElements()) {
+                    InetAddress addr = addrs.nextElement();
+                    nicname = nic.getName().toString();
+                    ip = addr.getHostAddress().toString();
+                    nicnameip = nicname + " - " + ip;
+                    System.out.println(nicname + " " + ip);
+                    //- Look for Primary, Secondary or Tertiary IP, else just grab one.
+                    if (ip.startsWith(primaryProperty) && primaryProperty != null && !primaryProperty.isEmpty()) {
+                        System.out.println("Matched Primary Display IP:" + ip);
+                        primary = nicnameip;
+                    } else if (ip.startsWith(secondaryProperty) && secondaryProperty != null && !secondaryProperty.isEmpty()) {
+                        System.out.println("Matched Secondary Display IP:" + ip);
+                        secondary = nicnameip;
+                    } else if (ip.startsWith(tertiaryProperty) && tertiaryProperty != null && !tertiaryProperty.isEmpty()) {
+                        System.out.println("Matched Tertiary Display IP:" + ip);
+                        tertiary = nicnameip;
+                    }
+                }
+            }
+        } catch (SocketException e) {
+        }
+        //- Choose to show Primary, Secondary or Tertiary IP, else just grab one.
+        if (primary != null && !primary.isEmpty()) {
+            System.out.println("Returning Primary Display IP:" + ip);
+            return primary;
+        } else if (secondary != null && !secondary.isEmpty()) {
+            System.out.println("Returning Secondary Display IP:" + ip);
+            return secondary;
+        } else if (tertiary != null && !tertiary.isEmpty()) {
+            System.out.println("Returning Tertiary Display IP:" + ip);
+            return tertiary;
+        } else {
+            InetAddress inetaddress=InetAddress.getLocalHost();  //Get LocalHost refrence
+            ip = inetaddress.getHostAddress();  // Get Host IP Address
+            return ip;   // return IP Address
+        }        
 
-        try(final DatagramSocket socket = new DatagramSocket()){
-            socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
-            String ip = socket.getLocalAddress().getHostAddress();
-            return ip;
-        }
-        catch(UnknownHostException e){ 
-            return null;
-        }
+//        try {
+//            
+//            
+//            InetAddress localhost = InetAddress.getLocalHost();
+//            System.out.println(" IP Addr: " + localhost.getHostAddress());
+//            // Just in case this host has multiple IP addresses....
+//            InetAddress[] allMyIps = InetAddress.getAllByName(localhost.getCanonicalHostName());
+//            if (allMyIps != null && allMyIps.length > 1) {
+//                System.out.println(" Full list of IP addresses:");
+//            for (int i = 0; i < allMyIps.length; i++) {
+//                    System.out.println("    " + allMyIps[i]);
+//                    //- Look for Primary, Secondary or Tertiary IP, else just grab one.
+//                    if (allMyIps[i].toString().contains("10.2.1")) {
+//                        System.out.println("Matched Primary Display IP:" + allMyIps[i]);
+//                        ip = allMyIps[i].toString();
+//                        return ip;
+//                    } 
+//                    else if (allMyIps[i].toString().contains("192.168.204")) {
+//                        System.out.println("Matched Secondary Display IP:" + allMyIps[i]);
+//                        ip = allMyIps[i].toString();
+//                        return ip;
+//                    } else if (allMyIps[i].toString().contains("192.168.204")) {
+//                        System.out.println("Matched Tertiary Display IP:" + allMyIps[i]);
+//                        ip = allMyIps[i].toString();
+//                        return ip;
+//                    } 
+//                }
+//                //- Just grab an IP
+//                try{
+//                    InetAddress inetaddress=InetAddress.getLocalHost();
+//                    ip = inetaddress.getHostAddress();
+//                    System.out.println("Any IP:" + ip);                            
+//                    return ip;
+//                }
+//                catch(UnknownHostException e){ 
+//                    return null;
+//                }  
+//            }
+//        } catch (UnknownHostException e) {
+//            return null;
+//        }
+               
+        //- Get outbound IP - uses DatagramSocket which may not be good in the eyes of host-based security
+//        String ip;
+//        try(final DatagramSocket socket = new DatagramSocket()){
+//            socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
+//            ip = socket.getLocalAddress().getHostAddress();
+//            return ip;
+//        }
+//        catch(UnknownHostException e){ 
+//            return null;
+//        }        
+ 
     }
-     
+    
+
+ 
     //- Get local MAC
-    private static String getMAC(){
+    public static String getMAC(){
+        String nicname = null;
+        String ip = null;
+        String nicnameip = null;
+        String macAddress = "Error";
          try{
-            InetAddress inetaddress=InetAddress.getLocalHost(); //Get LocalHost refrence            
-            //get Network interface Refrence by InetAddress Refrence
-            NetworkInterface network = NetworkInterface.getByInetAddress(inetaddress); 
+//            InetAddress inetaddress=InetAddress.getLocalHost(); //Get LocalHost refrence  
+
+            Enumeration<NetworkInterface> nics = NetworkInterface.getNetworkInterfaces();
+            while (nics.hasMoreElements()) {
+                NetworkInterface nic = nics.nextElement();
+                Enumeration<InetAddress> addrs = nic.getInetAddresses();
+                while (addrs.hasMoreElements()) {
+                    InetAddress addr = addrs.nextElement();
+                    nicname = nic.getName().toString();
+                    ip = addr.getHostAddress().toString();
+                    nicnameip = nicname + " - " + ip;
+                    //- Look for Primary, Secondary or Tertiary IP, else just grab one.
+                    if (nicnameip.contains(getIPAddress())) {
+                        
+                        
+                                    //get Network interface Refrence by InetAddress Refrence
+            NetworkInterface network = NetworkInterface.getByInetAddress(addr); 
             byte[] macArray = network.getHardwareAddress();  //get Harware address Array
             StringBuilder str = new StringBuilder();             
             // Convert Array to String 
             for (int i = 0; i < macArray.length; i++) {
                     str.append(String.format("%02X%s", macArray[i], (i < macArray.length - 1) ? "-" : ""));
             }
-            String macAddress=str.toString();         
+            macAddress=str.toString();         
             return macAddress; //return MAC Address
+                    }                    
+                }                
+            }
         }
-        catch(SocketException | UnknownHostException e){ 
+        catch(SocketException e){ 
             return null;
-        } 
+        } catch (UnknownHostException ex) { 
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return macAddress;
     }
     
     private void loadClassification() {  
@@ -10850,14 +10974,19 @@ scroll.setPreferredSize(new Dimension(800, 500));
     private void loadHostIPMAC() {
         //- Get Hostname IP and MAC
         try {
-            jLabelLocalHostname.setText(getSystemName());
-            jLabelLocalHostname.setToolTipText(getSystemName());
-            jLabelLocalIP.setText(getIPAddress());
-            jLabelLocalMAC.setText(getMAC());
-            System.out.println("Host Name : "+getSystemName());
-            System.out.println("Host IP   : "+getIPAddress());
-            System.out.println("Host Address : "+getMAC()); 
-        } catch (Exception e) {
+            String ipaddress = getIPAddress();
+            String systemname = getSystemName();
+            String macaddress = getMAC();
+            jLabelLocalHostname.setText(systemname);
+            jLabelLocalHostname.setToolTipText(systemname);
+            jLabelLocalIP.setText(ipaddress);
+            jLabelLocalMAC.setText(macaddress);
+            System.out.println("Host Name : "+systemname);
+            System.out.println("Host IP   : "+ipaddress);
+            System.out.println("Host Address : "+macaddress); 
+        } catch (SocketException e) {
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }   
     }
     

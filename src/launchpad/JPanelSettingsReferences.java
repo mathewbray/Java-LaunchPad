@@ -24,6 +24,7 @@ public class JPanelSettingsReferences extends javax.swing.JPanel {
     public JPanelSettingsReferences() {
         initComponents();
         loadSettingsReferenceData();
+        loadSettingsShared();
         
         //- Future implementation of colors
         //Color[] colors={Color.white,Color.red,Color.blue,Color.green};

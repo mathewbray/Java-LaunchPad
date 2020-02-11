@@ -14,6 +14,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.FileTime;
 import java.util.Arrays;
 import java.util.List;
@@ -53,6 +54,15 @@ public class LaunchPad {
         new File(strPathLaunchPadFolder).mkdirs();
         new File(strPathLaunchPadPersistantUserFolder).mkdirs();        
         new File(strSessionListFavoritesFolder).mkdirs();
+        
+        //- Copy .jar to LaunchPad Folder
+//        final File currentJar = new File(LaunchPad.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+//        System.out.println(currentJar);
+//        if(currentJar.getName().endsWith(".jar")) {
+//            Files.copy(currentJar.toPath(),  (new File(strPathLaunchPadFolder + currentJar.getName())).toPath(), StandardCopyOption.REPLACE_EXISTING);
+//            
+//        }
+        
 
         //--- Check for properties file
         File filePropertiesFile = new File(strPathPropertiesFile);
@@ -387,10 +397,13 @@ public class LaunchPad {
 "SecureCRTexe=C:\\\\LaunchPad\\\\Apps\\\\SecureCRT\\\\SecureCRT.exe",
 "SettingClassification=None",
 "SettingLanguage=English",
+"SettingLocalPolicyWarning=0",
 "SettingEmailContactIssues=admin@domain.com",
 "SettingPasswordBasedSSHauthDisable=0",
 "SettingPasswordBasedSSHauthDisableAutoReset=0",
-"SettingLocalPolicyWarning=0",
+"SettingShowIpPreferredPrimary=10.2.1.",
+"SettingShowIpPreferredSecondary=192.168.64.",
+"SettingShowIpPreferredTertiary=192.168.204.",
 "WindowTitle=LaunchPad",
 "ZipDefaultDestinationFolder=%USERPROFILE%\\\\Desktop",
 "ZipDefaultSourceFolder=%USERPROFILE%\\\\Desktop");
