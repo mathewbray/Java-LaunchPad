@@ -82,6 +82,7 @@ public class PropertyHandlerPersonal{
 
   
     public String setValue(String propKey, String propValue) {
+        System.out.println("Setting Personal Key:" + propKey + " to " + propValue);
         // Get the current properties
         try {
             input = new FileInputStream(strPathLaunchPadPersistantPropertiesFile);

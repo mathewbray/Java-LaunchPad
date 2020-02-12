@@ -416,6 +416,7 @@ public class LaunchPad {
             //System.exit( 0 );
             fileLocalUserPropertiesFile.createNewFile();
             List<String> lines = Arrays.asList(
+"SettingChangePingOnSessionSelect=0",
 "SettingLanguage=English",                                
 "SettingTextSize=1");
             Path file = Paths.get(fileLocalUserPropertiesFile.getPath());

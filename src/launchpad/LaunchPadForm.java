@@ -84,6 +84,7 @@ import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.BadLocationException;
 import javax.xml.bind.DatatypeConverter;
+import jdk.nashorn.internal.parser.TokenType;
 import static launchpad.LaunchPadForm.HashGenerate.toHex;
 import launchpad.Type7Reverse.CiscoVigenere;
 import net.lingala.zip4j.core.ZipFile;
@@ -187,8 +188,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             //--- Listen for window close
-            public void windowClosing(WindowEvent we)
-            { 
+            public void windowClosing(WindowEvent we) { 
                 String ObjButtons[] = {"Yes","No"};
                 String strExitTitle = "You Sure??";
                 String strExitMessage = "Are you sure you want to exit LaunchPad?";
@@ -203,8 +203,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                     System.out.println("Language Goofed");
                 }
                 int PromptResult = JOptionPane.showOptionDialog(null,strExitMessage,strExitTitle,JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
-                if(PromptResult==JOptionPane.YES_OPTION)
-                {
+                if(PromptResult==JOptionPane.YES_OPTION) {
                     System.exit(0);
                 }
             }
@@ -226,10 +225,22 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 jTextFieldConnectUsername.setEnabled(false);
                 jPasswordFieldConnectPassword.setEnabled(false);
             }
-            
             validate();
             repaint();
         });
+        
+        //--- Listen for credential checkbox
+        jCheckBoxChangePingOnSessionSelect.addItemListener((ItemEvent e) -> {
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                PropertyHandlerPersonal.getInstance().setValue("SettingChangePingOnSessionSelect", "1");
+            }
+            else if(e.getStateChange() == ItemEvent.DESELECTED){
+                PropertyHandlerPersonal.getInstance().setValue("SettingChangePingOnSessionSelect", "0");
+            }
+            validate();
+            repaint();
+        });            
+
         
         //--- Listen for online/offline reference button
         jToggleOnlineOfflineMode.addItemListener((ItemEvent ev) -> {
@@ -1086,6 +1097,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jRadioButtonEnglish = new javax.swing.JRadioButton();
         jLabelLanguageSelect = new javax.swing.JLabel();
         jButtonCopyShortcutToDesktop = new javax.swing.JButton();
+        jCheckBoxChangePingOnSessionSelect = new javax.swing.JCheckBox();
         jPanel4 = new javax.swing.JPanel();
         jLabelEnablePWauth = new javax.swing.JLabel();
         jRadioButtonPWauthEnabled = new javax.swing.JRadioButton();
@@ -3949,7 +3961,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton38);
-        jButton38.setBounds(190, 80, 170, 20);
+        jButton38.setBounds(190, 110, 170, 20);
 
         jButton32.setBackground(new java.awt.Color(204, 204, 255));
         jButton32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3960,7 +3972,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton32);
-        jButton32.setBounds(370, 80, 170, 20);
+        jButton32.setBounds(370, 110, 170, 20);
 
         jButton30.setBackground(new java.awt.Color(255, 233, 162));
         jButton30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3971,7 +3983,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton30);
-        jButton30.setBounds(10, 110, 170, 20);
+        jButton30.setBounds(10, 140, 170, 20);
 
         jButton43.setBackground(new java.awt.Color(255, 233, 162));
         jButton43.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -3982,7 +3994,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton43);
-        jButton43.setBounds(10, 80, 170, 20);
+        jButton43.setBounds(10, 110, 170, 20);
 
         jLabelListTextSizePreview.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jLabelListTextSizePreview.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -4047,10 +4059,16 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButtonCopyShortcutToDesktop);
-        jButtonCopyShortcutToDesktop.setBounds(190, 110, 170, 20);
+        jButtonCopyShortcutToDesktop.setBounds(190, 140, 170, 20);
+
+        jCheckBoxChangePingOnSessionSelect.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jCheckBoxChangePingOnSessionSelect.setText("Change Ping on Session Select");
+        jCheckBoxChangePingOnSessionSelect.setToolTipText("");
+        jPanel3.add(jCheckBoxChangePingOnSessionSelect);
+        jCheckBoxChangePingOnSessionSelect.setBounds(10, 80, 190, 20);
 
         jPanelSettingsMain.add(jPanel3);
-        jPanel3.setBounds(10, 10, 550, 140);
+        jPanel3.setBounds(10, 10, 550, 170);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Shared Items (May be overwritten by local policy)"));
         jPanel4.setLayout(null);
@@ -4058,6 +4076,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelEnablePWauth.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelEnablePWauth.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelEnablePWauth.setText("Preload Session IP:");
+        jLabelEnablePWauth.setToolTipText("Preloaded IP for SSH/RDP/HTTPS etc.");
         jPanel4.add(jLabelEnablePWauth);
         jLabelEnablePWauth.setBounds(20, 50, 100, 20);
 
@@ -4098,9 +4117,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jLabelEnablePWauth1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelEnablePWauth1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelEnablePWauth1.setText("PW Auth SSH:");
+        jLabelEnablePWauth1.setText("SSH Password Auth:");
         jPanel4.add(jLabelEnablePWauth1);
-        jLabelEnablePWauth1.setBounds(20, 110, 100, 20);
+        jLabelEnablePWauth1.setBounds(0, 110, 120, 20);
 
         jButton28.setBackground(new java.awt.Color(255, 233, 162));
         jButton28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -4111,7 +4130,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jButton28);
-        jButton28.setBounds(10, 210, 170, 20);
+        jButton28.setBounds(10, 200, 170, 20);
 
         jButton34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton34.setText("View Shared Properties File");
@@ -4121,7 +4140,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jButton34);
-        jButton34.setBounds(190, 210, 170, 20);
+        jButton34.setBounds(190, 200, 170, 20);
 
         jButton35.setBackground(new java.awt.Color(204, 204, 255));
         jButton35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -4132,14 +4151,14 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jButton35);
-        jButton35.setBounds(370, 210, 170, 20);
+        jButton35.setBounds(370, 200, 170, 20);
 
         jLabelEnablePWauth2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelEnablePWauth2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelEnablePWauth2.setText("Preferred IP Prefix:");
+        jLabelEnablePWauth2.setText("Preferred IP Prefixes:");
         jLabelEnablePWauth2.setToolTipText("IP prefixes that will be preferred when multiple network interfaces exist.");
         jPanel4.add(jLabelEnablePWauth2);
-        jLabelEnablePWauth2.setBounds(20, 170, 100, 20);
+        jLabelEnablePWauth2.setBounds(0, 170, 120, 20);
 
         jTextFieldSecureCRTPath.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4152,6 +4171,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelEnablePWauth3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelEnablePWauth3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelEnablePWauth3.setText("SecureCRT Path:");
+        jLabelEnablePWauth3.setToolTipText("Path to SecureCRT.exe");
         jPanel4.add(jLabelEnablePWauth3);
         jLabelEnablePWauth3.setBounds(20, 20, 100, 20);
 
@@ -4166,8 +4186,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelEnablePWauth4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelEnablePWauth4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelEnablePWauth4.setText("Preload Ping IP:");
+        jLabelEnablePWauth4.setToolTipText("Preloaded IP for the Ping section.");
         jPanel4.add(jLabelEnablePWauth4);
-        jLabelEnablePWauth4.setBounds(230, 50, 100, 20);
+        jLabelEnablePWauth4.setBounds(230, 50, 90, 20);
 
         jTextFieldPreloadedPingIP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4175,7 +4196,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jTextFieldPreloadedPingIP);
-        jTextFieldPreloadedPingIP.setBounds(340, 50, 100, 20);
+        jTextFieldPreloadedPingIP.setBounds(330, 50, 100, 20);
 
         jLabelListTextSize3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelListTextSize3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -4212,6 +4233,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanel4.add(jLabelEnablePWauth5);
         jLabelEnablePWauth5.setBounds(20, 140, 100, 20);
 
+        jTextFieldSettingPreferredIpTertiary.setToolTipText("Tertiary");
         jTextFieldSettingPreferredIpTertiary.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextFieldSettingPreferredIpTertiaryKeyReleased(evt);
@@ -4220,6 +4242,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanel4.add(jTextFieldSettingPreferredIpTertiary);
         jTextFieldSettingPreferredIpTertiary.setBounds(350, 170, 100, 20);
 
+        jTextFieldSettingPreferredIpPrimary.setToolTipText("Primary");
         jTextFieldSettingPreferredIpPrimary.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextFieldSettingPreferredIpPrimaryKeyReleased(evt);
@@ -4228,6 +4251,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanel4.add(jTextFieldSettingPreferredIpPrimary);
         jTextFieldSettingPreferredIpPrimary.setBounds(130, 170, 100, 20);
 
+        jTextFieldSettingPreferredIpSecondary.setToolTipText("Secondary");
         jTextFieldSettingPreferredIpSecondary.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextFieldSettingPreferredIpSecondaryKeyReleased(evt);
@@ -4237,7 +4261,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldSettingPreferredIpSecondary.setBounds(240, 170, 100, 20);
 
         jPanelSettingsMain.add(jPanel4);
-        jPanel4.setBounds(10, 170, 550, 280);
+        jPanel4.setBounds(10, 200, 550, 230);
 
         jButtonScriptUpdateLaunchPad.setBackground(new java.awt.Color(255, 211, 148));
         jButtonScriptUpdateLaunchPad.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -8818,7 +8842,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 if(strSelectedValue.contains(",")) {
                 String[] arrSelectedValue = strSelectedValue.split(",");
                 jTextFieldConnectHostname.setText(arrSelectedValue[1]);
-                jTextFieldPingHostname.setText(arrSelectedValue[1]);
+                if (jCheckBoxChangePingOnSessionSelect.isSelected()){
+                    jTextFieldPingHostname.setText(arrSelectedValue[1]);
+                }
             }
         } catch (Exception e) {
         }
@@ -10241,7 +10267,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 "R2-C2600,3.3.3.3",
 "R2-C2800,4.4.4.4",
 "DSW1-C3750X,192.168.1.129",
-"DSW2,C3750,192.168.1.130",
+"DSW2-C3750,192.168.1.130",
 "ASW1-C3560,192.168.1.131",
 "ASW2-C3550,192.168.1.132",
 "",
@@ -10872,13 +10898,13 @@ scroll.setPreferredSize(new Dimension(800, 500));
                     //System.out.println(nicname + " " + ip);
                     //- Look for Primary, Secondary or Tertiary IP, else just grab one.
                     if (ip.startsWith(primaryProperty) && primaryProperty != null && !primaryProperty.isEmpty()) {
-                        System.out.println("Matched Primary Display IP:" + ip);
+                        //System.out.println("Matched Primary Display IP:" + ip);
                         primary = nicnameip;
                     } else if (ip.startsWith(secondaryProperty) && secondaryProperty != null && !secondaryProperty.isEmpty()) {
-                        System.out.println("Matched Secondary Display IP:" + ip);
+                        //System.out.println("Matched Secondary Display IP:" + ip);
                         secondary = nicnameip;
                     } else if (ip.startsWith(tertiaryProperty) && tertiaryProperty != null && !tertiaryProperty.isEmpty()) {
-                        System.out.println("Matched Tertiary Display IP:" + ip);
+                        //System.out.println("Matched Tertiary Display IP:" + ip);
                         tertiary = nicnameip;
                     }
                 }
@@ -10887,13 +10913,13 @@ scroll.setPreferredSize(new Dimension(800, 500));
         }
         //- Choose to show Primary, Secondary or Tertiary IP, else just grab one.
         if (primary != null && !primary.isEmpty()) {
-            System.out.println("Returning Primary Display IP:" + ip);
+            //System.out.println("Returning Primary Display IP:" + ip);
             return primary;
         } else if (secondary != null && !secondary.isEmpty()) {
-            System.out.println("Returning Secondary Display IP:" + ip);
+            //System.out.println("Returning Secondary Display IP:" + ip);
             return secondary;
         } else if (tertiary != null && !tertiary.isEmpty()) {
-            System.out.println("Returning Tertiary Display IP:" + ip);
+            //System.out.println("Returning Tertiary Display IP:" + ip);
             return tertiary;
         } else {
             InetAddress inetaddress=InetAddress.getLocalHost();  //Get LocalHost refrence
@@ -11048,7 +11074,7 @@ scroll.setPreferredSize(new Dimension(800, 500));
     }
     
     public void loadSettingsPersonal() {
-                //- Set Personal Text Setting 
+        //- Set Personal Text Setting 
         try {
             String myValue = PropertyHandlerPersonal.getInstance().getValue("SettingTextSize");
             if("".equals(myValue)) {
@@ -11073,32 +11099,25 @@ scroll.setPreferredSize(new Dimension(800, 500));
                 jRadioButtonEnglish.setSelected(Boolean.TRUE);
             }
         } catch (NullPointerException e) {System.out.println("SettingLanguage Goofed");
-        }    
-
-        //- Set PW SSH Auth Default ENABLE or DISABLE
-        try {
-            if("1".equals(PropertyHandler.getInstance().getValue("SettingPasswordBasedSSHauthDisable"))) {
-                jRadioButtonPWauthDisabled.setSelected(Boolean.TRUE);
-                jButtonExecuteFunctionSSH.setBackground(new javax.swing.JButton().getBackground());
-                jButtonExecuteFunctionSSH.setEnabled(false);
-            }
-        } catch (NullPointerException e) {System.out.println("SettingPasswordBasedSSHauthDisable Goofed");
-        }
-        try {
-            if("0".equals(PropertyHandler.getInstance().getValue("SettingPasswordBasedSSHauthDisable"))) {
-                jRadioButtonPWauthEnabled.setSelected(Boolean.TRUE);
-                jButtonExecuteFunctionSSH.setBackground(new Color(200,255,153));
-                jButtonExecuteFunctionSSH.setEnabled(Boolean.TRUE);
-            }
-        } catch (NullPointerException e) {System.out.println("SettingPasswordBasedSSHauthDisable Goofed");
-        }
+        }   
         
-
+        //- Set Personal Language Setting 
+        try {
+            if("1".equals(PropertyHandlerPersonal.getInstance().getValue("SettingChangePingOnSessionSelect"))) {
+                jCheckBoxChangePingOnSessionSelect.setSelected(Boolean.TRUE);
+            } else if ("0".equals(PropertyHandlerPersonal.getInstance().getValue("SettingChangePingOnSessionSelect"))) {
+                jCheckBoxChangePingOnSessionSelect.setSelected(Boolean.FALSE);
+            } else {
+                PropertyHandlerPersonal.getInstance().setValue("SettingChangePingOnSessionSelect", "0");
+            }
+        } catch (NullPointerException e) {System.out.println("SettingChangePingOnSessionSelect Goofed");
+        }        
     }
     
     public void loadSettingsShared() {
         //- SecureCRT Path
         jTextFieldSecureCRTPath.setText(PropertyHandler.getInstance().getValue("SecureCRTexe"));
+        
         //- Preloaded IPs
         jTextFieldPreloadedIP.setText(PropertyHandler.getInstance().getValue("PreloadSSH"));
         jTextFieldPreloadedPingIP.setText(PropertyHandler.getInstance().getValue("PreloadPing"));
@@ -11122,8 +11141,27 @@ scroll.setPreferredSize(new Dimension(800, 500));
             }
         } catch (NullPointerException e) {System.out.println("SettingLocalPolicyWarning Goofed");
         }
+        
         //- NTP
         jTextFieldNtpServer.setText(PropertyHandler.getInstance().getValue("NtpTestIP"));
+        
+        //- Set PW SSH Auth Default ENABLE or DISABLE
+        try {
+            if("1".equals(PropertyHandler.getInstance().getValue("SettingPasswordBasedSSHauthDisable"))) {
+                jRadioButtonPWauthDisabled.setSelected(Boolean.TRUE);
+                jButtonExecuteFunctionSSH.setBackground(new javax.swing.JButton().getBackground());
+                jButtonExecuteFunctionSSH.setEnabled(false);
+            }
+        } catch (NullPointerException e) {System.out.println("SettingPasswordBasedSSHauthDisable Goofed");
+        }
+        try {
+            if("0".equals(PropertyHandler.getInstance().getValue("SettingPasswordBasedSSHauthDisable"))) {
+                jRadioButtonPWauthEnabled.setSelected(Boolean.TRUE);
+                jButtonExecuteFunctionSSH.setBackground(new Color(200,255,153));
+                jButtonExecuteFunctionSSH.setEnabled(Boolean.TRUE);
+            }
+        } catch (NullPointerException e) {System.out.println("SettingPasswordBasedSSHauthDisable Goofed");
+        }
     }
 
     
@@ -11752,6 +11790,7 @@ scroll.setPreferredSize(new Dimension(800, 500));
     private javax.swing.JButton jButtonZipBrowseDestinationFolder;
     private javax.swing.JButton jButtonZipBrowseSourceZip;
     private javax.swing.JCheckBox jCheckBoxAlternateLogin;
+    private javax.swing.JCheckBox jCheckBoxChangePingOnSessionSelect;
     private javax.swing.JCheckBox jCheckBoxDNS;
     private javax.swing.JCheckBox jCheckBoxFavorites;
     private javax.swing.JComboBox<String> jComboBoxButtonIcon1;
