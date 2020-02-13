@@ -1060,6 +1060,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonSubnetCalculator1 = new javax.swing.JButton();
         jButtonIPv4SubnetCalculator = new javax.swing.JButton();
         jButtonRomajiToHiraKata = new javax.swing.JButton();
+        jButtonIconGenerator = new javax.swing.JButton();
         jPanelToolboxScripts = new javax.swing.JPanel();
         jPanelScanning = new javax.swing.JPanel();
         jButtonScriptPowershellPingSweepRange = new javax.swing.JButton();
@@ -3624,7 +3625,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButton42.setBounds(10, 60, 170, 30);
 
         jPanelWebJavaDocs.add(jPanelDocuments);
-        jPanelDocuments.setBounds(10, 210, 550, 120);
+        jPanelDocuments.setBounds(10, 230, 550, 100);
 
         jPanelJavaApps.setBorder(javax.swing.BorderFactory.createTitledBorder("Java Apps"));
         jPanelJavaApps.setLayout(null);
@@ -3640,7 +3641,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButton41.setBounds(10, 20, 170, 30);
 
         jPanelWebJavaDocs.add(jPanelJavaApps);
-        jPanelJavaApps.setBounds(10, 120, 550, 70);
+        jPanelJavaApps.setBounds(10, 160, 550, 60);
 
         jPanelWebApps.setBorder(javax.swing.BorderFactory.createTitledBorder("Web Apps"));
         jPanelWebApps.setLayout(null);
@@ -3708,8 +3709,19 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelWebApps.add(jButtonRomajiToHiraKata);
         jButtonRomajiToHiraKata.setBounds(370, 60, 170, 30);
 
+        jButtonIconGenerator.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonIconGenerator.setText("Icon Generator");
+        jButtonIconGenerator.setMargin(new java.awt.Insets(2, 0, 2, 0));
+        jButtonIconGenerator.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIconGeneratorActionPerformed(evt);
+            }
+        });
+        jPanelWebApps.add(jButtonIconGenerator);
+        jButtonIconGenerator.setBounds(10, 100, 170, 30);
+
         jPanelWebJavaDocs.add(jPanelWebApps);
-        jPanelWebApps.setBounds(10, 10, 550, 100);
+        jPanelWebApps.setBounds(10, 10, 550, 140);
 
         jTabbedPaneToolBox.addTab("Web/Java/Docs", jPanelWebJavaDocs);
 
@@ -10220,6 +10232,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         PropertyHandler.getInstance().setValue("SettingShowIpPreferredTertiary",jTextFieldSettingPreferredIpTertiary.getText() );
     }//GEN-LAST:event_jTextFieldSettingPreferredIpTertiaryKeyReleased
 
+    private void jButtonIconGeneratorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIconGeneratorActionPerformed
+        openTempFileUsingDesktop("html/icongenerator/IconGenerator.html", ".html");
+    }//GEN-LAST:event_jButtonIconGeneratorActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -11634,6 +11650,7 @@ scroll.setPreferredSize(new Dimension(800, 500));
     private javax.swing.JButton jButtonHashCopySHA256;
     private javax.swing.JButton jButtonHashCopySHA512;
     private javax.swing.JButton jButtonIPv4SubnetCalculator;
+    private javax.swing.JButton jButtonIconGenerator;
     private javax.swing.JButton jButtonJSDiff2;
     private javax.swing.JButton jButtonLinkCustom01;
     private javax.swing.JButton jButtonLinkCustom02;
