@@ -4062,10 +4062,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonCopyShortcutToDesktop.setBounds(190, 140, 170, 20);
 
         jCheckBoxChangePingOnSessionSelect.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jCheckBoxChangePingOnSessionSelect.setText("Change Ping on Session Select");
+        jCheckBoxChangePingOnSessionSelect.setText("Change Ping IP/Hostname on Session Select");
         jCheckBoxChangePingOnSessionSelect.setToolTipText("");
         jPanel3.add(jCheckBoxChangePingOnSessionSelect);
-        jCheckBoxChangePingOnSessionSelect.setBounds(10, 80, 190, 20);
+        jCheckBoxChangePingOnSessionSelect.setBounds(10, 80, 270, 20);
 
         jPanelSettingsMain.add(jPanel3);
         jPanel3.setBounds(10, 10, 550, 170);
@@ -4202,7 +4202,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelListTextSize3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelListTextSize3.setText("Session Double Click:");
         jPanel4.add(jLabelListTextSize3);
-        jLabelListTextSize3.setBounds(10, 80, 110, 20);
+        jLabelListTextSize3.setBounds(0, 80, 120, 20);
 
         jComboBoxSessionDoubleClick.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxSessionDoubleClick.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PKI", "SSH", "RDP", "HTTPS" }));
@@ -11005,12 +11005,15 @@ scroll.setPreferredSize(new Dimension(800, 500));
                     //- Look for Primary, Secondary or Tertiary IP, else just grab one.
                     if (nicnameip.contains(getIPAddress())) {
                         
-                        
                                     //get Network interface Refrence by InetAddress Refrence
             NetworkInterface network = NetworkInterface.getByInetAddress(addr); 
             byte[] macArray = network.getHardwareAddress();  //get Hardware address Array
             StringBuilder str = new StringBuilder();             
             // Convert Array to String 
+            //System.out.println(Arrays.toString(macArray));  
+            if (macArray == null) {
+                macArray = new byte[]{0, 0, 0, 0, 0, 0};
+            }
             for (int i = 0; i < macArray.length; i++) {
                     str.append(String.format("%02X%s", macArray[i], (i < macArray.length - 1) ? "-" : ""));
             }
@@ -11067,8 +11070,7 @@ scroll.setPreferredSize(new Dimension(800, 500));
             System.out.println("Host Name : "+systemname);
             System.out.println("Host IP   : "+ipaddress);
             System.out.println("Host Address : "+macaddress); 
-        } catch (SocketException e) {
-        } catch (UnknownHostException ex) {
+        } catch (UnknownHostException | SocketException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }   
     }
