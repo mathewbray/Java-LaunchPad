@@ -1570,12 +1570,12 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelMainRightSide.add(jTextFieldPingHostname);
         jTextFieldPingHostname.setBounds(10, 180, 100, 20);
 
-        jCheckBoxDNS.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jCheckBoxDNS.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jCheckBoxDNS.setText("DNS");
         jCheckBoxDNS.setToolTipText("Resolve DNS");
         jCheckBoxDNS.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jPanelMainRightSide.add(jCheckBoxDNS);
-        jCheckBoxDNS.setBounds(155, 180, 45, 20);
+        jCheckBoxDNS.setBounds(150, 180, 50, 20);
 
         jButtonTracert.setBackground(new java.awt.Color(208, 153, 255));
         jButtonTracert.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
@@ -1618,7 +1618,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jButtonShowCOMList.setBackground(new java.awt.Color(230, 241, 255));
         jButtonShowCOMList.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
-        jButtonShowCOMList.setText("?");
+        jButtonShowCOMList.setText("Query");
         jButtonShowCOMList.setToolTipText("List your Serial COM ports");
         jButtonShowCOMList.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonShowCOMList.addActionListener(new java.awt.event.ActionListener() {
@@ -1627,14 +1627,14 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMainRightSide.add(jButtonShowCOMList);
-        jButtonShowCOMList.setBounds(90, 240, 30, 20);
+        jButtonShowCOMList.setBounds(150, 240, 50, 20);
 
         jComboBoxConsoleBaud.setBackground(new java.awt.Color(230, 241, 255));
         jComboBoxConsoleBaud.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jComboBoxConsoleBaud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "9600", "115200" }));
         jComboBoxConsoleBaud.setToolTipText("Baud Rate");
         jPanelMainRightSide.add(jComboBoxConsoleBaud);
-        jComboBoxConsoleBaud.setBounds(130, 240, 70, 20);
+        jComboBoxConsoleBaud.setBounds(80, 240, 70, 20);
 
         jButtonConsole.setBackground(new java.awt.Color(153, 200, 255));
         jButtonConsole.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
