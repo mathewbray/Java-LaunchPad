@@ -84,7 +84,6 @@ import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.BadLocationException;
 import javax.xml.bind.DatatypeConverter;
-import jdk.nashorn.internal.parser.TokenType;
 import static launchpad.LaunchPadForm.HashGenerate.toHex;
 import launchpad.Type7Reverse.CiscoVigenere;
 import net.lingala.zip4j.core.ZipFile;
@@ -169,16 +168,31 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         final File currentJar = new File(LaunchPad.class.getProtectionDomain().getCodeSource().getLocation().toURI());
         System.out.println(currentJar);
         System.out.println(currentJar.getName());
+        //- If currently running jar is not in the LP folder
         if(!currentJar.toString().startsWith("C:\\LaunchPad\\")) {    
+            //- If force to run from LP folder is blank
             if ("".equals(PropertyHandler.getInstance().getValue("SettingForceRunFromLaunchPadFolder"))) {
-                PropertyHandler.getInstance().setValue("SettingForceRunFromLaunchPadFolder", "1");            
+                PropertyHandler.getInstance().setValue("SettingForceRunFromLaunchPadFolder", "1");  
+            //- Else If force to run from LP folder is set to 1
             }else if("1".equals(PropertyHandler.getInstance().getValue("SettingForceRunFromLaunchPadFolder"))) {
+                //- If current instance is actually a .jar file
                 if(currentJar.getName().endsWith(".jar")) {
-                    System.out.println("Copying JAR to : " + strPathLaunchPadFolder);
-                    Files.copy(currentJar.toPath(),  (new File(strPathLaunchPadFolder + "\\" + currentJar.getName())).toPath(), StandardCopyOption.REPLACE_EXISTING);
-                    JOptionPane.showMessageDialog(null, "Copied LaunchPad.jar to: " + strPathLaunchPadFolder + "\r\n\r\n" + "Shortcut has been added to the desktop.","Good to go!",JOptionPane.INFORMATION_MESSAGE);
-                    copyShortcutToDesktop();
-                    System.exit(0);
+                    //- Test if jar already exists
+                    File fileDestination = new File(strPathLaunchPadFolder + "\\LaunchPad.jar");
+                    //if(fileDestination.exists() && !fileDestination.isDirectory()) { 
+                        //- Test if file is locked
+                        boolean fileIsNotLocked = fileDestination.renameTo(fileDestination);
+                        if (!fileIsNotLocked) {
+                            JOptionPane.showMessageDialog(null, "Unable to copy LaunchPad.jar to: " + strPathLaunchPadFolder + "\r\n\r\n" + "File is locked.","Oh no!",JOptionPane.WARNING_MESSAGE);
+                            System.exit(0);
+                        } else {
+                            System.out.println("Copying JAR to : " + strPathLaunchPadFolder);
+                            Files.copy(currentJar.toPath(),  (new File(strPathLaunchPadFolder + "\\" + currentJar.getName())).toPath(), StandardCopyOption.REPLACE_EXISTING);
+                            JOptionPane.showMessageDialog(null, "Copied LaunchPad.jar to: " + strPathLaunchPadFolder + "\r\n\r\n" + "Shortcut has been added to the desktop.","Good to go!",JOptionPane.INFORMATION_MESSAGE);
+                            copyShortcutToDesktop();
+                            System.exit(0);
+                        }                        
+                    //}
                 }             
             }
         } 
