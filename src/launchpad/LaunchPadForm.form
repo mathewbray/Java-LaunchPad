@@ -99,17 +99,24 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPaneSessionList" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="jTextFieldFilter" min="-2" pref="257" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="263" max="-2" attributes="0"/>
                               <Component id="jButtonClearFilter" min="-2" pref="23" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jCheckBoxFavorites" min="-2" pref="80" max="-2" attributes="0"/>
-                              <EmptySpace pref="2" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jScrollPaneSessionList" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jTextFieldFilter" min="-2" pref="257" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanelMainRightSide" min="-2" pref="211" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -119,13 +126,13 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextFieldFilter" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCheckBoxFavorites" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="jButtonClearFilter" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jTextFieldFilter" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jButtonClearFilter" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jCheckBoxFavorites" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPaneSessionList" pref="570" max="32767" attributes="0"/>
+                              <Component id="jScrollPaneSessionList" pref="568" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jPanelMainRightSide" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -1071,7 +1078,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBoxFavorites">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial Unicode MS" size="11" style="0"/>
+                  <Font name="Arial Unicode MS" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Favorites"/>
                 <Property name="toolTipText" type="java.lang.String" value="Load an alternate list.  To edit the list, open it under the settings tab"/>
