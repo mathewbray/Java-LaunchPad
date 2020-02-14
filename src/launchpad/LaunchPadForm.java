@@ -432,7 +432,14 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button24Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton24.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed");StringBuilder sb = new StringBuilder(e.toString());for (StackTraceElement ste : e.getStackTrace()) { sb.append("\n\tat "); sb.append(ste); } String trace = sb.toString(); JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);        }
+
+        //NETWORK CONNECTIONS BUTTON
+        try{
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/networkconnections.png"));
+            img = icon.getImage(); newimg = img.getScaledInstance( 20, 20,  java.awt.Image.SCALE_SMOOTH ); jButtonNetworkConnections.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed");StringBuilder sb = new StringBuilder(e.toString());for (StackTraceElement ste : e.getStackTrace()) { sb.append("\n\tat "); sb.append(ste); } String trace = sb.toString(); JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);        }
         
+            
         
         
         
@@ -496,6 +503,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonMainButton22.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         jButtonMainButton23.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         jButtonMainButton24.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonNetworkConnections.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         
         //- Add the slight buuton movement when hovered over function
         jButtonMainButton1.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton1.getX(); int y = jButtonMainButton1.getY(); jButtonMainButton1.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton1.getX(); int y = jButtonMainButton1.getY(); jButtonMainButton1.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton1.getX(); int y = jButtonMainButton1.getY(); jButtonMainButton1.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton1.getX(); int y = jButtonMainButton1.getY(); jButtonMainButton1.setLocation(x - 1, y - 1); } });
@@ -522,6 +530,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonMainButton22.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton22.getX(); int y = jButtonMainButton22.getY(); jButtonMainButton22.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton22.getX(); int y = jButtonMainButton22.getY(); jButtonMainButton22.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton22.getX(); int y = jButtonMainButton22.getY(); jButtonMainButton22.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton22.getX(); int y = jButtonMainButton22.getY(); jButtonMainButton22.setLocation(x - 1, y - 1); } });
         jButtonMainButton23.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton23.getX(); int y = jButtonMainButton23.getY(); jButtonMainButton23.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton23.getX(); int y = jButtonMainButton23.getY(); jButtonMainButton23.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton23.getX(); int y = jButtonMainButton23.getY(); jButtonMainButton23.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton23.getX(); int y = jButtonMainButton23.getY(); jButtonMainButton23.setLocation(x - 1, y - 1); } });
         jButtonMainButton24.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton24.getX(); int y = jButtonMainButton24.getY(); jButtonMainButton24.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton24.getX(); int y = jButtonMainButton24.getY(); jButtonMainButton24.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton24.getX(); int y = jButtonMainButton24.getY(); jButtonMainButton24.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton24.getX(); int y = jButtonMainButton24.getY(); jButtonMainButton24.setLocation(x - 1, y - 1); } });
+        jButtonNetworkConnections.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonNetworkConnections.getX(); int y = jButtonNetworkConnections.getY(); jButtonNetworkConnections.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonNetworkConnections.getX(); int y = jButtonNetworkConnections.getY(); jButtonNetworkConnections.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonNetworkConnections.getX(); int y = jButtonNetworkConnections.getY(); jButtonNetworkConnections.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonNetworkConnections.getX(); int y = jButtonNetworkConnections.getY(); jButtonNetworkConnections.setLocation(x - 1, y - 1); } });
         
         //- Remove the button borders
         Border emptyBorder = BorderFactory.createEmptyBorder();
@@ -549,6 +558,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonMainButton22.setBorder(emptyBorder);
         jButtonMainButton23.setBorder(emptyBorder);
         jButtonMainButton24.setBorder(emptyBorder);
+        jButtonNetworkConnections.setBorder(emptyBorder);
        
         //--- Create directories if not exist
         new File(strPathLoggingFolder).mkdirs();
@@ -880,6 +890,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonMainButton23 = new javax.swing.JButton();
         jButtonMainButton22 = new javax.swing.JButton();
         jButtonMainButton21 = new javax.swing.JButton();
+        jButtonNetworkConnections = new javax.swing.JButton();
         jTextFieldFilter = new javax.swing.JTextField();
         jCheckBoxFavorites = new javax.swing.JCheckBox();
         jButtonClearFilter = new javax.swing.JButton();
@@ -1988,6 +1999,28 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         });
         jPanelMainRightSide.add(jButtonMainButton21);
         jButtonMainButton21.setBounds(10, 550, 40, 40);
+
+        jButtonNetworkConnections.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
+        jButtonNetworkConnections.setText("");
+        jButtonNetworkConnections.setToolTipText("Network Connections (ncpa.cpl)");
+        jButtonNetworkConnections.setContentAreaFilled(false);
+        jButtonNetworkConnections.setFocusPainted(false);
+        jButtonNetworkConnections.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButtonNetworkConnections.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButtonNetworkConnectionsMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButtonNetworkConnectionsMouseReleased(evt);
+            }
+        });
+        jButtonNetworkConnections.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNetworkConnectionsActionPerformed(evt);
+            }
+        });
+        jPanelMainRightSide.add(jButtonNetworkConnections);
+        jButtonNetworkConnections.setBounds(10, 40, 20, 20);
 
         jTextFieldFilter.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jTextFieldFilter.setToolTipText("Type to filter the list. ");
@@ -8620,7 +8653,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.out.println("Pressed");
         try {
-            Runtime.getRuntime().exec("cmd /c start cmd.exe /c \"change port /query & pause");
+            Runtime.getRuntime().exec("cmd /c start cmd.exe /c \"change port /query & pause\"");
         }
         catch (IOException e) {
             System.out.println("Something is wrong!");
@@ -10250,6 +10283,25 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         openTempFileUsingDesktop("html/icongenerator/IconGenerator.html", ".html");
     }//GEN-LAST:event_jButtonIconGeneratorActionPerformed
 
+    private void jButtonNetworkConnectionsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNetworkConnectionsMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonNetworkConnectionsMousePressed
+
+    private void jButtonNetworkConnectionsMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNetworkConnectionsMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonNetworkConnectionsMouseReleased
+
+    private void jButtonNetworkConnectionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNetworkConnectionsActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Pressed");
+        try {
+            Runtime.getRuntime().exec("cmd /c start ncpa.cpl");
+        }
+        catch (IOException e) {
+            System.out.println("Something is wrong!");
+        }
+    }//GEN-LAST:event_jButtonNetworkConnectionsActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -11727,6 +11779,7 @@ scroll.setPreferredSize(new Dimension(800, 500));
     private javax.swing.JButton jButtonMainButton8;
     private javax.swing.JButton jButtonMainButton9;
     private javax.swing.JButton jButtonMapSharedFolder;
+    private javax.swing.JButton jButtonNetworkConnections;
     private javax.swing.JButton jButtonPing;
     public javax.swing.JButton jButtonReferenceCustom01;
     public javax.swing.JButton jButtonReferenceCustom02;

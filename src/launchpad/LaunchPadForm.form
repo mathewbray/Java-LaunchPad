@@ -1027,6 +1027,30 @@
                     </Constraint>
                   </Constraints>
                 </Component>
+                <Component class="javax.swing.JButton" name="jButtonNetworkConnections">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial Unicode MS" size="14" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value=""/>
+                    <Property name="toolTipText" type="java.lang.String" value="Network Connections (ncpa.cpl)"/>
+                    <Property name="contentAreaFilled" type="boolean" value="false"/>
+                    <Property name="focusPainted" type="boolean" value="false"/>
+                    <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                      <Insets value="[0, 0, 0, 0]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonNetworkConnectionsMousePressed"/>
+                    <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonNetworkConnectionsMouseReleased"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonNetworkConnectionsActionPerformed"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="10" y="40" width="20" height="20"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
               </SubComponents>
             </Container>
             <Component class="javax.swing.JTextField" name="jTextFieldFilter">
