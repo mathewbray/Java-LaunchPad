@@ -4125,6 +4125,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanel3.add(jLabelLanguageSelect);
         jLabelLanguageSelect.setBounds(10, 20, 80, 20);
 
+        jButtonCopyShortcutToDesktop.setBackground(new java.awt.Color(206, 221, 226));
         jButtonCopyShortcutToDesktop.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonCopyShortcutToDesktop.setText("Copy Shortcut to Desktop");
         jButtonCopyShortcutToDesktop.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -4207,6 +4208,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanel4.add(jButton28);
         jButton28.setBounds(10, 200, 170, 20);
 
+        jButton34.setBackground(new java.awt.Color(210, 210, 210));
         jButton34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButton34.setText("View Shared Properties File");
         jButton34.addActionListener(new java.awt.event.ActionListener() {
@@ -4350,6 +4352,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelSettingsMain.add(jButtonScriptUpdateLaunchPad);
         jButtonScriptUpdateLaunchPad.setBounds(220, 540, 120, 20);
 
+        jButtonViewExampleUpdateScript.setBackground(new java.awt.Color(210, 210, 210));
         jButtonViewExampleUpdateScript.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jButtonViewExampleUpdateScript.setText("View Example PS Update Script");
         jButtonViewExampleUpdateScript.setMargin(new java.awt.Insets(0, 0, 0, 0));

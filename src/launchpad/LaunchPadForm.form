@@ -5044,6 +5044,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButtonCopyShortcutToDesktop">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="e2" green="dd" red="ce" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -5175,7 +5178,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxClassificationItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxClassification.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;SettingClassification&quot;));"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxClassification.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;SettingClassification&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                       <Constraints>
@@ -5219,6 +5222,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton34">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="d2" green="d2" red="d2" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Unicode MS" size="11" style="0"/>
                         </Property>
@@ -5485,6 +5491,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jButtonViewExampleUpdateScript">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="d2" green="d2" red="d2" type="rgb"/>
+                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Unicode MS" size="11" style="0"/>
                     </Property>
