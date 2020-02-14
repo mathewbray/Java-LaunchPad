@@ -438,7 +438,13 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/networkconnections.png"));
             img = icon.getImage(); newimg = img.getScaledInstance( 20, 20,  java.awt.Image.SCALE_SMOOTH ); jButtonNetworkConnections.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed");StringBuilder sb = new StringBuilder(e.toString());for (StackTraceElement ste : e.getStackTrace()) { sb.append("\n\tat "); sb.append(ste); } String trace = sb.toString(); JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);        }
-        
+
+        //NETWORK REFRESH BUTTON
+        try{
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/update.png"));
+            img = icon.getImage(); newimg = img.getScaledInstance( 20, 20,  java.awt.Image.SCALE_SMOOTH ); jButtonRefreshHostnameIPMAC.setIcon(new ImageIcon(newimg));
+        } catch (NullPointerException e) {System.out.println("Icon Goofed");StringBuilder sb = new StringBuilder(e.toString());for (StackTraceElement ste : e.getStackTrace()) { sb.append("\n\tat "); sb.append(ste); } String trace = sb.toString(); JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);        }
+          
             
         
         
@@ -504,6 +510,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonMainButton23.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         jButtonMainButton24.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         jButtonNetworkConnections.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jButtonRefreshHostnameIPMAC.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         
         //- Add the slight buuton movement when hovered over function
         jButtonMainButton1.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton1.getX(); int y = jButtonMainButton1.getY(); jButtonMainButton1.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton1.getX(); int y = jButtonMainButton1.getY(); jButtonMainButton1.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton1.getX(); int y = jButtonMainButton1.getY(); jButtonMainButton1.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton1.getX(); int y = jButtonMainButton1.getY(); jButtonMainButton1.setLocation(x - 1, y - 1); } });
@@ -531,6 +538,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonMainButton23.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton23.getX(); int y = jButtonMainButton23.getY(); jButtonMainButton23.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton23.getX(); int y = jButtonMainButton23.getY(); jButtonMainButton23.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton23.getX(); int y = jButtonMainButton23.getY(); jButtonMainButton23.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton23.getX(); int y = jButtonMainButton23.getY(); jButtonMainButton23.setLocation(x - 1, y - 1); } });
         jButtonMainButton24.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton24.getX(); int y = jButtonMainButton24.getY(); jButtonMainButton24.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton24.getX(); int y = jButtonMainButton24.getY(); jButtonMainButton24.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton24.getX(); int y = jButtonMainButton24.getY(); jButtonMainButton24.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton24.getX(); int y = jButtonMainButton24.getY(); jButtonMainButton24.setLocation(x - 1, y - 1); } });
         jButtonNetworkConnections.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonNetworkConnections.getX(); int y = jButtonNetworkConnections.getY(); jButtonNetworkConnections.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonNetworkConnections.getX(); int y = jButtonNetworkConnections.getY(); jButtonNetworkConnections.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonNetworkConnections.getX(); int y = jButtonNetworkConnections.getY(); jButtonNetworkConnections.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonNetworkConnections.getX(); int y = jButtonNetworkConnections.getY(); jButtonNetworkConnections.setLocation(x - 1, y - 1); } });
+        jButtonRefreshHostnameIPMAC.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonRefreshHostnameIPMAC.getX(); int y = jButtonRefreshHostnameIPMAC.getY(); jButtonRefreshHostnameIPMAC.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonRefreshHostnameIPMAC.getX(); int y = jButtonRefreshHostnameIPMAC.getY(); jButtonRefreshHostnameIPMAC.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonRefreshHostnameIPMAC.getX(); int y = jButtonRefreshHostnameIPMAC.getY(); jButtonRefreshHostnameIPMAC.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonRefreshHostnameIPMAC.getX(); int y = jButtonRefreshHostnameIPMAC.getY(); jButtonRefreshHostnameIPMAC.setLocation(x - 1, y - 1); } });
         
         //- Remove the button borders
         Border emptyBorder = BorderFactory.createEmptyBorder();
@@ -559,6 +567,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonMainButton23.setBorder(emptyBorder);
         jButtonMainButton24.setBorder(emptyBorder);
         jButtonNetworkConnections.setBorder(emptyBorder);
+        jButtonRefreshHostnameIPMAC.setBorder(emptyBorder);
        
         //--- Create directories if not exist
         new File(strPathLoggingFolder).mkdirs();
@@ -1924,8 +1933,11 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jSeparator6.setBounds(10, 230, 190, 10);
 
         jButtonRefreshHostnameIPMAC.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
-        jButtonRefreshHostnameIPMAC.setToolTipText("Refresh");
-        jButtonRefreshHostnameIPMAC.setLabel("↻");
+        jButtonRefreshHostnameIPMAC.setText("");
+        jButtonRefreshHostnameIPMAC.setToolTipText("Refresh Hostname IP and MAC");
+        jButtonRefreshHostnameIPMAC.setContentAreaFilled(false);
+        jButtonRefreshHostnameIPMAC.setFocusPainted(false);
+        jButtonRefreshHostnameIPMAC.setFocusable(false);
         jButtonRefreshHostnameIPMAC.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonRefreshHostnameIPMAC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -2002,7 +2014,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jButtonNetworkConnections.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jButtonNetworkConnections.setText("");
-        jButtonNetworkConnections.setToolTipText("Network Connections (ncpa.cpl)");
+        jButtonNetworkConnections.setToolTipText("Network Control Panel Applet (ncpa.cpl)");
         jButtonNetworkConnections.setContentAreaFilled(false);
         jButtonNetworkConnections.setFocusPainted(false);
         jButtonNetworkConnections.setMargin(new java.awt.Insets(0, 0, 0, 0));
