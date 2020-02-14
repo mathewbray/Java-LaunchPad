@@ -1437,7 +1437,7 @@ public class JPanelSettingsReferences extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
-        jLabel1.setText("Note: These settings may be overwritten by local policy");
+        jLabel1.setText("Note: These settings will be overwritten by local policy");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

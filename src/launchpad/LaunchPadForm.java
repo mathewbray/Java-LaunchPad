@@ -43,6 +43,7 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.net.UnknownHostException;
 import java.nio.charset.Charset;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -166,8 +167,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         //- Copy .jar to LaunchPad Folder if not running from there.
         final File currentJar = new File(LaunchPad.class.getProtectionDomain().getCodeSource().getLocation().toURI());
-        System.out.println(currentJar);
-        System.out.println(currentJar.getName());
+        System.out.println("Code source:" + currentJar);
+        //System.out.println("Code source name: + "currentJar.getName());
         //- If currently running jar is not in the LP folder
         if(!currentJar.toString().startsWith("C:\\LaunchPad\\")) {    
             //- If force to run from LP folder is blank
@@ -177,22 +178,27 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }else if("1".equals(PropertyHandler.getInstance().getValue("SettingForceRunFromLaunchPadFolder"))) {
                 //- If current instance is actually a .jar file
                 if(currentJar.getName().endsWith(".jar")) {
-                    //- Test if jar already exists
+                    //- Check if jar already exists
                     File fileDestination = new File(strPathLaunchPadFolder + "\\LaunchPad.jar");
-                    //if(fileDestination.exists() && !fileDestination.isDirectory()) { 
-                        //- Test if file is locked
-                        boolean fileIsNotLocked = fileDestination.renameTo(fileDestination);
-                        if (!fileIsNotLocked) {
-                            JOptionPane.showMessageDialog(null, "Unable to copy LaunchPad.jar to: " + strPathLaunchPadFolder + "\r\n\r\n" + "File is locked.","Oh no!",JOptionPane.WARNING_MESSAGE);
-                            System.exit(0);
-                        } else {
-                            System.out.println("Copying JAR to : " + strPathLaunchPadFolder);
-                            Files.copy(currentJar.toPath(),  (new File(strPathLaunchPadFolder + "\\" + currentJar.getName())).toPath(), StandardCopyOption.REPLACE_EXISTING);
-                            JOptionPane.showMessageDialog(null, "Copied LaunchPad.jar to: " + strPathLaunchPadFolder + "\r\n\r\n" + "Shortcut has been added to the desktop.","Good to go!",JOptionPane.INFORMATION_MESSAGE);
-                            copyShortcutToDesktop();
-                            System.exit(0);
-                        }                        
-                    //}
+                    boolean fileExists = false;
+                    if(fileDestination.exists() && !fileDestination.isDirectory()) {
+                        fileExists = Boolean.TRUE;
+                    } 
+                    System.out.println("JAR destination exists : " + fileExists);                                                                                                
+                    //- Test if file exists and is locked
+                    boolean fileIsNotLocked = fileDestination.renameTo(fileDestination);
+                    if (!fileIsNotLocked && fileExists) {
+                        System.out.println("JAR destination lock status : " + fileIsNotLocked);                            
+                        JOptionPane.showMessageDialog(null, "Unable to copy LaunchPad.jar to: " + strPathLaunchPadFolder + "\r\n\r\n" + "File is locked.","Oh no!",JOptionPane.WARNING_MESSAGE);
+                        System.exit(0);
+                    } else {
+                        System.out.println("JAR destination lock status : " + fileIsNotLocked);                                                        
+                        System.out.println("Copying JAR to : " + strPathLaunchPadFolder);
+                        Files.copy(currentJar.toPath(),  (new File(strPathLaunchPadFolder + "\\" + currentJar.getName())).toPath(), StandardCopyOption.REPLACE_EXISTING);
+                        JOptionPane.showMessageDialog(null, "Copied LaunchPad.jar to: " + strPathLaunchPadFolder + "\r\n\r\n" + "Shortcut has been added to the desktop.","Good to go!",JOptionPane.INFORMATION_MESSAGE);
+                        copyShortcutToDesktop();
+                        System.exit(0);
+                    }                        
                 }             
             }
         } 
@@ -1933,7 +1939,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jSeparator6.setBounds(10, 230, 190, 10);
 
         jButtonRefreshHostnameIPMAC.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
-        jButtonRefreshHostnameIPMAC.setText("");
         jButtonRefreshHostnameIPMAC.setToolTipText("Refresh Hostname IP and MAC");
         jButtonRefreshHostnameIPMAC.setContentAreaFilled(false);
         jButtonRefreshHostnameIPMAC.setFocusPainted(false);
@@ -2013,7 +2018,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonMainButton21.setBounds(10, 550, 40, 40);
 
         jButtonNetworkConnections.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
-        jButtonNetworkConnections.setText("");
         jButtonNetworkConnections.setToolTipText("Network Control Panel Applet (ncpa.cpl)");
         jButtonNetworkConnections.setContentAreaFilled(false);
         jButtonNetworkConnections.setFocusPainted(false);
@@ -4146,7 +4150,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelSettingsMain.add(jPanel3);
         jPanel3.setBounds(10, 10, 550, 170);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Shared Items (May be overwritten by local policy)"));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Shared Items (Will be overwritten by local policy)"));
         jPanel4.setLayout(null);
 
         jLabelEnablePWauth.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -5273,7 +5277,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelButtonIcon24.setText("Icon:");
 
         jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
-        jLabel1.setText("Note: These settings may be overwritten by local policy");
+        jLabel1.setText("Note: These settings will be overwritten by local policy");
 
         javax.swing.GroupLayout jPanelSettingsButtonsLayout = new javax.swing.GroupLayout(jPanelSettingsButtons);
         jPanelSettingsButtons.setLayout(jPanelSettingsButtonsLayout);
@@ -6727,7 +6731,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
-        jLabel2.setText("Note: These settings may be overwritten by local policy");
+        jLabel2.setText("Note: These settings will be overwritten by local policy");
 
         javax.swing.GroupLayout jPanelSettingsLinksLayout = new javax.swing.GroupLayout(jPanelSettingsLinks);
         jPanelSettingsLinks.setLayout(jPanelSettingsLinksLayout);
@@ -9228,7 +9232,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         //- Set Local Policy Warnings
         try {
             if("1".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
-                JOptionPane.showMessageDialog(null, "Data in this folder may be overwritten by local policy!","Warning!",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Data in this folder is overwritten by local policy!","Warning!",JOptionPane.WARNING_MESSAGE);
             } 
         } catch (NullPointerException e) {System.out.println("SettingLocalPolicyWarning Goofed");
         }       
@@ -9388,7 +9392,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         //- Set Local Policy Warnings
         try {
             if("1".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
-                JOptionPane.showMessageDialog(null, "Data in this folder may be overwritten by local policy!","Warning!",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Data in this folder is overwritten by local policy!","Warning!",JOptionPane.WARNING_MESSAGE);
             } 
         } catch (NullPointerException e) {System.out.println("SettingLocalPolicyWarning Goofed");
         } 
@@ -11233,7 +11237,7 @@ scroll.setPreferredSize(new Dimension(800, 500));
         //- Set Local Policy Warnings
         try {
             if("1".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
-                jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Shared Items (May be overwritten by local policy)"));
+                jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Shared Items (Will be overwritten by local policy)"));
                 jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Personal Items (Never overwritten)"));                
             } 
             if("0".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {

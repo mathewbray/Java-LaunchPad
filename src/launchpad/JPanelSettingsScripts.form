@@ -2263,7 +2263,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="12" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Note: These settings may be overwritten by local policy"/>
+        <Property name="text" type="java.lang.String" value="Note: These settings will be overwritten by local policy"/>
       </Properties>
     </Component>
   </SubComponents>
