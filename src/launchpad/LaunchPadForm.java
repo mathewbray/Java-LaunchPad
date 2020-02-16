@@ -156,6 +156,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         loadSettingsShared();
         loadHostIPMAC();
         loadClassification();
+        setSessionTextSize();
 
         //- Set the look and feel
         try {
@@ -167,15 +168,17 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         //- Copy .jar to LaunchPad Folder if not running from there.
         final File currentJar = new File(LaunchPad.class.getProtectionDomain().getCodeSource().getLocation().toURI());
-        System.out.println("Code source:" + currentJar);
-        //System.out.println("Code source name: + "currentJar.getName());
+        System.out.println("Copy Operation - Code source: " + currentJar);
+        //System.out.println("Copy Operation - Code source name: + "currentJar.getName());
         //- If currently running jar is not in the LP folder
         if(!currentJar.toString().startsWith("C:\\LaunchPad\\")) {    
             //- If force to run from LP folder is blank
-            if ("".equals(PropertyHandler.getInstance().getValue("SettingForceRunFromLaunchPadFolder"))) {
+            String strForceRunFromLPFolder = PropertyHandler.getInstance().getValue("SettingForceRunFromLaunchPadFolder");
+            System.out.println("Copy Operation - SettingForceRunFromLaunchPadFolder: " + strForceRunFromLPFolder);                                                                                                            
+            if ("".equals(strForceRunFromLPFolder)) {
                 PropertyHandler.getInstance().setValue("SettingForceRunFromLaunchPadFolder", "1");  
             //- Else If force to run from LP folder is set to 1
-            }else if("1".equals(PropertyHandler.getInstance().getValue("SettingForceRunFromLaunchPadFolder"))) {
+            }else if("1".equals(strForceRunFromLPFolder)) {
                 //- If current instance is actually a .jar file
                 if(currentJar.getName().endsWith(".jar")) {
                     //- Check if jar already exists
@@ -184,24 +187,30 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                     if(fileDestination.exists() && !fileDestination.isDirectory()) {
                         fileExists = Boolean.TRUE;
                     } 
-                    System.out.println("JAR destination exists : " + fileExists);                                                                                                
+                    System.out.println("Copy Operation - JAR destination exists: " + fileExists);                                                                                                
                     //- Test if file exists and is locked
                     boolean fileIsNotLocked = fileDestination.renameTo(fileDestination);
                     if (!fileIsNotLocked && fileExists) {
-                        System.out.println("JAR destination lock status : " + fileIsNotLocked);                            
+                        System.out.println("Copy Operation - JAR destination lock status: " + fileIsNotLocked);                            
                         JOptionPane.showMessageDialog(null, "Unable to copy LaunchPad.jar to: " + strPathLaunchPadFolder + "\r\n\r\n" + "File is locked.","Oh no!",JOptionPane.WARNING_MESSAGE);
                         System.exit(0);
                     } else {
-                        System.out.println("JAR destination lock status : " + fileIsNotLocked);                                                        
-                        System.out.println("Copying JAR to : " + strPathLaunchPadFolder);
+                        System.out.println("Copy Operation - JAR destination lock status: " + fileIsNotLocked);                                                        
+                        System.out.println("Copy Operation - Copying JAR to : " + strPathLaunchPadFolder);
                         Files.copy(currentJar.toPath(),  (new File(strPathLaunchPadFolder + "\\" + currentJar.getName())).toPath(), StandardCopyOption.REPLACE_EXISTING);
                         JOptionPane.showMessageDialog(null, "Copied LaunchPad.jar to: " + strPathLaunchPadFolder + "\r\n\r\n" + "Shortcut has been added to the desktop.","Good to go!",JOptionPane.INFORMATION_MESSAGE);
                         copyShortcutToDesktop();
                         System.exit(0);
                     }                        
+                } else {
+                System.out.println("Copy Operation - Run status: Abort (Code source name does not end in \".jar\")");
                 }             
+            } else {
+            System.out.println("Copy Operation - Run status: Abort (Not forced to run from LP folder)");
             }
-        } 
+        } else {
+            System.out.println("Copy Operation - Run status: Abort (Code source match)");
+        }
         
         //- Don't close the window immediately, prompt to ask
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -545,6 +554,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonMainButton24.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton24.getX(); int y = jButtonMainButton24.getY(); jButtonMainButton24.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton24.getX(); int y = jButtonMainButton24.getY(); jButtonMainButton24.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton24.getX(); int y = jButtonMainButton24.getY(); jButtonMainButton24.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton24.getX(); int y = jButtonMainButton24.getY(); jButtonMainButton24.setLocation(x - 1, y - 1); } });
         jButtonNetworkConnections.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonNetworkConnections.getX(); int y = jButtonNetworkConnections.getY(); jButtonNetworkConnections.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonNetworkConnections.getX(); int y = jButtonNetworkConnections.getY(); jButtonNetworkConnections.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonNetworkConnections.getX(); int y = jButtonNetworkConnections.getY(); jButtonNetworkConnections.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonNetworkConnections.getX(); int y = jButtonNetworkConnections.getY(); jButtonNetworkConnections.setLocation(x - 1, y - 1); } });
         jButtonRefreshHostnameIPMAC.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonRefreshHostnameIPMAC.getX(); int y = jButtonRefreshHostnameIPMAC.getY(); jButtonRefreshHostnameIPMAC.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonRefreshHostnameIPMAC.getX(); int y = jButtonRefreshHostnameIPMAC.getY(); jButtonRefreshHostnameIPMAC.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonRefreshHostnameIPMAC.getX(); int y = jButtonRefreshHostnameIPMAC.getY(); jButtonRefreshHostnameIPMAC.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonRefreshHostnameIPMAC.getX(); int y = jButtonRefreshHostnameIPMAC.getY(); jButtonRefreshHostnameIPMAC.setLocation(x - 1, y - 1); } });
+        jLabelLocalIP.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jLabelLocalIP.getX(); int y = jLabelLocalIP.getY(); jLabelLocalIP.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jLabelLocalIP.getX(); int y = jLabelLocalIP.getY(); jLabelLocalIP.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jLabelLocalIP.getX(); int y = jLabelLocalIP.getY(); jLabelLocalIP.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jLabelLocalIP.getX(); int y = jLabelLocalIP.getY(); jLabelLocalIP.setLocation(x - 1, y - 1); } });
         
         //- Remove the button borders
         Border emptyBorder = BorderFactory.createEmptyBorder();
@@ -1933,6 +1943,11 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jLabelLocalIP.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
         jLabelLocalIP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelLocalIP.setText("Local IP");
+        jLabelLocalIP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelLocalIPMouseClicked(evt);
+            }
+        });
         jPanelMainRightSide.add(jLabelLocalIP);
         jLabelLocalIP.setBounds(10, 20, 190, 20);
         jPanelMainRightSide.add(jSeparator6);
@@ -4032,7 +4047,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jButton38.setBackground(new java.awt.Color(204, 204, 255));
         jButton38.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton38.setText("Edit Personal Properties File");
+        jButton38.setText("Edit personal properties file");
         jButton38.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButton38.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4044,7 +4059,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jButton32.setBackground(new java.awt.Color(204, 204, 255));
         jButton32.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton32.setText("Edit Personal Favorites List");
+        jButton32.setText("Edit personal favorites list");
         jButton32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton32ActionPerformed(evt);
@@ -4055,7 +4070,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jButton30.setBackground(new java.awt.Color(255, 233, 162));
         jButton30.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton30.setText("Open Logging-Ouput Folder");
+        jButton30.setText("Open logging-output folder");
         jButton30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton30ActionPerformed(evt);
@@ -4066,7 +4081,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jButton43.setBackground(new java.awt.Color(255, 233, 162));
         jButton43.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton43.setText("Open Personal Folder");
+        jButton43.setText("Open personal folder");
         jButton43.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton43ActionPerformed(evt);
@@ -4085,6 +4100,16 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jSliderListTextSize.setPaintLabels(true);
         jSliderListTextSize.setSnapToTicks(true);
         jSliderListTextSize.setValue(1);
+        //- Set Personal Text Setting
+        try {
+            String myValue = PropertyHandlerPersonal.getInstance().getValue("SettingTextSize");
+            if("".equals(myValue)) {
+                PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "1");
+            }
+            jSliderListTextSize.setValue(Integer.parseInt(PropertyHandlerPersonal.getInstance().getValue("SettingTextSize")));
+
+        } catch (NullPointerException e) {System.out.println("TextSize Goofed");
+        }
         jSliderListTextSize.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSliderListTextSizeStateChanged(evt);
@@ -4095,7 +4120,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jLabelListTextSize1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelListTextSize1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelListTextSize1.setText("List Text Size:");
+        jLabelListTextSize1.setText("List text size:");
         jPanel3.add(jLabelListTextSize1);
         jLabelListTextSize1.setBounds(10, 50, 80, 20);
 
@@ -4131,7 +4156,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jButtonCopyShortcutToDesktop.setBackground(new java.awt.Color(206, 221, 226));
         jButtonCopyShortcutToDesktop.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButtonCopyShortcutToDesktop.setText("Copy Shortcut to Desktop");
+        jButtonCopyShortcutToDesktop.setText("Copy shortcut to desktop");
         jButtonCopyShortcutToDesktop.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonCopyShortcutToDesktop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4142,7 +4167,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonCopyShortcutToDesktop.setBounds(190, 140, 170, 20);
 
         jCheckBoxChangePingOnSessionSelect.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jCheckBoxChangePingOnSessionSelect.setText("Change Ping IP/Hostname on Session Select");
+        jCheckBoxChangePingOnSessionSelect.setText("Change ping host field on session select");
         jCheckBoxChangePingOnSessionSelect.setToolTipText("");
         jPanel3.add(jCheckBoxChangePingOnSessionSelect);
         jCheckBoxChangePingOnSessionSelect.setBounds(10, 80, 270, 20);
@@ -4155,10 +4180,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jLabelEnablePWauth.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelEnablePWauth.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelEnablePWauth.setText("Preload Session IP:");
+        jLabelEnablePWauth.setText("Preloaded session IP:");
         jLabelEnablePWauth.setToolTipText("Preloaded IP for SSH/RDP/HTTPS etc.");
         jPanel4.add(jLabelEnablePWauth);
-        jLabelEnablePWauth.setBounds(20, 50, 100, 20);
+        jLabelEnablePWauth.setBounds(0, 50, 120, 20);
 
         buttonGroupPWauthEnableDisable.add(jRadioButtonPWauthEnabled);
         jRadioButtonPWauthEnabled.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -4197,13 +4222,13 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jLabelEnablePWauth1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelEnablePWauth1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelEnablePWauth1.setText("SSH Password Auth:");
+        jLabelEnablePWauth1.setText("SSH password auth:");
         jPanel4.add(jLabelEnablePWauth1);
         jLabelEnablePWauth1.setBounds(0, 110, 120, 20);
 
         jButton28.setBackground(new java.awt.Color(255, 233, 162));
         jButton28.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton28.setText("Open LaunchPad Folder");
+        jButton28.setText("Open LaunchPad folder");
         jButton28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton28ActionPerformed(evt);
@@ -4214,7 +4239,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jButton34.setBackground(new java.awt.Color(210, 210, 210));
         jButton34.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton34.setText("View Shared Properties File");
+        jButton34.setText("View shared properties file");
         jButton34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton34ActionPerformed(evt);
@@ -4225,7 +4250,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jButton35.setBackground(new java.awt.Color(204, 204, 255));
         jButton35.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton35.setText("Edit Shared Properties File");
+        jButton35.setText("Edit shared properties file");
         jButton35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton35ActionPerformed(evt);
@@ -4236,7 +4261,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jLabelEnablePWauth2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelEnablePWauth2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelEnablePWauth2.setText("Preferred IP Prefixes:");
+        jLabelEnablePWauth2.setText("Preferred IP prefixes:");
         jLabelEnablePWauth2.setToolTipText("IP prefixes that will be preferred when multiple network interfaces exist.");
         jPanel4.add(jLabelEnablePWauth2);
         jLabelEnablePWauth2.setBounds(0, 170, 120, 20);
@@ -4251,7 +4276,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jLabelEnablePWauth3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelEnablePWauth3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelEnablePWauth3.setText("SecureCRT Path:");
+        jLabelEnablePWauth3.setText("SecureCRT path:");
         jLabelEnablePWauth3.setToolTipText("Path to SecureCRT.exe");
         jPanel4.add(jLabelEnablePWauth3);
         jLabelEnablePWauth3.setBounds(20, 20, 100, 20);
@@ -4266,10 +4291,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jLabelEnablePWauth4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelEnablePWauth4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelEnablePWauth4.setText("Preload Ping IP:");
+        jLabelEnablePWauth4.setText("Preloaded ping IP:");
         jLabelEnablePWauth4.setToolTipText("Preloaded IP for the Ping section.");
         jPanel4.add(jLabelEnablePWauth4);
-        jLabelEnablePWauth4.setBounds(230, 50, 90, 20);
+        jLabelEnablePWauth4.setBounds(240, 50, 90, 20);
 
         jTextFieldPreloadedPingIP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -4277,11 +4302,11 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jTextFieldPreloadedPingIP);
-        jTextFieldPreloadedPingIP.setBounds(330, 50, 100, 20);
+        jTextFieldPreloadedPingIP.setBounds(340, 50, 100, 20);
 
         jLabelListTextSize3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelListTextSize3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelListTextSize3.setText("Session Double Click:");
+        jLabelListTextSize3.setText("Session double click:");
         jPanel4.add(jLabelListTextSize3);
         jLabelListTextSize3.setBounds(0, 80, 120, 20);
 
@@ -4298,7 +4323,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jLabelListTextSize4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jLabelListTextSize4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelListTextSize4.setText("Session Enter Press:");
+        jLabelListTextSize4.setText("Session enter press:");
         jPanel4.add(jLabelListTextSize4);
         jLabelListTextSize4.setBounds(190, 80, 120, 20);
 
@@ -4346,7 +4371,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jButtonScriptUpdateLaunchPad.setBackground(new java.awt.Color(255, 211, 148));
         jButtonScriptUpdateLaunchPad.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButtonScriptUpdateLaunchPad.setText("Force Update");
+        jButtonScriptUpdateLaunchPad.setText("Force update");
         jButtonScriptUpdateLaunchPad.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonScriptUpdateLaunchPad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4358,7 +4383,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jButtonViewExampleUpdateScript.setBackground(new java.awt.Color(210, 210, 210));
         jButtonViewExampleUpdateScript.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButtonViewExampleUpdateScript.setText("View Example PS Update Script");
+        jButtonViewExampleUpdateScript.setText("View example PS update script");
         jButtonViewExampleUpdateScript.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jButtonViewExampleUpdateScript.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -7752,45 +7777,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton31ActionPerformed
 
     private void jSliderListTextSizeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderListTextSizeStateChanged
-        // TODO add your handling code here:
-        String strSliderValue = String.valueOf(jSliderListTextSize.getValue());
-        System.out.println(strSliderValue);
-
-        if (strSliderValue.equals("0")){
-            jListSessions.setFont(jListSessions.getFont().deriveFont(10.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(10.0f)); 
-            PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "0");
-        }
-        if (strSliderValue.equals("1")){
-            jListSessions.setFont(jListSessions.getFont().deriveFont(12.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(12.0f));
-            PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "1");            
-        }
-        if (strSliderValue.equals("2")){
-            jListSessions.setFont(jListSessions.getFont().deriveFont(14.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(14.0f));
-            PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "2");            
-        }
-        if (strSliderValue.equals("3")){
-            jListSessions.setFont(jListSessions.getFont().deriveFont(16.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(16.0f));
-            PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "3");            
-        }
-        if (strSliderValue.equals("4")){
-            jListSessions.setFont(jListSessions.getFont().deriveFont(18.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(18.0f));
-            PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "4");            
-        }
-        if (strSliderValue.equals("5")){
-            jListSessions.setFont(jListSessions.getFont().deriveFont(20.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(20.0f));
-            PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "5");            
-        }
-        if (strSliderValue.equals("6")){
-            jListSessions.setFont(jListSessions.getFont().deriveFont(22.0f));
-            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(22.0f));
-            PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "6");            
-        }
+        setSessionTextSize();
+        PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", String.valueOf(jSliderListTextSize.getValue()));
     }//GEN-LAST:event_jSliderListTextSizeStateChanged
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
@@ -7804,7 +7792,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             jTextFieldFileHashGenerate.setText(chooser.getSelectedFile().getAbsolutePath());
             System.out.println("getCurrentDirectory(): " + chooser.getCurrentDirectory());
-            System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
+            System.out.println("getSelectedFile(): " + chooser.getSelectedFile());
         } else {
             System.out.println("No Selection ");
         }
@@ -10148,7 +10136,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             jLabelLocalHostname.setToolTipText(systemname);
             jLabelLocalIP.setText(getIPAddress());
             jLabelLocalMAC.setText(getMAC());
-        } catch (Exception e) {
+        } catch (SocketException | UnknownHostException e) {
         }
 
     }//GEN-LAST:event_jButtonRefreshHostnameIPMACMouseReleased
@@ -10315,7 +10303,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonNetworkConnectionsMouseReleased
 
     private void jButtonNetworkConnectionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNetworkConnectionsActionPerformed
-        // TODO add your handling code here:
         System.out.println("Pressed");
         try {
             Runtime.getRuntime().exec("cmd /c start ncpa.cpl");
@@ -10324,6 +10311,17 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             System.out.println("Something is wrong!");
         }
     }//GEN-LAST:event_jButtonNetworkConnectionsActionPerformed
+
+    private void jLabelLocalIPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelLocalIPMouseClicked
+        String strCMD = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -noexit -Command \"& {$RunIPconfig = {Clear-Host; ipconfig /all; Write-Host ''; Write-Host 'Press Enter to REFRESH...' -NoNewLine  -ForegroundColor Green; Read-Host -Prompt ' '; .$RunIPconfig}; &$RunIPconfig}\"";
+        System.out.println("Pressed");
+        try {
+            Runtime.getRuntime().exec(strCMD);
+        }
+        catch (IOException e) {
+            System.out.println("Something is wrong!");
+        }
+    }//GEN-LAST:event_jLabelLocalIPMouseClicked
 
     
     /**
@@ -10634,7 +10632,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     public void openLinkCustom(String strLinkText) {
         String strCommand = PropertyHandler.getInstance().getValue(strLinkText);
-        System.out.println(strCommand);
+        //System.out.println(strCommand);
         try {
             //- Using ProcessBuilder
             //String[] args = new String[] {"cmd.exe", "/c", "start", strCommand};
@@ -10655,7 +10653,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     
     public void openScriptCustom(String strLinkText) {
         String strCommand = PropertyHandler.getInstance().getValue(strLinkText);
-        System.out.println(strCommand);
+        //System.out.println(strCommand);
         try {
             //- Using ProcessBuilder
             //String[] args = new String[] {"cmd.exe", "/c", "start", strCommand};
@@ -10676,7 +10674,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     
     public void openCommand(String strProperty) {
         String strCommand = PropertyHandler.getInstance().getValue(strProperty);
-        System.out.println(strCommand);
+        //System.out.println(strCommand);
         try {
             //- Using ProcessBuilder
             //String[] args = new String[] {"cmd.exe", "/c", "start", strCommand};
@@ -10926,7 +10924,7 @@ scroll.setPreferredSize(new Dimension(800, 500));
 //                System.out.println("triple-click");
 //            } else 
             if (evt.getClickCount() == 2) {
-                System.out.println("Action: double-click");
+                System.out.println("Action: double-click detected");
                 String strSelectedValue = jListSessions.getSelectedValue();
                 if(strSelectedValue.contains(",")) {
                     String[] arrSelectedValue = strSelectedValue.split(",");
@@ -11174,24 +11172,14 @@ scroll.setPreferredSize(new Dimension(800, 500));
             jLabelLocalMAC.setText(macaddress);
             System.out.println("Host Name : "+systemname);
             System.out.println("Host IP   : "+ipaddress);
-            System.out.println("Host Address : "+macaddress); 
+            System.out.println("Host MAC  : "+macaddress); 
         } catch (UnknownHostException | SocketException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }   
     }
     
     public void loadSettingsPersonal() {
-        //- Set Personal Text Setting 
-        try {
-            String myValue = PropertyHandlerPersonal.getInstance().getValue("SettingTextSize");
-            if("".equals(myValue)) {
-                PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "1");
-            }
-            int myValueInt = Integer.parseInt(PropertyHandlerPersonal.getInstance().getValue("SettingTextSize"));
-            jSliderListTextSize.setValue(myValueInt);
 
-        } catch (NullPointerException e) {System.out.println("TextSize Goofed");
-        }
 
         //- Set Personal Language Setting 
         try {
@@ -11208,7 +11196,7 @@ scroll.setPreferredSize(new Dimension(800, 500));
         } catch (NullPointerException e) {System.out.println("SettingLanguage Goofed");
         }   
         
-        //- Set Personal Language Setting 
+        //- Set Ping on Session Select
         try {
             if("1".equals(PropertyHandlerPersonal.getInstance().getValue("SettingChangePingOnSessionSelect"))) {
                 jCheckBoxChangePingOnSessionSelect.setSelected(Boolean.TRUE);
@@ -11692,6 +11680,48 @@ scroll.setPreferredSize(new Dimension(800, 500));
             System.out.println("Desktop link: created");
         }
     }
+        private void setSessionTextSize() {
+        String strSliderValue = String.valueOf(jSliderListTextSize.getValue());
+        //System.out.println(strSliderValue);
+
+        if (strSliderValue.equals("0")){
+            jListSessions.setFont(jListSessions.getFont().deriveFont(10.0f));
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(10.0f)); 
+            //PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "0");
+        }
+        if (strSliderValue.equals("1")){
+            jListSessions.setFont(jListSessions.getFont().deriveFont(12.0f));
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(12.0f));
+            //PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "1");            
+        }
+        if (strSliderValue.equals("2")){
+            jListSessions.setFont(jListSessions.getFont().deriveFont(14.0f));
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(14.0f));
+            //PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "2");            
+        }
+        if (strSliderValue.equals("3")){
+            jListSessions.setFont(jListSessions.getFont().deriveFont(16.0f));
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(16.0f));
+            //PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "3");            
+        }
+        if (strSliderValue.equals("4")){
+            jListSessions.setFont(jListSessions.getFont().deriveFont(18.0f));
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(18.0f));
+            //PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "4");            
+        }
+        if (strSliderValue.equals("5")){
+            jListSessions.setFont(jListSessions.getFont().deriveFont(20.0f));
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(20.0f));
+            //PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "5");            
+        }
+        if (strSliderValue.equals("6")){
+            jListSessions.setFont(jListSessions.getFont().deriveFont(22.0f));
+            jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(22.0f));
+            //PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "6");            
+        }
+        }
+
+
   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
