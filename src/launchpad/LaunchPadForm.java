@@ -4211,7 +4211,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxClassification.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxClassification.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Unclassified", "Confidential", "Secret", "Top Secret", "SCI", "Coalition" }));
-        jComboBoxClassification.setSelectedItem(PropertyHandler.getInstance().getValue("SettingClassification"));
+        jComboBoxClassification.setSelectedItem(PropertyHandler.getInstance().getValue("Setting.Classification"));
         jComboBoxClassification.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxClassificationItemStateChanged(evt);
@@ -9380,7 +9380,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         //- Set Local Policy Warnings
         try {
             if("1".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
-                JOptionPane.showMessageDialog(null, "Data in this folder is overwritten by local policy!","Warning!",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "This file is overwritten by local policy!","Warning!",JOptionPane.WARNING_MESSAGE);
             } 
         } catch (NullPointerException e) {System.out.println("SettingLocalPolicyWarning Goofed");
         } 
@@ -10143,7 +10143,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jComboBoxClassificationItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxClassificationItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("SettingClassification",((String)jComboBoxClassification.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Setting.Classification",((String)jComboBoxClassification.getSelectedItem()));
             loadClassification();
         }
     }//GEN-LAST:event_jComboBoxClassificationItemStateChanged
@@ -11135,7 +11135,7 @@ scroll.setPreferredSize(new Dimension(800, 500));
     }
     
     private void loadClassification() {  
-        String strClassification = PropertyHandler.getInstance().getValue("SettingClassification");
+        String strClassification = PropertyHandler.getInstance().getValue("Setting.Classification");
         System.out.println("Classification: " + strClassification);
         if("Unclassified".equalsIgnoreCase(strClassification)) {
             getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, new Color(0,122,61)));           

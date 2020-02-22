@@ -5182,7 +5182,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxClassificationItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxClassification.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;SettingClassification&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxClassification.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Setting.Classification&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                       <Constraints>

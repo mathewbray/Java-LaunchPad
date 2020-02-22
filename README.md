@@ -14,7 +14,9 @@ Java Runtime Environment
 
 ## Installing
 
-Run "LaunchPad.jar" from any location you prefer.  Optionally create a shortcut like so:  
+In the "jar" folder you'll find "LaunchPad.jar". If you run it outside of "%SystemDrive%\LaunchPad", it will copy itself to "%SystemDrive%\LaunchPad" and add a link to the Desktop.  
+
+Optionally create a shortcut like so:  
 "C:\Program Files (x86)\Common Files\Oracle\Java\javapath\javaw.exe" -jar "%SystemDrive%\LaunchPad\LaunchPad.jar"
 
 
