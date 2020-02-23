@@ -127,9 +127,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jCheckBoxFavorites" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTextFieldFilter" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jButtonClearFilter" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jCheckBoxFavorites" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPaneSessionList" pref="568" max="32767" attributes="0"/>
@@ -1092,7 +1092,7 @@
             <Component class="javax.swing.JButton" name="jButtonClearFilter">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial Unicode MS" size="11" style="0"/>
+                  <Font name="Arial Unicode MS" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="X"/>
                 <Property name="toolTipText" type="java.lang.String" value="Clear filter"/>
@@ -4762,6 +4762,38 @@
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="10" y="100" width="170" height="30"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="jButton45">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Arial Unicode MS" size="11" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Image Folder to Base64"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton45ActionPerformed"/>
+                      </Events>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="370" y="100" width="170" height="30"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="jButton46">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Arial Unicode MS" size="11" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Image to Base64"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton46ActionPerformed"/>
+                      </Events>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="190" y="100" width="170" height="30"/>
                         </Constraint>
                       </Constraints>
                     </Component>

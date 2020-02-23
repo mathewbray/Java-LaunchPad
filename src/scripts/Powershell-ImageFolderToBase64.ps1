@@ -1,5 +1,5 @@
 do {
-    #Clear-Host
+    Clear-Host
     write-host ""
     write-host "                  Image Folder to Base64! " -ForegroundColor Green
     write-host ""

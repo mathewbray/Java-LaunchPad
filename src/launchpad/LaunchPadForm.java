@@ -198,18 +198,18 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                         System.out.println("Copy Operation - JAR destination lock status: " + fileIsNotLocked);                                                        
                         System.out.println("Copy Operation - Copying JAR to : " + strPathLaunchPadFolder);
                         Files.copy(currentJar.toPath(),  (new File(strPathLaunchPadFolder + "\\" + currentJar.getName())).toPath(), StandardCopyOption.REPLACE_EXISTING);
-                        JOptionPane.showMessageDialog(null, "Copied LaunchPad.jar to: " + strPathLaunchPadFolder + "\r\n\r\n" + "Shortcut has been added to the desktop.","Good to go!",JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Copied LaunchPad.jar to: " + strPathLaunchPadFolder + "\r\n" + "Shortcut has been added to the desktop.","Good to go!",JOptionPane.INFORMATION_MESSAGE);
                         copyShortcutToDesktop();
                         System.exit(0);
                     }                        
                 } else {
-                System.out.println("Copy Operation - Run status: Abort (Code source name does not end in \".jar\")");
+                System.out.println("Copy Operation - Run status: ABORT (Code source name does not end in \".jar\")");
                 }             
             } else {
-            System.out.println("Copy Operation - Run status: Abort (Not forced to run from LP folder)");
+            System.out.println("Copy Operation - Run status: ABORT (Not forced to run from LP folder)");
             }
         } else {
-            System.out.println("Copy Operation - Run status: Abort (Code source match)");
+            System.out.println("Copy Operation - Run status: ABORT (Code source match)");
         }
         
         //- Don't close the window immediately, prompt to ask
@@ -459,9 +459,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/update.png"));
             img = icon.getImage(); newimg = img.getScaledInstance( 20, 20,  java.awt.Image.SCALE_SMOOTH ); jButtonRefreshHostnameIPMAC.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed");StringBuilder sb = new StringBuilder(e.toString());for (StackTraceElement ste : e.getStackTrace()) { sb.append("\n\tat "); sb.append(ste); } String trace = sb.toString(); JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);        }
-          
-            
-        
+ 
         
         
 
@@ -526,6 +524,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonMainButton24.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         jButtonNetworkConnections.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         jButtonRefreshHostnameIPMAC.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabelLocalIP.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         
         //- Add the slight buuton movement when hovered over function
         jButtonMainButton1.addMouseListener(new java.awt.event.MouseAdapter() {@Override public void mouseEntered(java.awt.event.MouseEvent evt) { int x = jButtonMainButton1.getX(); int y = jButtonMainButton1.getY(); jButtonMainButton1.setLocation(x + -1, y + -1);}@Override public void mouseExited(java.awt.event.MouseEvent evt) { int x = jButtonMainButton1.getX(); int y = jButtonMainButton1.getY(); jButtonMainButton1.setLocation(x + 1, y + 1); }@Override public void mousePressed(java.awt.event.MouseEvent evt) { int x = jButtonMainButton1.getX(); int y = jButtonMainButton1.getY(); jButtonMainButton1.setLocation(x + 1, y + 1); }@Override public void mouseReleased(java.awt.event.MouseEvent evt) { int x = jButtonMainButton1.getX(); int y = jButtonMainButton1.getY(); jButtonMainButton1.setLocation(x - 1, y - 1); } });
@@ -1132,6 +1131,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButtonScriptGetNTPTimePS = new javax.swing.JButton();
         jButtonScriptHashChecker = new javax.swing.JButton();
         jButton31 = new javax.swing.JButton();
+        jButton45 = new javax.swing.JButton();
+        jButton46 = new javax.swing.JButton();
         jTabbedPaneSettings = new javax.swing.JTabbedPane();
         jPanelSettingsMain = new javax.swing.JPanel();
         jButtonReportIssue = new javax.swing.JButton();
@@ -2080,7 +2081,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
 
-        jButtonClearFilter.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonClearFilter.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
         jButtonClearFilter.setText("X");
         jButtonClearFilter.setToolTipText("Clear filter");
         jButtonClearFilter.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -2117,9 +2118,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMainLayout.createSequentialGroup()
                         .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jCheckBoxFavorites, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextFieldFilter)
-                            .addComponent(jButtonClearFilter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jCheckBoxFavorites, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButtonClearFilter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPaneSessionList, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE))
                     .addComponent(jPanelMainRightSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -4002,6 +4003,26 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         });
         jPanelMiscellaneous.add(jButton31);
         jButton31.setBounds(10, 100, 170, 30);
+
+        jButton45.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton45.setText("Image Folder to Base64");
+        jButton45.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton45ActionPerformed(evt);
+            }
+        });
+        jPanelMiscellaneous.add(jButton45);
+        jButton45.setBounds(370, 100, 170, 30);
+
+        jButton46.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton46.setText("Image to Base64");
+        jButton46.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton46ActionPerformed(evt);
+            }
+        });
+        jPanelMiscellaneous.add(jButton46);
+        jButton46.setBounds(190, 100, 170, 30);
 
         jPanelToolboxScripts.add(jPanelMiscellaneous);
         jPanelMiscellaneous.setBounds(10, 230, 550, 150);
@@ -10323,6 +10344,14 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabelLocalIPMouseClicked
 
+    private void jButton45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton45ActionPerformed
+        openEmbeddedPowershellScript("scripts/Powershell-ImageFolderToBase64.ps1", ".ps1");
+    }//GEN-LAST:event_jButton45ActionPerformed
+
+    private void jButton46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton46ActionPerformed
+        openEmbeddedPowershellScript("scripts/Powershell-ImageToBase64.ps1", ".ps1");
+    }//GEN-LAST:event_jButton46ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -11752,6 +11781,8 @@ scroll.setPreferredSize(new Dimension(800, 500));
     private javax.swing.JButton jButton42;
     private javax.swing.JButton jButton43;
     private javax.swing.JButton jButton44;
+    private javax.swing.JButton jButton45;
+    private javax.swing.JButton jButton46;
     private javax.swing.JButton jButtonClearFilter;
     private javax.swing.JButton jButtonConfigBuilder1;
     private javax.swing.JButton jButtonConsole;
