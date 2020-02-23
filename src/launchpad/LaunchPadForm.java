@@ -120,7 +120,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     String strSessionListFavorites = strSessionListFavoritesFolder + "\\SessionList.csv";
     
     //- Get date and time
-    SimpleDateFormat simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
+    SimpleDateFormat simpleDateFormat  = new SimpleDateFormat("yyyy-MM-dd_HHmm-ssSSS");
     String dateTime = simpleDateFormat.format(new Date());
     
     //- Icon List
@@ -8643,9 +8643,9 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         System.out.println("SecureCRT file: " + strSecureCRTexe);
 
-        SimpleDateFormat simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
+        SimpleDateFormat simpleDateFormat  = new SimpleDateFormat("yyyy-MM-dd_HHmm-ssSSS");
         String dateTime = simpleDateFormat.format(new Date());
-        String fileLog = pathLogging + "\\Serial-" + dateTime + ".txt";
+        String fileLog = pathLogging + "\\Serial-" + jComboBoxConsoleCOM.getSelectedItem() + "-" + dateTime + ".txt";
         System.out.println("Log file: " + fileLog);
 
 
@@ -8680,7 +8680,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         System.out.println("Pressed");
         String StringPingDNS = "";
         String StringPingLOG = "";
-        simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
+        simpleDateFormat  = new SimpleDateFormat("yyyy-MM-dd_HHmm-ssSSS");
         dateTime = simpleDateFormat.format(new Date());
         
         if(jCheckBoxDNS.isSelected()) {
@@ -8697,7 +8697,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             //Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"ping -t " + StringPingDNS + " " + jTextFieldPingHostname.getText() + "\"");
             
             //- PowerShell
-            String strExec = "cmd /c start powershell.exe -ExecutionPolicy Bypass -noexit -Command \"$host.ui.RawUI.WindowTitle = 'Pinging " + jTextFieldPingHostname.getText() + "' ; ping -t " + StringPingDNS + " " + jTextFieldPingHostname.getText() + " 2>&1 |Foreach{'{0} - {1}' -f (Get-Date -f yyyyMMdd_HHmmss),$_} | select -skip 1 " + StringPingLOG;
+            String strExec = "cmd /c start powershell.exe -ExecutionPolicy Bypass -noexit -Command \"$host.ui.RawUI.WindowTitle = 'Pinging " + jTextFieldPingHostname.getText() + "' ; ping -t " + StringPingDNS + " " + jTextFieldPingHostname.getText() + " 2>&1 |Foreach{'{0} - {1}' -f (Get-Date -f yyyy-MM-dd_HHmm-ssfff),$_} | select -skip 1 " + StringPingLOG;
             //JOptionPane.showMessageDialog(this, strExec);
             System.out.println(strExec);           
             Runtime.getRuntime().exec(strExec);
@@ -8765,7 +8765,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private void jButtonExecuteFunctionSSHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunctionSSHActionPerformed
         String strSecureCRTexe = PropertyHandler.getInstance().getValue("SecureCRTexe").replace("%USERPROFILE%", pathUserProfile);
         System.out.println("SecureCRT file: " + strSecureCRTexe);
-        simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
+        simpleDateFormat  = new SimpleDateFormat("yyyy-MM-dd_HHmm-ssSSS");
         dateTime = simpleDateFormat.format(new Date());
         String fileLog = pathDesktop + "\\Logging-Output\\SSH-" + jTextFieldConnectHostname.getText() + " " + dateTime.toString() + ".txt";
         System.out.println("Log file: " + fileLog);
@@ -9792,7 +9792,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private void jButtonExecuteFunctionPKIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunctionPKIActionPerformed
         String strSecureCRTexe = PropertyHandler.getInstance().getValue("SecureCRTexe").replace("%USERPROFILE%", pathUserProfile);
         System.out.println("SecureCRT file: " + strSecureCRTexe);
-        simpleDateFormat  = new SimpleDateFormat("yyyyMMdd_HHmm-ssSSS");
+        simpleDateFormat  = new SimpleDateFormat("yyyy-MM-dd_HHmm-ssSSS");
         dateTime = simpleDateFormat.format(new Date());
         String fileLog = pathDesktop + "\\Logging-Output\\SSH-" + jTextFieldConnectHostname.getText() + " " + dateTime + ".txt";
         System.out.println("Log file: " + fileLog);
