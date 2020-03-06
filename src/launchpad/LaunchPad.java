@@ -14,7 +14,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.FileTime;
 import java.util.Arrays;
 import java.util.List;
@@ -469,8 +468,11 @@ public class LaunchPad {
                 Runtime.getRuntime().exec(myValue);
             }
             catch (IOException e) {
-                System.out.println("HEY Buddy ! U r Doing Something Wrong ");
-                JOptionPane.showMessageDialog(null, "Something is wrong!");
+                System.out.println("Oh no!");
+                JOptionPane.showMessageDialog(null, "Couldn't run the update script!");
+                //--- Launch the form
+                LaunchPadForm form = new LaunchPadForm();
+                form.setVisible(true);
             }     
         }
         else {

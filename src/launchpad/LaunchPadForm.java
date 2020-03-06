@@ -43,7 +43,6 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.net.UnknownHostException;
 import java.nio.charset.Charset;
-import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -2097,19 +2096,16 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMainLayout.createSequentialGroup()
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPaneSessionList)
                     .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addGap(263, 263, 263)
+                        .addContainerGap()
+                        .addComponent(jTextFieldFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonClearFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBoxFavorites, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPaneSessionList)
-                            .addGroup(jPanelMainLayout.createSequentialGroup()
-                                .addComponent(jTextFieldFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(jCheckBoxFavorites, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelMainRightSide, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanelMainLayout.setVerticalGroup(
@@ -2117,12 +2113,13 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             .addGroup(jPanelMainLayout.createSequentialGroup()
                 .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMainLayout.createSequentialGroup()
-                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jCheckBoxFavorites, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldFilter)
-                            .addComponent(jButtonClearFilter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jCheckBoxFavorites)
+                                .addComponent(jButtonClearFilter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jTextFieldFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPaneSessionList, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE))
+                        .addComponent(jScrollPaneSessionList, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE))
                     .addComponent(jPanelMainRightSide, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
@@ -7434,7 +7431,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonReportIssueActionPerformed
 
     private void jButtonScriptUpdateLaunchPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptUpdateLaunchPadActionPerformed
-        // TODO add your handling code here:
+        String StrFileUpdateScript = PropertyHandler.getInstance().getValue("FileUpdateScript");
+        if(new File(StrFileUpdateScript).isFile()) { 
         String myValue = "cmd.exe /c start powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("FileUpdateScript") + "\"";
         System.out.println(myValue);
         try {
@@ -7444,7 +7442,14 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             System.out.println("Something is wrong!");
             JOptionPane.showMessageDialog(null, "Something is wrong!");
         }
-        System.exit(0);
+            System.exit(0);
+        }
+        else {
+            String StrMessage = "Property FileUpdateScript: file not found";
+            String StrTitle = "Oh no!";
+            JOptionPane.showMessageDialog(null, StrMessage,StrTitle,JOptionPane.WARNING_MESSAGE);
+            System.out.println(StrMessage);
+        }
     }//GEN-LAST:event_jButtonScriptUpdateLaunchPadActionPerformed
 
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
@@ -11290,12 +11295,12 @@ scroll.setPreferredSize(new Dimension(800, 500));
 
     
     private void SetLanguageJapanese() {
-        jTabbedMain.setTitleAt(0,"メイン");
-        jTabbedMain.setTitleAt(1,"リンク");
-        jTabbedMain.setTitleAt(2,"レファレンス");
-        jTabbedMain.setTitleAt(3,"スクリプト");
-        jTabbedMain.setTitleAt(4,"ツールボックス");
-        jTabbedMain.setTitleAt(5,"セッティング");
+        jTabbedMain.setTitleAt(0,"メイン"); //Main
+        jTabbedMain.setTitleAt(1,"リンク"); //Link
+        jTabbedMain.setTitleAt(2,"レファレンス"); //Reference
+        jTabbedMain.setTitleAt(3,"スクリプト"); //Script
+        jTabbedMain.setTitleAt(4,"ツールボックス"); //Toolbox
+        jTabbedMain.setTitleAt(5,"セッティング"); //Setting
         jCheckBoxFavorites.setText("お気に入り");
         jCheckBoxAlternateLogin.setText("代替ログイン");
         jButtonPing.setText("ピング");
@@ -11304,12 +11309,12 @@ scroll.setPreferredSize(new Dimension(800, 500));
         jButtonConsole.setText("シリアルポートに接続します");
         jToggleOnlineOfflineMode.setText("オンライン");
         jTabbedMain.setTitleAt(0,"メイン");
-        jTabbedPaneToolBox.setTitleAt(0, "ファイルアーカイブ");
-        jTabbedPaneToolBox.setTitleAt(1, "タイプ");
-        jTabbedPaneToolBox.setTitleAt(2, "ハッシュ");
-        jTabbedPaneToolBox.setTitleAt(3, "ハッシュ");
-        jTabbedPaneToolBox.setTitleAt(4, "ハッシュ");
-        jTabbedPaneToolBox.setTitleAt(5, "スクリプト");
+        jTabbedPaneToolBox.setTitleAt(0, "ファイルアーカイブ"); //File Archive
+        jTabbedPaneToolBox.setTitleAt(1, "タイプ"); //Type
+        jTabbedPaneToolBox.setTitleAt(2, "ハッシュ"); //Hash
+        jTabbedPaneToolBox.setTitleAt(3, "NTP"); //NTP
+        jTabbedPaneToolBox.setTitleAt(4, "アプリ"); //App
+        jTabbedPaneToolBox.setTitleAt(5, "スクリプト"); //Script
         jLabelLinksFilter.setText("フィルタ:");
         jLabelReferenceFilter.setText("フィルタ:");
         jLabelScriptsFilter.setText("フィルタ:");
@@ -11324,7 +11329,11 @@ scroll.setPreferredSize(new Dimension(800, 500));
         jPanelScanning.setBorder(javax.swing.BorderFactory.createTitledBorder("スキャン"));
         jPanelSyncing.setBorder(javax.swing.BorderFactory.createTitledBorder("同期"));
         jPanelMiscellaneous.setBorder(javax.swing.BorderFactory.createTitledBorder("その他"));
-
+        jTabbedPaneSettings.setTitleAt(0, "メイン"); //Main
+        jTabbedPaneSettings.setTitleAt(1, "ボタン"); //Button
+        jTabbedPaneSettings.setTitleAt(2, "リンク"); //Link
+        jTabbedPaneSettings.setTitleAt(3, "スクリプト"); //Script
+        jTabbedPaneSettings.setTitleAt(4, "レファレンス"); //Reference
     }
     
     private void loadSettingsMainButtonsData() {

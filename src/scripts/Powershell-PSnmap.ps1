@@ -769,7 +769,7 @@ while($true)
 
 $DesktopPath = [Environment]::GetFolderPath("Desktop")
 $TimeStamp = Get-Date
-$TimeStamp = $TimeStamp.ToString('MM-dd-yyyy_hh-mm-ss')
+$TimeStamp = $TimeStamp.ToString('MM-dd-yyyy_HH-mm-ss')
 #$CSVFile = ".\output_$TimeStamp.csv"
 
 # INITIAL MENU
@@ -779,19 +779,23 @@ $TimeStamp = $TimeStamp.ToString('MM-dd-yyyy_hh-mm-ss')
         if($computersToScan -eq ""){ $computersToScan = "127.0.0.1" }
 
     #-- Ports
+        [string]$portsArg = $null
+        [string]$portsToScan = $null
         [string]$portsToScan = Read-Host -Prompt "(Optional) Ports to scan, separated by comma (Example: 22,80,443) "
         if([string]$portsToScan -eq $null){ [string]$portsToScan = "" }
         if([string]$portsToScan -eq ""){ [string]$portsToScan = "" }
 
-        [array]$portsToScan = $portsToScan.split(",");
-        [array]$portsToScan = foreach($number in $portsToScan) {
-            try {
-                [int]::parse($number)
+        if([string]$portsToScan -ne ""){
+            [array]$portsToScan = $portsToScan.split(",");
+            [array]$portsToScan = foreach($number in $portsToScan) {
+                try {
+                    [int]::parse($number)
+                }
+                catch {
+                    Invoke-Expression -Command $number;
+                }
             }
-            catch {
-                Invoke-Expression -Command $number;
-            }
-            }
+        }
 
     #-- DNS
     #  Output Type
@@ -811,13 +815,21 @@ $TimeStamp = $TimeStamp.ToString('MM-dd-yyyy_hh-mm-ss')
         Write-Host ""
         Write-Host ""
 
-
 $x = ""
-switch($opt)
-{
-0 { $x = Invoke-PSnmap -Cn $computersToScan -Port $portsToScan -Dns -Verbose }
-1 { $x = Invoke-PSnmap -Cn $computersToScan -Port $portsToScan -Verbose }
+if([string]$portsToScan -ne ""){
+    switch($opt)
+    {
+    0 { $x = Invoke-PSnmap -Cn $computersToScan -Port $portsToScan -Dns -Verbose }
+    1 { $x = Invoke-PSnmap -Cn $computersToScan -Port $portsToScan -Verbose }
+    }
+} else {
+    switch($opt)
+    {
+    0 { $x = Invoke-PSnmap -Cn $computersToScan -Dns -Verbose }
+    1 { $x = Invoke-PSnmap -Cn $computersToScan -Verbose }
+    }   
 }
+
 $x | Where { $_.Ping } | Format-Table -AutoSize
 $x | Where { $_.Ping } | Export-Csv "$DesktopPath\Logging-Output\PortScan-$TimeStamp.csv"
 
