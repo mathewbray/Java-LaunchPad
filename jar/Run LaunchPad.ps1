@@ -1,0 +1,1 @@
+& Java\bin\javaw.exe -jar LaunchPad.jar
