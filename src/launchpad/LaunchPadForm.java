@@ -1132,6 +1132,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButton31 = new javax.swing.JButton();
         jButton45 = new javax.swing.JButton();
         jButton46 = new javax.swing.JButton();
+        jButtonScriptKeepAwake = new javax.swing.JButton();
         jTabbedPaneSettings = new javax.swing.JTabbedPane();
         jPanelSettingsMain = new javax.swing.JPanel();
         jButtonReportIssue = new javax.swing.JButton();
@@ -4021,8 +4022,18 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jPanelMiscellaneous.add(jButton46);
         jButton46.setBounds(190, 100, 170, 30);
 
+        jButtonScriptKeepAwake.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonScriptKeepAwake.setText("Keep Awake");
+        jButtonScriptKeepAwake.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonScriptKeepAwakeActionPerformed(evt);
+            }
+        });
+        jPanelMiscellaneous.add(jButtonScriptKeepAwake);
+        jButtonScriptKeepAwake.setBounds(10, 140, 170, 30);
+
         jPanelToolboxScripts.add(jPanelMiscellaneous);
-        jPanelMiscellaneous.setBounds(10, 230, 550, 150);
+        jPanelMiscellaneous.setBounds(10, 230, 550, 180);
 
         jTabbedPaneToolBox.addTab("Scripts", jPanelToolboxScripts);
 
@@ -10357,6 +10368,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         openEmbeddedPowershellScript("scripts/Powershell-ImageToBase64.ps1", ".ps1");
     }//GEN-LAST:event_jButton46ActionPerformed
 
+    private void jButtonScriptKeepAwakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptKeepAwakeActionPerformed
+        openEmbeddedPowershellScript("scripts/Powershell-KeepAlive.ps1", ".ps1");
+    }//GEN-LAST:event_jButtonScriptKeepAwakeActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -11950,6 +11965,7 @@ scroll.setPreferredSize(new Dimension(800, 500));
     private javax.swing.JButton jButtonScriptGetNTPTimePS;
     private javax.swing.JButton jButtonScriptHashChecker;
     private javax.swing.JButton jButtonScriptHashChecker1;
+    private javax.swing.JButton jButtonScriptKeepAwake;
     private javax.swing.JButton jButtonScriptMTUSweep;
     private javax.swing.JButton jButtonScriptPingLoggerToFile;
     private javax.swing.JButton jButtonScriptPowershellPingSweepRange;
