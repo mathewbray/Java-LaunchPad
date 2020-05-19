@@ -20,7 +20,7 @@ padding:"inner"+a,content:b,"":"outer"+a},function(c,d){n.fn[d]=function(d,e){va
         <script type="text/javascript">
         window.onload = function() {
     //- Apply Preloaded Config
-    makeOutput(strPreloadedConfig);
+    makeOutput(strPreloadedDefault);
 	generateConfigOutput0();
     applySplitSlider();
     // LOAD CONFIG FILE LISTENER
@@ -86,6 +86,35 @@ function ArrNoDupe(a) {
         temp[a[i]] = true;
     return Object.keys(temp);
 }
+
+// DEFAULT
+var strPreloadedDefault = '\n\
+!---\n\
+!--- Choose a template from the menu.\n\
+!--- Markdown examples are below.\n\
+!--- Uncheck sections to remove them.\n\
+!--- I chaotically threw this tool together and I guarantee nothing.\n\
+!--- Known bug: a template must contain a variable or it will not parse, i am too lazy to fix this.\n\
+!---\n\
+\n\
+!---\n\
+!--- COMMENT LINE\n\
+!---\n\
+\n\
+!${optional command {VARIABLE_1}}\n\
+\n\
+![SECTION 1]\n\
+![\n\
+required command !${{VARIABLE_2}}\n\
+standard command\n\
+!]\n\
+\n\
+![SECTION 2]\n\
+![\n\
+crypto key generate rsa general-keys modulus 1024\n\
+!]\n\
+\n\
+'
 
 // PRELOADED CONFIG
 var strPreloadedConfig = '\n\
@@ -1068,6 +1097,54 @@ copy running-config startup-config\n\
 \n\
 '
 
+var strEtherchannelLayer3 = '\n\
+!---\n\
+!--- LAB USE ONLY\n\
+!--- Etherchannel Layer 3\n\
+!---\n\
+\n\
+![DSW1]\n\
+![\n\
+\n\
+!${port-channel load-balance {DSW1 PORT-CHANNEL - Load Balance Method (src-dst-ip)}}\n\
+\n\
+interface Port-channel!${{DSW1 PORT-CHANNEL - Number (1)}} \n\
+ no switchport \n\
+ ip address 10.2.4.12 255.255.255.252 \n\
+ \n\
+interface Ethernet01\n\
+ no switchport \n\
+ no ip address \n\
+ channel-group 1 mode on \n\
+ \n\
+interface Ethernet02\n\
+ no switchport \n\
+ no ip address \n\
+ channel-group 1 mode on \n\
+!]\n\
+\n\
+![DSW2]\n\
+![\n\
+\n\
+!${port-channel load-balance {PORT-CHANNEL - Load Balance Method (src-dst-ip)}}\n\
+\n\
+interface Port-channel1 \n\
+ no switchport \n\
+ ip address 10.2.4.13 255.255.255.252 \n\
+ \n\
+interface Ethernet01\n\
+ no switchport \n\
+ no ip address \n\
+ channel-group 1 mode on \n\
+ \n\
+interface Ethernet02\n\
+ no switchport \n\
+ no ip address \n\
+ channel-group 1 mode on\n\
+!]\n\
+\n\
+'
+
 //--- ALTERNATE PRELOADED CONFIGS
 function loadAlternateConfig(configName) {
     strConfigRaw = configName;
@@ -1429,14 +1506,6 @@ function copyToClipboard() {
 
 
 
-
-//--------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------
-//--- BELOW IS OLD SHIT
  
 
 
@@ -1568,6 +1637,44 @@ pre, code {
 
 
         </style>
+
+
+<style>
+    .dropbtn {
+      background-color: rgb(228, 228, 228);
+      color: rgb(0, 0, 0);
+      padding: 4px;
+      font-size: 16px;
+      border: none;
+    }
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      width: max-content;
+      box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    
+    .dropdown-content a {
+      color: black;
+      padding: 6px 8px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .dropdown-content a:hover {background-color: #ddd;}
+    
+    .dropdown:hover .dropdown-content {display: block;}
+    
+    .dropdown:hover .dropbtn {background-color: #60dd65;}
+    </style>
     
     </head>
 <body>
@@ -1575,19 +1682,26 @@ pre, code {
 
     <!-- LEFT SIDE -->
     <div id="container-left" class="split">
+        <div class="dropdown">
+            <button class="dropbtn">Templates</button>
+            <div class="dropdown-content">
+                <a onclick="loadAlternateConfig(strPreloadedConfig);" href="#">Example Config SSH/DHCP</a>
+                <a onclick="loadAlternateConfig(strPreloadedConfig1);" href="#">Example Config 1</a>
+                <a onclick="loadAlternateConfig(strPreloadedConfig2);" href="#">Example Config 2</a>                                
+                <!-- <a onclick="loadAlternateConfig(strEtherchannelLayer3);" href="#">Etherchannel - Layer 3</a> -->
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Options</button>
+            <div class="dropdown-content">
+                <a onclick="saveTextAsFile();" href="#">Save to Disk</a>
+                <a onclick="copyToClipboard()" href="#">Copy to Clipboard</a>
+            </div>
+          </div>
+        <br>
+        <br>
 
             <input style="color: #7FB347;" type="file" id="file" name="file" enctype="multipart/form-data" />
-        
-            <input type="button" onclick="saveTextAsFile();" value="Save" />
-
-            <input type="button" onclick="copyToClipboard()" value="Copy" />
-
-            <br>
-            <br>
-
-            <input type="button" onclick="loadAlternateConfig(strPreloadedConfig1);" value="Config 1" />
-
-            <input type="button" onclick="loadAlternateConfig(strPreloadedConfig2);" value="Config 2" />
 
         <br>
         <br>

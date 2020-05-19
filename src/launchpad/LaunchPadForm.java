@@ -1133,6 +1133,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButton45 = new javax.swing.JButton();
         jButton46 = new javax.swing.JButton();
         jButtonScriptKeepAwake = new javax.swing.JButton();
+        jButtonCiscoType7Decrypt = new javax.swing.JButton();
         jTabbedPaneSettings = new javax.swing.JTabbedPane();
         jPanelSettingsMain = new javax.swing.JPanel();
         jButtonReportIssue = new javax.swing.JButton();
@@ -4030,12 +4031,22 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             }
         });
         jPanelMiscellaneous.add(jButtonScriptKeepAwake);
-        jButtonScriptKeepAwake.setBounds(10, 140, 170, 30);
+        jButtonScriptKeepAwake.setBounds(190, 140, 170, 30);
+
+        jButtonCiscoType7Decrypt.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonCiscoType7Decrypt.setText("Type 7 Reverse");
+        jButtonCiscoType7Decrypt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCiscoType7DecryptActionPerformed(evt);
+            }
+        });
+        jPanelMiscellaneous.add(jButtonCiscoType7Decrypt);
+        jButtonCiscoType7Decrypt.setBounds(10, 140, 170, 30);
 
         jPanelToolboxScripts.add(jPanelMiscellaneous);
         jPanelMiscellaneous.setBounds(10, 230, 550, 180);
 
-        jTabbedPaneToolBox.addTab("Scripts", jPanelToolboxScripts);
+        jTabbedPaneToolBox.addTab("Built-in Scripts", jPanelToolboxScripts);
 
         jTabbedMain.addTab("ToolBox", jTabbedPaneToolBox);
 
@@ -10372,6 +10383,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         openEmbeddedPowershellScript("scripts/Powershell-KeepAlive.ps1", ".ps1");
     }//GEN-LAST:event_jButtonScriptKeepAwakeActionPerformed
 
+    private void jButtonCiscoType7DecryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCiscoType7DecryptActionPerformed
+        openEmbeddedPowershellScript("scripts/Powershell-UnprotectType7.ps1", ".ps1");
+    }//GEN-LAST:event_jButtonCiscoType7DecryptActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -11807,6 +11822,7 @@ scroll.setPreferredSize(new Dimension(800, 500));
     private javax.swing.JButton jButton44;
     private javax.swing.JButton jButton45;
     private javax.swing.JButton jButton46;
+    private javax.swing.JButton jButtonCiscoType7Decrypt;
     private javax.swing.JButton jButtonClearFilter;
     private javax.swing.JButton jButtonConfigBuilder1;
     private javax.swing.JButton jButtonConsole;

@@ -199,6 +199,9 @@ process {
 
 }#Start-KeepAlive
 
+$host.UI.RawUI.WindowTitle = "Keep Alive"
+
+Clear-Host
 
 #-- INITIAL PROMPTS
     $keepalivehours = Read-Host -Prompt 'Hours to keep alive (Default: 9) '
@@ -222,12 +225,17 @@ Start-KeepAlive -KeepAliveHours $keepalivehours -SleepSeconds $sleepseconds
 Write-Host ""
 Write-Host "Use " -NoNewline
 Write-Host "'Start-KeepAlive -Query' " -ForegroundColor Green -NoNewline
-Write-Host "to check status." -ForegroundColor Green
+Write-Host "to check status." 
 
 Write-Host "Use " -NoNewline
 Write-Host "'Start-KeepAlive -EndJob' " -ForegroundColor Green -NoNewline
-Write-Host "to end the process." -ForegroundColor Green
+Write-Host "to end the process." 
 
 Write-Host ""
+
+Write-Host "Closing this window will end the job." -ForegroundColor Cyan
+
+Write-Host ""
+
 
 pause
