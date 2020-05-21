@@ -10289,31 +10289,39 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String args = jTextFieldNtpServer.getText();
-
         if (args.length() == 0) {
             System.err.println("No server entered.");
             jTextAreaNTPMessage.setText("No server entered.");
             return;
         }
+        
+        InetAddress hostAddr = null;
+        try {
+            hostAddr = InetAddress.getByName(args);
+            jTextAreaNTPMessage.setText(" Resolved, retrieving NTP data from " + args);            
+        } catch (UnknownHostException ex) {
+            jTextAreaNTPMessage.setText(" Could not resolve " + args + ".  :(");
+            return;
+        }
+
 
         NTPUDPClient client = new NTPUDPClient();
         // We want to timeout if a response takes longer than 10 seconds
         client.setDefaultTimeout(10000);
         try {
             client.open();
-//            for (String arg : args)
-//            {
                 System.out.println();
                 try {
-                    InetAddress hostAddr = InetAddress.getByName(args);
-                    System.out.println("> " + hostAddr.getHostName() + "/" + hostAddr.getHostAddress());
+                    System.out.println("> " + hostAddr.getHostName() + " (" + hostAddr.getHostAddress() + ")");
                     jTextAreaNTPMessage.setText("> " + hostAddr.getHostName() + "/" + hostAddr.getHostAddress());
                     TimeInfo info = client.getTime(hostAddr);
                     processResponseNTP(info);
                 } catch (IOException e) {
+                    jTextAreaNTPMessage.setText("> Failed to retrive time from " + hostAddr.getHostAddress());
                 }
 //            }
         } catch (SocketException e) {
+            jTextAreaNTPMessage.setText("> There was some kind of socket problem with " + hostAddr.getHostName() + " (" + hostAddr.getHostAddress() + ")");
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
