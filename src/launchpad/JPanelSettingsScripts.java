@@ -1645,11 +1645,11 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldScriptText1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText1KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript01Description",jTextFieldScriptText1.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.01.Description",jTextFieldScriptText1.getText());
     }//GEN-LAST:event_jTextFieldScriptText1KeyReleased
 
     private void jTextFieldScriptExecute1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute1KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript01Exec",jTextFieldScriptExecute1.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.01.Exec",jTextFieldScriptExecute1.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute1KeyReleased
 
     private void jButton45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton45ActionPerformed
@@ -1661,373 +1661,373 @@ public class JPanelSettingsScripts extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton45ActionPerformed
 
     private void jTextFieldScriptText2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText2KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript02Description",jTextFieldScriptText2.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.02.Description",jTextFieldScriptText2.getText());
     }//GEN-LAST:event_jTextFieldScriptText2KeyReleased
 
     private void jTextFieldScriptExecute2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute2KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript02Exec",jTextFieldScriptExecute2.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.02.Exec",jTextFieldScriptExecute2.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute2KeyReleased
 
     private void jTextFieldScriptText3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText3KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript03Description",jTextFieldScriptText3.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.03.Description",jTextFieldScriptText3.getText());
     }//GEN-LAST:event_jTextFieldScriptText3KeyReleased
 
     private void jTextFieldScriptExecute3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute3KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript03Exec",jTextFieldScriptExecute3.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.03.Exec",jTextFieldScriptExecute3.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute3KeyReleased
 
     private void jTextFieldScriptText4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText4KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript04Description",jTextFieldScriptText4.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.04.Description",jTextFieldScriptText4.getText());
     }//GEN-LAST:event_jTextFieldScriptText4KeyReleased
 
     private void jTextFieldScriptExecute4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute4KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript04Exec",jTextFieldScriptExecute4.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.04.Exec",jTextFieldScriptExecute4.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute4KeyReleased
 
     private void jTextFieldScriptText5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText5KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript05Description",jTextFieldScriptText5.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.05.Description",jTextFieldScriptText5.getText());
     }//GEN-LAST:event_jTextFieldScriptText5KeyReleased
 
     private void jTextFieldScriptExecute5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute5KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript05Exec",jTextFieldScriptExecute5.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.05.Exec",jTextFieldScriptExecute5.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute5KeyReleased
 
     private void jTextFieldScriptText6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText6KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript06Description",jTextFieldScriptText6.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.06.Description",jTextFieldScriptText6.getText());
     }//GEN-LAST:event_jTextFieldScriptText6KeyReleased
 
     private void jTextFieldScriptExecute6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute6KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript06Exec",jTextFieldScriptExecute6.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.06.Exec",jTextFieldScriptExecute6.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute6KeyReleased
 
     private void jTextFieldScriptText7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText7KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript07Description",jTextFieldScriptText7.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.07.Description",jTextFieldScriptText7.getText());
     }//GEN-LAST:event_jTextFieldScriptText7KeyReleased
 
     private void jTextFieldScriptExecute7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute7KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript07Exec",jTextFieldScriptExecute7.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.07.Exec",jTextFieldScriptExecute7.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute7KeyReleased
 
     private void jTextFieldScriptText8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText8KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript08Description",jTextFieldScriptText8.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.08.Description",jTextFieldScriptText8.getText());
     }//GEN-LAST:event_jTextFieldScriptText8KeyReleased
 
     private void jTextFieldScriptExecute8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute8KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript08Exec",jTextFieldScriptExecute8.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.08.Exec",jTextFieldScriptExecute8.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute8KeyReleased
 
     private void jTextFieldScriptText9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText9KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript09Description",jTextFieldScriptText9.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.09.Description",jTextFieldScriptText9.getText());
     }//GEN-LAST:event_jTextFieldScriptText9KeyReleased
 
     private void jTextFieldScriptExecute9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute9KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript09Exec",jTextFieldScriptExecute9.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.09.Exec",jTextFieldScriptExecute9.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute9KeyReleased
 
     private void jTextFieldScriptText10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText10KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript10Description",jTextFieldScriptText10.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.10.Description",jTextFieldScriptText10.getText());
     }//GEN-LAST:event_jTextFieldScriptText10KeyReleased
 
     private void jTextFieldScriptExecute10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute10KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript10Exec",jTextFieldScriptExecute10.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.10.Exec",jTextFieldScriptExecute10.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute10KeyReleased
 
     private void jTextFieldScriptText11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText11KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript11Description",jTextFieldScriptText11.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.11.Description",jTextFieldScriptText11.getText());
     }//GEN-LAST:event_jTextFieldScriptText11KeyReleased
 
     private void jTextFieldScriptExecute11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute11KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript11Exec",jTextFieldScriptExecute11.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.11.Exec",jTextFieldScriptExecute11.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute11KeyReleased
 
     private void jTextFieldScriptText12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText12KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript12Description",jTextFieldScriptText12.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.12.Description",jTextFieldScriptText12.getText());
     }//GEN-LAST:event_jTextFieldScriptText12KeyReleased
 
     private void jTextFieldScriptExecute12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute12KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript12Exec",jTextFieldScriptExecute12.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.12.Exec",jTextFieldScriptExecute12.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute12KeyReleased
 
     private void jTextFieldScriptText13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText13KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript13Description",jTextFieldScriptText13.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.13.Description",jTextFieldScriptText13.getText());
     }//GEN-LAST:event_jTextFieldScriptText13KeyReleased
 
     private void jTextFieldScriptExecute13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute13KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript13Exec",jTextFieldScriptExecute13.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.13.Exec",jTextFieldScriptExecute13.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute13KeyReleased
 
     private void jTextFieldScriptText14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText14KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript14Description",jTextFieldScriptText14.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.14.Description",jTextFieldScriptText14.getText());
     }//GEN-LAST:event_jTextFieldScriptText14KeyReleased
 
     private void jTextFieldScriptExecute14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute14KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript14Exec",jTextFieldScriptExecute14.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.14.Exec",jTextFieldScriptExecute14.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute14KeyReleased
 
     private void jTextFieldScriptText15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText15KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript15Description",jTextFieldScriptText15.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.15.Description",jTextFieldScriptText15.getText());
     }//GEN-LAST:event_jTextFieldScriptText15KeyReleased
 
     private void jTextFieldScriptExecute15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute15KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript15Exec",jTextFieldScriptExecute15.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.15.Exec",jTextFieldScriptExecute15.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute15KeyReleased
 
     private void jTextFieldScriptText16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText16KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript16Description",jTextFieldScriptText16.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.16.Description",jTextFieldScriptText16.getText());
     }//GEN-LAST:event_jTextFieldScriptText16KeyReleased
 
     private void jTextFieldScriptExecute16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute16KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript16Exec",jTextFieldScriptExecute16.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.16.Exec",jTextFieldScriptExecute16.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute16KeyReleased
 
     private void jTextFieldScriptText17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText17KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript17Description",jTextFieldScriptText17.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.17.Description",jTextFieldScriptText17.getText());
     }//GEN-LAST:event_jTextFieldScriptText17KeyReleased
 
     private void jTextFieldScriptExecute17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute17KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript17Exec",jTextFieldScriptExecute17.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.17.Exec",jTextFieldScriptExecute17.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute17KeyReleased
 
     private void jTextFieldScriptText18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText18KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript18Description",jTextFieldScriptText18.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.18.Description",jTextFieldScriptText18.getText());
     }//GEN-LAST:event_jTextFieldScriptText18KeyReleased
 
     private void jTextFieldScriptExecute18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute18KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript18Exec",jTextFieldScriptExecute18.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.18.Exec",jTextFieldScriptExecute18.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute18KeyReleased
 
     private void jTextFieldScriptText19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText19KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript19Description",jTextFieldScriptText19.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.19.Description",jTextFieldScriptText19.getText());
     }//GEN-LAST:event_jTextFieldScriptText19KeyReleased
 
     private void jTextFieldScriptExecute19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute19KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript19Exec",jTextFieldScriptExecute19.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.19.Exec",jTextFieldScriptExecute19.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute19KeyReleased
 
     private void jTextFieldScriptText20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText20KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript20Description",jTextFieldScriptText20.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.20.Description",jTextFieldScriptText20.getText());
     }//GEN-LAST:event_jTextFieldScriptText20KeyReleased
 
     private void jTextFieldScriptExecute20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute20KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript20Exec",jTextFieldScriptExecute20.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.20.Exec",jTextFieldScriptExecute20.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute20KeyReleased
 
     private void jTextFieldScriptText21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText21KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript21Description",jTextFieldScriptText21.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.21.Description",jTextFieldScriptText21.getText());
     }//GEN-LAST:event_jTextFieldScriptText21KeyReleased
 
     private void jTextFieldScriptExecute21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute21KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript21Exec",jTextFieldScriptExecute21.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.21.Exec",jTextFieldScriptExecute21.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute21KeyReleased
 
     private void jTextFieldScriptText22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText22KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript22Description",jTextFieldScriptText22.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.22.Description",jTextFieldScriptText22.getText());
     }//GEN-LAST:event_jTextFieldScriptText22KeyReleased
 
     private void jTextFieldScriptExecute22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute22KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript22Exec",jTextFieldScriptExecute22.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.22.Exec",jTextFieldScriptExecute22.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute22KeyReleased
 
     private void jTextFieldScriptText23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText23KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript23Description",jTextFieldScriptText23.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.23.Description",jTextFieldScriptText23.getText());
     }//GEN-LAST:event_jTextFieldScriptText23KeyReleased
 
     private void jTextFieldScriptExecute23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute23KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript23Exec",jTextFieldScriptExecute23.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.23.Exec",jTextFieldScriptExecute23.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute23KeyReleased
 
     private void jTextFieldScriptText24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText24KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript24Description",jTextFieldScriptText24.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.24.Description",jTextFieldScriptText24.getText());
     }//GEN-LAST:event_jTextFieldScriptText24KeyReleased
 
     private void jTextFieldScriptExecute24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute24KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript24Exec",jTextFieldScriptExecute24.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.24.Exec",jTextFieldScriptExecute24.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute24KeyReleased
 
     private void jTextFieldScriptText25KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText25KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript25Description",jTextFieldScriptText25.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.25.Description",jTextFieldScriptText25.getText());
     }//GEN-LAST:event_jTextFieldScriptText25KeyReleased
 
     private void jTextFieldScriptExecute25KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute25KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript25Exec",jTextFieldScriptExecute25.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.25.Exec",jTextFieldScriptExecute25.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute25KeyReleased
 
     private void jTextFieldScriptText26KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText26KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript26Description",jTextFieldScriptText26.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.26.Description",jTextFieldScriptText26.getText());
     }//GEN-LAST:event_jTextFieldScriptText26KeyReleased
 
     private void jTextFieldScriptExecute26KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute26KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript26Exec",jTextFieldScriptExecute26.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.26.Exec",jTextFieldScriptExecute26.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute26KeyReleased
 
     private void jTextFieldScriptText27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText27KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript27Description",jTextFieldScriptText27.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.27.Description",jTextFieldScriptText27.getText());
     }//GEN-LAST:event_jTextFieldScriptText27KeyReleased
 
     private void jTextFieldScriptExecute27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute27KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript27Exec",jTextFieldScriptExecute27.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.27.Exec",jTextFieldScriptExecute27.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute27KeyReleased
 
     private void jTextFieldScriptText28KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText28KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript28Description",jTextFieldScriptText28.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.28.Description",jTextFieldScriptText28.getText());
     }//GEN-LAST:event_jTextFieldScriptText28KeyReleased
 
     private void jTextFieldScriptExecute28KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute28KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript28Exec",jTextFieldScriptExecute28.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.28.Exec",jTextFieldScriptExecute28.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute28KeyReleased
 
     private void jTextFieldScriptText29KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText29KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript29Description",jTextFieldScriptText29.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.29.Description",jTextFieldScriptText29.getText());
     }//GEN-LAST:event_jTextFieldScriptText29KeyReleased
 
     private void jTextFieldScriptExecute29KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute29KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript29Exec",jTextFieldScriptExecute29.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.29.Exec",jTextFieldScriptExecute29.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute29KeyReleased
 
     private void jTextFieldScriptText30KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText30KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript30Description",jTextFieldScriptText30.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.30.Description",jTextFieldScriptText30.getText());
     }//GEN-LAST:event_jTextFieldScriptText30KeyReleased
 
     private void jTextFieldScriptExecute30KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute30KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript30Exec",jTextFieldScriptExecute30.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.30.Exec",jTextFieldScriptExecute30.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute30KeyReleased
 
     private void jTextFieldScriptText31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText31KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript31Description",jTextFieldScriptText31.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.31.Description",jTextFieldScriptText31.getText());
     }//GEN-LAST:event_jTextFieldScriptText31KeyReleased
 
     private void jTextFieldScriptExecute31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute31KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript31Exec",jTextFieldScriptExecute31.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.31.Exec",jTextFieldScriptExecute31.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute31KeyReleased
 
     private void jTextFieldScriptText32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText32KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript32Description",jTextFieldScriptText32.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.32.Description",jTextFieldScriptText32.getText());
     }//GEN-LAST:event_jTextFieldScriptText32KeyReleased
 
     private void jTextFieldScriptExecute32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute32KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript32Exec",jTextFieldScriptExecute32.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.32.Exec",jTextFieldScriptExecute32.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute32KeyReleased
 
     private void jTextFieldScriptText33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText33KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript33Description",jTextFieldScriptText33.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.33.Description",jTextFieldScriptText33.getText());
     }//GEN-LAST:event_jTextFieldScriptText33KeyReleased
 
     private void jTextFieldScriptExecute33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute33KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript33Exec",jTextFieldScriptExecute33.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.33.Exec",jTextFieldScriptExecute33.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute33KeyReleased
 
     private void jTextFieldScriptText34KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText34KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript34Description",jTextFieldScriptText34.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.34.Description",jTextFieldScriptText34.getText());
     }//GEN-LAST:event_jTextFieldScriptText34KeyReleased
 
     private void jTextFieldScriptExecute34KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute34KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript34Exec",jTextFieldScriptExecute34.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.34.Exec",jTextFieldScriptExecute34.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute34KeyReleased
 
     private void jTextFieldScriptText35KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText35KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript35Description",jTextFieldScriptText35.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.35.Description",jTextFieldScriptText35.getText());
     }//GEN-LAST:event_jTextFieldScriptText35KeyReleased
 
     private void jTextFieldScriptExecute35KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute35KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript35Exec",jTextFieldScriptExecute35.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.35.Exec",jTextFieldScriptExecute35.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute35KeyReleased
 
     private void jTextFieldScriptText36KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptText36KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript36Description",jTextFieldScriptText36.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.36.Description",jTextFieldScriptText36.getText());
     }//GEN-LAST:event_jTextFieldScriptText36KeyReleased
 
     private void jTextFieldScriptExecute36KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldScriptExecute36KeyReleased
-        PropertyHandler.getInstance().setValue("CustomScript36Exec",jTextFieldScriptExecute36.getText());
+        PropertyHandler.getInstance().setValue("Custom.Script.36.Exec",jTextFieldScriptExecute36.getText());
     }//GEN-LAST:event_jTextFieldScriptExecute36KeyReleased
 
         private void loadSettingsScriptData() {
         //- Text
-        jTextFieldScriptText1.setText(PropertyHandler.getInstance().getValue("CustomScript01Description"));
-        jTextFieldScriptText2.setText(PropertyHandler.getInstance().getValue("CustomScript02Description"));
-        jTextFieldScriptText3.setText(PropertyHandler.getInstance().getValue("CustomScript03Description"));
-        jTextFieldScriptText4.setText(PropertyHandler.getInstance().getValue("CustomScript04Description"));
-        jTextFieldScriptText5.setText(PropertyHandler.getInstance().getValue("CustomScript05Description"));
-        jTextFieldScriptText6.setText(PropertyHandler.getInstance().getValue("CustomScript06Description"));
-        jTextFieldScriptText7.setText(PropertyHandler.getInstance().getValue("CustomScript07Description"));
-        jTextFieldScriptText8.setText(PropertyHandler.getInstance().getValue("CustomScript08Description"));
-        jTextFieldScriptText9.setText(PropertyHandler.getInstance().getValue("CustomScript09Description"));
-        jTextFieldScriptText10.setText(PropertyHandler.getInstance().getValue("CustomScript10Description"));
-        jTextFieldScriptText11.setText(PropertyHandler.getInstance().getValue("CustomScript11Description"));
-        jTextFieldScriptText12.setText(PropertyHandler.getInstance().getValue("CustomScript12Description"));
-        jTextFieldScriptText13.setText(PropertyHandler.getInstance().getValue("CustomScript13Description"));
-        jTextFieldScriptText14.setText(PropertyHandler.getInstance().getValue("CustomScript14Description"));
-        jTextFieldScriptText15.setText(PropertyHandler.getInstance().getValue("CustomScript15Description"));
-        jTextFieldScriptText16.setText(PropertyHandler.getInstance().getValue("CustomScript16Description"));
-        jTextFieldScriptText17.setText(PropertyHandler.getInstance().getValue("CustomScript17Description"));
-        jTextFieldScriptText18.setText(PropertyHandler.getInstance().getValue("CustomScript18Description"));
-        jTextFieldScriptText19.setText(PropertyHandler.getInstance().getValue("CustomScript19Description"));
-        jTextFieldScriptText20.setText(PropertyHandler.getInstance().getValue("CustomScript20Description"));
-        jTextFieldScriptText21.setText(PropertyHandler.getInstance().getValue("CustomScript21Description"));
-        jTextFieldScriptText22.setText(PropertyHandler.getInstance().getValue("CustomScript22Description"));
-        jTextFieldScriptText23.setText(PropertyHandler.getInstance().getValue("CustomScript23Description"));
-        jTextFieldScriptText24.setText(PropertyHandler.getInstance().getValue("CustomScript24Description"));
-        jTextFieldScriptText25.setText(PropertyHandler.getInstance().getValue("CustomScript25Description"));
-        jTextFieldScriptText26.setText(PropertyHandler.getInstance().getValue("CustomScript26Description"));
-        jTextFieldScriptText27.setText(PropertyHandler.getInstance().getValue("CustomScript27Description"));
-        jTextFieldScriptText28.setText(PropertyHandler.getInstance().getValue("CustomScript28Description"));
-        jTextFieldScriptText29.setText(PropertyHandler.getInstance().getValue("CustomScript29Description"));
-        jTextFieldScriptText30.setText(PropertyHandler.getInstance().getValue("CustomScript30Description"));
-        jTextFieldScriptText31.setText(PropertyHandler.getInstance().getValue("CustomScript31Description"));
-        jTextFieldScriptText32.setText(PropertyHandler.getInstance().getValue("CustomScript32Description"));
-        jTextFieldScriptText33.setText(PropertyHandler.getInstance().getValue("CustomScript33Description"));
-        jTextFieldScriptText34.setText(PropertyHandler.getInstance().getValue("CustomScript34Description"));
-        jTextFieldScriptText35.setText(PropertyHandler.getInstance().getValue("CustomScript35Description"));
-        jTextFieldScriptText36.setText(PropertyHandler.getInstance().getValue("CustomScript36Description"));
+        jTextFieldScriptText1.setText(PropertyHandler.getInstance().getValue("Custom.Script.01.Description"));
+        jTextFieldScriptText2.setText(PropertyHandler.getInstance().getValue("Custom.Script.02.Description"));
+        jTextFieldScriptText3.setText(PropertyHandler.getInstance().getValue("Custom.Script.03.Description"));
+        jTextFieldScriptText4.setText(PropertyHandler.getInstance().getValue("Custom.Script.04.Description"));
+        jTextFieldScriptText5.setText(PropertyHandler.getInstance().getValue("Custom.Script.05.Description"));
+        jTextFieldScriptText6.setText(PropertyHandler.getInstance().getValue("Custom.Script.06.Description"));
+        jTextFieldScriptText7.setText(PropertyHandler.getInstance().getValue("Custom.Script.07.Description"));
+        jTextFieldScriptText8.setText(PropertyHandler.getInstance().getValue("Custom.Script.08.Description"));
+        jTextFieldScriptText9.setText(PropertyHandler.getInstance().getValue("Custom.Script.09.Description"));
+        jTextFieldScriptText10.setText(PropertyHandler.getInstance().getValue("Custom.Script.10.Description"));
+        jTextFieldScriptText11.setText(PropertyHandler.getInstance().getValue("Custom.Script.11.Description"));
+        jTextFieldScriptText12.setText(PropertyHandler.getInstance().getValue("Custom.Script.12.Description"));
+        jTextFieldScriptText13.setText(PropertyHandler.getInstance().getValue("Custom.Script.13.Description"));
+        jTextFieldScriptText14.setText(PropertyHandler.getInstance().getValue("Custom.Script.14.Description"));
+        jTextFieldScriptText15.setText(PropertyHandler.getInstance().getValue("Custom.Script.15.Description"));
+        jTextFieldScriptText16.setText(PropertyHandler.getInstance().getValue("Custom.Script.16.Description"));
+        jTextFieldScriptText17.setText(PropertyHandler.getInstance().getValue("Custom.Script.17.Description"));
+        jTextFieldScriptText18.setText(PropertyHandler.getInstance().getValue("Custom.Script.18.Description"));
+        jTextFieldScriptText19.setText(PropertyHandler.getInstance().getValue("Custom.Script.19.Description"));
+        jTextFieldScriptText20.setText(PropertyHandler.getInstance().getValue("Custom.Script.20.Description"));
+        jTextFieldScriptText21.setText(PropertyHandler.getInstance().getValue("Custom.Script.21.Description"));
+        jTextFieldScriptText22.setText(PropertyHandler.getInstance().getValue("Custom.Script.22.Description"));
+        jTextFieldScriptText23.setText(PropertyHandler.getInstance().getValue("Custom.Script.23.Description"));
+        jTextFieldScriptText24.setText(PropertyHandler.getInstance().getValue("Custom.Script.24.Description"));
+        jTextFieldScriptText25.setText(PropertyHandler.getInstance().getValue("Custom.Script.25.Description"));
+        jTextFieldScriptText26.setText(PropertyHandler.getInstance().getValue("Custom.Script.26.Description"));
+        jTextFieldScriptText27.setText(PropertyHandler.getInstance().getValue("Custom.Script.27.Description"));
+        jTextFieldScriptText28.setText(PropertyHandler.getInstance().getValue("Custom.Script.28.Description"));
+        jTextFieldScriptText29.setText(PropertyHandler.getInstance().getValue("Custom.Script.29.Description"));
+        jTextFieldScriptText30.setText(PropertyHandler.getInstance().getValue("Custom.Script.30.Description"));
+        jTextFieldScriptText31.setText(PropertyHandler.getInstance().getValue("Custom.Script.31.Description"));
+        jTextFieldScriptText32.setText(PropertyHandler.getInstance().getValue("Custom.Script.32.Description"));
+        jTextFieldScriptText33.setText(PropertyHandler.getInstance().getValue("Custom.Script.33.Description"));
+        jTextFieldScriptText34.setText(PropertyHandler.getInstance().getValue("Custom.Script.34.Description"));
+        jTextFieldScriptText35.setText(PropertyHandler.getInstance().getValue("Custom.Script.35.Description"));
+        jTextFieldScriptText36.setText(PropertyHandler.getInstance().getValue("Custom.Script.36.Description"));
         //- Executions
-        jTextFieldScriptExecute1.setText(PropertyHandler.getInstance().getValue("CustomScript01Exec"));
-        jTextFieldScriptExecute2.setText(PropertyHandler.getInstance().getValue("CustomScript02Exec"));
-        jTextFieldScriptExecute3.setText(PropertyHandler.getInstance().getValue("CustomScript03Exec"));
-        jTextFieldScriptExecute4.setText(PropertyHandler.getInstance().getValue("CustomScript04Exec"));
-        jTextFieldScriptExecute5.setText(PropertyHandler.getInstance().getValue("CustomScript05Exec"));
-        jTextFieldScriptExecute6.setText(PropertyHandler.getInstance().getValue("CustomScript06Exec"));
-        jTextFieldScriptExecute7.setText(PropertyHandler.getInstance().getValue("CustomScript07Exec"));
-        jTextFieldScriptExecute8.setText(PropertyHandler.getInstance().getValue("CustomScript08Exec"));
-        jTextFieldScriptExecute9.setText(PropertyHandler.getInstance().getValue("CustomScript09Exec"));
-        jTextFieldScriptExecute10.setText(PropertyHandler.getInstance().getValue("CustomScript10Exec"));
-        jTextFieldScriptExecute11.setText(PropertyHandler.getInstance().getValue("CustomScript11Exec"));
-        jTextFieldScriptExecute12.setText(PropertyHandler.getInstance().getValue("CustomScript12Exec"));
-        jTextFieldScriptExecute13.setText(PropertyHandler.getInstance().getValue("CustomScript13Exec"));
-        jTextFieldScriptExecute14.setText(PropertyHandler.getInstance().getValue("CustomScript14Exec"));
-        jTextFieldScriptExecute15.setText(PropertyHandler.getInstance().getValue("CustomScript15Exec"));
-        jTextFieldScriptExecute16.setText(PropertyHandler.getInstance().getValue("CustomScript16Exec"));
-        jTextFieldScriptExecute17.setText(PropertyHandler.getInstance().getValue("CustomScript17Exec"));
-        jTextFieldScriptExecute18.setText(PropertyHandler.getInstance().getValue("CustomScript18Exec"));
-        jTextFieldScriptExecute19.setText(PropertyHandler.getInstance().getValue("CustomScript19Exec"));
-        jTextFieldScriptExecute20.setText(PropertyHandler.getInstance().getValue("CustomScript20Exec"));
-        jTextFieldScriptExecute21.setText(PropertyHandler.getInstance().getValue("CustomScript21Exec"));
-        jTextFieldScriptExecute22.setText(PropertyHandler.getInstance().getValue("CustomScript22Exec"));
-        jTextFieldScriptExecute23.setText(PropertyHandler.getInstance().getValue("CustomScript23Exec"));
-        jTextFieldScriptExecute24.setText(PropertyHandler.getInstance().getValue("CustomScript24Exec"));
-        jTextFieldScriptExecute25.setText(PropertyHandler.getInstance().getValue("CustomScript25Exec"));
-        jTextFieldScriptExecute26.setText(PropertyHandler.getInstance().getValue("CustomScript26Exec"));
-        jTextFieldScriptExecute27.setText(PropertyHandler.getInstance().getValue("CustomScript27Exec"));
-        jTextFieldScriptExecute28.setText(PropertyHandler.getInstance().getValue("CustomScript28Exec"));
-        jTextFieldScriptExecute29.setText(PropertyHandler.getInstance().getValue("CustomScript29Exec"));
-        jTextFieldScriptExecute30.setText(PropertyHandler.getInstance().getValue("CustomScript30Exec"));
-        jTextFieldScriptExecute31.setText(PropertyHandler.getInstance().getValue("CustomScript31Exec"));
-        jTextFieldScriptExecute32.setText(PropertyHandler.getInstance().getValue("CustomScript32Exec"));
-        jTextFieldScriptExecute33.setText(PropertyHandler.getInstance().getValue("CustomScript33Exec"));
-        jTextFieldScriptExecute34.setText(PropertyHandler.getInstance().getValue("CustomScript34Exec"));
-        jTextFieldScriptExecute35.setText(PropertyHandler.getInstance().getValue("CustomScript35Exec"));
-        jTextFieldScriptExecute36.setText(PropertyHandler.getInstance().getValue("CustomScript36Exec"));
+        jTextFieldScriptExecute1.setText(PropertyHandler.getInstance().getValue("Custom.Script.01.Exec"));
+        jTextFieldScriptExecute2.setText(PropertyHandler.getInstance().getValue("Custom.Script.02.Exec"));
+        jTextFieldScriptExecute3.setText(PropertyHandler.getInstance().getValue("Custom.Script.03.Exec"));
+        jTextFieldScriptExecute4.setText(PropertyHandler.getInstance().getValue("Custom.Script.04.Exec"));
+        jTextFieldScriptExecute5.setText(PropertyHandler.getInstance().getValue("Custom.Script.05.Exec"));
+        jTextFieldScriptExecute6.setText(PropertyHandler.getInstance().getValue("Custom.Script.06.Exec"));
+        jTextFieldScriptExecute7.setText(PropertyHandler.getInstance().getValue("Custom.Script.07.Exec"));
+        jTextFieldScriptExecute8.setText(PropertyHandler.getInstance().getValue("Custom.Script.08.Exec"));
+        jTextFieldScriptExecute9.setText(PropertyHandler.getInstance().getValue("Custom.Script.09.Exec"));
+        jTextFieldScriptExecute10.setText(PropertyHandler.getInstance().getValue("Custom.Script.10.Exec"));
+        jTextFieldScriptExecute11.setText(PropertyHandler.getInstance().getValue("Custom.Script.11.Exec"));
+        jTextFieldScriptExecute12.setText(PropertyHandler.getInstance().getValue("Custom.Script.12.Exec"));
+        jTextFieldScriptExecute13.setText(PropertyHandler.getInstance().getValue("Custom.Script.13.Exec"));
+        jTextFieldScriptExecute14.setText(PropertyHandler.getInstance().getValue("Custom.Script.14.Exec"));
+        jTextFieldScriptExecute15.setText(PropertyHandler.getInstance().getValue("Custom.Script.15.Exec"));
+        jTextFieldScriptExecute16.setText(PropertyHandler.getInstance().getValue("Custom.Script.16.Exec"));
+        jTextFieldScriptExecute17.setText(PropertyHandler.getInstance().getValue("Custom.Script.17.Exec"));
+        jTextFieldScriptExecute18.setText(PropertyHandler.getInstance().getValue("Custom.Script.18.Exec"));
+        jTextFieldScriptExecute19.setText(PropertyHandler.getInstance().getValue("Custom.Script.19.Exec"));
+        jTextFieldScriptExecute20.setText(PropertyHandler.getInstance().getValue("Custom.Script.20.Exec"));
+        jTextFieldScriptExecute21.setText(PropertyHandler.getInstance().getValue("Custom.Script.21.Exec"));
+        jTextFieldScriptExecute22.setText(PropertyHandler.getInstance().getValue("Custom.Script.22.Exec"));
+        jTextFieldScriptExecute23.setText(PropertyHandler.getInstance().getValue("Custom.Script.23.Exec"));
+        jTextFieldScriptExecute24.setText(PropertyHandler.getInstance().getValue("Custom.Script.24.Exec"));
+        jTextFieldScriptExecute25.setText(PropertyHandler.getInstance().getValue("Custom.Script.25.Exec"));
+        jTextFieldScriptExecute26.setText(PropertyHandler.getInstance().getValue("Custom.Script.26.Exec"));
+        jTextFieldScriptExecute27.setText(PropertyHandler.getInstance().getValue("Custom.Script.27.Exec"));
+        jTextFieldScriptExecute28.setText(PropertyHandler.getInstance().getValue("Custom.Script.28.Exec"));
+        jTextFieldScriptExecute29.setText(PropertyHandler.getInstance().getValue("Custom.Script.29.Exec"));
+        jTextFieldScriptExecute30.setText(PropertyHandler.getInstance().getValue("Custom.Script.30.Exec"));
+        jTextFieldScriptExecute31.setText(PropertyHandler.getInstance().getValue("Custom.Script.31.Exec"));
+        jTextFieldScriptExecute32.setText(PropertyHandler.getInstance().getValue("Custom.Script.32.Exec"));
+        jTextFieldScriptExecute33.setText(PropertyHandler.getInstance().getValue("Custom.Script.33.Exec"));
+        jTextFieldScriptExecute34.setText(PropertyHandler.getInstance().getValue("Custom.Script.34.Exec"));
+        jTextFieldScriptExecute35.setText(PropertyHandler.getInstance().getValue("Custom.Script.35.Exec"));
+        jTextFieldScriptExecute36.setText(PropertyHandler.getInstance().getValue("Custom.Script.36.Exec"));
     }
         
     public void loadSettingsShared() {
         
         //- Set Local Policy Warnings
         try {
-//            if("1".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
+//            if("1".equals(PropertyHandler.getInstance().getValue("Setting.LocalPolicyWarning"))) {
 //                jLabel1.setText("");
 //            } 
-            if("0".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
+            if("0".equals(PropertyHandler.getInstance().getValue("Setting.LocalPolicyWarning"))) {
                 jLabel1.setText("");
             }
-        } catch (NullPointerException e) {System.out.println("SettingLocalPolicyWarning Goofed");
+        } catch (NullPointerException e) {System.out.println("Setting.LocalPolicyWarning Goofed");
         }
     }        
     

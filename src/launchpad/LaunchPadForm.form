@@ -5026,7 +5026,7 @@
                         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSliderListTextSizeStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="//- Set Personal Text Setting &#xa;try {&#xa;    String myValue = PropertyHandlerPersonal.getInstance().getValue(&quot;SettingTextSize&quot;);&#xa;    if(&quot;&quot;.equals(myValue)) {&#xa;        PropertyHandlerPersonal.getInstance().setValue(&quot;SettingTextSize&quot;, &quot;1&quot;);&#xa;    }&#xa;    jSliderListTextSize.setValue(Integer.parseInt(PropertyHandlerPersonal.getInstance().getValue(&quot;SettingTextSize&quot;)));&#xa;&#xa;} catch (NullPointerException e) {System.out.println(&quot;TextSize Goofed&quot;);&#xa;}"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="//- Set Personal Text Setting &#xa;try {&#xa;    String myValue = PropertyHandlerPersonal.getInstance().getValue(&quot;Setting.TextSize&quot;);&#xa;    if(&quot;&quot;.equals(myValue)) {&#xa;        PropertyHandlerPersonal.getInstance().setValue(&quot;Setting.TextSize&quot;, &quot;1&quot;);&#xa;    }&#xa;    jSliderListTextSize.setValue(Integer.parseInt(PropertyHandlerPersonal.getInstance().getValue(&quot;Setting.TextSize&quot;)));&#xa;&#xa;} catch (NullPointerException e) {System.out.println(&quot;TextSize Goofed&quot;);&#xa;}"/>
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -5154,7 +5154,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="10" y="200" width="550" height="230"/>
+                      <AbsoluteConstraints x="10" y="230" width="550" height="230"/>
                     </Constraint>
                   </Constraints>
 
@@ -5429,7 +5429,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxSessionDoubleClickItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxSessionDoubleClick.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;ButtonExecuteFunctionDoubleClick&quot;));"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxSessionDoubleClick.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;ButtonExecuteFunction.DoubleClick&quot;));"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                       <Constraints>
@@ -5467,7 +5467,7 @@
                         </Property>
                       </Properties>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxSessionEnterPress.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;ButtonExecuteFunctionOnEnterPress&quot;));"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxSessionEnterPress.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;ButtonExecuteFunction.OnEnterPress&quot;));"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                       <Constraints>
@@ -6448,7 +6448,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon1ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon1.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon1.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button01Icon&quot;));"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon1.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon1.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.01.Icon&quot;));"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -6520,7 +6520,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon2ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon2.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon2.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button02Icon&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon2.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon2.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.02.Icon&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -6592,7 +6592,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon3ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon3.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon3.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button03Icon&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon3.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon3.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.03.Icon&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -6664,7 +6664,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon4ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon4.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon4.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button04Icon&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon4.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon4.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.04.Icon&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -6736,7 +6736,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon5ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon5.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon5.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button05Icon&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon5.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon5.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.05.Icon&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -6808,7 +6808,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon6ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon6.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon6.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button06Icon&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon6.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon6.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.06.Icon&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -6880,7 +6880,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon7ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon7.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon7.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button07Icon&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon7.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon7.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.07.Icon&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -6952,7 +6952,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon8ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon8.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon8.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button08Icon&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon8.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon8.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.08.Icon&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -6983,7 +6983,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon9ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon9.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon9.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button09Icon&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon9.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon9.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.09.Icon&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -7055,7 +7055,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon10ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon10.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon10.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button10Icon&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon10.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon10.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.10.Icon&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -7127,7 +7127,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon11ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon11.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon11.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button11Icon&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon11.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon11.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.11.Icon&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -7199,7 +7199,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon12ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon12.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon12.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button12Icon&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon12.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon12.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.12.Icon&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -7271,7 +7271,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon13ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon13.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon13.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button13Icon&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon13.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon13.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.13.Icon&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -7343,7 +7343,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon14ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon14.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon14.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button14Icon&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon14.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon14.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.14.Icon&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -7415,7 +7415,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon15ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon15.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon15.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button15Icon&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon15.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon15.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.15.Icon&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -7487,7 +7487,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon16ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon16.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon16.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button16Icon&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon16.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon16.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.16.Icon&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -7559,7 +7559,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon17ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon17.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon17.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button17Icon&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon17.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon17.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.17.Icon&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -7631,7 +7631,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon18ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon18.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon18.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button18Icon&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon18.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon18.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.18.Icon&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -7703,7 +7703,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon19ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon19.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon19.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button19Icon&quot;));&#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon19.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon19.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.19.Icon&quot;));&#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -7775,7 +7775,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon20ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon20.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon20.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button20Icon&quot;));    &#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon20.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon20.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.20.Icon&quot;));    &#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -7858,7 +7858,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon21ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon21.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon21.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button21Icon&quot;));    &#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon21.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon21.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.21.Icon&quot;));    &#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -7930,7 +7930,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon22ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon22.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon22.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button22Icon&quot;));    &#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon22.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon22.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.22.Icon&quot;));    &#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -8002,7 +8002,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon23ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon23.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon23.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button23Icon&quot;));    &#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon23.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon23.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.23.Icon&quot;));    &#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
@@ -8074,7 +8074,7 @@
                         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxButtonIcon24ItemStateChanged"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon24.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon24.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button24Icon&quot;));    &#xd;&#xa;"/>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jComboBoxButtonIcon24.setModel(new DefaultComboBoxModel(arrIconList));&#xd;&#xa;jComboBoxButtonIcon24.setSelectedItem(PropertyHandler.getInstance().getValue(&quot;Button.24.Icon&quot;));    &#xd;&#xa;"/>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>

@@ -146,7 +146,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         initComponents();
         initAddSettingsReferences();
         initAddSettingsScripts();
-        setTitle(PropertyHandler.getInstance().getValue("WindowTitle"));
+        setTitle(PropertyHandler.getInstance().getValue("Window.Title"));
         getSessionList();
         loadMainButtonStyles();        
         loadSettingsMainButtonsData();
@@ -172,10 +172,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         //- If currently running jar is not in the LP folder
         if(!currentJar.toString().startsWith("C:\\LaunchPad\\")) {    
             //- If force to run from LP folder is blank
-            String strForceRunFromLPFolder = PropertyHandler.getInstance().getValue("SettingForceRunFromLaunchPadFolder");
+            String strForceRunFromLPFolder = PropertyHandler.getInstance().getValue("Setting.ForceRunFromLaunchPadFolder");
             System.out.println("Copy Operation - SettingForceRunFromLaunchPadFolder: " + strForceRunFromLPFolder);                                                                                                            
             if ("".equals(strForceRunFromLPFolder)) {
-                PropertyHandler.getInstance().setValue("SettingForceRunFromLaunchPadFolder", "1");  
+                PropertyHandler.getInstance().setValue("Setting.ForceRunFromLaunchPadFolder", "1");  
             //- Else If force to run from LP folder is set to 1
             }else if("1".equals(strForceRunFromLPFolder)) {
                 //- If current instance is actually a .jar file
@@ -221,7 +221,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 String strExitTitle = "You Sure??";
                 String strExitMessage = "Are you sure you want to exit LaunchPad?";
                 try {
-                    if("Japanese".equals(PropertyHandlerPersonal.getInstance().getValue("SettingLanguage"))) {
+                    if("Japanese".equals(PropertyHandlerPersonal.getInstance().getValue("Setting.Language"))) {
                         ObjButtons[0] = "はい";
                         ObjButtons[1] = "いいえ";
                         strExitTitle = "本気ですか？";
@@ -260,10 +260,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         //--- Listen for credential checkbox
         jCheckBoxChangePingOnSessionSelect.addItemListener((ItemEvent e) -> {
             if(e.getStateChange() == ItemEvent.SELECTED){
-                PropertyHandlerPersonal.getInstance().setValue("SettingChangePingOnSessionSelect", "1");
+                PropertyHandlerPersonal.getInstance().setValue("Setting.ChangePingOnSessionSelect", "1");
             }
             else if(e.getStateChange() == ItemEvent.DESELECTED){
-                PropertyHandlerPersonal.getInstance().setValue("SettingChangePingOnSessionSelect", "0");
+                PropertyHandlerPersonal.getInstance().setValue("Setting.ChangePingOnSessionSelect", "0");
             }
             validate();
             repaint();
@@ -278,7 +278,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 //jToggleOnlineOfflineMode.setBackground(new java.awt.Color(236, 180, 180));
                 //- Japanese
                 try {
-                    if("Japanese".equals(PropertyHandlerPersonal.getInstance().getValue("SettingLanguage"))) {
+                    if("Japanese".equals(PropertyHandlerPersonal.getInstance().getValue("Setting.Language"))) {
                         jToggleOnlineOfflineMode.setText("オフライン");
                     }
                 } catch (NullPointerException e) {System.out.println("Language Goofed");
@@ -290,7 +290,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 jToggleOnlineOfflineMode.setBackground(new java.awt.Color(180, 236, 180));
                 //- Japanese
                 try {
-                    if("Japanese".equals(PropertyHandlerPersonal.getInstance().getValue("SettingLanguage"))) {
+                    if("Japanese".equals(PropertyHandlerPersonal.getInstance().getValue("Setting.Language"))) {
                         jToggleOnlineOfflineMode.setText("オンライン");
                     }
                 } catch (NullPointerException e) {System.out.println("Language Goofed");
@@ -310,140 +310,140 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         Image newimg;
         try {
             //Button01
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button01Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.01.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton1.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button2
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button02Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.02.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton2.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button3
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button03Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.03.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton3.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button4
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button04Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.04.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton4.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button5
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button05Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.05.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton5.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button6
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button06Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.06.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton6.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button7
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button07Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.07.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton7.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button8
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button08Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.08.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton8.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button9
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button09Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.09.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton9.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button10
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button10Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.10.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton10.setIcon(new ImageIcon(newimg));
          } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
            //Button11
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button11Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.11.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton11.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button12
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button12Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.12.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton12.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button13
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button13Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.13.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton13.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button14
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button14Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.14.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton14.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button15
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button15Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.15.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton15.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button16
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button16Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.16.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton16.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button17
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button17Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.17.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton17.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button18
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button18Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.18.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton18.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);
         }
         try {
             //Button19
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button19Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.19.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton19.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed"); StringBuilder sb = new StringBuilder(e.toString());            for (StackTraceElement ste : e.getStackTrace()) {                sb.append("\n\tat ");                sb.append(ste);            }            String trace = sb.toString();            JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);}
         try {
             //Button20
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button20Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.20.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton20.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed");StringBuilder sb = new StringBuilder(e.toString());for (StackTraceElement ste : e.getStackTrace()) { sb.append("\n\tat "); sb.append(ste); } String trace = sb.toString(); JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);        }
         try {
             //Button21
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button21Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.21.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton21.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed");StringBuilder sb = new StringBuilder(e.toString());for (StackTraceElement ste : e.getStackTrace()) { sb.append("\n\tat "); sb.append(ste); } String trace = sb.toString(); JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);        }
         try {
             //Button22
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button22Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.22.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton22.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed");StringBuilder sb = new StringBuilder(e.toString());for (StackTraceElement ste : e.getStackTrace()) { sb.append("\n\tat "); sb.append(ste); } String trace = sb.toString(); JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);        }
         try {
             //Button23
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button23Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.23.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton23.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed");StringBuilder sb = new StringBuilder(e.toString());for (StackTraceElement ste : e.getStackTrace()) { sb.append("\n\tat "); sb.append(ste); } String trace = sb.toString(); JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);        }
         try {
             //Button24
-            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button24Icon")));
+            icon = new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.24.Icon")));
             img = icon.getImage(); newimg = img.getScaledInstance( buttonHeightWidth, buttonHeightWidth,  java.awt.Image.SCALE_SMOOTH ); jButtonMainButton24.setIcon(new ImageIcon(newimg));
         } catch (NullPointerException e) {System.out.println("Icon Goofed");StringBuilder sb = new StringBuilder(e.toString());for (StackTraceElement ste : e.getStackTrace()) { sb.append("\n\tat "); sb.append(ste); } String trace = sb.toString(); JOptionPane.showMessageDialog(null, trace, "An Icon Goofed", 1);        }
 
@@ -462,38 +462,38 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         
         
 
-//        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button01Icon"))));
-//        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button02Icon"))));
-//        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button03Icon"))));
-//        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button04Icon"))));
-//        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button05Icon"))));
-//        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button06Icon"))));
-//        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button07Icon"))));
-//        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button08Icon"))));
-//        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button09Icon"))));
-//        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button10Icon"))));
-//        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button11Icon"))));
-//        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button12Icon"))));
-//        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button13Icon"))));
-//        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button14Icon"))));
-//        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button15Icon"))));
-//        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button16Icon"))));
-//        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button17Icon"))));
-//        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button18Icon"))));
-//        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button19Icon"))));
-//        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button20Icon"))));
+//        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.01.Icon"))));
+//        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.02.Icon"))));
+//        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.03.Icon"))));
+//        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.04.Icon"))));
+//        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.05.Icon"))));
+//        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.06.Icon"))));
+//        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.07.Icon"))));
+//        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.08.Icon"))));
+//        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.09.Icon"))));
+//        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.10.Icon"))));
+//        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.11.Icon"))));
+//        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.12.Icon"))));
+//        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.13.Icon"))));
+//        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.14.Icon"))));
+//        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.15.Icon"))));
+//        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.16.Icon"))));
+//        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.17.Icon"))));
+//        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.18.Icon"))));
+//        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.19.Icon"))));
+//        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/launchpad/images/buttons/"+ PropertyHandler.getInstance().getValue("Button.20.Icon"))));
 
     
 
         //--- Load preloaded IPs
-        jTextFieldConnectHostname.setText(PropertyHandler.getInstance().getValue("PreloadSSH"));
-        jTextFieldPingHostname.setText(PropertyHandler.getInstance().getValue("PreloadPing"));
+        jTextFieldConnectHostname.setText(PropertyHandler.getInstance().getValue("Preload.SSH"));
+        jTextFieldPingHostname.setText(PropertyHandler.getInstance().getValue("Preload.Ping"));
 
         //--- Load preloaded Zip Items
-        jTextFieldZipSourceFolder.setText(PropertyHandler.getInstance().getValue("ZipDefaultSourceFolder").replace("%USERPROFILE%", pathUserProfile));
+        jTextFieldZipSourceFolder.setText(PropertyHandler.getInstance().getValue("Zip.DefaultSourceFolder").replace("%USERPROFILE%", pathUserProfile));
         jTextFieldZipFilename.setText(pathDesktop + "\\Backup_" + dateTime + ".zip");
         jTextFieldZipSourceFile.setText(pathDesktop + "\\Backup_" + dateTime + ".zip");
-        jTextFieldZipDestinationFolder.setText(PropertyHandler.getInstance().getValue("ZipDefaultDestinationFolder").replace("%USERPROFILE%", pathUserProfile));
+        jTextFieldZipDestinationFolder.setText(PropertyHandler.getInstance().getValue("Zip.DefaultDestinationFolder").replace("%USERPROFILE%", pathUserProfile));
         
         
         //-- Set to use the pointy finger cursor
@@ -587,116 +587,116 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         new File(strPathLoggingFolder).mkdirs();
         
         //--- Load Links button text
-        jButtonLinkCustom01.setText(PropertyHandler.getInstance().getValue("CustomLink01Description"));
-        jButtonLinkCustom02.setText(PropertyHandler.getInstance().getValue("CustomLink02Description"));
-        jButtonLinkCustom03.setText(PropertyHandler.getInstance().getValue("CustomLink03Description"));
-        jButtonLinkCustom04.setText(PropertyHandler.getInstance().getValue("CustomLink04Description"));
-        jButtonLinkCustom05.setText(PropertyHandler.getInstance().getValue("CustomLink05Description"));
-        jButtonLinkCustom06.setText(PropertyHandler.getInstance().getValue("CustomLink06Description"));        
-        jButtonLinkCustom07.setText(PropertyHandler.getInstance().getValue("CustomLink07Description"));        
-        jButtonLinkCustom08.setText(PropertyHandler.getInstance().getValue("CustomLink08Description"));        
-        jButtonLinkCustom09.setText(PropertyHandler.getInstance().getValue("CustomLink09Description"));        
-        jButtonLinkCustom10.setText(PropertyHandler.getInstance().getValue("CustomLink10Description"));                
-        jButtonLinkCustom11.setText(PropertyHandler.getInstance().getValue("CustomLink11Description"));                
-        jButtonLinkCustom12.setText(PropertyHandler.getInstance().getValue("CustomLink12Description"));                
-        jButtonLinkCustom13.setText(PropertyHandler.getInstance().getValue("CustomLink13Description"));                
-        jButtonLinkCustom14.setText(PropertyHandler.getInstance().getValue("CustomLink14Description"));                
-        jButtonLinkCustom15.setText(PropertyHandler.getInstance().getValue("CustomLink15Description"));                
-        jButtonLinkCustom16.setText(PropertyHandler.getInstance().getValue("CustomLink16Description"));                
-        jButtonLinkCustom17.setText(PropertyHandler.getInstance().getValue("CustomLink17Description"));                
-        jButtonLinkCustom18.setText(PropertyHandler.getInstance().getValue("CustomLink18Description"));                
-        jButtonLinkCustom19.setText(PropertyHandler.getInstance().getValue("CustomLink19Description"));                
-        jButtonLinkCustom20.setText(PropertyHandler.getInstance().getValue("CustomLink20Description"));                
-        jButtonLinkCustom21.setText(PropertyHandler.getInstance().getValue("CustomLink21Description"));                
-        jButtonLinkCustom22.setText(PropertyHandler.getInstance().getValue("CustomLink22Description"));                
-        jButtonLinkCustom23.setText(PropertyHandler.getInstance().getValue("CustomLink23Description"));                
-        jButtonLinkCustom24.setText(PropertyHandler.getInstance().getValue("CustomLink24Description"));                
-        jButtonLinkCustom25.setText(PropertyHandler.getInstance().getValue("CustomLink25Description"));                
-        jButtonLinkCustom26.setText(PropertyHandler.getInstance().getValue("CustomLink26Description"));                
-        jButtonLinkCustom27.setText(PropertyHandler.getInstance().getValue("CustomLink27Description"));                
-        jButtonLinkCustom28.setText(PropertyHandler.getInstance().getValue("CustomLink28Description"));                
-        jButtonLinkCustom29.setText(PropertyHandler.getInstance().getValue("CustomLink29Description"));                
-        jButtonLinkCustom30.setText(PropertyHandler.getInstance().getValue("CustomLink30Description"));                
-        jButtonLinkCustom31.setText(PropertyHandler.getInstance().getValue("CustomLink31Description"));                
-        jButtonLinkCustom32.setText(PropertyHandler.getInstance().getValue("CustomLink32Description"));                
-        jButtonLinkCustom33.setText(PropertyHandler.getInstance().getValue("CustomLink33Description"));                
-        jButtonLinkCustom34.setText(PropertyHandler.getInstance().getValue("CustomLink34Description"));                
-        jButtonLinkCustom35.setText(PropertyHandler.getInstance().getValue("CustomLink35Description"));                
-        jButtonLinkCustom36.setText(PropertyHandler.getInstance().getValue("CustomLink36Description"));                
+        jButtonLinkCustom01.setText(PropertyHandler.getInstance().getValue("Custom.Link.01.Description"));
+        jButtonLinkCustom02.setText(PropertyHandler.getInstance().getValue("Custom.Link.02.Description"));
+        jButtonLinkCustom03.setText(PropertyHandler.getInstance().getValue("Custom.Link.03.Description"));
+        jButtonLinkCustom04.setText(PropertyHandler.getInstance().getValue("Custom.Link.04.Description"));
+        jButtonLinkCustom05.setText(PropertyHandler.getInstance().getValue("Custom.Link.05.Description"));
+        jButtonLinkCustom06.setText(PropertyHandler.getInstance().getValue("Custom.Link.06.Description"));        
+        jButtonLinkCustom07.setText(PropertyHandler.getInstance().getValue("Custom.Link.07.Description"));        
+        jButtonLinkCustom08.setText(PropertyHandler.getInstance().getValue("Custom.Link.08.Description"));        
+        jButtonLinkCustom09.setText(PropertyHandler.getInstance().getValue("Custom.Link.09.Description"));        
+        jButtonLinkCustom10.setText(PropertyHandler.getInstance().getValue("Custom.Link.10.Description"));                
+        jButtonLinkCustom11.setText(PropertyHandler.getInstance().getValue("Custom.Link.11.Description"));                
+        jButtonLinkCustom12.setText(PropertyHandler.getInstance().getValue("Custom.Link.12.Description"));                
+        jButtonLinkCustom13.setText(PropertyHandler.getInstance().getValue("Custom.Link.13.Description"));                
+        jButtonLinkCustom14.setText(PropertyHandler.getInstance().getValue("Custom.Link.14.Description"));                
+        jButtonLinkCustom15.setText(PropertyHandler.getInstance().getValue("Custom.Link.15.Description"));                
+        jButtonLinkCustom16.setText(PropertyHandler.getInstance().getValue("Custom.Link.16.Description"));                
+        jButtonLinkCustom17.setText(PropertyHandler.getInstance().getValue("Custom.Link.17.Description"));                
+        jButtonLinkCustom18.setText(PropertyHandler.getInstance().getValue("Custom.Link.18.Description"));                
+        jButtonLinkCustom19.setText(PropertyHandler.getInstance().getValue("Custom.Link.19.Description"));                
+        jButtonLinkCustom20.setText(PropertyHandler.getInstance().getValue("Custom.Link.20.Description"));                
+        jButtonLinkCustom21.setText(PropertyHandler.getInstance().getValue("Custom.Link.21.Description"));                
+        jButtonLinkCustom22.setText(PropertyHandler.getInstance().getValue("Custom.Link.22.Description"));                
+        jButtonLinkCustom23.setText(PropertyHandler.getInstance().getValue("Custom.Link.23.Description"));                
+        jButtonLinkCustom24.setText(PropertyHandler.getInstance().getValue("Custom.Link.24.Description"));                
+        jButtonLinkCustom25.setText(PropertyHandler.getInstance().getValue("Custom.Link.25.Description"));                
+        jButtonLinkCustom26.setText(PropertyHandler.getInstance().getValue("Custom.Link.26.Description"));                
+        jButtonLinkCustom27.setText(PropertyHandler.getInstance().getValue("Custom.Link.27.Description"));                
+        jButtonLinkCustom28.setText(PropertyHandler.getInstance().getValue("Custom.Link.28.Description"));                
+        jButtonLinkCustom29.setText(PropertyHandler.getInstance().getValue("Custom.Link.29.Description"));                
+        jButtonLinkCustom30.setText(PropertyHandler.getInstance().getValue("Custom.Link.30.Description"));                
+        jButtonLinkCustom31.setText(PropertyHandler.getInstance().getValue("Custom.Link.31.Description"));                
+        jButtonLinkCustom32.setText(PropertyHandler.getInstance().getValue("Custom.Link.32.Description"));                
+        jButtonLinkCustom33.setText(PropertyHandler.getInstance().getValue("Custom.Link.33.Description"));                
+        jButtonLinkCustom34.setText(PropertyHandler.getInstance().getValue("Custom.Link.34.Description"));                
+        jButtonLinkCustom35.setText(PropertyHandler.getInstance().getValue("Custom.Link.35.Description"));                
+        jButtonLinkCustom36.setText(PropertyHandler.getInstance().getValue("Custom.Link.36.Description"));                
         
         
         //--- Load Reference button text
-        jButtonReferenceCustom01.setText(PropertyHandler.getInstance().getValue("CustomReference01Description"));
-        jButtonReferenceCustom02.setText(PropertyHandler.getInstance().getValue("CustomReference02Description"));
-        jButtonReferenceCustom03.setText(PropertyHandler.getInstance().getValue("CustomReference03Description"));
-        jButtonReferenceCustom04.setText(PropertyHandler.getInstance().getValue("CustomReference04Description"));
-        jButtonReferenceCustom05.setText(PropertyHandler.getInstance().getValue("CustomReference05Description"));
-        jButtonReferenceCustom06.setText(PropertyHandler.getInstance().getValue("CustomReference06Description"));
-        jButtonReferenceCustom07.setText(PropertyHandler.getInstance().getValue("CustomReference07Description"));
-        jButtonReferenceCustom08.setText(PropertyHandler.getInstance().getValue("CustomReference08Description"));
-        jButtonReferenceCustom09.setText(PropertyHandler.getInstance().getValue("CustomReference09Description"));
-        jButtonReferenceCustom10.setText(PropertyHandler.getInstance().getValue("CustomReference10Description"));
-        jButtonReferenceCustom11.setText(PropertyHandler.getInstance().getValue("CustomReference11Description"));
-        jButtonReferenceCustom12.setText(PropertyHandler.getInstance().getValue("CustomReference12Description"));
-        jButtonReferenceCustom13.setText(PropertyHandler.getInstance().getValue("CustomReference13Description"));
-        jButtonReferenceCustom14.setText(PropertyHandler.getInstance().getValue("CustomReference14Description"));
-        jButtonReferenceCustom15.setText(PropertyHandler.getInstance().getValue("CustomReference15Description"));
-        jButtonReferenceCustom16.setText(PropertyHandler.getInstance().getValue("CustomReference16Description"));
-        jButtonReferenceCustom17.setText(PropertyHandler.getInstance().getValue("CustomReference17Description"));
-        jButtonReferenceCustom18.setText(PropertyHandler.getInstance().getValue("CustomReference18Description"));
-        jButtonReferenceCustom19.setText(PropertyHandler.getInstance().getValue("CustomReference19Description"));
-        jButtonReferenceCustom20.setText(PropertyHandler.getInstance().getValue("CustomReference20Description"));
-        jButtonReferenceCustom21.setText(PropertyHandler.getInstance().getValue("CustomReference21Description"));
-        jButtonReferenceCustom22.setText(PropertyHandler.getInstance().getValue("CustomReference22Description"));
-        jButtonReferenceCustom23.setText(PropertyHandler.getInstance().getValue("CustomReference23Description"));
-        jButtonReferenceCustom24.setText(PropertyHandler.getInstance().getValue("CustomReference24Description"));
-        jButtonReferenceCustom25.setText(PropertyHandler.getInstance().getValue("CustomReference25Description"));
-        jButtonReferenceCustom26.setText(PropertyHandler.getInstance().getValue("CustomReference26Description"));
-        jButtonReferenceCustom27.setText(PropertyHandler.getInstance().getValue("CustomReference27Description"));
-        jButtonReferenceCustom28.setText(PropertyHandler.getInstance().getValue("CustomReference28Description"));
-        jButtonReferenceCustom29.setText(PropertyHandler.getInstance().getValue("CustomReference29Description"));
-        jButtonReferenceCustom30.setText(PropertyHandler.getInstance().getValue("CustomReference30Description"));
-        jButtonReferenceCustom31.setText(PropertyHandler.getInstance().getValue("CustomReference31Description"));
-        jButtonReferenceCustom32.setText(PropertyHandler.getInstance().getValue("CustomReference32Description"));
-        jButtonReferenceCustom33.setText(PropertyHandler.getInstance().getValue("CustomReference33Description"));
+        jButtonReferenceCustom01.setText(PropertyHandler.getInstance().getValue("Custom.Reference.01.Description"));
+        jButtonReferenceCustom02.setText(PropertyHandler.getInstance().getValue("Custom.Reference.02.Description"));
+        jButtonReferenceCustom03.setText(PropertyHandler.getInstance().getValue("Custom.Reference.03.Description"));
+        jButtonReferenceCustom04.setText(PropertyHandler.getInstance().getValue("Custom.Reference.04.Description"));
+        jButtonReferenceCustom05.setText(PropertyHandler.getInstance().getValue("Custom.Reference.05.Description"));
+        jButtonReferenceCustom06.setText(PropertyHandler.getInstance().getValue("Custom.Reference.06.Description"));
+        jButtonReferenceCustom07.setText(PropertyHandler.getInstance().getValue("Custom.Reference.07.Description"));
+        jButtonReferenceCustom08.setText(PropertyHandler.getInstance().getValue("Custom.Reference.08.Description"));
+        jButtonReferenceCustom09.setText(PropertyHandler.getInstance().getValue("Custom.Reference.09.Description"));
+        jButtonReferenceCustom10.setText(PropertyHandler.getInstance().getValue("Custom.Reference.10.Description"));
+        jButtonReferenceCustom11.setText(PropertyHandler.getInstance().getValue("Custom.Reference.11.Description"));
+        jButtonReferenceCustom12.setText(PropertyHandler.getInstance().getValue("Custom.Reference.12.Description"));
+        jButtonReferenceCustom13.setText(PropertyHandler.getInstance().getValue("Custom.Reference.13.Description"));
+        jButtonReferenceCustom14.setText(PropertyHandler.getInstance().getValue("Custom.Reference.14.Description"));
+        jButtonReferenceCustom15.setText(PropertyHandler.getInstance().getValue("Custom.Reference.15.Description"));
+        jButtonReferenceCustom16.setText(PropertyHandler.getInstance().getValue("Custom.Reference.16.Description"));
+        jButtonReferenceCustom17.setText(PropertyHandler.getInstance().getValue("Custom.Reference.17.Description"));
+        jButtonReferenceCustom18.setText(PropertyHandler.getInstance().getValue("Custom.Reference.18.Description"));
+        jButtonReferenceCustom19.setText(PropertyHandler.getInstance().getValue("Custom.Reference.19.Description"));
+        jButtonReferenceCustom20.setText(PropertyHandler.getInstance().getValue("Custom.Reference.20.Description"));
+        jButtonReferenceCustom21.setText(PropertyHandler.getInstance().getValue("Custom.Reference.21.Description"));
+        jButtonReferenceCustom22.setText(PropertyHandler.getInstance().getValue("Custom.Reference.22.Description"));
+        jButtonReferenceCustom23.setText(PropertyHandler.getInstance().getValue("Custom.Reference.23.Description"));
+        jButtonReferenceCustom24.setText(PropertyHandler.getInstance().getValue("Custom.Reference.24.Description"));
+        jButtonReferenceCustom25.setText(PropertyHandler.getInstance().getValue("Custom.Reference.25.Description"));
+        jButtonReferenceCustom26.setText(PropertyHandler.getInstance().getValue("Custom.Reference.26.Description"));
+        jButtonReferenceCustom27.setText(PropertyHandler.getInstance().getValue("Custom.Reference.27.Description"));
+        jButtonReferenceCustom28.setText(PropertyHandler.getInstance().getValue("Custom.Reference.28.Description"));
+        jButtonReferenceCustom29.setText(PropertyHandler.getInstance().getValue("Custom.Reference.29.Description"));
+        jButtonReferenceCustom30.setText(PropertyHandler.getInstance().getValue("Custom.Reference.30.Description"));
+        jButtonReferenceCustom31.setText(PropertyHandler.getInstance().getValue("Custom.Reference.31.Description"));
+        jButtonReferenceCustom32.setText(PropertyHandler.getInstance().getValue("Custom.Reference.32.Description"));
+        jButtonReferenceCustom33.setText(PropertyHandler.getInstance().getValue("Custom.Reference.33.Description"));
 
         //--- Load Script button text
-        jButtonScriptCustom01.setText(PropertyHandler.getInstance().getValue("CustomScript01Description"));
-        jButtonScriptCustom02.setText(PropertyHandler.getInstance().getValue("CustomScript02Description"));
-        jButtonScriptCustom03.setText(PropertyHandler.getInstance().getValue("CustomScript03Description"));
-        jButtonScriptCustom04.setText(PropertyHandler.getInstance().getValue("CustomScript04Description"));
-        jButtonScriptCustom05.setText(PropertyHandler.getInstance().getValue("CustomScript05Description"));
-        jButtonScriptCustom06.setText(PropertyHandler.getInstance().getValue("CustomScript06Description"));
-        jButtonScriptCustom07.setText(PropertyHandler.getInstance().getValue("CustomScript07Description"));
-        jButtonScriptCustom08.setText(PropertyHandler.getInstance().getValue("CustomScript08Description"));
-        jButtonScriptCustom09.setText(PropertyHandler.getInstance().getValue("CustomScript09Description"));
-        jButtonScriptCustom10.setText(PropertyHandler.getInstance().getValue("CustomScript10Description"));
-        jButtonScriptCustom11.setText(PropertyHandler.getInstance().getValue("CustomScript11Description"));
-        jButtonScriptCustom12.setText(PropertyHandler.getInstance().getValue("CustomScript12Description"));
-        jButtonScriptCustom13.setText(PropertyHandler.getInstance().getValue("CustomScript13Description"));
-        jButtonScriptCustom14.setText(PropertyHandler.getInstance().getValue("CustomScript14Description"));
-        jButtonScriptCustom15.setText(PropertyHandler.getInstance().getValue("CustomScript15Description"));
-        jButtonScriptCustom16.setText(PropertyHandler.getInstance().getValue("CustomScript16Description"));
-        jButtonScriptCustom17.setText(PropertyHandler.getInstance().getValue("CustomScript17Description"));
-        jButtonScriptCustom18.setText(PropertyHandler.getInstance().getValue("CustomScript18Description"));
-        jButtonScriptCustom19.setText(PropertyHandler.getInstance().getValue("CustomScript19Description"));
-        jButtonScriptCustom20.setText(PropertyHandler.getInstance().getValue("CustomScript20Description"));
-        jButtonScriptCustom21.setText(PropertyHandler.getInstance().getValue("CustomScript21Description"));
-        jButtonScriptCustom22.setText(PropertyHandler.getInstance().getValue("CustomScript22Description"));
-        jButtonScriptCustom23.setText(PropertyHandler.getInstance().getValue("CustomScript23Description"));
-        jButtonScriptCustom24.setText(PropertyHandler.getInstance().getValue("CustomScript24Description"));
-        jButtonScriptCustom25.setText(PropertyHandler.getInstance().getValue("CustomScript25Description"));
-        jButtonScriptCustom26.setText(PropertyHandler.getInstance().getValue("CustomScript26Description"));
-        jButtonScriptCustom27.setText(PropertyHandler.getInstance().getValue("CustomScript27Description"));
-        jButtonScriptCustom28.setText(PropertyHandler.getInstance().getValue("CustomScript28Description"));
-        jButtonScriptCustom29.setText(PropertyHandler.getInstance().getValue("CustomScript29Description"));
-        jButtonScriptCustom30.setText(PropertyHandler.getInstance().getValue("CustomScript30Description"));
-        jButtonScriptCustom31.setText(PropertyHandler.getInstance().getValue("CustomScript31Description"));
-        jButtonScriptCustom32.setText(PropertyHandler.getInstance().getValue("CustomScript32Description"));
-        jButtonScriptCustom33.setText(PropertyHandler.getInstance().getValue("CustomScript33Description"));
-        jButtonScriptCustom34.setText(PropertyHandler.getInstance().getValue("CustomScript34Description"));
-        jButtonScriptCustom35.setText(PropertyHandler.getInstance().getValue("CustomScript35Description"));
-        jButtonScriptCustom36.setText(PropertyHandler.getInstance().getValue("CustomScript36Description")); 
+        jButtonScriptCustom01.setText(PropertyHandler.getInstance().getValue("Custom.Script.01.Description"));
+        jButtonScriptCustom02.setText(PropertyHandler.getInstance().getValue("Custom.Script.02.Description"));
+        jButtonScriptCustom03.setText(PropertyHandler.getInstance().getValue("Custom.Script.03.Description"));
+        jButtonScriptCustom04.setText(PropertyHandler.getInstance().getValue("Custom.Script.04.Description"));
+        jButtonScriptCustom05.setText(PropertyHandler.getInstance().getValue("Custom.Script.05.Description"));
+        jButtonScriptCustom06.setText(PropertyHandler.getInstance().getValue("Custom.Script.06.Description"));
+        jButtonScriptCustom07.setText(PropertyHandler.getInstance().getValue("Custom.Script.07.Description"));
+        jButtonScriptCustom08.setText(PropertyHandler.getInstance().getValue("Custom.Script.08.Description"));
+        jButtonScriptCustom09.setText(PropertyHandler.getInstance().getValue("Custom.Script.09.Description"));
+        jButtonScriptCustom10.setText(PropertyHandler.getInstance().getValue("Custom.Script.10.Description"));
+        jButtonScriptCustom11.setText(PropertyHandler.getInstance().getValue("Custom.Script.11.Description"));
+        jButtonScriptCustom12.setText(PropertyHandler.getInstance().getValue("Custom.Script.12.Description"));
+        jButtonScriptCustom13.setText(PropertyHandler.getInstance().getValue("Custom.Script.13.Description"));
+        jButtonScriptCustom14.setText(PropertyHandler.getInstance().getValue("Custom.Script.14.Description"));
+        jButtonScriptCustom15.setText(PropertyHandler.getInstance().getValue("Custom.Script.15.Description"));
+        jButtonScriptCustom16.setText(PropertyHandler.getInstance().getValue("Custom.Script.16.Description"));
+        jButtonScriptCustom17.setText(PropertyHandler.getInstance().getValue("Custom.Script.17.Description"));
+        jButtonScriptCustom18.setText(PropertyHandler.getInstance().getValue("Custom.Script.18.Description"));
+        jButtonScriptCustom19.setText(PropertyHandler.getInstance().getValue("Custom.Script.19.Description"));
+        jButtonScriptCustom20.setText(PropertyHandler.getInstance().getValue("Custom.Script.20.Description"));
+        jButtonScriptCustom21.setText(PropertyHandler.getInstance().getValue("Custom.Script.21.Description"));
+        jButtonScriptCustom22.setText(PropertyHandler.getInstance().getValue("Custom.Script.22.Description"));
+        jButtonScriptCustom23.setText(PropertyHandler.getInstance().getValue("Custom.Script.23.Description"));
+        jButtonScriptCustom24.setText(PropertyHandler.getInstance().getValue("Custom.Script.24.Description"));
+        jButtonScriptCustom25.setText(PropertyHandler.getInstance().getValue("Custom.Script.25.Description"));
+        jButtonScriptCustom26.setText(PropertyHandler.getInstance().getValue("Custom.Script.26.Description"));
+        jButtonScriptCustom27.setText(PropertyHandler.getInstance().getValue("Custom.Script.27.Description"));
+        jButtonScriptCustom28.setText(PropertyHandler.getInstance().getValue("Custom.Script.28.Description"));
+        jButtonScriptCustom29.setText(PropertyHandler.getInstance().getValue("Custom.Script.29.Description"));
+        jButtonScriptCustom30.setText(PropertyHandler.getInstance().getValue("Custom.Script.30.Description"));
+        jButtonScriptCustom31.setText(PropertyHandler.getInstance().getValue("Custom.Script.31.Description"));
+        jButtonScriptCustom32.setText(PropertyHandler.getInstance().getValue("Custom.Script.32.Description"));
+        jButtonScriptCustom33.setText(PropertyHandler.getInstance().getValue("Custom.Script.33.Description"));
+        jButtonScriptCustom34.setText(PropertyHandler.getInstance().getValue("Custom.Script.34.Description"));
+        jButtonScriptCustom35.setText(PropertyHandler.getInstance().getValue("Custom.Script.35.Description"));
+        jButtonScriptCustom36.setText(PropertyHandler.getInstance().getValue("Custom.Script.36.Description")); 
     }
     
     
@@ -4142,11 +4142,11 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jSliderListTextSize.setValue(1);
         //- Set Personal Text Setting
         try {
-            String myValue = PropertyHandlerPersonal.getInstance().getValue("SettingTextSize");
+            String myValue = PropertyHandlerPersonal.getInstance().getValue("Setting.TextSize");
             if("".equals(myValue)) {
-                PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "1");
+                PropertyHandlerPersonal.getInstance().setValue("Setting.TextSize", "1");
             }
-            jSliderListTextSize.setValue(Integer.parseInt(PropertyHandlerPersonal.getInstance().getValue("SettingTextSize")));
+            jSliderListTextSize.setValue(Integer.parseInt(PropertyHandlerPersonal.getInstance().getValue("Setting.TextSize")));
 
         } catch (NullPointerException e) {System.out.println("TextSize Goofed");
         }
@@ -4352,7 +4352,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxSessionDoubleClick.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxSessionDoubleClick.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PKI", "SSH", "RDP", "HTTPS" }));
-        jComboBoxSessionDoubleClick.setSelectedItem(PropertyHandler.getInstance().getValue("ButtonExecuteFunctionDoubleClick"));
+        jComboBoxSessionDoubleClick.setSelectedItem(PropertyHandler.getInstance().getValue("ButtonExecuteFunction.DoubleClick"));
         jComboBoxSessionDoubleClick.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxSessionDoubleClickItemStateChanged(evt);
@@ -4369,7 +4369,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jComboBoxSessionEnterPress.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxSessionEnterPress.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PKI", "SSH", "RDP", "HTTPS" }));
-        jComboBoxSessionEnterPress.setSelectedItem(PropertyHandler.getInstance().getValue("ButtonExecuteFunctionOnEnterPress"));
+        jComboBoxSessionEnterPress.setSelectedItem(PropertyHandler.getInstance().getValue("ButtonExecuteFunction.OnEnterPress"));
         jPanel4.add(jComboBoxSessionEnterPress);
         jComboBoxSessionEnterPress.setBounds(320, 80, 62, 20);
 
@@ -4407,7 +4407,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldSettingPreferredIpSecondary.setBounds(240, 170, 100, 20);
 
         jPanelSettingsMain.add(jPanel4);
-        jPanel4.setBounds(10, 200, 550, 230);
+        jPanel4.setBounds(10, 230, 550, 230);
 
         jButtonScriptUpdateLaunchPad.setBackground(new java.awt.Color(255, 211, 148));
         jButtonScriptUpdateLaunchPad.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -4475,7 +4475,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon1.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon1.setSelectedItem(PropertyHandler.getInstance().getValue("Button01Icon"));
+        jComboBoxButtonIcon1.setSelectedItem(PropertyHandler.getInstance().getValue("Button.01.Icon"));
         jComboBoxButtonIcon1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon1ItemStateChanged(evt);
@@ -4512,7 +4512,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon2.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon2.setSelectedItem(PropertyHandler.getInstance().getValue("Button02Icon"));
+        jComboBoxButtonIcon2.setSelectedItem(PropertyHandler.getInstance().getValue("Button.02.Icon"));
         jComboBoxButtonIcon2.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon2ItemStateChanged(evt);
@@ -4549,7 +4549,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon3.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon3.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon3.setSelectedItem(PropertyHandler.getInstance().getValue("Button03Icon"));
+        jComboBoxButtonIcon3.setSelectedItem(PropertyHandler.getInstance().getValue("Button.03.Icon"));
         jComboBoxButtonIcon3.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon3ItemStateChanged(evt);
@@ -4586,7 +4586,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon4.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon4.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon4.setSelectedItem(PropertyHandler.getInstance().getValue("Button04Icon"));
+        jComboBoxButtonIcon4.setSelectedItem(PropertyHandler.getInstance().getValue("Button.04.Icon"));
         jComboBoxButtonIcon4.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon4ItemStateChanged(evt);
@@ -4623,7 +4623,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon5.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon5.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon5.setSelectedItem(PropertyHandler.getInstance().getValue("Button05Icon"));
+        jComboBoxButtonIcon5.setSelectedItem(PropertyHandler.getInstance().getValue("Button.05.Icon"));
         jComboBoxButtonIcon5.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon5ItemStateChanged(evt);
@@ -4660,7 +4660,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon6.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon6.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon6.setSelectedItem(PropertyHandler.getInstance().getValue("Button06Icon"));
+        jComboBoxButtonIcon6.setSelectedItem(PropertyHandler.getInstance().getValue("Button.06.Icon"));
         jComboBoxButtonIcon6.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon6ItemStateChanged(evt);
@@ -4697,7 +4697,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon7.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon7.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon7.setSelectedItem(PropertyHandler.getInstance().getValue("Button07Icon"));
+        jComboBoxButtonIcon7.setSelectedItem(PropertyHandler.getInstance().getValue("Button.07.Icon"));
         jComboBoxButtonIcon7.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon7ItemStateChanged(evt);
@@ -4734,7 +4734,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon8.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon8.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon8.setSelectedItem(PropertyHandler.getInstance().getValue("Button08Icon"));
+        jComboBoxButtonIcon8.setSelectedItem(PropertyHandler.getInstance().getValue("Button.08.Icon"));
         jComboBoxButtonIcon8.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon8ItemStateChanged(evt);
@@ -4748,7 +4748,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon9.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon9.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon9.setSelectedItem(PropertyHandler.getInstance().getValue("Button09Icon"));
+        jComboBoxButtonIcon9.setSelectedItem(PropertyHandler.getInstance().getValue("Button.09.Icon"));
         jComboBoxButtonIcon9.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon9ItemStateChanged(evt);
@@ -4785,7 +4785,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon10.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon10.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon10.setSelectedItem(PropertyHandler.getInstance().getValue("Button10Icon"));
+        jComboBoxButtonIcon10.setSelectedItem(PropertyHandler.getInstance().getValue("Button.10.Icon"));
         jComboBoxButtonIcon10.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon10ItemStateChanged(evt);
@@ -4822,7 +4822,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon11.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon11.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon11.setSelectedItem(PropertyHandler.getInstance().getValue("Button11Icon"));
+        jComboBoxButtonIcon11.setSelectedItem(PropertyHandler.getInstance().getValue("Button.11.Icon"));
         jComboBoxButtonIcon11.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon11ItemStateChanged(evt);
@@ -4859,7 +4859,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon12.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon12.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon12.setSelectedItem(PropertyHandler.getInstance().getValue("Button12Icon"));
+        jComboBoxButtonIcon12.setSelectedItem(PropertyHandler.getInstance().getValue("Button.12.Icon"));
         jComboBoxButtonIcon12.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon12ItemStateChanged(evt);
@@ -4896,7 +4896,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon13.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon13.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon13.setSelectedItem(PropertyHandler.getInstance().getValue("Button13Icon"));
+        jComboBoxButtonIcon13.setSelectedItem(PropertyHandler.getInstance().getValue("Button.13.Icon"));
         jComboBoxButtonIcon13.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon13ItemStateChanged(evt);
@@ -4933,7 +4933,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon14.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon14.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon14.setSelectedItem(PropertyHandler.getInstance().getValue("Button14Icon"));
+        jComboBoxButtonIcon14.setSelectedItem(PropertyHandler.getInstance().getValue("Button.14.Icon"));
         jComboBoxButtonIcon14.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon14ItemStateChanged(evt);
@@ -4970,7 +4970,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon15.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon15.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon15.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon15.setSelectedItem(PropertyHandler.getInstance().getValue("Button15Icon"));
+        jComboBoxButtonIcon15.setSelectedItem(PropertyHandler.getInstance().getValue("Button.15.Icon"));
         jComboBoxButtonIcon15.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon15ItemStateChanged(evt);
@@ -5007,7 +5007,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon16.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon16.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon16.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon16.setSelectedItem(PropertyHandler.getInstance().getValue("Button16Icon"));
+        jComboBoxButtonIcon16.setSelectedItem(PropertyHandler.getInstance().getValue("Button.16.Icon"));
         jComboBoxButtonIcon16.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon16ItemStateChanged(evt);
@@ -5044,7 +5044,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon17.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon17.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon17.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon17.setSelectedItem(PropertyHandler.getInstance().getValue("Button17Icon"));
+        jComboBoxButtonIcon17.setSelectedItem(PropertyHandler.getInstance().getValue("Button.17.Icon"));
         jComboBoxButtonIcon17.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon17ItemStateChanged(evt);
@@ -5081,7 +5081,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon18.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon18.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon18.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon18.setSelectedItem(PropertyHandler.getInstance().getValue("Button18Icon"));
+        jComboBoxButtonIcon18.setSelectedItem(PropertyHandler.getInstance().getValue("Button.18.Icon"));
         jComboBoxButtonIcon18.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon18ItemStateChanged(evt);
@@ -5118,7 +5118,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon19.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon19.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon19.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon19.setSelectedItem(PropertyHandler.getInstance().getValue("Button19Icon"));
+        jComboBoxButtonIcon19.setSelectedItem(PropertyHandler.getInstance().getValue("Button.19.Icon"));
         jComboBoxButtonIcon19.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon19ItemStateChanged(evt);
@@ -5155,7 +5155,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon20.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon20.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon20.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon20.setSelectedItem(PropertyHandler.getInstance().getValue("Button20Icon"));    
+        jComboBoxButtonIcon20.setSelectedItem(PropertyHandler.getInstance().getValue("Button.20.Icon"));    
         jComboBoxButtonIcon20.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon20ItemStateChanged(evt);
@@ -5200,7 +5200,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon21.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon21.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon21.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon21.setSelectedItem(PropertyHandler.getInstance().getValue("Button21Icon"));    
+        jComboBoxButtonIcon21.setSelectedItem(PropertyHandler.getInstance().getValue("Button.21.Icon"));    
         jComboBoxButtonIcon21.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon21ItemStateChanged(evt);
@@ -5237,7 +5237,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon22.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon22.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon22.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon22.setSelectedItem(PropertyHandler.getInstance().getValue("Button22Icon"));    
+        jComboBoxButtonIcon22.setSelectedItem(PropertyHandler.getInstance().getValue("Button.22.Icon"));    
         jComboBoxButtonIcon22.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon22ItemStateChanged(evt);
@@ -5274,7 +5274,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon23.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon23.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon23.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon23.setSelectedItem(PropertyHandler.getInstance().getValue("Button23Icon"));    
+        jComboBoxButtonIcon23.setSelectedItem(PropertyHandler.getInstance().getValue("Button.23.Icon"));    
         jComboBoxButtonIcon23.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon23ItemStateChanged(evt);
@@ -5311,7 +5311,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jComboBoxButtonIcon24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jComboBoxButtonIcon24.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxButtonIcon24.setModel(new DefaultComboBoxModel(arrIconList));
-        jComboBoxButtonIcon24.setSelectedItem(PropertyHandler.getInstance().getValue("Button24Icon"));    
+        jComboBoxButtonIcon24.setSelectedItem(PropertyHandler.getInstance().getValue("Button.24.Icon"));    
         jComboBoxButtonIcon24.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxButtonIcon24ItemStateChanged(evt);
@@ -7437,7 +7437,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             && (desktop = Desktop.getDesktop()).isSupported(Desktop.Action.MAIL)) {
             URI mailto = null;
             try {
-                mailto = new URI("mailto:" + PropertyHandler.getInstance().getValue("SettingEmailContactIssues") + "?subject=LaunchPad%20Issue");
+                mailto = new URI("mailto:" + PropertyHandler.getInstance().getValue("Setting.EmailContactIssues") + "?subject=LaunchPad%20Issue");
             } catch (URISyntaxException ex) {
                 Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -7455,17 +7455,17 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private void jButtonScriptUpdateLaunchPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptUpdateLaunchPadActionPerformed
         String StrFileUpdateScript = PropertyHandler.getInstance().getValue("FileUpdateScript");
         if(new File(StrFileUpdateScript).isFile()) { 
-        String myValue = "cmd.exe /c start powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("FileUpdateScript") + "\"";
-        System.out.println(myValue);
-        try {
-            Runtime.getRuntime().exec(myValue);
-        }
-        catch (IOException e) {
-            System.out.println("Something is wrong!");
-            JOptionPane.showMessageDialog(null, "Something is wrong!");
-        }
-            System.exit(0);
-        }
+            String myValue = "cmd.exe /c start powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("FileUpdateScript") + "\"";
+            System.out.println(myValue);
+            try {
+                Runtime.getRuntime().exec(myValue);
+            }
+            catch (IOException e) {
+                System.out.println("Something is wrong!");
+                JOptionPane.showMessageDialog(null, "Something is wrong!");
+            }
+                System.exit(0);
+            }
         else {
             String StrMessage = "Property FileUpdateScript: file not found";
             String StrTitle = "Oh no!";
@@ -7826,7 +7826,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jSliderListTextSizeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderListTextSizeStateChanged
         setSessionTextSize();
-        PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", String.valueOf(jSliderListTextSize.getValue()));
+        PropertyHandlerPersonal.getInstance().setValue("Setting.TextSize", String.valueOf(jSliderListTextSize.getValue()));
     }//GEN-LAST:event_jSliderListTextSizeStateChanged
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
@@ -8320,7 +8320,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom03ActionPerformed
         try {
-            openReference("CustomReference03");
+            openReference("Custom.Reference.03");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -8328,7 +8328,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom02ActionPerformed
         try {
-            openReference("CustomReference02");
+            openReference("Custom.Reference.02");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -8336,7 +8336,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom01ActionPerformed
         try {
-            openReference("CustomReference01");
+            openReference("Custom.Reference.01");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -8359,207 +8359,207 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonScriptCreateDummyFileActionPerformed
 
     private void jButtonScriptCustom28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom28ActionPerformed
-        openScriptCustom("CustomScript28Exec");
+        openScriptCustom("Custom.Script.28.Exec");
     }//GEN-LAST:event_jButtonScriptCustom28ActionPerformed
 
     private void jButtonScriptCustom29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom29ActionPerformed
-        openScriptCustom("CustomScript29Exec");
+        openScriptCustom("Custom.Script.29.Exec");
     }//GEN-LAST:event_jButtonScriptCustom29ActionPerformed
 
     private void jButtonScriptCustom25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom25ActionPerformed
-        openScriptCustom("CustomScript25Exec");
+        openScriptCustom("Custom.Script.25.Exec");
     }//GEN-LAST:event_jButtonScriptCustom25ActionPerformed
 
     private void jButtonScriptCustom26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom26ActionPerformed
-        openScriptCustom("CustomScript26Exec");
+        openScriptCustom("Custom.Script.26.Exec");
     }//GEN-LAST:event_jButtonScriptCustom26ActionPerformed
 
     private void jButtonScriptCustom23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom23ActionPerformed
-        openScriptCustom("CustomScript23Exec");
+        openScriptCustom("Custom.Script.23.Exec");
     }//GEN-LAST:event_jButtonScriptCustom23ActionPerformed
 
     private void jButtonScriptCustom22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom22ActionPerformed
-        openScriptCustom("CustomScript22Exec");
+        openScriptCustom("Custom.Script.22.Exec");
     }//GEN-LAST:event_jButtonScriptCustom22ActionPerformed
 
     private void jButtonScriptCustom19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom19ActionPerformed
-        openScriptCustom("CustomScript19Exec");
+        openScriptCustom("Custom.Script.19.Exec");
     }//GEN-LAST:event_jButtonScriptCustom19ActionPerformed
 
     private void jButtonScriptCustom20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom20ActionPerformed
-        openScriptCustom("CustomScript20Exec");
+        openScriptCustom("Custom.Script.20.Exec");
     }//GEN-LAST:event_jButtonScriptCustom20ActionPerformed
 
     private void jButtonScriptCustom17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom17ActionPerformed
-        openScriptCustom("CustomScript17Exec");
+        openScriptCustom("Custom.Script.17.Exec");
     }//GEN-LAST:event_jButtonScriptCustom17ActionPerformed
 
     private void jButtonScriptCustom16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom16ActionPerformed
-        openScriptCustom("CustomScript16Exec");
+        openScriptCustom("Custom.Script.16.Exec");
     }//GEN-LAST:event_jButtonScriptCustom16ActionPerformed
 
     private void jButtonScriptCustom14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom14ActionPerformed
-        openScriptCustom("CustomScript14Exec");
+        openScriptCustom("Custom.Script.14.Exec");
     }//GEN-LAST:event_jButtonScriptCustom14ActionPerformed
 
     private void jButtonScriptCustom13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom13ActionPerformed
-        openScriptCustom("CustomScript13Exec");
+        openScriptCustom("Custom.Script.13.Exec");
     }//GEN-LAST:event_jButtonScriptCustom13ActionPerformed
 
     private void jButtonScriptCustom10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom10ActionPerformed
-        openScriptCustom("CustomScript10Exec");
+        openScriptCustom("Custom.Script.10.Exec");
     }//GEN-LAST:event_jButtonScriptCustom10ActionPerformed
 
     private void jButtonScriptCustom11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom11ActionPerformed
-        openScriptCustom("CustomScript11Exec");
+        openScriptCustom("Custom.Script.11.Exec");
     }//GEN-LAST:event_jButtonScriptCustom11ActionPerformed
 
     private void jButtonScriptCustom12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom12ActionPerformed
-        openScriptCustom("CustomScript12Exec");
+        openScriptCustom("Custom.Script.12.Exec");
     }//GEN-LAST:event_jButtonScriptCustom12ActionPerformed
 
     private void jButtonScriptCustom07ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom07ActionPerformed
-        openScriptCustom("CustomScript07Exec");
+        openScriptCustom("Custom.Script.07.Exec");
     }//GEN-LAST:event_jButtonScriptCustom07ActionPerformed
 
     private void jButtonScriptCustom08ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom08ActionPerformed
-        openScriptCustom("CustomScript08Exec");
+        openScriptCustom("Custom.Script.08.Exec");
     }//GEN-LAST:event_jButtonScriptCustom08ActionPerformed
 
     private void jButtonScriptCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom05ActionPerformed
-        openScriptCustom("CustomScript05Exec");
+        openScriptCustom("Custom.Script.05.Exec");
     }//GEN-LAST:event_jButtonScriptCustom05ActionPerformed
 
     private void jButtonScriptCustom04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom04ActionPerformed
-        openScriptCustom("CustomScript04Exec");
+        openScriptCustom("Custom.Script.04.Exec");
     }//GEN-LAST:event_jButtonScriptCustom04ActionPerformed
 
     private void jButtonScriptCustom02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom02ActionPerformed
-        openScriptCustom("CustomScript02Exec");
+        openScriptCustom("Custom.Script.02.Exec");
     }//GEN-LAST:event_jButtonScriptCustom02ActionPerformed
 
     private void jButtonScriptCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom01ActionPerformed
-        openScriptCustom("CustomScript01Exec");
+        openScriptCustom("Custom.Script.01.Exec");
     }//GEN-LAST:event_jButtonScriptCustom01ActionPerformed
 
     private void jButtonLinkCustom30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom30ActionPerformed
-        openLinkCustom("CustomLink30Exec");
+        openLinkCustom("Custom.Link.30.Exec");
     }//GEN-LAST:event_jButtonLinkCustom30ActionPerformed
 
     private void jButtonLinkCustom29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom29ActionPerformed
-        openLinkCustom("CustomLink29Exec");
+        openLinkCustom("Custom.Link.29.Exec");
     }//GEN-LAST:event_jButtonLinkCustom29ActionPerformed
 
     private void jButtonLinkCustom28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom28ActionPerformed
-        openLinkCustom("CustomLink28Exec");
+        openLinkCustom("Custom.Link.28.Exec");
     }//GEN-LAST:event_jButtonLinkCustom28ActionPerformed
 
     private void jButtonLinkCustom27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom27ActionPerformed
-        openLinkCustom("CustomLink27Exec");
+        openLinkCustom("Custom.Link.27.Exec");
     }//GEN-LAST:event_jButtonLinkCustom27ActionPerformed
 
     private void jButtonLinkCustom26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom26ActionPerformed
-        openLinkCustom("CustomLink26Exec");
+        openLinkCustom("Custom.Link.26.Exec");
     }//GEN-LAST:event_jButtonLinkCustom26ActionPerformed
 
     private void jButtonLinkCustom25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom25ActionPerformed
-        openLinkCustom("CustomLink25Exec");
+        openLinkCustom("Custom.Link.25.Exec");
     }//GEN-LAST:event_jButtonLinkCustom25ActionPerformed
 
     private void jButtonLinkCustom24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom24ActionPerformed
-        openLinkCustom("CustomLink24Exec");
+        openLinkCustom("Custom.Link.24.Exec");
     }//GEN-LAST:event_jButtonLinkCustom24ActionPerformed
 
     private void jButtonLinkCustom23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom23ActionPerformed
-        openLinkCustom("CustomLink23Exec");
+        openLinkCustom("Custom.Link.23.Exec");
     }//GEN-LAST:event_jButtonLinkCustom23ActionPerformed
 
     private void jButtonLinkCustom22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom22ActionPerformed
-        openLinkCustom("CustomLink22Exec");
+        openLinkCustom("Custom.Link.22.Exec");
     }//GEN-LAST:event_jButtonLinkCustom22ActionPerformed
 
     private void jButtonLinkCustom21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom21ActionPerformed
-        openLinkCustom("CustomLink21Exec");
+        openLinkCustom("Custom.Link.21.Exec");
     }//GEN-LAST:event_jButtonLinkCustom21ActionPerformed
 
     private void jButtonLinkCustom20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom20ActionPerformed
-        openLinkCustom("CustomLink20Exec");
+        openLinkCustom("Custom.Link.20.Exec");
     }//GEN-LAST:event_jButtonLinkCustom20ActionPerformed
 
     private void jButtonLinkCustom19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom19ActionPerformed
-        openLinkCustom("CustomLink19Exec");
+        openLinkCustom("Custom.Link.19.Exec");
     }//GEN-LAST:event_jButtonLinkCustom19ActionPerformed
 
     private void jButtonLinkCustom18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom18ActionPerformed
-        openLinkCustom("CustomLink18Exec");
+        openLinkCustom("Custom.Link.18.Exec");
     }//GEN-LAST:event_jButtonLinkCustom18ActionPerformed
 
     private void jButtonLinkCustom17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom17ActionPerformed
-        openLinkCustom("CustomLink17Exec");
+        openLinkCustom("Custom.Link.17.Exec");
     }//GEN-LAST:event_jButtonLinkCustom17ActionPerformed
 
     private void jButtonLinkCustom16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom16ActionPerformed
-        openLinkCustom("CustomLink16Exec");
+        openLinkCustom("Custom.Link.16.Exec");
     }//GEN-LAST:event_jButtonLinkCustom16ActionPerformed
 
     private void jButtonLinkCustom15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom15ActionPerformed
-        openLinkCustom("CustomLink15Exec");
+        openLinkCustom("Custom.Link.15.Exec");
     }//GEN-LAST:event_jButtonLinkCustom15ActionPerformed
 
     private void jButtonLinkCustom14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom14ActionPerformed
-        openLinkCustom("CustomLink14Exec");
+        openLinkCustom("Custom.Link.14.Exec");
     }//GEN-LAST:event_jButtonLinkCustom14ActionPerformed
 
     private void jButtonLinkCustom13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom13ActionPerformed
-        openLinkCustom("CustomLink13Exec");
+        openLinkCustom("Custom.Link.13.Exec");
     }//GEN-LAST:event_jButtonLinkCustom13ActionPerformed
 
     private void jButtonLinkCustom12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom12ActionPerformed
-        openLinkCustom("CustomLink12Exec");
+        openLinkCustom("Custom.Link.12.Exec");
     }//GEN-LAST:event_jButtonLinkCustom12ActionPerformed
 
     private void jButtonLinkCustom10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom10ActionPerformed
-        openLinkCustom("CustomLink10Exec");
+        openLinkCustom("Custom.Link.10.Exec");
     }//GEN-LAST:event_jButtonLinkCustom10ActionPerformed
 
     private void jButtonLinkCustom11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom11ActionPerformed
-        openLinkCustom("CustomLink11Exec");
+        openLinkCustom("Custom.Link.11.Exec");
     }//GEN-LAST:event_jButtonLinkCustom11ActionPerformed
 
     private void jButtonLinkCustom09ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom09ActionPerformed
-        openLinkCustom("CustomLink09Exec");  
+        openLinkCustom("Custom.Link.09.Exec");  
     }//GEN-LAST:event_jButtonLinkCustom09ActionPerformed
 
     private void jButtonLinkCustom08ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom08ActionPerformed
-        openLinkCustom("CustomLink08Exec");
+        openLinkCustom("Custom.Link.08.Exec");
     }//GEN-LAST:event_jButtonLinkCustom08ActionPerformed
 
     private void jButtonLinkCustom07ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom07ActionPerformed
-        openLinkCustom("CustomLink07Exec");
+        openLinkCustom("Custom.Link.07.Exec");
     }//GEN-LAST:event_jButtonLinkCustom07ActionPerformed
 
     private void jButtonLinkCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom06ActionPerformed
-        openLinkCustom("CustomLink06Exec");
+        openLinkCustom("Custom.Link.06.Exec");
     }//GEN-LAST:event_jButtonLinkCustom06ActionPerformed
 
     private void jButtonLinkCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom05ActionPerformed
-        openLinkCustom("CustomLink05Exec");
+        openLinkCustom("Custom.Link.05.Exec");
     }//GEN-LAST:event_jButtonLinkCustom05ActionPerformed
 
     private void jButtonLinkCustom04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom04ActionPerformed
-        openLinkCustom("CustomLink04Exec");
+        openLinkCustom("Custom.Link.04.Exec");
     }//GEN-LAST:event_jButtonLinkCustom04ActionPerformed
 
     private void jButtonLinkCustom03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom03ActionPerformed
-        openLinkCustom("CustomLink03Exec");
+        openLinkCustom("Custom.Link.03.Exec");
     }//GEN-LAST:event_jButtonLinkCustom03ActionPerformed
 
     private void jButtonLinkCustom02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom02ActionPerformed
-        openLinkCustom("CustomLink02Exec");
+        openLinkCustom("Custom.Link.02.Exec");
     }//GEN-LAST:event_jButtonLinkCustom02ActionPerformed
 
     private void jButtonLinkCustom01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom01ActionPerformed
-        openLinkCustom("CustomLink01Exec");
+        openLinkCustom("Custom.Link.01.Exec");
     }//GEN-LAST:event_jButtonLinkCustom01ActionPerformed
 
     private void jCheckBoxFavoritesStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBoxFavoritesStateChanged
@@ -8606,88 +8606,88 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxAlternateLoginActionPerformed
 
     private void jButtonMainButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton17ActionPerformed
-        openCommand("Button17StrExec");
+        openCommand("Button.17.StrExec");
     }//GEN-LAST:event_jButtonMainButton17ActionPerformed
 
     private void jButtonMainButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton18ActionPerformed
-        openCommand("Button18StrExec");
+        openCommand("Button.18.StrExec");
     }//GEN-LAST:event_jButtonMainButton18ActionPerformed
 
     private void jButtonMainButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton19ActionPerformed
-        openCommand("Button19StrExec");
+        openCommand("Button.19.StrExec");
     }//GEN-LAST:event_jButtonMainButton19ActionPerformed
 
     private void jButtonMainButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton20ActionPerformed
-        openCommand("Button20StrExec");
+        openCommand("Button.20.StrExec");
     }//GEN-LAST:event_jButtonMainButton20ActionPerformed
 
     private void jButtonMainButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton16ActionPerformed
-        openCommand("Button16StrExec");
+        openCommand("Button.16.StrExec");
     }//GEN-LAST:event_jButtonMainButton16ActionPerformed
 
     private void jButtonMainButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton15ActionPerformed
-        openCommand("Button15StrExec");
+        openCommand("Button.15.StrExec");
     }//GEN-LAST:event_jButtonMainButton15ActionPerformed
 
     private void jButtonMainButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton14ActionPerformed
-        openCommand("Button14StrExec");
+        openCommand("Button.14.StrExec");
     }//GEN-LAST:event_jButtonMainButton14ActionPerformed
 
     private void jButtonMainButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton13ActionPerformed
-        openCommand("Button13StrExec");
+        openCommand("Button.13.StrExec");
     }//GEN-LAST:event_jButtonMainButton13ActionPerformed
 
     private void jButtonMainButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton9ActionPerformed
-        openCommand("Button09StrExec");
+        openCommand("Button.09.StrExec");
     }//GEN-LAST:event_jButtonMainButton9ActionPerformed
 
     private void jButtonMainButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton5ActionPerformed
-        openCommand("Button05StrExec");
+        openCommand("Button.05.StrExec");
     }//GEN-LAST:event_jButtonMainButton5ActionPerformed
 
     private void jButtonMainButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton10ActionPerformed
-        openCommand("Button10StrExec");
+        openCommand("Button.10.StrExec");
     }//GEN-LAST:event_jButtonMainButton10ActionPerformed
 
     private void jButtonMainButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton6ActionPerformed
-        openCommand("Button06StrExec");
+        openCommand("Button.06.StrExec");
     }//GEN-LAST:event_jButtonMainButton6ActionPerformed
 
     private void jButtonMainButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton11ActionPerformed
-        openCommand("Button11StrExec");
+        openCommand("Button.11.StrExec");
     }//GEN-LAST:event_jButtonMainButton11ActionPerformed
 
     private void jButtonMainButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton7ActionPerformed
-        openCommand("Button07StrExec");
+        openCommand("Button.07.StrExec");
     }//GEN-LAST:event_jButtonMainButton7ActionPerformed
 
     private void jButtonMainButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton12ActionPerformed
-        openCommand("Button12StrExec");
+        openCommand("Button.12.StrExec");
     }//GEN-LAST:event_jButtonMainButton12ActionPerformed
 
     private void jButtonMainButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton8ActionPerformed
-        openCommand("Button08StrExec");
+        openCommand("Button.08.StrExec");
     }//GEN-LAST:event_jButtonMainButton8ActionPerformed
 
     private void jButtonMainButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton4ActionPerformed
-        openCommand("Button04StrExec");
+        openCommand("Button.04.StrExec");
     }//GEN-LAST:event_jButtonMainButton4ActionPerformed
 
     private void jButtonMainButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton3ActionPerformed
-        openCommand("Button03StrExec");
+        openCommand("Button.03.StrExec");
     }//GEN-LAST:event_jButtonMainButton3ActionPerformed
 
     private void jButtonMainButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton2ActionPerformed
-        openCommand("Button02StrExec");
+        openCommand("Button.02.StrExec");
     }//GEN-LAST:event_jButtonMainButton2ActionPerformed
 
     private void jButtonMainButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton1ActionPerformed
-        openCommand("Button01StrExec");
+        openCommand("Button.01.StrExec");
     }//GEN-LAST:event_jButtonMainButton1ActionPerformed
 
     private void jButtonConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsoleActionPerformed
         // TODO add your handling code here:
-        String strSecureCRTexe = PropertyHandler.getInstance().getValue("SecureCRTexe").replace("%USERPROFILE%", pathUserProfile);
+        String strSecureCRTexe = PropertyHandler.getInstance().getValue("SecureCRT.Exec").replace("%USERPROFILE%", pathUserProfile);
 
         System.out.println("SecureCRT file: " + strSecureCRTexe);
 
@@ -8811,7 +8811,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldConnectUsernameKeyTyped
 
     private void jButtonExecuteFunctionSSHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunctionSSHActionPerformed
-        String strSecureCRTexe = PropertyHandler.getInstance().getValue("SecureCRTexe").replace("%USERPROFILE%", pathUserProfile);
+        String strSecureCRTexe = PropertyHandler.getInstance().getValue("SecureCRT.Exec").replace("%USERPROFILE%", pathUserProfile);
         System.out.println("SecureCRT file: " + strSecureCRTexe);
         simpleDateFormat  = new SimpleDateFormat("yyyy-MM-dd_HHmm-ssSSS");
         dateTime = simpleDateFormat.format(new Date());
@@ -8842,12 +8842,12 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 }
             }
         try {
-            if("1".equals(PropertyHandler.getInstance().getValue("SettingPasswordBasedSSHauthDisableAutoReset"))) {
+            if("1".equals(PropertyHandler.getInstance().getValue("Setting.PasswordBasedSSHauthDisableAutoReset"))) {
                 jRadioButtonPWauthDisabled.setSelected(Boolean.TRUE);
                 jButtonExecuteFunctionSSH.setBackground(new javax.swing.JButton().getBackground());
                 jButtonExecuteFunctionSSH.setEnabled(false);
             }
-        } catch (NullPointerException e) {System.out.println("SettingPasswordBasedSSHauthDisable Goofed");
+        } catch (NullPointerException e) {System.out.println("Setting.PasswordBasedSSHauthDisable Goofed");
         }
     }//GEN-LAST:event_jButtonExecuteFunctionSSHActionPerformed
 
@@ -8985,48 +8985,48 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton41ActionPerformed
 
     private void jButtonLinkCustom31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom31ActionPerformed
-        openLinkCustom("CustomLink31Exec");
+        openLinkCustom("Custom.Link.31.Exec");
     }//GEN-LAST:event_jButtonLinkCustom31ActionPerformed
 
     private void jButtonLinkCustom32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom32ActionPerformed
-        openLinkCustom("CustomLink32Exec");
+        openLinkCustom("Custom.Link.32.Exec");
     }//GEN-LAST:event_jButtonLinkCustom32ActionPerformed
 
     private void jButtonLinkCustom33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom33ActionPerformed
-        openLinkCustom("CustomLink33Exec");
+        openLinkCustom("Custom.Link.33.Exec");
     }//GEN-LAST:event_jButtonLinkCustom33ActionPerformed
 
     private void jButtonLinkCustom34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom34ActionPerformed
-        openLinkCustom("CustomLink34Exec");
+        openLinkCustom("Custom.Link.34.Exec");
     }//GEN-LAST:event_jButtonLinkCustom34ActionPerformed
 
     private void jButtonLinkCustom35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom35ActionPerformed
-        openLinkCustom("CustomLink35Exec");
+        openLinkCustom("Custom.Link.35.Exec");
     }//GEN-LAST:event_jButtonLinkCustom35ActionPerformed
 
     private void jButtonLinkCustom36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLinkCustom36ActionPerformed
-        openLinkCustom("CustomLink36Exec");
+        openLinkCustom("Custom.Link.36.Exec");
     }//GEN-LAST:event_jButtonLinkCustom36ActionPerformed
 
     private void jButtonScriptCustom32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom32ActionPerformed
-        openScriptCustom("CustomScript32Exec");
+        openScriptCustom("Custom.Script.32.Exec");
     }//GEN-LAST:event_jButtonScriptCustom32ActionPerformed
 
     private void jButtonScriptCustom31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom31ActionPerformed
-        openScriptCustom("CustomScript31Exec");
+        openScriptCustom("Custom.Script.31.Exec");
     }//GEN-LAST:event_jButtonScriptCustom31ActionPerformed
 
     private void jButtonScriptCustom34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom34ActionPerformed
-        openScriptCustom("CustomScript34Exec");
+        openScriptCustom("Custom.Script.34.Exec");
     }//GEN-LAST:event_jButtonScriptCustom34ActionPerformed
 
     private void jButtonScriptCustom35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom35ActionPerformed
-        openScriptCustom("CustomScript35Exec");
+        openScriptCustom("Custom.Script.35.Exec");
     }//GEN-LAST:event_jButtonScriptCustom35ActionPerformed
 
     private void jButtonReferenceCustom04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom04ActionPerformed
         try {
-            openReference("CustomReference04");
+            openReference("Custom.Reference.04");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9034,7 +9034,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom05ActionPerformed
         try {
-            openReference("CustomReference05");
+            openReference("Custom.Reference.05");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9042,7 +9042,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom06ActionPerformed
         try {
-            openReference("CustomReference06");
+            openReference("Custom.Reference.06");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9050,7 +9050,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom07ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom07ActionPerformed
         try {
-            openReference("CustomReference07");
+            openReference("Custom.Reference.07");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9058,7 +9058,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom08ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom08ActionPerformed
         try {
-            openReference("CustomReference08");
+            openReference("Custom.Reference.08");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9066,7 +9066,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom09ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom09ActionPerformed
         try {
-            openReference("CustomReference09");
+            openReference("Custom.Reference.09");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9074,7 +9074,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom10ActionPerformed
         try {
-            openReference("CustomReference10");
+            openReference("Custom.Reference.10");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9082,7 +9082,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom11ActionPerformed
         try {
-            openReference("CustomReference11");
+            openReference("Custom.Reference.11");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9090,7 +9090,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom12ActionPerformed
         try {
-            openReference("CustomReference12");
+            openReference("Custom.Reference.12");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9098,7 +9098,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom13ActionPerformed
         try {
-            openReference("CustomReference13");
+            openReference("Custom.Reference.13");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9106,7 +9106,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom14ActionPerformed
         try {
-            openReference("CustomReference14");
+            openReference("Custom.Reference.14");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9114,7 +9114,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom15ActionPerformed
         try {
-            openReference("CustomReference15");
+            openReference("Custom.Reference.15");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9122,7 +9122,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom16ActionPerformed
         try {
-            openReference("CustomReference16");
+            openReference("Custom.Reference.16");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9130,7 +9130,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom17ActionPerformed
         try {
-            openReference("CustomReference17");
+            openReference("Custom.Reference.17");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9138,7 +9138,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom18ActionPerformed
         try {
-            openReference("CustomReference18");
+            openReference("Custom.Reference.18");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9146,7 +9146,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom19ActionPerformed
         try {
-            openReference("CustomReference19");
+            openReference("Custom.Reference.19");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9154,7 +9154,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom20ActionPerformed
         try {
-            openReference("CustomReference20");
+            openReference("Custom.Reference.20");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9162,7 +9162,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom21ActionPerformed
         try {
-            openReference("CustomReference21");
+            openReference("Custom.Reference.21");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9170,7 +9170,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom22ActionPerformed
         try {
-            openReference("CustomReference22");
+            openReference("Custom.Reference.22");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9178,7 +9178,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom23ActionPerformed
         try {
-            openReference("CustomReference23");
+            openReference("Custom.Reference.23");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9186,7 +9186,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom24ActionPerformed
         try {
-            openReference("CustomReference24");
+            openReference("Custom.Reference.24");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9194,7 +9194,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom25ActionPerformed
         try {
-            openReference("CustomReference25");
+            openReference("Custom.Reference.25");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9202,7 +9202,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom26ActionPerformed
         try {
-            openReference("CustomReference26");
+            openReference("Custom.Reference.26");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9210,7 +9210,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom27ActionPerformed
         try {
-            openReference("CustomReference27");
+            openReference("Custom.Reference.27");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9218,7 +9218,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom28ActionPerformed
         try {
-            openReference("CustomReference28");
+            openReference("Custom.Reference.28");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9226,7 +9226,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom29ActionPerformed
         try {
-            openReference("CustomReference29");
+            openReference("Custom.Reference.29");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9234,7 +9234,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom30ActionPerformed
         try {
-            openReference("CustomReference30");
+            openReference("Custom.Reference.30");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9242,7 +9242,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom31ActionPerformed
         try {
-            openReference("CustomReference31");
+            openReference("Custom.Reference.31");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9250,7 +9250,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom32ActionPerformed
         try {
-            openReference("CustomReference32");
+            openReference("Custom.Reference.32");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9258,7 +9258,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
     private void jButtonReferenceCustom33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReferenceCustom33ActionPerformed
         try {
-            openReference("CustomReference33");
+            openReference("Custom.Reference.33");
         } catch (IOException ex) {
             Logger.getLogger(LaunchPadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -9267,56 +9267,56 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
         //- Set Local Policy Warnings
         try {
-            if("1".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
+            if("1".equals(PropertyHandler.getInstance().getValue("Setting.LocalPolicyWarning"))) {
                 JOptionPane.showMessageDialog(null, "Data in this folder is overwritten by local policy!","Warning!",JOptionPane.WARNING_MESSAGE);
             } 
-        } catch (NullPointerException e) {System.out.println("SettingLocalPolicyWarning Goofed");
+        } catch (NullPointerException e) {System.out.println("Setting.LocalPolicyWarning Goofed");
         }       
         openFileUsingDesktop(strPathLaunchPadFolder);
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButtonScriptCustom03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom03ActionPerformed
-        openScriptCustom("CustomScript03Exec");
+        openScriptCustom("Custom.Script.03.Exec");
     }//GEN-LAST:event_jButtonScriptCustom03ActionPerformed
 
     private void jButtonScriptCustom06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom06ActionPerformed
-        openScriptCustom("CustomScript06Exec");
+        openScriptCustom("Custom.Script.06.Exec");
     }//GEN-LAST:event_jButtonScriptCustom06ActionPerformed
 
     private void jButtonScriptCustom30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom30ActionPerformed
-        openScriptCustom("CustomScript30Exec");
+        openScriptCustom("Custom.Script.30.Exec");
     }//GEN-LAST:event_jButtonScriptCustom30ActionPerformed
 
     private void jButtonScriptCustom36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom36ActionPerformed
-        openScriptCustom("CustomScript36Exec");
+        openScriptCustom("Custom.Script.36.Exec");
     }//GEN-LAST:event_jButtonScriptCustom36ActionPerformed
 
     private void jButtonScriptCustom09ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom09ActionPerformed
-        openScriptCustom("CustomScript09Exec");
+        openScriptCustom("Custom.Script.09.Exec");
     }//GEN-LAST:event_jButtonScriptCustom09ActionPerformed
 
     private void jButtonScriptCustom15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom15ActionPerformed
-        openScriptCustom("CustomScript15Exec");
+        openScriptCustom("Custom.Script.15.Exec");
     }//GEN-LAST:event_jButtonScriptCustom15ActionPerformed
 
     private void jButtonScriptCustom18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom18ActionPerformed
-        openScriptCustom("CustomScript18Exec");
+        openScriptCustom("Custom.Script.18.Exec");
     }//GEN-LAST:event_jButtonScriptCustom18ActionPerformed
 
     private void jButtonScriptCustom21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom21ActionPerformed
-        openScriptCustom("CustomScript21Exec");
+        openScriptCustom("Custom.Script.21.Exec");
     }//GEN-LAST:event_jButtonScriptCustom21ActionPerformed
 
     private void jButtonScriptCustom24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom24ActionPerformed
-        openScriptCustom("CustomScript24Exec");
+        openScriptCustom("Custom.Script.24.Exec");
     }//GEN-LAST:event_jButtonScriptCustom24ActionPerformed
 
     private void jButtonScriptCustom27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom27ActionPerformed
-        openScriptCustom("CustomScript27Exec");
+        openScriptCustom("Custom.Script.27.Exec");
     }//GEN-LAST:event_jButtonScriptCustom27ActionPerformed
 
     private void jButtonScriptCustom33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptCustom33ActionPerformed
-        openScriptCustom("CustomScript33Exec");
+        openScriptCustom("Custom.Script.33.Exec");
     }//GEN-LAST:event_jButtonScriptCustom33ActionPerformed
 
     private void jButtonScriptSendMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptSendMessageActionPerformed
@@ -9427,10 +9427,10 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
         //- Set Local Policy Warnings
         try {
-            if("1".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
+            if("1".equals(PropertyHandler.getInstance().getValue("Setting.LocalPolicyWarning"))) {
                 JOptionPane.showMessageDialog(null, "This file is overwritten by local policy!","Warning!",JOptionPane.WARNING_MESSAGE);
             } 
-        } catch (NullPointerException e) {System.out.println("SettingLocalPolicyWarning Goofed");
+        } catch (NullPointerException e) {System.out.println("Setting.LocalPolicyWarning Goofed");
         } 
         openFileUsingDesktop(strPathPropertiesFile);
     }//GEN-LAST:event_jButton35ActionPerformed
@@ -9487,12 +9487,12 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton38ActionPerformed
 
     private void jRadioButtonJapaneseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonJapaneseActionPerformed
-    PropertyHandlerPersonal.getInstance().setValue("SettingLanguage", "Japanese");
+    PropertyHandlerPersonal.getInstance().setValue("Setting.Language", "Japanese");
     SetLanguageJapanese();
     }//GEN-LAST:event_jRadioButtonJapaneseActionPerformed
 
     private void jRadioButtonEnglishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEnglishActionPerformed
-    PropertyHandlerPersonal.getInstance().setValue("SettingLanguage", "English");
+    PropertyHandlerPersonal.getInstance().setValue("Setting.Language", "English");
     String ObjButtons[] = {"Yes はい","No いいえ"};
     int PromptResult = JOptionPane.showOptionDialog(null,"Reload in English?\r\n英語でリロードしますか？","",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
     if(PromptResult==JOptionPane.YES_OPTION)
@@ -9546,283 +9546,283 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonClearFilterActionPerformed
 
     private void jTextFieldButtonToolTip1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip1KeyReleased
-        PropertyHandler.getInstance().setValue("Button01ToolTip",jTextFieldButtonToolTip1.getText());
+        PropertyHandler.getInstance().setValue("Button.01.ToolTip",jTextFieldButtonToolTip1.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip1KeyReleased
 
     private void jTextFieldButtonExecute1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute1KeyReleased
-        PropertyHandler.getInstance().setValue("Button01StrExec",jTextFieldButtonExecute1.getText() );
+        PropertyHandler.getInstance().setValue("Button.01.StrExec",jTextFieldButtonExecute1.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute1KeyReleased
 
     private void jComboBoxButtonIcon1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon1ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button01Icon",((String)jComboBoxButtonIcon1.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.01.Icon",((String)jComboBoxButtonIcon1.getSelectedItem()));
         }
     }//GEN-LAST:event_jComboBoxButtonIcon1ItemStateChanged
 
     private void jTextFieldButtonExecute2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute2KeyReleased
-        PropertyHandler.getInstance().setValue("Button02StrExec",jTextFieldButtonExecute2.getText() );
+        PropertyHandler.getInstance().setValue("Button.02.StrExec",jTextFieldButtonExecute2.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute2KeyReleased
 
     private void jTextFieldButtonToolTip2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip2KeyReleased
-        PropertyHandler.getInstance().setValue("Button02ToolTip",jTextFieldButtonToolTip2.getText());
+        PropertyHandler.getInstance().setValue("Button.02.ToolTip",jTextFieldButtonToolTip2.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip2KeyReleased
 
     private void jComboBoxButtonIcon2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon2ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button02Icon",((String)jComboBoxButtonIcon2.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.02.Icon",((String)jComboBoxButtonIcon2.getSelectedItem()));
         }
     }//GEN-LAST:event_jComboBoxButtonIcon2ItemStateChanged
 
     private void jTextFieldButtonExecute3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute3KeyReleased
-        PropertyHandler.getInstance().setValue("Button03StrExec",jTextFieldButtonExecute3.getText() );
+        PropertyHandler.getInstance().setValue("Button.03.StrExec",jTextFieldButtonExecute3.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute3KeyReleased
 
     private void jTextFieldButtonToolTip3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip3KeyReleased
-        PropertyHandler.getInstance().setValue("Button03ToolTip",jTextFieldButtonToolTip3.getText());
+        PropertyHandler.getInstance().setValue("Button.03.ToolTip",jTextFieldButtonToolTip3.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip3KeyReleased
 
     private void jComboBoxButtonIcon3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon3ItemStateChanged
        if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button03Icon",((String)jComboBoxButtonIcon3.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.03.Icon",((String)jComboBoxButtonIcon3.getSelectedItem()));
        }
     }//GEN-LAST:event_jComboBoxButtonIcon3ItemStateChanged
 
     private void jTextFieldButtonExecute4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute4KeyReleased
-        PropertyHandler.getInstance().setValue("Button04StrExec",jTextFieldButtonExecute4.getText() );
+        PropertyHandler.getInstance().setValue("Button.04.StrExec",jTextFieldButtonExecute4.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute4KeyReleased
 
     private void jTextFieldButtonToolTip4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip4KeyReleased
-        PropertyHandler.getInstance().setValue("Button04ToolTip",jTextFieldButtonToolTip4.getText());
+        PropertyHandler.getInstance().setValue("Button.04.ToolTip",jTextFieldButtonToolTip4.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip4KeyReleased
 
     private void jComboBoxButtonIcon4ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon4ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button04Icon",((String)jComboBoxButtonIcon4.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.04.Icon",((String)jComboBoxButtonIcon4.getSelectedItem()));
         }
     }//GEN-LAST:event_jComboBoxButtonIcon4ItemStateChanged
 
     private void jTextFieldButtonExecute5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute5KeyReleased
-        PropertyHandler.getInstance().setValue("Button05StrExec",jTextFieldButtonExecute5.getText() );
+        PropertyHandler.getInstance().setValue("Button.05.StrExec",jTextFieldButtonExecute5.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute5KeyReleased
 
     private void jTextFieldButtonToolTip5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip5KeyReleased
-        PropertyHandler.getInstance().setValue("Button05ToolTip",jTextFieldButtonToolTip5.getText());
+        PropertyHandler.getInstance().setValue("Button.05.ToolTip",jTextFieldButtonToolTip5.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip5KeyReleased
 
     private void jComboBoxButtonIcon5ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon5ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button05Icon",((String)jComboBoxButtonIcon5.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.05.Icon",((String)jComboBoxButtonIcon5.getSelectedItem()));
         }
     }//GEN-LAST:event_jComboBoxButtonIcon5ItemStateChanged
 
     private void jTextFieldButtonExecute6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute6KeyReleased
-        PropertyHandler.getInstance().setValue("Button06StrExec",jTextFieldButtonExecute6.getText() );
+        PropertyHandler.getInstance().setValue("Button.06.StrExec",jTextFieldButtonExecute6.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute6KeyReleased
 
     private void jTextFieldButtonToolTip6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip6KeyReleased
-        PropertyHandler.getInstance().setValue("Button06ToolTip",jTextFieldButtonToolTip6.getText());
+        PropertyHandler.getInstance().setValue("Button.06.ToolTip",jTextFieldButtonToolTip6.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip6KeyReleased
 
     private void jComboBoxButtonIcon6ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon6ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button06Icon",((String)jComboBoxButtonIcon6.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.06.Icon",((String)jComboBoxButtonIcon6.getSelectedItem()));
         }
     }//GEN-LAST:event_jComboBoxButtonIcon6ItemStateChanged
 
     private void jTextFieldButtonExecute7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute7KeyReleased
-        PropertyHandler.getInstance().setValue("Button07StrExec",jTextFieldButtonExecute7.getText() );
+        PropertyHandler.getInstance().setValue("Button.07.StrExec",jTextFieldButtonExecute7.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute7KeyReleased
 
     private void jTextFieldButtonToolTip7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip7KeyReleased
-        PropertyHandler.getInstance().setValue("Button07ToolTip",jTextFieldButtonToolTip7.getText());
+        PropertyHandler.getInstance().setValue("Button.07.ToolTip",jTextFieldButtonToolTip7.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip7KeyReleased
 
     private void jComboBoxButtonIcon7ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon7ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button07Icon",((String)jComboBoxButtonIcon7.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.07.Icon",((String)jComboBoxButtonIcon7.getSelectedItem()));
         }
     }//GEN-LAST:event_jComboBoxButtonIcon7ItemStateChanged
 
     private void jTextFieldButtonExecute8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute8KeyReleased
-        PropertyHandler.getInstance().setValue("Button08StrExec",jTextFieldButtonExecute8.getText() );
+        PropertyHandler.getInstance().setValue("Button.08.StrExec",jTextFieldButtonExecute8.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute8KeyReleased
 
     private void jTextFieldButtonToolTip8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip8KeyReleased
-        PropertyHandler.getInstance().setValue("Button08ToolTip",jTextFieldButtonToolTip8.getText());
+        PropertyHandler.getInstance().setValue("Button.08.ToolTip",jTextFieldButtonToolTip8.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip8KeyReleased
 
     private void jComboBoxButtonIcon8ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon8ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button08Icon",((String)jComboBoxButtonIcon8.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.08.Icon",((String)jComboBoxButtonIcon8.getSelectedItem()));
         }
     }//GEN-LAST:event_jComboBoxButtonIcon8ItemStateChanged
 
     private void jComboBoxButtonIcon9ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon9ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button09Icon",((String)jComboBoxButtonIcon9.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.09.Icon",((String)jComboBoxButtonIcon9.getSelectedItem()));
         }
     }//GEN-LAST:event_jComboBoxButtonIcon9ItemStateChanged
 
     private void jTextFieldButtonExecute9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute9KeyReleased
-        PropertyHandler.getInstance().setValue("Button09StrExec",jTextFieldButtonExecute9.getText() );
+        PropertyHandler.getInstance().setValue("Button.09.StrExec",jTextFieldButtonExecute9.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute9KeyReleased
 
     private void jTextFieldButtonToolTip9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip9KeyReleased
-        PropertyHandler.getInstance().setValue("Button09ToolTip",jTextFieldButtonToolTip9.getText());
+        PropertyHandler.getInstance().setValue("Button.09.ToolTip",jTextFieldButtonToolTip9.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip9KeyReleased
 
     private void jComboBoxButtonIcon10ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon10ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button10Icon",((String)jComboBoxButtonIcon10.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.10.Icon",((String)jComboBoxButtonIcon10.getSelectedItem()));
         }
     }//GEN-LAST:event_jComboBoxButtonIcon10ItemStateChanged
 
     private void jTextFieldButtonExecute10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute10KeyReleased
-        PropertyHandler.getInstance().setValue("Button10StrExec",jTextFieldButtonExecute10.getText() );
+        PropertyHandler.getInstance().setValue("Button.10.StrExec",jTextFieldButtonExecute10.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute10KeyReleased
 
     private void jTextFieldButtonToolTip10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip10KeyReleased
-        PropertyHandler.getInstance().setValue("Button10ToolTip",jTextFieldButtonToolTip10.getText());
+        PropertyHandler.getInstance().setValue("Button.10.ToolTip",jTextFieldButtonToolTip10.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip10KeyReleased
 
     private void jComboBoxButtonIcon11ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon11ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button11Icon",((String)jComboBoxButtonIcon11.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.11.Icon",((String)jComboBoxButtonIcon11.getSelectedItem()));
         }
     }//GEN-LAST:event_jComboBoxButtonIcon11ItemStateChanged
 
     private void jTextFieldButtonExecute11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute11KeyReleased
-        PropertyHandler.getInstance().setValue("Button11StrExec",jTextFieldButtonExecute11.getText() );
+        PropertyHandler.getInstance().setValue("Button.11.StrExec",jTextFieldButtonExecute11.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute11KeyReleased
 
     private void jTextFieldButtonToolTip11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip11KeyReleased
-        PropertyHandler.getInstance().setValue("Button11ToolTip",jTextFieldButtonToolTip11.getText());
+        PropertyHandler.getInstance().setValue("Button.11.ToolTip",jTextFieldButtonToolTip11.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip11KeyReleased
 
     private void jComboBoxButtonIcon12ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon12ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button12Icon",((String)jComboBoxButtonIcon12.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.12.Icon",((String)jComboBoxButtonIcon12.getSelectedItem()));
         }
     }//GEN-LAST:event_jComboBoxButtonIcon12ItemStateChanged
 
     private void jTextFieldButtonExecute12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute12KeyReleased
-        PropertyHandler.getInstance().setValue("Button12StrExec",jTextFieldButtonExecute12.getText() );
+        PropertyHandler.getInstance().setValue("Button.12.StrExec",jTextFieldButtonExecute12.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute12KeyReleased
 
     private void jTextFieldButtonToolTip12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip12KeyReleased
-        PropertyHandler.getInstance().setValue("Button12ToolTip",jTextFieldButtonToolTip12.getText());
+        PropertyHandler.getInstance().setValue("Button.12.ToolTip",jTextFieldButtonToolTip12.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip12KeyReleased
 
     private void jComboBoxButtonIcon13ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon13ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button13Icon",((String)jComboBoxButtonIcon13.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.13.Icon",((String)jComboBoxButtonIcon13.getSelectedItem()));
         }
     }//GEN-LAST:event_jComboBoxButtonIcon13ItemStateChanged
 
     private void jTextFieldButtonExecute13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute13KeyReleased
-        PropertyHandler.getInstance().setValue("Button13StrExec",jTextFieldButtonExecute13.getText() );
+        PropertyHandler.getInstance().setValue("Button.13.StrExec",jTextFieldButtonExecute13.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute13KeyReleased
 
     private void jTextFieldButtonToolTip13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip13KeyReleased
-        PropertyHandler.getInstance().setValue("Button13ToolTip",jTextFieldButtonToolTip13.getText());
+        PropertyHandler.getInstance().setValue("Button.13.ToolTip",jTextFieldButtonToolTip13.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip13KeyReleased
 
     private void jComboBoxButtonIcon14ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon14ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button14Icon",((String)jComboBoxButtonIcon14.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.14.Icon",((String)jComboBoxButtonIcon14.getSelectedItem()));
         }
     }//GEN-LAST:event_jComboBoxButtonIcon14ItemStateChanged
 
     private void jTextFieldButtonExecute14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute14KeyReleased
-        PropertyHandler.getInstance().setValue("Button14StrExec",jTextFieldButtonExecute14.getText() );
+        PropertyHandler.getInstance().setValue("Button.14.StrExec",jTextFieldButtonExecute14.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute14KeyReleased
 
     private void jTextFieldButtonToolTip14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip14KeyReleased
-        PropertyHandler.getInstance().setValue("Button14ToolTip",jTextFieldButtonToolTip14.getText());
+        PropertyHandler.getInstance().setValue("Button.14.ToolTip",jTextFieldButtonToolTip14.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip14KeyReleased
 
     private void jComboBoxButtonIcon15ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon15ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button15Icon",((String)jComboBoxButtonIcon15.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.15.Icon",((String)jComboBoxButtonIcon15.getSelectedItem()));
         }
     }//GEN-LAST:event_jComboBoxButtonIcon15ItemStateChanged
 
     private void jTextFieldButtonExecute15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute15KeyReleased
-        PropertyHandler.getInstance().setValue("Button15StrExec",jTextFieldButtonExecute15.getText() );
+        PropertyHandler.getInstance().setValue("Button.15.StrExec",jTextFieldButtonExecute15.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute15KeyReleased
 
     private void jTextFieldButtonToolTip15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip15KeyReleased
-        PropertyHandler.getInstance().setValue("Button15ToolTip",jTextFieldButtonToolTip15.getText());
+        PropertyHandler.getInstance().setValue("Button.15.ToolTip",jTextFieldButtonToolTip15.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip15KeyReleased
 
     private void jComboBoxButtonIcon16ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon16ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button16Icon",((String)jComboBoxButtonIcon16.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.16.Icon",((String)jComboBoxButtonIcon16.getSelectedItem()));
         }
     }//GEN-LAST:event_jComboBoxButtonIcon16ItemStateChanged
 
     private void jTextFieldButtonExecute16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute16KeyReleased
-        PropertyHandler.getInstance().setValue("Button16StrExec",jTextFieldButtonExecute16.getText() );
+        PropertyHandler.getInstance().setValue("Button.16.StrExec",jTextFieldButtonExecute16.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute16KeyReleased
 
     private void jTextFieldButtonToolTip16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip16KeyReleased
-        PropertyHandler.getInstance().setValue("Button16ToolTip",jTextFieldButtonToolTip16.getText());
+        PropertyHandler.getInstance().setValue("Button.16.ToolTip",jTextFieldButtonToolTip16.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip16KeyReleased
 
     private void jComboBoxButtonIcon17ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon17ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button17Icon",((String)jComboBoxButtonIcon17.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.17.Icon",((String)jComboBoxButtonIcon17.getSelectedItem()));
         }
     }//GEN-LAST:event_jComboBoxButtonIcon17ItemStateChanged
 
     private void jTextFieldButtonExecute17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute17KeyReleased
-        PropertyHandler.getInstance().setValue("Button17StrExec",jTextFieldButtonExecute17.getText() );
+        PropertyHandler.getInstance().setValue("Button.17.StrExec",jTextFieldButtonExecute17.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute17KeyReleased
 
     private void jTextFieldButtonToolTip17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip17KeyReleased
-        PropertyHandler.getInstance().setValue("Button17ToolTip",jTextFieldButtonToolTip17.getText());
+        PropertyHandler.getInstance().setValue("Button.17.ToolTip",jTextFieldButtonToolTip17.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip17KeyReleased
 
     private void jComboBoxButtonIcon18ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon18ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button18Icon",((String)jComboBoxButtonIcon18.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.18.Icon",((String)jComboBoxButtonIcon18.getSelectedItem()));
         }
     }//GEN-LAST:event_jComboBoxButtonIcon18ItemStateChanged
 
     private void jTextFieldButtonExecute18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute18KeyReleased
-        PropertyHandler.getInstance().setValue("Button18StrExec",jTextFieldButtonExecute18.getText() );
+        PropertyHandler.getInstance().setValue("Button.18.StrExec",jTextFieldButtonExecute18.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute18KeyReleased
 
     private void jTextFieldButtonToolTip18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip18KeyReleased
-        PropertyHandler.getInstance().setValue("Button18ToolTip",jTextFieldButtonToolTip18.getText());
+        PropertyHandler.getInstance().setValue("Button.18.ToolTip",jTextFieldButtonToolTip18.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip18KeyReleased
 
     private void jComboBoxButtonIcon19ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon19ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button19Icon",((String)jComboBoxButtonIcon19.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.19.Icon",((String)jComboBoxButtonIcon19.getSelectedItem()));
         }
     }//GEN-LAST:event_jComboBoxButtonIcon19ItemStateChanged
 
     private void jTextFieldButtonExecute19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute19KeyReleased
-        PropertyHandler.getInstance().setValue("Button19StrExec",jTextFieldButtonExecute19.getText() );
+        PropertyHandler.getInstance().setValue("Button.19.StrExec",jTextFieldButtonExecute19.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute19KeyReleased
 
     private void jTextFieldButtonToolTip19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip19KeyReleased
-        PropertyHandler.getInstance().setValue("Button19ToolTip",jTextFieldButtonToolTip19.getText());
+        PropertyHandler.getInstance().setValue("Button.19.ToolTip",jTextFieldButtonToolTip19.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip19KeyReleased
 
     private void jComboBoxButtonIcon20ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon20ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button20Icon",((String)jComboBoxButtonIcon20.getSelectedItem())); 
+            PropertyHandler.getInstance().setValue("Button.20.Icon",((String)jComboBoxButtonIcon20.getSelectedItem())); 
         }
     }//GEN-LAST:event_jComboBoxButtonIcon20ItemStateChanged
 
     private void jTextFieldButtonExecute20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute20KeyReleased
-        PropertyHandler.getInstance().setValue("Button20StrExec",jTextFieldButtonExecute20.getText() );
+        PropertyHandler.getInstance().setValue("Button.20.StrExec",jTextFieldButtonExecute20.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute20KeyReleased
 
     private void jTextFieldButtonToolTip20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip20KeyReleased
-        PropertyHandler.getInstance().setValue("Button20ToolTip",jTextFieldButtonToolTip20.getText());
+        PropertyHandler.getInstance().setValue("Button.20.ToolTip",jTextFieldButtonToolTip20.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip20KeyReleased
 
     private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
@@ -9838,7 +9838,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton42ActionPerformed
 
     private void jButtonExecuteFunctionPKIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExecuteFunctionPKIActionPerformed
-        String strSecureCRTexe = PropertyHandler.getInstance().getValue("SecureCRTexe").replace("%USERPROFILE%", pathUserProfile);
+        String strSecureCRTexe = PropertyHandler.getInstance().getValue("SecureCRT.Exec").replace("%USERPROFILE%", pathUserProfile);
         System.out.println("SecureCRT file: " + strSecureCRTexe);
         simpleDateFormat  = new SimpleDateFormat("yyyy-MM-dd_HHmm-ssSSS");
         dateTime = simpleDateFormat.format(new Date());
@@ -9860,14 +9860,14 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonExecuteFunctionPKIActionPerformed
 
     private void jRadioButtonPWauthDisabledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPWauthDisabledActionPerformed
-        PropertyHandler.getInstance().setValue("SettingPasswordBasedSSHauthDisable", "1");
+        PropertyHandler.getInstance().setValue("Setting.PasswordBasedSSHauthDisable", "1");
         jRadioButtonPWauthDisabled.setSelected(Boolean.TRUE);
         jButtonExecuteFunctionSSH.setBackground(new javax.swing.JButton().getBackground());
         jButtonExecuteFunctionSSH.setEnabled(false);
     }//GEN-LAST:event_jRadioButtonPWauthDisabledActionPerformed
 
     private void jRadioButtonPWauthEnabledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPWauthEnabledActionPerformed
-        PropertyHandler.getInstance().setValue("SettingPasswordBasedSSHauthDisable", "0");
+        PropertyHandler.getInstance().setValue("Setting.PasswordBasedSSHauthDisable", "0");
         jRadioButtonPWauthEnabled.setSelected(Boolean.TRUE);
         jButtonExecuteFunctionSSH.setBackground(new Color(200,255,153));
         jButtonExecuteFunctionSSH.setEnabled(Boolean.TRUE);
@@ -9878,11 +9878,11 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton43ActionPerformed
 
     private void jTextFieldLinkText1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText1KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink01Description",jTextFieldLinkText1.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.01.Description",jTextFieldLinkText1.getText());
     }//GEN-LAST:event_jTextFieldLinkText1KeyReleased
 
     private void jTextFieldLinkExecute1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute1KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink01Exec",jTextFieldLinkExecute1.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.01.Exec",jTextFieldLinkExecute1.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute1KeyReleased
 
     private void jButton44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton44ActionPerformed
@@ -9894,283 +9894,283 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton44ActionPerformed
 
     private void jTextFieldLinkText2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText2KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink02Description",jTextFieldLinkText2.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.02.Description",jTextFieldLinkText2.getText());
     }//GEN-LAST:event_jTextFieldLinkText2KeyReleased
 
     private void jTextFieldLinkExecute2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute2KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink02Exec",jTextFieldLinkExecute2.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.02.Exec",jTextFieldLinkExecute2.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute2KeyReleased
 
     private void jTextFieldLinkExecute3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute3KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink03Exec",jTextFieldLinkExecute3.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.03.Exec",jTextFieldLinkExecute3.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute3KeyReleased
 
     private void jTextFieldLinkText3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText3KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink03Description",jTextFieldLinkText3.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.03.Description",jTextFieldLinkText3.getText());
     }//GEN-LAST:event_jTextFieldLinkText3KeyReleased
 
     private void jTextFieldLinkExecute4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute4KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink04Exec",jTextFieldLinkExecute4.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.04.Exec",jTextFieldLinkExecute4.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute4KeyReleased
 
     private void jTextFieldLinkText4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText4KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink04Description",jTextFieldLinkText4.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.04.Description",jTextFieldLinkText4.getText());
     }//GEN-LAST:event_jTextFieldLinkText4KeyReleased
 
     private void jTextFieldLinkExecute5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute5KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink05Exec",jTextFieldLinkExecute5.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.05.Exec",jTextFieldLinkExecute5.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute5KeyReleased
 
     private void jTextFieldLinkText5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText5KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink05Description",jTextFieldLinkText5.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.05.Description",jTextFieldLinkText5.getText());
     }//GEN-LAST:event_jTextFieldLinkText5KeyReleased
 
     private void jTextFieldLinkExecute6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute6KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink06Exec",jTextFieldLinkExecute6.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.06.Exec",jTextFieldLinkExecute6.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute6KeyReleased
 
     private void jTextFieldLinkText6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText6KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink06Description",jTextFieldLinkText6.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.06.Description",jTextFieldLinkText6.getText());
     }//GEN-LAST:event_jTextFieldLinkText6KeyReleased
 
     private void jTextFieldLinkExecute7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute7KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink07Exec",jTextFieldLinkExecute7.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.07.Exec",jTextFieldLinkExecute7.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute7KeyReleased
 
     private void jTextFieldLinkText7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText7KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink07Description",jTextFieldLinkText7.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.07.Description",jTextFieldLinkText7.getText());
     }//GEN-LAST:event_jTextFieldLinkText7KeyReleased
 
     private void jTextFieldLinkExecute8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute8KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink08Exec",jTextFieldLinkExecute8.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.08.Exec",jTextFieldLinkExecute8.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute8KeyReleased
 
     private void jTextFieldLinkText8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText8KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink08Description",jTextFieldLinkText8.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.08.Description",jTextFieldLinkText8.getText());
     }//GEN-LAST:event_jTextFieldLinkText8KeyReleased
 
     private void jTextFieldLinkExecute9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute9KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink09Exec",jTextFieldLinkExecute9.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.09.Exec",jTextFieldLinkExecute9.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute9KeyReleased
 
     private void jTextFieldLinkText9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText9KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink09Description",jTextFieldLinkText9.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.09.Description",jTextFieldLinkText9.getText());
     }//GEN-LAST:event_jTextFieldLinkText9KeyReleased
 
     private void jTextFieldLinkExecute10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute10KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink10Exec",jTextFieldLinkExecute10.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.10.Exec",jTextFieldLinkExecute10.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute10KeyReleased
 
     private void jTextFieldLinkText10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText10KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink10Description",jTextFieldLinkText10.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.10.Description",jTextFieldLinkText10.getText());
     }//GEN-LAST:event_jTextFieldLinkText10KeyReleased
 
     private void jTextFieldLinkExecute11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute11KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink11Exec",jTextFieldLinkExecute11.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.11.Exec",jTextFieldLinkExecute11.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute11KeyReleased
 
     private void jTextFieldLinkText11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText11KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink11Description",jTextFieldLinkText11.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.11.Description",jTextFieldLinkText11.getText());
     }//GEN-LAST:event_jTextFieldLinkText11KeyReleased
 
     private void jTextFieldLinkExecute12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute12KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink12Exec", jTextFieldLinkExecute12.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.12.Exec", jTextFieldLinkExecute12.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute12KeyReleased
 
     private void jTextFieldLinkText12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText12KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink12Description",jTextFieldLinkText12.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.12.Description",jTextFieldLinkText12.getText());
     }//GEN-LAST:event_jTextFieldLinkText12KeyReleased
 
     private void jTextFieldLinkExecute13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute13KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink13Exec",jTextFieldLinkExecute13.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.13.Exec",jTextFieldLinkExecute13.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute13KeyReleased
 
     private void jTextFieldLinkText13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText13KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink13Description",jTextFieldLinkText13.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.13.Description",jTextFieldLinkText13.getText());
     }//GEN-LAST:event_jTextFieldLinkText13KeyReleased
 
     private void jTextFieldLinkExecute14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute14KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink14Exec",jTextFieldLinkExecute14.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.14.Exec",jTextFieldLinkExecute14.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute14KeyReleased
 
     private void jTextFieldLinkText14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText14KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink14Description",jTextFieldLinkText14.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.14.Description",jTextFieldLinkText14.getText());
     }//GEN-LAST:event_jTextFieldLinkText14KeyReleased
 
     private void jTextFieldLinkExecute15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute15KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink15Exec",jTextFieldLinkExecute15.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.15.Exec",jTextFieldLinkExecute15.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute15KeyReleased
 
     private void jTextFieldLinkText15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText15KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink15Description",jTextFieldLinkText15.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.15.Description",jTextFieldLinkText15.getText());
     }//GEN-LAST:event_jTextFieldLinkText15KeyReleased
 
     private void jTextFieldLinkExecute16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute16KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink16Exec",jTextFieldLinkExecute16.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.16.Exec",jTextFieldLinkExecute16.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute16KeyReleased
 
     private void jTextFieldLinkText16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText16KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink16Description",jTextFieldLinkText16.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.16.Description",jTextFieldLinkText16.getText());
     }//GEN-LAST:event_jTextFieldLinkText16KeyReleased
 
     private void jTextFieldLinkExecute17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute17KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink17Exec",jTextFieldLinkExecute17.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.17.Exec",jTextFieldLinkExecute17.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute17KeyReleased
 
     private void jTextFieldLinkText17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText17KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink17Description",jTextFieldLinkText17.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.17.Description",jTextFieldLinkText17.getText());
     }//GEN-LAST:event_jTextFieldLinkText17KeyReleased
 
     private void jTextFieldLinkExecute18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute18KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink18Exec",jTextFieldLinkExecute18.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.18.Exec",jTextFieldLinkExecute18.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute18KeyReleased
 
     private void jTextFieldLinkText18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText18KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink18Description",jTextFieldLinkText18.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.18.Description",jTextFieldLinkText18.getText());
     }//GEN-LAST:event_jTextFieldLinkText18KeyReleased
 
     private void jTextFieldLinkExecute19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute19KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink19Exec",jTextFieldLinkExecute19.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.19.Exec",jTextFieldLinkExecute19.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute19KeyReleased
 
     private void jTextFieldLinkText19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText19KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink19Description",jTextFieldLinkText19.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.19.Description",jTextFieldLinkText19.getText());
     }//GEN-LAST:event_jTextFieldLinkText19KeyReleased
 
     private void jTextFieldLinkExecute20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute20KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink20Exec",jTextFieldLinkExecute20.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.20.Exec",jTextFieldLinkExecute20.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute20KeyReleased
 
     private void jTextFieldLinkText20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText20KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink20Description",jTextFieldLinkText20.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.20.Description",jTextFieldLinkText20.getText());
     }//GEN-LAST:event_jTextFieldLinkText20KeyReleased
 
     private void jTextFieldLinkExecute21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute21KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink21Exec",jTextFieldLinkExecute21.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.21.Exec",jTextFieldLinkExecute21.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute21KeyReleased
 
     private void jTextFieldLinkText21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText21KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink21Description",jTextFieldLinkText21.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.21.Description",jTextFieldLinkText21.getText());
     }//GEN-LAST:event_jTextFieldLinkText21KeyReleased
 
     private void jTextFieldLinkExecute22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute22KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink22Exec",jTextFieldLinkExecute22.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.22.Exec",jTextFieldLinkExecute22.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute22KeyReleased
 
     private void jTextFieldLinkText22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText22KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink22Description",jTextFieldLinkText22.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.22.Description",jTextFieldLinkText22.getText());
     }//GEN-LAST:event_jTextFieldLinkText22KeyReleased
 
     private void jTextFieldLinkExecute23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute23KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink23Exec",jTextFieldLinkExecute23.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.23.Exec",jTextFieldLinkExecute23.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute23KeyReleased
 
     private void jTextFieldLinkText23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText23KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink23Description",jTextFieldLinkText23.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.23.Description",jTextFieldLinkText23.getText());
     }//GEN-LAST:event_jTextFieldLinkText23KeyReleased
 
     private void jTextFieldLinkExecute24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute24KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink24Exec",jTextFieldLinkExecute24.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.24.Exec",jTextFieldLinkExecute24.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute24KeyReleased
 
     private void jTextFieldLinkText24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText24KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink24Description",jTextFieldLinkText24.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.24.Description",jTextFieldLinkText24.getText());
     }//GEN-LAST:event_jTextFieldLinkText24KeyReleased
 
     private void jTextFieldLinkExecute25KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute25KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink25Exec",jTextFieldLinkExecute25.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.25.Exec",jTextFieldLinkExecute25.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute25KeyReleased
 
     private void jTextFieldLinkText25KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText25KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink25Description",jTextFieldLinkText25.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.25.Description",jTextFieldLinkText25.getText());
     }//GEN-LAST:event_jTextFieldLinkText25KeyReleased
 
     private void jTextFieldLinkExecute26KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute26KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink26Exec",jTextFieldLinkExecute26.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.26.Exec",jTextFieldLinkExecute26.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute26KeyReleased
 
     private void jTextFieldLinkText26KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText26KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink26Description",jTextFieldLinkText26.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.26.Description",jTextFieldLinkText26.getText());
     }//GEN-LAST:event_jTextFieldLinkText26KeyReleased
 
     private void jTextFieldLinkExecute27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute27KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink27Exec",jTextFieldLinkExecute27.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.27.Exec",jTextFieldLinkExecute27.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute27KeyReleased
 
     private void jTextFieldLinkText27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText27KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink27Description",jTextFieldLinkText27.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.27.Description",jTextFieldLinkText27.getText());
     }//GEN-LAST:event_jTextFieldLinkText27KeyReleased
 
     private void jTextFieldLinkExecute28KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute28KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink28Exec",jTextFieldLinkExecute28.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.28.Exec",jTextFieldLinkExecute28.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute28KeyReleased
 
     private void jTextFieldLinkText28KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText28KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink28Description",jTextFieldLinkText28.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.28.Description",jTextFieldLinkText28.getText());
     }//GEN-LAST:event_jTextFieldLinkText28KeyReleased
 
     private void jTextFieldLinkExecute29KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute29KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink29Exec",jTextFieldLinkExecute29.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.29.Exec",jTextFieldLinkExecute29.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute29KeyReleased
 
     private void jTextFieldLinkText29KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText29KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink29Description",jTextFieldLinkText29.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.29.Description",jTextFieldLinkText29.getText());
     }//GEN-LAST:event_jTextFieldLinkText29KeyReleased
 
     private void jTextFieldLinkExecute30KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute30KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink30Exec",jTextFieldLinkExecute30.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.30.Exec",jTextFieldLinkExecute30.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute30KeyReleased
 
     private void jTextFieldLinkText30KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText30KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink30Description",jTextFieldLinkText30.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.30.Description",jTextFieldLinkText30.getText());
     }//GEN-LAST:event_jTextFieldLinkText30KeyReleased
 
     private void jTextFieldLinkExecute31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute31KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink31Exec",jTextFieldLinkExecute31.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.31.Exec",jTextFieldLinkExecute31.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute31KeyReleased
 
     private void jTextFieldLinkText31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText31KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink31Description",jTextFieldLinkText31.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.31.Description",jTextFieldLinkText31.getText());
     }//GEN-LAST:event_jTextFieldLinkText31KeyReleased
 
     private void jTextFieldLinkExecute32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute32KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink32Exec",jTextFieldLinkExecute32.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.32.Exec",jTextFieldLinkExecute32.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute32KeyReleased
 
     private void jTextFieldLinkText32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText32KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink32Description",jTextFieldLinkText32.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.32.Description",jTextFieldLinkText32.getText());
     }//GEN-LAST:event_jTextFieldLinkText32KeyReleased
 
     private void jTextFieldLinkExecute33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute33KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink33Exec",jTextFieldLinkExecute33.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.33.Exec",jTextFieldLinkExecute33.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute33KeyReleased
 
     private void jTextFieldLinkText33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText33KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink33Description",jTextFieldLinkText33.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.33.Description",jTextFieldLinkText33.getText());
     }//GEN-LAST:event_jTextFieldLinkText33KeyReleased
 
     private void jTextFieldLinkExecute34KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute34KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink34Exec",jTextFieldLinkExecute34.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.34.Exec",jTextFieldLinkExecute34.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute34KeyReleased
 
     private void jTextFieldLinkText34KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText34KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink34Description",jTextFieldLinkText34.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.34.Description",jTextFieldLinkText34.getText());
     }//GEN-LAST:event_jTextFieldLinkText34KeyReleased
 
     private void jTextFieldLinkExecute35KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute35KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink35Exec",jTextFieldLinkExecute35.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.35.Exec",jTextFieldLinkExecute35.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute35KeyReleased
 
     private void jTextFieldLinkText35KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText35KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink35Description",jTextFieldLinkText35.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.35.Description",jTextFieldLinkText35.getText());
     }//GEN-LAST:event_jTextFieldLinkText35KeyReleased
 
     private void jTextFieldLinkExecute36KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkExecute36KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink36Exec",jTextFieldLinkExecute36.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.36.Exec",jTextFieldLinkExecute36.getText());
     }//GEN-LAST:event_jTextFieldLinkExecute36KeyReleased
 
     private void jTextFieldLinkText36KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLinkText36KeyReleased
-        PropertyHandler.getInstance().setValue("CustomLink36Description",jTextFieldLinkText36.getText());
+        PropertyHandler.getInstance().setValue("Custom.Link.36.Description",jTextFieldLinkText36.getText());
     }//GEN-LAST:event_jTextFieldLinkText36KeyReleased
 
     private void jTextFieldLinkText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLinkText1ActionPerformed
@@ -10197,94 +10197,94 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxClassificationItemStateChanged
 
     private void jTextFieldSecureCRTPathKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSecureCRTPathKeyReleased
-        PropertyHandler.getInstance().setValue("SecureCRTexe",jTextFieldSecureCRTPath.getText() );
+        PropertyHandler.getInstance().setValue("SecureCRT.Exec",jTextFieldSecureCRTPath.getText() );
     }//GEN-LAST:event_jTextFieldSecureCRTPathKeyReleased
 
     private void jTextFieldPreloadedIPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPreloadedIPKeyReleased
-        PropertyHandler.getInstance().setValue("PreloadSSH",jTextFieldPreloadedIP.getText() );
+        PropertyHandler.getInstance().setValue("Preload.SSH",jTextFieldPreloadedIP.getText() );
     }//GEN-LAST:event_jTextFieldPreloadedIPKeyReleased
 
     private void jTextFieldPreloadedPingIPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPreloadedPingIPKeyReleased
-        PropertyHandler.getInstance().setValue("PreloadPing",jTextFieldPreloadedPingIP.getText() );
+        PropertyHandler.getInstance().setValue("Preload.Ping",jTextFieldPreloadedPingIP.getText() );
     }//GEN-LAST:event_jTextFieldPreloadedPingIPKeyReleased
 
     private void jComboBoxSessionDoubleClickItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxSessionDoubleClickItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("ButtonExecuteFunctionDoubleClick",((String)jComboBoxSessionDoubleClick.getSelectedItem()));
+            PropertyHandler.getInstance().setValue("Button.ExecuteFunctionDoubleClick",((String)jComboBoxSessionDoubleClick.getSelectedItem()));
             loadClassification();
         }
     }//GEN-LAST:event_jComboBoxSessionDoubleClickItemStateChanged
 
     private void jButtonMainButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton24ActionPerformed
-        openCommand("Button24StrExec");
+        openCommand("Button.24.StrExec");
     }//GEN-LAST:event_jButtonMainButton24ActionPerformed
 
     private void jButtonMainButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton23ActionPerformed
-        openCommand("Button23StrExec");
+        openCommand("Button.23.StrExec");
     }//GEN-LAST:event_jButtonMainButton23ActionPerformed
 
     private void jButtonMainButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton22ActionPerformed
-        openCommand("Button22StrExec");
+        openCommand("Button.22.StrExec");
     }//GEN-LAST:event_jButtonMainButton22ActionPerformed
 
     private void jButtonMainButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMainButton21ActionPerformed
-        openCommand("Button21StrExec");
+        openCommand("Button.21.StrExec");
     }//GEN-LAST:event_jButtonMainButton21ActionPerformed
 
     private void jComboBoxButtonIcon21ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon21ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button21Icon",((String)jComboBoxButtonIcon21.getSelectedItem())); 
+            PropertyHandler.getInstance().setValue("Button.21.Icon",((String)jComboBoxButtonIcon21.getSelectedItem())); 
         }
     }//GEN-LAST:event_jComboBoxButtonIcon21ItemStateChanged
 
     private void jTextFieldButtonExecute21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute21KeyReleased
-        PropertyHandler.getInstance().setValue("Button21StrExec",jTextFieldButtonExecute21.getText() );
+        PropertyHandler.getInstance().setValue("Button.21.StrExec",jTextFieldButtonExecute21.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute21KeyReleased
 
     private void jTextFieldButtonToolTip21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip21KeyReleased
-        PropertyHandler.getInstance().setValue("Button21ToolTip",jTextFieldButtonToolTip21.getText());
+        PropertyHandler.getInstance().setValue("Button.21.ToolTip",jTextFieldButtonToolTip21.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip21KeyReleased
 
     private void jComboBoxButtonIcon22ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon22ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button22Icon",((String)jComboBoxButtonIcon22.getSelectedItem())); 
+            PropertyHandler.getInstance().setValue("Button.22.Icon",((String)jComboBoxButtonIcon22.getSelectedItem())); 
         }
     }//GEN-LAST:event_jComboBoxButtonIcon22ItemStateChanged
 
     private void jTextFieldButtonExecute22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute22KeyReleased
-        PropertyHandler.getInstance().setValue("Button22StrExec",jTextFieldButtonExecute22.getText() );
+        PropertyHandler.getInstance().setValue("Button.22.StrExec",jTextFieldButtonExecute22.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute22KeyReleased
 
     private void jTextFieldButtonToolTip22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip22KeyReleased
-        PropertyHandler.getInstance().setValue("Button22ToolTip",jTextFieldButtonToolTip22.getText());
+        PropertyHandler.getInstance().setValue("Button.22.ToolTip",jTextFieldButtonToolTip22.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip22KeyReleased
 
     private void jComboBoxButtonIcon23ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon23ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button23Icon",((String)jComboBoxButtonIcon23.getSelectedItem())); 
+            PropertyHandler.getInstance().setValue("Button.23.Icon",((String)jComboBoxButtonIcon23.getSelectedItem())); 
         }
     }//GEN-LAST:event_jComboBoxButtonIcon23ItemStateChanged
 
     private void jTextFieldButtonExecute23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute23KeyReleased
-        PropertyHandler.getInstance().setValue("Button23StrExec",jTextFieldButtonExecute23.getText() );
+        PropertyHandler.getInstance().setValue("Button.23.StrExec",jTextFieldButtonExecute23.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute23KeyReleased
 
     private void jTextFieldButtonToolTip23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip23KeyReleased
-        PropertyHandler.getInstance().setValue("Button23ToolTip",jTextFieldButtonToolTip23.getText());
+        PropertyHandler.getInstance().setValue("Button.23.ToolTip",jTextFieldButtonToolTip23.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip23KeyReleased
 
     private void jComboBoxButtonIcon24ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxButtonIcon24ItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-            PropertyHandler.getInstance().setValue("Button24Icon",((String)jComboBoxButtonIcon24.getSelectedItem())); 
+            PropertyHandler.getInstance().setValue("Button.24.Icon",((String)jComboBoxButtonIcon24.getSelectedItem())); 
         }
     }//GEN-LAST:event_jComboBoxButtonIcon24ItemStateChanged
 
     private void jTextFieldButtonExecute24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonExecute24KeyReleased
-        PropertyHandler.getInstance().setValue("Button24StrExec",jTextFieldButtonExecute24.getText() );
+        PropertyHandler.getInstance().setValue("Button.24.StrExec",jTextFieldButtonExecute24.getText() );
     }//GEN-LAST:event_jTextFieldButtonExecute24KeyReleased
 
     private void jTextFieldButtonToolTip24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldButtonToolTip24KeyReleased
-        PropertyHandler.getInstance().setValue("Button24ToolTip",jTextFieldButtonToolTip24.getText());
+        PropertyHandler.getInstance().setValue("Button.24.ToolTip",jTextFieldButtonToolTip24.getText());
     }//GEN-LAST:event_jTextFieldButtonToolTip24KeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -10335,15 +10335,15 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCopyShortcutToDesktopActionPerformed
 
     private void jTextFieldSettingPreferredIpPrimaryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSettingPreferredIpPrimaryKeyReleased
-        PropertyHandler.getInstance().setValue("SettingShowIpPreferredPrimary",jTextFieldSettingPreferredIpPrimary.getText() );
+        PropertyHandler.getInstance().setValue("Setting.ShowIpPreferredPrimary",jTextFieldSettingPreferredIpPrimary.getText() );
     }//GEN-LAST:event_jTextFieldSettingPreferredIpPrimaryKeyReleased
 
     private void jTextFieldSettingPreferredIpSecondaryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSettingPreferredIpSecondaryKeyReleased
-        PropertyHandler.getInstance().setValue("SettingShowIpPreferredSecondary",jTextFieldSettingPreferredIpSecondary.getText() );
+        PropertyHandler.getInstance().setValue("Setting.ShowIpPreferredSecondary",jTextFieldSettingPreferredIpSecondary.getText() );
     }//GEN-LAST:event_jTextFieldSettingPreferredIpSecondaryKeyReleased
 
     private void jTextFieldSettingPreferredIpTertiaryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSettingPreferredIpTertiaryKeyReleased
-        PropertyHandler.getInstance().setValue("SettingShowIpPreferredTertiary",jTextFieldSettingPreferredIpTertiary.getText() );
+        PropertyHandler.getInstance().setValue("Setting.ShowIpPreferredTertiary",jTextFieldSettingPreferredIpTertiary.getText() );
     }//GEN-LAST:event_jTextFieldSettingPreferredIpTertiaryKeyReleased
 
     private void jButtonIconGeneratorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIconGeneratorActionPerformed
@@ -10507,30 +10507,30 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     
     public void loadMainButtonStyles() {
         //--- Load tooltips
-        jButtonMainButton1.setToolTipText(PropertyHandler.getInstance().getValue("Button01ToolTip"));
-        jButtonMainButton2.setToolTipText(PropertyHandler.getInstance().getValue("Button02ToolTip"));
-        jButtonMainButton3.setToolTipText(PropertyHandler.getInstance().getValue("Button03ToolTip"));
-        jButtonMainButton4.setToolTipText(PropertyHandler.getInstance().getValue("Button04ToolTip"));
-        jButtonMainButton5.setToolTipText(PropertyHandler.getInstance().getValue("Button05ToolTip"));
-        jButtonMainButton6.setToolTipText(PropertyHandler.getInstance().getValue("Button06ToolTip"));
-        jButtonMainButton7.setToolTipText(PropertyHandler.getInstance().getValue("Button07ToolTip"));
-        jButtonMainButton8.setToolTipText(PropertyHandler.getInstance().getValue("Button08ToolTip"));
-        jButtonMainButton9.setToolTipText(PropertyHandler.getInstance().getValue("Button09ToolTip"));
-        jButtonMainButton10.setToolTipText(PropertyHandler.getInstance().getValue("Button10ToolTip"));
-        jButtonMainButton11.setToolTipText(PropertyHandler.getInstance().getValue("Button11ToolTip"));
-        jButtonMainButton12.setToolTipText(PropertyHandler.getInstance().getValue("Button12ToolTip"));
-        jButtonMainButton13.setToolTipText(PropertyHandler.getInstance().getValue("Button13ToolTip"));
-        jButtonMainButton14.setToolTipText(PropertyHandler.getInstance().getValue("Button14ToolTip"));
-        jButtonMainButton15.setToolTipText(PropertyHandler.getInstance().getValue("Button15ToolTip"));
-        jButtonMainButton16.setToolTipText(PropertyHandler.getInstance().getValue("Button16ToolTip"));
-        jButtonMainButton17.setToolTipText(PropertyHandler.getInstance().getValue("Button17ToolTip"));
-        jButtonMainButton18.setToolTipText(PropertyHandler.getInstance().getValue("Button18ToolTip"));
-        jButtonMainButton19.setToolTipText(PropertyHandler.getInstance().getValue("Button19ToolTip"));
-        jButtonMainButton20.setToolTipText(PropertyHandler.getInstance().getValue("Button20ToolTip"));
-        jButtonMainButton21.setToolTipText(PropertyHandler.getInstance().getValue("Button21ToolTip"));
-        jButtonMainButton22.setToolTipText(PropertyHandler.getInstance().getValue("Button22ToolTip"));
-        jButtonMainButton23.setToolTipText(PropertyHandler.getInstance().getValue("Button23ToolTip"));
-        jButtonMainButton24.setToolTipText(PropertyHandler.getInstance().getValue("Button24ToolTip"));
+        jButtonMainButton1.setToolTipText(PropertyHandler.getInstance().getValue("Button.01.ToolTip"));
+        jButtonMainButton2.setToolTipText(PropertyHandler.getInstance().getValue("Button.02.ToolTip"));
+        jButtonMainButton3.setToolTipText(PropertyHandler.getInstance().getValue("Button.03.ToolTip"));
+        jButtonMainButton4.setToolTipText(PropertyHandler.getInstance().getValue("Button.04.ToolTip"));
+        jButtonMainButton5.setToolTipText(PropertyHandler.getInstance().getValue("Button.05.ToolTip"));
+        jButtonMainButton6.setToolTipText(PropertyHandler.getInstance().getValue("Button.06.ToolTip"));
+        jButtonMainButton7.setToolTipText(PropertyHandler.getInstance().getValue("Button.07.ToolTip"));
+        jButtonMainButton8.setToolTipText(PropertyHandler.getInstance().getValue("Button.08.ToolTip"));
+        jButtonMainButton9.setToolTipText(PropertyHandler.getInstance().getValue("Button.09.ToolTip"));
+        jButtonMainButton10.setToolTipText(PropertyHandler.getInstance().getValue("Button.10.ToolTip"));
+        jButtonMainButton11.setToolTipText(PropertyHandler.getInstance().getValue("Button.11.ToolTip"));
+        jButtonMainButton12.setToolTipText(PropertyHandler.getInstance().getValue("Button.12.ToolTip"));
+        jButtonMainButton13.setToolTipText(PropertyHandler.getInstance().getValue("Button.13.ToolTip"));
+        jButtonMainButton14.setToolTipText(PropertyHandler.getInstance().getValue("Button.14.ToolTip"));
+        jButtonMainButton15.setToolTipText(PropertyHandler.getInstance().getValue("Button.15.ToolTip"));
+        jButtonMainButton16.setToolTipText(PropertyHandler.getInstance().getValue("Button.16.ToolTip"));
+        jButtonMainButton17.setToolTipText(PropertyHandler.getInstance().getValue("Button.17.ToolTip"));
+        jButtonMainButton18.setToolTipText(PropertyHandler.getInstance().getValue("Button.18.ToolTip"));
+        jButtonMainButton19.setToolTipText(PropertyHandler.getInstance().getValue("Button.19.ToolTip"));
+        jButtonMainButton20.setToolTipText(PropertyHandler.getInstance().getValue("Button.20.ToolTip"));
+        jButtonMainButton21.setToolTipText(PropertyHandler.getInstance().getValue("Button.21.ToolTip"));
+        jButtonMainButton22.setToolTipText(PropertyHandler.getInstance().getValue("Button.22.ToolTip"));
+        jButtonMainButton23.setToolTipText(PropertyHandler.getInstance().getValue("Button.23.ToolTip"));
+        jButtonMainButton24.setToolTipText(PropertyHandler.getInstance().getValue("Button.24.ToolTip"));
     }
     
     private void searchFilterLinks(String searchTerm) throws IOException, FileNotFoundException, URISyntaxException
@@ -11003,13 +11003,13 @@ scroll.setPreferredSize(new Dimension(800, 500));
                     jTextFieldConnectHostname.setText(arrSelectedValue[1]);
                     jTextFieldPingHostname.setText(arrSelectedValue[1]);
                 }
-                String myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionDoubleClick");
+                String myValue = PropertyHandler.getInstance().getValue("Button.ExecuteFunctionDoubleClick");
                 //- If blank, then set to SSH
                 if("".equals(myValue)) {
-                    PropertyHandler.getInstance().setValue("ButtonExecuteFunctionDoubleClick", "SSH");
+                    PropertyHandler.getInstance().setValue("Button.ExecuteFunctionDoubleClick", "SSH");
                 }              
                 //- Get value again to run
-                myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionDoubleClick");
+                myValue = PropertyHandler.getInstance().getValue("Button.ExecuteFunctionDoubleClick");
                 if("HTTPS".equals(myValue)) {
                     jButtonExecuteFunctionHTTPS.doClick();
                     System.out.println("Double-Click: HTTPS");
@@ -11051,9 +11051,9 @@ scroll.setPreferredSize(new Dimension(800, 500));
 //            E.printStackTrace();  //print Exception StackTrace
 //            return null;
 //        }
-        String primaryProperty = PropertyHandler.getInstance().getValue("SettingShowIpPreferredPrimary");
-        String secondaryProperty = PropertyHandler.getInstance().getValue("SettingShowIpPreferredSecondary");
-        String tertiaryProperty = PropertyHandler.getInstance().getValue("SettingShowIpPreferredTertiary");        
+        String primaryProperty = PropertyHandler.getInstance().getValue("Setting.ShowIpPreferredPrimary");
+        String secondaryProperty = PropertyHandler.getInstance().getValue("Setting.ShowIpPreferredSecondary");
+        String tertiaryProperty = PropertyHandler.getInstance().getValue("Setting.ShowIpPreferredTertiary");        
         String nicname = null;
         String ip = null;
         String nicnameip = null;
@@ -11255,79 +11255,79 @@ scroll.setPreferredSize(new Dimension(800, 500));
 
         //- Set Personal Language Setting 
         try {
-            if("Japanese".equals(PropertyHandlerPersonal.getInstance().getValue("SettingLanguage"))) {
+            if("Japanese".equals(PropertyHandlerPersonal.getInstance().getValue("Setting.Language"))) {
                 jRadioButtonJapanese.setSelected(Boolean.TRUE);
                 SetLanguageJapanese();
             }
-        } catch (NullPointerException e) {System.out.println("SettingLanguage Goofed");
+        } catch (NullPointerException e) {System.out.println("Setting.Language Goofed");
         }
         try {
-            if("English".equals(PropertyHandlerPersonal.getInstance().getValue("SettingLanguage"))) {
+            if("English".equals(PropertyHandlerPersonal.getInstance().getValue("Setting.Language"))) {
                 jRadioButtonEnglish.setSelected(Boolean.TRUE);
             }
-        } catch (NullPointerException e) {System.out.println("SettingLanguage Goofed");
+        } catch (NullPointerException e) {System.out.println("Setting.Language Goofed");
         }   
         
         //- Set Ping on Session Select
         try {
-            if("1".equals(PropertyHandlerPersonal.getInstance().getValue("SettingChangePingOnSessionSelect"))) {
+            if("1".equals(PropertyHandlerPersonal.getInstance().getValue("Setting.ChangePingOnSessionSelect"))) {
                 jCheckBoxChangePingOnSessionSelect.setSelected(Boolean.TRUE);
-            } else if ("0".equals(PropertyHandlerPersonal.getInstance().getValue("SettingChangePingOnSessionSelect"))) {
+            } else if ("0".equals(PropertyHandlerPersonal.getInstance().getValue("Setting.ChangePingOnSessionSelect"))) {
                 jCheckBoxChangePingOnSessionSelect.setSelected(Boolean.FALSE);
             } else {
-                PropertyHandlerPersonal.getInstance().setValue("SettingChangePingOnSessionSelect", "0");
+                PropertyHandlerPersonal.getInstance().setValue("Setting.ChangePingOnSessionSelect", "0");
             }
-        } catch (NullPointerException e) {System.out.println("SettingChangePingOnSessionSelect Goofed");
+        } catch (NullPointerException e) {System.out.println("Setting.ChangePingOnSessionSelect Goofed");
         }        
     }
     
     public void loadSettingsShared() {
         //- SecureCRT Path
-        jTextFieldSecureCRTPath.setText(PropertyHandler.getInstance().getValue("SecureCRTexe"));
+        jTextFieldSecureCRTPath.setText(PropertyHandler.getInstance().getValue("SecureCRT.Exec"));
         
         //- Preloaded IPs
-        jTextFieldPreloadedIP.setText(PropertyHandler.getInstance().getValue("PreloadSSH"));
-        jTextFieldPreloadedPingIP.setText(PropertyHandler.getInstance().getValue("PreloadPing"));
+        jTextFieldPreloadedIP.setText(PropertyHandler.getInstance().getValue("Preload.SSH"));
+        jTextFieldPreloadedPingIP.setText(PropertyHandler.getInstance().getValue("Preload.Ping"));
 
         //- Preferred IP Prefixes
-        jTextFieldSettingPreferredIpPrimary.setText(PropertyHandler.getInstance().getValue("SettingShowIpPreferredPrimary"));
-        jTextFieldSettingPreferredIpSecondary.setText(PropertyHandler.getInstance().getValue("SettingShowIpPreferredSecondary"));
-        jTextFieldSettingPreferredIpTertiary.setText(PropertyHandler.getInstance().getValue("SettingShowIpPreferredTertiary"));
+        jTextFieldSettingPreferredIpPrimary.setText(PropertyHandler.getInstance().getValue("Setting.ShowIpPreferredPrimary"));
+        jTextFieldSettingPreferredIpSecondary.setText(PropertyHandler.getInstance().getValue("Setting.ShowIpPreferredSecondary"));
+        jTextFieldSettingPreferredIpTertiary.setText(PropertyHandler.getInstance().getValue("Setting.ShowIpPreferredTertiary"));
        
         //- Set Local Policy Warnings
         try {
-            if("1".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
+            if("1".equals(PropertyHandler.getInstance().getValue("Setting.LocalPolicyWarning"))) {
                 jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Shared Items (Will be overwritten by local policy)"));
                 jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Personal Items (Never overwritten)"));                
             } 
-            if("0".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
+            if("0".equals(PropertyHandler.getInstance().getValue("Setting.LocalPolicyWarning"))) {
                 jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Shared Items"));
                 jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Personal Items"));                
                 jLabel1.setText("");
                 jLabel2.setText("");
             }
-        } catch (NullPointerException e) {System.out.println("SettingLocalPolicyWarning Goofed");
+        } catch (NullPointerException e) {System.out.println("Setting.LocalPolicyWarning Goofed");
         }
         
         //- NTP
-        jTextFieldNtpServer.setText(PropertyHandler.getInstance().getValue("NtpTestIP"));
+        jTextFieldNtpServer.setText(PropertyHandler.getInstance().getValue("NTP.Test.IP"));
         
         //- Set PW SSH Auth Default ENABLE or DISABLE
         try {
-            if("1".equals(PropertyHandler.getInstance().getValue("SettingPasswordBasedSSHauthDisable"))) {
+            if("1".equals(PropertyHandler.getInstance().getValue("Setting.PasswordBasedSSHauthDisable"))) {
                 jRadioButtonPWauthDisabled.setSelected(Boolean.TRUE);
                 jButtonExecuteFunctionSSH.setBackground(new javax.swing.JButton().getBackground());
                 jButtonExecuteFunctionSSH.setEnabled(false);
             }
-        } catch (NullPointerException e) {System.out.println("SettingPasswordBasedSSHauthDisable Goofed");
+        } catch (NullPointerException e) {System.out.println("Setting.PasswordBasedSSHauthDisable Goofed");
         }
         try {
-            if("0".equals(PropertyHandler.getInstance().getValue("SettingPasswordBasedSSHauthDisable"))) {
+            if("0".equals(PropertyHandler.getInstance().getValue("Setting.PasswordBasedSSHauthDisable"))) {
                 jRadioButtonPWauthEnabled.setSelected(Boolean.TRUE);
                 jButtonExecuteFunctionSSH.setBackground(new Color(200,255,153));
                 jButtonExecuteFunctionSSH.setEnabled(Boolean.TRUE);
             }
-        } catch (NullPointerException e) {System.out.println("SettingPasswordBasedSSHauthDisable Goofed");
+        } catch (NullPointerException e) {System.out.println("Setting.PasswordBasedSSHauthDisable Goofed");
         }
     }
 
@@ -11376,153 +11376,153 @@ scroll.setPreferredSize(new Dimension(800, 500));
     
     private void loadSettingsMainButtonsData() {
         //- ToolTips
-        jTextFieldButtonToolTip1.setText(PropertyHandler.getInstance().getValue("Button01ToolTip"));
-        jTextFieldButtonToolTip2.setText(PropertyHandler.getInstance().getValue("Button02ToolTip"));
-        jTextFieldButtonToolTip3.setText(PropertyHandler.getInstance().getValue("Button03ToolTip"));
-        jTextFieldButtonToolTip4.setText(PropertyHandler.getInstance().getValue("Button04ToolTip"));
-        jTextFieldButtonToolTip5.setText(PropertyHandler.getInstance().getValue("Button05ToolTip"));
-        jTextFieldButtonToolTip6.setText(PropertyHandler.getInstance().getValue("Button06ToolTip"));
-        jTextFieldButtonToolTip7.setText(PropertyHandler.getInstance().getValue("Button07ToolTip"));
-        jTextFieldButtonToolTip8.setText(PropertyHandler.getInstance().getValue("Button08ToolTip"));
-        jTextFieldButtonToolTip9.setText(PropertyHandler.getInstance().getValue("Button09ToolTip"));
-        jTextFieldButtonToolTip10.setText(PropertyHandler.getInstance().getValue("Button10ToolTip"));
-        jTextFieldButtonToolTip11.setText(PropertyHandler.getInstance().getValue("Button11ToolTip"));
-        jTextFieldButtonToolTip12.setText(PropertyHandler.getInstance().getValue("Button12ToolTip"));
-        jTextFieldButtonToolTip13.setText(PropertyHandler.getInstance().getValue("Button13ToolTip"));
-        jTextFieldButtonToolTip14.setText(PropertyHandler.getInstance().getValue("Button14ToolTip"));
-        jTextFieldButtonToolTip15.setText(PropertyHandler.getInstance().getValue("Button15ToolTip"));
-        jTextFieldButtonToolTip16.setText(PropertyHandler.getInstance().getValue("Button16ToolTip"));
-        jTextFieldButtonToolTip17.setText(PropertyHandler.getInstance().getValue("Button17ToolTip"));
-        jTextFieldButtonToolTip18.setText(PropertyHandler.getInstance().getValue("Button18ToolTip"));
-        jTextFieldButtonToolTip19.setText(PropertyHandler.getInstance().getValue("Button19ToolTip"));
-        jTextFieldButtonToolTip20.setText(PropertyHandler.getInstance().getValue("Button20ToolTip"));        
-        jTextFieldButtonToolTip21.setText(PropertyHandler.getInstance().getValue("Button21ToolTip"));        
-        jTextFieldButtonToolTip22.setText(PropertyHandler.getInstance().getValue("Button22ToolTip"));        
-        jTextFieldButtonToolTip23.setText(PropertyHandler.getInstance().getValue("Button23ToolTip"));        
-        jTextFieldButtonToolTip24.setText(PropertyHandler.getInstance().getValue("Button24ToolTip"));        
+        jTextFieldButtonToolTip1.setText(PropertyHandler.getInstance().getValue("Button.01.ToolTip"));
+        jTextFieldButtonToolTip2.setText(PropertyHandler.getInstance().getValue("Button.02.ToolTip"));
+        jTextFieldButtonToolTip3.setText(PropertyHandler.getInstance().getValue("Button.03.ToolTip"));
+        jTextFieldButtonToolTip4.setText(PropertyHandler.getInstance().getValue("Button.04.ToolTip"));
+        jTextFieldButtonToolTip5.setText(PropertyHandler.getInstance().getValue("Button.05.ToolTip"));
+        jTextFieldButtonToolTip6.setText(PropertyHandler.getInstance().getValue("Button.06.ToolTip"));
+        jTextFieldButtonToolTip7.setText(PropertyHandler.getInstance().getValue("Button.07.ToolTip"));
+        jTextFieldButtonToolTip8.setText(PropertyHandler.getInstance().getValue("Button.08.ToolTip"));
+        jTextFieldButtonToolTip9.setText(PropertyHandler.getInstance().getValue("Button.09.ToolTip"));
+        jTextFieldButtonToolTip10.setText(PropertyHandler.getInstance().getValue("Button.10.ToolTip"));
+        jTextFieldButtonToolTip11.setText(PropertyHandler.getInstance().getValue("Button.11.ToolTip"));
+        jTextFieldButtonToolTip12.setText(PropertyHandler.getInstance().getValue("Button.12.ToolTip"));
+        jTextFieldButtonToolTip13.setText(PropertyHandler.getInstance().getValue("Button.13.ToolTip"));
+        jTextFieldButtonToolTip14.setText(PropertyHandler.getInstance().getValue("Button.14.ToolTip"));
+        jTextFieldButtonToolTip15.setText(PropertyHandler.getInstance().getValue("Button.15.ToolTip"));
+        jTextFieldButtonToolTip16.setText(PropertyHandler.getInstance().getValue("Button.16.ToolTip"));
+        jTextFieldButtonToolTip17.setText(PropertyHandler.getInstance().getValue("Button.17.ToolTip"));
+        jTextFieldButtonToolTip18.setText(PropertyHandler.getInstance().getValue("Button.18.ToolTip"));
+        jTextFieldButtonToolTip19.setText(PropertyHandler.getInstance().getValue("Button.19.ToolTip"));
+        jTextFieldButtonToolTip20.setText(PropertyHandler.getInstance().getValue("Button.20.ToolTip"));        
+        jTextFieldButtonToolTip21.setText(PropertyHandler.getInstance().getValue("Button.21.ToolTip"));        
+        jTextFieldButtonToolTip22.setText(PropertyHandler.getInstance().getValue("Button.22.ToolTip"));        
+        jTextFieldButtonToolTip23.setText(PropertyHandler.getInstance().getValue("Button.23.ToolTip"));        
+        jTextFieldButtonToolTip24.setText(PropertyHandler.getInstance().getValue("Button.24.ToolTip"));        
         //- Icons - MOVED TO PRE-ACTION LISTENER
-//        jComboBoxButtonIcon1.setSelectedItem(PropertyHandler.getInstance().getValue("Button01Icon"));
-//        jComboBoxButtonIcon2.setSelectedItem(PropertyHandler.getInstance().getValue("Button02Icon"));
-//        jComboBoxButtonIcon3.setSelectedItem(PropertyHandler.getInstance().getValue("Button03Icon"));
-//        jComboBoxButtonIcon4.setSelectedItem(PropertyHandler.getInstance().getValue("Button04Icon"));
-//        jComboBoxButtonIcon5.setSelectedItem(PropertyHandler.getInstance().getValue("Button05Icon"));
-//        jComboBoxButtonIcon6.setSelectedItem(PropertyHandler.getInstance().getValue("Button06Icon"));
-//        jComboBoxButtonIcon7.setSelectedItem(PropertyHandler.getInstance().getValue("Button07Icon"));
-//        jComboBoxButtonIcon8.setSelectedItem(PropertyHandler.getInstance().getValue("Button08Icon"));
-//        jComboBoxButtonIcon9.setSelectedItem(PropertyHandler.getInstance().getValue("Button09Icon"));
-//        jComboBoxButtonIcon10.setSelectedItem(PropertyHandler.getInstance().getValue("Button10Icon"));
-//        jComboBoxButtonIcon11.setSelectedItem(PropertyHandler.getInstance().getValue("Button11Icon"));
-//        jComboBoxButtonIcon12.setSelectedItem(PropertyHandler.getInstance().getValue("Button12Icon"));
-//        jComboBoxButtonIcon13.setSelectedItem(PropertyHandler.getInstance().getValue("Button13Icon"));
-//        jComboBoxButtonIcon14.setSelectedItem(PropertyHandler.getInstance().getValue("Button14Icon"));
-//        jComboBoxButtonIcon15.setSelectedItem(PropertyHandler.getInstance().getValue("Button15Icon"));
-//        jComboBoxButtonIcon16.setSelectedItem(PropertyHandler.getInstance().getValue("Button16Icon"));
-//        jComboBoxButtonIcon17.setSelectedItem(PropertyHandler.getInstance().getValue("Button17Icon"));
-//        jComboBoxButtonIcon18.setSelectedItem(PropertyHandler.getInstance().getValue("Button18Icon"));
-//        jComboBoxButtonIcon19.setSelectedItem(PropertyHandler.getInstance().getValue("Button19Icon"));
-//        jComboBoxButtonIcon20.setSelectedItem(PropertyHandler.getInstance().getValue("Button20Icon"));       
+//        jComboBoxButtonIcon1.setSelectedItem(PropertyHandler.getInstance().getValue("Button.01.Icon"));
+//        jComboBoxButtonIcon2.setSelectedItem(PropertyHandler.getInstance().getValue("Button.02.Icon"));
+//        jComboBoxButtonIcon3.setSelectedItem(PropertyHandler.getInstance().getValue("Button.03.Icon"));
+//        jComboBoxButtonIcon4.setSelectedItem(PropertyHandler.getInstance().getValue("Button.04.Icon"));
+//        jComboBoxButtonIcon5.setSelectedItem(PropertyHandler.getInstance().getValue("Button.05.Icon"));
+//        jComboBoxButtonIcon6.setSelectedItem(PropertyHandler.getInstance().getValue("Button.06.Icon"));
+//        jComboBoxButtonIcon7.setSelectedItem(PropertyHandler.getInstance().getValue("Button.07.Icon"));
+//        jComboBoxButtonIcon8.setSelectedItem(PropertyHandler.getInstance().getValue("Button.08.Icon"));
+//        jComboBoxButtonIcon9.setSelectedItem(PropertyHandler.getInstance().getValue("Button.09.Icon"));
+//        jComboBoxButtonIcon10.setSelectedItem(PropertyHandler.getInstance().getValue("Button.10.Icon"));
+//        jComboBoxButtonIcon11.setSelectedItem(PropertyHandler.getInstance().getValue("Button.11.Icon"));
+//        jComboBoxButtonIcon12.setSelectedItem(PropertyHandler.getInstance().getValue("Button.12.Icon"));
+//        jComboBoxButtonIcon13.setSelectedItem(PropertyHandler.getInstance().getValue("Button.13.Icon"));
+//        jComboBoxButtonIcon14.setSelectedItem(PropertyHandler.getInstance().getValue("Button.14.Icon"));
+//        jComboBoxButtonIcon15.setSelectedItem(PropertyHandler.getInstance().getValue("Button.15.Icon"));
+//        jComboBoxButtonIcon16.setSelectedItem(PropertyHandler.getInstance().getValue("Button.16.Icon"));
+//        jComboBoxButtonIcon17.setSelectedItem(PropertyHandler.getInstance().getValue("Button.17.Icon"));
+//        jComboBoxButtonIcon18.setSelectedItem(PropertyHandler.getInstance().getValue("Button.18.Icon"));
+//        jComboBoxButtonIcon19.setSelectedItem(PropertyHandler.getInstance().getValue("Button.19.Icon"));
+//        jComboBoxButtonIcon20.setSelectedItem(PropertyHandler.getInstance().getValue("Button.20.Icon"));       
         //- Executions
-        jTextFieldButtonExecute1.setText(PropertyHandler.getInstance().getValue("Button01StrExec"));
-        jTextFieldButtonExecute2.setText(PropertyHandler.getInstance().getValue("Button02StrExec"));
-        jTextFieldButtonExecute3.setText(PropertyHandler.getInstance().getValue("Button03StrExec"));
-        jTextFieldButtonExecute4.setText(PropertyHandler.getInstance().getValue("Button04StrExec"));
-        jTextFieldButtonExecute5.setText(PropertyHandler.getInstance().getValue("Button05StrExec"));
-        jTextFieldButtonExecute6.setText(PropertyHandler.getInstance().getValue("Button06StrExec"));
-        jTextFieldButtonExecute7.setText(PropertyHandler.getInstance().getValue("Button07StrExec"));
-        jTextFieldButtonExecute8.setText(PropertyHandler.getInstance().getValue("Button08StrExec"));
-        jTextFieldButtonExecute9.setText(PropertyHandler.getInstance().getValue("Button09StrExec"));
-        jTextFieldButtonExecute10.setText(PropertyHandler.getInstance().getValue("Button10StrExec"));
-        jTextFieldButtonExecute11.setText(PropertyHandler.getInstance().getValue("Button11StrExec"));
-        jTextFieldButtonExecute12.setText(PropertyHandler.getInstance().getValue("Button12StrExec"));
-        jTextFieldButtonExecute13.setText(PropertyHandler.getInstance().getValue("Button13StrExec"));
-        jTextFieldButtonExecute14.setText(PropertyHandler.getInstance().getValue("Button14StrExec"));
-        jTextFieldButtonExecute15.setText(PropertyHandler.getInstance().getValue("Button15StrExec"));
-        jTextFieldButtonExecute16.setText(PropertyHandler.getInstance().getValue("Button16StrExec"));
-        jTextFieldButtonExecute17.setText(PropertyHandler.getInstance().getValue("Button17StrExec"));
-        jTextFieldButtonExecute18.setText(PropertyHandler.getInstance().getValue("Button18StrExec"));
-        jTextFieldButtonExecute19.setText(PropertyHandler.getInstance().getValue("Button19StrExec"));
-        jTextFieldButtonExecute20.setText(PropertyHandler.getInstance().getValue("Button20StrExec"));
-        jTextFieldButtonExecute21.setText(PropertyHandler.getInstance().getValue("Button21StrExec"));
-        jTextFieldButtonExecute22.setText(PropertyHandler.getInstance().getValue("Button22StrExec"));
-        jTextFieldButtonExecute23.setText(PropertyHandler.getInstance().getValue("Button23StrExec"));
-        jTextFieldButtonExecute24.setText(PropertyHandler.getInstance().getValue("Button24StrExec"));
+        jTextFieldButtonExecute1.setText(PropertyHandler.getInstance().getValue("Button.01.StrExec"));
+        jTextFieldButtonExecute2.setText(PropertyHandler.getInstance().getValue("Button.02.StrExec"));
+        jTextFieldButtonExecute3.setText(PropertyHandler.getInstance().getValue("Button.03.StrExec"));
+        jTextFieldButtonExecute4.setText(PropertyHandler.getInstance().getValue("Button.04.StrExec"));
+        jTextFieldButtonExecute5.setText(PropertyHandler.getInstance().getValue("Button.05.StrExec"));
+        jTextFieldButtonExecute6.setText(PropertyHandler.getInstance().getValue("Button.06.StrExec"));
+        jTextFieldButtonExecute7.setText(PropertyHandler.getInstance().getValue("Button.07.StrExec"));
+        jTextFieldButtonExecute8.setText(PropertyHandler.getInstance().getValue("Button.08.StrExec"));
+        jTextFieldButtonExecute9.setText(PropertyHandler.getInstance().getValue("Button.09.StrExec"));
+        jTextFieldButtonExecute10.setText(PropertyHandler.getInstance().getValue("Button.10.StrExec"));
+        jTextFieldButtonExecute11.setText(PropertyHandler.getInstance().getValue("Button.11.StrExec"));
+        jTextFieldButtonExecute12.setText(PropertyHandler.getInstance().getValue("Button.12.StrExec"));
+        jTextFieldButtonExecute13.setText(PropertyHandler.getInstance().getValue("Button.13.StrExec"));
+        jTextFieldButtonExecute14.setText(PropertyHandler.getInstance().getValue("Button.14.StrExec"));
+        jTextFieldButtonExecute15.setText(PropertyHandler.getInstance().getValue("Button.15.StrExec"));
+        jTextFieldButtonExecute16.setText(PropertyHandler.getInstance().getValue("Button.16.StrExec"));
+        jTextFieldButtonExecute17.setText(PropertyHandler.getInstance().getValue("Button.17.StrExec"));
+        jTextFieldButtonExecute18.setText(PropertyHandler.getInstance().getValue("Button.18.StrExec"));
+        jTextFieldButtonExecute19.setText(PropertyHandler.getInstance().getValue("Button.19.StrExec"));
+        jTextFieldButtonExecute20.setText(PropertyHandler.getInstance().getValue("Button.20.StrExec"));
+        jTextFieldButtonExecute21.setText(PropertyHandler.getInstance().getValue("Button.21.StrExec"));
+        jTextFieldButtonExecute22.setText(PropertyHandler.getInstance().getValue("Button.22.StrExec"));
+        jTextFieldButtonExecute23.setText(PropertyHandler.getInstance().getValue("Button.23.StrExec"));
+        jTextFieldButtonExecute24.setText(PropertyHandler.getInstance().getValue("Button.24.StrExec"));
     }
     
     private void loadSettingsLinkData() {
         //- Text
-        jTextFieldLinkText1.setText(PropertyHandler.getInstance().getValue("CustomLink01Description"));
-        jTextFieldLinkText2.setText(PropertyHandler.getInstance().getValue("CustomLink02Description"));
-        jTextFieldLinkText3.setText(PropertyHandler.getInstance().getValue("CustomLink03Description"));
-        jTextFieldLinkText4.setText(PropertyHandler.getInstance().getValue("CustomLink04Description"));
-        jTextFieldLinkText5.setText(PropertyHandler.getInstance().getValue("CustomLink05Description"));
-        jTextFieldLinkText6.setText(PropertyHandler.getInstance().getValue("CustomLink06Description"));
-        jTextFieldLinkText7.setText(PropertyHandler.getInstance().getValue("CustomLink07Description"));
-        jTextFieldLinkText8.setText(PropertyHandler.getInstance().getValue("CustomLink08Description"));
-        jTextFieldLinkText9.setText(PropertyHandler.getInstance().getValue("CustomLink09Description"));
-        jTextFieldLinkText10.setText(PropertyHandler.getInstance().getValue("CustomLink10Description"));
-        jTextFieldLinkText11.setText(PropertyHandler.getInstance().getValue("CustomLink11Description"));
-        jTextFieldLinkText12.setText(PropertyHandler.getInstance().getValue("CustomLink12Description"));
-        jTextFieldLinkText13.setText(PropertyHandler.getInstance().getValue("CustomLink13Description"));
-        jTextFieldLinkText14.setText(PropertyHandler.getInstance().getValue("CustomLink14Description"));
-        jTextFieldLinkText15.setText(PropertyHandler.getInstance().getValue("CustomLink15Description"));
-        jTextFieldLinkText16.setText(PropertyHandler.getInstance().getValue("CustomLink16Description"));
-        jTextFieldLinkText17.setText(PropertyHandler.getInstance().getValue("CustomLink17Description"));
-        jTextFieldLinkText18.setText(PropertyHandler.getInstance().getValue("CustomLink18Description"));
-        jTextFieldLinkText19.setText(PropertyHandler.getInstance().getValue("CustomLink19Description"));
-        jTextFieldLinkText20.setText(PropertyHandler.getInstance().getValue("CustomLink20Description"));
-        jTextFieldLinkText21.setText(PropertyHandler.getInstance().getValue("CustomLink21Description"));
-        jTextFieldLinkText22.setText(PropertyHandler.getInstance().getValue("CustomLink22Description"));
-        jTextFieldLinkText23.setText(PropertyHandler.getInstance().getValue("CustomLink23Description"));
-        jTextFieldLinkText24.setText(PropertyHandler.getInstance().getValue("CustomLink24Description"));
-        jTextFieldLinkText25.setText(PropertyHandler.getInstance().getValue("CustomLink25Description"));
-        jTextFieldLinkText26.setText(PropertyHandler.getInstance().getValue("CustomLink26Description"));
-        jTextFieldLinkText27.setText(PropertyHandler.getInstance().getValue("CustomLink27Description"));
-        jTextFieldLinkText28.setText(PropertyHandler.getInstance().getValue("CustomLink28Description"));
-        jTextFieldLinkText29.setText(PropertyHandler.getInstance().getValue("CustomLink29Description"));
-        jTextFieldLinkText30.setText(PropertyHandler.getInstance().getValue("CustomLink30Description"));
-        jTextFieldLinkText31.setText(PropertyHandler.getInstance().getValue("CustomLink31Description"));
-        jTextFieldLinkText32.setText(PropertyHandler.getInstance().getValue("CustomLink32Description"));
-        jTextFieldLinkText33.setText(PropertyHandler.getInstance().getValue("CustomLink33Description"));
-        jTextFieldLinkText34.setText(PropertyHandler.getInstance().getValue("CustomLink34Description"));
-        jTextFieldLinkText35.setText(PropertyHandler.getInstance().getValue("CustomLink35Description"));
-        jTextFieldLinkText36.setText(PropertyHandler.getInstance().getValue("CustomLink36Description"));
+        jTextFieldLinkText1.setText(PropertyHandler.getInstance().getValue("Custom.Link.01.Description"));
+        jTextFieldLinkText2.setText(PropertyHandler.getInstance().getValue("Custom.Link.02.Description"));
+        jTextFieldLinkText3.setText(PropertyHandler.getInstance().getValue("Custom.Link.03.Description"));
+        jTextFieldLinkText4.setText(PropertyHandler.getInstance().getValue("Custom.Link.04.Description"));
+        jTextFieldLinkText5.setText(PropertyHandler.getInstance().getValue("Custom.Link.05.Description"));
+        jTextFieldLinkText6.setText(PropertyHandler.getInstance().getValue("Custom.Link.06.Description"));
+        jTextFieldLinkText7.setText(PropertyHandler.getInstance().getValue("Custom.Link.07.Description"));
+        jTextFieldLinkText8.setText(PropertyHandler.getInstance().getValue("Custom.Link.08.Description"));
+        jTextFieldLinkText9.setText(PropertyHandler.getInstance().getValue("Custom.Link.09.Description"));
+        jTextFieldLinkText10.setText(PropertyHandler.getInstance().getValue("Custom.Link.10.Description"));
+        jTextFieldLinkText11.setText(PropertyHandler.getInstance().getValue("Custom.Link.11.Description"));
+        jTextFieldLinkText12.setText(PropertyHandler.getInstance().getValue("Custom.Link.12.Description"));
+        jTextFieldLinkText13.setText(PropertyHandler.getInstance().getValue("Custom.Link.13.Description"));
+        jTextFieldLinkText14.setText(PropertyHandler.getInstance().getValue("Custom.Link.14.Description"));
+        jTextFieldLinkText15.setText(PropertyHandler.getInstance().getValue("Custom.Link.15.Description"));
+        jTextFieldLinkText16.setText(PropertyHandler.getInstance().getValue("Custom.Link.16.Description"));
+        jTextFieldLinkText17.setText(PropertyHandler.getInstance().getValue("Custom.Link.17.Description"));
+        jTextFieldLinkText18.setText(PropertyHandler.getInstance().getValue("Custom.Link.18.Description"));
+        jTextFieldLinkText19.setText(PropertyHandler.getInstance().getValue("Custom.Link.19.Description"));
+        jTextFieldLinkText20.setText(PropertyHandler.getInstance().getValue("Custom.Link.20.Description"));
+        jTextFieldLinkText21.setText(PropertyHandler.getInstance().getValue("Custom.Link.21.Description"));
+        jTextFieldLinkText22.setText(PropertyHandler.getInstance().getValue("Custom.Link.22.Description"));
+        jTextFieldLinkText23.setText(PropertyHandler.getInstance().getValue("Custom.Link.23.Description"));
+        jTextFieldLinkText24.setText(PropertyHandler.getInstance().getValue("Custom.Link.24.Description"));
+        jTextFieldLinkText25.setText(PropertyHandler.getInstance().getValue("Custom.Link.25.Description"));
+        jTextFieldLinkText26.setText(PropertyHandler.getInstance().getValue("Custom.Link.26.Description"));
+        jTextFieldLinkText27.setText(PropertyHandler.getInstance().getValue("Custom.Link.27.Description"));
+        jTextFieldLinkText28.setText(PropertyHandler.getInstance().getValue("Custom.Link.28.Description"));
+        jTextFieldLinkText29.setText(PropertyHandler.getInstance().getValue("Custom.Link.29.Description"));
+        jTextFieldLinkText30.setText(PropertyHandler.getInstance().getValue("Custom.Link.30.Description"));
+        jTextFieldLinkText31.setText(PropertyHandler.getInstance().getValue("Custom.Link.31.Description"));
+        jTextFieldLinkText32.setText(PropertyHandler.getInstance().getValue("Custom.Link.32.Description"));
+        jTextFieldLinkText33.setText(PropertyHandler.getInstance().getValue("Custom.Link.33.Description"));
+        jTextFieldLinkText34.setText(PropertyHandler.getInstance().getValue("Custom.Link.34.Description"));
+        jTextFieldLinkText35.setText(PropertyHandler.getInstance().getValue("Custom.Link.35.Description"));
+        jTextFieldLinkText36.setText(PropertyHandler.getInstance().getValue("Custom.Link.36.Description"));
         //- Executions
-        jTextFieldLinkExecute1.setText(PropertyHandler.getInstance().getValue("CustomLink01Exec"));
-        jTextFieldLinkExecute2.setText(PropertyHandler.getInstance().getValue("CustomLink02Exec"));
-        jTextFieldLinkExecute3.setText(PropertyHandler.getInstance().getValue("CustomLink03Exec"));
-        jTextFieldLinkExecute4.setText(PropertyHandler.getInstance().getValue("CustomLink04Exec"));
-        jTextFieldLinkExecute5.setText(PropertyHandler.getInstance().getValue("CustomLink05Exec"));
-        jTextFieldLinkExecute6.setText(PropertyHandler.getInstance().getValue("CustomLink06Exec"));
-        jTextFieldLinkExecute7.setText(PropertyHandler.getInstance().getValue("CustomLink07Exec"));
-        jTextFieldLinkExecute8.setText(PropertyHandler.getInstance().getValue("CustomLink08Exec"));
-        jTextFieldLinkExecute9.setText(PropertyHandler.getInstance().getValue("CustomLink09Exec"));
-        jTextFieldLinkExecute10.setText(PropertyHandler.getInstance().getValue("CustomLink10Exec"));
-        jTextFieldLinkExecute11.setText(PropertyHandler.getInstance().getValue("CustomLink11Exec"));
-        jTextFieldLinkExecute12.setText(PropertyHandler.getInstance().getValue("CustomLink12Exec"));
-        jTextFieldLinkExecute13.setText(PropertyHandler.getInstance().getValue("CustomLink13Exec"));
-        jTextFieldLinkExecute14.setText(PropertyHandler.getInstance().getValue("CustomLink14Exec"));
-        jTextFieldLinkExecute15.setText(PropertyHandler.getInstance().getValue("CustomLink15Exec"));
-        jTextFieldLinkExecute16.setText(PropertyHandler.getInstance().getValue("CustomLink16Exec"));
-        jTextFieldLinkExecute17.setText(PropertyHandler.getInstance().getValue("CustomLink17Exec"));
-        jTextFieldLinkExecute18.setText(PropertyHandler.getInstance().getValue("CustomLink18Exec"));
-        jTextFieldLinkExecute19.setText(PropertyHandler.getInstance().getValue("CustomLink19Exec"));
-        jTextFieldLinkExecute20.setText(PropertyHandler.getInstance().getValue("CustomLink20Exec"));
-        jTextFieldLinkExecute21.setText(PropertyHandler.getInstance().getValue("CustomLink21Exec"));
-        jTextFieldLinkExecute22.setText(PropertyHandler.getInstance().getValue("CustomLink22Exec"));
-        jTextFieldLinkExecute23.setText(PropertyHandler.getInstance().getValue("CustomLink23Exec"));
-        jTextFieldLinkExecute24.setText(PropertyHandler.getInstance().getValue("CustomLink24Exec"));
-        jTextFieldLinkExecute25.setText(PropertyHandler.getInstance().getValue("CustomLink25Exec"));
-        jTextFieldLinkExecute26.setText(PropertyHandler.getInstance().getValue("CustomLink26Exec"));
-        jTextFieldLinkExecute27.setText(PropertyHandler.getInstance().getValue("CustomLink27Exec"));
-        jTextFieldLinkExecute28.setText(PropertyHandler.getInstance().getValue("CustomLink28Exec"));
-        jTextFieldLinkExecute29.setText(PropertyHandler.getInstance().getValue("CustomLink29Exec"));
-        jTextFieldLinkExecute30.setText(PropertyHandler.getInstance().getValue("CustomLink30Exec"));
-        jTextFieldLinkExecute31.setText(PropertyHandler.getInstance().getValue("CustomLink31Exec"));
-        jTextFieldLinkExecute32.setText(PropertyHandler.getInstance().getValue("CustomLink32Exec"));
-        jTextFieldLinkExecute33.setText(PropertyHandler.getInstance().getValue("CustomLink33Exec"));
-        jTextFieldLinkExecute34.setText(PropertyHandler.getInstance().getValue("CustomLink34Exec"));
-        jTextFieldLinkExecute35.setText(PropertyHandler.getInstance().getValue("CustomLink35Exec"));
-        jTextFieldLinkExecute36.setText(PropertyHandler.getInstance().getValue("CustomLink36Exec"));
+        jTextFieldLinkExecute1.setText(PropertyHandler.getInstance().getValue("Custom.Link.01.Exec"));
+        jTextFieldLinkExecute2.setText(PropertyHandler.getInstance().getValue("Custom.Link.02.Exec"));
+        jTextFieldLinkExecute3.setText(PropertyHandler.getInstance().getValue("Custom.Link.03.Exec"));
+        jTextFieldLinkExecute4.setText(PropertyHandler.getInstance().getValue("Custom.Link.04.Exec"));
+        jTextFieldLinkExecute5.setText(PropertyHandler.getInstance().getValue("Custom.Link.05.Exec"));
+        jTextFieldLinkExecute6.setText(PropertyHandler.getInstance().getValue("Custom.Link.06.Exec"));
+        jTextFieldLinkExecute7.setText(PropertyHandler.getInstance().getValue("Custom.Link.07.Exec"));
+        jTextFieldLinkExecute8.setText(PropertyHandler.getInstance().getValue("Custom.Link.08.Exec"));
+        jTextFieldLinkExecute9.setText(PropertyHandler.getInstance().getValue("Custom.Link.09.Exec"));
+        jTextFieldLinkExecute10.setText(PropertyHandler.getInstance().getValue("Custom.Link.10.Exec"));
+        jTextFieldLinkExecute11.setText(PropertyHandler.getInstance().getValue("Custom.Link.11.Exec"));
+        jTextFieldLinkExecute12.setText(PropertyHandler.getInstance().getValue("Custom.Link.12.Exec"));
+        jTextFieldLinkExecute13.setText(PropertyHandler.getInstance().getValue("Custom.Link.13.Exec"));
+        jTextFieldLinkExecute14.setText(PropertyHandler.getInstance().getValue("Custom.Link.14.Exec"));
+        jTextFieldLinkExecute15.setText(PropertyHandler.getInstance().getValue("Custom.Link.15.Exec"));
+        jTextFieldLinkExecute16.setText(PropertyHandler.getInstance().getValue("Custom.Link.16.Exec"));
+        jTextFieldLinkExecute17.setText(PropertyHandler.getInstance().getValue("Custom.Link.17.Exec"));
+        jTextFieldLinkExecute18.setText(PropertyHandler.getInstance().getValue("Custom.Link.18.Exec"));
+        jTextFieldLinkExecute19.setText(PropertyHandler.getInstance().getValue("Custom.Link.19.Exec"));
+        jTextFieldLinkExecute20.setText(PropertyHandler.getInstance().getValue("Custom.Link.20.Exec"));
+        jTextFieldLinkExecute21.setText(PropertyHandler.getInstance().getValue("Custom.Link.21.Exec"));
+        jTextFieldLinkExecute22.setText(PropertyHandler.getInstance().getValue("Custom.Link.22.Exec"));
+        jTextFieldLinkExecute23.setText(PropertyHandler.getInstance().getValue("Custom.Link.23.Exec"));
+        jTextFieldLinkExecute24.setText(PropertyHandler.getInstance().getValue("Custom.Link.24.Exec"));
+        jTextFieldLinkExecute25.setText(PropertyHandler.getInstance().getValue("Custom.Link.25.Exec"));
+        jTextFieldLinkExecute26.setText(PropertyHandler.getInstance().getValue("Custom.Link.26.Exec"));
+        jTextFieldLinkExecute27.setText(PropertyHandler.getInstance().getValue("Custom.Link.27.Exec"));
+        jTextFieldLinkExecute28.setText(PropertyHandler.getInstance().getValue("Custom.Link.28.Exec"));
+        jTextFieldLinkExecute29.setText(PropertyHandler.getInstance().getValue("Custom.Link.29.Exec"));
+        jTextFieldLinkExecute30.setText(PropertyHandler.getInstance().getValue("Custom.Link.30.Exec"));
+        jTextFieldLinkExecute31.setText(PropertyHandler.getInstance().getValue("Custom.Link.31.Exec"));
+        jTextFieldLinkExecute32.setText(PropertyHandler.getInstance().getValue("Custom.Link.32.Exec"));
+        jTextFieldLinkExecute33.setText(PropertyHandler.getInstance().getValue("Custom.Link.33.Exec"));
+        jTextFieldLinkExecute34.setText(PropertyHandler.getInstance().getValue("Custom.Link.34.Exec"));
+        jTextFieldLinkExecute35.setText(PropertyHandler.getInstance().getValue("Custom.Link.35.Exec"));
+        jTextFieldLinkExecute36.setText(PropertyHandler.getInstance().getValue("Custom.Link.36.Exec"));
     }
     
 
@@ -11611,11 +11611,11 @@ scroll.setPreferredSize(new Dimension(800, 500));
     }
     
     private void QuickLaunchSessionOnEnter() {
-        String myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionOnEnterPress");
+        String myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunction.OnEnterPress");
         if("".equals(myValue)) {
-            PropertyHandler.getInstance().setValue("ButtonExecuteFunctionOnEnterPress", "SSH");
+            PropertyHandler.getInstance().setValue("ButtonExecuteFunction.OnEnterPress", "SSH");
         }
-        myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunctionOnEnterPress");
+        myValue = PropertyHandler.getInstance().getValue("ButtonExecuteFunction.OnEnterPress");
         if("HTTPS".equals(myValue)) {
             jButtonExecuteFunctionHTTPS.doClick();
         } else if("RDP".equals(myValue)) {
@@ -11763,37 +11763,37 @@ scroll.setPreferredSize(new Dimension(800, 500));
         if (strSliderValue.equals("0")){
             jListSessions.setFont(jListSessions.getFont().deriveFont(10.0f));
             jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(10.0f)); 
-            //PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "0");
+            //PropertyHandlerPersonal.getInstance().setValue("Setting.TextSize", "0");
         }
         if (strSliderValue.equals("1")){
             jListSessions.setFont(jListSessions.getFont().deriveFont(12.0f));
             jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(12.0f));
-            //PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "1");            
+            //PropertyHandlerPersonal.getInstance().setValue("Setting.TextSize", "1");            
         }
         if (strSliderValue.equals("2")){
             jListSessions.setFont(jListSessions.getFont().deriveFont(14.0f));
             jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(14.0f));
-            //PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "2");            
+            //PropertyHandlerPersonal.getInstance().setValue("Setting.TextSize", "2");            
         }
         if (strSliderValue.equals("3")){
             jListSessions.setFont(jListSessions.getFont().deriveFont(16.0f));
             jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(16.0f));
-            //PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "3");            
+            //PropertyHandlerPersonal.getInstance().setValue("Setting.TextSize", "3");            
         }
         if (strSliderValue.equals("4")){
             jListSessions.setFont(jListSessions.getFont().deriveFont(18.0f));
             jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(18.0f));
-            //PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "4");            
+            //PropertyHandlerPersonal.getInstance().setValue("Setting.TextSize", "4");            
         }
         if (strSliderValue.equals("5")){
             jListSessions.setFont(jListSessions.getFont().deriveFont(20.0f));
             jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(20.0f));
-            //PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "5");            
+            //PropertyHandlerPersonal.getInstance().setValue("Setting.TextSize", "5");            
         }
         if (strSliderValue.equals("6")){
             jListSessions.setFont(jListSessions.getFont().deriveFont(22.0f));
             jLabelListTextSizePreview.setFont(jLabelListTextSizePreview.getFont().deriveFont(22.0f));
-            //PropertyHandlerPersonal.getInstance().setValue("SettingTextSize", "6");            
+            //PropertyHandlerPersonal.getInstance().setValue("Setting.TextSize", "6");            
         }
         }
 

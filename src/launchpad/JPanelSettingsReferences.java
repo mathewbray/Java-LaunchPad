@@ -2190,11 +2190,11 @@ public class JPanelSettingsReferences extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextFieldReferenceText1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText1KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference01Description",jTextFieldReferenceText1.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.01.Description",jTextFieldReferenceText1.getText());
     }//GEN-LAST:event_jTextFieldReferenceText1KeyReleased
 
     private void jTextFieldReferenceOnline1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline1KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference01Online",jTextFieldReferenceOnline1.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.01.Online",jTextFieldReferenceOnline1.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline1KeyReleased
 
     private void jButton46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton46ActionPerformed
@@ -2206,509 +2206,509 @@ public class JPanelSettingsReferences extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton46ActionPerformed
 
     private void jTextFieldReferenceOffline1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline1KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference01Offline",jTextFieldReferenceOffline1.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.01.Offline",jTextFieldReferenceOffline1.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline1KeyReleased
 
     private void jTextFieldReferenceOffline2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline2KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference02Offline",jTextFieldReferenceOffline2.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.02.Offline",jTextFieldReferenceOffline2.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline2KeyReleased
 
     private void jTextFieldReferenceText2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText2KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference02Description",jTextFieldReferenceText2.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.02.Description",jTextFieldReferenceText2.getText());
     }//GEN-LAST:event_jTextFieldReferenceText2KeyReleased
 
     private void jTextFieldReferenceOnline2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline2KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference02Online",jTextFieldReferenceOnline2.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.02.Online",jTextFieldReferenceOnline2.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline2KeyReleased
 
     private void jTextFieldReferenceOnline3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline3KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference03Online",jTextFieldReferenceOnline3.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.03.Online",jTextFieldReferenceOnline3.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline3KeyReleased
 
     private void jTextFieldReferenceText3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText3KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference03Description",jTextFieldReferenceText3.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.03.Description",jTextFieldReferenceText3.getText());
     }//GEN-LAST:event_jTextFieldReferenceText3KeyReleased
 
     private void jTextFieldReferenceOffline3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline3KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference03Offline",jTextFieldReferenceOffline3.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.03.Offline",jTextFieldReferenceOffline3.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline3KeyReleased
 
     private void jTextFieldReferenceOnline4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline4KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference04Online",jTextFieldReferenceOnline4.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.04.Online",jTextFieldReferenceOnline4.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline4KeyReleased
 
     private void jTextFieldReferenceText4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText4KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference04Description",jTextFieldReferenceText4.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.04.Description",jTextFieldReferenceText4.getText());
     }//GEN-LAST:event_jTextFieldReferenceText4KeyReleased
 
     private void jTextFieldReferenceOffline4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline4KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference04Offline",jTextFieldReferenceOffline4.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.04.Offline",jTextFieldReferenceOffline4.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline4KeyReleased
 
     private void jTextFieldReferenceOnline5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline5KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference05Online",jTextFieldReferenceOnline5.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.05.Online",jTextFieldReferenceOnline5.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline5KeyReleased
 
     private void jTextFieldReferenceText5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText5KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference05Description",jTextFieldReferenceText5.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.05.Description",jTextFieldReferenceText5.getText());
     }//GEN-LAST:event_jTextFieldReferenceText5KeyReleased
 
     private void jTextFieldReferenceOffline5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline5KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference05Offline",jTextFieldReferenceOffline5.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.05.Offline",jTextFieldReferenceOffline5.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline5KeyReleased
 
     private void jTextFieldReferenceOnline6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline6KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference06Online",jTextFieldReferenceOnline6.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.06.Online",jTextFieldReferenceOnline6.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline6KeyReleased
 
     private void jTextFieldReferenceText6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText6KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference06Description",jTextFieldReferenceText6.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.06.Description",jTextFieldReferenceText6.getText());
     }//GEN-LAST:event_jTextFieldReferenceText6KeyReleased
 
     private void jTextFieldReferenceOffline6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline6KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference06Offline",jTextFieldReferenceOffline6.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.06.Offline",jTextFieldReferenceOffline6.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline6KeyReleased
 
     private void jTextFieldReferenceOnline7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline7KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference07Online",jTextFieldReferenceOnline7.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.07.Online",jTextFieldReferenceOnline7.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline7KeyReleased
 
     private void jTextFieldReferenceText7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText7KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference07Description",jTextFieldReferenceText7.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.07.Description",jTextFieldReferenceText7.getText());
     }//GEN-LAST:event_jTextFieldReferenceText7KeyReleased
 
     private void jTextFieldReferenceOffline7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline7KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference07Offline",jTextFieldReferenceOffline7.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.07.Offline",jTextFieldReferenceOffline7.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline7KeyReleased
 
     private void jTextFieldReferenceOnline8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline8KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference08Online",jTextFieldReferenceOnline8.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.08.Online",jTextFieldReferenceOnline8.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline8KeyReleased
 
     private void jTextFieldReferenceText8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText8KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference08Description",jTextFieldReferenceText8.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.08.Description",jTextFieldReferenceText8.getText());
     }//GEN-LAST:event_jTextFieldReferenceText8KeyReleased
 
     private void jTextFieldReferenceOffline8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline8KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference08Offline",jTextFieldReferenceOffline8.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.08.Offline",jTextFieldReferenceOffline8.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline8KeyReleased
 
     private void jTextFieldReferenceOnline9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline9KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference09Online",jTextFieldReferenceOnline9.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.09.Online",jTextFieldReferenceOnline9.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline9KeyReleased
 
     private void jTextFieldReferenceText9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText9KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference09Description",jTextFieldReferenceText9.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.09.Description",jTextFieldReferenceText9.getText());
     }//GEN-LAST:event_jTextFieldReferenceText9KeyReleased
 
     private void jTextFieldReferenceOffline9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline9KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference09Offline",jTextFieldReferenceOffline9.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.09.Offline",jTextFieldReferenceOffline9.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline9KeyReleased
 
     private void jTextFieldReferenceOnline10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline10KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference10Online",jTextFieldReferenceOnline10.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.10.Online",jTextFieldReferenceOnline10.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline10KeyReleased
 
     private void jTextFieldReferenceText10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText10KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference10Description",jTextFieldReferenceText10.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.10.Description",jTextFieldReferenceText10.getText());
     }//GEN-LAST:event_jTextFieldReferenceText10KeyReleased
 
     private void jTextFieldReferenceOffline10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline10KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference10Offline",jTextFieldReferenceOffline1.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.10.Offline",jTextFieldReferenceOffline1.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline10KeyReleased
 
     private void jTextFieldReferenceOnline11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline11KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference11Online",jTextFieldReferenceOnline11.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.11.Online",jTextFieldReferenceOnline11.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline11KeyReleased
 
     private void jTextFieldReferenceText11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText11KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference11Description",jTextFieldReferenceText11.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.11.Description",jTextFieldReferenceText11.getText());
     }//GEN-LAST:event_jTextFieldReferenceText11KeyReleased
 
     private void jTextFieldReferenceOffline11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline11KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference11Offline",jTextFieldReferenceOffline11.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.11.Offline",jTextFieldReferenceOffline11.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline11KeyReleased
 
     private void jTextFieldReferenceOnline12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline12KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference12Online",jTextFieldReferenceOnline12.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.12.Online",jTextFieldReferenceOnline12.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline12KeyReleased
 
     private void jTextFieldReferenceText12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText12KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference12Description",jTextFieldReferenceText12.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.12.Description",jTextFieldReferenceText12.getText());
     }//GEN-LAST:event_jTextFieldReferenceText12KeyReleased
 
     private void jTextFieldReferenceOffline12KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline12KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference12Offline",jTextFieldReferenceOffline12.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.12.Offline",jTextFieldReferenceOffline12.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline12KeyReleased
 
     private void jTextFieldReferenceOnline13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline13KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference13Online",jTextFieldReferenceOnline13.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.13.Online",jTextFieldReferenceOnline13.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline13KeyReleased
 
     private void jTextFieldReferenceText13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText13KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference13Description",jTextFieldReferenceText13.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.13.Description",jTextFieldReferenceText13.getText());
     }//GEN-LAST:event_jTextFieldReferenceText13KeyReleased
 
     private void jTextFieldReferenceOffline13KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline13KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference13Offline",jTextFieldReferenceOffline13.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.13.Offline",jTextFieldReferenceOffline13.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline13KeyReleased
 
     private void jTextFieldReferenceOnline14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline14KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference14Online",jTextFieldReferenceOnline14.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.14.Online",jTextFieldReferenceOnline14.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline14KeyReleased
 
     private void jTextFieldReferenceText14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText14KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference14Description",jTextFieldReferenceText14.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.14.Description",jTextFieldReferenceText14.getText());
     }//GEN-LAST:event_jTextFieldReferenceText14KeyReleased
 
     private void jTextFieldReferenceOffline14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline14KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference14Offline",jTextFieldReferenceOffline14.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.14.Offline",jTextFieldReferenceOffline14.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline14KeyReleased
 
     private void jTextFieldReferenceOnline15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline15KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference15Online",jTextFieldReferenceOnline15.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.15.Online",jTextFieldReferenceOnline15.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline15KeyReleased
 
     private void jTextFieldReferenceText15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText15KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference15Description",jTextFieldReferenceText15.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.15.Description",jTextFieldReferenceText15.getText());
     }//GEN-LAST:event_jTextFieldReferenceText15KeyReleased
 
     private void jTextFieldReferenceOffline15KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline15KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference15Offline",jTextFieldReferenceOffline15.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.15.Offline",jTextFieldReferenceOffline15.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline15KeyReleased
 
     private void jTextFieldReferenceOnline16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline16KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference16Online",jTextFieldReferenceOnline16.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.16.Online",jTextFieldReferenceOnline16.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline16KeyReleased
 
     private void jTextFieldReferenceText16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText16KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference16Description",jTextFieldReferenceText16.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.16.Description",jTextFieldReferenceText16.getText());
     }//GEN-LAST:event_jTextFieldReferenceText16KeyReleased
 
     private void jTextFieldReferenceOffline16KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline16KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference16Offline",jTextFieldReferenceOffline16.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.16.Offline",jTextFieldReferenceOffline16.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline16KeyReleased
 
     private void jTextFieldReferenceOnline17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline17KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference17Online",jTextFieldReferenceOnline17.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.17.Online",jTextFieldReferenceOnline17.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline17KeyReleased
 
     private void jTextFieldReferenceText17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText17KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference17Description",jTextFieldReferenceText17.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.17.Description",jTextFieldReferenceText17.getText());
     }//GEN-LAST:event_jTextFieldReferenceText17KeyReleased
 
     private void jTextFieldReferenceOffline17KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline17KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference17Offline",jTextFieldReferenceOffline17.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.17.Offline",jTextFieldReferenceOffline17.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline17KeyReleased
 
     private void jTextFieldReferenceOnline18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline18KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference18Online",jTextFieldReferenceOnline18.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.18.Online",jTextFieldReferenceOnline18.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline18KeyReleased
 
     private void jTextFieldReferenceText18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText18KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference18Description",jTextFieldReferenceText18.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.18.Description",jTextFieldReferenceText18.getText());
     }//GEN-LAST:event_jTextFieldReferenceText18KeyReleased
 
     private void jTextFieldReferenceOffline18KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline18KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference18Offline",jTextFieldReferenceOffline18.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.18.Offline",jTextFieldReferenceOffline18.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline18KeyReleased
 
     private void jTextFieldReferenceOnline19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline19KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference19Online",jTextFieldReferenceOnline19.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.19.Online",jTextFieldReferenceOnline19.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline19KeyReleased
 
     private void jTextFieldReferenceText19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText19KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference19Description",jTextFieldReferenceText19.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.19.Description",jTextFieldReferenceText19.getText());
     }//GEN-LAST:event_jTextFieldReferenceText19KeyReleased
 
     private void jTextFieldReferenceOffline19KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline19KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference19Offline",jTextFieldReferenceOffline19.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.19.Offline",jTextFieldReferenceOffline19.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline19KeyReleased
 
     private void jTextFieldReferenceOnline20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline20KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference20Online",jTextFieldReferenceOnline20.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.20.Online",jTextFieldReferenceOnline20.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline20KeyReleased
 
     private void jTextFieldReferenceText20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText20KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference20Description",jTextFieldReferenceText20.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.20.Description",jTextFieldReferenceText20.getText());
     }//GEN-LAST:event_jTextFieldReferenceText20KeyReleased
 
     private void jTextFieldReferenceOffline20KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline20KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference20Offline",jTextFieldReferenceOffline20.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.20.Offline",jTextFieldReferenceOffline20.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline20KeyReleased
 
     private void jTextFieldReferenceOffline21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline21KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference21Offline",jTextFieldReferenceOffline21.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.21.Offline",jTextFieldReferenceOffline21.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline21KeyReleased
 
     private void jTextFieldReferenceText21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText21KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference21Description",jTextFieldReferenceText21.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.21.Description",jTextFieldReferenceText21.getText());
     }//GEN-LAST:event_jTextFieldReferenceText21KeyReleased
 
     private void jTextFieldReferenceOnline21KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline21KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference21Online",jTextFieldReferenceOnline21.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.21.Online",jTextFieldReferenceOnline21.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline21KeyReleased
 
     private void jTextFieldReferenceOffline22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline22KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference22Offline",jTextFieldReferenceOffline22.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.22.Offline",jTextFieldReferenceOffline22.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline22KeyReleased
 
     private void jTextFieldReferenceText22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText22KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference22Description",jTextFieldReferenceText22.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.22.Description",jTextFieldReferenceText22.getText());
     }//GEN-LAST:event_jTextFieldReferenceText22KeyReleased
 
     private void jTextFieldReferenceOnline22KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline22KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference22Online",jTextFieldReferenceOnline22.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.22.Online",jTextFieldReferenceOnline22.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline22KeyReleased
 
     private void jTextFieldReferenceOffline23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline23KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference23Offline",jTextFieldReferenceOffline23.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.23.Offline",jTextFieldReferenceOffline23.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline23KeyReleased
 
     private void jTextFieldReferenceText23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText23KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference23Description",jTextFieldReferenceText23.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.23.Description",jTextFieldReferenceText23.getText());
     }//GEN-LAST:event_jTextFieldReferenceText23KeyReleased
 
     private void jTextFieldReferenceOnline23KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline23KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference23Online",jTextFieldReferenceOnline23.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.23.Online",jTextFieldReferenceOnline23.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline23KeyReleased
 
     private void jTextFieldReferenceOffline24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline24KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference24Offline",jTextFieldReferenceOffline24.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.24.Offline",jTextFieldReferenceOffline24.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline24KeyReleased
 
     private void jTextFieldReferenceText24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText24KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference24Description",jTextFieldReferenceText2.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.24.Description",jTextFieldReferenceText2.getText());
     }//GEN-LAST:event_jTextFieldReferenceText24KeyReleased
 
     private void jTextFieldReferenceOnline24KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline24KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference24Online",jTextFieldReferenceOnline24.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.24.Online",jTextFieldReferenceOnline24.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline24KeyReleased
 
     private void jTextFieldReferenceOffline25KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline25KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference25Offline",jTextFieldReferenceOffline25.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.25.Offline",jTextFieldReferenceOffline25.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline25KeyReleased
 
     private void jTextFieldReferenceText25KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText25KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference25Description",jTextFieldReferenceText25.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.25.Description",jTextFieldReferenceText25.getText());
     }//GEN-LAST:event_jTextFieldReferenceText25KeyReleased
 
     private void jTextFieldReferenceOnline25KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline25KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference25Online",jTextFieldReferenceOnline25.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.25.Online",jTextFieldReferenceOnline25.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline25KeyReleased
 
     private void jTextFieldReferenceOffline26KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline26KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference26Offline",jTextFieldReferenceOffline26.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.26.Offline",jTextFieldReferenceOffline26.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline26KeyReleased
 
     private void jTextFieldReferenceText26KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText26KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference26Description",jTextFieldReferenceText26.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.26.Description",jTextFieldReferenceText26.getText());
     }//GEN-LAST:event_jTextFieldReferenceText26KeyReleased
 
     private void jTextFieldReferenceOnline26KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline26KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference26Online",jTextFieldReferenceOnline26.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.26.Online",jTextFieldReferenceOnline26.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline26KeyReleased
 
     private void jTextFieldReferenceOffline27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline27KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference27Offline",jTextFieldReferenceOffline27.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.27.Offline",jTextFieldReferenceOffline27.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline27KeyReleased
 
     private void jTextFieldReferenceText27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText27KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference27Description",jTextFieldReferenceText27.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.27.Description",jTextFieldReferenceText27.getText());
     }//GEN-LAST:event_jTextFieldReferenceText27KeyReleased
 
     private void jTextFieldReferenceOnline27KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline27KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference27Online",jTextFieldReferenceOnline27.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.27.Online",jTextFieldReferenceOnline27.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline27KeyReleased
 
     private void jTextFieldReferenceOffline28KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline28KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference28Offline",jTextFieldReferenceOffline28.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.28.Offline",jTextFieldReferenceOffline28.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline28KeyReleased
 
     private void jTextFieldReferenceText28KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText28KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference28Description",jTextFieldReferenceText28.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.28.Description",jTextFieldReferenceText28.getText());
     }//GEN-LAST:event_jTextFieldReferenceText28KeyReleased
 
     private void jTextFieldReferenceOnline28KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline28KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference28Online",jTextFieldReferenceOnline28.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.28.Online",jTextFieldReferenceOnline28.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline28KeyReleased
 
     private void jTextFieldReferenceOffline29KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline29KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference29Offline",jTextFieldReferenceOffline29.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.29.Offline",jTextFieldReferenceOffline29.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline29KeyReleased
 
     private void jTextFieldReferenceText29KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText29KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference29Description",jTextFieldReferenceText29.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.29.Description",jTextFieldReferenceText29.getText());
     }//GEN-LAST:event_jTextFieldReferenceText29KeyReleased
 
     private void jTextFieldReferenceOnline29KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline29KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference29Online",jTextFieldReferenceOnline29.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.29.Online",jTextFieldReferenceOnline29.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline29KeyReleased
 
     private void jTextFieldReferenceOnline30KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline30KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference30Online",jTextFieldReferenceOnline30.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.30.Online",jTextFieldReferenceOnline30.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline30KeyReleased
 
     private void jTextFieldReferenceText30KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText30KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference30Description",jTextFieldReferenceText30.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.30.Description",jTextFieldReferenceText30.getText());
     }//GEN-LAST:event_jTextFieldReferenceText30KeyReleased
 
     private void jTextFieldReferenceOffline30KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline30KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference30Offline",jTextFieldReferenceOffline30.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.30.Offline",jTextFieldReferenceOffline30.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline30KeyReleased
 
     private void jTextFieldReferenceOnline31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline31KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference31Online",jTextFieldReferenceOnline31.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.31.Online",jTextFieldReferenceOnline31.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline31KeyReleased
 
     private void jTextFieldReferenceOffline31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline31KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference31Offline",jTextFieldReferenceOffline31.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.31.Offline",jTextFieldReferenceOffline31.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline31KeyReleased
 
     private void jTextFieldReferenceText31KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText31KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference31Description",jTextFieldReferenceText31.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.31.Description",jTextFieldReferenceText31.getText());
     }//GEN-LAST:event_jTextFieldReferenceText31KeyReleased
 
     private void jTextFieldReferenceOnline32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline32KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference32Online",jTextFieldReferenceOnline32.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.32.Online",jTextFieldReferenceOnline32.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline32KeyReleased
 
     private void jTextFieldReferenceOffline32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline32KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference32Offline",jTextFieldReferenceOffline32.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.32.Offline",jTextFieldReferenceOffline32.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline32KeyReleased
 
     private void jTextFieldReferenceText32KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText32KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference32Description",jTextFieldReferenceText32.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.32.Description",jTextFieldReferenceText32.getText());
     }//GEN-LAST:event_jTextFieldReferenceText32KeyReleased
 
     private void jTextFieldReferenceOnline33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOnline33KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference33Online",jTextFieldReferenceOnline33.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.33.Online",jTextFieldReferenceOnline33.getText());
     }//GEN-LAST:event_jTextFieldReferenceOnline33KeyReleased
 
     private void jTextFieldReferenceOffline33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceOffline33KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference33Offline",jTextFieldReferenceOffline33.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.33.Offline",jTextFieldReferenceOffline33.getText());
     }//GEN-LAST:event_jTextFieldReferenceOffline33KeyReleased
 
     private void jTextFieldReferenceText33KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldReferenceText33KeyReleased
-        PropertyHandler.getInstance().setValue("CustomReference33Description",jTextFieldReferenceText33.getText());
+        PropertyHandler.getInstance().setValue("Custom.Reference.33.Description",jTextFieldReferenceText33.getText());
     }//GEN-LAST:event_jTextFieldReferenceText33KeyReleased
 
         private void loadSettingsReferenceData() {
         //- Text
-        jTextFieldReferenceText1.setText(PropertyHandler.getInstance().getValue("CustomReference01Description"));
-        jTextFieldReferenceText2.setText(PropertyHandler.getInstance().getValue("CustomReference02Description"));
-        jTextFieldReferenceText3.setText(PropertyHandler.getInstance().getValue("CustomReference03Description"));
-        jTextFieldReferenceText4.setText(PropertyHandler.getInstance().getValue("CustomReference04Description"));
-        jTextFieldReferenceText5.setText(PropertyHandler.getInstance().getValue("CustomReference05Description"));
-        jTextFieldReferenceText6.setText(PropertyHandler.getInstance().getValue("CustomReference06Description"));
-        jTextFieldReferenceText7.setText(PropertyHandler.getInstance().getValue("CustomReference07Description"));
-        jTextFieldReferenceText8.setText(PropertyHandler.getInstance().getValue("CustomReference08Description"));
-        jTextFieldReferenceText9.setText(PropertyHandler.getInstance().getValue("CustomReference09Description"));
-        jTextFieldReferenceText10.setText(PropertyHandler.getInstance().getValue("CustomReference10Description"));
-        jTextFieldReferenceText11.setText(PropertyHandler.getInstance().getValue("CustomReference11Description"));
-        jTextFieldReferenceText12.setText(PropertyHandler.getInstance().getValue("CustomReference12Description"));
-        jTextFieldReferenceText13.setText(PropertyHandler.getInstance().getValue("CustomReference13Description"));
-        jTextFieldReferenceText14.setText(PropertyHandler.getInstance().getValue("CustomReference14Description"));
-        jTextFieldReferenceText15.setText(PropertyHandler.getInstance().getValue("CustomReference15Description"));
-        jTextFieldReferenceText16.setText(PropertyHandler.getInstance().getValue("CustomReference16Description"));
-        jTextFieldReferenceText17.setText(PropertyHandler.getInstance().getValue("CustomReference17Description"));
-        jTextFieldReferenceText18.setText(PropertyHandler.getInstance().getValue("CustomReference18Description"));
-        jTextFieldReferenceText19.setText(PropertyHandler.getInstance().getValue("CustomReference19Description"));
-        jTextFieldReferenceText20.setText(PropertyHandler.getInstance().getValue("CustomReference20Description"));
-        jTextFieldReferenceText21.setText(PropertyHandler.getInstance().getValue("CustomReference21Description"));
-        jTextFieldReferenceText22.setText(PropertyHandler.getInstance().getValue("CustomReference22Description"));
-        jTextFieldReferenceText23.setText(PropertyHandler.getInstance().getValue("CustomReference23Description"));
-        jTextFieldReferenceText24.setText(PropertyHandler.getInstance().getValue("CustomReference24Description"));
-        jTextFieldReferenceText25.setText(PropertyHandler.getInstance().getValue("CustomReference25Description"));
-        jTextFieldReferenceText26.setText(PropertyHandler.getInstance().getValue("CustomReference26Description"));
-        jTextFieldReferenceText27.setText(PropertyHandler.getInstance().getValue("CustomReference27Description"));
-        jTextFieldReferenceText28.setText(PropertyHandler.getInstance().getValue("CustomReference28Description"));
-        jTextFieldReferenceText29.setText(PropertyHandler.getInstance().getValue("CustomReference29Description"));
-        jTextFieldReferenceText30.setText(PropertyHandler.getInstance().getValue("CustomReference30Description"));
-        jTextFieldReferenceText31.setText(PropertyHandler.getInstance().getValue("CustomReference31Description"));
-        jTextFieldReferenceText32.setText(PropertyHandler.getInstance().getValue("CustomReference32Description"));
-        jTextFieldReferenceText33.setText(PropertyHandler.getInstance().getValue("CustomReference33Description"));
+        jTextFieldReferenceText1.setText(PropertyHandler.getInstance().getValue("Custom.Reference.01.Description"));
+        jTextFieldReferenceText2.setText(PropertyHandler.getInstance().getValue("Custom.Reference.02.Description"));
+        jTextFieldReferenceText3.setText(PropertyHandler.getInstance().getValue("Custom.Reference.03.Description"));
+        jTextFieldReferenceText4.setText(PropertyHandler.getInstance().getValue("Custom.Reference.04.Description"));
+        jTextFieldReferenceText5.setText(PropertyHandler.getInstance().getValue("Custom.Reference.05.Description"));
+        jTextFieldReferenceText6.setText(PropertyHandler.getInstance().getValue("Custom.Reference.06.Description"));
+        jTextFieldReferenceText7.setText(PropertyHandler.getInstance().getValue("Custom.Reference.07.Description"));
+        jTextFieldReferenceText8.setText(PropertyHandler.getInstance().getValue("Custom.Reference.08.Description"));
+        jTextFieldReferenceText9.setText(PropertyHandler.getInstance().getValue("Custom.Reference.09.Description"));
+        jTextFieldReferenceText10.setText(PropertyHandler.getInstance().getValue("Custom.Reference.10.Description"));
+        jTextFieldReferenceText11.setText(PropertyHandler.getInstance().getValue("Custom.Reference.11.Description"));
+        jTextFieldReferenceText12.setText(PropertyHandler.getInstance().getValue("Custom.Reference.12.Description"));
+        jTextFieldReferenceText13.setText(PropertyHandler.getInstance().getValue("Custom.Reference.13.Description"));
+        jTextFieldReferenceText14.setText(PropertyHandler.getInstance().getValue("Custom.Reference.14.Description"));
+        jTextFieldReferenceText15.setText(PropertyHandler.getInstance().getValue("Custom.Reference.15.Description"));
+        jTextFieldReferenceText16.setText(PropertyHandler.getInstance().getValue("Custom.Reference.16.Description"));
+        jTextFieldReferenceText17.setText(PropertyHandler.getInstance().getValue("Custom.Reference.17.Description"));
+        jTextFieldReferenceText18.setText(PropertyHandler.getInstance().getValue("Custom.Reference.18.Description"));
+        jTextFieldReferenceText19.setText(PropertyHandler.getInstance().getValue("Custom.Reference.19.Description"));
+        jTextFieldReferenceText20.setText(PropertyHandler.getInstance().getValue("Custom.Reference.20.Description"));
+        jTextFieldReferenceText21.setText(PropertyHandler.getInstance().getValue("Custom.Reference.21.Description"));
+        jTextFieldReferenceText22.setText(PropertyHandler.getInstance().getValue("Custom.Reference.22.Description"));
+        jTextFieldReferenceText23.setText(PropertyHandler.getInstance().getValue("Custom.Reference.23.Description"));
+        jTextFieldReferenceText24.setText(PropertyHandler.getInstance().getValue("Custom.Reference.24.Description"));
+        jTextFieldReferenceText25.setText(PropertyHandler.getInstance().getValue("Custom.Reference.25.Description"));
+        jTextFieldReferenceText26.setText(PropertyHandler.getInstance().getValue("Custom.Reference.26.Description"));
+        jTextFieldReferenceText27.setText(PropertyHandler.getInstance().getValue("Custom.Reference.27.Description"));
+        jTextFieldReferenceText28.setText(PropertyHandler.getInstance().getValue("Custom.Reference.28.Description"));
+        jTextFieldReferenceText29.setText(PropertyHandler.getInstance().getValue("Custom.Reference.29.Description"));
+        jTextFieldReferenceText30.setText(PropertyHandler.getInstance().getValue("Custom.Reference.30.Description"));
+        jTextFieldReferenceText31.setText(PropertyHandler.getInstance().getValue("Custom.Reference.31.Description"));
+        jTextFieldReferenceText32.setText(PropertyHandler.getInstance().getValue("Custom.Reference.32.Description"));
+        jTextFieldReferenceText33.setText(PropertyHandler.getInstance().getValue("Custom.Reference.33.Description"));
         //- Online
-        jTextFieldReferenceOnline1.setText(PropertyHandler.getInstance().getValue("CustomReference01Online"));
-        jTextFieldReferenceOnline2.setText(PropertyHandler.getInstance().getValue("CustomReference02Online"));
-        jTextFieldReferenceOnline3.setText(PropertyHandler.getInstance().getValue("CustomReference03Online"));
-        jTextFieldReferenceOnline4.setText(PropertyHandler.getInstance().getValue("CustomReference04Online"));
-        jTextFieldReferenceOnline5.setText(PropertyHandler.getInstance().getValue("CustomReference05Online"));
-        jTextFieldReferenceOnline6.setText(PropertyHandler.getInstance().getValue("CustomReference06Online"));
-        jTextFieldReferenceOnline7.setText(PropertyHandler.getInstance().getValue("CustomReference07Online"));
-        jTextFieldReferenceOnline8.setText(PropertyHandler.getInstance().getValue("CustomReference08Online"));
-        jTextFieldReferenceOnline9.setText(PropertyHandler.getInstance().getValue("CustomReference09Online"));
-        jTextFieldReferenceOnline10.setText(PropertyHandler.getInstance().getValue("CustomReference10Online"));
-        jTextFieldReferenceOnline11.setText(PropertyHandler.getInstance().getValue("CustomReference11Online"));
-        jTextFieldReferenceOnline12.setText(PropertyHandler.getInstance().getValue("CustomReference12Online"));
-        jTextFieldReferenceOnline13.setText(PropertyHandler.getInstance().getValue("CustomReference13Online"));
-        jTextFieldReferenceOnline14.setText(PropertyHandler.getInstance().getValue("CustomReference14Online"));
-        jTextFieldReferenceOnline15.setText(PropertyHandler.getInstance().getValue("CustomReference15Online"));
-        jTextFieldReferenceOnline16.setText(PropertyHandler.getInstance().getValue("CustomReference16Online"));
-        jTextFieldReferenceOnline17.setText(PropertyHandler.getInstance().getValue("CustomReference17Online"));
-        jTextFieldReferenceOnline18.setText(PropertyHandler.getInstance().getValue("CustomReference18Online"));
-        jTextFieldReferenceOnline19.setText(PropertyHandler.getInstance().getValue("CustomReference19Online"));
-        jTextFieldReferenceOnline20.setText(PropertyHandler.getInstance().getValue("CustomReference20Online"));
-        jTextFieldReferenceOnline21.setText(PropertyHandler.getInstance().getValue("CustomReference21Online"));
-        jTextFieldReferenceOnline22.setText(PropertyHandler.getInstance().getValue("CustomReference22Online"));
-        jTextFieldReferenceOnline23.setText(PropertyHandler.getInstance().getValue("CustomReference23Online"));
-        jTextFieldReferenceOnline24.setText(PropertyHandler.getInstance().getValue("CustomReference24Online"));
-        jTextFieldReferenceOnline25.setText(PropertyHandler.getInstance().getValue("CustomReference25Online"));
-        jTextFieldReferenceOnline26.setText(PropertyHandler.getInstance().getValue("CustomReference26Online"));
-        jTextFieldReferenceOnline27.setText(PropertyHandler.getInstance().getValue("CustomReference27Online"));
-        jTextFieldReferenceOnline28.setText(PropertyHandler.getInstance().getValue("CustomReference28Online"));
-        jTextFieldReferenceOnline29.setText(PropertyHandler.getInstance().getValue("CustomReference29Online"));
-        jTextFieldReferenceOnline30.setText(PropertyHandler.getInstance().getValue("CustomReference30Online"));
-        jTextFieldReferenceOnline31.setText(PropertyHandler.getInstance().getValue("CustomReference31Online"));
-        jTextFieldReferenceOnline32.setText(PropertyHandler.getInstance().getValue("CustomReference32Online"));
-        jTextFieldReferenceOnline33.setText(PropertyHandler.getInstance().getValue("CustomReference33Online"));
+        jTextFieldReferenceOnline1.setText(PropertyHandler.getInstance().getValue("Custom.Reference.01.Online"));
+        jTextFieldReferenceOnline2.setText(PropertyHandler.getInstance().getValue("Custom.Reference.02.Online"));
+        jTextFieldReferenceOnline3.setText(PropertyHandler.getInstance().getValue("Custom.Reference.03.Online"));
+        jTextFieldReferenceOnline4.setText(PropertyHandler.getInstance().getValue("Custom.Reference.04.Online"));
+        jTextFieldReferenceOnline5.setText(PropertyHandler.getInstance().getValue("Custom.Reference.05.Online"));
+        jTextFieldReferenceOnline6.setText(PropertyHandler.getInstance().getValue("Custom.Reference.06.Online"));
+        jTextFieldReferenceOnline7.setText(PropertyHandler.getInstance().getValue("Custom.Reference.07.Online"));
+        jTextFieldReferenceOnline8.setText(PropertyHandler.getInstance().getValue("Custom.Reference.08.Online"));
+        jTextFieldReferenceOnline9.setText(PropertyHandler.getInstance().getValue("Custom.Reference.09.Online"));
+        jTextFieldReferenceOnline10.setText(PropertyHandler.getInstance().getValue("Custom.Reference.10.Online"));
+        jTextFieldReferenceOnline11.setText(PropertyHandler.getInstance().getValue("Custom.Reference.11.Online"));
+        jTextFieldReferenceOnline12.setText(PropertyHandler.getInstance().getValue("Custom.Reference.12.Online"));
+        jTextFieldReferenceOnline13.setText(PropertyHandler.getInstance().getValue("Custom.Reference.13.Online"));
+        jTextFieldReferenceOnline14.setText(PropertyHandler.getInstance().getValue("Custom.Reference.14.Online"));
+        jTextFieldReferenceOnline15.setText(PropertyHandler.getInstance().getValue("Custom.Reference.15.Online"));
+        jTextFieldReferenceOnline16.setText(PropertyHandler.getInstance().getValue("Custom.Reference.16.Online"));
+        jTextFieldReferenceOnline17.setText(PropertyHandler.getInstance().getValue("Custom.Reference.17.Online"));
+        jTextFieldReferenceOnline18.setText(PropertyHandler.getInstance().getValue("Custom.Reference.18.Online"));
+        jTextFieldReferenceOnline19.setText(PropertyHandler.getInstance().getValue("Custom.Reference.19.Online"));
+        jTextFieldReferenceOnline20.setText(PropertyHandler.getInstance().getValue("Custom.Reference.20.Online"));
+        jTextFieldReferenceOnline21.setText(PropertyHandler.getInstance().getValue("Custom.Reference.21.Online"));
+        jTextFieldReferenceOnline22.setText(PropertyHandler.getInstance().getValue("Custom.Reference.22.Online"));
+        jTextFieldReferenceOnline23.setText(PropertyHandler.getInstance().getValue("Custom.Reference.23.Online"));
+        jTextFieldReferenceOnline24.setText(PropertyHandler.getInstance().getValue("Custom.Reference.24.Online"));
+        jTextFieldReferenceOnline25.setText(PropertyHandler.getInstance().getValue("Custom.Reference.25.Online"));
+        jTextFieldReferenceOnline26.setText(PropertyHandler.getInstance().getValue("Custom.Reference.26.Online"));
+        jTextFieldReferenceOnline27.setText(PropertyHandler.getInstance().getValue("Custom.Reference.27.Online"));
+        jTextFieldReferenceOnline28.setText(PropertyHandler.getInstance().getValue("Custom.Reference.28.Online"));
+        jTextFieldReferenceOnline29.setText(PropertyHandler.getInstance().getValue("Custom.Reference.29.Online"));
+        jTextFieldReferenceOnline30.setText(PropertyHandler.getInstance().getValue("Custom.Reference.30.Online"));
+        jTextFieldReferenceOnline31.setText(PropertyHandler.getInstance().getValue("Custom.Reference.31.Online"));
+        jTextFieldReferenceOnline32.setText(PropertyHandler.getInstance().getValue("Custom.Reference.32.Online"));
+        jTextFieldReferenceOnline33.setText(PropertyHandler.getInstance().getValue("Custom.Reference.33.Online"));
         //- Offline
-        jTextFieldReferenceOffline1.setText(PropertyHandler.getInstance().getValue("CustomReference01Offline"));
-        jTextFieldReferenceOffline2.setText(PropertyHandler.getInstance().getValue("CustomReference02Offline"));
-        jTextFieldReferenceOffline3.setText(PropertyHandler.getInstance().getValue("CustomReference03Offline"));
-        jTextFieldReferenceOffline4.setText(PropertyHandler.getInstance().getValue("CustomReference04Offline"));
-        jTextFieldReferenceOffline5.setText(PropertyHandler.getInstance().getValue("CustomReference05Offline"));
-        jTextFieldReferenceOffline6.setText(PropertyHandler.getInstance().getValue("CustomReference06Offline"));
-        jTextFieldReferenceOffline7.setText(PropertyHandler.getInstance().getValue("CustomReference07Offline"));
-        jTextFieldReferenceOffline8.setText(PropertyHandler.getInstance().getValue("CustomReference08Offline"));
-        jTextFieldReferenceOffline9.setText(PropertyHandler.getInstance().getValue("CustomReference09Offline"));
-        jTextFieldReferenceOffline10.setText(PropertyHandler.getInstance().getValue("CustomReference10Offline"));
-        jTextFieldReferenceOffline11.setText(PropertyHandler.getInstance().getValue("CustomReference11Offline"));
-        jTextFieldReferenceOffline12.setText(PropertyHandler.getInstance().getValue("CustomReference12Offline"));
-        jTextFieldReferenceOffline13.setText(PropertyHandler.getInstance().getValue("CustomReference13Offline"));
-        jTextFieldReferenceOffline14.setText(PropertyHandler.getInstance().getValue("CustomReference14Offline"));
-        jTextFieldReferenceOffline15.setText(PropertyHandler.getInstance().getValue("CustomReference15Offline"));
-        jTextFieldReferenceOffline16.setText(PropertyHandler.getInstance().getValue("CustomReference16Offline"));
-        jTextFieldReferenceOffline17.setText(PropertyHandler.getInstance().getValue("CustomReference17Offline"));
-        jTextFieldReferenceOffline18.setText(PropertyHandler.getInstance().getValue("CustomReference18Offline"));
-        jTextFieldReferenceOffline19.setText(PropertyHandler.getInstance().getValue("CustomReference19Offline"));
-        jTextFieldReferenceOffline20.setText(PropertyHandler.getInstance().getValue("CustomReference20Offline"));
-        jTextFieldReferenceOffline21.setText(PropertyHandler.getInstance().getValue("CustomReference21Offline"));
-        jTextFieldReferenceOffline22.setText(PropertyHandler.getInstance().getValue("CustomReference22Offline"));
-        jTextFieldReferenceOffline23.setText(PropertyHandler.getInstance().getValue("CustomReference23Offline"));
-        jTextFieldReferenceOffline24.setText(PropertyHandler.getInstance().getValue("CustomReference24Offline"));
-        jTextFieldReferenceOffline25.setText(PropertyHandler.getInstance().getValue("CustomReference25Offline"));
-        jTextFieldReferenceOffline26.setText(PropertyHandler.getInstance().getValue("CustomReference26Offline"));
-        jTextFieldReferenceOffline27.setText(PropertyHandler.getInstance().getValue("CustomReference27Offline"));
-        jTextFieldReferenceOffline28.setText(PropertyHandler.getInstance().getValue("CustomReference28Offline"));
-        jTextFieldReferenceOffline29.setText(PropertyHandler.getInstance().getValue("CustomReference29Offline"));
-        jTextFieldReferenceOffline30.setText(PropertyHandler.getInstance().getValue("CustomReference30Offline"));
-        jTextFieldReferenceOffline31.setText(PropertyHandler.getInstance().getValue("CustomReference31Offline"));
-        jTextFieldReferenceOffline32.setText(PropertyHandler.getInstance().getValue("CustomReference32Offline"));
-        jTextFieldReferenceOffline33.setText(PropertyHandler.getInstance().getValue("CustomReference33Offline"));
+        jTextFieldReferenceOffline1.setText(PropertyHandler.getInstance().getValue("Custom.Reference.01.Offline"));
+        jTextFieldReferenceOffline2.setText(PropertyHandler.getInstance().getValue("Custom.Reference.02.Offline"));
+        jTextFieldReferenceOffline3.setText(PropertyHandler.getInstance().getValue("Custom.Reference.03.Offline"));
+        jTextFieldReferenceOffline4.setText(PropertyHandler.getInstance().getValue("Custom.Reference.04.Offline"));
+        jTextFieldReferenceOffline5.setText(PropertyHandler.getInstance().getValue("Custom.Reference.05.Offline"));
+        jTextFieldReferenceOffline6.setText(PropertyHandler.getInstance().getValue("Custom.Reference.06.Offline"));
+        jTextFieldReferenceOffline7.setText(PropertyHandler.getInstance().getValue("Custom.Reference.07.Offline"));
+        jTextFieldReferenceOffline8.setText(PropertyHandler.getInstance().getValue("Custom.Reference.08.Offline"));
+        jTextFieldReferenceOffline9.setText(PropertyHandler.getInstance().getValue("Custom.Reference.09.Offline"));
+        jTextFieldReferenceOffline10.setText(PropertyHandler.getInstance().getValue("Custom.Reference.10.Offline"));
+        jTextFieldReferenceOffline11.setText(PropertyHandler.getInstance().getValue("Custom.Reference.11.Offline"));
+        jTextFieldReferenceOffline12.setText(PropertyHandler.getInstance().getValue("Custom.Reference.12.Offline"));
+        jTextFieldReferenceOffline13.setText(PropertyHandler.getInstance().getValue("Custom.Reference.13.Offline"));
+        jTextFieldReferenceOffline14.setText(PropertyHandler.getInstance().getValue("Custom.Reference.14.Offline"));
+        jTextFieldReferenceOffline15.setText(PropertyHandler.getInstance().getValue("Custom.Reference.15.Offline"));
+        jTextFieldReferenceOffline16.setText(PropertyHandler.getInstance().getValue("Custom.Reference.16.Offline"));
+        jTextFieldReferenceOffline17.setText(PropertyHandler.getInstance().getValue("Custom.Reference.17.Offline"));
+        jTextFieldReferenceOffline18.setText(PropertyHandler.getInstance().getValue("Custom.Reference.18.Offline"));
+        jTextFieldReferenceOffline19.setText(PropertyHandler.getInstance().getValue("Custom.Reference.19.Offline"));
+        jTextFieldReferenceOffline20.setText(PropertyHandler.getInstance().getValue("Custom.Reference.20.Offline"));
+        jTextFieldReferenceOffline21.setText(PropertyHandler.getInstance().getValue("Custom.Reference.21.Offline"));
+        jTextFieldReferenceOffline22.setText(PropertyHandler.getInstance().getValue("Custom.Reference.22.Offline"));
+        jTextFieldReferenceOffline23.setText(PropertyHandler.getInstance().getValue("Custom.Reference.23.Offline"));
+        jTextFieldReferenceOffline24.setText(PropertyHandler.getInstance().getValue("Custom.Reference.24.Offline"));
+        jTextFieldReferenceOffline25.setText(PropertyHandler.getInstance().getValue("Custom.Reference.25.Offline"));
+        jTextFieldReferenceOffline26.setText(PropertyHandler.getInstance().getValue("Custom.Reference.26.Offline"));
+        jTextFieldReferenceOffline27.setText(PropertyHandler.getInstance().getValue("Custom.Reference.27.Offline"));
+        jTextFieldReferenceOffline28.setText(PropertyHandler.getInstance().getValue("Custom.Reference.28.Offline"));
+        jTextFieldReferenceOffline29.setText(PropertyHandler.getInstance().getValue("Custom.Reference.29.Offline"));
+        jTextFieldReferenceOffline30.setText(PropertyHandler.getInstance().getValue("Custom.Reference.30.Offline"));
+        jTextFieldReferenceOffline31.setText(PropertyHandler.getInstance().getValue("Custom.Reference.31.Offline"));
+        jTextFieldReferenceOffline32.setText(PropertyHandler.getInstance().getValue("Custom.Reference.32.Offline"));
+        jTextFieldReferenceOffline33.setText(PropertyHandler.getInstance().getValue("Custom.Reference.33.Offline"));
     }
         
     public void loadSettingsShared() {
         
         //- Set Local Policy Warnings
         try {
-//            if("1".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
+//            if("1".equals(PropertyHandler.getInstance().getValue("Setting.LocalPolicyWarning"))) {
 //                jLabel1.setText("");
 //            } 
-            if("0".equals(PropertyHandler.getInstance().getValue("SettingLocalPolicyWarning"))) {
+            if("0".equals(PropertyHandler.getInstance().getValue("Setting.LocalPolicyWarning"))) {
                 jLabel1.setText("");
             }
-        } catch (NullPointerException e) {System.out.println("SettingLocalPolicyWarning Goofed");
+        } catch (NullPointerException e) {System.out.println("Setting.LocalPolicyWarning Goofed");
         }
     }   
 
