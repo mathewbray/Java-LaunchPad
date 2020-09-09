@@ -384,7 +384,7 @@ public class LaunchPad {
 "Custom.Script.36.Exec=cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -noexit -Command \"& {$RunCommand = {Clear-Host; net use; Write-Host ''; Write-Host 'Press Enter to REFRESH...' -NoNewLine  -ForegroundColor Green; Read-Host -Prompt ' '; .$RunCommand}; &$RunCommand}\"",
 "File.LaunchPad.Local=C:\\\\LaunchPad\\\\old.txt",
 "File.LaunchPad.Remote=%USERPROFILE%\\\\Desktop\\\\new.txt",
-"File.Update.Script=%USERPROFILE%\\\\Desktop\\\\HelloWorld.ps1",
+"File.Update.Script=cmd.exe /c start powershell.exe -ExecutionPolicy Bypass -File \"%USERPROFILE%\\\\Desktop\\\\HelloWorld.ps1\"",
 "NTP.Test.IP=tick.usno.navy.mil",
 "Preload.Ping=10.0.",
 "Preload.SSH=10.0.",
@@ -462,7 +462,8 @@ public class LaunchPad {
         if (i > 0) {
             System.out.println("Update status: Update found. Running update stuff.");
             JOptionPane.showMessageDialog(null, "Found a newer version...  Click OK to continue.", "Update Found!", JOptionPane.INFORMATION_MESSAGE);
-            String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("File.Update.Script") + "\"" ;
+            // String myValue = "cmd.exe /c start cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("File.Update.Script") + "\"" ;
+            String myValue = PropertyHandler.getInstance().getValue("File.Update.Script");
             System.out.println(myValue);
             try {
                 Runtime.getRuntime().exec(myValue);

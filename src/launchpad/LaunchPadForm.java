@@ -7452,9 +7452,12 @@ public final class LaunchPadForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonReportIssueActionPerformed
 
     private void jButtonScriptUpdateLaunchPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScriptUpdateLaunchPadActionPerformed
-        String StrFileUpdateScript = PropertyHandler.getInstance().getValue("FileUpdateScript");
-        if(new File(StrFileUpdateScript).isFile()) { 
-            String myValue = "cmd.exe /c start powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("FileUpdateScript") + "\"";
+        String StrFileUpdateScript = PropertyHandler.getInstance().getValue("File.Update.Script");
+        // switched from using just the file name to specifying the entire command in the properties file
+        // if(new File(StrFileUpdateScript).isFile()) { 
+        if(!StrFileUpdateScript.isEmpty()) { 
+            // String myValue = "cmd.exe /c start powershell.exe -ExecutionPolicy Bypass -File \"" + PropertyHandler.getInstance().getValue("File.Update.Script") + "\"";
+            String myValue = PropertyHandler.getInstance().getValue("File.Update.Script");
             System.out.println(myValue);
             try {
                 Runtime.getRuntime().exec(myValue);
@@ -7466,7 +7469,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
                 System.exit(0);
             }
         else {
-            String StrMessage = "Property FileUpdateScript: file not found";
+            String StrMessage = "Update script is blank in properties file.";
             String StrTitle = "Oh no!";
             JOptionPane.showMessageDialog(null, StrMessage,StrTitle,JOptionPane.WARNING_MESSAGE);
             System.out.println(StrMessage);
