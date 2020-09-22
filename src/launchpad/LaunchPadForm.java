@@ -10790,11 +10790,11 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         //strReference = PropertyHandler.getInstance().getValue(strReferenceToOpen);
 
         if(jToggleOnlineOfflineMode.isSelected()){
-            strReferenceFromPropertiesFile =  PropertyHandler.getInstance().getValue(strReferenceToOpen + "Offline");
+            strReferenceFromPropertiesFile =  PropertyHandler.getInstance().getValue(strReferenceToOpen + ".Offline");
             System.out.println("Using Offline: " + strReferenceFromPropertiesFile);
         }
         else{
-            strReferenceFromPropertiesFile =  PropertyHandler.getInstance().getValue(strReferenceToOpen + "Online");
+            strReferenceFromPropertiesFile =  PropertyHandler.getInstance().getValue(strReferenceToOpen + ".Online");
             System.out.println("Using Online: " + strReferenceFromPropertiesFile);        
         }
 
