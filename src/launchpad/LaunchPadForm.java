@@ -10807,7 +10807,7 @@ public final class LaunchPadForm extends javax.swing.JFrame {
             System.out.println("Opening: " + strReferenceFromPropertiesFile); 
             
             if(strReferenceFromPropertiesFile != null && !strReferenceFromPropertiesFile.isEmpty()) { 
-                Runtime.getRuntime().exec("cmd.exe /c start " + strReferenceFromPropertiesFile);
+                Runtime.getRuntime().exec(strReferenceFromPropertiesFile);
             }
 
             
