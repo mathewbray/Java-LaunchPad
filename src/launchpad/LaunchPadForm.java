@@ -1033,6 +1033,22 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jTextFieldScriptsFilter = new javax.swing.JTextField();
         jLabelScriptsFilter = new javax.swing.JLabel();
         jTabbedPaneToolBox = new javax.swing.JTabbedPane();
+        jPanelWebJavaDocs = new javax.swing.JPanel();
+        jPanelDocuments = new javax.swing.JPanel();
+        jButton24 = new javax.swing.JButton();
+        jButton36 = new javax.swing.JButton();
+        jButton37 = new javax.swing.JButton();
+        jButton42 = new javax.swing.JButton();
+        jPanelJavaApps = new javax.swing.JPanel();
+        jButton41 = new javax.swing.JButton();
+        jPanelWebApps = new javax.swing.JPanel();
+        jButtonJSDiff2 = new javax.swing.JButton();
+        jButtonConfigBuilder1 = new javax.swing.JButton();
+        jButtonSubnetCalculator = new javax.swing.JButton();
+        jButtonSubnetCalculator1 = new javax.swing.JButton();
+        jButtonIPv4SubnetCalculator = new javax.swing.JButton();
+        jButtonRomajiToHiraKata = new javax.swing.JButton();
+        jButtonIconGenerator = new javax.swing.JButton();
         jPanelZipEncrypt = new javax.swing.JPanel();
         jButtonFolderToZip = new javax.swing.JButton();
         jTextFieldZipSourceFolder = new javax.swing.JTextField();
@@ -1093,22 +1109,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jScrollPaneNTPMessage = new javax.swing.JScrollPane();
         jTextAreaNTPMessage = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
-        jPanelWebJavaDocs = new javax.swing.JPanel();
-        jPanelDocuments = new javax.swing.JPanel();
-        jButton24 = new javax.swing.JButton();
-        jButton36 = new javax.swing.JButton();
-        jButton37 = new javax.swing.JButton();
-        jButton42 = new javax.swing.JButton();
-        jPanelJavaApps = new javax.swing.JPanel();
-        jButton41 = new javax.swing.JButton();
-        jPanelWebApps = new javax.swing.JPanel();
-        jButtonJSDiff2 = new javax.swing.JButton();
-        jButtonConfigBuilder1 = new javax.swing.JButton();
-        jButtonSubnetCalculator = new javax.swing.JButton();
-        jButtonSubnetCalculator1 = new javax.swing.JButton();
-        jButtonIPv4SubnetCalculator = new javax.swing.JButton();
-        jButtonRomajiToHiraKata = new javax.swing.JButton();
-        jButtonIconGenerator = new javax.swing.JButton();
         jPanelToolboxScripts = new javax.swing.JPanel();
         jPanelScanning = new javax.swing.JPanel();
         jButtonScriptPowershellPingSweepRange = new javax.swing.JButton();
@@ -3247,6 +3247,153 @@ public final class LaunchPadForm extends javax.swing.JFrame {
 
         jTabbedPaneToolBox.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
 
+        jPanelWebJavaDocs.setLayout(null);
+
+        jPanelDocuments.setBorder(javax.swing.BorderFactory.createTitledBorder("Documents"));
+        jPanelDocuments.setLayout(null);
+
+        jButton24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton24.setText("IPv4 Subnet Chart");
+        jButton24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton24ActionPerformed(evt);
+            }
+        });
+        jPanelDocuments.add(jButton24);
+        jButton24.setBounds(10, 20, 170, 30);
+
+        jButton36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton36.setText("IPv4 Subnet Cheat Sheet");
+        jButton36.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton36ActionPerformed(evt);
+            }
+        });
+        jPanelDocuments.add(jButton36);
+        jButton36.setBounds(190, 20, 170, 30);
+
+        jButton37.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton37.setText("Stretch's Cheat Sheets");
+        jButton37.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton37ActionPerformed(evt);
+            }
+        });
+        jPanelDocuments.add(jButton37);
+        jButton37.setBounds(370, 20, 170, 30);
+
+        jButton42.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton42.setText("Excel ToolBox");
+        jButton42.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton42ActionPerformed(evt);
+            }
+        });
+        jPanelDocuments.add(jButton42);
+        jButton42.setBounds(10, 60, 170, 30);
+
+        jPanelWebJavaDocs.add(jPanelDocuments);
+        jPanelDocuments.setBounds(10, 230, 550, 100);
+
+        jPanelJavaApps.setBorder(javax.swing.BorderFactory.createTitledBorder("Java Apps"));
+        jPanelJavaApps.setLayout(null);
+
+        jButton41.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButton41.setText("Puppeteer");
+        jButton41.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton41ActionPerformed(evt);
+            }
+        });
+        jPanelJavaApps.add(jButton41);
+        jButton41.setBounds(10, 20, 170, 30);
+
+        jPanelWebJavaDocs.add(jPanelJavaApps);
+        jPanelJavaApps.setBounds(10, 160, 550, 60);
+
+        jPanelWebApps.setBorder(javax.swing.BorderFactory.createTitledBorder("Web Apps"));
+        jPanelWebApps.setLayout(null);
+
+        jButtonJSDiff2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonJSDiff2.setText("jsDiff (Compare Files)");
+        jButtonJSDiff2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonJSDiff2ActionPerformed(evt);
+            }
+        });
+        jPanelWebApps.add(jButtonJSDiff2);
+        jButtonJSDiff2.setBounds(10, 60, 170, 30);
+
+        jButtonConfigBuilder1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonConfigBuilder1.setText("Config Builder (For Lab Use)");
+        jButtonConfigBuilder1.setMargin(new java.awt.Insets(2, 0, 2, 0));
+        jButtonConfigBuilder1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConfigBuilder1ActionPerformed(evt);
+            }
+        });
+        jPanelWebApps.add(jButtonConfigBuilder1);
+        jButtonConfigBuilder1.setBounds(190, 60, 170, 30);
+
+        jButtonSubnetCalculator.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonSubnetCalculator.setText("IPv4/v6 Subnet Calculator");
+        jButtonSubnetCalculator.setToolTipText("Just another style with both v4 and v6");
+        jButtonSubnetCalculator.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSubnetCalculatorActionPerformed(evt);
+            }
+        });
+        jPanelWebApps.add(jButtonSubnetCalculator);
+        jButtonSubnetCalculator.setBounds(370, 20, 170, 30);
+
+        jButtonSubnetCalculator1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonSubnetCalculator1.setText("IPv6 Subnet Calculator");
+        jButtonSubnetCalculator1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSubnetCalculator1ActionPerformed(evt);
+            }
+        });
+        jPanelWebApps.add(jButtonSubnetCalculator1);
+        jButtonSubnetCalculator1.setBounds(190, 20, 170, 30);
+
+        jButtonIPv4SubnetCalculator.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonIPv4SubnetCalculator.setText("IPv4 Subnet Calculator");
+        jButtonIPv4SubnetCalculator.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIPv4SubnetCalculatorActionPerformed(evt);
+            }
+        });
+        jPanelWebApps.add(jButtonIPv4SubnetCalculator);
+        jButtonIPv4SubnetCalculator.setBounds(10, 20, 170, 30);
+
+        jButtonRomajiToHiraKata.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonRomajiToHiraKata.setText("Romaji to Hiragana/Katakana");
+        jButtonRomajiToHiraKata.setMargin(new java.awt.Insets(2, 0, 2, 0));
+        jButtonRomajiToHiraKata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRomajiToHiraKataActionPerformed(evt);
+            }
+        });
+        jPanelWebApps.add(jButtonRomajiToHiraKata);
+        jButtonRomajiToHiraKata.setBounds(370, 60, 170, 30);
+
+        jButtonIconGenerator.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        jButtonIconGenerator.setText("Icon Generator");
+        jButtonIconGenerator.setMargin(new java.awt.Insets(2, 0, 2, 0));
+        jButtonIconGenerator.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIconGeneratorActionPerformed(evt);
+            }
+        });
+        jPanelWebApps.add(jButtonIconGenerator);
+        jButtonIconGenerator.setBounds(10, 100, 170, 30);
+
+        jPanelWebJavaDocs.add(jPanelWebApps);
+        jPanelWebApps.setBounds(10, 10, 550, 140);
+
+        jTabbedPaneToolBox.addTab("Web/Java/Docs", jPanelWebJavaDocs);
+
         jPanelZipEncrypt.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         jPanelZipEncrypt.setLayout(null);
 
@@ -3658,153 +3805,6 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         jButton1.setBounds(440, 50, 110, 20);
 
         jTabbedPaneToolBox.addTab("NTP", jPanelNTPTime);
-
-        jPanelWebJavaDocs.setLayout(null);
-
-        jPanelDocuments.setBorder(javax.swing.BorderFactory.createTitledBorder("Documents"));
-        jPanelDocuments.setLayout(null);
-
-        jButton24.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton24.setText("IPv4 Subnet Chart");
-        jButton24.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton24ActionPerformed(evt);
-            }
-        });
-        jPanelDocuments.add(jButton24);
-        jButton24.setBounds(10, 20, 170, 30);
-
-        jButton36.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton36.setText("IPv4 Subnet Cheat Sheet");
-        jButton36.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton36.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton36ActionPerformed(evt);
-            }
-        });
-        jPanelDocuments.add(jButton36);
-        jButton36.setBounds(190, 20, 170, 30);
-
-        jButton37.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton37.setText("Stretch's Cheat Sheets");
-        jButton37.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton37ActionPerformed(evt);
-            }
-        });
-        jPanelDocuments.add(jButton37);
-        jButton37.setBounds(370, 20, 170, 30);
-
-        jButton42.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton42.setText("Excel ToolBox");
-        jButton42.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton42ActionPerformed(evt);
-            }
-        });
-        jPanelDocuments.add(jButton42);
-        jButton42.setBounds(10, 60, 170, 30);
-
-        jPanelWebJavaDocs.add(jPanelDocuments);
-        jPanelDocuments.setBounds(10, 230, 550, 100);
-
-        jPanelJavaApps.setBorder(javax.swing.BorderFactory.createTitledBorder("Java Apps"));
-        jPanelJavaApps.setLayout(null);
-
-        jButton41.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButton41.setText("Puppeteer");
-        jButton41.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton41ActionPerformed(evt);
-            }
-        });
-        jPanelJavaApps.add(jButton41);
-        jButton41.setBounds(10, 20, 170, 30);
-
-        jPanelWebJavaDocs.add(jPanelJavaApps);
-        jPanelJavaApps.setBounds(10, 160, 550, 60);
-
-        jPanelWebApps.setBorder(javax.swing.BorderFactory.createTitledBorder("Web Apps"));
-        jPanelWebApps.setLayout(null);
-
-        jButtonJSDiff2.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButtonJSDiff2.setText("jsDiff (Compare Files)");
-        jButtonJSDiff2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonJSDiff2ActionPerformed(evt);
-            }
-        });
-        jPanelWebApps.add(jButtonJSDiff2);
-        jButtonJSDiff2.setBounds(10, 60, 170, 30);
-
-        jButtonConfigBuilder1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButtonConfigBuilder1.setText("Config Builder (For Lab Use)");
-        jButtonConfigBuilder1.setMargin(new java.awt.Insets(2, 0, 2, 0));
-        jButtonConfigBuilder1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConfigBuilder1ActionPerformed(evt);
-            }
-        });
-        jPanelWebApps.add(jButtonConfigBuilder1);
-        jButtonConfigBuilder1.setBounds(190, 60, 170, 30);
-
-        jButtonSubnetCalculator.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButtonSubnetCalculator.setText("IPv4/v6 Subnet Calculator");
-        jButtonSubnetCalculator.setToolTipText("Just another style with both v4 and v6");
-        jButtonSubnetCalculator.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSubnetCalculatorActionPerformed(evt);
-            }
-        });
-        jPanelWebApps.add(jButtonSubnetCalculator);
-        jButtonSubnetCalculator.setBounds(370, 20, 170, 30);
-
-        jButtonSubnetCalculator1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButtonSubnetCalculator1.setText("IPv6 Subnet Calculator");
-        jButtonSubnetCalculator1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSubnetCalculator1ActionPerformed(evt);
-            }
-        });
-        jPanelWebApps.add(jButtonSubnetCalculator1);
-        jButtonSubnetCalculator1.setBounds(190, 20, 170, 30);
-
-        jButtonIPv4SubnetCalculator.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButtonIPv4SubnetCalculator.setText("IPv4 Subnet Calculator");
-        jButtonIPv4SubnetCalculator.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonIPv4SubnetCalculatorActionPerformed(evt);
-            }
-        });
-        jPanelWebApps.add(jButtonIPv4SubnetCalculator);
-        jButtonIPv4SubnetCalculator.setBounds(10, 20, 170, 30);
-
-        jButtonRomajiToHiraKata.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButtonRomajiToHiraKata.setText("Romaji to Hiragana/Katakana");
-        jButtonRomajiToHiraKata.setMargin(new java.awt.Insets(2, 0, 2, 0));
-        jButtonRomajiToHiraKata.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRomajiToHiraKataActionPerformed(evt);
-            }
-        });
-        jPanelWebApps.add(jButtonRomajiToHiraKata);
-        jButtonRomajiToHiraKata.setBounds(370, 60, 170, 30);
-
-        jButtonIconGenerator.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        jButtonIconGenerator.setText("Icon Generator");
-        jButtonIconGenerator.setMargin(new java.awt.Insets(2, 0, 2, 0));
-        jButtonIconGenerator.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonIconGeneratorActionPerformed(evt);
-            }
-        });
-        jPanelWebApps.add(jButtonIconGenerator);
-        jButtonIconGenerator.setBounds(10, 100, 170, 30);
-
-        jPanelWebJavaDocs.add(jPanelWebApps);
-        jPanelWebApps.setBounds(10, 10, 550, 140);
-
-        jTabbedPaneToolBox.addTab("Web/Java/Docs", jPanelWebJavaDocs);
 
         jPanelToolboxScripts.setLayout(null);
 
