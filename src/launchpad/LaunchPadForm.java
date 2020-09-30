@@ -10438,36 +10438,8 @@ public final class LaunchPadForm extends javax.swing.JFrame {
         {  
             archivo.createNewFile();
             List<String> lines = Arrays.asList(
-" ~~~~~~~~ Network Nodes ~~~~~~~~~",
-"R1-C800,1.1.1.1",
-"R2-C1700,2.2.2.2",
-"R2-C2600,3.3.3.3",
-"R2-C2800,4.4.4.4",
-"DSW1-C3750X,192.168.1.129",
-"DSW2-C3750,192.168.1.130",
-"ASW1-C3560,192.168.1.131",
-"ASW2-C3550,192.168.1.132",
-"",
-" ~~~~~~~~ Servers ~~~~~~~~~",
-"Windows 10,172.16.0.50",
-"VMware ESXi,10.2.1.100",
-"Windows Server 2016 CA,10.1.101",
-"Windows Server 2016 DC,10.1.102",
-"Infoblox vNIOS,10.2.1.105",
-"Cisco PI,10.2.1.110",
-"Cisco PI-LW,10.2.1.111",
-"Cisco PI-LW-HA,10.2.1.112",
-"Cisco APIC-EM,10.2.1.115",
-"EVE-NG ESXi,10.2.1.119",
-"EVE-NG XPS,10.2.1.120",
-"Cisco CSR1000v,10.2.1.121",
-"Pi Terminal Server (TELNET/VNC),10.2.1.250",
-"",
-" ~~~~~~~~ Testing ~~~~~~~~~",
-"ASW1-CLEAN,10.2.1.5",
-"DSW2-DIRTY,10.2.1.6",
-"HSRP DSW1/DSW2,10.2.1.254",
-"CSR1000v,10.2.1.121");
+" Click \"Edit personal favorites list\"",
+" under the Settings tab.");
             
             Path file = Paths.get(strSessionList);
             Files.write(file, lines, Charset.forName("UTF-8"));
